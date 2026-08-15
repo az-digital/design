@@ -30,6 +30,8 @@ export function renderFigmaTokenWorkflow(): string {
         <aside style="margin:0 0 20px;border:1px solid #b8d8e3;border-left:4px solid #0e7490;background:#f0f9fc;padding:12px 16px;color:#1f2a37;">
           <strong>Prerequisite:</strong> Your GitHub account must belong to the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">Arizona Digital developers team</a>.
         </aside>
+        <h3 style="margin:0 0 8px;font-size:18px;color:#111827;">Supported plugin: Tokens Studio for Figma</h3>
+        <p style="margin:0 0 20px;color:#374151;">These instructions apply to Tokens Studio. Follow the <a href="https://docs.tokens.studio/get-started/install-figma-plugin" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">official plugin installation guide</a> before continuing. Other supported Figma plugins will have their own setup instructions.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
           <div style="border-left:4px solid #0e7490;padding:4px 0 4px 18px;">
             <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">1. Create a fine-grained PAT</h3>
@@ -42,6 +44,7 @@ export function renderFigmaTokenWorkflow(): string {
               <li>Set <strong>Contents</strong> to <strong>Read and write</strong>.</li>
               <li>Leave the required <strong>Metadata</strong> permission as <strong>Read-only</strong>.</li>
             </ol>
+            <p style="margin:10px 0 0;color:#374151;">See GitHub's <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">personal access token guide</a> for creation, storage, rotation, and revocation details.</p>
           </div>
           <div style="border-left:4px solid #ab0520;padding:4px 0 4px 18px;">
             <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">2. Add the sync provider</h3>
@@ -51,6 +54,7 @@ export function renderFigmaTokenWorkflow(): string {
               <li>Enter the PAT and the provider settings below.</li>
               <li>Save the provider, then select <strong>Apply</strong> so it becomes active.</li>
             </ol>
+            <p style="margin:10px 0 0;color:#374151;">See Tokens Studio's <a href="https://docs.tokens.studio/token-storage/manage-sync-provider/" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">sync provider guide</a> for the current plugin interface and provider management options.</p>
           </div>
         </div>
         <dl style="margin:24px 0 0;border:1px solid #d1d5db;background:#f9fafb;display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);">
@@ -108,6 +112,7 @@ export function renderFigmaTokenWorkflow(): string {
 
       <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Troubleshooting</h2>
+        <p style="margin:0 0 12px;color:#374151;">Start with Tokens Studio's <a href="https://docs.tokens.studio/token-storage/troubleshooting-common-sync-provider-errors" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">common sync provider errors guide</a>.</p>
         <ul style="margin:0;padding-left:20px;color:#374151;">
           <li>If sync fails, verify the PAT, repo name, branch, and storage location.</li>
           <li>If tokens appear stale in Figma, confirm the repo branch is current and the token file is the canonical source.</li>

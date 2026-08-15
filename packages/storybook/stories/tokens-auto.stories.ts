@@ -358,10 +358,12 @@ export const SourceFile: Story = {
 
         <section style="background:#fff;border:1px solid #d7dce3;border-radius:10px;padding:12px;display:grid;gap:8px;">
           <h2 style="margin:0;color:#1f2f4a;font:700 24px/1.15 Georgia, 'Times New Roman', Times, serif;">Integration</h2>
+          <p style="margin:0 0 4px;color:#3e4a61;font:500 15px/1.5 Georgia, 'Times New Roman', Times, serif;">Use this DTCG-format JSON file as a portable design-token product in tools that support the format. Additional generated files for other integrations will be published here as they become available.</p>
           <p style="margin:0;color:#45556f;font:500 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">Raw URL</p>
           <p style="margin:0;color:#1f56b1;font:600 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;word-break:break-all;">${rawUrl}</p>
           <p style="margin:8px 0 0;color:#45556f;font:500 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">GitHub path</p>
           <p style="margin:0;color:#45556f;font:600 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">packages/tokens/tokens.json</p>
+          <p style="margin:8px 0 0;color:#3e4a61;font:500 15px/1.5 Georgia, 'Times New Roman', Times, serif;">Explore the <a href="https://github.com/design-tokens/community-group/discussions/312" target="_blank" rel="noopener noreferrer" style="color:#1f56b1;font-weight:700;">community list of products supporting the DTCG format</a>.</p>
         </section>
         ${renderFigmaTokenWorkflow()}
       </main>
