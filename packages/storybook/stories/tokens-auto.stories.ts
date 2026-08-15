@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html-vite';
 import tokensDocument from '../../tokens/tokens.json';
+import { renderFigmaTokenWorkflow } from '../src/figmaTokenWorkflow';
 
 type TokenNode = {
   $type?: string;
@@ -315,6 +316,11 @@ export const Color: Story = {
 
 export const SourceFile: Story = {
   name: 'Downloads',
+  parameters: {
+    options: {
+      showPanel: false,
+    },
+  },
   render: () => {
     const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
     const rawUrl = 'https://raw.githubusercontent.com/az-digital/design/main/packages/tokens/tokens.json';
@@ -357,6 +363,7 @@ export const SourceFile: Story = {
           <p style="margin:8px 0 0;color:#45556f;font:500 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">GitHub path</p>
           <p style="margin:0;color:#45556f;font:600 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">packages/tokens/tokens.json</p>
         </section>
+        ${renderFigmaTokenWorkflow()}
       </main>
     `;
   },

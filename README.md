@@ -94,3 +94,9 @@ When updating tokens or Storybook behavior:
 3. Run the relevant tests before shipping changes.
 
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
+
+## Token Collaboration Docs
+
+For the end-to-end workflow for syncing Figma token updates to the repo, reviewing changes, and applying tokens correctly in design files, use the Storybook documentation page:
+
+- Tokens > Downloads
