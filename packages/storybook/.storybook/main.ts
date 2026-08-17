@@ -10,6 +10,13 @@ const config: StorybookConfig = {
   docs: {
     autodocs: false,
   },
+  viteFinal: async (viteConfig) => ({
+    ...viteConfig,
+    build: {
+      ...viteConfig.build,
+      assetsInlineLimit: 0,
+    },
+  }),
 };
 
 export default config;

@@ -12,6 +12,20 @@ export function renderFigmaTokenWorkflow(): string {
       </section>
 
       <section style="margin-bottom:32px;">
+        <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Choose your workflow</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+          <div style="border-left:4px solid #1f56b1;padding:4px 0 4px 18px;">
+            <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">Use tokens in Figma</h3>
+            <p style="margin:0;color:#374151;">If you do not need to contribute changes, download <code>tokens.json</code> above, open Figma's <strong>Variables</strong> tab, select <strong>Import</strong>, and choose the downloaded file. Tokens Studio and GitHub access are not required.</p>
+          </div>
+          <div style="border-left:4px solid #ab0520;padding:4px 0 4px 18px;">
+            <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">Contribute token changes</h3>
+            <p style="margin:0;color:#374151;">Use Tokens Studio when you need to contribute token updates back to this repository. Contributors must follow the sync, branch, review, and approval workflow below.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Source of truth</h2>
         <ul style="margin:0;padding-left:20px;color:#374151;">
           <li><strong>Canonical file:</strong> <code>packages/tokens/tokens.json</code></li>
@@ -107,7 +121,7 @@ export function renderFigmaTokenWorkflow(): string {
       <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Governance</h2>
         <p style="margin:0 0 12px;color:#374151;">Before merging changes, confirm the scope, review token impacts in Storybook, validate naming and alias structure, and obtain approval from the appropriate reviewers.</p>
-        <p style="margin:0;color:#374151;">Request review from the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">Arizona Digital developers team</a>. A token change is not canonical until its pull request is approved and merged.</p>
+        <p style="margin:0;color:#374151;">Request review from the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer" style="color:#0369a1;font-weight:700;">Arizona Digital developers team</a>. <strong>Arizona Digital Admins must approve all token changes before merge.</strong> A token change is not canonical until its pull request is approved and merged.</p>
       </section>
 
       <section style="margin-bottom:32px;">
