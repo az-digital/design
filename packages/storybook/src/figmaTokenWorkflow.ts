@@ -1,28 +1,51 @@
-export function renderFigmaTokenWorkflow(): string {
+export function renderQuickUse(): string {
+  return `
+    <article style="max-width:900px;margin:0 auto;padding:24px 0 48px;font-family:Inter, 'Segoe UI', sans-serif;color:#1f2a37;line-height:1.6;">
+      <header style="margin-bottom:24px;">
+        <p style="margin:0 0 8px;color:#0e7490;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Design Tokens</p>
+        <h1 style="margin:0;font-size:40px;line-height:1.1;color:#111827;">Using Tokens in Design Tools</h1>
+        <p style="margin:12px 0 0;color:#374151;">Download Arizona Digital token artifacts for use in compatible design tools without configuring repository access or a sync plugin.</p>
+      </header>
+
+      <section style="margin-bottom:32px;">
+        <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Figma: import into Variables</h2>
+        <ol style="margin:0;padding-left:20px;color:#374151;">
+          <li>Open <a href="?path=/story/tokens--source-file" style="color:#0369a1;font-weight:700;">Tokens &gt; Downloads</a>.</li>
+          <li>Select <strong>Download tokens.json</strong>.</li>
+          <li>Open the <strong>Variables</strong> tab in your Figma file.</li>
+          <li>Select <strong>Import</strong> and choose the downloaded <code>tokens.json</code> file.</li>
+          <li>Apply semantic variables to design layers instead of entering hard-coded values.</li>
+        </ol>
+        <aside style="margin:20px 0 0;border:1px solid #b8d8e3;border-left:4px solid #0e7490;background:#f0f9fc;padding:12px 16px;color:#1f2a37;">
+          This import workflow is for using the tokens. Tokens Studio and GitHub access are only required when contributing changes back to the repository.
+        </aside>
+      </section>
+
+      <section style="margin-bottom:32px;">
+        <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Using tokens</h2>
+        <ul style="margin:0;padding-left:20px;color:#374151;">
+          <li>Use semantic tokens for production-facing text, surfaces, borders, and states.</li>
+          <li>Use base tokens for token creation and audits, not direct production UI assignments.</li>
+          <li>Keep layers bound to variables so future imports can update values consistently.</li>
+        </ul>
+      </section>
+
+      <p style="margin:0;color:#374151;">Need to update the source tokens? Continue to <a href="?path=/story/tokens--contributing" style="color:#0369a1;font-weight:700;">Contributing</a>.</p>
+    </article>
+  `;
+}
+
+export function renderContributingWorkflow(): string {
   return `
     <article style="max-width:1100px;margin:0 auto;padding:24px 0 48px;font-family:Inter, 'Segoe UI', sans-serif;color:#1f2a37;line-height:1.6;">
       <header style="margin-bottom:24px;">
         <p style="margin:0 0 8px;color:#0e7490;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Design Tokens</p>
-        <h1 style="margin:0;font-size:40px;line-height:1.1;color:#111827;">Figma Token Sync and Usage Workflow</h1>
+        <h1 style="margin:0;font-size:40px;line-height:1.1;color:#111827;">Contributing Token Changes</h1>
       </header>
 
       <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Summary</h2>
-        <p style="margin:0;color:#374151;">This workflow defines a repeatable process for connecting Figma to the design tokens in this repository so contributors can update token source files from Figma, pull repository updates back into Figma, and apply tokens correctly in design files.</p>
-      </section>
-
-      <section style="margin-bottom:32px;">
-        <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Choose your workflow</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
-          <div style="border-left:4px solid #1f56b1;padding:4px 0 4px 18px;">
-            <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">Use tokens in Figma</h3>
-            <p style="margin:0;color:#374151;">If you do not need to contribute changes, download <code>tokens.json</code> above, open Figma's <strong>Variables</strong> tab, select <strong>Import</strong>, and choose the downloaded file. Tokens Studio and GitHub access are not required.</p>
-          </div>
-          <div style="border-left:4px solid #ab0520;padding:4px 0 4px 18px;">
-            <h3 style="margin:0 0 8px;font-size:16px;color:#111827;">Contribute token changes</h3>
-            <p style="margin:0;color:#374151;">Use Tokens Studio when you need to contribute token updates back to this repository. Contributors must follow the sync, branch, review, and approval workflow below.</p>
-          </div>
-        </div>
+        <p style="margin:0;color:#374151;">The currently supported contribution workflow uses Tokens Studio for Figma to publish token changes and pull approved repository updates back into Figma.</p>
       </section>
 
       <section style="margin-bottom:32px;">

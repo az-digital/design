@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/html-vite';
 import tokensDocument from '../../tokens/tokens.json';
 import tokenDownloadUrl from '../../tokens/tokens.json?url';
-import { renderFigmaTokenWorkflow } from '../src/figmaTokenWorkflow';
+import { renderContributingWorkflow, renderQuickUse } from '../src/figmaTokenWorkflow';
 
 type TokenNode = {
   $type?: string;
@@ -354,7 +354,7 @@ export const SourceFile: Story = {
 
         <section style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
           <a href="${githubUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1f56b1;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">View on GitHub</a>
-          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-flex;align-items:center;gap:8px;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;"><svg aria-hidden="true" width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0Z" fill="#1ABCFE"/><path d="M0 16.5A3.5 3.5 0 0 1 3.5 13H7v3.5a3.5 3.5 0 1 1-7 0Z" fill="#0ACF83"/><path d="M7 0h3.5a3.5 3.5 0 1 1 0 7H7V0Z" fill="#FF7262"/><path d="M0 3.5A3.5 3.5 0 0 1 3.5 0H7v7H3.5A3.5 3.5 0 0 1 0 3.5Z" fill="#F24E1E"/><path d="M0 10a3.5 3.5 0 0 1 3.5-3.5H7v7H3.5A3.5 3.5 0 0 1 0 10Z" fill="#A259FF"/></svg><span>Download tokens.json</span></a>
+          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-block;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">Download tokens.json</a>
         </section>
 
         <section style="background:#fff;border:1px solid #d7dce3;border-radius:10px;padding:12px;display:grid;gap:8px;">
@@ -366,10 +366,32 @@ export const SourceFile: Story = {
           <p style="margin:0;color:#45556f;font:600 13px/1.45 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">packages/tokens/tokens.json</p>
           <p style="margin:8px 0 0;color:#3e4a61;font:500 15px/1.5 Georgia, 'Times New Roman', Times, serif;">Explore the <a href="https://github.com/design-tokens/community-group/discussions/312" target="_blank" rel="noopener noreferrer" style="color:#1f56b1;font-weight:700;">community list of products supporting the DTCG format</a>.</p>
         </section>
-        ${renderFigmaTokenWorkflow()}
+        <nav aria-label="Token documentation" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:20px;">
+          <a href="?path=/story/tokens--design-tools" style="display:block;border-left:4px solid #1f56b1;background:#fff;color:#1f2f4a;text-decoration:none;padding:14px 16px;"><strong style="display:block;font-size:18px;">Design Tools</strong><span style="display:block;margin-top:4px;color:#45556f;font-size:14px;">Use downloaded token artifacts in supported design tools.</span></a>
+          <a href="?path=/story/tokens--contributing" style="display:block;border-left:4px solid #ab0520;background:#fff;color:#1f2f4a;text-decoration:none;padding:14px 16px;"><strong style="display:block;font-size:18px;">Contributing</strong><span style="display:block;margin-top:4px;color:#45556f;font-size:14px;">Configure sync and publish reviewed token changes.</span></a>
+        </nav>
       </main>
     `;
   },
 };
 
-export const __namedExportsOrder = ['SourceFile', 'Color'];
+export const DesignTools: Story = {
+  name: 'Design Tools',
+  parameters: {
+    options: {
+      showPanel: false,
+    },
+  },
+  render: () => renderQuickUse(),
+};
+
+export const Contributing: Story = {
+  parameters: {
+    options: {
+      showPanel: false,
+    },
+  },
+  render: () => renderContributingWorkflow(),
+};
+
+export const __namedExportsOrder = ['SourceFile', 'DesignTools', 'Contributing', 'Color'];

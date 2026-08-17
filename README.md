@@ -97,6 +97,8 @@ This repo is intended to support both token authoring and visual review in one p
 
 ## Token Collaboration Docs
 
-For the end-to-end workflow for syncing Figma token updates to the repo, reviewing changes, and applying tokens correctly in design files, use the Storybook documentation page:
+Use the Storybook token pages to find assets, import tokens, or contribute changes:
 
 - Tokens > Downloads
+- Tokens > Design Tools
+- Tokens > Contributing
