@@ -354,7 +354,7 @@ export const SourceFile: Story = {
 
         <section style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
           <a href="${githubUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1f56b1;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">View on GitHub</a>
-          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-block;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">Download tokens.json</a>
+          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-flex;align-items:center;gap:8px;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;"><svg aria-hidden="true" width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0Z" fill="#1ABCFE"/><path d="M0 16.5A3.5 3.5 0 0 1 3.5 13H7v3.5a3.5 3.5 0 1 1-7 0Z" fill="#0ACF83"/><path d="M7 0h3.5a3.5 3.5 0 1 1 0 7H7V0Z" fill="#FF7262"/><path d="M0 3.5A3.5 3.5 0 0 1 3.5 0H7v7H3.5A3.5 3.5 0 0 1 0 3.5Z" fill="#F24E1E"/><path d="M0 10a3.5 3.5 0 0 1 3.5-3.5H7v7H3.5A3.5 3.5 0 0 1 0 10Z" fill="#A259FF"/></svg><span>Download tokens.json</span></a>
         </section>
 
         <section style="background:#fff;border:1px solid #d7dce3;border-radius:10px;padding:12px;display:grid;gap:8px;">
