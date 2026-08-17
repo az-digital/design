@@ -354,7 +354,7 @@ export const SourceFile: Story = {
 
         <section style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
           <a href="${githubUrl}" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1f56b1;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">View on GitHub</a>
-          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-block;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">Download JSON</a>
+          <a href="${tokenDownloadUrl}" download="tokens.json" style="display:inline-block;background:#0e7490;color:#fff;text-decoration:none;border-radius:8px;padding:10px 14px;font:600 13px/1.2 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;">Download tokens.json</a>
         </section>
 
         <section style="background:#fff;border:1px solid #d7dce3;border-radius:10px;padding:12px;display:grid;gap:8px;">
