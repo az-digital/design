@@ -1,0 +1,22 @@
+{
+  "name": "@az-digital/tokens",
+  "version": "0.0.1",
+  "description": "Design tokens for Arizona Digital design system.",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "az-digital"
+  ],
+  "author": "Arizona Digital",
+  "license": "MIT",
+  "devDependencies": {
+    "style-dictionary": "^5.4.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && style-dictionary build --config style-dictionary.config.js"
+  }
+}
