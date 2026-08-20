@@ -14,7 +14,7 @@
   },
   "include": [
     ".storybook",
-    "src",
-    "stories"
+    "stories",
+    ".swatchbook/**/*.d.ts"
   ]
 }

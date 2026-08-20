@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Diagnostics, TokenNavigator, ColorPalette, TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import tokensDocument from '../../tokens/tokens.json';
+import { countTokens, downloadJson } from './tokenStats';
+
+export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const tokenCounts = countTokens(tokensDocument);
+
+<Meta title="Tokens" />
+
+# Design Tokens
+
+<Diagnostics />
+
+## Downloads
+
+- **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
+- <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
+
+Source file: `packages/tokens/tokens.json`
+
+## Tree
+
+<TokenNavigator />
+
+## Colors
+
+<ColorPalette filter="color.**" />
+
+## All tokens
+
+<TokenTable />

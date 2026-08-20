@@ -10,7 +10,7 @@ This is an npm workspaces monorepo with two packages:
 ├── packages/
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
-│   │   ├── style-dictionary.config.js
+│   │   ├── terrazzo.config.ts
 │   │   └── package.json
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
@@ -24,7 +24,7 @@ This is an npm workspaces monorepo with two packages:
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Terrazzo build pipeline |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
 ## Prerequisites
@@ -52,7 +52,7 @@ All scripts can be run from the repo root:
 |---------|-------------|
 | `npm run dev:storybook` | Start the Storybook development server |
 | `npm run build:storybook` | Build Storybook for production output |
-| `npm run build:tokens` | Build token output using Style Dictionary |
+| `npm run build:tokens` | Build token output using Terrazzo |
 | `npm run test:storybook` | Run the Storybook package tests |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
 | `npm run build:all` | Build token output and Storybook assets |
@@ -81,7 +81,7 @@ This project follows the broader design token ecosystem and aligns with the [Des
 ## How It Works
 
 - Tokens are authored in a structured JSON format and stored in `packages/tokens/tokens.json`.
-- The token package builds output through Style Dictionary.
+- The token package builds output through Terrazzo.
 - Storybook reads the token source and renders grouped token cards for review.
 - The package test suite verifies that nested token paths are flattened and grouped correctly.
 
