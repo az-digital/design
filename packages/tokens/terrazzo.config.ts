@@ -1,10 +1,12 @@
 import { defineConfig } from '@terrazzo/cli';
 import css from '@terrazzo/plugin-css';
+import cssInJs from '@terrazzo/plugin-css-in-js';
 
 export default defineConfig({
   tokens: ['tokens.json'],
   plugins: [
-    css({ filename: 'tokens.css' })
+    css({ filename: 'tokens.css' }),
+    cssInJs({ filename: 'tokens.vars.js' })
   ],
   outDir: './dist/',
   lint: {

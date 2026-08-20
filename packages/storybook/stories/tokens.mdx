@@ -1,10 +1,18 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Diagnostics, TokenNavigator, ColorPalette, TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import tokensDocument from '../../tokens/tokens.json';
+import { color as colorVars } from '../../tokens/dist/tokens.vars.js';
 import { countTokens, downloadJson } from './tokenStats';
+import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
 export const tokenCounts = countTokens(tokensDocument);
+export const brandColors = Object.entries(tokensDocument.color.az).map(([key, token]) => ({
+  name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
+  hex: token.$value.hex,
+  cssVar: colorVars.az[key],
+  cmyk: token.$value.cmyk,
+}));
 
 <Meta title="Tokens" />
 
@@ -25,6 +33,10 @@ Source file: `packages/tokens/tokens.json`
 <TokenNavigator />
 
 ## Colors
+
+<ColorSwatchGrid colors={brandColors} />
+
+### Explore
 
 <ColorPalette filter="color.**" />
 
