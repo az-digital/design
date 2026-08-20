@@ -44,6 +44,11 @@ npm run dev:storybook
 
 Storybook will be available at http://localhost:6006.
 
+### Storybook MCP
+
+While Storybook is running, its MCP endpoint is available at `http://localhost:6006/mcp`.
+VS Code uses the server configuration in `.vscode/mcp.json`.
+
 ## Available Scripts
 
 All scripts can be run from the repo root:
