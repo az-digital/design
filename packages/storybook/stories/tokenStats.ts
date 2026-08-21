@@ -28,7 +28,11 @@ export function countTokens(node: unknown): { total: number; color: number } {
 // Browsers ignore the `download` attribute for cross-origin links (e.g. raw.githubusercontent.com),
 // so build a same-origin blob from the token data already bundled from this codebase.
 export function downloadJson(data: unknown, filename: string): void {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  downloadText(JSON.stringify(data, null, 2), filename, 'application/json');
+}
+
+export function downloadText(content: string, filename: string, mimeType: string): void {
+  const blob = new Blob([content], { type: mimeType });
   const objectUrl = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = objectUrl;
