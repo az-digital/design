@@ -2,8 +2,33 @@
 export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
+    "az.color.brand.arroyo-blue": string;
+    "az.color.brand.azurite": string;
     "az.color.brand.blue": string;
+    "az.color.brand.bougainvillea": string;
+    "az.color.brand.brick": string;
+    "az.color.brand.caliche": string;
+    "az.color.brand.cloud": string;
+    "az.color.brand.rain": string;
     "az.color.brand.red": string;
+    "az.color.brand.saguaro": string;
+    "az.color.brand.shade": string;
+    "az.color.brand.sonoran-red": string;
+    "az.color.brand.tinta": string;
+    "az.color.legacy.ash": string;
+    "az.color.legacy.bloom": string;
+    "az.color.legacy.chili": string;
+    "az.color.legacy.cool-gray": string;
+    "az.color.legacy.dark-silver": string;
+    "az.color.legacy.leaf": string;
+    "az.color.legacy.mesa": string;
+    "az.color.legacy.midnight": string;
+    "az.color.legacy.oasis": string;
+    "az.color.legacy.river": string;
+    "az.color.legacy.sage": string;
+    "az.color.legacy.silver": string;
+    "az.color.legacy.sky": string;
+    "az.color.legacy.warm-gray": string;
   }
 
   export type SwatchbookPermutationName = "default";

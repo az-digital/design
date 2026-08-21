@@ -104,7 +104,7 @@ function ValuePairRow({
 
 function ColorSwatchCard({ name, hex, cssVar, cmyk, pantone }: NamedColor) {
   const rgb = hexToRgb(hex);
-  const pinColor = name.toLowerCase().includes('blue')
+  const pinColor = ['blue', 'tinta'].includes(name.toLowerCase())
     ? 'var(--az-color-brand-red)'
     : 'var(--az-color-brand-blue)';
   const rgbPairs: Array<[string, string]> = [

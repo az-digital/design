@@ -8,13 +8,17 @@ import { ColorSwatchGrid } from './ColorSwatchGrid';
 export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
-export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => ({
-  name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
-  hex: token.$value.hex,
-  cssVar: azVars.color.brand[key],
-  cmyk: token.$extensions?.cmyk,
-  pantone: token.$extensions?.pantone,
-}));
+export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
+  // tokens.vars.js camelCases hyphenated keys (e.g. arroyo-blue -> arroyoBlue)
+  const camelKey = key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
+  return {
+    name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
+    hex: token.$value.hex,
+    cssVar: azVars.color.brand[camelKey],
+    cmyk: token.$extensions?.cmyk,
+    pantone: token.$extensions?.pantone,
+  };
+});
 
 <Meta title="Tokens" />
 
@@ -22,7 +26,7 @@ export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([k
 
 <Diagnostics />
 
-## Downloads
+## Downloads and useful links
 
 - **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
 - <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
