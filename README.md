@@ -10,7 +10,11 @@ This is an npm workspaces monorepo with two packages:
 ├── packages/
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
-│   │   ├── style-dictionary.config.js
+│   │   ├── terrazzo.config.ts
+│   │   ├── dist/               #   generated output (gitignored, built by Terrazzo)
+│   │   │   ├── tokens.css      #     CSS custom properties (--az-color-brand-*, etc.)
+│   │   │   ├── tokens.vars.js  #     JS module exporting var(...) references matching tokens.css
+│   │   │   └── tokens.vars.d.ts
 │   │   └── package.json
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
@@ -24,7 +28,7 @@ This is an npm workspaces monorepo with two packages:
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Terrazzo build pipeline |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
 ## Prerequisites
@@ -52,7 +56,7 @@ All scripts can be run from the repo root:
 |---------|-------------|
 | `npm run dev:storybook` | Start the Storybook development server |
 | `npm run build:storybook` | Build Storybook for production output |
-| `npm run build:tokens` | Build token output using Style Dictionary |
+| `npm run build:tokens` | Build token output using Terrazzo |
 | `npm run test:storybook` | Run the Storybook package tests |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
 | `npm run build:all` | Build token output and Storybook assets |
@@ -68,11 +72,22 @@ npm run build:tokens
 
 3. Review the generated token catalog in Storybook.
 
+### `dist/` Output
+
+`npm run build:tokens` runs Terrazzo against `tokens.json` and writes generated, gitignored output to `packages/tokens/dist/`:
+
+- `tokens.css` — CSS custom properties (e.g. `--az-color-brand-blue`) for consumption in stylesheets.
+- `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the actual generated CSS variable names instead of hand-reconstructing them.
+
+Never edit files in `dist/` directly — they're regenerated on every token build.
+
 ## Storybook Notes
 
 The Storybook package renders the design token catalog, groups nested token values, and provides a review surface for design decisions and naming conventions.
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
+
+The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
 
 ## Related Standards
 
@@ -81,7 +96,7 @@ This project follows the broader design token ecosystem and aligns with the [Des
 ## How It Works
 
 - Tokens are authored in a structured JSON format and stored in `packages/tokens/tokens.json`.
-- The token package builds output through Style Dictionary.
+- The token package builds output through Terrazzo.
 - Storybook reads the token source and renders grouped token cards for review.
 - The package test suite verifies that nested token paths are flattened and grouped correctly.
 

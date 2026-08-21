@@ -1,0 +1,53 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Diagnostics, TokenNavigator, TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import tokensDocument from '../../tokens/tokens.json';
+import { az as azVars } from '../../tokens/dist/tokens.vars.js';
+import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
+import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
+import { countTokens, downloadJson, downloadText } from './tokenStats';
+import { ColorSwatchGrid } from './ColorSwatchGrid';
+
+export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
+export const tokenCounts = countTokens(tokensDocument);
+export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
+  // tokens.vars.js camelCases hyphenated keys (e.g. arroyo-blue -> arroyoBlue)
+  const camelKey = key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
+  return {
+    name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
+    hex: token.$value.hex,
+    cssVar: azVars.color.brand[camelKey],
+    cmyk: token.$extensions?.cmyk,
+    pantone: token.$extensions?.pantone,
+  };
+});
+
+<Meta title="Tokens" />
+
+# Design Tokens
+
+<Diagnostics />
+
+## Downloads and useful links
+
+- **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
+- <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a>
+- <a href={specUrl} target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
+
+Source file: `packages/tokens/tokens.json`
+
+## Tree
+
+<TokenNavigator />
+
+## Colors
+
+<ColorSwatchGrid colors={brandColors} />
+
+
+## All tokens
+
+<TokenTable />

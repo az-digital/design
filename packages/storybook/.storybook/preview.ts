@@ -1,6 +1,9 @@
-import type { Preview } from '@storybook/html-vite';
+import type { Preview } from '@storybook/react-vite';
+import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
+import '../../tokens/dist/tokens.css';
 
 const preview: Preview = {
+  addons: [swatchbookAddon()],
   parameters: {
     controls: {
       expanded: true,
