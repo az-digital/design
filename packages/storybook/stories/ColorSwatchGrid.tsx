@@ -18,13 +18,13 @@ const CARD_STYLE: CSSProperties = {
 const LABEL_STYLE: CSSProperties = {
   margin: '0 0 20px',
   textAlign: 'center',
-  color: 'var(--color-az-blue)',
+  color: 'var(--az-color-brand-blue)',
   fontWeight: 700,
   fontSize: 15,
 };
 
 const KEY_STYLE: CSSProperties = {
-  color: 'var(--color-az-blue)',
+  color: 'var(--az-color-brand-blue)',
   fontWeight: 700,
   fontSize: 11,
   letterSpacing: '0.02em',
@@ -105,8 +105,8 @@ function ValuePairRow({
 function ColorSwatchCard({ name, hex, cssVar, cmyk, pantone }: NamedColor) {
   const rgb = hexToRgb(hex);
   const pinColor = name.toLowerCase().includes('blue')
-    ? 'var(--color-az-red)'
-    : 'var(--color-az-blue)';
+    ? 'var(--az-color-brand-red)'
+    : 'var(--az-color-brand-blue)';
   const rgbPairs: Array<[string, string]> = [
     ['R', String(rgb.r)],
     ['G', String(rgb.g)],
