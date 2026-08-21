@@ -6,6 +6,7 @@ export type NamedColor = {
   hex: string;
   cssVar: string;
   cmyk?: { c: number; m: number; y: number; k: number };
+  pantone?: string;
 };
 
 const CARD_STYLE: CSSProperties = {
@@ -101,7 +102,7 @@ function ValuePairRow({
   );
 }
 
-function ColorSwatchCard({ name, hex, cssVar, cmyk }: NamedColor) {
+function ColorSwatchCard({ name, hex, cssVar, cmyk, pantone }: NamedColor) {
   const rgb = hexToRgb(hex);
   const pinColor = name.toLowerCase().includes('blue')
     ? 'var(--color-az-red)'
@@ -129,6 +130,7 @@ function ColorSwatchCard({ name, hex, cssVar, cmyk }: NamedColor) {
             ))
           : rgbPairs.map((pair) => <ValuePairRow key={pair[0]} left={pair} />)}
         <ValuePairRow left={['HEX', hex.toUpperCase()]} />
+        {pantone && <ValuePairRow left={['PMS', pantone]} />}
       </div>
     </div>
   );
@@ -145,7 +147,14 @@ export function ColorSwatchGrid({ colors }: { colors: NamedColor[] }) {
       }}
     >
       {colors.map((color) => (
-        <ColorSwatchCard key={color.name} name={color.name} hex={color.hex} cssVar={color.cssVar} />
+        <ColorSwatchCard
+          key={color.name}
+          name={color.name}
+          hex={color.hex}
+          cssVar={color.cssVar}
+          cmyk={color.cmyk}
+          pantone={color.pantone}
+        />
       ))}
     </div>
   );

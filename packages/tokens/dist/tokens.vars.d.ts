@@ -1,6 +1,8 @@
-export const color: {
-  "az": {
-    "blue": string,
-    "red": string
+export const az: {
+  "color": {
+    "brand": {
+      "blue": string,
+      "red": string
+    }
   }
 };

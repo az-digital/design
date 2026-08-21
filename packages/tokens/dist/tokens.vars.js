@@ -1,6 +1,8 @@
-export const color = {
-  "az": {
-    "blue": "var(--color-az-blue)",
-    "red": "var(--color-az-red)"
+export const az = {
+  "color": {
+    "brand": {
+      "blue": "var(--az-color-brand-blue)",
+      "red": "var(--az-color-brand-red)"
+    }
   }
 };

@@ -2,8 +2,8 @@
 export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
-    "color.az.blue": string;
-    "color.az.red": string;
+    "az.color.brand.blue": string;
+    "az.color.brand.red": string;
   }
 
   export type SwatchbookPermutationName = "default";

@@ -1,17 +1,19 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Diagnostics, TokenNavigator, ColorPalette, TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import tokensDocument from '../../tokens/tokens.json';
-import { color as colorVars } from '../../tokens/dist/tokens.vars.js';
+import { az as azVars } from '../../tokens/dist/tokens.vars.js';
 import { countTokens, downloadJson } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
-export const brandColors = Object.entries(tokensDocument.color.az).map(([key, token]) => ({
+export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => ({
   name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
   hex: token.$value.hex,
-  cssVar: colorVars.az[key],
-  cmyk: token.$value.cmyk,
+  cssVar: azVars.color.brand[key],
+  cmyk: token.$extensions?.cmyk,
+  pantone: token.$extensions?.pantone,
 }));
 
 <Meta title="Tokens" />
@@ -25,6 +27,7 @@ export const brandColors = Object.entries(tokensDocument.color.az).map(([key, to
 - **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
 - <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
+- <a href={specUrl} target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
 
 Source file: `packages/tokens/tokens.json`
 
@@ -38,7 +41,7 @@ Source file: `packages/tokens/tokens.json`
 
 ### Explore
 
-<ColorPalette filter="color.**" />
+<ColorPalette filter="az.color.**" />
 
 ## All tokens
 
