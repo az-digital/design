@@ -10,7 +10,6 @@ const config: StorybookConfig = {
         config: {
           // no resolver/themes yet: single tokens.json, one synthetic theme
           tokens: ['../tokens/tokens.json'],
-          // match Terrazzo's plugin-css output, which emits unprefixed vars (e.g. --color-az-blue)
           cssVarPrefix: '',
         },
       },
