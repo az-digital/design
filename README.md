@@ -11,6 +11,10 @@ This is an npm workspaces monorepo with two packages:
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── terrazzo.config.ts
+│   │   ├── dist/               #   generated output (gitignored, built by Terrazzo)
+│   │   │   ├── tokens.css      #     CSS custom properties (--az-color-brand-*, etc.)
+│   │   │   ├── tokens.vars.js  #     JS module exporting var(...) references matching tokens.css
+│   │   │   └── tokens.vars.d.ts
 │   │   └── package.json
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
@@ -68,11 +72,22 @@ npm run build:tokens
 
 3. Review the generated token catalog in Storybook.
 
+### `dist/` Output
+
+`npm run build:tokens` runs Terrazzo against `tokens.json` and writes generated, gitignored output to `packages/tokens/dist/`:
+
+- `tokens.css` — CSS custom properties (e.g. `--az-color-brand-blue`) for consumption in stylesheets.
+- `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the actual generated CSS variable names instead of hand-reconstructing them.
+
+Never edit files in `dist/` directly — they're regenerated on every token build.
+
 ## Storybook Notes
 
 The Storybook package renders the design token catalog, groups nested token values, and provides a review surface for design decisions and naming conventions.
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
+
+The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
 
 ## Related Standards
 
