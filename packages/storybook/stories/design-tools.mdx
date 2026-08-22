@@ -1,4 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import tokensDocument from '../../tokens/tokens.json';
+import { downloadJson } from './tokenStats';
 
 <Meta title="Tokens/Design Tools" />
 
@@ -12,11 +14,10 @@ Download Arizona Digital token artifacts for use in compatible design tools with
 
 ## Figma: import into Variables
 
-1. Open <a href="./?path=/docs/tokens--docs" target="_top">Tokens &gt; Downloads</a>.
-2. Select **Download tokens.json**.
-3. Open the **Variables** tab in your Figma file.
-4. Select **Import** and choose the downloaded `tokens.json` file.
-5. Apply semantic variables to design layers instead of entering hard-coded values.
+1. <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download tokens.json</a>.
+2. Open the **Variables** tab in your Figma file.
+3. Select **Import** and choose the downloaded `tokens.json` file.
+4. Apply semantic variables to design layers instead of entering hard-coded values.
 
 > This import workflow is for using the tokens. Tokens Studio and GitHub access are only required when <a href="./?path=/docs/tokens-contributing--docs" target="_top">contributing</a> changes back to the repository.
 
