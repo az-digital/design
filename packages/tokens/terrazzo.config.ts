@@ -1,12 +1,14 @@
 import { defineConfig } from '@terrazzo/cli';
 import css from '@terrazzo/plugin-css';
 import cssInJs from '@terrazzo/plugin-css-in-js';
+import rgb from './terrazzo-plugin-rgb.mjs';
 
 export default defineConfig({
   tokens: ['tokens.json'],
   plugins: [
-    css({ filename: 'tokens.css' }),
-    cssInJs({ filename: 'tokens.vars.js' })
+    css({ filename: 'tokens.css', skipBuild: true }),
+    cssInJs({ filename: 'tokens.vars.js' }),
+    rgb
   ],
   outDir: './dist/',
   lint: {
