@@ -3,18 +3,18 @@
  * ------------------------------------------- */
 
 :root {
-  --az-color-brand-arroyo-blue: rgb(6.2745% 41.569% 69.412%);
-  --az-color-brand-azurite: rgb(11.765% 32.157% 53.333%);
-  --az-color-brand-blue: rgb(4.7059% 13.725% 29.412%);
-  --az-color-brand-bougainvillea: rgb(77.647% 15.686% 25.098%);
-  --az-color-brand-brick: rgb(52.157% 21.569% 16.863%);
-  --az-color-brand-caliche: rgb(94.902% 93.725% 91.765%);
-  --az-color-brand-cloud: rgb(89.804% 93.725% 96.863%);
-  --az-color-brand-rain: rgb(50.588% 80.784% 92.157%);
-  --az-color-brand-red: rgb(67.059% 1.9608% 12.549%);
-  --az-color-brand-saguaro: rgb(49.804% 54.51% 35.294%);
-  --az-color-brand-shade: rgb(24.706% 47.843% 47.843%);
-  --az-color-brand-sonoran-red: rgb(52.157% 0% 0%);
-  --az-color-brand-tinta: rgb(1.1765% 7.451% 18.039%);
-  --az-color-brand-white: rgb(0% 0% 0%);
+  --az-color-brand-arroyo-blue: rgb(6.27% 41.57% 69.41%);
+  --az-color-brand-azurite: rgb(11.76% 32.16% 53.33%);
+  --az-color-brand-blue: rgb(4.71% 13.73% 29.41%);
+  --az-color-brand-bougainvillea: rgb(77.65% 15.69% 25.1%);
+  --az-color-brand-brick: rgb(52.16% 21.57% 16.86%);
+  --az-color-brand-caliche: rgb(94.9% 93.73% 91.76%);
+  --az-color-brand-cloud: rgb(89.8% 93.73% 96.86%);
+  --az-color-brand-rain: rgb(50.59% 80.78% 92.16%);
+  --az-color-brand-red: rgb(67.06% 1.96% 12.55%);
+  --az-color-brand-saguaro: rgb(49.8% 54.51% 35.29%);
+  --az-color-brand-shade: rgb(24.71% 47.84% 47.84%);
+  --az-color-brand-sonoran-red: rgb(52.16% 0% 0%);
+  --az-color-brand-tinta: rgb(1.18% 7.45% 18.04%);
+  --az-color-brand-white: rgb(100% 100% 100%);
 }
