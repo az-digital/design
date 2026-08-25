@@ -89,6 +89,18 @@ It also includes small validation tests covering token grouping and metadata par
 
 The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
 
+### Storybook MCP for AI Agents
+
+Storybook includes `@storybook/addon-mcp`, which exposes a local Model Context Protocol server while the Storybook dev server is running.
+
+```bash
+npm run dev:storybook
+```
+
+The MCP endpoint is available at http://localhost:6006/mcp. Configure MCP-capable agents with that URL and a project-scoped name such as `az-digital-storybook`.
+
+Agents should follow `AGENTS.md` before changing token docs or authoring stories: query Storybook documentation with MCP, fetch current story-writing instructions, preview affected stories, and run the relevant Storybook checks.
+
 ## Related Standards
 
 This project follows the broader design token ecosystem and aligns with the [Design Tokens Technical Reports](https://www.designtokens.org/technical-reports/), including the specification work that informs structured token definitions and interoperability.

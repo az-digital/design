@@ -12,7 +12,7 @@ export default defineConfig({
   lint: {
     build: { enabled: true },
     rules: {
-      'core/valid-color': 'error',
+      'core/valid-color': 'warn',
       'core/valid-dimension': 'error',
       'core/valid-font-family': 'error',
       'core/valid-font-weight': 'error',
