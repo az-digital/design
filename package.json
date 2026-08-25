@@ -1,0 +1,27 @@
+{
+  "name": "az-digital-design",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:tokens": "npm run build -w @az-digital/tokens",
+    "build:storybook": "npm run build -w @az-digital/storybook",
+    "dev:storybook": "npm run dev -w @az-digital/storybook",
+    "lint:storybook": "npm run lint -w @az-digital/storybook",
+    "test:storybook": "npm run test -w @az-digital/storybook",
+    "build:all": "npm run build:tokens && npm run build:storybook"
+  },
+  "description": "Arizona Digital design system monorepo",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-docs": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
+    "storybook": "^10.5.10"
+  }
+}
