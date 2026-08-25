@@ -13,9 +13,10 @@ export const tokenCounts = countTokens(tokensDocument);
 export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
   // tokens.vars.js camelCases hyphenated keys (e.g. arroyo-blue -> arroyoBlue)
   const camelKey = key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
+  const colorValue = token.$value;
   return {
     name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
-    hex: token.$value.hex,
+    hex: typeof colorValue === 'string' ? colorValue : colorValue.hex,
     cssVar: azVars.color.brand[camelKey],
     cmyk: token.$extensions?.cmyk,
     pantone: token.$extensions?.pantone,
