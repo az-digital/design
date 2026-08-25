@@ -109,3 +109,11 @@ When updating tokens or Storybook behavior:
 3. Run the relevant tests before shipping changes.
 
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
+
+## Token Collaboration Docs
+
+Use the Storybook token pages to find assets, import tokens, or contribute changes:
+
+- Tokens > Downloads
+- Tokens > Design Tools
+- Tokens > Contributing

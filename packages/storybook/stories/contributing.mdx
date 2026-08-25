@@ -1,0 +1,104 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Tokens/Contributing" />
+
+# Contributing Token Changes
+
+## Summary
+
+The currently supported contribution workflow uses Tokens Studio for Figma to publish token changes and pull approved repository updates back into Figma.
+
+## Source of truth
+
+- **Canonical file:** `packages/tokens/tokens.json`
+- **Sync mode:** single-file sync mode in Token Studio
+- **Generated output:** `packages/tokens/dist/tokens.json` is generated and must not be edited in Figma
+
+## Branch policy
+
+Configure **main** as the sync provider's base branch. For each token update, use Token Studio to create a new issue branch, push the change to that branch, and open a pull request back to **main**. Do not push token edits directly to **main**.
+
+## Before you start
+
+- **<a href="https://www.figma.com" target="_blank" rel="noreferrer">Figma</a> account** — with edit access to the file you're working in. An <a href="https://www.figma.com/education/" target="_blank" rel="noreferrer">EDU account</a> works fine.
+- **GitHub account** — added to the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer">Arizona Digital developers team</a>. Install the <a href="https://github.com/mobile" target="_blank" rel="noreferrer">GitHub mobile app</a> for multi-factor authentication.
+- **<a href="https://www.figma.com/community/plugin/843461159747178978/tokens-studio-for-figma" target="_blank" rel="noreferrer">Tokens Studio for Figma</a> plugin** — a non-pro account is sufficient.
+- **A password saving utility** (recommended) — for saving your GitHub PAT so it's easy to re-enter or share between the Figma desktop and web apps. NetID holders can use <a href="https://stache.arizona.edu/" target="_blank" rel="noreferrer">Stache</a>, or use any password manager you prefer.
+
+## Setup
+
+**Supported plugin: Tokens Studio for Figma** — these instructions apply to Tokens Studio. Follow the <a href="https://docs.tokens.studio/get-started/install-figma-plugin" target="_blank" rel="noreferrer">official plugin installation guide</a> before continuing. Other supported Figma plugins will have their own setup instructions.
+
+### 1. Create a fine-grained PAT
+
+1. Open GitHub account settings and select **Credentials**.
+2. Create a fine-grained personal access token.
+3. Set the token expiration to no more than one year.
+4. Set the resource owner to `az-digital`.
+5. Choose **Only select repositories** and select `az-digital/design`.
+6. Set **Contents** to **Read and write**.
+7. Leave the required **Metadata** permission as **Read-only**.
+
+See GitHub's <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noreferrer">personal access token guide</a> for creation, storage, rotation, and revocation details.
+
+Save the PAT in <a href="https://stache.arizona.edu/" target="_blank" rel="noreferrer">Stache</a> so it's easy to re-enter if you need to set up the sync provider again on another machine, or share it between the Figma desktop and web apps.
+
+### 2. Add the sync provider
+
+1. In Token Studio, open **Settings**.
+2. Under **Sync providers**, select **Add new sync provider** and choose GitHub.
+3. Enter the PAT and the provider settings below.
+4. Save the provider, then select **Apply** so it becomes active.
+
+See Tokens Studio's <a href="https://docs.tokens.studio/token-storage/manage-sync-provider/" target="_blank" rel="noreferrer">sync provider guide</a> for the current plugin interface and provider management options.
+
+<table>
+  <tbody>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Name</td><td><code>Arizona Digital Design Tokens</code></td></tr>
+    <tr><td>Repository</td><td><code>az-digital/design</code></td></tr>
+    <tr><td>Branch</td><td><code>main</code></td></tr>
+    <tr><td>Token storage location</td><td><code>packages/tokens/tokens.json</code></td></tr>
+  </tbody>
+</table>
+
+**Single-file sync:** including the JSON filename in the storage location configures Token Studio to store all tokens in one file. Do not enter a folder path.
+
+## Publish from Figma to repo
+
+1. Pull the latest tokens from `main` before editing.
+2. Update tokens in Figma and validate naming and aliasing.
+3. Create a new branch in Token Studio using the issue number and a short description, for example `issue-5-token-update`.
+4. Push changes from Token Studio to that issue branch.
+5. Open a pull request from the issue branch into `main`.
+6. Use the generated Storybook review site to inspect token output before approval.
+7. Merge after review and approval.
+8. Build token output to regenerate consumer artifacts.
+
+## Pull from repo to Figma
+
+1. Open the Figma file with Token Studio enabled.
+2. Configure the GitHub provider to use `main`.
+3. Pull the latest repo updates from `main`.
+4. Review any name or alias changes before applying them in the design file.
+5. Update layers to use the new tokens rather than hard-coded values.
+
+## Designer usage guidance
+
+- Use semantic tokens for production-facing design decisions such as surfaces, borders, and text.
+- Use base tokens only for token creation and audits, not for direct production UI assignments.
+- Apply tokens through Token Studio bindings so values stay tied to names instead of hardcoded hex values.
+
+## Governance
+
+Before merging changes, confirm the scope, review token impacts in Storybook, validate naming and alias structure, and obtain approval from the appropriate reviewers.
+
+Request review from the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer">Arizona Digital developers team</a>. **Arizona Digital Admins must approve all token changes before merge.** A token change is not canonical until its pull request is approved and merged.
+
+## Troubleshooting
+
+Start with Tokens Studio's <a href="https://docs.tokens.studio/token-storage/troubleshooting-common-sync-provider-errors" target="_blank" rel="noreferrer">common sync provider errors guide</a>.
+
+- If sync fails, verify the PAT, repo name, branch, and storage location.
+- If tokens appear stale in Figma, confirm the repo branch is current and the token file is the canonical source.
+- If values drift, check for direct edits outside the repository token source and regenerate outputs as needed.
