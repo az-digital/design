@@ -50,10 +50,13 @@ Source file: `packages/tokens/tokens.json`
 
 ## Component tokens
 
-Tokens scoped to a specific component (`az.component.*`), aliased to the
-base/brand tokens above rather than hard-coded — so a component's actual
-token dependency is explicit and can be repointed later (e.g. once a
-semantic layer exists) without touching the component itself. Each
+Tokens scoped to a specific component (`az.component.*`), so a component's
+actual design decisions are explicit and inspectable instead of implicit in
+its CSS. Colors alias to the base/brand tokens above; anything without a
+base/semantic tier to alias to yet (padding, font size, border radius, ...)
+is hard-coded to the component's real production value instead of blocked
+on that tier existing — both kinds get repointed to alias through a
+semantic tier later, without changing their names, once one exists. Each
 component's own Storybook page also has a filtered `Tokens` story showing
 just its tokens — see [Button's](./?path=/story/components-button--tokens)
 for an example.

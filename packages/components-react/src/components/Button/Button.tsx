@@ -8,8 +8,11 @@ export type ButtonSize = 'sm' | 'lg';
 export type ButtonHtmlTag = 'button' | 'a';
 
 /**
- * Props mirror `@az-digital/components-html`'s `renderButton` 1:1 so the HTML
- * and React implementations render equivalent markup from the same args.
+ * Props otherwise mirror `@az-digital/components-html`'s `renderButton` so
+ * the HTML and React implementations render equivalent markup from the same
+ * args, except `color`: components-html additionally supports `success`
+ * (Bootstrap's stock semantic color, not an Arizona brand color) — no React
+ * implementation yet, see `Button.stories.tsx`'s `Success` story.
  */
 export type ButtonProps = {
   /** HTML element to render. Defaults to `a`. */

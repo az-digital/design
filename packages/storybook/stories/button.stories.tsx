@@ -126,9 +126,12 @@ export const Success: Story = {
 };
 
 /**
- * The design tokens Button is built from — `az.component.button.*`, aliased
- * to the brand color tokens. If Button's color options ever change, this
- * list is the place to add or update the corresponding component token.
+ * The design tokens Button is built from — `az.component.button.*`. Colors
+ * alias to the brand tokens; everything else (padding, font, border,
+ * disabled opacity, size overrides) is hard-coded to Arizona Bootstrap's
+ * real values, since there's no base/semantic tier for those yet. If
+ * Button's props or variants ever change, this list is the place to add or
+ * update the corresponding component token.
  */
 export const Tokens: Story = {
   render: () => <TokenTable filter="az.component.button.**" />,
