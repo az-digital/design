@@ -91,15 +91,7 @@ The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packag
 
 ### Storybook MCP for AI Agents
 
-Storybook includes `@storybook/addon-mcp`, which exposes a local Model Context Protocol server while the Storybook dev server is running.
-
-```bash
-npm run dev:storybook
-```
-
-The MCP endpoint is available at http://localhost:6006/mcp. Configure MCP-capable agents with that URL and a project-scoped name such as `az-digital-storybook`.
-
-Agents should follow `AGENTS.md` before changing token docs or authoring stories: query Storybook documentation with MCP, fetch current story-writing instructions, preview affected stories, and run the relevant Storybook checks.
+Storybook includes `@storybook/addon-mcp`, which exposes a local Model Context Protocol server while the Storybook dev server is running. See [AGENTS.md](./AGENTS.md) for how coding agents should use it.
 
 ## Related Standards
 
