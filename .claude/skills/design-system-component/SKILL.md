@@ -4,12 +4,14 @@ description: >-
   Use this skill whenever adding, scaffolding, or editing a design-system
   component (Button, Card, Input, Alert, etc.) in this repo, or writing/updating
   a Storybook story for one. Also use it whenever asked to follow "the
-  component pattern", add an "HTML and/or React version" of something, or wire
-  up a Storybook implementation toggle — this repo can ship a component as
-  React, as plain HTML, or both, with a shared Storybook toolbar switcher and
-  code panel across all of them, and the wiring has a real gotcha (see below)
-  that's easy to get wrong by improvising instead of following this structure.
-applyTo: "packages/components-react/**,packages/components-html/**,packages/storybook/stories/**,packages/storybook/.storybook/**"
+  component pattern", add an "HTML and/or React version" of something, wire
+  up a Storybook implementation toggle, or add/associate design tokens with a
+  component — this repo can ship a component as React, as plain HTML, or
+  both, with a shared Storybook toolbar switcher and code panel across all of
+  them, and every component is expected to have its own component-tier
+  design tokens too. The wiring has real gotchas (see below) that are easy
+  to get wrong by improvising instead of following this structure.
+applyTo: "packages/components-react/**,packages/components-html/**,packages/storybook/stories/**,packages/storybook/.storybook/**,packages/tokens/tokens.json"
 ---
 
 # Design-system component pattern
@@ -56,13 +58,16 @@ packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
 packages/storybook/stories/card.stories.tsx               # the story
+packages/tokens/tokens.json                                # az.component.card.* entries — see below
 ```
 
 If `Card` only needs one implementation, just skip the package it doesn't
 need — the story (below) reflects that by only filling in the
 `implementations` key(s) that exist. Add whichever exports you do create to
 that package's barrel file (`packages/components-react/src/index.ts` and/or
-`packages/components-html/src/index.ts`).
+`packages/components-html/src/index.ts`). The token entries aren't optional
+the same way, though — every component is expected to have some, however
+small (see "Component tokens" below).
 
 ### `components-react/src/components/<Name>/<Name>.tsx`
 
@@ -287,6 +292,115 @@ production. If you need to bump the pinned version, do it deliberately (not
 to `main`, which is a moving target) and check the class names you depend on
 still exist at the new version.
 
+## Component tokens
+
+Every component needs its own entries in `packages/tokens/tokens.json`,
+under `az.component.<name>.*` — one per real, distinct visual decision the
+component makes: not just color, but the structural properties too
+(padding, font size/weight, border width/radius, disabled opacity, size
+variant overrides, ...). `Button`'s are the reference — 15 tokens covering
+its full CSS custom property surface, sourced directly from Arizona
+Bootstrap's actual compiled `.btn`/`.btn-sm`/`.btn-lg` rules (verified via
+the CDN CSS, not guessed):
+
+```json
+"component": {
+  "button": {
+    "color": {
+      "red": { "$type": "color", "$value": "{az.color.brand.red}" },
+      "blue": { "$type": "color", "$value": "{az.color.brand.blue}" }
+    },
+    "padding": {
+      "x": { "$type": "dimension", "$value": { "value": 1.25, "unit": "rem" } },
+      "y": { "$type": "dimension", "$value": { "value": 0.5, "unit": "rem" } }
+    },
+    "font": {
+      "size": { "$type": "dimension", "$value": { "value": 1, "unit": "rem" } },
+      "weight": { "$type": "fontWeight", "$value": 500 }
+    },
+    "border": {
+      "width": { "$type": "dimension", "$value": { "value": 2, "unit": "px" } },
+      "radius": { "$type": "dimension", "$value": { "value": 3, "unit": "rem" } }
+    },
+    "disabled": { "opacity": { "$type": "number", "$value": 0.65 } },
+    "size": {
+      "sm": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } },
+      "lg": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } }
+    }
+  }
+}
+```
+
+**Why this tier exists, and why it's not optional:** without it, a
+component's styling reaches straight down to raw brand/base primitives (or,
+for anything that isn't a color, to nothing at all — just a hard-coded value
+buried in Bootstrap's CSS) with no named, inspectable indirection point
+specific to that component. With component tokens, a component's actual
+design decisions are explicit and repointable later without touching the
+component itself.
+
+**Colors alias to existing base/brand tokens — don't invent new hex values.**
+`$value` for a color token should be a DTCG alias (`{az.color.brand.red}`),
+pointing at a base/brand token that already exists. There's no semantic tier
+yet, so component color tokens alias straight to base/brand tokens for now;
+when a semantic tier is added later, they get repointed to alias through it
+instead, without changing their own names. If a color variant's primitive
+doesn't exist yet (Arizona Bootstrap's CSS supports more button colors than
+`tokens.json` has base tokens for — `sky`, `white`, `redbar`, ...), that's
+real work: add the base token for real, or leave that variant out, rather
+than inventing a plausible-looking hex value to alias to.
+
+**Everything else — hard-code to the real, current production value.**
+Unlike colors, there's no base/semantic tier at all yet for spacing,
+typography, or other structural properties, so blocking on one would mean
+never adding these tokens. Pull the literal value from Arizona Bootstrap's
+actual compiled CSS (`curl` the CDN URL from the Styling section above and
+grep the component's base rule and its variants) — don't estimate or reuse
+a value from a different component. When a base/semantic tier for these
+exists later, repoint the alias the same way colors will be.
+
+**Dimension tokens need the DTCG object format, not a plain string — this
+isn't a style preference, the plain string silently produces broken CSS.**
+`{ "$type": "dimension", "$value": "1.25rem" }` passes `terrazzo.config.ts`'s
+lint (`core/valid-dimension` is `'warn'`, and even at `'error'` its
+`legacyFormat` option doesn't actually work for dimensions in the installed
+`@terrazzo/parser` version), but `@terrazzo/plugin-css`'s dimension
+serializer requires the `{ value, unit }` object shape to render anything —
+give it a plain string and every consumer of that token silently gets
+`undefinedundefined` instead of a real value. Verified directly: switching
+11 dimension tokens from strings to objects was the difference between
+`--az-component-button-padding-x: undefinedundefined` and the correct
+`1.25rem`. Colors don't have this problem — legacy hex strings compile
+correctly — so this is dimension-specific, not a general "avoid legacy
+format" rule.
+
+**After editing `tokens.json`, always check the compiled CSS, not just that
+the build exits 0** — a lint warning doesn't mean the output is correct
+(see above), and `npm run build -w @az-digital/tokens`'s exit code doesn't
+either, since `core/valid-dimension` is a warning, not an error:
+
+```bash
+npm run build -w @az-digital/tokens   # regenerates dist/tokens.css, dist/tokens.vars.js, and Storybook's .swatchbook/tokens.d.ts
+```
+
+**Expose them with a filtered `Tokens` story**, using swatchbook's
+`TokenTable` (already a Storybook addon here — no new dependency):
+
+```tsx
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+
+export const Tokens: Story = {
+  render: () => <TokenTable filter="az.component.card.**" />,
+};
+```
+
+You don't need to do anything else for these to show up in the global token
+catalog (`packages/storybook/stories/tokens.mdx`) — its unfiltered
+`<TokenTable />` and `<TokenNavigator />` already include every token. If you
+want them called out there as their own group too (the way "Component
+tokens" already is for Button), add a filtered section following that same
+pattern.
+
 ## Consuming source live (no build step needed in Storybook)
 
 `packages/storybook/.storybook/main.ts` aliases
@@ -300,6 +414,7 @@ existing one).
 ## Before you're done
 
 ```bash
+npm run build -w @az-digital/tokens             # only if you touched tokens.json — regenerates dist/tokens.css etc.
 npm run build -w @az-digital/components-react   # regenerates dist/*.d.ts — needed for `tsc` even though Storybook uses live source via the alias
 npm run lint:storybook                           # CI gate
 npm run test:storybook                           # CI gate
@@ -316,4 +431,9 @@ and the docs "Code" panel while toggling the Implementation switcher through
 every option — including ones the component doesn't implement, to confirm
 the placeholder shows up instead of an error. Per the gotcha above, a broken
 sync between canvas and code panel is easy to miss just by looking at the
-canvas.
+canvas. If you added tokens, `npm run build -w @az-digital/tokens` will
+already fail loudly (`Could not resolve alias ...`) on a broken alias
+reference — verified directly — so a clean build there means the alias
+chain is sound. Still open the `Tokens` story once to confirm the actual
+swatch/value looks right, since a *resolvable* alias can still point at the
+wrong token.
