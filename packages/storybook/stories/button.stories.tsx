@@ -2,39 +2,10 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
+import type { Implementations } from './implementations';
+import { renderImplementation } from './implementations';
 
 type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string };
-
-/** `@az-digital/components-html` reference markup, rendered as raw HTML. */
-function ButtonHtml(args: ButtonArgs) {
-  return <div dangerouslySetInnerHTML={{ __html: renderButton(args) }} />;
-}
-
-/**
- * Renders the HTML or React implementation depending on the toolbar's
- * Implementation switcher. Branching here (rather than in a decorator) keeps
- * Storybook's auto source-capture in sync too, since it re-invokes this same
- * render function with the current globals to generate the docs code panel.
- */
-function ButtonStory(args: ButtonArgs, context: StoryContext) {
-  if (context.globals.implementation === 'react') {
-    return createElement(
-      Button,
-      {
-        htmlTag: args.htmlTag,
-        href: args.href,
-        style: args.style,
-        color: args.color,
-        size: args.size,
-        disabled: args.disabled,
-        active: args.active,
-      },
-      args.text,
-    );
-  }
-
-  return <ButtonHtml {...args} />;
-}
 
 /** JSX shown in the docs code panel when Implementation is set to React. */
 const asReactCode = (args: ButtonArgs) => {
@@ -52,6 +23,35 @@ const asReactCode = (args: ButtonArgs) => {
 
   return `<Button${propsString}>${args.text ?? 'Learn More'}</Button>`;
 };
+
+/** Button has both implementations. A component that only needs one omits the other key entirely. */
+const implementations: Implementations<ButtonArgs> = {
+  html: {
+    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderButton(args) }} />,
+    source: (args) => renderButton(args),
+  },
+  react: {
+    render: (args) =>
+      createElement(
+        Button,
+        {
+          htmlTag: args.htmlTag,
+          href: args.href,
+          style: args.style,
+          color: args.color,
+          size: args.size,
+          disabled: args.disabled,
+          active: args.active,
+        },
+        args.text,
+      ),
+    source: asReactCode,
+  },
+};
+
+function ButtonStory(args: ButtonArgs, context: StoryContext) {
+  return renderImplementation('Button', implementations, args, context);
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- args-only stand-in for Meta<T>'s generic; ButtonStory itself also takes a `context` param, which Meta<T> doesn't expect
 function ButtonArgsShape(_args: ButtonArgs) {
@@ -74,11 +74,7 @@ const meta = {
     text: 'Learn More',
   },
   parameters: {
-    // Matches the toolbar's Implementation switcher: HTML shows the generated
-    // markup, React shows the equivalent JSX. Kept in sync with live control
-    // changes via `.storybook/preview.ts`'s `docs.source.transform`.
-    htmlSource: (args: ButtonArgs) => renderButton(args),
-    reactSource: asReactCode,
+    implementations,
   },
 } satisfies Meta<typeof ButtonArgsShape>;
 

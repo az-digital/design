@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
+import type { ImplementationKey, Implementations } from '../stories/implementations';
+import { sourceForImplementation } from '../stories/implementations';
 import '../../tokens/dist/tokens.css';
 
 const preview: Preview = {
@@ -34,17 +36,19 @@ const preview: Preview = {
       codePanel: true,
       source: {
         // Swap the docs "Show code" panel to match the toolbar's Implementation
-        // switcher. Stories provide `parameters.htmlSource` / `reactSource`
-        // functions so the panel stays in sync with live control changes.
+        // switcher. Stories provide a `parameters.implementations` map (see
+        // ../stories/implementations.tsx) so the panel stays in sync with live
+        // control changes, and falls back gracefully when a story doesn't
+        // have the currently-selected implementation at all.
         transform: (code: string, storyContext: { globals: Record<string, unknown>; args: Record<string, unknown>; parameters: Record<string, unknown> }) => {
-          const htmlSource = storyContext.parameters.htmlSource as ((args: Record<string, unknown>) => string) | undefined;
-          const reactSource = storyContext.parameters.reactSource as ((args: Record<string, unknown>) => string) | undefined;
+          const implementations = storyContext.parameters.implementations as Implementations<Record<string, unknown>> | undefined;
+          const key = storyContext.globals.implementation as ImplementationKey;
 
-          if (storyContext.globals.implementation === 'react' && reactSource) {
-            return reactSource(storyContext.args);
+          if (!implementations) {
+            return code;
           }
 
-          return htmlSource?.(storyContext.args) ?? code;
+          return sourceForImplementation(implementations, key, storyContext.args) ?? `// Not implemented for "${key}" yet.`;
         },
       },
     },
