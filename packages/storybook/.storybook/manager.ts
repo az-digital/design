@@ -8,7 +8,7 @@ import { az } from '../../tokens/tokens.json';
 addons.setConfig({
   theme: create({
     base: 'light',
-    brandTitle: 'Arizona Digital Design Tokens',
+    brandTitle: 'Arizona Digital Design System',
     brandUrl: 'https://www.arizona.edu/',
     brandTarget: '_blank',
     brandImage: 'https://www.arizona.edu/sites/default/files/UA_horiz_rgb_webheader.png',
