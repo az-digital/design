@@ -12,8 +12,8 @@ export default defineConfig({
   lint: {
     build: { enabled: true },
     rules: {
-      'core/valid-color': 'warn',
-      'core/valid-dimension': 'error',
+      'core/valid-color': ['error', { legacyFormat: true, ignoreRanges: false }],
+      'core/valid-dimension': ['error', { legacyFormat: true }],
       'core/valid-font-family': 'error',
       'core/valid-font-weight': 'error',
       'core/valid-duration': 'error',
