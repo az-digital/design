@@ -5,8 +5,21 @@ declare module '@unpunnyfuns/swatchbook-addon/hooks' {
     "az.color.brand.azurite": string;
     "az.color.brand.blue": string;
     "az.color.brand.red": string;
+    "az.component.button.border.radius": string;
+    "az.component.button.border.width": string;
     "az.component.button.color.blue": string;
     "az.component.button.color.red": string;
+    "az.component.button.disabled.opacity": string;
+    "az.component.button.font.size": string;
+    "az.component.button.font.weight": string;
+    "az.component.button.padding.x": string;
+    "az.component.button.padding.y": string;
+    "az.component.button.size.lg.font.size": string;
+    "az.component.button.size.lg.padding.x": string;
+    "az.component.button.size.lg.padding.y": string;
+    "az.component.button.size.sm.font.size": string;
+    "az.component.button.size.sm.padding.x": string;
+    "az.component.button.size.sm.padding.y": string;
   }
 
   export type SwatchbookPermutationName = "default";
