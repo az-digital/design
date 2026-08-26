@@ -269,6 +269,53 @@ You don't need to do anything extra to get this — it falls out of just
 omitting the key you don't have. Only reach for a full `{ html, react }` map
 when the component genuinely needs both.
 
+### When only one *variant* is missing an implementation
+
+Sometimes the component as a whole has both implementations, but one
+specific prop value doesn't — e.g. Button's `Success` story: `success` is
+Bootstrap's stock semantic color, not an Arizona brand color, so it exists
+in `components-html` but not (yet) in `components-react`. That story needs
+a *different* `implementations` map than the rest of the component's
+stories, not just an omitted key on the shared one.
+
+**Don't do this** — it looks right but silently doesn't work:
+
+```tsx
+export const Success: Story = {
+  args: { color: 'success' },
+  parameters: { implementations: successOnlyImplementations }, // BROKEN
+};
+```
+
+Storybook deep-merges `parameters` objects across preview/meta/story levels.
+Since `meta.parameters.implementations` already has both `html` and `react`
+keys, a story setting `parameters: { implementations: successOnlyImplementations }`
+(which only has `html`) gets merged *into* that map rather than replacing
+it — the `react` key survives the "override" untouched. Verified directly:
+this looked correct in the canvas and code panel until actually testing the
+React toggle, which kept rendering instead of showing the placeholder.
+
+**Use a distinct parameter name that only ever exists at the story level**,
+so there's nothing for Storybook to merge it with — `implementationsOverride`,
+already wired up in both `button.stories.tsx`'s `render` function and
+`.storybook/preview.ts`'s `docs.source.transform`:
+
+```tsx
+const successOnlyImplementations: Implementations<ButtonArgs> = {
+  html: implementations.html, // reuse the same html entry, just omit react
+};
+
+export const Success: Story = {
+  args: { color: 'success' },
+  parameters: { implementationsOverride: successOnlyImplementations },
+};
+```
+
+If you add this pattern to a new component's stories, wire the same
+`implementationsOverride` check into that component's `render` function
+(`context.parameters.implementationsOverride ?? implementations`) — the
+`preview.ts` side is already generic and needs no changes.
+
 ### `asReactCode`-style source functions
 
 `source` functions (like `asReactCode` in the Button story) should only emit
