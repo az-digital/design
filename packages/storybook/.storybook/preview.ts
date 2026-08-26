@@ -40,8 +40,19 @@ const preview: Preview = {
         // ../stories/implementations.tsx) so the panel stays in sync with live
         // control changes, and falls back gracefully when a story doesn't
         // have the currently-selected implementation at all.
+        //
+        // Read `implementationsOverride` first, not `implementations` itself,
+        // for a single story that needs a *different* set than its meta's
+        // default (e.g. a variant with no React implementation while the
+        // component otherwise has one) — Storybook deep-merges `parameters`
+        // objects, so a story setting `parameters: { implementations: X }`
+        // gets X merged *into* the meta-level map instead of replacing it,
+        // silently keeping keys X was trying to omit. A distinct parameter
+        // name that only ever exists at the story level sidesteps that merge
+        // entirely. Verified directly: without this, a story meant to be
+        // HTML-only kept falling back to the meta's React implementation.
         transform: (code: string, storyContext: { globals: Record<string, unknown>; args: Record<string, unknown>; parameters: Record<string, unknown> }) => {
-          const implementations = storyContext.parameters.implementations as Implementations<Record<string, unknown>> | undefined;
+          const implementations = (storyContext.parameters.implementationsOverride ?? storyContext.parameters.implementations) as Implementations<Record<string, unknown>> | undefined;
           const key = storyContext.globals.implementation as ImplementationKey;
 
           if (!implementations) {

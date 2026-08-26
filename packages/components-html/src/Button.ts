@@ -1,12 +1,14 @@
 export type ButtonStyle = 'solid' | 'outline' | 'link';
-export type ButtonColor = 'red' | 'blue';
+/** `success` is Bootstrap's stock semantic color, not an Arizona brand color — HTML-only for now, no React implementation. */
+export type ButtonColor = 'red' | 'blue' | 'success';
 export type ButtonSize = 'sm' | 'lg';
 export type ButtonHtmlTag = 'button' | 'a';
 
 /**
  * Plain HTML/CSS reference implementation of the Arizona Digital Button.
- * Props mirror `@az-digital/components-react`'s `Button` 1:1 so the two
- * implementations can be shown side by side from the same story args.
+ * Props otherwise mirror `@az-digital/components-react`'s `Button` so the two
+ * implementations can be shown side by side from the same story args, except
+ * where noted (see `ButtonColor`).
  */
 export type ButtonProps = {
   htmlTag?: ButtonHtmlTag;
