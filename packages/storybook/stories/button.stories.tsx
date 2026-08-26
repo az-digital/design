@@ -2,6 +2,7 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import type { Implementations } from './implementations';
 import { renderImplementation } from './implementations';
 
@@ -93,4 +94,13 @@ export const Blue: Story = {
 
 export const Disabled: Story = {
   args: { disabled: true },
+};
+
+/**
+ * The design tokens Button is built from — `az.component.button.*`, aliased
+ * to the brand color tokens. If Button's color options ever change, this
+ * list is the place to add or update the corresponding component token.
+ */
+export const Tokens: Story = {
+  render: () => <TokenTable filter="az.component.button.**" />,
 };

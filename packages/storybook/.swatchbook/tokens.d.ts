@@ -5,6 +5,8 @@ declare module '@unpunnyfuns/swatchbook-addon/hooks' {
     "az.color.brand.azurite": string;
     "az.color.brand.blue": string;
     "az.color.brand.red": string;
+    "az.component.button.color.blue": string;
+    "az.component.button.color.red": string;
   }
 
   export type SwatchbookPermutationName = "default";

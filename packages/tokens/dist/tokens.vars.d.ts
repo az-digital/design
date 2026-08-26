@@ -5,5 +5,13 @@ export const az: {
       "blue": string,
       "red": string
     }
+  },
+  "component": {
+    "button": {
+      "color": {
+        "blue": string,
+        "red": string
+      }
+    }
   }
 };
