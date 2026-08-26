@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@az-digital/components-react": "*",
-    "@az-digital/components-web": "*"
+    "@az-digital/components-html": "*"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",

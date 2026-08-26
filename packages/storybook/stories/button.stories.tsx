@@ -1,11 +1,11 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Button } from '@az-digital/components-react';
-import { renderButton } from '@az-digital/components-web';
+import { renderButton } from '@az-digital/components-html';
 
 type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string };
 
-/** `@az-digital/components-web` reference markup, rendered as raw HTML. */
+/** `@az-digital/components-html` reference markup, rendered as raw HTML. */
 function ButtonHtml(args: ButtonArgs) {
   return <div dangerouslySetInnerHTML={{ __html: renderButton(args) }} />;
 }

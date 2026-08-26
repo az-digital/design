@@ -6,7 +6,7 @@ type ButtonColor = 'red' | 'blue';
 type ButtonSize = 'sm' | 'lg';
 type ButtonHtmlTag = 'button' | 'a';
 /**
- * Props mirror `@az-digital/components-web`'s `renderButton` 1:1 so the HTML
+ * Props mirror `@az-digital/components-html`'s `renderButton` 1:1 so the HTML
  * and React implementations render equivalent markup from the same args.
  */
 type ButtonProps = {

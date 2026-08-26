@@ -30,12 +30,12 @@ const config: StorybookConfig = {
     ...viteConfig,
     resolve: {
       ...viteConfig.resolve,
-      // Consume components-react and components-web from source so Storybook
+      // Consume components-react and components-html from source so Storybook
       // always reflects the latest components without requiring a package build.
       alias: [
         ...(Array.isArray(viteConfig.resolve?.alias) ? viteConfig.resolve.alias : []),
         { find: '@az-digital/components-react', replacement: resolve(__dirname, '../../components-react/src/index.ts') },
-        { find: '@az-digital/components-web', replacement: resolve(__dirname, '../../components-web/src/index.ts') },
+        { find: '@az-digital/components-html', replacement: resolve(__dirname, '../../components-html/src/index.ts') },
       ],
     },
     build: {

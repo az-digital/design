@@ -1,5 +1,5 @@
 {
-  "name": "@az-digital/components-web",
+  "name": "@az-digital/components-html",
   "version": "0.0.1",
   "description": "Framework-agnostic HTML/CSS reference implementation of the Arizona Digital design system components.",
   "type": "module",
