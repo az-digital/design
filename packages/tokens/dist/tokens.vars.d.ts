@@ -1,7 +1,7 @@
 export const az: {
   "color": {
     "brand": {
-      "arroyo blue": string,
+      "arroyoBlue": string,
       "azurite": string,
       "blue": string,
       "bougainvillea": string,
@@ -12,7 +12,7 @@ export const az: {
       "red": string,
       "saguaro": string,
       "shade": string,
-      "sonoran red": string,
+      "sonoranRed": string,
       "tinta": string,
       "white": string
     }

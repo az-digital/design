@@ -2,7 +2,7 @@
 export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
-    "az.color.brand.arroyo blue": string;
+    "az.color.brand.arroyo-blue": string;
     "az.color.brand.azurite": string;
     "az.color.brand.blue": string;
     "az.color.brand.bougainvillea": string;
@@ -13,7 +13,7 @@ declare module '@unpunnyfuns/swatchbook-addon/hooks' {
     "az.color.brand.red": string;
     "az.color.brand.saguaro": string;
     "az.color.brand.shade": string;
-    "az.color.brand.sonoran red": string;
+    "az.color.brand.sonoran-red": string;
     "az.color.brand.tinta": string;
     "az.color.brand.white": string;
   }
