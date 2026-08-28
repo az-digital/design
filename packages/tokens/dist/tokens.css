@@ -4,10 +4,9 @@
 
 :root {
   --az-color-brand-azurite: rgb(11.76% 32.16% 53.33%);
-  --az-color-brand-bloom: rgb(93.73% 25.10% 33.73%);
-  --az-color-brand-bloom-rgb: 239, 64, 86;
-  --az-color-brand-blue: rgb(4.71% 13.73% 29.41%);
-  --az-color-brand-blue-rgb: 12, 35, 75;
-  --az-color-brand-red: rgb(67.06% 1.96% 12.55%);
-  --az-color-brand-red-rgb: 171, 5, 32;
+  --az-color-brand-azurite-rgb: 30, 82, 136;
+  --az-color-brand-blue: rgb(67.06% 1.96% 12.55%);
+  --az-color-brand-blue-rgb: 171, 5, 32;
+  --az-color-brand-red: rgb(4.71% 13.73% 29.41%);
+  --az-color-brand-red-rgb: 12, 35, 75;
 }

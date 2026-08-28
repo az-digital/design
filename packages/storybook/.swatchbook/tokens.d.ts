@@ -3,7 +3,6 @@ export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
     "az.color.brand.azurite": string;
-    "az.color.brand.bloom": string;
     "az.color.brand.blue": string;
     "az.color.brand.red": string;
   }

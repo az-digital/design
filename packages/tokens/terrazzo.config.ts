@@ -1,6 +1,7 @@
 import { defineConfig } from '@terrazzo/cli';
 import css from '@terrazzo/plugin-css';
 import cssInJs from '@terrazzo/plugin-css-in-js';
+import sass from '@terrazzo/plugin-sass';
 import rgb from './terrazzo-plugin-rgb.mjs';
 
 export default defineConfig({
@@ -8,14 +9,15 @@ export default defineConfig({
   plugins: [
     css({ filename: 'tokens.css', skipBuild: true }),
     cssInJs({ filename: 'tokens.vars.js' }),
+    sass({ filename: 'tokens.scss' }),
     rgb
   ],
   outDir: './dist/',
   lint: {
     build: { enabled: true },
     rules: {
-      'core/valid-color': 'error',
-      'core/valid-dimension': 'error',
+      'core/valid-color': ['error', { legacyFormat: true, ignoreRanges: false }],
+      'core/valid-dimension': ['error', { legacyFormat: true }],
       'core/valid-font-family': 'error',
       'core/valid-font-weight': 'error',
       'core/valid-duration': 'error',

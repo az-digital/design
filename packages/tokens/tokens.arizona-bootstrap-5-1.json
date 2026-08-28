@@ -6,7 +6,7 @@
       "$extensions": {
         "cssVariable": "--bs-red",
         "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.red"
+        "currentToken": "az.color.brand.blue"
       }
     },
     "bloom": {
@@ -14,8 +14,7 @@
       "$value": "#ef4056",
       "$extensions": {
         "cssVariable": "--bs-bloom",
-        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.bloom"
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
       }
     },
     "chili": {
@@ -32,7 +31,7 @@
       "$extensions": {
         "cssVariable": "--bs-blue",
         "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.blue"
+        "currentToken": "az.color.brand.red"
       }
     },
     "sky": {
@@ -56,7 +55,8 @@
       "$value": "#1e5288",
       "$extensions": {
         "cssVariable": "--bs-azurite",
-        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.azurite"
       }
     },
     "midnight": {
@@ -3593,7 +3593,7 @@
       "$extensions": {
         "cssVariable": "--bs-red-rgb",
         "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.red"
+        "currentToken": "az.color.brand.blue"
       }
     },
     "bloom-rgb": {
@@ -3601,8 +3601,7 @@
       "$value": "239, 64, 86",
       "$extensions": {
         "cssVariable": "--bs-bloom-rgb",
-        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.bloom"
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
       }
     },
     "chili-rgb": {
@@ -3619,7 +3618,7 @@
       "$extensions": {
         "cssVariable": "--bs-blue-rgb",
         "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
-        "currentToken": "az.color.brand.blue"
+        "currentToken": "az.color.brand.red"
       }
     },
     "sky-rgb": {
@@ -3643,7 +3642,8 @@
       "$value": "30, 82, 136",
       "$extensions": {
         "cssVariable": "--bs-azurite-rgb",
-        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.azurite"
       }
     },
     "midnight-rgb": {
