@@ -98,7 +98,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+/**
+ * The only story with a matching Figma frame so far — "Solid Button Red w/
+ * White Background". Other stories (Outline, Blue, Disabled, Success) don't
+ * have their own frame yet, so they intentionally have no `design` parameter
+ * rather than inheriting this one.
+ */
+export const Default: Story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/oQrpx1TVKc7b2TIAn1fFb1/Arizona-Bootstrap-Buttons-Spec?node-id=3-2',
+    },
+  },
+};
 
 export const Outline: Story = {
   args: { style: 'outline' },

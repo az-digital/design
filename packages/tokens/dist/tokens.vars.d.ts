@@ -2,8 +2,11 @@ export const az: {
   "color": {
     "brand": {
       "azurite": string,
+      "bloom": string,
       "blue": string,
-      "red": string
+      "chili": string,
+      "red": string,
+      "white": string
     }
   },
   "component": {

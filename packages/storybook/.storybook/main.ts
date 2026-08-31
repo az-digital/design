@@ -8,6 +8,7 @@ const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
   addons: [
     '@storybook/addon-docs',
+    '@storybook/addon-designs',
     {
       name: '@unpunnyfuns/swatchbook-addon',
       options: {

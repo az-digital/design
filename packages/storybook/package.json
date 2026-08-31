@@ -11,11 +11,12 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@az-digital/components-react": "*",
-    "@az-digital/components-html": "*"
+    "@az-digital/components-html": "*",
+    "@az-digital/components-react": "*"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@storybook/addon-designs": "^11.1.4",
     "@storybook/addon-docs": "^10.5.10",
     "@storybook/react-vite": "^10.5.10",
     "@types/node": "^24.3.0",

@@ -4,36 +4,39 @@
 
 :root {
   --az-color-brand-azurite: rgb(11.765% 32.157% 53.333%);
+  --az-color-brand-bloom: rgb(93.725% 25.098% 33.725%);
   --az-color-brand-blue: rgb(4.7059% 13.725% 29.412%);
+  --az-color-brand-chili: rgb(54.51% 0% 8.2353%);
   --az-color-brand-red: rgb(67.059% 1.9608% 12.549%);
-  /* Button's border radius (pill-shaped). */
-  --az-component-button-border-radius: 3rem;
-  /* Button's border width. */
-  --az-component-button-border-width: 2px;
-  /* Brand color used by the Button component's `blue` variant. */
+  --az-color-brand-white: rgb(100% 100% 100%);
+  /* az.component.button.border.radius = 3rem */
+  --az-component-button-border-radius: 48;
+  /* az.component.button.border.width = 2px */
+  --az-component-button-border-width: 2;
+  /* Alias for color/brand/blue, matching az.component.button.color.* in packages/tokens. */
   --az-component-button-color-blue: var(--az-color-brand-blue);
-  /* Brand color used by the Button component's `red` variant. */
+  /* Alias for color/brand/red, matching az.component.button.color.* in packages/tokens. */
   --az-component-button-color-red: var(--az-color-brand-red);
-  /* Button's opacity when disabled. */
+  /* az.component.button.disabled.opacity = 0.65 */
   --az-component-button-disabled-opacity: 0.65;
-  /* Button's default font size. */
-  --az-component-button-font-size: 1rem;
-  /* Button's font weight. */
+  /* az.component.button.font.size = 1rem */
+  --az-component-button-font-size: 16;
+  /* az.component.button.font.weight = 500 */
   --az-component-button-font-weight: 500;
-  /* Button's default horizontal padding. */
-  --az-component-button-padding-x: 1.25rem;
-  /* Button's default vertical padding. */
-  --az-component-button-padding-y: 0.5rem;
-  /* Large button's font size. */
-  --az-component-button-size-lg-font-size: 1.25rem;
-  /* Large button's horizontal padding. */
-  --az-component-button-size-lg-padding-x: 1rem;
-  /* Large button's vertical padding. */
-  --az-component-button-size-lg-padding-y: 0.5rem;
-  /* Small button's font size. */
-  --az-component-button-size-sm-font-size: 0.875rem;
-  /* Small button's horizontal padding. */
-  --az-component-button-size-sm-padding-x: 0.5rem;
-  /* Small button's vertical padding. */
-  --az-component-button-size-sm-padding-y: 0.25rem;
+  /* az.component.button.padding.x = 1.25rem */
+  --az-component-button-padding-x: 20;
+  /* az.component.button.padding.y = 0.5rem */
+  --az-component-button-padding-y: 8;
+  /* az.component.button.size.lg.font.size = 1.25rem */
+  --az-component-button-size-lg-font-size: 20;
+  /* az.component.button.size.lg.padding.x = 1rem */
+  --az-component-button-size-lg-padding-x: 16;
+  /* az.component.button.size.lg.padding.y = 0.5rem */
+  --az-component-button-size-lg-padding-y: 8;
+  /* az.component.button.size.sm.font.size = 0.875rem */
+  --az-component-button-size-sm-font-size: 14;
+  /* az.component.button.size.sm.padding.x = 0.5rem */
+  --az-component-button-size-sm-padding-x: 8;
+  /* az.component.button.size.sm.padding.y = 0.25rem */
+  --az-component-button-size-sm-padding-y: 4;
 }

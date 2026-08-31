@@ -2,8 +2,11 @@ export const az = {
   "color": {
     "brand": {
       "azurite": "var(--az-color-brand-azurite)",
+      "bloom": "var(--az-color-brand-bloom)",
       "blue": "var(--az-color-brand-blue)",
-      "red": "var(--az-color-brand-red)"
+      "chili": "var(--az-color-brand-chili)",
+      "red": "var(--az-color-brand-red)",
+      "white": "var(--az-color-brand-white)"
     }
   },
   "component": {
