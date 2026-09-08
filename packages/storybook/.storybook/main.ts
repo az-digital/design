@@ -4,6 +4,7 @@ const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
   addons: [
     '@storybook/addon-docs',
+    '@storybook/addon-mcp',
     {
       name: '@unpunnyfuns/swatchbook-addon',
       options: {
