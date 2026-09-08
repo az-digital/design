@@ -19,6 +19,12 @@
     "@terrazzo/plugin-css-in-js": "^2.7.1"
   },
   "scripts": {
-    "build": "rm -rf dist && terrazzo build --config terrazzo.config.ts"
+    "generate:arizona-bootstrap-csv": "node scripts/generate-arizona-bootstrap-csv.mjs",
+    "generate:arizona-bootstrap-sass-csv": "node scripts/generate-arizona-bootstrap-sass-csv.mjs",
+    "generate:arizona-bootstrap-overrides": "node scripts/generate-arizona-bootstrap-overrides.mjs",
+    "build": "rm -rf dist && terrazzo build --config terrazzo.config.ts && npm run generate:arizona-bootstrap-csv && npm run generate:arizona-bootstrap-overrides"
+  },
+  "dependencies": {
+    "@terrazzo/plugin-sass": "^2.7.1"
   }
 }

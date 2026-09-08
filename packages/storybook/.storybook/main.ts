@@ -13,8 +13,7 @@ const config: StorybookConfig = {
           cssVarPrefix: '',
         },
       },
-    },
-  ],
+  }, '@storybook/addon-mcp'],
   framework: {
     name: '@storybook/react-vite',
     options: {},

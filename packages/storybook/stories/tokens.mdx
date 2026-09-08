@@ -3,6 +3,7 @@ import { Diagnostics, TokenNavigator, TokenTable } from '@unpunnyfuns/swatchbook
 import tokensDocument from '../../tokens/tokens.json';
 import { az as azVars } from '../../tokens/dist/tokens.vars.js';
 import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
+import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
@@ -35,6 +36,7 @@ export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([k
 - <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensScssRaw, 'tokens.scss', 'text/x-scss'); }}>Download tokens.scss</a>
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a>
 - <a href={specUrl} target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
 

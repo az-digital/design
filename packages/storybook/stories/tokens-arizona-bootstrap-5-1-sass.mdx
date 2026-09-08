@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { TokenDetail } from '@unpunnyfuns/swatchbook-addon';
+import migrationCsv from '../../tokens/arizona-bootstrap-5-1-sass.csv?raw';
+import { downloadText } from './tokenStats';
+
+export const TokenDetailLink = ({ path }) => {
+  const [open, setOpen] = useState(false);
+  return <>
+    <button type="button" onClick={() => setOpen(true)} style={{ border: 0, padding: 0, background: 'transparent', color: 'inherit', cursor: 'pointer' }}>
+      <span aria-hidden="true" style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 4, background: `var(--az-color-brand-${path.includes('.red') ? 'red' : 'blue'})`, border: '1px solid rgba(0,0,0,.18)', boxShadow: '0 1px 2px rgba(0,0,0,.12)', verticalAlign: 'middle', marginRight: 8 }}></span>
+      <code>{path}</code>
+    </button>
+    {open && <div role="dialog" aria-modal="true" aria-label={path} onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', justifyContent: 'flex-end', background: 'rgba(0,0,0,.35)' }}>
+      <div onClick={(event) => event.stopPropagation()} style={{ width: 'min(480px, 100%)', height: '100%', overflow: 'auto', padding: 24, background: 'white', boxShadow: '-4px 0 16px rgba(0,0,0,.2)' }}>
+        <button type="button" onClick={() => setOpen(false)} aria-label="Close token details" style={{ float: 'right' }}>Close</button>
+        <TokenDetail path={path} />
+      </div>
+    </div>}
+  </>;
+};
+
+export const allSassTokens = (() => {
+  const parseCsvLine = (line) => {
+    const fields = [];
+    const fieldPattern = /(?:^|,)(?:"((?:[^"]|"")*)"|([^,]*))/g;
+    let match;
+    while ((match = fieldPattern.exec(line))) fields.push((match[1] ?? match[2]).replaceAll('""', '"'));
+    return fields;
+  };
+  return migrationCsv.trim().split('\n').slice(1).map(parseCsvLine);
+})();
+
+<Meta title="Tokens/Arizona Bootstrap 5.1/Sass Variables" />
+
+# Migrate from Arizona Bootstrap 5.1 Sass Variables
+
+Use this guide to migrate from Arizona Bootstrap 5.1 Sass variables to the current Arizona Design Tokens. Values are preserved as authored in the Sass sources, including Sass references and maps.
+
+## Source
+
+- [Arizona Bootstrap Sass entry point](https://github.com/az-digital/arizona-bootstrap/blob/main/scss/arizona-bootstrap.scss)
+- [Custom Sass variables](https://github.com/az-digital/arizona-bootstrap/blob/main/scss/custom/_variables.scss)
+- [Override Sass variables](https://github.com/az-digital/arizona-bootstrap/blob/main/scss/override/_variables.scss)
+- [Bootstrap Sass variables](https://github.com/twbs/bootstrap/blob/v5.3.8/scss/_variables.scss)
+- [Bootstrap dark-mode Sass variables](https://github.com/twbs/bootstrap/blob/v5.3.8/scss/_variables-dark.scss)
+- {allSassTokens.length} Sass variables in the migration CSV
+
+<p>
+  <a href="#" onClick={(event) => { event.preventDefault(); downloadText(migrationCsv, 'arizona-bootstrap-5-1-sass.csv', 'text/csv'); }}>Download Sass migration CSV</a>
+</p>
+
+## Sass variable mappings
+
+<table style={{ width: '100%', tableLayout: 'fixed' }}>
+  <colgroup>
+    <col style={{ width: '35%' }} />
+    <col style={{ width: '35%' }} />
+    <col style={{ width: '30%' }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Arizona Bootstrap 5.1 Sass variable</th>
+      <th>CSS custom property</th>
+      <th>Current Design Token</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {allSassTokens.map(([sassVariable, cssVariable, currentToken, value]) => (
+      <tr key={sassVariable}>
+        <td><code>{sassVariable}</code></td>
+        <td>{cssVariable ? <code>{cssVariable}</code> : null}</td>
+        <td>{currentToken ? <TokenDetailLink path={currentToken} /> : null}</td>
+        <td><code>{value}</code></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
