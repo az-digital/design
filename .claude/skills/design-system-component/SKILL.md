@@ -330,7 +330,7 @@ Component CSS comes from Arizona Bootstrap's real, versioned CDN build,
 loaded once for all stories via `packages/storybook/.storybook/preview-head.html`:
 
 ```html
-<link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.1.2/css/arizona-bootstrap.css" />
+<link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/css/arizona-bootstrap.css" />
 ```
 
 Don't write local CSS stubs for a new component — use the real Bootstrap
