@@ -9,6 +9,7 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-designs',
+    '@storybook/addon-mcp',
     {
       name: '@unpunnyfuns/swatchbook-addon',
       options: {
