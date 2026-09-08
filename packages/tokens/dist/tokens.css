@@ -3,50 +3,104 @@
  * ------------------------------------------- */
 
 :root {
-  --az-color-brand-arroyo-blue: rgb(6.2745% 41.569% 69.412%);
-  --az-color-brand-azurite: rgb(11.765% 32.157% 53.333%);
-  --az-color-brand-bloom: rgb(93.725% 25.098% 33.725%);
-  --az-color-brand-blue: rgb(4.7059% 13.725% 29.412%);
-  --az-color-brand-bougainvillea: rgb(77.647% 15.686% 25.098%);
-  --az-color-brand-brick: rgb(52.157% 21.569% 16.863%);
-  --az-color-brand-caliche: rgb(94.902% 93.725% 91.765%);
-  --az-color-brand-chili: rgb(54.51% 0% 8.2353%);
-  --az-color-brand-cloud: rgb(89.804% 93.725% 96.863%);
-  --az-color-brand-rain: rgb(50.588% 80.784% 92.157%);
-  --az-color-brand-red: rgb(67.059% 1.9608% 12.549%);
-  --az-color-brand-saguaro: rgb(49.804% 54.51% 35.294%);
-  --az-color-brand-shade: rgb(24.706% 47.843% 47.843%);
-  --az-color-brand-sonoran-red: rgb(52.157% 0% 0%);
-  --az-color-brand-tinta: rgb(1.1765% 7.451% 18.039%);
-  --az-color-brand-white: rgb(100% 100% 100%);
+  --az-color-arroyo-blue: rgb(6.2745% 41.569% 69.412%);
+  --az-color-azurite: rgb(11.765% 32.157% 53.333%);
+  --az-color-bloom: rgb(93.725% 25.098% 33.725%);
+  --az-color-blue: rgb(4.7059% 13.725% 29.412%);
+  --az-color-bougainvillea: rgb(77.647% 15.686% 25.098%);
+  /* Alias for the Arizona brand 'arroyo-blue' primitive. */
+  --az-color-brand-arroyo-blue: var(--az-color-arroyo-blue);
+  /* Alias for the Arizona brand 'azurite' primitive. */
+  --az-color-brand-azurite: var(--az-color-azurite);
+  /* Alias for the Arizona brand 'bloom' primitive. */
+  --az-color-brand-bloom: var(--az-color-bloom);
+  /* Alias for the Arizona brand 'blue' primitive. */
+  --az-color-brand-blue: var(--az-color-blue);
+  /* Alias for the Arizona brand 'bougainvillea' primitive. */
+  --az-color-brand-bougainvillea: var(--az-color-bougainvillea);
+  /* Alias for the Arizona brand 'brick' primitive. */
+  --az-color-brand-brick: var(--az-color-brick);
+  /* Alias for the Arizona brand 'caliche' primitive. */
+  --az-color-brand-caliche: var(--az-color-caliche);
+  /* Alias for the Arizona brand 'chili' primitive. */
+  --az-color-brand-chili: var(--az-color-chili);
+  /* Alias for the Arizona brand 'cloud' primitive. */
+  --az-color-brand-cloud: var(--az-color-cloud);
+  /* Alias for the Arizona brand 'rain' primitive. */
+  --az-color-brand-rain: var(--az-color-rain);
+  /* Alias for the Arizona brand 'red' primitive. */
+  --az-color-brand-red: var(--az-color-red);
+  /* Alias for the Arizona brand 'saguaro' primitive. */
+  --az-color-brand-saguaro: var(--az-color-saguaro);
+  /* Alias for the Arizona brand 'shade' primitive. */
+  --az-color-brand-shade: var(--az-color-shade);
+  /* Alias for the Arizona brand 'sonoran-red' primitive. */
+  --az-color-brand-sonoran-red: var(--az-color-sonoran-red);
+  /* Alias for the Arizona brand 'tinta' primitive. */
+  --az-color-brand-tinta: var(--az-color-tinta);
+  /* Alias for the Arizona brand 'white' primitive. */
+  --az-color-brand-white: var(--az-color-white);
+  --az-color-brick: rgb(52.157% 21.569% 16.863%);
+  --az-color-caliche: rgb(94.902% 93.725% 91.765%);
+  --az-color-chili: rgb(54.51% 0% 8.2353%);
+  --az-color-cloud: rgb(89.804% 93.725% 96.863%);
+  --az-color-rain: rgb(50.588% 80.784% 92.157%);
+  --az-color-red: rgb(67.059% 1.9608% 12.549%);
+  --az-color-saguaro: rgb(49.804% 54.51% 35.294%);
+  /* Button's container color, resting state — aliases the brand palette. */
+  --az-color-semantic-action-default: var(--az-color-brand-red);
+  /* Button's focus-ring color — aliases the brand palette. */
+  --az-color-semantic-action-focus-ring: var(--az-color-brand-bloom);
+  /* Button's container color, hover state — aliases the brand palette. */
+  --az-color-semantic-action-hover: var(--az-color-brand-chili);
+  --az-color-shade: rgb(24.706% 47.843% 47.843%);
+  --az-color-sonoran-red: rgb(52.157% 0% 0%);
+  --az-color-tinta: rgb(1.1765% 7.451% 18.039%);
+  --az-color-white: rgb(100% 100% 100%);
   /* az.component.button.border.radius = 3rem */
-  --az-component-button-border-radius: 48;
+  --az-component-button-border-radius: var(--az-dimension-48);
   /* az.component.button.border.width = 2px */
-  --az-component-button-border-width: 2;
-  /* Alias for color/brand/blue, matching az.component.button.color.* in packages/tokens. */
-  --az-component-button-color-blue: var(--az-color-brand-blue);
-  /* Alias for color/brand/red, matching az.component.button.color.* in packages/tokens. */
-  --az-component-button-color-red: var(--az-color-brand-red);
+  --az-component-button-border-width: var(--az-dimension-2);
+  /* Button's container color, resting state. */
+  --az-component-button-color: var(--az-color-semantic-action-default);
   /* az.component.button.disabled.opacity = 0.65 */
-  --az-component-button-disabled-opacity: 0.65;
-  /* az.component.button.font.size = 1rem */
-  --az-component-button-font-size: 16;
-  /* az.component.button.font.weight = 500 */
-  --az-component-button-font-weight: 500;
+  --az-component-button-disabled-opacity: var(--az-opacity-65);
+  /* Button's focus-visible ring color — the one property exclusive to focus-visible (keyboard) focus; plain focus looks identical to hover. */
+  --az-component-button-focus-visible-ring: var(--az-color-semantic-action-focus-ring);
+  /* Button's container color, focus state — aliases hover.color directly: focus (any means) always looks identical to hover. */
+  --az-component-button-focus-color: var(--az-component-button-hover-color);
+  /* Button's container color, hover state. */
+  --az-component-button-hover-color: var(--az-color-semantic-action-hover);
+  /* Button's label (text) color. Same across default/hover/focus — no state-based variation exists yet. */
+  --az-component-button-label-color: var(--az-color-brand-white);
+  /* az.component.button.label.font.size = 1rem */
+  --az-component-button-label-font-size: var(--az-dimension-16);
+  /* az.component.button.label.font.weight = 500 */
+  --az-component-button-label-font-weight: var(--az-font-weight-500);
   /* az.component.button.padding.x = 1.25rem */
-  --az-component-button-padding-x: 20;
+  --az-component-button-padding-x: var(--az-dimension-20);
   /* az.component.button.padding.y = 0.5rem */
-  --az-component-button-padding-y: 8;
-  /* az.component.button.size.lg.font.size = 1.25rem */
-  --az-component-button-size-lg-font-size: 20;
+  --az-component-button-padding-y: var(--az-dimension-8);
+  /* az.component.button.size.lg.label.font.size = 1.25rem */
+  --az-component-button-size-lg-label-font-size: var(--az-dimension-20);
   /* az.component.button.size.lg.padding.x = 1rem */
-  --az-component-button-size-lg-padding-x: 16;
+  --az-component-button-size-lg-padding-x: var(--az-dimension-16);
   /* az.component.button.size.lg.padding.y = 0.5rem */
-  --az-component-button-size-lg-padding-y: 8;
-  /* az.component.button.size.sm.font.size = 0.875rem */
-  --az-component-button-size-sm-font-size: 14;
+  --az-component-button-size-lg-padding-y: var(--az-dimension-8);
+  /* az.component.button.size.sm.label.font.size = 0.875rem */
+  --az-component-button-size-sm-label-font-size: var(--az-dimension-14);
   /* az.component.button.size.sm.padding.x = 0.5rem */
-  --az-component-button-size-sm-padding-x: 8;
+  --az-component-button-size-sm-padding-x: var(--az-dimension-8);
   /* az.component.button.size.sm.padding.y = 0.25rem */
-  --az-component-button-size-sm-padding-y: 4;
+  --az-component-button-size-sm-padding-y: var(--az-dimension-4);
+  --az-dimension-2: 2;
+  --az-dimension-4: 4;
+  --az-dimension-8: 8;
+  --az-dimension-14: 14;
+  --az-dimension-16: 16;
+  --az-dimension-20: 20;
+  --az-dimension-48: 48;
+  --az-font-weight-500: 500;
+  /* 65%. */
+  --az-opacity-65: 0.65;
 }

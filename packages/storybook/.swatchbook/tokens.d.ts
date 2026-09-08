@@ -2,6 +2,11 @@
 export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
+    "az.color.arroyo-blue": string;
+    "az.color.azurite": string;
+    "az.color.bloom": string;
+    "az.color.blue": string;
+    "az.color.bougainvillea": string;
     "az.color.brand.arroyo-blue": string;
     "az.color.brand.azurite": string;
     "az.color.brand.bloom": string;
@@ -18,10 +23,27 @@ declare module '@unpunnyfuns/swatchbook-addon/hooks' {
     "az.color.brand.sonoran-red": string;
     "az.color.brand.tinta": string;
     "az.color.brand.white": string;
+    "az.color.brick": string;
+    "az.color.caliche": string;
+    "az.color.chili": string;
+    "az.color.cloud": string;
+    "az.color.rain": string;
+    "az.color.red": string;
+    "az.color.saguaro": string;
+    "az.color.semantic.action.destructive.default": string;
+    "az.color.semantic.action.destructive.focus-ring": string;
+    "az.color.semantic.action.destructive.hover": string;
+    "az.color.semantic.action.primary.default": string;
+    "az.color.shade": string;
+    "az.color.sonoran-red": string;
+    "az.color.tinta": string;
+    "az.color.white": string;
     "az.component.button.border.radius": string;
     "az.component.button.border.width": string;
-    "az.component.button.color.blue": string;
-    "az.component.button.color.red": string;
+    "az.component.button.color.destructive": string;
+    "az.component.button.color.destructive-focus-ring": string;
+    "az.component.button.color.destructive-hover": string;
+    "az.component.button.color.primary": string;
     "az.component.button.disabled.opacity": string;
     "az.component.button.font.size": string;
     "az.component.button.font.weight": string;

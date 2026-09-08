@@ -1,0 +1,89 @@
+import { Meta, Canvas, Story, ArgTypes, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as ButtonStories from './button.stories';
+
+{/* `of={ButtonStories}` attaches this page to button.stories.tsx's own title ("Components/Button"),
+    so it replaces the autodocs page for that group instead of adding a separate nested entry. */}
+<Meta of={ButtonStories} />
+
+# Button
+
+Button triggers an action or submits a choice with a single click or tap. It's the primary way to expose an action in the interface, from form submission to opening a flow.
+
+<Canvas>
+  <Story of={ButtonStories.SolidRedOnWhite} />
+</Canvas>
+
+<ArgTypes of={ButtonStories} />
+
+## When to use
+
+- Triggering a single, immediate action: submitting a form, confirming a choice, starting a flow.
+- Calling out the primary action on a page or within a modal or card.
+- Pairing a solid and an outline button together to show a clear primary vs. secondary action.
+
+## When to use something else
+
+- Navigating to a new page as a link within a sentence or list — use a text link instead.
+- Selecting one option from a small set of mutually exclusive states — use a filter or toggle control instead.
+- An icon-only action in a toolbar or compact space — this design system doesn't have a dedicated Icon Button component yet; don't fake one by stripping the label off `Button` — its horizontal padding assumes a text label, so an icon-only instance won't come out circular or evenly padded.
+
+## Usage
+
+- **Color & actions:** use **Blue** as the default primary action color. **Red** signals a destructive action, so reserve it for high-stakes moments like deletions, and pair it with a plain-English label (e.g. "Cancel appointment") so there's no ambiguity from color alone.
+- **Style variants:** `solid` is the highest-emphasis option; `outline` gives a secondary action a bit more visual weight than a plain link without competing with a solid primary button; `link` is the lowest-emphasis option, best for tertiary or low-key actions.
+- **Sizing:** the default size fits most contexts; `sm` and `lg` are available via the `size` prop for compact or high-emphasis contexts respectively.
+- **Clear hierarchy:** stick to one button per distinct action. Avoid placing two solid buttons of the same color side-by-side — mix colors or visual weights so the primary choice is obvious.
+
+The story above mirrors the approved Figma frame "Solid Button Red w/ White Background." `outline`, `blue`, `disabled`, and the HTML-only `success` color (Bootstrap's stock semantic color, not an Arizona brand color, with no design token or React implementation) are all still fully supported by the component; they just don't have their own approved Figma frame to mirror yet, so there's no example story for them here. Check the props table above for what's available, and use the Code panel above to see the exact markup/JSX for any combination.
+
+## Backgrounds
+
+Button also has an approved Figma frame on a Cool Gray page background ("Solid Button Red w/ Cool Gray Background"). The button's own tokens don't change — see Tokens, below — but a non-white background needs its own container class, so the code example for it includes that class:
+
+<Source of={ButtonStories.SolidRedOnCoolGray} />
+
+See the "Solid Red On Cool Gray" story in the sidebar for a live, interactive version. A white background needs no class of its own — it's the implicit default — so the Code panel on the story above doesn't show one.
+
+## Tokens
+
+Every one of Button's own design tokens — `az.component.button.*`. Colors alias through a semantic tier down to the brand palette; padding, font, and border each alias a primitive dimension/font-weight/opacity value directly, since nothing else in the system needs those specific values yet. If Button's props or variants ever change, this is the place to add or update the corresponding component token.
+
+<TokenTable filter="az.component.button.**" />
+
+## Do's and Don'ts
+
+### ✅ Do's
+
+- Use one solid Button per view for the primary action.
+- Pair a solid Button with an `outline` or `link` Button for secondary/tertiary actions.
+- Ensure every button meets contrast guidelines (4.5:1 for text, 3:1 for border) against the background it sits on.
+- Write a label that describes the action ("Save changes," not "OK").
+
+### ❌ Don'ts
+
+- Don't use color alone to signal a destructive action — pair it with clear label text.
+- Don't use more than one solid, high-emphasis Button for the same decision.
+- Don't hardcode fill, border, radius, spacing, or type — every value is bound to a design token (`az.component.button.*`, above) per state.
+- Don't use Button for navigation-only links — use a text link instead.
+
+## Focus & keyboard behavior
+
+- `Button` is reachable by <kbd>Tab</kbd> in the page's natural tab order.
+- When rendered as `htmlTag="button"` (a native `<button>`), both <kbd>Enter</kbd> and <kbd>Space</kbd> activate it, per native browser behavior.
+- When rendered as `htmlTag="a"` (the default — a `role="button"` anchor), only <kbd>Enter</kbd> activates it natively; native `<a>` elements do not trigger a click on <kbd>Space</kbd>. The WAI-ARIA [button pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/) expects both keys to work for a custom button, so this is a known gap in the `a`-tag implementation, not a documented, intentional choice — check with the team before relying on `Space` activating a link-rendered Button.
+- The focus-visible ring must stay visible against every background it's placed on. Don't suppress it.
+
+## Accessibility
+
+- Use a semantic `<button>` element where possible; the `a`+`role="button"` path exists for cases that need an `<a>` (e.g. an in-flow link styled as a button), but see the keyboard caveat above.
+- The label text must describe the action; if a future icon-only variant is added, it will need an `aria-label` since there's no visible text fallback.
+- Never rely on color alone to distinguish a destructive or primary action from a secondary one — label wording should carry that meaning too.
+- `disabled` sets the native `disabled` attribute for `htmlTag="button"`, and `aria-disabled` + `tabindex="-1"` for `htmlTag="a"` (native anchors have no `disabled` attribute).
+
+## Content guidelines
+
+- Start labels with a verb that names the action ("Save," "Add member," "Delete account").
+- Keep labels short enough to read at a glance — avoid wrapping onto two lines.
+- Be specific rather than generic: "Save changes" over "Submit" or "OK."
+- Match verb tense and voice across buttons in the same view (all imperative, not mixed).

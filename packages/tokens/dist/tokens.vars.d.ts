@@ -1,5 +1,10 @@
 export const az: {
   "color": {
+    "arroyoBlue": string,
+    "azurite": string,
+    "bloom": string,
+    "blue": string,
+    "bougainvillea": string,
     "brand": {
       "arroyoBlue": string,
       "azurite": string,
@@ -17,7 +22,25 @@ export const az: {
       "sonoranRed": string,
       "tinta": string,
       "white": string
-    }
+    },
+    "brick": string,
+    "caliche": string,
+    "chili": string,
+    "cloud": string,
+    "rain": string,
+    "red": string,
+    "saguaro": string,
+    "semantic": {
+      "action": {
+        "default": string,
+        "focusRing": string,
+        "hover": string
+      }
+    },
+    "shade": string,
+    "sonoranRed": string,
+    "tinta": string,
+    "white": string
   },
   "component": {
     "button": {
@@ -25,16 +48,25 @@ export const az: {
         "radius": string,
         "width": string
       },
-      "color": {
-        "blue": string,
-        "red": string
-      },
+      "color": string,
       "disabled": {
         "opacity": string
       },
-      "font": {
-        "size": string,
-        "weight": string
+      "focusVisible": {
+        "ring": string
+      },
+      "focus": {
+        "color": string
+      },
+      "hover": {
+        "color": string
+      },
+      "label": {
+        "color": string,
+        "font": {
+          "size": string,
+          "weight": string
+        }
       },
       "padding": {
         "x": string,
@@ -42,8 +74,10 @@ export const az: {
       },
       "size": {
         "lg": {
-          "font": {
-            "size": string
+          "label": {
+            "font": {
+              "size": string
+            }
           },
           "padding": {
             "x": string,
@@ -51,8 +85,10 @@ export const az: {
           }
         },
         "sm": {
-          "font": {
-            "size": string
+          "label": {
+            "font": {
+              "size": string
+            }
           },
           "padding": {
             "x": string,
@@ -61,5 +97,20 @@ export const az: {
         }
       }
     }
+  },
+  "dimension": {
+    "2": string,
+    "4": string,
+    "8": string,
+    "14": string,
+    "16": string,
+    "20": string,
+    "48": string
+  },
+  "fontWeight": {
+    "500": string
+  },
+  "opacity": {
+    "65": string
   }
 };
