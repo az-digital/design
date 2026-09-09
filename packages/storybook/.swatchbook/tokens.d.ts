@@ -2,12 +2,19 @@
 export {};
 declare module '@unpunnyfuns/swatchbook-addon/hooks' {
   interface SwatchbookTokenMap {
+    "az.color.arroyo-blue": string;
+    "az.color.azurite": string;
+    "az.color.bloom": string;
+    "az.color.blue": string;
+    "az.color.bougainvillea": string;
     "az.color.brand.arroyo-blue": string;
     "az.color.brand.azurite": string;
+    "az.color.brand.bloom": string;
     "az.color.brand.blue": string;
     "az.color.brand.bougainvillea": string;
     "az.color.brand.brick": string;
     "az.color.brand.caliche": string;
+    "az.color.brand.chili": string;
     "az.color.brand.cloud": string;
     "az.color.brand.rain": string;
     "az.color.brand.red": string;
@@ -16,6 +23,47 @@ declare module '@unpunnyfuns/swatchbook-addon/hooks' {
     "az.color.brand.sonoran-red": string;
     "az.color.brand.tinta": string;
     "az.color.brand.white": string;
+    "az.color.brick": string;
+    "az.color.caliche": string;
+    "az.color.chili": string;
+    "az.color.cloud": string;
+    "az.color.rain": string;
+    "az.color.red": string;
+    "az.color.saguaro": string;
+    "az.color.semantic.action.default": string;
+    "az.color.semantic.action.focus-ring": string;
+    "az.color.semantic.action.hover": string;
+    "az.color.shade": string;
+    "az.color.sonoran-red": string;
+    "az.color.tinta": string;
+    "az.color.white": string;
+    "az.component.button.border.radius": string;
+    "az.component.button.border.width": string;
+    "az.component.button.color": string;
+    "az.component.button.disabled.opacity": string;
+    "az.component.button.focus-visible.ring": string;
+    "az.component.button.focus.color": string;
+    "az.component.button.hover.color": string;
+    "az.component.button.label.color": string;
+    "az.component.button.label.font.size": string;
+    "az.component.button.label.font.weight": string;
+    "az.component.button.padding.x": string;
+    "az.component.button.padding.y": string;
+    "az.component.button.size.lg.label.font.size": string;
+    "az.component.button.size.lg.padding.x": string;
+    "az.component.button.size.lg.padding.y": string;
+    "az.component.button.size.sm.label.font.size": string;
+    "az.component.button.size.sm.padding.x": string;
+    "az.component.button.size.sm.padding.y": string;
+    "az.dimension.14": string;
+    "az.dimension.16": string;
+    "az.dimension.2": string;
+    "az.dimension.20": string;
+    "az.dimension.4": string;
+    "az.dimension.48": string;
+    "az.dimension.8": string;
+    "az.font-weight.500": string;
+    "az.opacity.65": string;
   }
 
   export type SwatchbookPermutationName = "default";

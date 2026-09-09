@@ -6,6 +6,7 @@ import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
 import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
+import { resolveValue } from './resolveToken';
 
 export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
@@ -13,7 +14,9 @@ export const tokenCounts = countTokens(tokensDocument);
 export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
   // tokens.vars.js camelCases hyphenated keys (e.g. arroyo-blue -> arroyoBlue)
   const camelKey = key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
-  const colorValue = token.$value;
+  // Brand aliases the primitive tier (`$value: "{az.color.<name>}"`) rather than holding
+  // a literal directly, so resolve it instead of trusting `token.$value` as-is.
+  const colorValue = resolveValue(`az.color.brand.${key}`);
   return {
     name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
     hex: typeof colorValue === 'string' ? colorValue : colorValue.hex,
@@ -47,6 +50,21 @@ Source file: `packages/tokens/tokens.json`
 ## Colors
 
 <ColorSwatchGrid colors={brandColors} />
+
+## Component tokens
+
+Tokens scoped to a specific component (`az.component.*`), so a component's
+actual design decisions are explicit and inspectable instead of implicit in
+its CSS. Colors alias to the base/brand tokens above; anything without a
+base/semantic tier to alias to yet (padding, font size, border radius, ...)
+is hard-coded to the component's real production value instead of blocked
+on that tier existing — both kinds get repointed to alias through a
+semantic tier later, without changing their names, once one exists. Each
+component's own Storybook Docs page also shows a filtered table of just its
+tokens — see [Button's](./?path=/docs/components-button--docs) for an
+example.
+
+<TokenTable filter="az.component.**" />
 
 ## All tokens
 
