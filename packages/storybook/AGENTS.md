@@ -11,6 +11,27 @@ boot, so the dev server needs an actual kill-and-restart for that specific
 kind of change to take effect. Don't restart reflexively for ordinary story
 edits — only for config-file changes like this.
 
+## Accessibility (`@storybook/addon-a11y`)
+
+Installed and registered in `.storybook/main.ts`, pinned to the same
+`^10.6.0` as the rest of the Storybook packages (it's an official
+Storybook-maintained addon, built on axe-core — not a third-party
+alternative). Adds an "Accessibility" tab per story with automated
+axe-core checks (violations/passes/inconclusive). No `preview.ts` wiring is
+required beyond registering it in `main.ts`; that's the whole setup.
+
+Registering a new addon is a `main.ts` change, so it needs the dev-server
+restart described above, not just a file save.
+
+In an automated/sandboxed browser context (not a real user's browser), both
+this panel and the per-story "Code" panel (see below) can hang indefinitely
+on their loading state ("Preparing accessibility scan", or stale/raw
+content) for reasons specific to that environment — confirmed directly:
+a real browser showed correct results (21 passes, 0 violations) for the
+exact same story at the exact same time an automated session was still
+stuck loading. Don't conclude something is broken from an automated
+session alone; verify in an actual browser, or ask the user to.
+
 ## Page structure
 
 - One combined Docs page per component, not a nested "Guidelines" page.
@@ -59,6 +80,21 @@ edits — only for config-file changes like this.
   `outline`/`blue`/`disabled` etc. with zero example stories for them —
   describe them in prose on the Docs page and point at the props table,
   rather than inventing a story for an unreviewed combination.
+- Every story needs a `parameters.implementations` (or, if the meta already
+  sets one, `parameters.implementationsOverride`) entry, or its own
+  individual-story "Code" panel tab falls back to dumping the raw literal
+  story source (the actual `render: () => ...` function body, `TokenStatePreview`
+  and all) instead of a clean, copyable snippet — confirmed directly: a
+  story rendering plain markup with no `implementations` set showed the raw
+  source verbatim. Use `parameters.implementationsOverride`, not
+  `parameters.implementations`, on any story under a meta that already sets
+  `parameters.implementations` — Storybook deep-merges `parameters`, so
+  setting `implementations` again at the story level merges into the meta's
+  map instead of replacing it (see the comment on `docs.source.transform` in
+  `preview.ts`). A story with no shared meta-level `implementations` to
+  collide with (i.e. it doesn't use `renderImplementation`/args at all) can
+  use plain `parameters.implementations` — see `contextButtonImplementations`
+  in `button.stories.tsx` for the pattern.
 
 ## Comparing interaction states
 

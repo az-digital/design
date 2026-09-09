@@ -142,6 +142,13 @@ const meta = {
     // playground — Controls would let you turn it into a combination Figma hasn't
     // approved while the story still claims to be that frame. See the story below.
     controls: { disable: true },
+    // Every story here defines its own custom `render`, so Storybook's default
+    // ('auto') Code-panel behavior falls back to showing the literal, static story
+    // source instead of running `docs.source.transform` below — confirmed directly:
+    // the transform's `implementations`/`implementationsOverride` had no effect on
+    // the per-story Code tab until this was set. 'dynamic' forces every story's Code
+    // panel through the transform instead.
+    docs: { source: { type: 'dynamic' } },
   },
   // `component`'s real prop type (no `success`) is narrower than `ButtonArgs` (which,
   // via components-html, also allows the HTML-only `success` color); that's
@@ -350,6 +357,29 @@ function ContextButton({ btnClass }: { btnClass: string }) {
 }
 
 /**
+ * Without a `parameters.implementations` entry, the docs `source.transform`
+ * in `preview.ts` has nothing to read and falls back to dumping the raw
+ * story source verbatim in the Code panel — confirmed directly: these
+ * stories showed the literal `render: () => <TokenStatePreview ...>` object
+ * instead of markup. This gives each one a real, copyable snippet instead,
+ * matching what the tokenized stories already get via `implementations`.
+ */
+function contextButtonImplementations(bgClass: string, btnClass: string): Implementations<Record<string, never>> {
+  const render = () => <ContextButton btnClass={btnClass} />;
+
+  return {
+    html: {
+      render,
+      source: () => `<div class="${bgClass}">\n  <a href="#" role="button" class="btn ${btnClass}">Apply to Arizona</a>\n</div>`,
+    },
+    react: {
+      render,
+      source: () => `<div className="${bgClass}">\n  <a href="#" role="button" className="btn ${btnClass}">\n    Apply to Arizona\n  </a>\n</div>`,
+    },
+  };
+}
+
+/**
  * Forces each state's look via Bootstrap's own per-button-class CSS custom
  * properties (`--bs-btn-hover-*`, `--az-btn-focus-outline-color`) — never a
  * literal color — so this works for any real `.btn-*` class without needing
@@ -381,6 +411,7 @@ const GENERIC_BOOTSTRAP_BUTTON_STATES: ButtonState[] = [
 ];
 
 export const SolidRedOnWarmGray: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-red" />
@@ -399,6 +430,7 @@ export const SolidRedOnWarmGray: Story = {
 };
 
 export const SolidWhiteTextRedOnAzRed: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-red" />
@@ -417,6 +449,7 @@ export const SolidWhiteTextRedOnAzRed: Story = {
 };
 
 export const SolidRainOnAzBlue: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-blue', 'btn-sky') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-sky" />
@@ -435,6 +468,7 @@ export const SolidRainOnAzBlue: Story = {
 };
 
 export const SolidRainOnAzurite: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-azurite', 'btn-sky') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-sky" />
@@ -453,6 +487,7 @@ export const SolidRainOnAzurite: Story = {
 };
 
 export const SolidWhiteTextBlueOnOasis: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-blue" />
@@ -623,6 +658,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
  * `color` prop.
  */
 export const OutlineRedOnWarmGray: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-red" />
@@ -641,6 +677,7 @@ export const OutlineRedOnWarmGray: Story = {
 };
 
 export const OutlineWhiteOnAzRed: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />
@@ -659,6 +696,7 @@ export const OutlineWhiteOnAzRed: Story = {
 };
 
 export const OutlineRainOnAzBlue: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-blue', 'btn-outline-sky') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-sky" />
@@ -677,6 +715,7 @@ export const OutlineRainOnAzBlue: Story = {
 };
 
 export const OutlineRainOnAzurite: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-azurite', 'btn-outline-sky') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-sky" />
@@ -695,6 +734,7 @@ export const OutlineRainOnAzurite: Story = {
 };
 
 export const OutlineWhiteOnOasis: Story = {
+  parameters: { implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />

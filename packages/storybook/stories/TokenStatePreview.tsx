@@ -47,14 +47,21 @@ export function TokenStatePreview({
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {states.map((state, index) => {
           const scopeClass = `token-state-preview-${index}`;
           return (
             <div key={state.label} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
               <span style={LABEL_STYLE}>{state.label}</span>
               {state.css && <style>{state.css.replaceAll('&', `.${scopeClass}`)}</style>}
-              <div className={[scopeClass, pageBackgroundClassName].filter(Boolean).join(' ')} style={{ display: 'inline-block', padding: pageBackgroundClassName ? '1.5rem' : undefined }}>
+              <div
+                className={[scopeClass, pageBackgroundClassName].filter(Boolean).join(' ')}
+                style={{
+                  display: 'inline-block',
+                  padding: pageBackgroundClassName ? '1.5rem' : undefined,
+                  borderLeft: index > 0 ? '1px solid rgba(0, 0, 0, 0.15)' : undefined,
+                }}
+              >
                 {children}
               </div>
             </div>
