@@ -42,7 +42,8 @@ export function TokenStatePreview({
   children: ReactNode;
   states: ButtonState[];
   pageBackgroundClassName?: string;
-  tokenFilter: string;
+  /** Omit when there's no dedicated token table to show alongside the states (e.g. a variant with no `az.component.*` tokens of its own yet). */
+  tokenFilter?: string;
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -60,7 +61,7 @@ export function TokenStatePreview({
           );
         })}
       </div>
-      <TokenTable filter={tokenFilter} searchable={false} caption="Tokens in use" />
+      {tokenFilter && <TokenTable filter={tokenFilter} searchable={false} caption="Tokens in use" />}
     </div>
   );
 }

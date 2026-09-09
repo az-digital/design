@@ -1,5 +1,16 @@
 # Writing stories and docs pages in this package
 
+## Dev server
+
+`npm run dev` (or `dev:storybook` from the repo root) watches story, token,
+and component source files automatically via Vite — editing a `.stories.tsx`,
+`.mdx`, `tokens.json`, or a component source file never needs a restart, the
+browser picks it up live. A `.storybook/main.ts` or `.storybook/preview.ts`
+change (e.g. registering a new addon) is different: those are read once at
+boot, so the dev server needs an actual kill-and-restart for that specific
+kind of change to take effect. Don't restart reflexively for ordinary story
+edits — only for config-file changes like this.
+
 ## Page structure
 
 - One combined Docs page per component, not a nested "Guidelines" page.

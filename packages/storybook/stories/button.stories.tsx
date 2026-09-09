@@ -247,3 +247,467 @@ export const SolidRedOnCoolGray: Story = {
     button.blur();
   },
 };
+
+/**
+ * Mirrors the approved Figma frame "Solid Button Large Red w/ White
+ * Background." Same tokens as `SolidRedOnWhite` for color/label/border —
+ * only `az.component.button.size.lg.padding.*` and `.label.font.size` apply
+ * instead of the base ones. `tokenFilter` stays the full wildcard so both
+ * the base and `size.lg` tokens show together for comparison.
+ */
+export const SolidRedOnWhiteLarge: Story = {
+  args: {
+    size: 'lg',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-339&t=4ghDRUE8AF5L7RhP-4',
+    },
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Mirrors `SolidRedOnWhiteLarge`, on the Cool Gray background — same
+ * relationship as `SolidRedOnCoolGray` to `SolidRedOnWhite`: only the page
+ * background differs, nothing about Button's own tokens changes.
+ */
+export const SolidRedOnCoolGrayLarge: Story = {
+  args: {
+    size: 'lg',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-537&t=4ghDRUE8AF5L7RhP-4',
+    },
+    implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Fixed reference snapshots for the rest of the approved Solid Button /
+ * background pairings from the Buttons & Links redlines — real Bootstrap
+ * classes (`.btn-red`, `.btn-sky`, `.btn-white-text-red`,
+ * `.btn-white-text-blue`), not routed through `Button`/`renderButton` since
+ * their color values (`rain`, `white-text-red`, `white-text-blue`) aren't
+ * part of that component's typed `color` prop yet. No dedicated
+ * `az.component.*` tokens exist for these variants, so `TokenStatePreview`
+ * is used without a `tokenFilter` (no token table, just the states).
+ */
+function ContextButton({ btnClass }: { btnClass: string }) {
+  return (
+    <a href="#" role="button" className={`btn ${btnClass}`}>
+      Apply to Arizona
+    </a>
+  );
+}
+
+/**
+ * Forces each state's look via Bootstrap's own per-button-class CSS custom
+ * properties (`--bs-btn-hover-*`, `--az-btn-focus-outline-color`) — never a
+ * literal color — so this works for any real `.btn-*` class without needing
+ * to know what color it resolves to. Same state model as `BUTTON_STATES`
+ * (focus-visible = hover look + ring; plain focus isn't a separate look),
+ * just sourced from Bootstrap's variables instead of `az.component.button.*`
+ * tokens, since these variants don't have their own tokens.
+ */
+const GENERIC_BOOTSTRAP_BUTTON_STATES: ButtonState[] = [
+  { label: 'Default' },
+  {
+    label: 'Hover',
+    css: `& .btn {
+      color: var(--bs-btn-hover-color) !important;
+      background-color: var(--bs-btn-hover-bg) !important;
+      border-color: var(--bs-btn-hover-border-color) !important;
+    }`,
+  },
+  {
+    label: 'Focus-visible',
+    css: `& .btn {
+      color: var(--bs-btn-hover-color) !important;
+      background-color: var(--bs-btn-hover-bg) !important;
+      border-color: var(--bs-btn-hover-border-color) !important;
+      outline: 2px solid var(--az-btn-focus-outline-color) !important;
+      outline-offset: 2px;
+    }`,
+  },
+];
+
+export const SolidRedOnWarmGray: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-red" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const SolidWhiteTextRedOnAzRed: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-white-text-red" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const SolidRainOnAzBlue: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-sky" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const SolidRainOnAzurite: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-sky" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const SolidWhiteTextBlueOnOasis: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-white-text-blue" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Mirrors the approved "Outline Button Red" frame (White Background board).
+ * Routed through the real `Button`/`renderButton` component — `style:
+ * 'outline'` is already a typed, supported prop, unlike the bootstrap-only
+ * color variants above. Outline swaps which token-driven property becomes
+ * the border/text color vs. the fill, so `GENERIC_BOOTSTRAP_BUTTON_STATES`
+ * (Bootstrap's own `--bs-btn-hover-*` variables) is used for the state
+ * preview rather than `BUTTON_STATES`, which assumes the solid style's
+ * background-swap behavior specifically.
+ */
+export const OutlineRedOnWhite: Story = {
+  args: {
+    style: 'outline',
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Mirrors `OutlineRedOnWhite` on the Cool Gray background — same
+ * relationship as `SolidRedOnCoolGray` to `SolidRedOnWhite`.
+ */
+export const OutlineRedOnCoolGray: Story = {
+  args: {
+    style: 'outline',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Mirrors `OutlineRedOnWhite` at the Large size — same relationship as
+ * `SolidRedOnWhiteLarge` to `SolidRedOnWhite`.
+ */
+export const OutlineRedOnWhiteLarge: Story = {
+  args: {
+    style: 'outline',
+    size: 'lg',
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Mirrors `OutlineRedOnCoolGray` at the Large size.
+ */
+export const OutlineRedOnCoolGrayLarge: Story = {
+  args: {
+    style: 'outline',
+    size: 'lg',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
+  },
+  render: (args, context) => {
+    const button = renderImplementation('Button', implementations, args, context);
+
+    if (context.viewMode !== 'story') {
+      return button;
+    }
+
+    return (
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+        {button}
+      </TokenStatePreview>
+    );
+  },
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+/**
+ * Outline equivalents of the Solid Button / background pairings above —
+ * same background set, same "which button color reads on this background"
+ * logic, just outline style. Not routed through `Button`/`renderButton` for
+ * the same reason as the Solid ones: `rain`/`white` aren't part of its typed
+ * `color` prop.
+ */
+export const OutlineRedOnWarmGray: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-outline-red" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const OutlineWhiteOnAzRed: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-outline-white" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const OutlineRainOnAzBlue: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-outline-sky" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const OutlineRainOnAzurite: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-outline-sky" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
+
+export const OutlineWhiteOnOasis: Story = {
+  render: () => (
+    <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <ContextButton btnClass="btn-outline-white" />
+    </TokenStatePreview>
+  ),
+  play: async ({ canvas, step }) => {
+    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+
+    await step('Focus: button should receive keyboard focus', async () => {
+      button.focus();
+      await expect(button).toHaveFocus();
+    });
+
+    button.blur();
+  },
+};
