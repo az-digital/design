@@ -1,5 +1,36 @@
 # Writing stories and docs pages in this package
 
+## Purpose: this is a brand documentation site
+
+This Storybook documents the *real, approved* design system — it is not a
+sandbox for constructing every prop combination a component happens to be
+capable of rendering. Keep that distinction in front of every decision here:
+
+- Only document a combination that mirrors an approved Figma frame (or
+  equivalent design sign-off). Don't build generic pickers/playgrounds that
+  let a viewer freely combine props into something nobody actually approved
+  — see "Only add a story for a prop combination with an approved Figma
+  frame" under Stories, and the "NO PAIRS" reasoning behind
+  `argTypes.color.options` in `button.stories.tsx` (background-paired colors
+  are excluded from the untethered playground because picking one there
+  produces a combination nothing approved).
+- Never invent a prop value, CSS class, or a mapping between them to make a
+  component *look* supported when it isn't. A real incident from this
+  project: `color: 'rain'` was briefly implemented by silently mapping it to
+  the legacy `.btn-sky` class so it would render styled — this made the
+  component lie about what it actually does; a consumer using the real
+  component outside Storybook would never get that hidden mapping. Generate
+  classes naively from the real prop value (`btn-${color}`) even when the
+  CSS for it doesn't exist yet.
+- If something genuinely isn't implemented yet (no CSS, no token), document
+  that plainly — a "not yet implemented" doc comment, an explicit
+  placeholder in the story (see `ColorNotImplementedPlaceholder` in
+  `button.stories.tsx`) — rather than papering over the gap so it looks
+  finished.
+- If there's no design token for a color (or other value), don't mention it
+  in the docs prose at all. Documenting something with no token behind it
+  misrepresents the design system's actual state.
+
 ## Dev server
 
 `npm run dev` (or `dev:storybook` from the repo root) watches story, token,

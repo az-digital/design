@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { classNames } from '../../utils/classNames';
 
 export type ButtonStyle = 'solid' | 'outline' | 'link';
-export type ButtonColor = 'red' | 'blue';
+export type ButtonColor = 'red' | 'rain';
 export type ButtonSize = 'sm' | 'lg';
 export type ButtonHtmlTag = 'button' | 'a';
 
@@ -12,7 +12,7 @@ export type ButtonHtmlTag = 'button' | 'a';
  * the HTML and React implementations render equivalent markup from the same
  * args, except `color`: components-html additionally supports `success`
  * (Bootstrap's stock semantic color, not an Arizona brand color) — no React
- * implementation yet, see `Button.stories.tsx`'s `Success` story.
+ * implementation yet.
  */
 export type ButtonProps = {
   /** HTML element to render. Defaults to `a`. */

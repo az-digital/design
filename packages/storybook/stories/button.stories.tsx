@@ -1,6 +1,8 @@
 import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
-import { createElement } from 'react';
+import { createElement, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { expect } from 'storybook/test';
+import { useArgs } from 'storybook/preview-api';
 import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
 import type { ImplementationKey, Implementations } from './implementations';
@@ -9,7 +11,10 @@ import type { ButtonState } from './TokenStatePreview';
 import { TokenStatePreview } from './TokenStatePreview';
 import { resolveValue } from './resolveToken';
 
-type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string };
+// `background` is presentation-only (see `DocsControls`/`DocsControlsPreview`) — it wraps
+// the rendered button in a page-background class, it isn't a real Button prop, so it's
+// never passed through to `implementations`.
+type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string; background?: string };
 
 /**
  * Default/Hover/Focus-visible shown side by side, each recreating that
@@ -122,10 +127,18 @@ const meta = {
   component: Button,
   render: ButtonStory,
   argTypes: {
+    // Every option below must have at least one approved story backing it — `htmlTag` is the
+    // one exception: 'a' vs 'button' is a semantic/markup choice with no visual difference, so
+    // it isn't a "design decision" a Figma frame would ever distinguish or need to approve.
     htmlTag: { control: 'radio', options: ['a', 'button'] },
-    style: { control: 'radio', options: ['solid', 'outline', 'link'] },
-    color: { control: 'radio', options: ['red', 'blue'] },
-    size: { control: 'radio', options: [undefined, 'sm', 'lg'] },
+    // 'link' removed: no story demonstrates it.
+    style: { control: 'radio', options: ['solid', 'outline'] },
+    color: { control: 'radio', options: ['red', 'white', 'blue', 'rain'] },
+    // 'sm' removed: no story demonstrates a small size, only the Large variants.
+    size: { control: 'radio', options: [undefined, 'lg'] },
+    // Not a real Button prop (see the `ButtonArgs` comment above) — Storybook infers a
+    // control for any arg by default, so this has to be explicitly hidden from the table.
+    background: { table: { disable: true } },
   },
   args: {
     htmlTag: 'a',
@@ -160,11 +173,147 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
+ * Powers the Docs page's Controls table only — `tags: ['!dev']` excludes it
+ * from the sidebar, so it doesn't clutter the list of real, approved
+ * variants below. Controls only produces live updates when bound to the
+ * same story the Canvas renders, and a second live `<Canvas>` on this docs
+ * page doesn't work correctly in this Storybook version (see
+ * `packages/storybook/AGENTS.md`) — so the Docs page's Canvas embeds this
+ * story too, not `SolidRedOnWhite` directly, keeping that one fully locked
+ * (Controls disabled) on its own page. Default args exactly match
+ * `SolidRedOnWhite` (`red`/`solid`/`a`/"Apply to Arizona"), so the Docs page
+ * still shows the identical approved combination by default.
+ *
+ * Exported FIRST, before every other story — confirmed directly (via
+ * `anchor--`/`story--` element IDs in the rendered DOM) that this docs
+ * page's Canvas always renders the first-exported story regardless of what
+ * a `<Canvas><Story of={X}/></Canvas>` block's `of=` points at, the same
+ * underlying bug behind the "second Canvas" limitation in
+ * `packages/storybook/AGENTS.md`. A separate MCP documentation tool
+ * (`az-digital-storybook`) fails to index this file ("Unable to index
+ * ./stories/button.mdx") independent of this story's position — confirmed
+ * by reverting the reorder and seeing the same error persist — so that
+ * error is not a reason to avoid keeping this first.
+ */
+/**
+ * Which backgrounds are offered depends on the selected `color` — only combinations an
+ * approved story actually demonstrates. `red` mirrors SolidRedOnWhite/CoolGray/WarmGray;
+ * `rain` mirrors SolidRainOnAzBlue/Azurite. `white`/`blue` have no approved-story
+ * background pairing yet, so they only offer the plain white default.
+ */
+const COLOR_BACKGROUND_OPTIONS: Record<string, { value: string; label: string }[]> = {
+  red: [
+    { value: 'none', label: 'White' },
+    { value: 'bg-cool-gray', label: 'Cool Gray' },
+    { value: 'bg-warm-gray', label: 'Warm Gray' },
+  ],
+  rain: [
+    { value: 'bg-blue', label: 'Az Blue' },
+    { value: 'bg-azurite', label: 'Azurite' },
+  ],
+};
+const DEFAULT_BACKGROUND_OPTIONS = [{ value: 'none', label: 'White' }];
+
+/**
+ * Backed by the story's own `background` arg (via Storybook's `useArgs`), not local
+ * `useState` — args round-trip through the URL automatically, so a chosen background is
+ * part of a shareable link the same way `color`/`style`/etc already are. No `argTypes`
+ * entry, so it never shows up as a Controls-table row. Purely presentational otherwise:
+ * takes the already-rendered `button` element and plain string props, not the raw
+ * Storybook `context` — passing `context` itself through as a prop caused a real "Maximum
+ * call stack size exceeded" crash (its internals aren't a plain serializable object).
+ */
+function DocsControlsPreview({
+  button,
+  color,
+  background,
+  onBackgroundChange,
+}: {
+  button: ReactNode;
+  color?: string;
+  background: string;
+  onBackgroundChange: (value: string) => void;
+}) {
+  const options = (color && COLOR_BACKGROUND_OPTIONS[color]) || DEFAULT_BACKGROUND_OPTIONS;
+  const isValid = options.some((option) => option.value === background);
+  const value = isValid ? background : options[0].value;
+
+  useEffect(() => {
+    if (!isValid) {
+      onBackgroundChange(options[0].value);
+    }
+  }, [color, background]);
+
+  return (
+    <div>
+      <label
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          gap: '0.5rem',
+          marginBottom: '1rem',
+          fontSize: '0.75rem',
+          color: '#666',
+        }}
+      >
+        Background
+        <select
+          value={value}
+          onChange={(event) => onBackgroundChange(event.target.value)}
+          style={{
+            fontSize: '0.75rem',
+            padding: '0.25rem 0.5rem',
+            border: '1px solid #ccc',
+            borderRadius: '0.25rem',
+            background: '#fff',
+            color: '#333',
+          }}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      {value === 'none' ? button : (
+        <div className={value} style={{ padding: '2rem' }}>
+          {button}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export const DocsControls: Story = {
+  tags: ['!dev'],
+  args: {
+    background: 'none',
+  },
+  parameters: {
+    controls: { disable: false },
+  },
+  render: (args, context) => {
+    const [, updateArgs] = useArgs<ButtonArgs>();
+
+    return (
+      <DocsControlsPreview
+        button={renderImplementation('Button', implementations, args, context)}
+        color={args.color}
+        background={args.background ?? 'none'}
+        onBackgroundChange={(value) => updateArgs({ background: value })}
+      />
+    );
+  },
+};
+
+/**
  * Mirrors the approved Figma frame "Solid Button Red w/ White Background."
- * This is the only Button story right now: Outline, Blue, Disabled, and the
- * HTML-only `success` color are all still fully supported by the component,
- * they just don't have an approved Figma frame to mirror yet — add a story
- * back once one does, rather than inventing an unreviewed combination here.
+ * This is the only Button story right now: Outline, Blue, and Disabled are
+ * all still fully supported by the component, they just don't have an
+ * approved Figma frame to mirror yet — add a story back once one does,
+ * rather than inventing an unreviewed combination here.
  *
  * On its own story page, renders the button three times — Default, Hover,
  * Focus-visible — side by side (see `TokenStatePreview`), with the full
@@ -341,12 +490,12 @@ export const SolidRedOnCoolGrayLarge: Story = {
 /**
  * Fixed reference snapshots for the rest of the approved Solid Button /
  * background pairings from the Buttons & Links redlines — real Bootstrap
- * classes (`.btn-red`, `.btn-sky`, `.btn-white-text-red`,
- * `.btn-white-text-blue`), not routed through `Button`/`renderButton` since
- * their color values (`rain`, `white-text-red`, `white-text-blue`) aren't
- * part of that component's typed `color` prop yet. No dedicated
- * `az.component.*` tokens exist for these variants, so `TokenStatePreview`
- * is used without a `tokenFilter` (no token table, just the states).
+ * classes (`.btn-red`, `.btn-white-text-red`, `.btn-white-text-blue`), not
+ * routed through `Button`/`renderButton` since their color values
+ * (`white-text-red`, `white-text-blue`) aren't part of that component's
+ * typed `color` prop. No dedicated `az.component.*` tokens exist for these
+ * variants, so `TokenStatePreview` is used without a `tokenFilter` (no token
+ * table, just the states).
  */
 function ContextButton({ btnClass }: { btnClass: string }) {
   return (
@@ -410,6 +559,22 @@ const GENERIC_BOOTSTRAP_BUTTON_STATES: ButtonState[] = [
   },
 ];
 
+/**
+ * Shown in place of the actual button for stories whose `color` has no CSS
+ * yet in Arizona Bootstrap (currently just `rain`) — mirrors
+ * `ImplementationPlaceholder` in `implementations.tsx`, which does the same
+ * thing for a missing html/react implementation.
+ */
+function ColorNotImplementedPlaceholder({ color }: { color: string }) {
+  return (
+    <div style={{ padding: '1rem', border: '1px dashed #999', borderRadius: '0.5rem', maxWidth: '32rem' }}>
+      <p style={{ margin: 0 }}>
+        Button doesn&rsquo;t have a <code>{color}</code> color implemented yet.
+      </p>
+    </div>
+  );
+}
+
 export const SolidRedOnWarmGray: Story = {
   parameters: { implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
@@ -448,41 +613,50 @@ export const SolidWhiteTextRedOnAzRed: Story = {
   },
 };
 
+/**
+ * `color: 'rain'` — the real `Button`/`renderButton` component, not the
+ * `ContextButton` bypass: 'rain' is a real, supported `color` value now,
+ * generating `btn-rain`/`btn-outline-rain` directly, so there's no more
+ * reason to hardcode a class name here. That CSS doesn't exist yet in
+ * Arizona Bootstrap — see the `ButtonColor` doc comment in `Button.tsx`.
+ */
 export const SolidRainOnAzBlue: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-blue', 'btn-sky') },
-  render: () => (
-    <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
-      <ContextButton btnClass="btn-sky" />
-    </TokenStatePreview>
-  ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  args: {
+    color: 'rain',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
+  },
+  render: (args, context) => {
+    if (context.viewMode !== 'story') {
+      return renderImplementation('Button', implementations, args, context);
+    }
 
-    await step('Focus: button should receive keyboard focus', async () => {
-      button.focus();
-      await expect(button).toHaveFocus();
-    });
-
-    button.blur();
+    return (
+      <div className="text-bg-blue" style={{ padding: '2rem' }}>
+        <ColorNotImplementedPlaceholder color="rain" />
+      </div>
+    );
   },
 };
 
 export const SolidRainOnAzurite: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-azurite', 'btn-sky') },
-  render: () => (
-    <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
-      <ContextButton btnClass="btn-sky" />
-    </TokenStatePreview>
-  ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  args: {
+    color: 'rain',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
+  },
+  render: (args, context) => {
+    if (context.viewMode !== 'story') {
+      return renderImplementation('Button', implementations, args, context);
+    }
 
-    await step('Focus: button should receive keyboard focus', async () => {
-      button.focus();
-      await expect(button).toHaveFocus();
-    });
-
-    button.blur();
+    return (
+      <div className="text-bg-azurite" style={{ padding: '2rem' }}>
+        <ColorNotImplementedPlaceholder color="rain" />
+      </div>
+    );
   },
 };
 
@@ -696,40 +870,44 @@ export const OutlineWhiteOnAzRed: Story = {
 };
 
 export const OutlineRainOnAzBlue: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-blue', 'btn-outline-sky') },
-  render: () => (
-    <TokenStatePreview pageBackgroundClassName="bg-blue" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
-      <ContextButton btnClass="btn-outline-sky" />
-    </TokenStatePreview>
-  ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  args: {
+    style: 'outline',
+    color: 'rain',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
+  },
+  render: (args, context) => {
+    if (context.viewMode !== 'story') {
+      return renderImplementation('Button', implementations, args, context);
+    }
 
-    await step('Focus: button should receive keyboard focus', async () => {
-      button.focus();
-      await expect(button).toHaveFocus();
-    });
-
-    button.blur();
+    return (
+      <div className="text-bg-blue" style={{ padding: '2rem' }}>
+        <ColorNotImplementedPlaceholder color="rain" />
+      </div>
+    );
   },
 };
 
 export const OutlineRainOnAzurite: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-azurite', 'btn-outline-sky') },
-  render: () => (
-    <TokenStatePreview pageBackgroundClassName="bg-azurite" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
-      <ContextButton btnClass="btn-outline-sky" />
-    </TokenStatePreview>
-  ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  args: {
+    style: 'outline',
+    color: 'rain',
+  },
+  parameters: {
+    implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
+  },
+  render: (args, context) => {
+    if (context.viewMode !== 'story') {
+      return renderImplementation('Button', implementations, args, context);
+    }
 
-    await step('Focus: button should receive keyboard focus', async () => {
-      button.focus();
-      await expect(button).toHaveFocus();
-    });
-
-    button.blur();
+    return (
+      <div className="text-bg-azurite" style={{ padding: '2rem' }}>
+        <ColorNotImplementedPlaceholder color="rain" />
+      </div>
+    );
   },
 };
 

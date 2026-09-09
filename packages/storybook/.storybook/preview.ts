@@ -16,8 +16,8 @@ const preview: Preview = {
         title: 'Implementation',
         icon: 'component',
         items: [
-          { value: 'html', title: 'HTML' },
-          { value: 'react', title: 'React' },
+          { value: 'html', title: 'Arizona Bootstrap' },
+          { value: 'react', title: 'React Bootstrap' },
         ],
         dynamicTitle: true,
       },

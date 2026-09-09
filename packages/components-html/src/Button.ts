@@ -1,6 +1,6 @@
 export type ButtonStyle = 'solid' | 'outline' | 'link';
 /** `success` is Bootstrap's stock semantic color, not an Arizona brand color — HTML-only for now, no React implementation. */
-export type ButtonColor = 'red' | 'blue' | 'success';
+export type ButtonColor = 'red' | 'success' | 'rain';
 export type ButtonSize = 'sm' | 'lg';
 export type ButtonHtmlTag = 'button' | 'a';
 

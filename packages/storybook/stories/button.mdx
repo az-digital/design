@@ -1,4 +1,4 @@
-import { Meta, Canvas, Story, ArgTypes, Source } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
 import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import * as ButtonStories from './button.stories';
 
@@ -10,11 +10,12 @@ import * as ButtonStories from './button.stories';
 
 Button triggers an action or submits a choice with a single click or tap. It's the primary way to expose an action in the interface, from form submission to opening a flow.
 
+{}
 <Canvas>
-  <Story of={ButtonStories.SolidRedOnWhite} />
+  <Story of={ButtonStories.DocsControls} />
 </Canvas>
 
-<ArgTypes of={ButtonStories} />
+<Controls of={ButtonStories.DocsControls} />
 
 ## When to use
 
@@ -35,7 +36,7 @@ Button triggers an action or submits a choice with a single click or tap. It's t
 - **Sizing:** the default size fits most contexts; `sm` and `lg` are available via the `size` prop for compact or high-emphasis contexts respectively.
 - **Clear hierarchy:** stick to one button per distinct action. Avoid placing two solid buttons of the same color side-by-side — mix colors or visual weights so the primary choice is obvious.
 
-The story above mirrors the approved Figma frame "Solid Button Red w/ White Background." `outline`, `blue`, `disabled`, and the HTML-only `success` color (Bootstrap's stock semantic color, not an Arizona brand color, with no design token or React implementation) are all still fully supported by the component; they just don't have their own approved Figma frame to mirror yet, so there's no example story for them here. Check the props table above for what's available, and use the Code panel above to see the exact markup/JSX for any combination.
+The story above mirrors the approved Figma frame "Solid Button Red w/ White Background." `outline`, `blue`, and `disabled` are all still fully supported by the component; they just don't have their own approved Figma frame to mirror yet, so there's no example story for them here. Check the props table above for what's available, and use the Code panel above to see the exact markup/JSX for any combination.
 
 ## Backgrounds
 
