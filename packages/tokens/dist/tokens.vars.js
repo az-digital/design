@@ -120,6 +120,29 @@ export const az = {
         }
       }
     },
+    "card": {
+      "body": {
+        "padding": {
+          "x": "var(--az-component-card-body-padding-x)",
+          "y": "var(--az-component-card-body-padding-y)"
+        }
+      },
+      "border": {
+        "radius": "var(--az-component-card-border-radius)",
+        "width": "var(--az-component-card-border-width)"
+      },
+      "cap": {
+        "padding": {
+          "x": "var(--az-component-card-cap-padding-x)",
+          "y": "var(--az-component-card-cap-padding-y)"
+        }
+      },
+      "title": {
+        "margin": {
+          "bottom": "var(--az-component-card-title-margin-bottom)"
+        }
+      }
+    },
     "nav": {
       "utility": {
         "item": {

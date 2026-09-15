@@ -1,0 +1,67 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as CardStories from './card.stories';
+
+{/* `of={CardStories}` attaches this page to card.stories.tsx's own title
+    ("Components/Card"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={CardStories} />
+
+# Card
+
+Card is a flexible content container — a bordered box with optional header, image,
+title/subtitle/text/links, and footer. Purely presentational: no real interactive
+behavior, so unlike Accordion/Tabs, this component is hand-rolled rather than wrapping
+`react-bootstrap`.
+
+<Canvas>
+  <Story of={CardStories.Default} />
+</Canvas>
+
+<Controls of={CardStories.Default} />
+
+## Content types
+
+- **Titles, text, and links** — `title`/`subtitle`/`text`/`links`.
+- **Image cap** (`image`) — `.card-img-top`, matching Arizona Bootstrap's own naming
+  (top only; there's no `.card-img-bottom` prop here — not demonstrated as a distinct
+  need yet).
+- **Header and footer** — `header`/`footer`.
+
+<Source of={CardStories.TitlesTextAndLinks} />
+<Source of={CardStories.ImageCap} />
+<Source of={CardStories.HeaderAndFooter} />
+
+## Not covered by this component (yet)
+
+Arizona Bootstrap's cards docs page covers considerably more ground than this first
+pass. Deliberately deferred, not silently dropped:
+
+- **List groups inside a card** (`.list-group.list-group-flush`) and the **"Kitchen
+  sink"** example combining image + body + list group + links.
+- **Navigation inside a card header** (`.nav-tabs`/`.nav-pills` in `.card-header`) —
+  ties into [`Nav`](?path=/docs/components-nav--docs)/[`Tabs`](?path=/docs/components-tabs--docs);
+  `custom/_card.scss` has real styling fixes specifically for this combination.
+- **Image overlays**, **horizontal cards**.
+- **Layout patterns**: card groups, CSS-grid cards, masonry.
+- **Sizing** via grid markup, utilities, or custom CSS; **text alignment**;
+  **background and color** variants.
+- **Borderless and Clickable Cards**, and **Title on Image** — both confirmed
+  **Arizona-custom** in the docs ("Custom Arizona Bootstrap Styling"), plus the
+  deprecated `.card-clickable`/`.card-landing-grid` classes in
+  `scss/deprecated/_card.scss`.
+
+## Tokens
+
+`az.component.card.*` covers this component's structural properties (body padding,
+title bottom-margin, border width/radius, header/footer padding) — every value sourced
+from Arizona Bootstrap's actual compiled CSS. As with Accordion, Tabs, and Nav, it
+deliberately has **no color tokens**: the header/footer background in the compiled CSS
+is Arizona Bootstrap's own override (`$gray-200`, `#e9ecef` — not Bootstrap's default
+translucent tint, but still a stock, un-themed neutral, not an Arizona brand color),
+and there's no neutral/gray primitive tier in `tokens.json` to alias it to yet. This is
+the **fourth** component in a row to hit this exact gap (Accordion, Tabs, Nav, now
+Card) — a real, recurring pattern worth raising with the design/tokens team rather
+than something to keep re-noting quietly.
+
+<TokenTable filter="az.component.card.**" />

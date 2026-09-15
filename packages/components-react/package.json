@@ -31,6 +31,11 @@
       "types": "./dist/Nav.d.ts",
       "import": "./dist/Nav.js",
       "require": "./dist/Nav.cjs"
+    },
+    "./Card": {
+      "types": "./dist/Card.d.ts",
+      "import": "./dist/Card.js",
+      "require": "./dist/Card.cjs"
     }
   },
   "files": [

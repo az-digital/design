@@ -120,6 +120,29 @@ export const az: {
         }
       }
     },
+    "card": {
+      "body": {
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "border": {
+        "radius": string,
+        "width": string
+      },
+      "cap": {
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "title": {
+        "margin": {
+          "bottom": string
+        }
+      }
+    },
     "nav": {
       "utility": {
         "item": {

@@ -11,9 +11,13 @@ import {
   Nav
 } from "./chunk-3J77EX43.js";
 import "./chunk-CLLYUIL6.js";
+import {
+  Card
+} from "./chunk-V5UTOVJR.js";
 export {
   Accordion,
   Button,
+  Card,
   Nav,
   Tabs
 };

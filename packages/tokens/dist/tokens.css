@@ -107,6 +107,20 @@
   --az-component-button-size-sm-padding-x: var(--az-dimension-8);
   /* az.component.button.size.sm.padding.y = 0.25rem */
   --az-component-button-size-sm-padding-y: var(--az-dimension-4);
+  /* az.component.card.body.padding.x = 1rem */
+  --az-component-card-body-padding-x: var(--az-dimension-16);
+  /* az.component.card.body.padding.y = 1rem */
+  --az-component-card-body-padding-y: var(--az-dimension-16);
+  /* az.component.card.border.radius = 0.375rem */
+  --az-component-card-border-radius: var(--az-dimension-6);
+  /* az.component.card.border.width = 1px */
+  --az-component-card-border-width: var(--az-dimension-1);
+  /* az.component.card.cap.padding.x = 1rem — header/footer padding. */
+  --az-component-card-cap-padding-x: var(--az-dimension-16);
+  /* az.component.card.cap.padding.y = 0.5rem — header/footer padding. */
+  --az-component-card-cap-padding-y: var(--az-dimension-8);
+  /* az.component.card.title.margin.bottom = 0.5rem */
+  --az-component-card-title-margin-bottom: var(--az-dimension-8);
   /* az.component.nav.utility.item.padding.x = 0.6rem */
   --az-component-nav-utility-item-padding-x: var(--az-dimension-9-6);
   /* az.component.nav.utility.label.font.weight = 500 */
