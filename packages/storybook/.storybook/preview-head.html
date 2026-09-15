@@ -1,3 +1,13 @@
 <!-- Proxima Nova + Garamond Premier Pro reference. -->
 <link href="https://use.typekit.net/sgx0zzg.css" rel="stylesheet" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/css/arizona-bootstrap.css" />
+<!--
+  Arizona Bootstrap's real JS (same pinned version as the CSS above), so the
+  `components-html` implementation's data-bs-* markup (Accordion, Dropdown,
+  Offcanvas, ...) is actually interactive here, not just static markup.
+  `react-bootstrap` components don't render data-bs-* attributes at all (they
+  manage state themselves, not through Bootstrap's JS) — confirmed directly
+  by inspecting a rendered <Accordion> instance's DOM — so this bundle has
+  nothing to attach to on the React side and can't double-handle its clicks.
+-->
+<script defer src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/js/arizona-bootstrap.bundle.min.js"></script>
