@@ -11,6 +11,26 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./Button": {
+      "types": "./dist/Button.d.ts",
+      "import": "./dist/Button.js",
+      "require": "./dist/Button.cjs"
+    },
+    "./Accordion": {
+      "types": "./dist/Accordion.d.ts",
+      "import": "./dist/Accordion.js",
+      "require": "./dist/Accordion.cjs"
+    },
+    "./Tabs": {
+      "types": "./dist/Tabs.d.ts",
+      "import": "./dist/Tabs.js",
+      "require": "./dist/Tabs.cjs"
+    },
+    "./Nav": {
+      "types": "./dist/Nav.d.ts",
+      "import": "./dist/Nav.js",
+      "require": "./dist/Nav.cjs"
     }
   },
   "files": [

@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Nav as RBNav, Tab as RBTab } from 'react-bootstrap';
 

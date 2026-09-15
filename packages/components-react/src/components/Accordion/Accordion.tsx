@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
 import { Accordion as RBAccordion, Overlay, Tooltip } from 'react-bootstrap';
