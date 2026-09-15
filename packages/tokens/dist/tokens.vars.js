@@ -43,6 +43,29 @@ export const az = {
     "white": "var(--az-color-white)"
   },
   "component": {
+    "accordion": {
+      "body": {
+        "padding": {
+          "x": "var(--az-component-accordion-body-padding-x)",
+          "y": "var(--az-component-accordion-body-padding-y)"
+        }
+      },
+      "border": {
+        "radius": "var(--az-component-accordion-border-radius)",
+        "width": "var(--az-component-accordion-border-width)"
+      },
+      "button": {
+        "label": {
+          "font": {
+            "size": "var(--az-component-accordion-button-label-font-size)"
+          }
+        },
+        "padding": {
+          "x": "var(--az-component-accordion-button-padding-x)",
+          "y": "var(--az-component-accordion-button-padding-y)"
+        }
+      }
+    },
     "button": {
       "border": {
         "radius": "var(--az-component-button-border-radius)",
@@ -99,11 +122,14 @@ export const az = {
     }
   },
   "dimension": {
+    "1": "var(--az-dimension-1)",
     "2": "var(--az-dimension-2)",
     "4": "var(--az-dimension-4)",
+    "6": "var(--az-dimension-6)",
     "8": "var(--az-dimension-8)",
     "14": "var(--az-dimension-14)",
     "16": "var(--az-dimension-16)",
+    "18": "var(--az-dimension-18)",
     "20": "var(--az-dimension-20)",
     "48": "var(--az-dimension-48)"
   },

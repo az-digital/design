@@ -1,0 +1,56 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as AccordionStories from './accordion.stories';
+
+{/* `of={AccordionStories}` attaches this page to accordion.stories.tsx's own title
+    ("Components/Accordion"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Accordion shows and hides sections of related content, one heading per section, so a
+page can present more content than fits comfortably at once without a separate page.
+It uses Bootstrap's Collapse behavior internally.
+
+<Canvas>
+  <Story of={AccordionStories.Default} />
+</Canvas>
+
+<Controls of={AccordionStories.Default} />
+
+## Variants
+
+- **Default** — one item open at a time; opening an item collapses whichever sibling
+  was open (`data-bs-parent` grouping).
+- **Flush** (`flush`) — removes the outer border and rounded corners to render
+  edge-to-edge with its parent container.
+- **Always open** (`alwaysOpen`) — omits the `data-bs-parent` grouping so multiple
+  items can stay open at the same time.
+
+<Source of={AccordionStories.Flush} />
+<Source of={AccordionStories.AlwaysOpen} />
+
+## Not yet implemented
+
+Arizona Bootstrap's own accordion docs also describe an **Anchored** variant —
+`.az-accordion-anchor` links that copy a deep link to an item and auto-expand/scroll to
+it from a URL hash, powered by `accordion-anchors.js` in `arizona-bootstrap`. That
+behavior is vanilla JS wired directly against Bootstrap's own Collapse/Tooltip
+instances and `*.bs.*` events, which `react-bootstrap` doesn't emit — it isn't ported to
+either implementation here yet. Don't assume anchor/deep-link behavior works until this
+note is removed.
+
+## Tokens
+
+`az.component.accordion.*` covers this component's structural properties (button and
+body padding, border width/radius, button label font size) — every value sourced from
+Arizona Bootstrap's actual compiled CSS. It deliberately has **no color tokens yet**:
+the accordion's button/body background and border colors in Arizona Bootstrap's
+compiled CSS are Bootstrap's stock, un-themed neutrals (`#e9ecef`, `#dee2e6`, ...), not
+Arizona brand colors, and there's no neutral/gray primitive tier in `tokens.json` to
+alias them to. Per `packages/tokens/AGENTS.md`, that's real work (adding a base neutral
+tier) rather than something to alias around by inventing a token that points at a
+plausible-looking hex — flag it to the design/tokens team rather than adding one here.
+
+<TokenTable filter="az.component.accordion.**" />

@@ -1,13 +1,51 @@
 import * as react from 'react';
 import { ReactNode } from 'react';
 
+/**
+ * Props otherwise mirror `@az-digital/components-html`'s `renderAccordion` so
+ * the HTML and React implementations render equivalent markup from the same
+ * args, except `content`, which accepts a `ReactNode` here instead of a
+ * plain string.
+ */
+type AccordionItemProps = {
+    /** Item heading text. */
+    title: string;
+    /** Item body content. */
+    content: ReactNode;
+    /** Whether this item is expanded on initial render. Defaults to `false`. */
+    defaultOpen?: boolean;
+};
+type AccordionProps = {
+    /** Base `id` for the accordion container. Defaults to `accordion`. */
+    id?: string;
+    items: AccordionItemProps[];
+    /** Removes borders/rounded corners to render edge-to-edge with its parent container. */
+    flush?: boolean;
+    /**
+     * When `true`, allows multiple items to stay open at once.
+     * When `false` (default), opening an item collapses any other open sibling.
+     */
+    alwaysOpen?: boolean;
+    className?: string;
+};
+/**
+ * Arizona Digital accordion. Wraps `react-bootstrap`'s `Accordion` — this
+ * component has real interactive behavior (collapse/expand, focus, ARIA
+ * wiring), so it wraps the library rather than being hand-rolled; see
+ * `.claude/skills/design-system-component/SKILL.md`.
+ */
+declare const Accordion: react.ForwardRefExoticComponent<AccordionProps & react.RefAttributes<HTMLDivElement>>;
+
 type ButtonStyle = 'solid' | 'outline' | 'link';
-type ButtonColor = 'red' | 'blue';
+type ButtonColor = 'red' | 'rain';
 type ButtonSize = 'sm' | 'lg';
 type ButtonHtmlTag = 'button' | 'a';
 /**
- * Props mirror `@az-digital/components-html`'s `renderButton` 1:1 so the HTML
- * and React implementations render equivalent markup from the same args.
+ * Props otherwise mirror `@az-digital/components-html`'s `renderButton` so
+ * the HTML and React implementations render equivalent markup from the same
+ * args, except `color`: components-html additionally supports `success`
+ * (Bootstrap's stock semantic color, not an Arizona brand color) — no React
+ * implementation yet.
  */
 type ButtonProps = {
     /** HTML element to render. Defaults to `a`. */
@@ -28,6 +66,6 @@ type ButtonProps = {
     className?: string;
 };
 /** Arizona Digital button. Renders a `<button>` or `<a>` depending on `htmlTag`. */
-declare const Button: react.ForwardRefExoticComponent<ButtonProps & react.RefAttributes<HTMLButtonElement | HTMLAnchorElement>>;
+declare const Button: react.ForwardRefExoticComponent<ButtonProps & react.RefAttributes<HTMLAnchorElement | HTMLButtonElement>>;
 
-export { Button, type ButtonColor, type ButtonHtmlTag, type ButtonProps, type ButtonSize, type ButtonStyle };
+export { Accordion, type AccordionItemProps, type AccordionProps, Button, type ButtonColor, type ButtonHtmlTag, type ButtonProps, type ButtonSize, type ButtonStyle };

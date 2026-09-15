@@ -20,12 +20,26 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
+  Accordion: () => Accordion,
   Button: () => Button
 });
 module.exports = __toCommonJS(index_exports);
 
-// src/components/Button/Button.tsx
+// src/components/Accordion/Accordion.tsx
 var import_react = require("react");
+var import_react_bootstrap = require("react-bootstrap");
+var import_jsx_runtime = require("react/jsx-runtime");
+var Accordion = (0, import_react.forwardRef)(function Accordion2(props, ref) {
+  const { id = "accordion", items, flush = false, alwaysOpen = false, className } = props;
+  const openKeys = items.map((item, index) => item.defaultOpen ? String(index) : null).filter((key) => key !== null);
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react_bootstrap.Accordion, { ref, id, flush, alwaysOpen, defaultActiveKey: alwaysOpen ? openKeys : openKeys[0], className, children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_react_bootstrap.Accordion.Item, { eventKey: String(index), children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react_bootstrap.Accordion.Header, { children: item.title }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react_bootstrap.Accordion.Body, { children: item.content })
+  ] }, index)) });
+});
+
+// src/components/Button/Button.tsx
+var import_react2 = require("react");
 
 // src/utils/classNames.ts
 function classNames(...values) {
@@ -33,8 +47,8 @@ function classNames(...values) {
 }
 
 // src/components/Button/Button.tsx
-var import_jsx_runtime = require("react/jsx-runtime");
-var Button = (0, import_react.forwardRef)(function Button2(props, ref) {
+var import_jsx_runtime2 = require("react/jsx-runtime");
+var Button = (0, import_react2.forwardRef)(function Button2(props, ref) {
   const { htmlTag = "a", href = "#", style = "solid", color = "red", size, disabled = false, active = false, className, children } = props;
   const classes = classNames(
     "btn",
@@ -45,9 +59,9 @@ var Button = (0, import_react.forwardRef)(function Button2(props, ref) {
     className
   );
   if (htmlTag === "button") {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { ref, type: "button", className: classes, disabled, children });
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { ref, type: "button", className: classes, disabled, children });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
     "a",
     {
       ref,
@@ -62,6 +76,7 @@ var Button = (0, import_react.forwardRef)(function Button2(props, ref) {
 });
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  Accordion,
   Button
 });
 //# sourceMappingURL=index.cjs.map

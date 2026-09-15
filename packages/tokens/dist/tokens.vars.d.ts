@@ -43,6 +43,29 @@ export const az: {
     "white": string
   },
   "component": {
+    "accordion": {
+      "body": {
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "border": {
+        "radius": string,
+        "width": string
+      },
+      "button": {
+        "label": {
+          "font": {
+            "size": string
+          }
+        },
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      }
+    },
     "button": {
       "border": {
         "radius": string,
@@ -99,11 +122,14 @@ export const az: {
     }
   },
   "dimension": {
+    "1": string,
     "2": string,
     "4": string,
+    "6": string,
     "8": string,
     "14": string,
     "16": string,
+    "18": string,
     "20": string,
     "48": string
   },

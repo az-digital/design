@@ -57,6 +57,20 @@
   --az-color-sonoran-red: rgb(52.157% 0% 0%);
   --az-color-tinta: rgb(1.1765% 7.451% 18.039%);
   --az-color-white: rgb(100% 100% 100%);
+  /* az.component.accordion.body.padding.x = 1.25rem */
+  --az-component-accordion-body-padding-x: var(--az-dimension-20);
+  /* az.component.accordion.body.padding.y = 1rem */
+  --az-component-accordion-body-padding-y: var(--az-dimension-16);
+  /* az.component.accordion.border.radius = 0.375rem */
+  --az-component-accordion-border-radius: var(--az-dimension-6);
+  /* az.component.accordion.border.width = 1px */
+  --az-component-accordion-border-width: var(--az-dimension-1);
+  /* az.component.accordion.button.label.font.size = 1.125rem */
+  --az-component-accordion-button-label-font-size: var(--az-dimension-18);
+  /* az.component.accordion.button.padding.x = 1.25rem */
+  --az-component-accordion-button-padding-x: var(--az-dimension-20);
+  /* az.component.accordion.button.padding.y = 1rem */
+  --az-component-accordion-button-padding-y: var(--az-dimension-16);
   /* az.component.button.border.radius = 3rem */
   --az-component-button-border-radius: var(--az-dimension-48);
   /* az.component.button.border.width = 2px */
@@ -93,11 +107,14 @@
   --az-component-button-size-sm-padding-x: var(--az-dimension-8);
   /* az.component.button.size.sm.padding.y = 0.25rem */
   --az-component-button-size-sm-padding-y: var(--az-dimension-4);
+  --az-dimension-1: 1;
   --az-dimension-2: 2;
   --az-dimension-4: 4;
+  --az-dimension-6: 6;
   --az-dimension-8: 8;
   --az-dimension-14: 14;
   --az-dimension-16: 16;
+  --az-dimension-18: 18;
   --az-dimension-20: 20;
   --az-dimension-48: 48;
   --az-font-weight-500: 500;
