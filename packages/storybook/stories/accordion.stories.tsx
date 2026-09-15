@@ -14,6 +14,7 @@ const asReactCode = (args: AccordionArgs) => {
   if (args.id && args.id !== 'accordion') props.push(`id="${args.id}"`);
   if (args.flush) props.push('flush');
   if (args.alwaysOpen) props.push('alwaysOpen');
+  if (args.anchors) props.push('anchors');
 
   const propsString = props.length > 0 ? ` ${props.join(' ')}` : '';
   const itemsString = JSON.stringify(args.items, null, 2);
@@ -52,6 +53,7 @@ const meta = {
     items: { control: 'object' },
     flush: { control: 'boolean' },
     alwaysOpen: { control: 'boolean' },
+    anchors: { control: 'boolean' },
   },
   args: {
     id: 'accordion-example',
@@ -92,6 +94,27 @@ export const AlwaysOpen: Story = {
   args: {
     id: 'accordion-always-open-example',
     alwaysOpen: true,
+    items: [
+      { title: 'Accordion Item #1', content: "This is the first item's accordion body.", defaultOpen: true },
+      { title: 'Accordion Item #2', content: "This is the second item's accordion body." },
+      { title: 'Accordion Item #3', content: "This is the third item's accordion body." },
+    ],
+  },
+};
+
+/**
+ * Adds a "Copy link" control to each item. `alwaysOpen` here on purpose,
+ * matching Arizona Bootstrap's own docs recommendation — with `data-bs-parent`
+ * grouping, opening a linked item also collapses its sibling, which can read
+ * as a stutter on a fresh page load. Click "Copy link" on any item, or load
+ * this story with `#accordion-anchor-example-heading-1` (etc.) in the URL
+ * hash to see the deep-link open+scroll behavior.
+ */
+export const Anchored: Story = {
+  args: {
+    id: 'accordion-anchor-example',
+    alwaysOpen: true,
+    anchors: true,
     items: [
       { title: 'Accordion Item #1', content: "This is the first item's accordion body.", defaultOpen: true },
       { title: 'Accordion Item #2', content: "This is the second item's accordion body." },

@@ -27,19 +27,43 @@ It uses Bootstrap's Collapse behavior internally.
   edge-to-edge with its parent container.
 - **Always open** (`alwaysOpen`) — omits the `data-bs-parent` grouping so multiple
   items can stay open at the same time.
+- **Anchored** (`anchors`) — adds a "Copy link" control to each item; see below.
 
 <Source of={AccordionStories.Flush} />
 <Source of={AccordionStories.AlwaysOpen} />
 
-## Not yet implemented
+## Anchored
 
-Arizona Bootstrap's own accordion docs also describe an **Anchored** variant —
-`.az-accordion-anchor` links that copy a deep link to an item and auto-expand/scroll to
-it from a URL hash, powered by `accordion-anchors.js` in `arizona-bootstrap`. That
-behavior is vanilla JS wired directly against Bootstrap's own Collapse/Tooltip
-instances and `*.bs.*` events, which `react-bootstrap` doesn't emit — it isn't ported to
-either implementation here yet. Don't assume anchor/deep-link behavior works until this
-note is removed.
+<Canvas>
+  <Story of={AccordionStories.Anchored} />
+</Canvas>
+
+Set `anchors` to add a "Copy link" control to each item, matching Arizona Bootstrap's
+own accordion docs. Clicking it copies a deep link to that item's heading to the
+clipboard; loading a page with a matching URL hash opens that item and scrolls it into
+view — on load and on every subsequent hash change. Pair it with `alwaysOpen`, same as
+the story above: with `data-bs-parent` grouping, opening a linked item also collapses
+its sibling, which can read as a stutter on a fresh page load.
+
+The two implementations get this behavior from different places:
+
+- **`components-html`** renders Arizona Bootstrap's real `.az-accordion-anchor` markup;
+  the actual copy/open/scroll behavior comes from `accordion-anchors.js`, part of
+  `arizona-bootstrap`'s own JS bundle — not from this package. The "Copied!" tooltip
+  additionally depends on Bootstrap's Tooltip plugin being initialized per-element
+  (`new bootstrap.Tooltip(el)` or equivalent) — this Storybook does that itself in
+  `.storybook/preview-head.html` so the story works, but that's a real integration step
+  any other consumer of `components-html` needs to do too, the same way Arizona
+  Bootstrap's own docs site does in `site/assets/js/partials/snippets.js`.
+- **`components-react`** reimplements the same behavior in React (local state driving
+  a `react-bootstrap` `Overlay`/`Tooltip`, plus a `hashchange` listener) rather than
+  reusing `accordion-anchors.js` — that script is wired directly against Bootstrap's
+  own Collapse/Tooltip instances and `*.bs.*` events, which `react-bootstrap` doesn't
+  emit. One real behavioral difference: the vanilla version waits for the actual
+  `shown.bs.collapse`/`hidden.bs.collapse` transition-end events before scrolling;
+  the React version approximates that with a fixed delay matching Bootstrap's default
+  transition duration, since `react-bootstrap` doesn't expose an equivalent callback
+  through `Accordion.Body`.
 
 ## Tokens
 

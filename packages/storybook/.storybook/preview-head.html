@@ -1,5 +1,7 @@
 <!-- Proxima Nova + Garamond Premier Pro reference. -->
 <link href="https://use.typekit.net/sgx0zzg.css" rel="stylesheet" crossorigin="anonymous">
+<!-- Material Symbols Rounded, same weight/fill/grade as arizona-bootstrap's own docs site — used by .az-accordion-anchor's icon, among others. -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/css/arizona-bootstrap.css" />
 <!--
   Arizona Bootstrap's real JS (same pinned version as the CSS above), so the
@@ -11,3 +13,35 @@
   nothing to attach to on the React side and can't double-handle its clicks.
 -->
 <script defer src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/js/arizona-bootstrap.bundle.min.js"></script>
+<!--
+  Bootstrap's Tooltip plugin needs an explicit instance per element — it isn't
+  auto-initialized by the bundle above (arizona-bootstrap's own docs site does
+  this itself too, in site/assets/js/partials/snippets.js). Without this, the
+  Accordion Anchored story's "Copied!" tooltip (components-html only —
+  react-bootstrap's Accordion uses its own Overlay/Tooltip component instead)
+  would throw when accordion-anchors.js calls `.hide()` on a tooltip instance
+  that was never created. Re-runs via MutationObserver, not just once on
+  DOMContentLoaded, since Storybook re-renders the canvas on every story
+  navigation without a full page load.
+-->
+<script>
+  (function () {
+    function initTooltips(root) {
+      if (!window.arizonaBootstrap) {
+        return;
+      }
+      root.querySelectorAll('[data-bs-toggle="tooltip"]:not([data-az-tooltip-initialized])').forEach(function (el) {
+        el.setAttribute('data-az-tooltip-initialized', 'true');
+        window.arizonaBootstrap.Tooltip.getOrCreateInstance(el);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initTooltips(document);
+    });
+
+    new MutationObserver(function () {
+      initTooltips(document);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>

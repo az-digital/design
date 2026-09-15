@@ -26,6 +26,17 @@ type AccordionProps = {
      * When `false` (default), opening an item collapses any other open sibling.
      */
     alwaysOpen?: boolean;
+    /**
+     * Adds a "Copy link" control to each item that copies a deep link to the
+     * clipboard, and opens+scrolls to whichever item matches the page's URL
+     * hash on load and on hash change. Mirrors Arizona Bootstrap's own Anchored
+     * accordion (`accordion-anchors.js`), reimplemented here in React rather
+     * than reused: that script is wired directly against Bootstrap's own
+     * Collapse/Tooltip instances and `*.bs.*` events, which `react-bootstrap`
+     * doesn't emit. Works best paired with `alwaysOpen`, same caveat as the
+     * HTML implementation — see `accordion.mdx`.
+     */
+    anchors?: boolean;
     className?: string;
 };
 /**

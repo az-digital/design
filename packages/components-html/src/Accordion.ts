@@ -30,11 +30,24 @@ export type AccordionProps = {
    * When `false` (default), opening an item collapses any other open sibling.
    */
   alwaysOpen?: boolean;
+  /**
+   * Adds a "Copy link" control to each item that copies a deep link to the
+   * clipboard, and opens+scrolls to whichever item matches the page's URL
+   * hash on load and on hash change. This is Arizona Bootstrap's real
+   * `.az-accordion-anchor` markup — the behavior comes from
+   * `accordion-anchors.js` (part of `arizona-bootstrap`'s JS bundle), not
+   * from this package. The "Copied!" tooltip additionally depends on
+   * Bootstrap's Tooltip plugin being initialized on the page — see
+   * `accordion.mdx`. Works best paired with `alwaysOpen`: with
+   * `data-bs-parent` grouping, opening a linked item also collapses its
+   * sibling, which can read as a stutter on a fresh page load.
+   */
+  anchors?: boolean;
 };
 
 /** Renders the Accordion as an HTML string using Arizona Bootstrap's real accordion markup/classes. */
 export function renderAccordion(props: AccordionProps): string {
-  const { id = 'accordion', items, flush = false, alwaysOpen = false } = props;
+  const { id = 'accordion', items, flush = false, alwaysOpen = false, anchors = false } = props;
 
   const classes = ['accordion', flush && 'accordion-flush'].filter(Boolean).join(' ');
 
@@ -47,6 +60,16 @@ export function renderAccordion(props: AccordionProps): string {
       const collapseClasses = ['accordion-collapse', 'collapse', isOpen && 'show'].filter(Boolean).join(' ');
       const parentAttribute = alwaysOpen ? '' : ` data-bs-parent="#${id}"`;
 
+      const anchorHtml = anchors
+        ? `
+        <div class="pt-2">
+          <a class="az-accordion-anchor icon-link" href="#${headingId}" data-bs-toggle="tooltip" data-bs-title="Copied!" data-bs-trigger="click">
+            <span class="material-symbols-rounded" aria-hidden="true">link</span>
+            <span>Copy link</span>
+          </a>
+        </div>`
+        : '';
+
       return `<div class="accordion-item">
       <h2 class="accordion-header" id="${headingId}">
         <button class="${buttonClasses}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="${isOpen}" aria-controls="${collapseId}">
@@ -54,7 +77,7 @@ export function renderAccordion(props: AccordionProps): string {
         </button>
       </h2>
       <div id="${collapseId}" class="${collapseClasses}" aria-labelledby="${headingId}"${parentAttribute}>
-        <div class="accordion-body">${escapeHtml(item.content)}</div>
+        <div class="accordion-body">${escapeHtml(item.content)}${anchorHtml}</div>
       </div>
     </div>`;
     })
