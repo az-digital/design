@@ -1,0 +1,83 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as TabsStories from './tabs.stories';
+
+{/* `of={TabsStories}` attaches this page to tabs.stories.tsx's own title
+    ("Components/Tabs"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={TabsStories} />
+
+# Tabs
+
+Tabs switch between related panels of content within the same view, one panel visible
+at a time, without navigating to a new page. It uses Bootstrap's Tab behavior
+internally.
+
+<Canvas>
+  <Story of={TabsStories.Default} />
+</Canvas>
+
+<Controls of={TabsStories.Default} />
+
+## Variants
+
+- **Tabs** (default) — the classic boxed tab style (`.nav-tabs`).
+- **Pills** (`variant="pills"`) — rounded, filled selected state (`.nav-pills`).
+- **Underline** (`variant="underline"`) — a minimal underline on the selected tab
+  (`.nav-underline`).
+- **Vertical** (`vertical`) — lays the tablist out as a column beside its
+  tab-content, with `aria-orientation="vertical"`. Can combine with any variant
+  above; the story below uses `pills`, matching Arizona Bootstrap's own example.
+- **Fill** (`fill`) / **Justified** (`justify`) — `.nav-fill`/`.nav-justified`,
+  proportionately filling or equally dividing the available width across items.
+
+<Source of={TabsStories.Pills} />
+<Source of={TabsStories.Underline} />
+<Source of={TabsStories.Vertical} />
+<Source of={TabsStories.Fill} />
+<Source of={TabsStories.Justified} />
+
+The two implementations get their interactivity from different places, same as
+Accordion: `components-html` renders Arizona Bootstrap's real
+`data-bs-toggle="tab"`/`"pill"` markup, and the actual tab-switching behavior comes
+from Bootstrap's own Tab plugin (part of the JS bundle loaded into this Storybook,
+same as Accordion's collapse behavior); `components-react` wraps `react-bootstrap`'s
+own `Nav`/`Tab.Container`/`Tab.Content`/`Tab.Pane`, which manages switching, focus, and
+ARIA (`aria-selected`, `role="tab"`/`"tabpanel"`) itself, no Bootstrap JS involved.
+
+**Not `react-bootstrap`'s higher-level `Tabs`/`Tab` shorthand** — that always wraps
+each tab in `<li role="presentation">` internally, with no prop to configure it away.
+Arizona Bootstrap has a custom override rule scoped to a *different* component's
+markup, `.nav.nav-pills.flex-column > li` (in `scss/override/_nav.scss`, meant for
+[`Nav`](?path=/docs/components-nav--docs)'s "Vertical Pills" nested-menu variant, which
+really does use `<li>`) — that selector doesn't know the difference, and matched this
+component's `<li>` wrappers too whenever `variant="pills"` and `vertical` were both
+set, adding borders and negative margins that were never meant for a tabbed interface.
+Verified directly: switching to `Nav`/`Nav.Link` with no `Nav.Item`/`<li>` wrapper (also
+matching Arizona Bootstrap's own real vertical-tabs markup, which uses bare `<button>`s
+in a `<div>`, not `<ul>`/`<li>`) removed the extra styling entirely.
+
+## Not covered by this component
+
+Arizona Bootstrap's navs-and-tabs docs page also has a few other `.nav`-based patterns
+that this component deliberately doesn't cover, because they're a different,
+non-interactive building block — a plain, static link list, not the dynamic
+tab-panel-switching interface above (no `data-bs-toggle`, no `tab-content`/`tab-pane`).
+See [`Nav`](?path=/docs/components-nav--docs) for those: plain Vertical, the
+Arizona-custom Vertical Pills (a nested, multi-level pills menu), and the
+Arizona-custom Utility Links.
+
+## Tokens
+
+`az.component.tabs.*` covers this component's label styling (padding, font weight,
+default/hover/active text color) plus a couple of per-variant properties (the "Tabs"
+variant's active-tab background, the "Underline" variant's gap and border width) —
+every value sourced from Arizona Bootstrap's actual compiled CSS. As with Accordion, it
+deliberately has **incomplete color coverage**: the "Tabs" variant's own border color
+and the "Pills" variant's active-tab background are both stock, un-themed Bootstrap
+neutrals (`#e9ecef`) in the compiled CSS, not Arizona brand colors, and there's no
+neutral/gray primitive tier in `tokens.json` to alias them to yet. Per
+`packages/tokens/AGENTS.md`, that's real work for the design/tokens team, not something
+to alias around here.
+
+<TokenTable filter="az.component.tabs.**" />

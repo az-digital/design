@@ -119,6 +119,55 @@ export const az: {
           }
         }
       }
+    },
+    "nav": {
+      "utility": {
+        "item": {
+          "padding": {
+            "x": string
+          }
+        },
+        "label": {
+          "font": {
+            "weight": string
+          }
+        },
+        "margin": {
+          "bottom": string,
+          "top": string
+        }
+      }
+    },
+    "tabs": {
+      "label": {
+        "active": {
+          "color": string
+        },
+        "color": string,
+        "font": {
+          "weight": string
+        },
+        "hover": {
+          "color": string
+        },
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "variant": {
+        "tabs": {
+          "active": {
+            "background": string
+          }
+        },
+        "underline": {
+          "border": {
+            "width": string
+          },
+          "gap": string
+        }
+      }
     }
   },
   "dimension": {
@@ -131,10 +180,13 @@ export const az: {
     "16": string,
     "18": string,
     "20": string,
-    "48": string
+    "24": string,
+    "48": string,
+    "96": string
   },
   "fontWeight": {
-    "500": string
+    "500": string,
+    "700": string
   },
   "opacity": {
     "65": string

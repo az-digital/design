@@ -107,17 +107,47 @@
   --az-component-button-size-sm-padding-x: var(--az-dimension-8);
   /* az.component.button.size.sm.padding.y = 0.25rem */
   --az-component-button-size-sm-padding-y: var(--az-dimension-4);
+  /* az.component.nav.utility.item.padding.x = 0.6rem */
+  --az-component-nav-utility-item-padding-x: var(--az-dimension-9-6);
+  /* az.component.nav.utility.label.font.weight = 500 */
+  --az-component-nav-utility-label-font-weight: var(--az-font-weight-500);
+  /* az.component.nav.utility.margin.bottom = 1.5rem */
+  --az-component-nav-utility-margin-bottom: var(--az-dimension-24);
+  /* az.component.nav.utility.margin.top = 1rem */
+  --az-component-nav-utility-margin-top: var(--az-dimension-16);
+  /* Tab label color, active/selected state — aliases hover.color directly: the compiled CSS uses the same value for both, across every variant below. */
+  --az-component-tabs-label-active-color: var(--az-component-tabs-label-hover-color);
+  /* Tab label color, resting state. */
+  --az-component-tabs-label-color: var(--az-color-brand-azurite);
+  /* az.component.tabs.label.font.weight = 700 */
+  --az-component-tabs-label-font-weight: var(--az-font-weight-700);
+  /* Tab label color, hover state. */
+  --az-component-tabs-label-hover-color: var(--az-color-brand-tinta);
+  /* az.component.tabs.label.padding.x = 1rem */
+  --az-component-tabs-label-padding-x: var(--az-dimension-16);
+  /* az.component.tabs.label.padding.y = 0.5rem */
+  --az-component-tabs-label-padding-y: var(--az-dimension-8);
+  /* az.component.tabs.variant.tabs's active tab background. */
+  --az-component-tabs-variant-tabs-active-background: var(--az-color-brand-white);
+  /* az.component.tabs.variant.underline.border.width = 0.125rem */
+  --az-component-tabs-variant-underline-border-width: var(--az-dimension-2);
+  /* az.component.tabs.variant.underline.gap = 1rem */
+  --az-component-tabs-variant-underline-gap: var(--az-dimension-16);
   --az-dimension-1: 1;
   --az-dimension-2: 2;
   --az-dimension-4: 4;
   --az-dimension-6: 6;
   --az-dimension-8: 8;
+  /* 9.6 — named with a hyphen, not a literal decimal point: a dot in a token's own name segment is ambiguous with the alias path separator (`{az.dimension.9.6}` would parse as segments "9" then "6", not "9.6"). */
+  --az-dimension-9-6: 9.6;
   --az-dimension-14: 14;
   --az-dimension-16: 16;
   --az-dimension-18: 18;
   --az-dimension-20: 20;
+  --az-dimension-24: 24;
   --az-dimension-48: 48;
   --az-font-weight-500: 500;
+  --az-font-weight-700: 700;
   /* 65%. */
   --az-opacity-65: 0.65;
 }

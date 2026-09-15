@@ -119,6 +119,55 @@ export const az = {
           }
         }
       }
+    },
+    "nav": {
+      "utility": {
+        "item": {
+          "padding": {
+            "x": "var(--az-component-nav-utility-item-padding-x)"
+          }
+        },
+        "label": {
+          "font": {
+            "weight": "var(--az-component-nav-utility-label-font-weight)"
+          }
+        },
+        "margin": {
+          "bottom": "var(--az-component-nav-utility-margin-bottom)",
+          "top": "var(--az-component-nav-utility-margin-top)"
+        }
+      }
+    },
+    "tabs": {
+      "label": {
+        "active": {
+          "color": "var(--az-component-tabs-label-active-color)"
+        },
+        "color": "var(--az-component-tabs-label-color)",
+        "font": {
+          "weight": "var(--az-component-tabs-label-font-weight)"
+        },
+        "hover": {
+          "color": "var(--az-component-tabs-label-hover-color)"
+        },
+        "padding": {
+          "x": "var(--az-component-tabs-label-padding-x)",
+          "y": "var(--az-component-tabs-label-padding-y)"
+        }
+      },
+      "variant": {
+        "tabs": {
+          "active": {
+            "background": "var(--az-component-tabs-variant-tabs-active-background)"
+          }
+        },
+        "underline": {
+          "border": {
+            "width": "var(--az-component-tabs-variant-underline-border-width)"
+          },
+          "gap": "var(--az-component-tabs-variant-underline-gap)"
+        }
+      }
     }
   },
   "dimension": {
@@ -131,10 +180,13 @@ export const az = {
     "16": "var(--az-dimension-16)",
     "18": "var(--az-dimension-18)",
     "20": "var(--az-dimension-20)",
-    "48": "var(--az-dimension-48)"
+    "24": "var(--az-dimension-24)",
+    "48": "var(--az-dimension-48)",
+    "96": "var(--az-dimension-9-6)"
   },
   "fontWeight": {
-    "500": "var(--az-font-weight-500)"
+    "500": "var(--az-font-weight-500)",
+    "700": "var(--az-font-weight-700)"
   },
   "opacity": {
     "65": "var(--az-opacity-65)"
