@@ -12,6 +12,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./ArizonaHeader": {
+      "types": "./dist/ArizonaHeader.d.ts",
+      "import": "./dist/ArizonaHeader.js",
+      "require": "./dist/ArizonaHeader.cjs"
+    },
     "./Button": {
       "types": "./dist/Button.d.ts",
       "import": "./dist/Button.js",

@@ -71,6 +71,18 @@
   --az-component-accordion-button-padding-x: var(--az-dimension-20);
   /* az.component.accordion.button.padding.y = 1rem */
   --az-component-accordion-button-padding-y: var(--az-dimension-16);
+  /* az.component.arizona-header.height = 50px — fixed height on mobile viewports (below the sm breakpoint). */
+  --az-component-arizona-header-height: var(--az-dimension-50);
+  /* az.component.arizona-header.logo.height = 16px — below the sm breakpoint. */
+  --az-component-arizona-header-logo-height: var(--az-dimension-16);
+  /* az.component.arizona-header.logo.margin-left = 10px */
+  --az-component-arizona-header-logo-margin-left: var(--az-dimension-10);
+  /* az.component.arizona-header.logo.sm.height = 19.8px — at and above the sm breakpoint. */
+  --az-component-arizona-header-logo-sm-height: var(--az-dimension-19-8);
+  /* az.component.arizona-header.logo.sm.width = 266.41px — at and above the sm breakpoint. */
+  --az-component-arizona-header-logo-sm-width: var(--az-dimension-266-41);
+  /* az.component.arizona-header.logo.width = 211px — below the sm breakpoint. */
+  --az-component-arizona-header-logo-width: var(--az-dimension-211);
   /* az.component.button.border.radius = 3rem */
   --az-component-button-border-radius: var(--az-dimension-48);
   /* az.component.button.border.width = 2px */
@@ -154,12 +166,17 @@
   --az-dimension-8: 8;
   /* 9.6 — named with a hyphen, not a literal decimal point: a dot in a token's own name segment is ambiguous with the alias path separator (`{az.dimension.9.6}` would parse as segments "9" then "6", not "9.6"). */
   --az-dimension-9-6: 9.6;
+  --az-dimension-10: 10;
   --az-dimension-14: 14;
   --az-dimension-16: 16;
   --az-dimension-18: 18;
+  --az-dimension-19-8: 19.8;
   --az-dimension-20: 20;
   --az-dimension-24: 24;
   --az-dimension-48: 48;
+  --az-dimension-50: 50;
+  --az-dimension-211: 211;
+  --az-dimension-266-41: 266.41;
   --az-font-weight-500: 500;
   --az-font-weight-700: 700;
   /* 65%. */

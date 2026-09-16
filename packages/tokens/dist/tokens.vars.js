@@ -66,6 +66,18 @@ export const az = {
         }
       }
     },
+    "arizonaHeader": {
+      "height": "var(--az-component-arizona-header-height)",
+      "logo": {
+        "height": "var(--az-component-arizona-header-logo-height)",
+        "marginLeft": "var(--az-component-arizona-header-logo-margin-left)",
+        "sm": {
+          "height": "var(--az-component-arizona-header-logo-sm-height)",
+          "width": "var(--az-component-arizona-header-logo-sm-width)"
+        },
+        "width": "var(--az-component-arizona-header-logo-width)"
+      }
+    },
     "button": {
       "border": {
         "radius": "var(--az-component-button-border-radius)",
@@ -199,13 +211,18 @@ export const az = {
     "4": "var(--az-dimension-4)",
     "6": "var(--az-dimension-6)",
     "8": "var(--az-dimension-8)",
+    "10": "var(--az-dimension-10)",
     "14": "var(--az-dimension-14)",
     "16": "var(--az-dimension-16)",
     "18": "var(--az-dimension-18)",
     "20": "var(--az-dimension-20)",
     "24": "var(--az-dimension-24)",
     "48": "var(--az-dimension-48)",
-    "96": "var(--az-dimension-9-6)"
+    "50": "var(--az-dimension-50)",
+    "96": "var(--az-dimension-9-6)",
+    "198": "var(--az-dimension-19-8)",
+    "211": "var(--az-dimension-211)",
+    "26641": "var(--az-dimension-266-41)"
   },
   "fontWeight": {
     "500": "var(--az-font-weight-500)",

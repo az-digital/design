@@ -14,6 +14,7 @@ export default defineConfig({
   // each package's own README/docs for which to use where.
   entry: {
     index: 'src/index.ts',
+    ArizonaHeader: 'src/components/ArizonaHeader/index.ts',
     Button: 'src/components/Button/index.ts',
     Accordion: 'src/components/Accordion/index.ts',
     Tabs: 'src/components/Tabs/index.ts',

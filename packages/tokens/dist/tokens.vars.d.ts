@@ -66,6 +66,18 @@ export const az: {
         }
       }
     },
+    "arizonaHeader": {
+      "height": string,
+      "logo": {
+        "height": string,
+        "marginLeft": string,
+        "sm": {
+          "height": string,
+          "width": string
+        },
+        "width": string
+      }
+    },
     "button": {
       "border": {
         "radius": string,
@@ -199,13 +211,18 @@ export const az: {
     "4": string,
     "6": string,
     "8": string,
+    "10": string,
     "14": string,
     "16": string,
     "18": string,
     "20": string,
     "24": string,
     "48": string,
-    "96": string
+    "50": string,
+    "96": string,
+    "198": string,
+    "211": string,
+    "26641": string
   },
   "fontWeight": {
     "500": string,
