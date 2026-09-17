@@ -1,0 +1,80 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as AccordionStories from './accordion.stories';
+
+{/* `of={AccordionStories}` attaches this page to accordion.stories.tsx's own title
+    ("Components/Accordion"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Accordion shows and hides sections of related content, one heading per section, so a
+page can present more content than fits comfortably at once without a separate page.
+It uses Bootstrap's Collapse behavior internally.
+
+<Canvas>
+  <Story of={AccordionStories.Default} />
+</Canvas>
+
+<Controls of={AccordionStories.Default} />
+
+## Variants
+
+- **Default** — one item open at a time; opening an item collapses whichever sibling
+  was open (`data-bs-parent` grouping).
+- **Flush** (`flush`) — removes the outer border and rounded corners to render
+  edge-to-edge with its parent container.
+- **Always open** (`alwaysOpen`) — omits the `data-bs-parent` grouping so multiple
+  items can stay open at the same time.
+- **Anchored** (`anchors`) — adds a "Copy link" control to each item; see below.
+
+<Source of={AccordionStories.Flush} />
+<Source of={AccordionStories.AlwaysOpen} />
+
+## Anchored
+
+<Canvas>
+  <Story of={AccordionStories.Anchored} />
+</Canvas>
+
+Set `anchors` to add a "Copy link" control to each item, matching Arizona Bootstrap's
+own accordion docs. Clicking it copies a deep link to that item's heading to the
+clipboard; loading a page with a matching URL hash opens that item and scrolls it into
+view — on load and on every subsequent hash change. Pair it with `alwaysOpen`, same as
+the story above: with `data-bs-parent` grouping, opening a linked item also collapses
+its sibling, which can read as a stutter on a fresh page load.
+
+The two implementations get this behavior from different places:
+
+- **`components-html`** renders Arizona Bootstrap's real `.az-accordion-anchor` markup;
+  the actual copy/open/scroll behavior comes from `accordion-anchors.js`, part of
+  `arizona-bootstrap`'s own JS bundle — not from this package. The "Copied!" tooltip
+  additionally depends on Bootstrap's Tooltip plugin being initialized per-element
+  (`new bootstrap.Tooltip(el)` or equivalent) — this Storybook does that itself in
+  `.storybook/preview-head.html` so the story works, but that's a real integration step
+  any other consumer of `components-html` needs to do too, the same way Arizona
+  Bootstrap's own docs site does in `site/assets/js/partials/snippets.js`.
+- **`components-react`** reimplements the same behavior in React (local state driving
+  a `react-bootstrap` `Overlay`/`Tooltip`, plus a `hashchange` listener) rather than
+  reusing `accordion-anchors.js` — that script is wired directly against Bootstrap's
+  own Collapse/Tooltip instances and `*.bs.*` events, which `react-bootstrap` doesn't
+  emit. One real behavioral difference: the vanilla version waits for the actual
+  `shown.bs.collapse`/`hidden.bs.collapse` transition-end events before scrolling;
+  the React version approximates that with a fixed delay matching Bootstrap's default
+  transition duration, since `react-bootstrap` doesn't expose an equivalent callback
+  through `Accordion.Body`.
+
+## Tokens
+
+`az.component.accordion.*` covers this component's structural properties (button and
+body padding, border width/radius, button label font size) — every value sourced from
+Arizona Bootstrap's actual compiled CSS. It deliberately has **no color tokens yet**:
+the accordion's button/body background and border colors in Arizona Bootstrap's
+compiled CSS are Bootstrap's stock, un-themed neutrals (`#e9ecef`, `#dee2e6`, ...), not
+Arizona brand colors, and there's no neutral/gray primitive tier in `tokens.json` to
+alias them to. Per `packages/tokens/AGENTS.md`, that's real work (adding a base neutral
+tier) rather than something to alias around by inventing a token that points at a
+plausible-looking hex — flag it to the design/tokens team rather than adding one here.
+
+<TokenTable filter="az.component.accordion.**" />

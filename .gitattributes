@@ -1,0 +1,6 @@
+# Built output, checked in for consumers that install these packages
+# directly (e.g. via a file: dependency) without running a build step.
+# Marked generated so GitHub's language stats and diff/PR review UI treat it
+# as machine-generated code, not hand-written source.
+packages/components-react/dist/** linguist-generated
+packages/tokens/dist/** linguist-generated
