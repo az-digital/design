@@ -7,7 +7,7 @@ export default create({
   fontCode: 'monospace',
   brandTitle: 'Arizona Digital Design System',
   brandUrl: 'https://www.arizona.edu/',
-  brandImage: '/images/ua_blue_logo.png',
+  brandImage: 'https://www.arizona.edu/sites/default/files/UA_horiz_rgb_webheader.png',
   colorPrimary: az.color.brand.red.$value,
   colorSecondary: az.color.brand.blue.$value,
 
