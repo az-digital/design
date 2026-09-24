@@ -112,11 +112,6 @@ function ColorSwatchCard({ token, name, hex, cssVar, cmyk, pantone, selected, on
 function TokenDetails({ color, onClose }: { color: NamedColor; onClose: () => void }) {
   const family = color.token.split('.').slice(0, -1).join('.');
   const sassVariable = color.sassVar ?? `$${color.token.replace(/\./g, '-')}`;
-  const usageExamples = [
-    ['CSS SETUP', `@import '@az-digital/tokens/dist/tokens.css';\n\n.example {\n  color: ${color.cssVar};\n}`],
-    ['JAVASCRIPT SETUP', `import { az } from '@az-digital/tokens/dist/tokens.vars.js';\n\nconst value = az.${color.token.slice(3)};`],
-    ['SASS SETUP', `@use '@az-digital/tokens/dist/tokens' as *;\n\n.example {\n  color: ${sassVariable};\n}`],
-  ];
   const exportRows = [
     ['CSS VARIABLE', color.cssVar],
     ['SASS VARIABLE', sassVariable],
@@ -155,10 +150,6 @@ function TokenDetails({ color, onClose }: { color: NamedColor; onClose: () => vo
           <div>
             <div style={{ marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>SOURCE FILE</div>
             <div style={{ padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' }}><code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>packages/tokens/tokens.json</code></div>
-          </div>
-          <div>
-            <div style={{ marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>USAGE</div>
-            <div style={{ display: 'grid', gap: 10 }}>{usageExamples.map(([label, example]) => <div key={label}><div style={{ marginBottom: 4, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.06em' }}>{label}</div><pre style={{ margin: 0, padding: 12, overflowX: 'auto', borderRadius: 6, background: '#f1f4f7', color: '#1f2430', fontSize: 12, lineHeight: 1.5 }}><code>{example}</code></pre></div>)}</div>
           </div>
         </div>
       </aside>
