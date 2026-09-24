@@ -48,15 +48,6 @@ export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([k
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsDtsRaw, 'tokens.vars.d.ts', 'text/plain'); }}>Download tokens.vars.d.ts</a> · <a href={tokensVarsDtsGithubUrl} target="_blank" rel="noopener noreferrer">View tokens.vars.d.ts on this branch</a>
 - <a href={specUrl} target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
 
-### JavaScript variables
-
-```js
-import { az } from '@az-digital/tokens/dist/tokens.vars.js';
-
-const value = az.color.brand.blue;
-// "var(--az-color-brand-blue)"
-```
-
 Source file: `packages/tokens/tokens.json`
 
 ## Colors
