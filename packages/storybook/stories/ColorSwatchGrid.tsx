@@ -117,6 +117,8 @@ function TokenDetails({ color, onClose }: { color: NamedColor; onClose: () => vo
     ['SASS VARIABLE', sassVariable],
     ['GENERATED CSS', 'packages/tokens/dist/tokens.css'],
     ['GENERATED SASS', 'packages/tokens/dist/tokens.scss'],
+    ['GENERATED JS', 'packages/tokens/dist/tokens.vars.js'],
+    ['TYPE DECLARATIONS', 'packages/tokens/dist/tokens.vars.d.ts'],
   ];
 
   return (
