@@ -7,6 +7,11 @@ export type NamedColor = {
   hex: string;
   cssVar: string;
   sassVar?: string;
+  sourceFileUrl?: string;
+  cssFileUrl?: string;
+  scssFileUrl?: string;
+  jsFileUrl?: string;
+  dtsFileUrl?: string;
   cmyk?: { c: number; m: number; y: number; k: number };
   pantone?: string;
 };
@@ -113,12 +118,12 @@ function TokenDetails({ color, onClose }: { color: NamedColor; onClose: () => vo
   const family = color.token.split('.').slice(0, -1).join('.');
   const sassVariable = color.sassVar ?? `$${color.token.replace(/\./g, '-')}`;
   const exportRows = [
-    ['CSS VARIABLE', color.cssVar],
-    ['SASS VARIABLE', sassVariable],
-    ['GENERATED CSS', 'packages/tokens/dist/tokens.css'],
-    ['GENERATED SASS', 'packages/tokens/dist/tokens.scss'],
-    ['GENERATED JS', 'packages/tokens/dist/tokens.vars.js'],
-    ['TYPE DECLARATIONS', 'packages/tokens/dist/tokens.vars.d.ts'],
+    { label: 'CSS VARIABLE', value: color.cssVar },
+    { label: 'SASS VARIABLE', value: sassVariable },
+    { label: 'GENERATED CSS', value: 'packages/tokens/dist/tokens.css', href: color.cssFileUrl },
+    { label: 'GENERATED SASS', value: 'packages/tokens/dist/tokens.scss', href: color.scssFileUrl },
+    { label: 'GENERATED JS', value: 'packages/tokens/dist/tokens.vars.js', href: color.jsFileUrl },
+    { label: 'TYPE DECLARATIONS', value: 'packages/tokens/dist/tokens.vars.d.ts', href: color.dtsFileUrl },
   ];
 
   return (
@@ -145,11 +150,11 @@ function TokenDetails({ color, onClose }: { color: NamedColor; onClose: () => vo
           <div>
             <div style={{ marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>DERIVED IMPLEMENTATIONS</div>
             <div style={{ marginBottom: 8, color: '#697786', fontSize: 12 }}>Generated from the source token above.</div>
-            <div style={{ display: 'grid', gap: 8 }}>{exportRows.map(([label, value]) => <div key={label} style={{ padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' }}><div style={{ marginBottom: 4, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.06em' }}>{label}</div><code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>{value}</code></div>)}</div>
+            <div style={{ display: 'grid', gap: 8 }}>{exportRows.map(({ label, value, href }) => <div key={label} style={{ padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' }}><div style={{ marginBottom: 4, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.06em' }}>{label}</div>{href ? <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#1d65a6' }}><code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>{value}</code></a> : <code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>{value}</code>}</div>)}</div>
           </div>
           <div>
             <div style={{ marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' }}>SOURCE FILE</div>
-            <div style={{ padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' }}><code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>packages/tokens/tokens.json</code></div>
+            <div style={{ padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' }}><a href={color.sourceFileUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#1d65a6' }}><code style={{ fontSize: 13, overflowWrap: 'anywhere' }}>packages/tokens/tokens.json</code></a></div>
           </div>
         </div>
       </aside>
