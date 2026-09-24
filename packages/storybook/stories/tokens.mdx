@@ -1,23 +1,38 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Diagnostics, TokenNavigator, TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import tokensDocument from '../../tokens/tokens.json';
-import { az as azVars } from '../../tokens/dist/tokens.vars.js';
 import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
+import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
+import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
-export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const githubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/tokens.json';
+export const tokensCssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.css';
+export const tokensScssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.scss';
+export const tokensVarsJsGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.vars.js';
+export const tokensVarsDtsGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.vars.d.ts';
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
+export const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\[\]\\]/g, '\\$&');
+export const generatedCssVariable = (key) => {
+  const name = tokensCssRaw.match(new RegExp(`(--az-color-brand-${escapeRegExp(key)}):`))?.[1];
+  return name ? `var(${name})` : `var(--az-color-brand-${key})`;
+};
+export const generatedSassVariable = (key) => tokensScssRaw.match(new RegExp(`(\\$az-color-brand-${escapeRegExp(key)}):`))?.[1] ?? `$az-color-brand-${key}`;
 export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
-  // tokens.vars.js camelCases hyphenated keys (e.g. arroyo-blue -> arroyoBlue)
-  const camelKey = key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase());
   const colorValue = token.$value;
   return {
     name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
+    token: `az.color.brand.${key}`,
     hex: typeof colorValue === 'string' ? colorValue : colorValue.hex,
-    cssVar: azVars.color.brand[camelKey],
+    cssVar: generatedCssVariable(key),
+    sassVar: generatedSassVariable(key),
+    sourceFileUrl: githubUrl,
+    cssFileUrl: tokensCssGithubUrl,
+    scssFileUrl: tokensScssGithubUrl,
+    jsFileUrl: tokensVarsJsGithubUrl,
+    dtsFileUrl: tokensVarsDtsGithubUrl,
     cmyk: token.$extensions?.cmyk,
     pantone: token.$extensions?.pantone,
   };
@@ -27,27 +42,19 @@ export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([k
 
 # Design Tokens
 
-<Diagnostics />
-
 ## Downloads and useful links
 
 - **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
 - <a href={githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub</a>
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
-- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a>
-- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a> · <a href={tokensCssGithubUrl} target="_blank" rel="noopener noreferrer">View tokens.css on this branch</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensScssRaw, 'tokens.scss', 'text/x-scss'); }}>Download tokens.scss</a> · <a href={tokensScssGithubUrl} target="_blank" rel="noopener noreferrer">View tokens.scss on this branch</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a> · <a href={tokensVarsJsGithubUrl} target="_blank" rel="noopener noreferrer">View tokens.vars.js on this branch</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsDtsRaw, 'tokens.vars.d.ts', 'text/plain'); }}>Download tokens.vars.d.ts</a> · <a href={tokensVarsDtsGithubUrl} target="_blank" rel="noopener noreferrer">View tokens.vars.d.ts on this branch</a>
 - <a href={specUrl} target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
 
 Source file: `packages/tokens/tokens.json`
 
-## Tree
-
-<TokenNavigator />
-
 ## Colors
 
 <ColorSwatchGrid colors={brandColors} />
-
-## All tokens
-
-<TokenTable />

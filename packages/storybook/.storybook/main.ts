@@ -5,16 +5,6 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-mcp',
-    {
-      name: '@unpunnyfuns/swatchbook-addon',
-      options: {
-        config: {
-          // no resolver/themes yet: single tokens.json, one synthetic theme
-          tokens: ['../tokens/tokens.json'],
-          cssVarPrefix: '',
-        },
-      },
-    },
   ],
   framework: {
     name: '@storybook/react-vite',

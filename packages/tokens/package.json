@@ -14,11 +14,9 @@
   "author": "Arizona Digital",
   "license": "MIT",
   "devDependencies": {
-    "@terrazzo/cli": "^2.7.1",
-    "@terrazzo/plugin-css": "^2.7.1",
-    "@terrazzo/plugin-css-in-js": "^2.7.1"
+    "style-dictionary": "^4.1.2"
   },
   "scripts": {
-    "build": "rm -rf dist && terrazzo build --config terrazzo.config.ts"
+    "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs"
   }
 }
