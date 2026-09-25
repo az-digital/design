@@ -1,0 +1,25 @@
+[08:59:40.859] [INFO] storybook v10.5.10
+[08:59:41.944] [DEBUG] Getting package.json info for /Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/packages/storybook/package.json...
+[08:59:47.229] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
+[08:59:49.098] [DEBUG] Could not determine @babel/preset-env version in use. In case of runtime errors with @babel/preset-env, you may need to set the babelRemoveBugfixes feature flag in your `main.ts` file.
+[08:59:51.528] [INFO] Starting...
+[08:59:51.892] [DEBUG] Starting preview..
+[08:59:52.196] [WARN] 🚨 Unable to index files:
+- ./stories/bear-down-100.mdx: Unexpected end of file in expression, expected a corresponding closing brace for `{`
+- ./stories/primary-design-system.mdx: Unexpected end of file in expression, expected a corresponding closing brace for `{`
+[08:59:52.200] [ERROR] Failed to build the preview
+[08:59:52.204] [ERROR] Error: [38;2;241;97;97mUnable to index files:
+- ./stories/bear-down-100.mdx: Unexpected end of file in expression, expected a corresponding closing brace for `{`
+- ./stories/primary-design-system.mdx: Unexpected end of file in expression, expected a corresponding closing brace for `{`[39m
+    at _StoryIndexGenerator.getIndexAndStats (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/storybook/dist/core-server/index.js:19416:15)
+    at async _StoryIndexGenerator.getIndex (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/storybook/dist/core-server/index.js:19405:13)
+    at async BasicMinimalPluginContext.config (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/@storybook/builder-vite/dist/_node-chunks/chunk-I2LYMCPD.js:188:19)
+    at async runConfigHook (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/vite/dist/node/chunks/node.js:37193:15)
+    at async resolveConfig (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/vite/dist/node/chunks/node.js:36606:11)
+    at async _createServer (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/vite/dist/node/chunks/node.js:26388:65)
+    at async Module.start (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/@storybook/builder-vite/dist/index.js:1621:17)
+    at async storybookDevServer (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/storybook/dist/core-server/index.js:11225:59)
+    at async buildOrThrow (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/storybook/dist/core-server/index.js:8331:12)
+    at async buildDevStandalone (file:///Users/danahertzberg/LocalDev/copilot-worktrees/design/danahertzberg-issue-44-implement-initial-information-architectu-b7c8fc/node_modules/storybook/dist/core-server/index.js:11990:41)
+[08:59:52.206] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

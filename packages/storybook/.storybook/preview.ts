@@ -10,7 +10,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Tokens'],
+        order: ['Primary Design System', 'Bear Down 100', 'Tokens'],
       },
     },
   },
