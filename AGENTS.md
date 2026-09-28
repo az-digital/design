@@ -22,3 +22,19 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 - Fetch the `Tokens/Contributing` and `Tokens/Design Tools` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
+
+## Storybook agent CLI
+
+The same skills and tools are also available from the command line, which
+works without an MCP connection:
+
+```bash
+npx storybook skills --all
+```
+
+`npx storybook skills <id>` prints one skill (`stories`, `write-story`,
+`setup`). `npx storybook tools --help` lists the tools that mirror the MCP
+server. `docs list`, `docs show`, and `stories find-by-component` run
+without a dev server; `stories preview` needs `npm run dev:storybook`
+running. Run these from `packages/storybook` (or pass `--cwd
+packages/storybook`).
