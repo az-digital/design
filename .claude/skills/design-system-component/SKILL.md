@@ -430,23 +430,29 @@ either, since `core/valid-dimension` is a warning, not an error:
 npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
 ```
 
-**Expose them with a filtered `Tokens` story**, using the in-repository
-`TokenDisplay` and token catalog helper:
+**Expose them in Storybook** with `@az-digital/storybook-addon-tokens`
+(see `packages/storybook-addon-tokens/README.md`). No separate "Tokens" story:
 
-```tsx
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
+- Declare the component's tokens once on its story file's meta, so each story
+  gets the **Tokens** tab (opt-in, like Controls):
 
-export const Tokens: Story = {
-  render: () => <TokenDisplay items={getTokenDisplayItems('az.component.card.')} />,
-};
-```
+  ```tsx
+  const meta = {
+    parameters: { tokens: 'az.component.card.' },
+  } satisfies Meta;
+  ```
 
-You don't need to do anything else for these to show up in the global token
-catalog (`packages/storybook/stories/tokens.mdx`) — its component-token
-catalog uses the same helper with the `az.component.` prefix. If you want
-them called out there as their own group too, add a filtered section
-following that same pattern.
+- Show the component's tokens on its Docs page:
+
+  ```mdx
+  import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+
+  <ComponentTokenIndex component="card" />
+  ```
+
+Nothing else is needed for them to appear in the Tokens page's Component
+tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
+`tokens.json`, and groups the component's tokens by reading their paths.
 
 ## Consuming source live (no build step needed in Storybook)
 

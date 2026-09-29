@@ -9,7 +9,7 @@ import type { ImplementationKey, Implementations } from './implementations';
 import { renderImplementation } from './implementations';
 import type { ButtonState } from './TokenStatePreview';
 import { TokenStatePreview } from './TokenStatePreview';
-import { resolveValue } from './resolveToken';
+import { resolveValue } from '@az-digital/storybook-addon-tokens';
 
 // `background` is presentation-only (see `DocsControls`/`DocsControlsPreview`) — it wraps
 // the rendered button in a page-background class, it isn't a real Button prop, so it's
@@ -194,7 +194,7 @@ const meta = {
   },
   parameters: {
     implementations,
-    // Tokens addon panel (see .storybook/tokens-panel.tsx): solid is the default
+    // Tokens addon panel (@az-digital/storybook-addon-tokens): solid is the default
     // `style`, so stories list the solid tokens unless they override this.
     tokens: SOLID_BUTTON_TOKENS,
     // Button doesn't wire any `action()` argTypes yet, so the Actions tab would only

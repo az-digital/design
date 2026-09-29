@@ -1,9 +1,5 @@
 import React from 'react';
 import { addons } from 'storybook/manager-api';
-import { registerTokensPanel } from './tokens-panel';
-
-registerTokensPanel();
-
 addons.setConfig({
   sidebar: {
     // A component's own sidebar row only expands/collapses its children by default —

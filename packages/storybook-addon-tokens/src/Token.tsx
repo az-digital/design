@@ -1,28 +1,10 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { getTokenArtifacts, type TokenData } from './resolveToken';
+import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
-/** One design token, as the `Token` pill and its details drawer render it. */
-export type TokenData = {
-  /** Dot-path in tokens.json, e.g. `az.color.brand.red`. */
-  token: string;
-  /** Human-readable name, e.g. `Red`. Defaults to the last path segment. */
-  name?: string;
-  /** Resolved (alias-followed) hex, for color tokens. */
-  hex?: string;
-  /** Resolved (alias-followed) value, for non-color tokens. */
-  value?: string;
-  /** DTCG `$type` from tokens.json, e.g. `color`, `dimension`, `number`. */
-  type?: string;
-  /** Generated CSS custom property reference, e.g. `var(--az-color-brand-red)`. */
-  cssVar: string;
-  sassVar?: string;
-  sourceFileUrl?: string;
-  cssFileUrl?: string;
-  scssFileUrl?: string;
-  jsFileUrl?: string;
-  dtsFileUrl?: string;
-};
+export type { TokenData } from './resolveToken';
 
 const PILL_STYLE: CSSProperties = {
   display: 'inline-flex',
@@ -179,18 +161,15 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
   );
 }
 
-/** A token's resolved value, alias tree, and generated outputs. Shared by the drawer and the Tokens addon panel. */
+/**
+ * A token's resolved value, alias tree, source, and each output Style
+ * Dictionary derives from it. Shared by the drawer and the Tokens addon panel.
+ */
 export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onNavigate: (token: string) => void }) {
-  // Printed exactly as tokens.json writes it: never re-cased or reformatted.
+  const { sourceFiles } = useTokensData();
+  // Printed exactly as the source file writes it: never re-cased or reformatted.
   const resolved = data.hex ?? data.value;
-  const exportRows = [
-    { label: 'CSS VARIABLE', value: data.cssVar },
-    { label: 'SASS VARIABLE', value: data.sassVar ?? `$${data.token.replace(/\./g, '-')}` },
-    { label: 'GENERATED CSS', value: 'packages/tokens/dist/tokens.css', href: data.cssFileUrl },
-    { label: 'GENERATED SASS', value: 'packages/tokens/dist/tokens.scss', href: data.scssFileUrl },
-    { label: 'GENERATED JS', value: 'packages/tokens/dist/tokens.vars.js', href: data.jsFileUrl },
-    { label: 'TYPE DECLARATIONS', value: 'packages/tokens/dist/tokens.vars.d.ts', href: data.dtsFileUrl },
-  ];
+  const outputs = getTokenArtifacts(data.token);
 
   return (
     <div style={{ display: 'grid', gap: 22, fontSize: 13 }}>
@@ -201,6 +180,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
             {data.hex && <span style={{ width: 18, height: 18, borderRadius: 3, background: data.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
             {resolved}
           </div>
+          {data.description && <p style={{ margin: '8px 0 0', color: '#374151', fontSize: 13, lineHeight: 1.5 }}>{data.description}</p>}
         </div>
       )}
       <div>
@@ -211,24 +191,48 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
         <TokenAliasTree key={data.token} token={data.token} onNavigate={onNavigate} />
       </div>
       <div>
-        <div style={SECTION_LABEL}>SOURCE TOKEN</div>
-        <div style={FIELD}><code style={CODE}>{data.token}</code></div>
-      </div>
-      <div>
-        <div style={SECTION_LABEL}>DERIVED IMPLEMENTATIONS</div>
-        <div style={{ marginBottom: 8, color: '#697786', fontSize: 12 }}>Generated from the source token above.</div>
-        <div style={{ display: 'grid', gap: 8 }}>
-          {exportRows.map(({ label, value, href }) => (
-            <div key={label} style={FIELD}>
-              <div style={{ ...SECTION_LABEL, marginBottom: 4, letterSpacing: '0.06em' }}>{label}</div>
-              <FieldValue value={value} href={href} />
+        <div style={SECTION_LABEL}>SOURCE</div>
+        <div style={FIELD}>
+          <code style={CODE}>{data.token}</code>
+          {sourceFiles.length > 0 && (
+            <div style={{ marginTop: 6, color: '#697786', fontSize: 12 }}>
+              Defined in{' '}
+              {sourceFiles.map((file, index) => (
+                <span key={file.path}>
+                  {index > 0 && ', '}
+                  <FieldValue value={file.path} href={file.url} />
+                </span>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </div>
       <div>
-        <div style={SECTION_LABEL}>SOURCE FILE</div>
-        <div style={FIELD}><FieldValue value="packages/tokens/tokens.json" href={data.sourceFileUrl} /></div>
+        <div style={SECTION_LABEL}>OUTPUTS</div>
+        <div style={{ marginBottom: 8, color: '#697786', fontSize: 12 }}>
+          What your Style Dictionary config derives from the source token above, per output file: how to reference it there, and the value that file gets.
+        </div>
+        {outputs.length === 0 ? (
+          <div style={{ ...FIELD, color: '#697786' }}>No output file in your Style Dictionary config includes this token.</div>
+        ) : (
+          <div style={{ display: 'grid', gap: 8 }}>
+            {outputs.map((output) => (
+              <div key={output.path} style={FIELD}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
+                  <span style={{ ...SECTION_LABEL, marginBottom: 0, letterSpacing: '0.06em' }}>{output.platform.toUpperCase()}</span>
+                  <FieldValue value={output.path} href={output.url} />
+                </div>
+                <code style={CODE}>{output.reference}</code>
+                {output.value !== undefined && output.value !== output.reference && (
+                  <span style={{ color: '#697786', fontSize: 12 }}>
+                    {' '}
+                    → <code style={{ ...CODE, fontSize: 12 }}>{output.value}</code>
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

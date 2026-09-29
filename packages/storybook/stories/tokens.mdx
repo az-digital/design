@@ -5,41 +5,18 @@ import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ColorSwatchGrid } from './ColorSwatchGrid';
-import { getTokenDisplayItems, resolveValue } from './resolveToken';
-import { TokenDisplay } from './TokenDisplay';
-import { ComponentTokenIndex } from './ComponentTokenIndex';
+import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
 
-export const githubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/tokens.json';
-export const tokensCssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.css';
-export const tokensScssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.scss';
-export const tokensVarsJsGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.vars.js';
-export const tokensVarsDtsGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.vars.d.ts';
+{/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
+export const { sourceFiles, artifacts } = getTokensData();
+export const outputUrl = (file) => artifacts.find((artifact) => artifact.path.endsWith(`/${file}`))?.url;
+export const githubUrl = sourceFiles[0]?.url;
+export const tokensCssGithubUrl = outputUrl('tokens.css');
+export const tokensScssGithubUrl = outputUrl('tokens.scss');
+export const tokensVarsJsGithubUrl = outputUrl('tokens.vars.js');
+export const tokensVarsDtsGithubUrl = outputUrl('tokens.vars.d.ts');
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
-export const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\[\]\\]/g, '\\$&');
-export const generatedCssVariable = (key) => {
-  const name = tokensCssRaw.match(new RegExp(`(--az-color-brand-${escapeRegExp(key)}):`))?.[1];
-  return name ? `var(${name})` : `var(--az-color-brand-${key})`;
-};
-export const generatedSassVariable = (key) => tokensScssRaw.match(new RegExp(`(\\$az-color-brand-${escapeRegExp(key)}):`))?.[1] ?? `$az-color-brand-${key}`;
-export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
-  const colorValue = resolveValue(`az.color.brand.${key}`);
-  return {
-    name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
-    token: `az.color.brand.${key}`,
-    hex: typeof colorValue === 'string' ? colorValue : colorValue.hex,
-    cssVar: generatedCssVariable(key),
-    sassVar: generatedSassVariable(key),
-    sourceFileUrl: githubUrl,
-    cssFileUrl: tokensCssGithubUrl,
-    scssFileUrl: tokensScssGithubUrl,
-    jsFileUrl: tokensVarsJsGithubUrl,
-    dtsFileUrl: tokensVarsDtsGithubUrl,
-    cmyk: token.$extensions?.cmyk,
-    pantone: token.$extensions?.pantone,
-  };
-});
 
 <Meta title="Tokens" />
 
@@ -62,13 +39,13 @@ Source file: `packages/tokens/tokens.json`
 
 Arizona's brand palette (`az.color.brand.*`), the raw color values every other color token is built from.
 
-<ColorSwatchGrid colors={brandColors} />
+<ColorSwatchGrid prefix="az.color.brand." />
 
 ## Semantic tokens
 
 Colors named for their purpose, not their appearance (`az.color.semantic.*`). Each one points at a brand color, and components point at these instead of at brand colors directly, so changing one semantic token updates every component that uses it for that purpose. Open a token to see its alias tree, including which component tokens use it.
 
-<TokenDisplay items={getTokenDisplayItems('az.color.semantic.')} layout="table" />
+<TokenDisplay prefix="az.color.semantic." layout="table" />
 
 ## Component tokens
 

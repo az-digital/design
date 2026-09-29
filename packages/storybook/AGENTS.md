@@ -216,48 +216,37 @@ finding about design tokens.
 
 ## Token references
 
-Use `TokenDisplay` for token catalogs: each token renders as a pill (with a
-color swatch for color tokens), and clicking one opens an inspector with its
-CSS variable, Sass variable, and generated-file locations:
+All token UI comes from `@az-digital/storybook-addon-tokens`
+(`packages/storybook-addon-tokens`, see its README). Import doc blocks from the
+package, never from `./stories`:
 
 ```mdx
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
+import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
 
-<TokenDisplay items={getTokenDisplayItems('az.color.brand.chili')} />
+<TokenDisplay prefix="az.color.semantic." layout="table" />
+<ComponentTokenIndex component="button" />
 ```
 
-Both `TokenDisplay` and `ColorSwatchGrid` render each token with the shared
-`Token` pill from `./Token` (the pill plus its `TokenDetails` side drawer).
-Use `<Token data={...} />` directly when a page needs a single token
-reference; don't build another pill or drawer.
+- Use the package's `Token` pill (and its details drawer) for any single token
+  reference; don't build another pill or drawer.
+- Token rows show the token path, `$type`, "Alias of", and the resolved value.
+  Platform names (CSS variables, Sass variables, ...) belong in the details
+  view's Outputs, which come from the Style Dictionary config, not in a row.
+- `ComponentTokenIndex` groups tokens by reading their paths, so it depends on
+  the `<variant>.<state>.<part>` structure in `packages/tokens/AGENTS.md`.
+- The **Tokens** tab is opt-in, like Controls: it appears only on stories that
+  set `parameters.tokens`, usually once on the story file's meta:
 
-`<TokenDisplay layout="table" />` (or `TokenTable` from `./TokenTable`
-directly) shows the same tokens as one row per token: the `Token` pill, its
-`$type`, the token it aliases directly ("Alias of"), and its resolved value. Keep platform-specific names (CSS variables, Sass variables,
-...) out of the row; they belong in the details view alongside each other.
+  ```ts
+  parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
+  ```
 
-For component tokens, use `ComponentTokenIndex` from `./ComponentTokenIndex`
-instead of a flat list: with no props it's the Tokens page's searchable index
-(one collapsed row per component); with `component="button"` it's that
-component's docs-page view. Both split tokens into Shared plus one group per
-variant, and by state (Default, Hover, Focus, ...), with a "Group by" toggle
-between style-first and state-first. The grouping is read from token paths,
-so it depends on the `<variant>.<state>.<part>` structure in
-`packages/tokens/AGENTS.md`; nothing needs registering when a component is added.
-
-The **Tokens** addon panel is opt-in, like Controls: the tab only appears on stories
-that set `parameters.tokens`. Every story can list its tokens in the **Tokens** addon panel
-(`.storybook/tokens-panel.tsx`) by declaring which `tokens.json` groups it
-uses, usually once on the story file's meta:
-
-```ts
-parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
-```
-
-The panel is part of the manager bundle, so changes to it (or to `Token.tsx`
-/ `TokenTable.tsx`, which it imports) need a Storybook restart, and those two
-files need a default `React` import for the manager's classic JSX runtime.
+- Values in stories (e.g. state previews) come from the package's
+  `resolveValue(path)`, which reads the same data as the doc blocks.
+- The addon reloads when `tokens.json` or the Style Dictionary config changes.
+  Changes to the addon's own `manager.tsx` (or the `Token` / `TokenTable` files
+  it imports) still need a Storybook restart, and files the manager imports
+  need a default `React` import for its classic JSX runtime.
 
 Don't wrap non-`<Story>` content in `<Canvas>`. In this Storybook version
 (10.6.0), `<Canvas>` silently falls back to rendering the docs page's primary
