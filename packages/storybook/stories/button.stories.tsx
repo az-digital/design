@@ -415,7 +415,7 @@ export const SolidRedOnWhite: Story = {
  * Same button, same tokens as `SolidRedOnWhite` — nothing about Button's own
  * component tokens changes here. The only difference is the surrounding page
  * background, so this story exists to confirm the button still reads
- * correctly against `az.color.brand.cloud` (#E5EFF7), not to introduce any
+ * correctly against `az.color.brand.cloud` (#e5eff7), not to introduce any
  * new token.
  */
 export const SolidRedOnCoolGray: Story = {

@@ -79,7 +79,7 @@ function ColorSwatchCard(color: NamedColor) {
       <ArchSwatch cssVar={cssVar} pinColor={pinColor} />
       <div style={{ display: 'grid', gap: 5 }}>
         {cmykPairs ? cmykPairs.map((pair, index) => <ValuePairRow key={pair[0]} left={pair} right={rgbPairs[index]} />) : rgbPairs.map((pair) => <ValuePairRow key={pair[0]} left={pair} />)}
-        <ValuePairRow left={['HEX', hex.toUpperCase()]} />
+        <ValuePairRow left={['HEX', hex.toLowerCase()]} />
         {pantone && <ValuePairRow left={['PMS', pantone]} />}
       </div>
     </div>

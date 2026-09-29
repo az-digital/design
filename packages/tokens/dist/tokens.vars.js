@@ -1,21 +1,5 @@
 export const az = {
   "color": {
-    "red": "var(--az-color-red)",
-    "blue": "var(--az-color-blue)",
-    "tinta": "var(--az-color-tinta)",
-    "azurite": "var(--az-color-azurite)",
-    "chili": "var(--az-color-chili)",
-    "bloom": "var(--az-color-bloom)",
-    "arroyoBlue": "var(--az-color-arroyo-blue)",
-    "rain": "var(--az-color-rain)",
-    "sonoranRed": "var(--az-color-sonoran-red)",
-    "bougainvillea": "var(--az-color-bougainvillea)",
-    "saguaro": "var(--az-color-saguaro)",
-    "shade": "var(--az-color-shade)",
-    "brick": "var(--az-color-brick)",
-    "cloud": "var(--az-color-cloud)",
-    "caliche": "var(--az-color-caliche)",
-    "white": "var(--az-color-white)",
     "brand": {
       "red": "var(--az-color-brand-red)",
       "blue": "var(--az-color-brand-blue)",

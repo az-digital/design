@@ -1,21 +1,5 @@
 export const az: {
   "color": {
-    "red": string,
-    "blue": string,
-    "tinta": string,
-    "azurite": string,
-    "chili": string,
-    "bloom": string,
-    "arroyoBlue": string,
-    "rain": string,
-    "sonoranRed": string,
-    "bougainvillea": string,
-    "saguaro": string,
-    "shade": string,
-    "brick": string,
-    "cloud": string,
-    "caliche": string,
-    "white": string,
     "brand": {
       "red": string,
       "blue": string,

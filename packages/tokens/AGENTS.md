@@ -1,39 +1,35 @@
 # Naming design tokens
 
 Tokens are layered: each layer aliases the one directly below it, and gets
-more specific to a purpose as you go up. This repo currently has four —
-primitive, brand, semantic, component — but the number isn't the rule. Add a
+more specific to a purpose as you go up. For color this repo currently has
+three — brand, semantic, component — but the number isn't the rule. Add a
 layer when a real distinction needs one; don't add one for its own sake, and
 don't collapse two that are actually doing different jobs. What matters:
 
 - A token names what it's *for*, not what it *looks like* — except at the
   lowest layer, whose only job is cataloging raw values.
 - A token aliases the layer directly below it. Skipping a layer (e.g. a
-  component token pointing straight at a primitive) loses the layer that
+  component token pointing straight at a brand color) loses the layer that
   explains *why* — this is a mistake this repo has actually made; see below.
 
-## 1. Primitive (`az.color.<name>`)
+## 1. Brand (`az.color.brand.*`)
 
-Raw values, no meaning attached. Lives directly under `az.color` — no
-`primitive` segment in the path. Every other tier explicitly names itself
-(`brand`, `semantic`, `component`), which is what makes a bare `az.color.red`
-unambiguous as the raw one without needing its own label; tagging this tier
-too wouldn't distinguish it from anything; it'd just repeat what "not named
-anything else" already says. Names describe the color itself — `red`,
-`chili`, `bloom`, `arroyo-blue`. `$value` is a literal (`#ab0520`), never an
-alias.
+Arizona's named palette, and the lowest color layer: raw values, no meaning
+attached. Names describe the color itself — `red`, `chili`, `bloom`,
+`arroyo-blue`. `$value` is always a literal, written as lowercase hex
+(`#ab0520`), never an alias.
 
-## 2. Brand (`az.color.brand.*`)
+There's no separate primitive layer underneath brand. One existed for a while
+(`az.color.red`, with `brand.red = {az.color.red}`), but every brand color
+was a same-name 1:1 alias of it, so it made no distinction; see the mistake
+log. If a color ever needs a real scale (`red.500`, `red.700`, ...), add the
+primitive layer then, and have brand pick one named point from it.
 
-Arizona's specific named palette. Same names as primitive, because today
-brand is a 1:1 alias onto primitive — `brand.red = {az.color.red}`. If a
-color ever needs a scale (e.g. `red.500`, `.700`, ...), brand still picks one
-named point from it; the tier boundary is what makes that possible later
-without disturbing anything downstream.
+Dimension, font-weight, and opacity values do have primitive layers
+(`az.dimension.*`, `az.font-weight.*`, `az.opacity.*`) because they're the
+only layer for those values, not a copy of another one.
 
-`$value` is always an alias onto primitive here, never a literal.
-
-## 3. Semantic (`az.color.semantic.*`)
+## 2. Semantic (`az.color.semantic.*`)
 
 Purpose-based aliases onto brand. `$value` is always an alias
 (`{az.color.brand.red}`), never a literal.
@@ -60,7 +56,7 @@ A color name anywhere in a semantic token's own path is wrong, full stop —
 both wrong for the same reason `redHover` was wrong below: the name encodes
 what the color looks like instead of what it's for.
 
-## 4. Component (`az.component.<name>.*`)
+## 3. Component (`az.component.<name>.*`)
 
 Component-specific tokens. Every one aliases a primitive — never a literal
 directly, color or number. This applies just as much to structural tokens as
@@ -150,13 +146,14 @@ is a design decision about what that choice means. They don't have to match.
   Dropped the role level entirely (`az.color.semantic.action.default` /
   `.hover` / `.focus-ring`, `az.component.button.color`); add a role level
   back — with real names — when a second variant exists.
-- `az.color.brand.red` holding a literal value (`#ab0520`) directly — missed
-  that brand itself needs a primitive tier underneath it. Fixed by moving the
-  literal down to `az.color.red` and making brand alias it.
-- `az.color.primitive.red` — first attempt at the fix above, adding an
-  explicit `primitive` segment. Unnecessary: nothing else lives bare under
-  `az.color`, so `az.color.red` was already unambiguous. Flattened to drop
-  the redundant segment.
+- A bare primitive color layer (`az.color.red`, first tried as
+  `az.color.primitive.red`) under brand, with every brand color a
+  same-name 1:1 alias of it (`brand.red = {az.color.red}`). Added because
+  brand holding literals was assumed to be a mistake, and justified by a
+  color scale that doesn't exist. It broke the rule at the top of this
+  file (don't add a layer for its own sake) and added an extra step to
+  every color's alias chain. Fixed by removing it: brand holds the
+  lowercase hex literals again, as it does on `main`.
 - `az.component.button.padding.x` holding `20` as a literal — only color got
   primitive backing at first; dimension/font-weight/opacity tokens were left
   as bare numbers. Fixed by adding `az.dimension.*`, `az.font-weight.*`, and
@@ -201,9 +198,10 @@ is a design decision about what that choice means. They don't have to match.
 1. Does a semantic token already exist for this role + state? Reuse it
    instead of adding another alias to the same brand color.
 2. Am I aliasing the tier directly below this one? Component → semantic →
-   brand → primitive. Never skip a tier.
+   brand. Never skip a tier.
 3. Does the name describe purpose/role/state? A literal color or appearance
-   word anywhere outside primitive/brand is wrong.
+   word anywhere outside brand (or the dimension/font-weight/opacity
+   primitives) is wrong.
 4. Multi-word path segments are kebab-case.
 5. Does `$description` say what the token is *for*, not just restate its
    value?

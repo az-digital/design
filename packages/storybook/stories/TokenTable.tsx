@@ -62,7 +62,7 @@ export function TokenTable({
               <td style={CELL}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   {item.hex && <span aria-hidden="true" style={{ width: 14, height: 14, borderRadius: 3, background: item.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
-                  <code style={CODE}>{item.hex?.toUpperCase() ?? item.value}</code>
+                  <code style={CODE}>{item.hex?.toLowerCase() ?? item.value}</code>
                 </span>
               </td>
             </tr>

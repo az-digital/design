@@ -1,36 +1,20 @@
 :root {
-  --az-color-red: #ab0520;
-  --az-color-blue: #0c234b;
-  --az-color-tinta: #03132e;
-  --az-color-azurite: #1e5288;
-  --az-color-chili: #8b0015;
-  --az-color-bloom: #ef4056;
-  --az-color-arroyo-blue: #106ab1;
-  --az-color-rain: #81ceeb;
-  --az-color-sonoran-red: #850000;
-  --az-color-bougainvillea: #c62840;
-  --az-color-saguaro: #7f8b5a;
-  --az-color-shade: #3f7a7a;
-  --az-color-brick: #85372b;
-  --az-color-cloud: #e5eff7;
-  --az-color-caliche: #f2efea;
-  --az-color-white: #ffffff;
-  --az-color-brand-red: #ab0520; /** Alias for the Arizona brand 'red' primitive. */
-  --az-color-brand-blue: #0c234b; /** Alias for the Arizona brand 'blue' primitive. */
-  --az-color-brand-tinta: #03132e; /** Alias for the Arizona brand 'tinta' primitive. */
-  --az-color-brand-azurite: #1e5288; /** Alias for the Arizona brand 'azurite' primitive. */
-  --az-color-brand-chili: #8b0015; /** Alias for the Arizona brand 'chili' primitive. */
-  --az-color-brand-bloom: #ef4056; /** Alias for the Arizona brand 'bloom' primitive. */
-  --az-color-brand-arroyo-blue: #106ab1; /** Alias for the Arizona brand 'arroyo-blue' primitive. */
-  --az-color-brand-rain: #81ceeb; /** Alias for the Arizona brand 'rain' primitive. */
-  --az-color-brand-sonoran-red: #850000; /** Alias for the Arizona brand 'sonoran-red' primitive. */
-  --az-color-brand-bougainvillea: #c62840; /** Alias for the Arizona brand 'bougainvillea' primitive. */
-  --az-color-brand-saguaro: #7f8b5a; /** Alias for the Arizona brand 'saguaro' primitive. */
-  --az-color-brand-shade: #3f7a7a; /** Alias for the Arizona brand 'shade' primitive. */
-  --az-color-brand-brick: #85372b; /** Alias for the Arizona brand 'brick' primitive. */
-  --az-color-brand-cloud: #e5eff7; /** Alias for the Arizona brand 'cloud' primitive. */
-  --az-color-brand-caliche: #f2efea; /** Alias for the Arizona brand 'caliche' primitive. */
-  --az-color-brand-white: #ffffff; /** Alias for the Arizona brand 'white' primitive. */
+  --az-color-brand-red: #ab0520;
+  --az-color-brand-blue: #0c234b;
+  --az-color-brand-tinta: #03132e;
+  --az-color-brand-azurite: #1e5288;
+  --az-color-brand-chili: #8b0015;
+  --az-color-brand-bloom: #ef4056;
+  --az-color-brand-arroyo-blue: #106ab1;
+  --az-color-brand-rain: #81ceeb;
+  --az-color-brand-sonoran-red: #850000;
+  --az-color-brand-bougainvillea: #c62840;
+  --az-color-brand-saguaro: #7f8b5a;
+  --az-color-brand-shade: #3f7a7a;
+  --az-color-brand-brick: #85372b;
+  --az-color-brand-cloud: #e5eff7;
+  --az-color-brand-caliche: #f2efea;
+  --az-color-brand-white: #ffffff;
   --az-color-semantic-action-default: #ab0520; /** Primary action color, resting state (solid fill; outline border and label) — aliases the brand palette. */
   --az-color-semantic-action-hover: #8b0015; /** Primary action color, hover state — aliases the brand palette. */
   --az-color-semantic-action-focus-ring: #ef4056; /** Focus-visible ring color for actions — aliases the brand palette. */
