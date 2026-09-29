@@ -47,6 +47,9 @@ export default {
           options: {
             selector: ':root',
             showFileHeader: false,
+            // Keep aliases as var() references, so the alias chain from tokens.json
+            // survives into the CSS and overriding one variable updates its dependents.
+            outputReferences: true,
           },
         },
       ],
@@ -60,6 +63,9 @@ export default {
           format: 'scss/variables',
           options: {
             showFileHeader: false,
+            // Same for Sass: aliases stay as $variable references (Style Dictionary
+            // orders them so each is defined before use).
+            outputReferences: true,
           },
         },
       ],
