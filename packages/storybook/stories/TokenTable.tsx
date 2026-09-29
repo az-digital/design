@@ -1,6 +1,7 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { type CSSProperties } from 'react';
 import { Token, type TokenData } from './Token';
+import { getTokenNode } from './tokenGraph';
 
 const HEADER_CELL: CSSProperties = {
   padding: '8px 12px',
@@ -22,8 +23,25 @@ const CELL: CSSProperties = {
 const CODE: CSSProperties = { fontSize: 12, color: '#1f2430', whiteSpace: 'nowrap' };
 
 /**
- * One row per token: the `Token` pill (click to inspect), its DTCG `$type`, and
- * its resolved value.
+ * The token `token` aliases directly. In a table with `onSelect` (the Tokens
+ * panel) it's a link to that token; otherwise plain text. Tokens holding a
+ * literal value alias nothing.
+ */
+function AliasCell({ token, onSelect }: { token: string; onSelect?: (token: string) => void }) {
+  const parent = getTokenNode(token)?.parent;
+  if (!parent) return <span style={{ color: '#9aa4b2', fontSize: 12 }}>—</span>;
+  if (!onSelect) return <code style={{ ...CODE, color: '#56657a' }}>{parent}</code>;
+  return (
+    <button type="button" onClick={() => onSelect(parent)} title={`Inspect ${parent}`} style={{ border: 0, background: 'none', padding: 0, cursor: 'pointer', color: '#1d65a6', textAlign: 'left' }}>
+      <code style={{ ...CODE, color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 2 }}>{parent}</code>
+    </button>
+  );
+}
+
+/**
+ * One row per token: the `Token` pill (click to inspect), its DTCG `$type`,
+ * the token it aliases directly (if any), and its resolved value — so rows that
+ * resolve to the same value still show *why* they do.
  * Platform outputs (CSS, Sass, JS, ...) stay in the details view, since no one
  * platform's name is the token. Pass `selectedToken`/`onSelect` to handle selection
  * yourself (e.g. to show details in a panel); otherwise each pill opens its own drawer.
@@ -44,7 +62,8 @@ export function TokenTable({
           <tr>
             <th scope="col" style={HEADER_CELL}>TOKEN</th>
             <th scope="col" style={HEADER_CELL}>TYPE</th>
-            <th scope="col" style={HEADER_CELL}>VALUE</th>
+            <th scope="col" style={HEADER_CELL}>ALIAS OF</th>
+            <th scope="col" style={HEADER_CELL}>RESOLVED VALUE</th>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +78,7 @@ export function TokenTable({
                 />
               </td>
               <td style={{ ...CELL, color: '#697786', fontSize: 12, whiteSpace: 'nowrap' }}>{item.type}</td>
+              <td style={CELL}><AliasCell token={item.token} onSelect={onSelect} /></td>
               <td style={CELL}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   {item.hex && <span aria-hidden="true" style={{ width: 14, height: 14, borderRadius: 3, background: item.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}

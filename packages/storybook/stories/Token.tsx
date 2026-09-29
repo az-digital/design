@@ -1,5 +1,5 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
-import React, { useEffect, useState, type CSSProperties } from 'react';
+import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
 /** One design token, as the `Token` pill and its details drawer render it. */
@@ -233,9 +233,88 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
   );
 }
 
+/**
+ * Width for a right-anchored, user-resizable column (the token drawer, the
+ * Tokens panel's details column), remembered per `storageKey` in this
+ * browser. Storybook has no built-in resizable drawer/splitter for docs
+ * content — only its own addon panel resizes — so this is ours.
+ */
+export function useResizableWidth(storageKey: string, initial: number, min: number, max: () => number) {
+  const [width, setWidth] = useState(() => {
+    try {
+      const saved = Number(window.localStorage.getItem(storageKey));
+      if (saved) return saved;
+    } catch {
+      // Storage can be unavailable (private windows, blocked site data); fall back to the default.
+    }
+    return initial;
+  });
+  const clamp = (value: number) => Math.round(Math.min(Math.max(value, min), Math.max(min, max())));
+  const update = (value: number) => {
+    const next = clamp(value);
+    setWidth(next);
+    try {
+      window.localStorage.setItem(storageKey, String(next));
+    } catch {
+      // Not remembering the width is fine.
+    }
+  };
+  return { width: clamp(width), setWidth: update };
+}
+
+/**
+ * A draggable (and arrow-key adjustable) vertical handle on the left edge of
+ * a right-anchored column: dragging left widens it.
+ */
+export function ResizeHandle({ width, onResize, label }: { width: number; onResize: (width: number) => void; label: string }) {
+  const start = useRef<{ x: number; width: number } | null>(null);
+  const [active, setActive] = useState(false);
+
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    start.current = { x: event.clientX, width };
+    setActive(true);
+  };
+  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (start.current) onResize(start.current.width + (start.current.x - event.clientX));
+  };
+  const onPointerUp = () => {
+    start.current = null;
+    setActive(false);
+  };
+  const onKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    const step = event.shiftKey ? 64 : 16;
+    if (event.key === 'ArrowLeft') onResize(width + step);
+    else if (event.key === 'ArrowRight') onResize(width - step);
+    else return;
+    event.preventDefault();
+  };
+
+  return (
+    <div
+      role="separator"
+      aria-orientation="vertical"
+      aria-label={label}
+      aria-valuenow={width}
+      tabIndex={0}
+      title="Drag to resize"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+      onKeyDown={onKeyDown}
+      style={{ position: 'absolute', top: 0, bottom: 0, left: -4, width: 8, cursor: 'col-resize', zIndex: 1, touchAction: 'none', outlineOffset: -2 }}
+    >
+      <span aria-hidden="true" style={{ position: 'absolute', top: 0, bottom: 0, left: 3, width: 2, background: active ? '#1e5288' : 'transparent', transition: 'background-color 120ms ease' }} />
+    </div>
+  );
+}
+
 /** `TokenDetailsContent` in a right-hand drawer over the page, closed by the backdrop, the × button, or Escape. */
 export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () => void }) {
   const [shown, setShown] = useState(data);
+  const { width, setWidth } = useResizableWidth('az-token-drawer-width', Math.min(window.innerWidth * 0.65, 760), 320, () => window.innerWidth - 48);
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -247,7 +326,7 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
   return (
     <>
       <button type="button" aria-label="Close token details" onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 10, width: '100%', height: '100%', border: 0, background: 'rgba(28, 30, 34, 0.42)', cursor: 'default' }} />
-      <aside role="dialog" aria-modal="true" aria-label={`${shown.token} details`} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width: 'min(65vw, 760px)', boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+      <aside role="dialog" aria-modal="true" aria-label={`${shown.token} details`} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width, boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, paddingBottom: 14, marginBottom: 20, borderBottom: '1px solid #e3e6eb' }}>
           <div style={{ display: 'grid', gap: 6 }}>
             {shown.token !== data.token && (
@@ -261,6 +340,9 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
         </div>
         <TokenDetailsContent data={shown} onNavigate={(token) => setShown(getTokenData(token) ?? shown)} />
       </aside>
+      <div style={{ position: 'fixed', top: 0, bottom: 0, right: width, zIndex: 12 }}>
+        <ResizeHandle width={width} onResize={setWidth} label="Resize token details" />
+      </div>
     </>
   );
 }

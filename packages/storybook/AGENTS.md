@@ -234,7 +234,7 @@ reference; don't build another pill or drawer.
 
 `<TokenDisplay layout="table" />` (or `TokenTable` from `./TokenTable`
 directly) shows the same tokens as one row per token: the `Token` pill, its
-`$type`, and its resolved value. Keep platform-specific names (CSS variables, Sass variables,
+`$type`, the token it aliases directly ("Alias of"), and its resolved value. Keep platform-specific names (CSS variables, Sass variables,
 ...) out of the row; they belong in the details view alongside each other.
 
 Every story can also list its tokens in the **Tokens** addon panel
