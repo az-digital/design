@@ -12,31 +12,29 @@ const PANEL_ID = `${ADDON_ID}/panel`;
 /**
  * `parameters.tokens` — which tokens.json groups a story uses, by dot-path
  * prefix (a trailing `*`/`**` is ignored, so `az.component.button.**` works
- * too). Set it on a story file's meta to cover every story in it, or on a
- * single story to override; `{ disable: true }` marks a story as having no
- * tokens of its own. (Not `false`: Storybook's `getCurrentParameter` returns
+ * too). The Tokens tab is opt-in: it only appears on stories that set this,
+ * on the story file's meta (covering every story in it) or on a single story.
+ * `{ disable: true }` hides it again for one story, the same way Controls and
+ * Actions are hidden. (Not `false`: Storybook's `getCurrentParameter` returns
  * `value || undefined`, so a falsy parameter never reaches the panel.)
  */
 export type TokensParameter = string | string[] | { disable: true };
+
+const isDisabled = (parameter: unknown) => typeof parameter === 'object' && parameter !== null && !Array.isArray(parameter) && (parameter as { disable?: boolean }).disable === true;
 
 function TokensPanelContent() {
   const parameter = useParameter<TokensParameter | undefined>('tokens', undefined);
   const [selectedToken, setSelectedToken] = useState<string | null>(null);
   const { width, setWidth } = useResizableWidth('az-token-panel-details-width', 340, 240, () => window.innerWidth - 320);
 
-  const disabled = typeof parameter === 'object' && !Array.isArray(parameter) && parameter.disable;
-  const prefixes = parameter && !disabled ? [parameter as string | string[]].flat() : [];
+  const prefixes = parameter && !isDisabled(parameter) ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix.replace(/\*+$/, '')));
   const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
 
   if (items.length === 0) {
     return (
       <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>
-        {disabled
-          ? <>This story has no design tokens of its own.</>
-          : prefixes.length === 0
-            ? <>This story doesn't declare any tokens. Add <code>parameters.tokens</code> (e.g. <code>'az.component.button.'</code>) to its meta or story.</>
-            : <>No tokens in <code>tokens.json</code> match <code>{prefixes.join(', ')}</code>.</>}
+        No tokens in <code>tokens.json</code> match <code>{prefixes.join(', ')}</code>.
       </p>
     );
   }
@@ -71,6 +69,11 @@ export function registerTokensPanel() {
     addons.add(PANEL_ID, {
       type: types.PANEL,
       title: 'Tokens',
+      // Opt-in: only stories that declare `parameters.tokens` get the tab.
+      disabled: (parameters) => {
+        const tokens = (parameters as { tokens?: unknown } | undefined)?.tokens;
+        return !tokens || isDisabled(tokens);
+      },
       render: ({ active }) => (
         <AddonPanel active={Boolean(active)}>
           <TokensPanelContent />
