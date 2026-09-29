@@ -51,7 +51,6 @@ Run `npm run build:all` after any token, story, or MDX change. Fix all failures 
 ## Dev environment
 
 Start Storybook:
-
 ```bash
 npm run dev:storybook
 ```
@@ -68,3 +67,34 @@ Each package has its own `AGENTS.md` with detailed conventions:
 ## Best practices reference
 
 `.github/skills/storybook-mdx/SKILL.md` documents recurring Storybook/MDX pipeline gotchas discovered in this repo — consult it before debugging rendering issues that look like markdown/MDX parsing problems.
+## Agent guidance
+
+This exposes a Model Context Protocol server at `http://localhost:6006/mcp`.
+Read [README.md](./README.md) first — it's the canonical source for setup,
+workspace structure, the token workflow, and contributing guidelines.
+Everything there applies whether you're a person or an agent.
+
+Before changing tokens or stories, use the Storybook MCP server (project name
+`az-digital-storybook`) to:
+
+- Look up existing token names, groups, and generated CSS variable names
+  before referencing or adding one.
+- Fetch the `Tokens/Contributing` and `Tokens/Design Tools` docs pages
+  instead of inferring conventions from code.
+- Preview any story you add or change before finishing the task.
+
+## Storybook agent CLI
+
+The same skills and tools are also available from the command line, which
+works without an MCP connection:
+
+```bash
+npx storybook skills --all
+```
+
+`npx storybook skills <id>` prints one skill (`stories`, `write-story`,
+`setup`). `npx storybook tools --help` lists the tools that mirror the MCP
+server. `docs list`, `docs show`, and `stories find-by-component` run
+without a dev server; `stories preview` needs `npm run dev:storybook`
+running. Run these from `packages/storybook` (or pass `--cwd
+packages/storybook`).
