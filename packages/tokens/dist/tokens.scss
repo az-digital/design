@@ -26,20 +26,20 @@ $az-dimension-20: 20px;
 $az-dimension-48: 48px;
 $az-font-weight-500: 500;
 $az-opacity-65: 0.65; // 65%.
-$az-component-button-label-font-size: 16px; // az.component.button.label.font.size = 1rem
-$az-component-button-label-font-weight: 500; // az.component.button.label.font.weight = 500
-$az-component-button-padding-x: 20px; // az.component.button.padding.x = 1.25rem
-$az-component-button-padding-y: 8px; // az.component.button.padding.y = 0.5rem
-$az-component-button-border-width: 2px; // az.component.button.border.width = 2px
-$az-component-button-border-radius: 48px; // az.component.button.border.radius = 3rem
-$az-component-button-disabled-opacity: 0.65; // az.component.button.disabled.opacity = 0.65
+$az-component-button-label-font-size: 16px; // Button label (text) size at the default size, for every style. size.sm and size.lg replace it.
+$az-component-button-label-font-weight: 500; // Button label (text) weight, for every style and size.
+$az-component-button-padding-x: 20px; // Horizontal space between the button's edge and its label at the default size. size.sm and size.lg replace it.
+$az-component-button-padding-y: 8px; // Vertical space between the button's edge and its label at the default size. size.sm and size.lg replace it.
+$az-component-button-border-width: 2px; // Button border thickness, for every style and size. Solid buttons draw it in their fill color; outline buttons in outline.border.color.
+$az-component-button-border-radius: 48px; // Button corner rounding, for every style and size: large enough to give buttons their pill shape.
+$az-component-button-disabled-opacity: 0.65; // Opacity applied to the whole button while disabled, for every style.
 $az-component-button-focus-visible-ring: #ef4056; // Button's focus-visible ring color on light surfaces, shared by every style: the one property exclusive to focus-visible (keyboard) focus; plain focus looks identical to hover.
-$az-component-button-size-sm-padding-x: 8px; // az.component.button.size.sm.padding.x = 0.5rem
-$az-component-button-size-sm-padding-y: 4px; // az.component.button.size.sm.padding.y = 0.25rem
-$az-component-button-size-sm-label-font-size: 14px; // az.component.button.size.sm.label.font.size = 0.875rem
-$az-component-button-size-lg-padding-x: 16px; // az.component.button.size.lg.padding.x = 1rem
-$az-component-button-size-lg-padding-y: 8px; // az.component.button.size.lg.padding.y = 0.5rem
-$az-component-button-size-lg-label-font-size: 20px; // az.component.button.size.lg.label.font.size = 1.25rem
+$az-component-button-size-sm-padding-x: 8px; // Horizontal padding for small buttons (size sm), replacing padding.x.
+$az-component-button-size-sm-padding-y: 4px; // Vertical padding for small buttons (size sm), replacing padding.y.
+$az-component-button-size-sm-label-font-size: 14px; // Label (text) size for small buttons (size sm), replacing label.font.size.
+$az-component-button-size-lg-padding-x: 16px; // Horizontal padding for large buttons (size lg), replacing padding.x.
+$az-component-button-size-lg-padding-y: 8px; // Vertical padding for large buttons (size lg), replacing padding.y.
+$az-component-button-size-lg-label-font-size: 20px; // Label (text) size for large buttons (size lg), replacing label.font.size.
 $az-component-button-solid-container-color: #ab0520; // Solid button's container (fill) color, resting state.
 $az-component-button-solid-label-color: #ffffff; // Solid button's label (text) color. Same across default/hover/focus.
 $az-component-button-solid-hover-container-color: #8b0015; // Solid button's container (fill) color, hover state.
