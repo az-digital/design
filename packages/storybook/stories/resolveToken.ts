@@ -55,6 +55,13 @@ export function resolveValue(path: string): unknown {
   return chain.length > 0 ? chain[chain.length - 1].value : undefined;
 }
 
+function formatTokenValue(value: unknown): string {
+  if (typeof value === 'object' && value !== null && 'value' in value && 'unit' in value) {
+    return `${value.value}${value.unit}`;
+  }
+  return String(value);
+}
+
 /**
  * Every token under `prefix` in tokens.json, in the shape `TokenDisplay` renders.
  * Colors carry their fully resolved (alias-followed) hex so the swatch matches
@@ -77,6 +84,7 @@ export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
         token: tokenPath,
         cssVar: `--${tokenPath.replaceAll('.', '-')}`,
         hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
+        value: formatTokenValue(resolvedValue),
       });
       return;
     }
