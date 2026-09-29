@@ -317,7 +317,7 @@ export const DocsControls: Story = {
  *
  * On its own story page, renders the button three times — Default, Hover,
  * Focus-visible — side by side (see `TokenStatePreview`), with the full
- * token table below. Embedded in the main Docs page's Canvas, renders just
+ * token catalog below. Embedded in the main Docs page's Canvas, renders just
  * the plain button — the Docs page lists every Button token statically
  * already, and doesn't need this repeated too.
  *
@@ -347,8 +347,6 @@ export const SolidRedOnWhite: Story = {
     );
   },
   play: async ({ canvas, step }) => {
-    // Matched by accessible name, not just role: TokenTable's own per-row copy-to-clipboard
-    // controls are also buttons, so a bare getByRole('button') would be ambiguous here.
     // There are 3 state previews (Default/Hover/Focus-visible) rendered from the same
     // `button` element reused 3 times, so this matches all 3 — a real Tab/focus check on
     // any of them is representative of the others.
