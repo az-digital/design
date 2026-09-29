@@ -4,7 +4,7 @@ A design token and Storybook workspace for the Arizona Digital design system. Th
 
 ## Repository Structure
 
-This is an npm workspaces monorepo with two packages:
+This is an npm workspaces monorepo with three packages:
 
 ```text
 ├── packages/
@@ -13,8 +13,11 @@ This is an npm workspaces monorepo with two packages:
 │   │   ├── style-dictionary.config.mjs
 │   │   ├── dist/               #   generated output (gitignored, built by Style Dictionary)
 │   │   │   ├── tokens.css      #     CSS custom properties (--az-color-brand-*, etc.)
-│   │   │   └── tokens.scss     #     Sass variables with literal token values
+│   │   │   └── tokens.scss     #     Sass variables (aliases kept as references)
 │   │   └── package.json
+│   ├── storybook-addon-tokens/  # @az-digital/storybook-addon-tokens — token doc blocks and Tokens tab
+│   │   ├── src/                #   addon source (preset, Tokens tab, doc blocks)
+│   │   └── README.md
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
 │       ├── stories/           #   Storybook stories
@@ -28,6 +31,7 @@ This is an npm workspaces monorepo with two packages:
 | Package | Path | Purpose |
 |---------|------|---------|
 | `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
 ## Prerequisites
@@ -86,7 +90,7 @@ The Storybook package renders the design token catalog, groups nested token valu
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
 
-The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
+The token UI (swatches, token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. It reads `packages/tokens/style-dictionary.config.mjs`, so the details for each token show exactly what each output file derives from it. See its [README](packages/storybook-addon-tokens/README.md).
 
 ### Storybook MCP for AI Agents
 

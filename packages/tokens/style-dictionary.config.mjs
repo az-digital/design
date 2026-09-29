@@ -19,6 +19,14 @@ const buildCssVariableTree = (dictionary) => {
   return tree;
 };
 
+/**
+ * How each token is referenced from the JavaScript/TypeScript outputs:
+ * `az.color.brand.red` for the `az` object those custom formats export. Read by
+ * @az-digital/storybook-addon-tokens to show each output's reference; Style
+ * Dictionary itself ignores it.
+ */
+const jsReference = (token) => ['az', ...token.path.slice(1).map(camelCase)].join('.');
+
 const renderType = (value, indent = 0) => {
   const spacing = ' '.repeat(indent);
   const childSpacing = ' '.repeat(indent + 2);
@@ -77,6 +85,11 @@ export default {
         {
           destination: 'tokens.vars.js',
           format: 'javascript/variables',
+          options: {
+            tokenReference: jsReference,
+            // What that export holds for each token: its CSS custom property.
+            tokenValue: (token) => `var(--${token.path.join('-')})`,
+          },
         },
       ],
     },
@@ -87,6 +100,9 @@ export default {
         {
           destination: 'tokens.vars.d.ts',
           format: 'typescript/declarations',
+          options: {
+            tokenReference: jsReference,
+          },
         },
       ],
     },

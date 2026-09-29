@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type CSSProperties, type KeyboardEvent } from 'react';
-import tokensDocument from '../../tokens/tokens.json';
 import { getTokenDisplayItems } from './resolveToken';
+import { useTokensData, type TokenTree } from './store';
 import { getTokenNode } from './tokenGraph';
 import type { TokenData } from './Token';
 import { TokenTable } from './TokenTable';
@@ -14,6 +14,8 @@ type GroupMode = 'style' | 'state';
 type ComponentEntry = {
   name: string;
   prefix: string;
+  /** The component's size variants (e.g. `sm`, `lg`), if it has a `size` group. */
+  sizes: string[];
   items: TokenData[];
   /** Shared + one group per variant. */
   groups: ComponentGroup[];
@@ -60,15 +62,28 @@ function isVariantGroup(root: TokenGroup, key: string): boolean {
   });
 }
 
-function buildComponentEntries(): ComponentEntry[] {
-  const components = (tokensDocument.az as Record<string, unknown>).component;
-  if (!isGroup(components)) return [];
+/**
+ * Component tokens live in a `component` group under the tree's top-level
+ * group (`az.component.button.*`), whatever that top-level group is called.
+ */
+function findComponents(tree: TokenTree): { base: string; group: TokenGroup } | undefined {
+  for (const root of childGroupKeys(tree)) {
+    const group = (tree[root] as TokenGroup).component;
+    if (isGroup(group)) return { base: `${root}.component`, group };
+  }
+  return undefined;
+}
+
+function buildComponentEntries(tree: TokenTree): ComponentEntry[] {
+  const found = findComponents(tree);
+  if (!found) return [];
+  const { base, group: components } = found;
 
   return childGroupKeys(components)
     .sort((a, b) => a.localeCompare(b))
     .map((name) => {
       const root = components[name] as TokenGroup;
-      const prefix = `az.component.${name}.`;
+      const prefix = `${base}.${name}.`;
       const items = getTokenDisplayItems(prefix);
       const topLevelKey = (item: TokenData) => item.token.slice(prefix.length).split('.')[0];
       // Styles (solid, outline, ...) first, in tokens.json order; the size axis last.
@@ -84,7 +99,8 @@ function buildComponentEntries(): ComponentEntry[] {
         })),
       ];
       const groupOf = (item: TokenData) => (variants.includes(topLevelKey(item)) ? title(topLevelKey(item)) : 'Shared');
-      return { name, prefix, items, groups, variants, groupOf };
+      const sizes = isGroup(root.size) ? childGroupKeys(root.size) : [];
+      return { name, prefix, sizes, items, groups, variants, groupOf };
     });
 }
 
@@ -221,7 +237,8 @@ function GroupModeToggle({ mode, onChange }: { mode: GroupMode; onChange: (mode:
  * matching rows across every component.
  */
 export function ComponentTokenIndex({ component }: { component?: string } = {}) {
-  const allEntries = useMemo(buildComponentEntries, []);
+  const { tokens } = useTokensData();
+  const allEntries = useMemo(() => buildComponentEntries(tokens), [tokens]);
   const [mode, setMode] = useState<GroupMode>('style');
   const entries = component ? allEntries.filter((entry) => entry.name === component) : allEntries;
   const docsIds = useDocsIds();
@@ -307,8 +324,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
           {entries.map((entry, index) => {
             const isOpen = expanded.has(entry.name);
             const docsId = `components-${entry.name}--docs`;
-            const sizeGroup = (tokensDocument.az as Record<string, Record<string, TokenGroup>>).component[entry.name].size;
-            const sizes = isGroup(sizeGroup) ? childGroupKeys(sizeGroup) : [];
+            const { sizes } = entry;
             const styles = entry.variants.filter((variant) => variant !== 'size');
             return (
               <div key={entry.name} style={{ borderTop: index > 0 ? '1px solid #dfe3ea' : undefined }}>
