@@ -1,0 +1,74 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as NavStories from './nav.stories';
+
+{/* `of={NavStories}` attaches this page to nav.stories.tsx's own title
+    ("Components/Nav"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={NavStories} />
+
+# Nav
+
+Nav renders a list of links sharing a single style — a plain static link list, not a
+dynamic tab-panel switcher (see [Tabs](?path=/docs/components-tabs--docs) for that).
+Purely presentational: no real interactive behavior, so unlike Accordion/Tabs, this
+component is hand-rolled rather than wrapping `react-bootstrap`.
+
+<Canvas>
+  <Story of={NavStories.Default} />
+</Canvas>
+
+<Controls of={NavStories.Default} />
+
+## Variants
+
+- **Base** (default) — the bare, unstyled `.nav`.
+- **Pills** (`variant="pills"`) — rounded, filled selected state.
+- **Underline** (`variant="underline"`) — a minimal underline on the selected item.
+- **Utility Links** (`variant="utility"`) — a muted appearance for secondary links.
+  Confirmed **Arizona-custom** in the real docs ("Custom Arizona Bootstrap Styling").
+- **Vertical** (`vertical`) — stacks items in a column instead of a row.
+- **Vertical Pills** (`variant="pills"` + `vertical`, with nested `items`) — a nested,
+  multi-level pills menu. Also confirmed **Arizona-custom**. Nesting only makes sense
+  with `vertical` + `pills` — that's the one case the real docs demonstrate.
+- **Fill** (`fill`) / **Justified** (`justify`) — proportionately fills or equally
+  divides the available width across items.
+
+<Source of={NavStories.Pills} />
+<Source of={NavStories.Vertical} />
+<Source of={NavStories.VerticalPills} />
+<Source of={NavStories.UtilityLinks} />
+<Source of={NavStories.Fill} />
+<Source of={NavStories.Justified} />
+
+## Relationship to Tabs
+
+Both components share the same underlying `.nav`/`.nav-link` markup and styling, but
+solve different problems: `Nav` is a static list of real links (each `href` navigates
+somewhere, or is just a placeholder `#`), while
+[`Tabs`](?path=/docs/components-tabs--docs) is a dynamic ARIA `tablist`/`tabpanel`
+interface that swaps visible content in place without navigating. If you need
+`data-bs-toggle`, `role="tab"`, or a `tab-content` panel, that's `Tabs`, not `Nav`.
+
+## Tokens
+
+`az.component.nav.*` covers this component's Arizona-custom `utility` variant styling
+(margin, item padding, label font weight) — every value sourced from Arizona
+Bootstrap's actual compiled CSS. It deliberately has **incomplete coverage** in two
+places, consistent with Accordion and Tabs:
+
+- The Utility Links variant's label/active/hover text color (`#49595e` in the compiled
+  CSS) is a stock, un-themed Bootstrap neutral, not an Arizona brand color, with no
+  neutral/gray primitive tier in `tokens.json` to alias it to yet — this is the third
+  component in a row to hit this exact gap (Accordion, Tabs, now Nav), which is a
+  real signal worth raising with the design/tokens team rather than a coincidence to
+  keep re-noting quietly.
+- The Vertical Pills nested-menu indentation (a 5-level cascade of `padding-left`
+  values in the compiled CSS, 25px/35px/45px/55px/65px) isn't tokenized at all yet —
+  deliberately deferred rather than guessed at, since whether that cascade should
+  become its own spacing-scale primitive tier is a real design-system-architecture
+  decision (per `packages/tokens/AGENTS.md`'s "add a semantic dimension tier the day a
+  real distinction needs one"), not something to decide unilaterally while building
+  this component.
+
+<TokenTable filter="az.component.nav.**" />

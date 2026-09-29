@@ -1,0 +1,60 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import * as ArizonaHeaderStories from './arizona-header.stories';
+
+{/* `of={ArizonaHeaderStories}` attaches this page to arizona-header.stories.tsx's own
+    title ("Components/ArizonaHeader"), so it replaces the autodocs page for that group
+    instead of adding a separate nested entry. */}
+<Meta of={ArizonaHeaderStories} />
+
+# Arizona Header
+
+The University of Arizona wordmark header, required on all `arizona.edu` subdomains.
+Confirmed **Arizona-custom** in the real docs ("Custom Arizona Bootstrap Component") —
+unlike Accordion/Tabs/Nav/Card, there's no equivalent of this in upstream Bootstrap at
+all. Purely presentational — no real interactive behavior in its base form, so this is
+hand-rolled rather than wrapping `react-bootstrap`.
+
+<Canvas>
+  <Story of={ArizonaHeaderStories.Default} />
+</Canvas>
+
+<Controls of={ArizonaHeaderStories.Default} />
+
+The logo link itself (`href`, `title`, `alt`, image `src`) is **fixed UA brand
+content, not a prop** — every real, documented example uses the exact same ones, so
+there's nothing to make configurable here.
+
+## Variants
+
+- **Blue** (default) — the current, recommended variant.
+- **Red** (`variant="red"`) — the original header color. Still real and demonstrated
+  in the docs, but marked there for future deprecation.
+- **`fixedOnMobile`** — adds `.az-fixed-header-on-mobile`, pinning the header to the
+  top of the viewport on narrow screens. **Only meaningful paired with off-canvas
+  content** (a search/menu toggle revealing a panel below the header) — with nothing
+  else in the header, it just hard-caps the header's own height on mobile for no
+  benefit. Because of that, there's no dedicated story for it here: demonstrating the
+  flag alone, without the off-canvas content it exists for, would model a combination
+  the real docs never show and actively discourage.
+
+<Source of={ArizonaHeaderStories.OriginalRedHeader} />
+
+## Not covered by this component (yet)
+
+Arizona Bootstrap's own docs describe an **"Extending the header"** pattern: adding
+off-canvas search and navigation toggles for mobile, using Bootstrap's real Offcanvas
+plugin (`data-bs-toggle="offcanvas"`) and a `.btn-arizona-header` button style. That's
+genuine interactive behavior this component doesn't cover yet — a future version
+wrapping `react-bootstrap`'s `Offcanvas`, most likely, once there's a real need for it.
+
+## Tokens
+
+`az.component.arizona-header.*` covers this component's real structural properties —
+the header's own fixed-mobile height, and the logo image's margin plus its
+width/height at both the mobile and `sm`-breakpoint-and-up sizes — every value sourced
+from Arizona Bootstrap's actual compiled CSS. Unlike Accordion, Tabs, Nav, and Card,
+this component has **no missing-color-primitive gap**: both real variants (`bg-blue`,
+`bg-red`) already alias existing Arizona brand colors, not stock unbranded neutrals.
+
+<TokenTable filter="az.component.arizona-header.**" />
