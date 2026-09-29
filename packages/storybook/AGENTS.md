@@ -71,14 +71,14 @@ session alone; verify in an actual browser, or ask the user to.
   `of={}` makes the MDX page replace the autodocs entry for that exact title,
   so it appears as the top-level "Docs" entry alongside the component's
   stories in the sidebar, not as a separate child page.
-- A full, general component token table lives on that same main Docs page
-  (e.g. `<TokenTable filter="az.component.button.**" />`) — the one broad
+- A full, general component token catalog lives on that same main Docs page
+  (e.g. `<TokenDisplay items={getTokenDisplayItems('az.component.button.')} />`) — the one broad
   reference for the whole component. Don't split it out to a sub-page by
   default.
 - A per-story state comparison (Default/Hover/Focus-visible, etc.) does not
   live on the main Docs page — it lives on that story's own individual page,
   via `TokenStatePreview` (see "Comparing interaction states" below). The
-  Docs page only gets the one general, full token table plus a `<Source
+  Docs page only gets the one general, full token catalog plus a `<Source
   of={...}/>` code-only block for any story whose approved frame needs a
   non-default detail (e.g. a non-white background) called out — not a
   second live `<Canvas>` (see the Canvas limitation further down) and not a
@@ -143,13 +143,9 @@ instance that changes as a viewer actually hovers/tabs to it. Two reasons:
   test — this documents design intent, same as a "Tokens by state" table
   does, not live CSS behavior (see "Design tokens vs. CSS vs. Figma" below).
 - It sidesteps needing a hand-built, per-state token list at all. Pass
-  `TokenStatePreview` one `tokenFilter` and it renders the full,
-  always-visible `TokenTable` for that filter below the state row —
-  `TokenTable` already expands a row in place on click to show its
-  description and alias chain (built into `@unpunnyfuns/swatchbook-addon`,
-  confirmed by reading its own type definitions) — don't hand-roll an alias
-  chain renderer or a hover/focus-driven token list again; both were tried
-  here first and replaced by this.
+  `TokenStatePreview` one `tokenFilter` and it renders the searchable
+  `TokenDisplay` catalog for that filter below the state row. `TokenDisplay`
+  is the in-repository token UI; use it instead of adding a token-table addon.
 
 A real, functional interaction check (does focus actually land, does an
 `onClick` fire) still belongs in a `play` function — that's a different
@@ -194,7 +190,7 @@ each state look like).
 These are three separate questions. Keep them separate:
 
 1. What does `tokens.json` define? Read `packages/tokens/tokens.json` (or the
-   generated `TokenTable`/`ColorPalette` blocks), not component CSS.
+   generated `TokenDisplay`/`ColorPalette` blocks), not component CSS.
 2. What does the shipped CSS currently do? If this needs answering, verify
    empirically in a real browser (genuine click/hover/Tab-key input,
    `getComputedStyle`, `.matches(':hover')`), not by reading a
@@ -218,26 +214,23 @@ it, especially for a third-party/vendored stylesheet built by a separate
 pipeline. Don't grep compiled CSS for `var(--az-` and report the result as a
 finding about design tokens.
 
-## Token chips
+## Token references
 
-For a compact, single-token reference (path, type badge, color swatch,
-value — no search box or heading):
+Use `TokenDisplay` for searchable token catalogs with values, color swatches,
+and an inspector showing source values and alias chains:
 
 ```mdx
-<TokenTable filter="az.color.brand.chili" searchable={false} caption="" />
-```
+import { TokenDisplay } from './TokenDisplay';
+import { getTokenDisplayItems } from './resolveToken';
 
-An exact (non-wildcard) `filter` path narrows the table to that one row;
-`searchable={false}` and `caption=""` remove the search box and header text.
-`<ColorPalette filter="..." />` renders a larger card and is the wrong
-component for this — use `TokenTable` with an exact filter instead.
+<TokenDisplay items={getTokenDisplayItems('az.color.brand.chili')} />
+```
 
 Don't wrap non-`<Story>` content in `<Canvas>`. In this Storybook version
 (10.6.0), `<Canvas>` silently falls back to rendering the docs page's primary
-story when given children that aren't a recognized `<Story>` block, so
-`<Canvas><TokenTable .../></Canvas>` renders the button, not the token table,
-with no error. Render `<TokenTable>` (or any other plain component) as
-direct JSX, without a `<Canvas>` wrapper.
+story when given children that aren't a recognized `<Story>` block. Render
+`TokenDisplay` (or any other plain component) as direct JSX, without a
+`<Canvas>` wrapper.
 
 A second `<Canvas><Story of={X}/></Canvas>` on an attached MDX docs page does
 not work correctly in this Storybook version: it always re-renders the first

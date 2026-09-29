@@ -10,15 +10,6 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
-    {
-      name: getAbsolutePath('@unpunnyfuns/swatchbook-addon'),
-      options: {
-        config: {
-          tokens: ['../tokens/tokens.json'],
-          cssVarPrefix: '',
-        },
-      },
-    },
   ],
 
   framework: {

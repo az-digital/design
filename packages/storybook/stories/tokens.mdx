@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
 import tokensDocument from '../../tokens/tokens.json';
 import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
 import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
@@ -7,7 +6,8 @@ import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
-import { resolveValue } from './resolveToken';
+import { getTokenDisplayItems, resolveValue } from './resolveToken';
+import { TokenDisplay } from './TokenDisplay';
 
 export const githubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/tokens.json';
 export const tokensCssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.css';
@@ -70,8 +70,8 @@ base/semantic tier to alias to yet (padding, font size, border radius, ...)
 is hard-coded to the component's real production value instead of blocked
 on that tier existing — both kinds get repointed to alias through a
 semantic tier later, without changing their names, once one exists. Each
-component's own Storybook Docs page also shows a filtered table of just its
-tokens — see [Button's](./?path=/docs/components-button--docs) for an
+component's own Storybook Docs page also shows a filtered, searchable view
+of just its tokens — see [Button's](./?path=/docs/components-button--docs) for an
 example.
 
-<TokenTable filter="az.component.**" />
+<TokenDisplay items={getTokenDisplayItems('az.component.')} searchLabel="Search component tokens" />
