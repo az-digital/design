@@ -71,11 +71,13 @@ export function formatTokenValue(value: unknown): string {
   return typeof value === 'string' ? value : JSON.stringify(value) ?? String(value);
 }
 
-let cache: { version: number; items: TokenData[] } | undefined;
+let cache: { version: number; items: TokenData[]; sourceOrder: TokenData[] } | undefined;
 
-/** Every token in the tree, sorted by path. */
-export function getAllTokenItems(): TokenData[] {
-  if (cache?.version === getTokensVersion()) return cache.items;
+type Order = 'path' | 'source';
+
+/** Every token in the tree, sorted by path, or with `order: 'source'` in the order the source file lists them. */
+export function getAllTokenItems({ order = 'path' }: { order?: Order } = {}): TokenData[] {
+  if (cache?.version === getTokensVersion()) return order === 'source' ? cache.sourceOrder : cache.items;
   const items: TokenData[] = [];
   const visit = (node: unknown, path: string[]) => {
     if (typeof node !== 'object' || node === null || Array.isArray(node)) return;
@@ -99,15 +101,19 @@ export function getAllTokenItems(): TokenData[] {
     }
   };
   visit(getTokensData().tokens, []);
+  const sourceOrder = [...items];
   items.sort((a, b) => a.token.localeCompare(b.token));
-  cache = { version: getTokensVersion(), items };
-  return items;
+  cache = { version: getTokensVersion(), items, sourceOrder };
+  return order === 'source' ? sourceOrder : items;
 }
 
-/** Every token under `prefix` (a dot-path; a trailing `.`, `*`, or `**` is ignored), sorted by path. */
-export function getTokenDisplayItems(prefix: string): TokenData[] {
+/**
+ * Every token under `prefix` (a dot-path; a trailing `.`, `*`, or `**` is
+ * ignored), sorted by path, or with `order: 'source'` in the source file's order.
+ */
+export function getTokenDisplayItems(prefix: string, { order = 'path' }: { order?: Order } = {}): TokenData[] {
   const base = prefix.replace(/[.*]+$/, '');
-  return getAllTokenItems().filter((item) => item.token === base || item.token.startsWith(`${base}.`));
+  return getAllTokenItems({ order }).filter((item) => item.token === base || item.token.startsWith(`${base}.`));
 }
 
 /** `TokenData` for one token path. */
