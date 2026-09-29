@@ -11,6 +11,8 @@ export type TokenData = {
   hex?: string;
   /** Resolved (alias-followed) value, for non-color tokens. */
   value?: string;
+  /** DTCG `$type` from tokens.json, e.g. `color`, `dimension`, `number`. */
+  type?: string;
   /** Generated CSS custom property reference, e.g. `var(--az-color-brand-red)`. */
   cssVar: string;
   sassVar?: string;

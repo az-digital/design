@@ -85,6 +85,7 @@ export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
         cssVar: `var(--${tokenPath.replaceAll('.', '-')})`,
         hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
         value: formatTokenValue(resolvedValue),
+        type: token.$type,
       });
       return;
     }

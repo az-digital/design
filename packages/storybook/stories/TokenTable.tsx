@@ -22,7 +22,8 @@ const CELL: CSSProperties = {
 const CODE: CSSProperties = { fontSize: 12, color: '#1f2430', whiteSpace: 'nowrap' };
 
 /**
- * One row per token: the `Token` pill (click to inspect) and its resolved value.
+ * One row per token: the `Token` pill (click to inspect), its DTCG `$type`, and
+ * its resolved value.
  * Platform outputs (CSS, Sass, JS, ...) stay in the details view, since no one
  * platform's name is the token. Pass `selectedToken`/`onSelect` to handle selection
  * yourself (e.g. to show details in a panel); otherwise each pill opens its own drawer.
@@ -42,6 +43,7 @@ export function TokenTable({
         <thead>
           <tr>
             <th scope="col" style={HEADER_CELL}>TOKEN</th>
+            <th scope="col" style={HEADER_CELL}>TYPE</th>
             <th scope="col" style={HEADER_CELL}>VALUE</th>
           </tr>
         </thead>
@@ -56,6 +58,7 @@ export function TokenTable({
                   {...(onSelect && { selected: selectedToken === item.token, onSelect: () => onSelect(item.token) })}
                 />
               </td>
+              <td style={{ ...CELL, color: '#697786', fontSize: 12, whiteSpace: 'nowrap' }}>{item.type}</td>
               <td style={CELL}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   {item.hex && <span aria-hidden="true" style={{ width: 14, height: 14, borderRadius: 3, background: item.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
