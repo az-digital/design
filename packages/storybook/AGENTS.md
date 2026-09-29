@@ -232,6 +232,22 @@ Both `TokenDisplay` and `ColorSwatchGrid` render each token with the shared
 Use `<Token data={...} />` directly when a page needs a single token
 reference; don't build another pill or drawer.
 
+`<TokenDisplay layout="table" />` (or `TokenTable` from `./TokenTable`
+directly) shows the same tokens as one row per token: the `Token` pill, its
+resolved value, and its CSS variable.
+
+Every story can also list its tokens in the **Tokens** addon panel
+(`.storybook/tokens-panel.tsx`) by declaring which `tokens.json` groups it
+uses, usually once on the story file's meta:
+
+```ts
+parameters: { tokens: 'az.component.button.' } // string, string[], or false to hide
+```
+
+The panel is part of the manager bundle, so changes to it (or to `Token.tsx`
+/ `TokenTable.tsx`, which it imports) need a Storybook restart, and those two
+files need a default `React` import for the manager's classic JSX runtime.
+
 Don't wrap non-`<Story>` content in `<Canvas>`. In this Storybook version
 (10.6.0), `<Canvas>` silently falls back to rendering the docs page's primary
 story when given children that aren't a recognized `<Story>` block. Render

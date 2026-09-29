@@ -1,5 +1,8 @@
 import React from 'react';
 import { addons } from 'storybook/manager-api';
+import { registerTokensPanel } from './tokens-panel';
+
+registerTokensPanel();
 
 addons.setConfig({
   sidebar: {

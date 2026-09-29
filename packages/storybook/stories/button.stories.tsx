@@ -148,6 +148,8 @@ const meta = {
   },
   parameters: {
     implementations,
+    // Lists these in the Tokens addon panel for every Button story (see .storybook/tokens-panel.tsx).
+    tokens: 'az.component.button.',
     // Button doesn't wire any `action()` argTypes yet, so the Actions tab would only
     // ever be empty here. Remove this once one is actually added to a story.
     actions: { disable: true },
