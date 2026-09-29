@@ -233,8 +233,9 @@ Use `<Token data={...} />` directly when a page needs a single token
 reference; don't build another pill or drawer.
 
 `<TokenDisplay layout="table" />` (or `TokenTable` from `./TokenTable`
-directly) shows the same tokens as one row per token: the `Token` pill, its
-resolved value, and its CSS variable.
+directly) shows the same tokens as one row per token: the `Token` pill and its
+resolved value. Keep platform-specific names (CSS variables, Sass variables,
+...) out of the row; they belong in the details view alongside each other.
 
 Every story can also list its tokens in the **Tokens** addon panel
 (`.storybook/tokens-panel.tsx`) by declaring which `tokens.json` groups it
