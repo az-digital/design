@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { addons, types, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
 import { TokenDetailsContent } from '../stories/Token';
+import { getTokenData } from '../stories/tokenGraph';
 import { TokenTable } from '../stories/TokenTable';
 import { getTokenDisplayItems } from '../stories/resolveToken';
 
@@ -25,7 +26,7 @@ function TokensPanelContent() {
   const disabled = typeof parameter === 'object' && !Array.isArray(parameter) && parameter.disable;
   const prefixes = parameter && !disabled ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix.replace(/\*+$/, '')));
-  const selected = items.find((item) => item.token === selectedToken);
+  const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
 
   if (items.length === 0) {
     return (
@@ -54,7 +55,7 @@ function TokensPanelContent() {
             <strong style={{ fontSize: 16, overflowWrap: 'anywhere' }}>{selected.token}</strong>
             <button type="button" onClick={() => setSelectedToken(null)} aria-label="Close token details" style={{ width: 24, height: 24, border: '1px solid #d0d5dd', borderRadius: 5, background: '#fff', color: '#374151', cursor: 'pointer' }}>×</button>
           </div>
-          <TokenDetailsContent data={selected} />
+          <TokenDetailsContent data={selected} onNavigate={setSelectedToken} />
         </aside>
       )}
     </div>
