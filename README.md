@@ -11,9 +11,11 @@ This is an npm workspaces monorepo with three packages:
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── style-dictionary.config.mjs
-│   │   ├── dist/               #   generated output (gitignored, built by Style Dictionary)
+│   │   ├── dist/               #   generated output (committed, built by Style Dictionary)
 │   │   │   ├── tokens.css      #     CSS custom properties (--az-color-brand-*, etc.)
-│   │   │   └── tokens.scss     #     Sass variables (aliases kept as references)
+│   │   │   ├── tokens.scss     #     Sass variables
+│   │   │   ├── tokens.vars.js  #     JS module of var(--…) references
+│   │   │   └── tokens.vars.d.ts #    types for tokens.vars.js
 │   │   └── package.json
 │   ├── storybook-addon-tokens/  # @az-digital/storybook-addon-tokens — token doc blocks and Tokens tab
 │   │   ├── src/                #   addon source (preset, Tokens tab, doc blocks)
@@ -77,10 +79,13 @@ npm run build:tokens
 
 ### `dist/` Output
 
-`npm run build:tokens` runs Style Dictionary against `tokens.json` and writes generated, gitignored output to `packages/tokens/dist/`:
+`npm run build:tokens` runs Style Dictionary (`packages/tokens/style-dictionary.config.mjs`) against `tokens.json` and writes generated output to `packages/tokens/dist/`. The output is committed, so rebuild and commit it with every token change:
 
-- `tokens.css` — CSS custom properties (e.g. `--az-color-brand-blue`) for consumption in stylesheets.
-- `tokens.scss` — Sass variables with literal values (e.g. `$az-color-brand-blue: #0c234b;`) for Sass-based builds.
+- `tokens.css` — CSS custom properties (e.g. `--az-color-brand-blue: #0c234b;`) for stylesheets.
+- `tokens.scss` — Sass variables (e.g. `$az-color-brand-blue: #0c234b;`) for Sass-based builds.
+- `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the generated CSS variable names instead of reconstructing them.
+
+In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{az.color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
 
 Never edit files in `dist/` directly — they're regenerated on every token build.
 
