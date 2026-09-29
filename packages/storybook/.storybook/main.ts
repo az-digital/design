@@ -8,15 +8,12 @@ const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
 
   addons: [
-    getAbsolutePath('@storybook/addon-docs'),
-    '@storybook/addon-designs',
-    getAbsolutePath('@storybook/addon-mcp'),
-    '@storybook/addon-a11y',
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-mcp"),
     {
-      name: getAbsolutePath("@unpunnyfuns/swatchbook-addon"),
+      name: getAbsolutePath('@unpunnyfuns/swatchbook-addon'),
       options: {
         config: {
-          // no resolver/themes yet: single tokens.json, one synthetic theme
           tokens: ['../tokens/tokens.json'],
           cssVarPrefix: '',
         },

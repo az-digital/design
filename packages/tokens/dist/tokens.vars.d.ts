@@ -1,100 +1,44 @@
 export const az: {
   "color": {
-    "arroyoBlue": string,
-    "azurite": string,
-    "bloom": string,
+    "red": string,
     "blue": string,
+    "tinta": string,
+    "azurite": string,
+    "chili": string,
+    "bloom": string,
+    "arroyoBlue": string,
+    "rain": string,
+    "sonoranRed": string,
     "bougainvillea": string,
+    "saguaro": string,
+    "shade": string,
+    "brick": string,
+    "cloud": string,
+    "caliche": string,
+    "white": string,
     "brand": {
-      "arroyoBlue": string,
-      "azurite": string,
-      "bloom": string,
-      "blue": string,
-      "bougainvillea": string,
-      "brick": string,
-      "caliche": string,
-      "chili": string,
-      "cloud": string,
-      "rain": string,
       "red": string,
+      "blue": string,
+      "tinta": string,
+      "azurite": string,
+      "chili": string,
+      "bloom": string,
+      "arroyoBlue": string,
+      "rain": string,
+      "sonoranRed": string,
+      "bougainvillea": string,
       "saguaro": string,
       "shade": string,
-      "sonoranRed": string,
-      "tinta": string,
+      "brick": string,
+      "cloud": string,
+      "caliche": string,
       "white": string
     },
-    "brick": string,
-    "caliche": string,
-    "chili": string,
-    "cloud": string,
-    "rain": string,
-    "red": string,
-    "saguaro": string,
     "semantic": {
       "action": {
         "default": string,
-        "focusRing": string,
-        "hover": string
-      }
-    },
-    "shade": string,
-    "sonoranRed": string,
-    "tinta": string,
-    "white": string
-  },
-  "component": {
-    "button": {
-      "border": {
-        "radius": string,
-        "width": string
-      },
-      "color": string,
-      "disabled": {
-        "opacity": string
-      },
-      "focusVisible": {
-        "ring": string
-      },
-      "focus": {
-        "color": string
-      },
-      "hover": {
-        "color": string
-      },
-      "label": {
-        "color": string,
-        "font": {
-          "size": string,
-          "weight": string
-        }
-      },
-      "padding": {
-        "x": string,
-        "y": string
-      },
-      "size": {
-        "lg": {
-          "label": {
-            "font": {
-              "size": string
-            }
-          },
-          "padding": {
-            "x": string,
-            "y": string
-          }
-        },
-        "sm": {
-          "label": {
-            "font": {
-              "size": string
-            }
-          },
-          "padding": {
-            "x": string,
-            "y": string
-          }
-        }
+        "hover": string,
+        "focusRing": string
       }
     }
   },
@@ -112,5 +56,61 @@ export const az: {
   },
   "opacity": {
     "65": string
+  },
+  "component": {
+    "button": {
+      "color": string,
+      "label": {
+        "color": string,
+        "font": {
+          "size": string,
+          "weight": string
+        }
+      },
+      "hover": {
+        "color": string
+      },
+      "focus": {
+        "color": string
+      },
+      "focusVisible": {
+        "ring": string
+      },
+      "padding": {
+        "x": string,
+        "y": string
+      },
+      "border": {
+        "width": string,
+        "radius": string
+      },
+      "disabled": {
+        "opacity": string
+      },
+      "size": {
+        "sm": {
+          "padding": {
+            "x": string,
+            "y": string
+          },
+          "label": {
+            "font": {
+              "size": string
+            }
+          }
+        },
+        "lg": {
+          "padding": {
+            "x": string,
+            "y": string
+          },
+          "label": {
+            "font": {
+              "size": string
+            }
+          }
+        }
+      }
+    }
   }
 };
