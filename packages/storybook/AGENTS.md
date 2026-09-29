@@ -246,7 +246,8 @@ between style-first and state-first. The grouping is read from token paths,
 so it depends on the `<variant>.<state>.<part>` structure in
 `packages/tokens/AGENTS.md`; nothing needs registering when a component is added.
 
-Every story can also list its tokens in the **Tokens** addon panel
+The **Tokens** addon panel is opt-in, like Controls: the tab only appears on stories
+that set `parameters.tokens`. Every story can list its tokens in the **Tokens** addon panel
 (`.storybook/tokens-panel.tsx`) by declaring which `tokens.json` groups it
 uses, usually once on the story file's meta:
 
