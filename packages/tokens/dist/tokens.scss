@@ -30,9 +30,9 @@ $az-color-brand-brick: #85372b; // Alias for the Arizona brand 'brick' primitive
 $az-color-brand-cloud: #e5eff7; // Alias for the Arizona brand 'cloud' primitive.
 $az-color-brand-caliche: #f2efea; // Alias for the Arizona brand 'caliche' primitive.
 $az-color-brand-white: #ffffff; // Alias for the Arizona brand 'white' primitive.
-$az-color-semantic-action-default: #ab0520; // Button's container color, resting state — aliases the brand palette.
-$az-color-semantic-action-hover: #8b0015; // Button's container color, hover state — aliases the brand palette.
-$az-color-semantic-action-focus-ring: #ef4056; // Button's focus-ring color — aliases the brand palette.
+$az-color-semantic-action-default: #ab0520; // Primary action color, resting state (solid fill; outline border and label) — aliases the brand palette.
+$az-color-semantic-action-hover: #8b0015; // Primary action color, hover state — aliases the brand palette.
+$az-color-semantic-action-focus-ring: #ef4056; // Focus-visible ring color for actions — aliases the brand palette.
 $az-dimension-2: 2px;
 $az-dimension-4: 4px;
 $az-dimension-8: 8px;
@@ -42,21 +42,29 @@ $az-dimension-20: 20px;
 $az-dimension-48: 48px;
 $az-font-weight-500: 500;
 $az-opacity-65: 0.65; // 65%.
-$az-component-button-color: #ab0520; // Button's container color, resting state.
-$az-component-button-label-color: #ffffff; // Button's label (text) color. Same across default/hover/focus — no state-based variation exists yet.
 $az-component-button-label-font-size: 16px; // az.component.button.label.font.size = 1rem
 $az-component-button-label-font-weight: 500; // az.component.button.label.font.weight = 500
-$az-component-button-hover-color: #8b0015; // Button's container color, hover state.
-$az-component-button-focus-color: #8b0015; // Button's container color, focus state — aliases hover.color directly: focus (any means) always looks identical to hover.
-$az-component-button-focus-visible-ring: #ef4056; // Button's focus-visible ring color — the one property exclusive to focus-visible (keyboard) focus; plain focus looks identical to hover.
 $az-component-button-padding-x: 20px; // az.component.button.padding.x = 1.25rem
 $az-component-button-padding-y: 8px; // az.component.button.padding.y = 0.5rem
 $az-component-button-border-width: 2px; // az.component.button.border.width = 2px
 $az-component-button-border-radius: 48px; // az.component.button.border.radius = 3rem
 $az-component-button-disabled-opacity: 0.65; // az.component.button.disabled.opacity = 0.65
+$az-component-button-focus-visible-ring: #ef4056; // Button's focus-visible ring color on light surfaces, shared by every style: the one property exclusive to focus-visible (keyboard) focus; plain focus looks identical to hover.
 $az-component-button-size-sm-padding-x: 8px; // az.component.button.size.sm.padding.x = 0.5rem
 $az-component-button-size-sm-padding-y: 4px; // az.component.button.size.sm.padding.y = 0.25rem
 $az-component-button-size-sm-label-font-size: 14px; // az.component.button.size.sm.label.font.size = 0.875rem
 $az-component-button-size-lg-padding-x: 16px; // az.component.button.size.lg.padding.x = 1rem
 $az-component-button-size-lg-padding-y: 8px; // az.component.button.size.lg.padding.y = 0.5rem
 $az-component-button-size-lg-label-font-size: 20px; // az.component.button.size.lg.label.font.size = 1.25rem
+$az-component-button-solid-container-color: #ab0520; // Solid button's container (fill) color, resting state.
+$az-component-button-solid-label-color: #ffffff; // Solid button's label (text) color. Same across default/hover/focus.
+$az-component-button-solid-hover-container-color: #8b0015; // Solid button's container (fill) color, hover state.
+$az-component-button-solid-focus-container-color: #8b0015; // Solid button's container (fill) color, focus state. Aliases solid.hover.container.color directly: focus (any means) always looks identical to hover.
+$az-component-button-outline-border-color: #ab0520; // Outline button's border color, resting state. The container has no fill until hover.
+$az-component-button-outline-label-color: #ab0520; // Outline button's label (text) color, resting state.
+$az-component-button-outline-hover-container-color: #ab0520; // Outline button's container (fill) color, hover state: fills with the resting action color.
+$az-component-button-outline-hover-border-color: #ab0520; // Outline button's border color, hover state. Unchanged from resting; matches the new fill.
+$az-component-button-outline-hover-label-color: #ffffff; // Outline button's label (text) color, hover state, on the filled container.
+$az-component-button-outline-focus-container-color: #ab0520; // Outline button's container (fill) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover.
+$az-component-button-outline-focus-border-color: #ab0520; // Outline button's border color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover.
+$az-component-button-outline-focus-label-color: #ffffff; // Outline button's label (text) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover.

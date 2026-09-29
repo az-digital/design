@@ -59,22 +59,11 @@ export const az = {
   },
   "component": {
     "button": {
-      "color": "var(--az-component-button-color)",
       "label": {
-        "color": "var(--az-component-button-label-color)",
         "font": {
           "size": "var(--az-component-button-label-font-size)",
           "weight": "var(--az-component-button-label-font-weight)"
         }
-      },
-      "hover": {
-        "color": "var(--az-component-button-hover-color)"
-      },
-      "focus": {
-        "color": "var(--az-component-button-focus-color)"
-      },
-      "focusVisible": {
-        "ring": "var(--az-component-button-focus-visible-ring)"
       },
       "padding": {
         "x": "var(--az-component-button-padding-x)",
@@ -86,6 +75,9 @@ export const az = {
       },
       "disabled": {
         "opacity": "var(--az-component-button-disabled-opacity)"
+      },
+      "focusVisible": {
+        "ring": "var(--az-component-button-focus-visible-ring)"
       },
       "size": {
         "sm": {
@@ -108,6 +100,54 @@ export const az = {
             "font": {
               "size": "var(--az-component-button-size-lg-label-font-size)"
             }
+          }
+        }
+      },
+      "solid": {
+        "container": {
+          "color": "var(--az-component-button-solid-container-color)"
+        },
+        "label": {
+          "color": "var(--az-component-button-solid-label-color)"
+        },
+        "hover": {
+          "container": {
+            "color": "var(--az-component-button-solid-hover-container-color)"
+          }
+        },
+        "focus": {
+          "container": {
+            "color": "var(--az-component-button-solid-focus-container-color)"
+          }
+        }
+      },
+      "outline": {
+        "border": {
+          "color": "var(--az-component-button-outline-border-color)"
+        },
+        "label": {
+          "color": "var(--az-component-button-outline-label-color)"
+        },
+        "hover": {
+          "container": {
+            "color": "var(--az-component-button-outline-hover-container-color)"
+          },
+          "border": {
+            "color": "var(--az-component-button-outline-hover-border-color)"
+          },
+          "label": {
+            "color": "var(--az-component-button-outline-hover-label-color)"
+          }
+        },
+        "focus": {
+          "container": {
+            "color": "var(--az-component-button-outline-focus-container-color)"
+          },
+          "border": {
+            "color": "var(--az-component-button-outline-focus-border-color)"
+          },
+          "label": {
+            "color": "var(--az-component-button-outline-focus-label-color)"
           }
         }
       }

@@ -82,25 +82,44 @@ intro.
 Names describe the component's own concern, and don't invent a variant
 that isn't actually demonstrated:
 
-- `az.component.button.color` (not `.color.red`, and not split into
-  `destructive`/`primary` roles — there's only one shown Button color today;
-  see the mistake log below for why a role split was tried and reverted)
-- `az.component.button.hover.color`, `az.component.button.focus.color` —
-  grouped by state (`hover`, `focus`), not folded into the `color` key as
-  suffixed siblings (`color.hover`, `color-hover`, ...). `focus.color`
-  aliases `{az.component.button.hover.color}` directly — a component token
-  aliasing another component token, not semantic — because plain focus
-  (any means) is deliberately identical to hover; see the mistake log.
-  `az.component.button.focus-visible.ring` lives in its own group, separate
-  from `focus`, because the ring is the one property exclusive to
-  focus-*visible* (keyboard) focus — it still aliases semantic like any
-  other color token.
-- `az.component.button.padding.x`, `.label.font.size`, `.border.radius` —
+- Shared structure at the component root, one group per demonstrated
+  style variant for what that style changes:
+  `az.component.button.padding.x`, `.border.radius`, `.label.font.size`,
+  `.size.lg.*` are shared by every style; `az.component.button.solid.*` and
+  `az.component.button.outline.*` hold only their own colors. A variant is a
+  *group* of tokens (every part and state it changes), never one token.
+  Don't duplicate shared values into each style group.
+- Color tokens name the **part** they color: `solid.container.color`,
+  `outline.border.color`, `outline.label.color` — not a bare `color`, which
+  stops being unambiguous the moment a second style colors a different part.
+- States nest inside the style, then the part:
+  `solid.hover.container.color`, `outline.focus.label.color` — grouped by
+  state (`hover`, `focus`), not folded into the part as suffixed siblings
+  (`container.color-hover`, ...). `focus.*` aliases the same style's
+  `hover.*` directly — a component token aliasing another component token,
+  not semantic — because plain focus (any means) is deliberately identical
+  to hover; see the mistake log. `az.component.button.focus-visible.ring`
+  stays shared at the root, separate from `focus`, because the ring is the
+  one property exclusive to focus-*visible* (keyboard) focus, and it's the
+  same for every style on light surfaces. (Arizona Bootstrap switches it to
+  white on dark/brand surfaces; that's part of the unmodeled surface axis
+  below.)
+- Style names come from the component's real, demonstrated variants
+  (`solid`, `outline` — each backed by an approved Figma frame and story),
+  not from color (`red`) or invented roles (`destructive`/`primary`; see the
+  mistake log for why a role split was tried and reverted). A style
+  variant is a component concern: both styles still alias the same
+  `az.color.semantic.action.*` colors, so no new semantic role was needed.
+- Structural tokens (`padding.x`, `.label.font.size`, `.border.radius`)
   still alias a primitive each (`az.dimension.20`, etc.); they just don't
   need a semantic tier in between yet. `.label.font.size` lives under
-  `label` (with `label.color`) because both describe the button's
-  displayed text — grouped by what part of the component they belong to,
-  not by CSS property category; see the mistake log.
+  `label` (with each style's `label.color`) because both describe the
+  button's displayed text — grouped by what part of the component they
+  belong to, not by CSS property category; see the mistake log.
+- Background/surface pairings (the same solid button in white-text-red on an
+  AZ red page, rain on AZ blue, ...) are **not** modeled yet: their colors
+  depend on the surface, not on a style choice, so they need surface names
+  that describe a role, not a color. Don't add `on-red`/`on-blue` groups.
 
 If the component's own prop API uses different vocabulary than its tokens
 (e.g. a `color` prop that takes literal `'red' | 'blue'`), that's fine — the
@@ -167,6 +186,15 @@ is a design decision about what that choice means. They don't have to match.
   `size.sm.font.size`) so the two structures stay consistent with each
   other. Group by what part of the component a token describes, not by CSS
   property category.
+
+- `az.component.button.color` / `.hover.color` / `.focus.color` /
+  `.label.color` as the only Button color tokens, after the stories already
+  demonstrated a second style (`outline`, from approved Figma frames). The
+  rule above ("add the variant level the day a second variant exists") was
+  right, but it wasn't applied when that day came, so outline stories
+  listed solid's fill color as their own. Fixed by moving color into
+  `az.component.button.solid.*` / `.outline.*` groups named by part
+  (`container`, `border`, `label`) and keeping structure shared.
 
 ## Before adding a new token
 

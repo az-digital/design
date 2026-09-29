@@ -242,7 +242,7 @@ Every story can also list its tokens in the **Tokens** addon panel
 uses, usually once on the story file's meta:
 
 ```ts
-parameters: { tokens: 'az.component.button.' } // string, string[], or { disable: true }
+parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
 ```
 
 The panel is part of the manager bundle, so changes to it (or to `Token.tsx`

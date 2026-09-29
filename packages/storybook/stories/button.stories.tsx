@@ -17,6 +17,25 @@ import { resolveValue } from './resolveToken';
 type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string; background?: string };
 
 /**
+ * `parameters.tokens` lists for the Tokens addon panel. Every Button shares
+ * its structural tokens (label font, padding, border width/radius, disabled,
+ * sizes). On light surfaces each style adds the focus-visible ring and its own
+ * color group. Stories whose colors come from the surface they sit on
+ * (white-text-red on AZ red, rain on AZ blue, ...) have no color tokens yet —
+ * including the ring, which Arizona Bootstrap switches to white on those
+ * surfaces — so they list only the structural ones.
+ */
+const STRUCTURAL_BUTTON_TOKENS = [
+  'az.component.button.label.',
+  'az.component.button.padding.',
+  'az.component.button.border.',
+  'az.component.button.disabled.',
+  'az.component.button.size.',
+];
+const SOLID_BUTTON_TOKENS = [...STRUCTURAL_BUTTON_TOKENS, 'az.component.button.focus-visible.', 'az.component.button.solid.'];
+const OUTLINE_BUTTON_TOKENS = [...STRUCTURAL_BUTTON_TOKENS, 'az.component.button.focus-visible.', 'az.component.button.outline.'];
+
+/**
  * Default/Hover/Focus-visible shown side by side, each recreating that
  * state's look directly from its own resolved token — not a live
  * `:hover`/`:focus-visible` test (there's no way to make all three
@@ -25,13 +44,40 @@ type ButtonArgs = Parameters<typeof renderButton>[0] & { text?: string; backgrou
  * — focus without a visible ring looks identical to hover); focus-visible
  * additionally shows the ring, the one property exclusive to it.
  */
-const BUTTON_STATES: ButtonState[] = [
+const SOLID_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },
-  { label: 'Hover', css: `& .btn { background-color: ${resolveValue('az.component.button.hover.color')} !important; }` },
+  { label: 'Hover', css: `& .btn { background-color: ${resolveValue('az.component.button.solid.hover.container.color')} !important; }` },
   {
     label: 'Focus-visible',
     css: `& .btn {
-      background-color: ${resolveValue('az.component.button.focus.color')} !important;
+      background-color: ${resolveValue('az.component.button.solid.focus.container.color')} !important;
+      outline: 2px solid ${resolveValue('az.component.button.focus-visible.ring')} !important;
+      outline-offset: 2px;
+    }`,
+  },
+];
+
+/**
+ * Same state model as `SOLID_BUTTON_STATES`, from the `outline.*` tokens:
+ * an outline button fills on hover/focus, so container, border, and label
+ * all change together instead of just the fill.
+ */
+const OUTLINE_BUTTON_STATES: ButtonState[] = [
+  { label: 'Default' },
+  {
+    label: 'Hover',
+    css: `& .btn {
+      color: ${resolveValue('az.component.button.outline.hover.label.color')} !important;
+      background-color: ${resolveValue('az.component.button.outline.hover.container.color')} !important;
+      border-color: ${resolveValue('az.component.button.outline.hover.border.color')} !important;
+    }`,
+  },
+  {
+    label: 'Focus-visible',
+    css: `& .btn {
+      color: ${resolveValue('az.component.button.outline.focus.label.color')} !important;
+      background-color: ${resolveValue('az.component.button.outline.focus.container.color')} !important;
+      border-color: ${resolveValue('az.component.button.outline.focus.border.color')} !important;
       outline: 2px solid ${resolveValue('az.component.button.focus-visible.ring')} !important;
       outline-offset: 2px;
     }`,
@@ -148,8 +194,9 @@ const meta = {
   },
   parameters: {
     implementations,
-    // Lists these in the Tokens addon panel for every Button story (see .storybook/tokens-panel.tsx).
-    tokens: 'az.component.button.',
+    // Tokens addon panel (see .storybook/tokens-panel.tsx): solid is the default
+    // `style`, so stories list the solid tokens unless they override this.
+    tokens: SOLID_BUTTON_TOKENS,
     // Button doesn't wire any `action()` argTypes yet, so the Actions tab would only
     // ever be empty here. Remove this once one is actually added to a story.
     actions: { disable: true },
@@ -343,7 +390,7 @@ export const SolidRedOnWhite: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={SOLID_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -387,7 +434,7 @@ export const SolidRedOnCoolGray: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={SOLID_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -430,7 +477,7 @@ export const SolidRedOnWhiteLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={SOLID_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -471,7 +518,7 @@ export const SolidRedOnCoolGrayLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={SOLID_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -494,9 +541,10 @@ export const SolidRedOnCoolGrayLarge: Story = {
  * classes (`.btn-red`, `.btn-white-text-red`, `.btn-white-text-blue`), not
  * routed through `Button`/`renderButton` since their color values
  * (`white-text-red`, `white-text-blue`) aren't part of that component's
- * typed `color` prop. No dedicated `az.component.*` tokens exist for these
- * variants, so these stories set `parameters.tokens: { disable: true }` to keep the
- * Tokens panel from listing Button's tokens for them.
+ * typed `color` prop. Warm gray is a light surface using plain `.btn-red` /
+ * `.btn-outline-red`, so those stories list that style's tokens. The other
+ * pairings' colors depend on the surface they sit on, which has no tokens
+ * yet, so they list only `STRUCTURAL_BUTTON_TOKENS`.
  */
 function ContextButton({ btnClass }: { btnClass: string }) {
   return (
@@ -533,7 +581,7 @@ function contextButtonImplementations(bgClass: string, btnClass: string): Implem
  * Forces each state's look via Bootstrap's own per-button-class CSS custom
  * properties (`--bs-btn-hover-*`, `--az-btn-focus-outline-color`) — never a
  * literal color — so this works for any real `.btn-*` class without needing
- * to know what color it resolves to. Same state model as `BUTTON_STATES`
+ * to know what color it resolves to. Same state model as `SOLID_BUTTON_STATES`
  * (focus-visible = hover look + ring; plain focus isn't a separate look),
  * just sourced from Bootstrap's variables instead of `az.component.button.*`
  * tokens, since these variants don't have their own tokens.
@@ -577,7 +625,7 @@ function ColorNotImplementedPlaceholder({ color }: { color: string }) {
 }
 
 export const SolidRedOnWarmGray: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
+  parameters: { tokens: SOLID_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-red" />
@@ -596,7 +644,7 @@ export const SolidRedOnWarmGray: Story = {
 };
 
 export const SolidWhiteTextRedOnAzRed: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
+  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-red" />
@@ -626,6 +674,7 @@ export const SolidRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
+    tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
   render: (args, context) => {
@@ -646,6 +695,7 @@ export const SolidRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
+    tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
   render: (args, context) => {
@@ -662,7 +712,7 @@ export const SolidRainOnAzurite: Story = {
 };
 
 export const SolidWhiteTextBlueOnOasis: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
+  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-blue" />
@@ -685,14 +735,16 @@ export const SolidWhiteTextBlueOnOasis: Story = {
  * Routed through the real `Button`/`renderButton` component — `style:
  * 'outline'` is already a typed, supported prop, unlike the bootstrap-only
  * color variants above. Outline swaps which token-driven property becomes
- * the border/text color vs. the fill, so `GENERIC_BOOTSTRAP_BUTTON_STATES`
- * (Bootstrap's own `--bs-btn-hover-*` variables) is used for the state
- * preview rather than `BUTTON_STATES`, which assumes the solid style's
- * background-swap behavior specifically.
+ * the border/text color vs. the fill, so the state preview uses
+ * `OUTLINE_BUTTON_STATES` (the `outline.*` tokens) rather than
+ * `SOLID_BUTTON_STATES`, which only swaps the fill.
  */
 export const OutlineRedOnWhite: Story = {
   args: {
     style: 'outline',
+  },
+  parameters: {
+    tokens: OUTLINE_BUTTON_TOKENS,
   },
   render: (args, context) => {
     const button = renderImplementation('Button', implementations, args, context);
@@ -702,7 +754,7 @@ export const OutlineRedOnWhite: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={OUTLINE_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -728,6 +780,7 @@ export const OutlineRedOnCoolGray: Story = {
     style: 'outline',
   },
   parameters: {
+    tokens: OUTLINE_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
   render: (args, context) => {
@@ -738,7 +791,7 @@ export const OutlineRedOnCoolGray: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={OUTLINE_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -764,6 +817,9 @@ export const OutlineRedOnWhiteLarge: Story = {
     style: 'outline',
     size: 'lg',
   },
+  parameters: {
+    tokens: OUTLINE_BUTTON_TOKENS,
+  },
   render: (args, context) => {
     const button = renderImplementation('Button', implementations, args, context);
 
@@ -772,7 +828,7 @@ export const OutlineRedOnWhiteLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={OUTLINE_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -798,6 +854,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
     size: 'lg',
   },
   parameters: {
+    tokens: OUTLINE_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
   render: (args, context) => {
@@ -808,7 +865,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={OUTLINE_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -833,7 +890,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
  * `color` prop.
  */
 export const OutlineRedOnWarmGray: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
+  parameters: { tokens: OUTLINE_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-red" />
@@ -852,7 +909,7 @@ export const OutlineRedOnWarmGray: Story = {
 };
 
 export const OutlineWhiteOnAzRed: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
+  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />
@@ -876,6 +933,7 @@ export const OutlineRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
+    tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
   render: (args, context) => {
@@ -897,6 +955,7 @@ export const OutlineRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
+    tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
   render: (args, context) => {
@@ -913,7 +972,7 @@ export const OutlineRainOnAzurite: Story = {
 };
 
 export const OutlineWhiteOnOasis: Story = {
-  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
+  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />

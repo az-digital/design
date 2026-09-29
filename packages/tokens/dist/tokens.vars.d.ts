@@ -59,22 +59,11 @@ export const az: {
   },
   "component": {
     "button": {
-      "color": string,
       "label": {
-        "color": string,
         "font": {
           "size": string,
           "weight": string
         }
-      },
-      "hover": {
-        "color": string
-      },
-      "focus": {
-        "color": string
-      },
-      "focusVisible": {
-        "ring": string
       },
       "padding": {
         "x": string,
@@ -86,6 +75,9 @@ export const az: {
       },
       "disabled": {
         "opacity": string
+      },
+      "focusVisible": {
+        "ring": string
       },
       "size": {
         "sm": {
@@ -108,6 +100,54 @@ export const az: {
             "font": {
               "size": string
             }
+          }
+        }
+      },
+      "solid": {
+        "container": {
+          "color": string
+        },
+        "label": {
+          "color": string
+        },
+        "hover": {
+          "container": {
+            "color": string
+          }
+        },
+        "focus": {
+          "container": {
+            "color": string
+          }
+        }
+      },
+      "outline": {
+        "border": {
+          "color": string
+        },
+        "label": {
+          "color": string
+        },
+        "hover": {
+          "container": {
+            "color": string
+          },
+          "border": {
+            "color": string
+          },
+          "label": {
+            "color": string
+          }
+        },
+        "focus": {
+          "container": {
+            "color": string
+          },
+          "border": {
+            "color": string
+          },
+          "label": {
+            "color": string
           }
         }
       }
