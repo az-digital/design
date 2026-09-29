@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import tokensDocument from '../../tokens/tokens.json';
 import { getTokenDisplayItems } from './resolveToken';
 import { getTokenNode } from './tokenGraph';
@@ -120,9 +120,20 @@ const CHIP: CSSProperties = {
 };
 const CHIP_ACTIVE: CSSProperties = { ...CHIP, borderColor: '#1e5288', background: '#1e5288', color: '#fff' };
 const META: CSSProperties = { color: '#697786', fontSize: 12 };
+const CONTROL_LABEL: CSSProperties = { color: '#374151', fontSize: 12, fontWeight: 700 };
+const SEGMENT: CSSProperties = { border: 0, padding: '4px 12px', background: '#fff', color: '#374151', cursor: 'pointer', fontSize: 12, fontFamily: 'inherit', lineHeight: 1.4 };
+const SEGMENT_ACTIVE: CSSProperties = { ...SEGMENT, background: '#1e5288', color: '#fff' };
 
 /** Stable sort by state order, so a table grouped by state lists Default, Hover, Focus, ... */
 const byState = (prefix: string) => (a: TokenData, b: TokenData) => STATE_ORDER.indexOf(tokenState(a.token, prefix)) - STATE_ORDER.indexOf(tokenState(b.token, prefix));
+
+/** Order rows so a table grouped for `mode` lists its groups in the same order the expanded view does. */
+function sortForMode(entry: ComponentEntry, items: TokenData[], mode: GroupMode): TokenData[] {
+  const groupOrder = entry.groups.map((group) => group.label);
+  const groupRank = (item: TokenData) => groupOrder.indexOf(entry.groupOf(item));
+  const stateRank = (item: TokenData) => STATE_ORDER.indexOf(tokenState(item.token, entry.prefix));
+  return [...items].sort((a, b) => (mode === 'style' ? groupRank(a) - groupRank(b) || stateRank(a) - stateRank(b) : stateRank(a) - stateRank(b) || groupRank(a) - groupRank(b)));
+}
 
 /** One component's tokens, sectioned by style (each split by state) or by state (each split by style). */
 function ComponentTokenGroups({ entry, mode }: { entry: ComponentEntry; mode: GroupMode }) {
@@ -156,15 +167,48 @@ function ComponentTokenGroups({ entry, mode }: { entry: ComponentEntry; mode: Gr
   );
 }
 
+/**
+ * Group by is a single choice that rearranges the tokens, so it's a joined
+ * segmented control (a radio group); Filter is a separate set of chips that
+ * combine. Different shapes keep the two from reading as one set of options.
+ */
 function GroupModeToggle({ mode, onChange }: { mode: GroupMode; onChange: (mode: GroupMode) => void }) {
+  const options = [
+    { value: 'style', label: 'Style' },
+    { value: 'state', label: 'State' },
+  ] as const;
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    const next = options[(options.findIndex((option) => option.value === mode) + 1) % options.length];
+    onChange(next.value);
+    (event.currentTarget.querySelector(`[data-value="${next.value}"]`) as HTMLButtonElement | null)?.focus();
+  };
+
   return (
-    <div role="group" aria-label="Group tokens by" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-      <span style={META}>Group by</span>
-      {(['style', 'state'] as const).map((option) => (
-        <button key={option} type="button" aria-pressed={mode === option} onClick={() => onChange(option)} style={mode === option ? CHIP_ACTIVE : CHIP}>
-          {option === 'style' ? 'Style' : 'State'}
-        </button>
-      ))}
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <span id="az-token-group-by-label" style={CONTROL_LABEL}>Group by:</span>
+      <div
+        role="radiogroup"
+        aria-labelledby="az-token-group-by-label"
+        onKeyDown={onKeyDown}
+        style={{ display: 'inline-flex', border: '1px solid #1e5288', borderRadius: 999, overflow: 'hidden' }}
+      >
+        {options.map((option, index) => (
+          <button
+            key={option.value}
+            type="button"
+            role="radio"
+            data-value={option.value}
+            aria-checked={mode === option.value}
+            tabIndex={mode === option.value ? 0 : -1}
+            onClick={() => onChange(option.value)}
+            style={{ ...(mode === option.value ? SEGMENT_ACTIVE : SEGMENT), borderLeft: index > 0 ? '1px solid #1e5288' : 0 }}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -226,12 +270,19 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
           />
         </label>
         <GroupModeToggle mode={mode} onChange={setMode} />
-        <div role="group" aria-label="Filter by type" style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        <div role="group" aria-labelledby="az-token-filter-label" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
+          <span id="az-token-filter-label" style={CONTROL_LABEL}>Filter:</span>
           {allTypes.map((type) => (
             <button key={type} type="button" aria-pressed={types.has(type)} onClick={() => setTypes((current) => toggle(current, type))} style={types.has(type) ? CHIP_ACTIVE : CHIP}>
-              {type}
+              {types.has(type) && <span aria-hidden="true">✓ </span>}
+              {title(type)}
             </button>
           ))}
+          {types.size > 0 && (
+            <button type="button" onClick={() => setTypes(new Set())} style={{ border: 0, background: 'none', padding: '0 4px', color: '#1d65a6', cursor: 'pointer', fontSize: 12, textDecoration: 'underline' }}>
+              Clear
+            </button>
+          )}
         </div>
       </div>
 
@@ -243,7 +294,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
           {results.map(({ entry, items }) => (
             <section key={entry.name} aria-label={`${title(entry.name)} matches`}>
               <h4 style={{ margin: '0 0 6px', fontSize: 15 }}>{title(entry.name)}</h4>
-              <TokenTable items={[...items].sort(byState(entry.prefix))} groupBy={mode === 'style' ? entry.groupOf : (item) => title(tokenState(item.token, entry.prefix))} />
+              <TokenTable items={sortForMode(entry, items, mode)} groupBy={mode === 'style' ? entry.groupOf : (item) => title(tokenState(item.token, entry.prefix))} />
             </section>
           ))}
         </div>
