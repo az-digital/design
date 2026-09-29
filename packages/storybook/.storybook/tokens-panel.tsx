@@ -12,24 +12,29 @@ const PANEL_ID = `${ADDON_ID}/panel`;
  * `parameters.tokens` — which tokens.json groups a story uses, by dot-path
  * prefix (a trailing `*`/`**` is ignored, so `az.component.button.**` works
  * too). Set it on a story file's meta to cover every story in it, or on a
- * single story to override; `false` hides the list for that story.
+ * single story to override; `{ disable: true }` marks a story as having no
+ * tokens of its own. (Not `false`: Storybook's `getCurrentParameter` returns
+ * `value || undefined`, so a falsy parameter never reaches the panel.)
  */
-export type TokensParameter = string | string[] | false;
+export type TokensParameter = string | string[] | { disable: true };
 
 function TokensPanelContent() {
-  const parameter = useParameter<TokensParameter>('tokens', false);
+  const parameter = useParameter<TokensParameter | undefined>('tokens', undefined);
   const [selectedToken, setSelectedToken] = useState<string | null>(null);
 
-  const prefixes = parameter === false ? [] : [parameter].flat();
+  const disabled = typeof parameter === 'object' && !Array.isArray(parameter) && parameter.disable;
+  const prefixes = parameter && !disabled ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix.replace(/\*+$/, '')));
   const selected = items.find((item) => item.token === selectedToken);
 
   if (items.length === 0) {
     return (
       <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>
-        {prefixes.length === 0
-          ? <>This story doesn't declare any tokens. Add <code>parameters.tokens</code> (e.g. <code>'az.component.button.'</code>) to its meta or story.</>
-          : <>No tokens in <code>tokens.json</code> match <code>{prefixes.join(', ')}</code>.</>}
+        {disabled
+          ? <>This story has no design tokens of its own.</>
+          : prefixes.length === 0
+            ? <>This story doesn't declare any tokens. Add <code>parameters.tokens</code> (e.g. <code>'az.component.button.'</code>) to its meta or story.</>
+            : <>No tokens in <code>tokens.json</code> match <code>{prefixes.join(', ')}</code>.</>}
       </p>
     );
   }

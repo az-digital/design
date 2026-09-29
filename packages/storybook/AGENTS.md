@@ -142,10 +142,10 @@ instance that changes as a viewer actually hovers/tabs to it. Two reasons:
   token value (via a small scoped `<style>` block), not a live pseudo-class
   test — this documents design intent, same as a "Tokens by state" table
   does, not live CSS behavior (see "Design tokens vs. CSS vs. Figma" below).
-- It sidesteps needing a hand-built, per-state token list at all. Pass
-  `TokenStatePreview` one `tokenFilter` and it renders the
-  `TokenDisplay` catalog for that filter below the state row. `TokenDisplay`
-  is the in-repository token UI; use it instead of adding a token-table addon.
+- It sidesteps needing a hand-built, per-state token list at all. The
+  story's tokens are listed in the in-repository Tokens addon panel (set
+  `parameters.tokens` on the meta; `{ disable: true }` on a story with no
+  tokens of its own), not rendered in the canvas under the state row.
 
 A real, functional interaction check (does focus actually land, does an
 `onClick` fire) still belongs in a `play` function — that's a different
@@ -242,7 +242,7 @@ Every story can also list its tokens in the **Tokens** addon panel
 uses, usually once on the story file's meta:
 
 ```ts
-parameters: { tokens: 'az.component.button.' } // string, string[], or false to hide
+parameters: { tokens: 'az.component.button.' } // string, string[], or { disable: true }
 ```
 
 The panel is part of the manager bundle, so changes to it (or to `Token.tsx`

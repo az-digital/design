@@ -1,6 +1,4 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
 
 const LABEL_STYLE: CSSProperties = {
   fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -29,20 +27,17 @@ export type ButtonState = {
  * Renders `children` (a real, rendered instance of the component) once per
  * entry in `states`, side by side, each recreating that state's look from
  * its own tokens — so a viewer can compare Default/Hover/Focus-visible
- * without needing to actually hover or Tab to each one. Below that, the
- * token catalog for `tokenFilter`.
+ * without needing to actually hover or Tab to each one. The tokens behind
+ * those states are listed in the Tokens addon panel (`parameters.tokens`).
  */
 export function TokenStatePreview({
   children,
   states,
   pageBackgroundClassName,
-  tokenFilter,
 }: {
   children: ReactNode;
   states: ButtonState[];
   pageBackgroundClassName?: string;
-  /** Omit when there's no dedicated token catalog to show alongside the states (e.g. a variant with no `az.component.*` tokens of its own yet). */
-  tokenFilter?: string;
 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -67,9 +62,6 @@ export function TokenStatePreview({
           );
         })}
       </div>
-      {tokenFilter && (
-        <TokenDisplay items={getTokenDisplayItems(tokenFilter.replace(/\*+$/, ''))} />
-      )}
     </div>
   );
 }

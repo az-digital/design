@@ -343,7 +343,7 @@ export const SolidRedOnWhite: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -387,7 +387,7 @@ export const SolidRedOnCoolGray: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -408,8 +408,9 @@ export const SolidRedOnCoolGray: Story = {
  * Mirrors the approved Figma frame "Solid Button Large Red w/ White
  * Background." Same tokens as `SolidRedOnWhite` for color/label/border —
  * only `az.component.button.size.lg.padding.*` and `.label.font.size` apply
- * instead of the base ones. `tokenFilter` stays the full wildcard so both
- * the base and `size.lg` tokens show together for comparison.
+ * instead of the base ones. The Tokens panel lists the full
+ * `az.component.button.` group, so the base and `size.lg` tokens show
+ * together for comparison.
  */
 export const SolidRedOnWhiteLarge: Story = {
   args: {
@@ -429,7 +430,7 @@ export const SolidRedOnWhiteLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -470,7 +471,7 @@ export const SolidRedOnCoolGrayLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -494,8 +495,8 @@ export const SolidRedOnCoolGrayLarge: Story = {
  * routed through `Button`/`renderButton` since their color values
  * (`white-text-red`, `white-text-blue`) aren't part of that component's
  * typed `color` prop. No dedicated `az.component.*` tokens exist for these
- * variants, so `TokenStatePreview` is used without a `tokenFilter` (no token
- * table, just the states).
+ * variants, so these stories set `parameters.tokens: { disable: true }` to keep the
+ * Tokens panel from listing Button's tokens for them.
  */
 function ContextButton({ btnClass }: { btnClass: string }) {
   return (
@@ -576,7 +577,7 @@ function ColorNotImplementedPlaceholder({ color }: { color: string }) {
 }
 
 export const SolidRedOnWarmGray: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-red" />
@@ -595,7 +596,7 @@ export const SolidRedOnWarmGray: Story = {
 };
 
 export const SolidWhiteTextRedOnAzRed: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-red" />
@@ -661,7 +662,7 @@ export const SolidRainOnAzurite: Story = {
 };
 
 export const SolidWhiteTextBlueOnOasis: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-blue" />
@@ -701,7 +702,7 @@ export const OutlineRedOnWhite: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -737,7 +738,7 @@ export const OutlineRedOnCoolGray: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -771,7 +772,7 @@ export const OutlineRedOnWhiteLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-white" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -807,7 +808,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
     }
 
     return (
-      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES} tokenFilter="az.component.button.**">
+      <TokenStatePreview pageBackgroundClassName="bg-cool-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
         {button}
       </TokenStatePreview>
     );
@@ -832,7 +833,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
  * `color` prop.
  */
 export const OutlineRedOnWarmGray: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-red" />
@@ -851,7 +852,7 @@ export const OutlineRedOnWarmGray: Story = {
 };
 
 export const OutlineWhiteOnAzRed: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />
@@ -912,7 +913,7 @@ export const OutlineRainOnAzurite: Story = {
 };
 
 export const OutlineWhiteOnOasis: Story = {
-  parameters: { implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
+  parameters: { tokens: { disable: true }, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />
