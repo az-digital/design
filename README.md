@@ -89,6 +89,17 @@ It also includes small validation tests covering token grouping and metadata par
 
 The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
 
+### Published Storybook
+
+Each published release is hosted on digital.arizona.edu by version:
+
+- `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
+- [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
+
+To publish, bump `version` in `package.json` (keep the workspace packages in sync), merge to `main`, then publish a GitHub release tagged `v<version>` (e.g. `v0.0.1`). `.github/workflows/publish-docs-site.yml` checks that the tag matches `package.json` and sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`.
+
+Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
+
 ### Storybook MCP for AI Agents
 
 Storybook includes `@storybook/addon-mcp`, which exposes a local Model Context Protocol server while the Storybook dev server is running. See [AGENTS.md](./AGENTS.md) for how coding agents should use it.

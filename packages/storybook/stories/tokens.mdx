@@ -7,7 +7,9 @@ import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
-export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+{/* Release builds set STORYBOOK_GIT_REF to their tag (e.g. v0.0.1) so each version links to its own source. */}
+export const gitRef = import.meta.env.STORYBOOK_GIT_REF || 'main';
+export const githubUrl = `https://github.com/az-digital/design/blob/${gitRef}/packages/tokens/tokens.json`;
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
 export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
