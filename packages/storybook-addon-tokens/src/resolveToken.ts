@@ -108,11 +108,23 @@ export function getAllTokenItems({ order = 'path' }: { order?: Order } = {}): To
 }
 
 /**
+ * `prefix` without its trailing `.` / `*` characters (`az.component.button.**`
+ * → `az.component.button`). A loop rather than `replace(/[.*]+$/, '')`: that
+ * regex backtracks quadratically on a long run of `.`/`*` that isn't at the
+ * end, and prefixes come from whoever calls the package.
+ */
+function trimTrailingWildcards(prefix: string): string {
+  let end = prefix.length;
+  while (end > 0 && (prefix[end - 1] === '.' || prefix[end - 1] === '*')) end -= 1;
+  return prefix.slice(0, end);
+}
+
+/**
  * Every token under `prefix` (a dot-path; a trailing `.`, `*`, or `**` is
  * ignored), sorted by path, or with `order: 'source'` in the source file's order.
  */
 export function getTokenDisplayItems(prefix: string, { order = 'path' }: { order?: Order } = {}): TokenData[] {
-  const base = prefix.replace(/[.*]+$/, '');
+  const base = trimTrailingWildcards(prefix);
   return getAllTokenItems({ order }).filter((item) => item.token === base || item.token.startsWith(`${base}.`));
 }
 
