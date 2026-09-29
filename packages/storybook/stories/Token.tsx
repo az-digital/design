@@ -32,17 +32,41 @@ const PILL_STYLE: CSSProperties = {
   maxWidth: '100%',
   minHeight: 30,
   boxSizing: 'border-box',
-  padding: '4px 14px',
+  padding: '4px 10px 4px 14px',
   border: 0,
   borderRadius: 999,
-  background: '#302d34',
-  color: '#f8f5ff',
   cursor: 'pointer',
   fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
   fontSize: 10,
   fontWeight: 500,
   textAlign: 'left',
 };
+
+/**
+ * Interaction states for the pill. Inline styles can't express :hover or
+ * :focus-visible, so these live in one small stylesheet, injected once into
+ * whichever document renders a pill (the preview iframe or the manager, for
+ * the Tokens addon panel).
+ */
+const PILL_CSS = `
+.az-token-pill { background: #302d34; color: #f8f5ff; transition: background-color 120ms ease; }
+.az-token-pill:hover { background: #4a4552; }
+.az-token-pill:focus-visible { outline: 2px solid #1e5288; outline-offset: 2px; }
+.az-token-pill[aria-pressed='true'] { background: #1e5288; color: #fff; }
+.az-token-pill[aria-pressed='true']:hover { background: #245f9c; }
+.az-token-pill__chevron { opacity: 0.55; transition: opacity 120ms ease, transform 120ms ease; }
+.az-token-pill:hover .az-token-pill__chevron,
+.az-token-pill:focus-visible .az-token-pill__chevron,
+.az-token-pill[aria-pressed='true'] .az-token-pill__chevron { opacity: 1; transform: translateX(2px); }
+`;
+
+function ensurePillStyles() {
+  if (typeof document === 'undefined' || document.getElementById('az-token-pill-styles')) return;
+  const element = document.createElement('style');
+  element.id = 'az-token-pill-styles';
+  element.textContent = PILL_CSS;
+  document.head.appendChild(element);
+}
 
 const DOT_STYLE: CSSProperties = {
   width: 12,
@@ -262,12 +286,14 @@ export function Token({
 }) {
   const [open, setOpen] = useState(false);
   const isSelected = selected ?? open;
+  ensurePillStyles();
 
   return (
     <>
-      <button type="button" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} style={{ ...PILL_STYLE, boxShadow: isSelected ? '0 0 0 2px #fff, 0 0 0 4px #1e5288' : 'none', ...style }}>
+      <button type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
+        <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>
       </button>
       {!onSelect && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
     </>
