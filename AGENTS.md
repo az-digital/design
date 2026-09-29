@@ -37,3 +37,19 @@ Before writing or restructuring a `.stories.tsx` or `.mdx` file in
 for page structure conventions, `play` function pitfalls, and how to keep
 "what tokens.json defines," "what the shipped CSS does," and "which token
 maps to which Figma state" as separate questions.
+
+## Storybook agent CLI
+
+The same skills and tools are also available from the command line, which
+works without an MCP connection:
+
+```bash
+npx storybook skills --all
+```
+
+`npx storybook skills <id>` prints one skill (`stories`, `write-story`,
+`setup`). `npx storybook tools --help` lists the tools that mirror the MCP
+server. `docs list`, `docs show`, and `stories find-by-component` run
+without a dev server; `stories preview` needs `npm run dev:storybook`
+running. Run these from `packages/storybook` (or pass `--cwd
+packages/storybook`).
