@@ -1,6 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
 
 const LABEL_STYLE: CSSProperties = {
   fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -30,7 +29,9 @@ export type ButtonState = {
  * entry in `states`, side by side, each recreating that state's look from
  * its own tokens — so a viewer can compare Default/Hover/Focus-visible
  * without needing to actually hover or Tab to each one. Below that, the
- * searchable token catalog for `tokenFilter`.
+ * full, always-visible token table for `tokenFilter` — click a row to see
+ * its alias chain and description (built into `TokenTable`, not custom
+ * here).
  */
 export function TokenStatePreview({
   children,
@@ -41,7 +42,7 @@ export function TokenStatePreview({
   children: ReactNode;
   states: ButtonState[];
   pageBackgroundClassName?: string;
-  /** Omit when there's no dedicated token catalog to show alongside the states (e.g. a variant with no `az.component.*` tokens of its own yet). */
+  /** Omit when there's no dedicated token table to show alongside the states (e.g. a variant with no `az.component.*` tokens of its own yet). */
   tokenFilter?: string;
 }) {
   return (
@@ -67,12 +68,7 @@ export function TokenStatePreview({
           );
         })}
       </div>
-      {tokenFilter && (
-        <TokenDisplay
-          items={getTokenDisplayItems(tokenFilter.replace(/\*+$/, ''))}
-          searchLabel="Search tokens in use"
-        />
-      )}
+      {tokenFilter && <TokenTable filter={tokenFilter} searchable={false} caption="Tokens in use" />}
     </div>
   );
 }

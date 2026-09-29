@@ -1,9 +1,11 @@
 import type { Preview } from '@storybook/react-vite';
+import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { sourceForImplementation } from '../stories/implementations';
 import '../../tokens/dist/tokens.css';
 
 const preview: Preview = {
+  addons: [swatchbookAddon()],
   initialGlobals: {
     implementation: 'html',
   },

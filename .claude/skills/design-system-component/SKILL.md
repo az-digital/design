@@ -427,26 +427,26 @@ the build exits 0** — a lint warning doesn't mean the output is correct
 either, since `core/valid-dimension` is a warning, not an error:
 
 ```bash
-npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
+npm run build -w @az-digital/tokens   # regenerates dist/tokens.css, dist/tokens.vars.js, and Storybook's .swatchbook/tokens.d.ts
 ```
 
-**Expose them with a filtered `Tokens` story**, using the in-repository
-`TokenDisplay` and token catalog helper:
+**Expose them with a filtered `Tokens` story**, using swatchbook's
+`TokenTable` (already a Storybook addon here — no new dependency):
 
 ```tsx
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
+import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
 
 export const Tokens: Story = {
-  render: () => <TokenDisplay items={getTokenDisplayItems('az.component.card.')} />,
+  render: () => <TokenTable filter="az.component.card.**" />,
 };
 ```
 
 You don't need to do anything else for these to show up in the global token
-catalog (`packages/storybook/stories/tokens.mdx`) — its component-token
-catalog uses the same helper with the `az.component.` prefix. If you want
-them called out there as their own group too, add a filtered section
-following that same pattern.
+catalog (`packages/storybook/stories/tokens.mdx`) — its unfiltered
+`<TokenTable />` and `<TokenNavigator />` already include every token. If you
+want them called out there as their own group too (the way "Component
+tokens" already is for Button), add a filtered section following that same
+pattern.
 
 ## Consuming source live (no build step needed in Storybook)
 

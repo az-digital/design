@@ -1,5 +1,4 @@
 import tokensDocument from '../../tokens/tokens.json';
-import type { TokenDisplayItem } from './TokenDisplay';
 
 export type TokenNode = {
   $type?: string;
@@ -53,50 +52,4 @@ export function resolveChain(path: string): ResolvedLink[] {
 export function resolveValue(path: string): unknown {
   const chain = resolveChain(path);
   return chain.length > 0 ? chain[chain.length - 1].value : undefined;
-}
-
-function formatTokenValue(value: unknown): string {
-  if (typeof value === 'string' || typeof value === 'number') return String(value);
-  if (typeof value === 'object' && value !== null && 'value' in value && 'unit' in value) {
-    const dimension = value as { value: unknown; unit: unknown };
-    return `${dimension.value}${dimension.unit}`;
-  }
-  return JSON.stringify(value) ?? String(value);
-}
-
-export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
-  const items: TokenDisplayItem[] = [];
-  const descendantPrefix = prefix.endsWith('.') ? prefix : `${prefix}.`;
-
-  function visit(node: unknown, path: string[]): void {
-    if (typeof node !== 'object' || node === null || Array.isArray(node)) return;
-    const token = node as TokenNode;
-    const tokenPath = path.join('.');
-
-    if ('$value' in token) {
-      if (tokenPath !== prefix && !tokenPath.startsWith(descendantPrefix)) return;
-      const chain = resolveChain(tokenPath);
-      const resolvedValue = chain.at(-1)?.value;
-      const value = formatTokenValue(resolvedValue);
-      items.push({
-        name: path.at(-1) ?? tokenPath,
-        token: tokenPath,
-        type: token.$type ?? 'unknown',
-        value,
-        sourceValue: formatTokenValue(token.$value),
-        cssVar: `--${tokenPath.replaceAll('.', '-')}`,
-        hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
-        description: token.$description,
-        aliasChain: chain.map((link) => ({ token: link.path, value: formatTokenValue(link.value) })),
-      });
-      return;
-    }
-
-    for (const [key, value] of Object.entries(node)) {
-      if (!key.startsWith('$')) visit(value, [...path, key]);
-    }
-  }
-
-  visit(tokensDocument.az, ['az']);
-  return items.sort((a, b) => a.token.localeCompare(b.token));
 }
