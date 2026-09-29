@@ -170,7 +170,7 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
             {row.guides.map((guide, index) => <TreeGuide key={index} kind={guide} />)}
             {row.branch && <TreeGuide kind={row.branch} />}
             <Token data={data} swatch selected={row.token === token} onSelect={() => onNavigate(row.token)} style={{ whiteSpace: 'nowrap', flexShrink: 0 }} />
-            {isRoot && rootValue && <code style={{ marginLeft: 10, fontSize: 12, color: '#56657a', whiteSpace: 'nowrap' }}>{rootValue.hex?.toLowerCase() ?? rootValue.value}</code>}
+            {isRoot && rootValue && <code style={{ marginLeft: 10, fontSize: 12, color: '#56657a', whiteSpace: 'nowrap' }}>{rootValue.hex ?? rootValue.value}</code>}
             {row.token === token && <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#1e5288', whiteSpace: 'nowrap' }}>← this token</span>}
           </div>
         );
@@ -181,7 +181,8 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
 
 /** A token's resolved value, alias tree, and generated outputs. Shared by the drawer and the Tokens addon panel. */
 export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onNavigate: (token: string) => void }) {
-  const resolved = data.hex?.toLowerCase() ?? data.value;
+  // Printed exactly as tokens.json writes it: never re-cased or reformatted.
+  const resolved = data.hex ?? data.value;
   const exportRows = [
     { label: 'CSS VARIABLE', value: data.cssVar },
     { label: 'SASS VARIABLE', value: data.sassVar ?? `$${data.token.replace(/\./g, '-')}` },

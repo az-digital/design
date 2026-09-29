@@ -253,6 +253,10 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
     );
   }
 
+  if (entries.length === 0) {
+    return <p style={{ ...META, fontSize: 14 }}>No component tokens yet. Add them under <code>az.component.&lt;component&gt;</code> in <code>packages/tokens/tokens.json</code> and they&rsquo;ll be listed here.</p>;
+  }
+
   const results = filtering ? entries.map((entry) => ({ entry, items: entry.items.filter(matches) })).filter(({ items }) => items.length > 0) : [];
   const resultCount = results.reduce((total, { items }) => total + items.length, 0);
 
