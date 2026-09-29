@@ -1,0 +1,4884 @@
+{
+  "bs": {
+    "red": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-red",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.blue"
+      }
+    },
+    "bloom": {
+      "$type": "string",
+      "$value": "#ef4056",
+      "$extensions": {
+        "cssVariable": "--bs-bloom",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "chili": {
+      "$type": "string",
+      "$value": "#8b0015",
+      "$extensions": {
+        "cssVariable": "--bs-chili",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "blue": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-blue",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.red"
+      }
+    },
+    "sky": {
+      "$type": "string",
+      "$value": "#81d3eb",
+      "$extensions": {
+        "cssVariable": "--bs-sky",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "oasis": {
+      "$type": "string",
+      "$value": "#378dbd",
+      "$extensions": {
+        "cssVariable": "--bs-oasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "azurite": {
+      "$type": "string",
+      "$value": "#1e5288",
+      "$extensions": {
+        "cssVariable": "--bs-azurite",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.azurite"
+      }
+    },
+    "midnight": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-midnight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "cool-gray": {
+      "$type": "string",
+      "$value": "#e2e9eb",
+      "$extensions": {
+        "cssVariable": "--bs-cool-gray",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warm-gray": {
+      "$type": "string",
+      "$value": "#f4ede5",
+      "$extensions": {
+        "cssVariable": "--bs-warm-gray",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "leaf": {
+      "$type": "string",
+      "$value": "#70b865",
+      "$extensions": {
+        "cssVariable": "--bs-leaf",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "river": {
+      "$type": "string",
+      "$value": "#007d84",
+      "$extensions": {
+        "cssVariable": "--bs-river",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "silver": {
+      "$type": "string",
+      "$value": "#9eabae",
+      "$extensions": {
+        "cssVariable": "--bs-silver",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "mesa": {
+      "$type": "string",
+      "$value": "#a95c42",
+      "$extensions": {
+        "cssVariable": "--bs-mesa",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "ash": {
+      "$type": "string",
+      "$value": "#403635",
+      "$extensions": {
+        "cssVariable": "--bs-ash",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "sage": {
+      "$type": "string",
+      "$value": "#4a634e",
+      "$extensions": {
+        "cssVariable": "--bs-sage",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "white": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-white",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "black": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-black",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-100": {
+      "$type": "string",
+      "$value": "#f8f9fa",
+      "$extensions": {
+        "cssVariable": "--bs-gray-100",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-200": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-gray-200",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-300": {
+      "$type": "string",
+      "$value": "#dee2e6",
+      "$extensions": {
+        "cssVariable": "--bs-gray-300",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-400": {
+      "$type": "string",
+      "$value": "#ced4da",
+      "$extensions": {
+        "cssVariable": "--bs-gray-400",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-500": {
+      "$type": "string",
+      "$value": "#adb5bd",
+      "$extensions": {
+        "cssVariable": "--bs-gray-500",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-600": {
+      "$type": "string",
+      "$value": "#6c757d",
+      "$extensions": {
+        "cssVariable": "--bs-gray-600",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-700": {
+      "$type": "string",
+      "$value": "#495057",
+      "$extensions": {
+        "cssVariable": "--bs-gray-700",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-800": {
+      "$type": "string",
+      "$value": "#343a40",
+      "$extensions": {
+        "cssVariable": "--bs-gray-800",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gray-900": {
+      "$type": "string",
+      "$value": "#212529",
+      "$extensions": {
+        "cssVariable": "--bs-gray-900",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "primary": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-primary",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-secondary",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "success": {
+      "$type": "string",
+      "$value": "#70b865",
+      "$extensions": {
+        "cssVariable": "--bs-success",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "info": {
+      "$type": "string",
+      "$value": "#81d3eb",
+      "$extensions": {
+        "cssVariable": "--bs-info",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warning": {
+      "$type": "string",
+      "$value": "#f19e1f",
+      "$extensions": {
+        "cssVariable": "--bs-warning",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "danger": {
+      "$type": "string",
+      "$value": "#a95c42",
+      "$extensions": {
+        "cssVariable": "--bs-danger",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "light": {
+      "$type": "string",
+      "$value": "#dee2e6",
+      "$extensions": {
+        "cssVariable": "--bs-light",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark": {
+      "$type": "string",
+      "$value": "#343a40",
+      "$extensions": {
+        "cssVariable": "--bs-dark",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "primary-rgb": {
+      "$type": "string",
+      "$value": "171, 5, 32",
+      "$extensions": {
+        "cssVariable": "--bs-primary-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-rgb": {
+      "$type": "string",
+      "$value": "12, 35, 75",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "success-rgb": {
+      "$type": "string",
+      "$value": "112, 184, 101",
+      "$extensions": {
+        "cssVariable": "--bs-success-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "info-rgb": {
+      "$type": "string",
+      "$value": "129, 211, 235",
+      "$extensions": {
+        "cssVariable": "--bs-info-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warning-rgb": {
+      "$type": "string",
+      "$value": "241, 158, 31",
+      "$extensions": {
+        "cssVariable": "--bs-warning-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "danger-rgb": {
+      "$type": "string",
+      "$value": "169, 92, 66",
+      "$extensions": {
+        "cssVariable": "--bs-danger-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "light-rgb": {
+      "$type": "string",
+      "$value": "222, 226, 230",
+      "$extensions": {
+        "cssVariable": "--bs-light-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark-rgb": {
+      "$type": "string",
+      "$value": "52, 58, 64",
+      "$extensions": {
+        "cssVariable": "--bs-dark-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "primary-text-emphasis": {
+      "$type": "string",
+      "$value": "#44020d",
+      "$extensions": {
+        "cssVariable": "--bs-primary-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-text-emphasis": {
+      "$type": "string",
+      "$value": "#050e1e",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "success-text-emphasis": {
+      "$type": "string",
+      "$value": "#2d4a28",
+      "$extensions": {
+        "cssVariable": "--bs-success-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "info-text-emphasis": {
+      "$type": "string",
+      "$value": "#34545e",
+      "$extensions": {
+        "cssVariable": "--bs-info-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warning-text-emphasis": {
+      "$type": "string",
+      "$value": "#603f0c",
+      "$extensions": {
+        "cssVariable": "--bs-warning-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "danger-text-emphasis": {
+      "$type": "string",
+      "$value": "#44251a",
+      "$extensions": {
+        "cssVariable": "--bs-danger-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "light-text-emphasis": {
+      "$type": "string",
+      "$value": "#495057",
+      "$extensions": {
+        "cssVariable": "--bs-light-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark-text-emphasis": {
+      "$type": "string",
+      "$value": "#495057",
+      "$extensions": {
+        "cssVariable": "--bs-dark-text-emphasis",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "primary-bg-subtle": {
+      "$type": "string",
+      "$value": "#eecdd2",
+      "$extensions": {
+        "cssVariable": "--bs-primary-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-bg-subtle": {
+      "$type": "string",
+      "$value": "#ced3db",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "success-bg-subtle": {
+      "$type": "string",
+      "$value": "#e2f1e0",
+      "$extensions": {
+        "cssVariable": "--bs-success-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "info-bg-subtle": {
+      "$type": "string",
+      "$value": "#e6f6fb",
+      "$extensions": {
+        "cssVariable": "--bs-info-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warning-bg-subtle": {
+      "$type": "string",
+      "$value": "#fcecd2",
+      "$extensions": {
+        "cssVariable": "--bs-warning-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "danger-bg-subtle": {
+      "$type": "string",
+      "$value": "#eeded9",
+      "$extensions": {
+        "cssVariable": "--bs-danger-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "light-bg-subtle": {
+      "$type": "string",
+      "$value": "#fcfcfd",
+      "$extensions": {
+        "cssVariable": "--bs-light-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark-bg-subtle": {
+      "$type": "string",
+      "$value": "#ced4da",
+      "$extensions": {
+        "cssVariable": "--bs-dark-bg-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "primary-border-subtle": {
+      "$type": "string",
+      "$value": "#dd9ba6",
+      "$extensions": {
+        "cssVariable": "--bs-primary-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-border-subtle": {
+      "$type": "string",
+      "$value": "#9ea7b7",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "success-border-subtle": {
+      "$type": "string",
+      "$value": "#c6e3c1",
+      "$extensions": {
+        "cssVariable": "--bs-success-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "info-border-subtle": {
+      "$type": "string",
+      "$value": "#cdedf7",
+      "$extensions": {
+        "cssVariable": "--bs-info-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warning-border-subtle": {
+      "$type": "string",
+      "$value": "#f9d8a5",
+      "$extensions": {
+        "cssVariable": "--bs-warning-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "danger-border-subtle": {
+      "$type": "string",
+      "$value": "#ddbeb3",
+      "$extensions": {
+        "cssVariable": "--bs-danger-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "light-border-subtle": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-light-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark-border-subtle": {
+      "$type": "string",
+      "$value": "#adb5bd",
+      "$extensions": {
+        "cssVariable": "--bs-dark-border-subtle",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "white-rgb": {
+      "$type": "string",
+      "$value": "255, 255, 255",
+      "$extensions": {
+        "cssVariable": "--bs-white-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "black-rgb": {
+      "$type": "string",
+      "$value": "0, 0, 0",
+      "$extensions": {
+        "cssVariable": "--bs-black-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "font-sans-serif": {
+      "$type": "string",
+      "$value": "proxima-nova, calibri, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "$extensions": {
+        "cssVariable": "--bs-font-sans-serif",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "font-monospace": {
+      "$type": "string",
+      "$value": "SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+      "$extensions": {
+        "cssVariable": "--bs-font-monospace",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gradient": {
+      "$type": "string",
+      "$value": "linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))",
+      "$extensions": {
+        "cssVariable": "--bs-gradient",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-font-family": {
+      "$type": "string",
+      "$value": "var(--bs-font-sans-serif)",
+      "$extensions": {
+        "cssVariable": "--bs-body-font-family",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-body-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-font-weight": {
+      "$type": "string",
+      "$value": "400",
+      "$extensions": {
+        "cssVariable": "--bs-body-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-line-height": {
+      "$type": "string",
+      "$value": "1.5",
+      "$extensions": {
+        "cssVariable": "--bs-body-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-color": {
+      "$type": "string",
+      "$value": "#212529",
+      "$extensions": {
+        "cssVariable": "--bs-body-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-color-rgb": {
+      "$type": "string",
+      "$value": "33, 37, 41",
+      "$extensions": {
+        "cssVariable": "--bs-body-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-bg": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-body-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "body-bg-rgb": {
+      "$type": "string",
+      "$value": "255, 255, 255",
+      "$extensions": {
+        "cssVariable": "--bs-body-bg-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "emphasis-color": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-emphasis-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "emphasis-color-rgb": {
+      "$type": "string",
+      "$value": "0, 0, 0",
+      "$extensions": {
+        "cssVariable": "--bs-emphasis-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-color": {
+      "$type": "string",
+      "$value": "rgba(33, 37, 41, 0.75)",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-color-rgb": {
+      "$type": "string",
+      "$value": "33, 37, 41",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-bg": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "secondary-bg-rgb": {
+      "$type": "string",
+      "$value": "233, 236, 239",
+      "$extensions": {
+        "cssVariable": "--bs-secondary-bg-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tertiary-color": {
+      "$type": "string",
+      "$value": "rgba(33, 37, 41, 0.5)",
+      "$extensions": {
+        "cssVariable": "--bs-tertiary-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tertiary-color-rgb": {
+      "$type": "string",
+      "$value": "33, 37, 41",
+      "$extensions": {
+        "cssVariable": "--bs-tertiary-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tertiary-bg": {
+      "$type": "string",
+      "$value": "#f8f9fa",
+      "$extensions": {
+        "cssVariable": "--bs-tertiary-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tertiary-bg-rgb": {
+      "$type": "string",
+      "$value": "248, 249, 250",
+      "$extensions": {
+        "cssVariable": "--bs-tertiary-bg-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "heading-color": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "cssVariable": "--bs-heading-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-color": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-link-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-color-rgb": {
+      "$type": "string",
+      "$value": "171, 5, 32",
+      "$extensions": {
+        "cssVariable": "--bs-link-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-decoration": {
+      "$type": "string",
+      "$value": "underline",
+      "$extensions": {
+        "cssVariable": "--bs-link-decoration",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-hover-color": {
+      "$type": "string",
+      "$value": "#8b0015",
+      "$extensions": {
+        "cssVariable": "--bs-link-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-hover-color-rgb": {
+      "$type": "string",
+      "$value": "139, 0, 21",
+      "$extensions": {
+        "cssVariable": "--bs-link-hover-color-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "code-color": {
+      "$type": "string",
+      "$value": "#d63384",
+      "$extensions": {
+        "cssVariable": "--bs-code-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "highlight-color": {
+      "$type": "string",
+      "$value": "#212529",
+      "$extensions": {
+        "cssVariable": "--bs-highlight-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "highlight-bg": {
+      "$type": "string",
+      "$value": "#fff3cd",
+      "$extensions": {
+        "cssVariable": "--bs-highlight-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-width": {
+      "$type": "string",
+      "$value": "1px",
+      "$extensions": {
+        "cssVariable": "--bs-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-style": {
+      "$type": "string",
+      "$value": "solid",
+      "$extensions": {
+        "cssVariable": "--bs-border-style",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-color": {
+      "$type": "string",
+      "$value": "#dee2e6",
+      "$extensions": {
+        "cssVariable": "--bs-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-color-translucent": {
+      "$type": "string",
+      "$value": "rgba(0, 0, 0, 0.175)",
+      "$extensions": {
+        "cssVariable": "--bs-border-color-translucent",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius": {
+      "$type": "string",
+      "$value": "0.375rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-sm": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-sm",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-lg": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-lg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-xl": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-xl",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-xxl": {
+      "$type": "string",
+      "$value": "2rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-xxl",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-2xl": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius-xxl)",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-2xl",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-radius-pill": {
+      "$type": "string",
+      "$value": "50rem",
+      "$extensions": {
+        "cssVariable": "--bs-border-radius-pill",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "box-shadow": {
+      "$type": "string",
+      "$value": "0 0.25rem 1rem rgba(0, 0, 0, 0.15)",
+      "$extensions": {
+        "cssVariable": "--bs-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "box-shadow-sm": {
+      "$type": "string",
+      "$value": "0 0.1rem 0.25rem rgba(0, 0, 0, 0.075)",
+      "$extensions": {
+        "cssVariable": "--bs-box-shadow-sm",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "box-shadow-lg": {
+      "$type": "string",
+      "$value": "0 0.75rem 3rem rgba(0, 0, 0, 0.175)",
+      "$extensions": {
+        "cssVariable": "--bs-box-shadow-lg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "box-shadow-inset": {
+      "$type": "string",
+      "$value": "inset 0 1px 2px rgba(0, 0, 0, 0.075)",
+      "$extensions": {
+        "cssVariable": "--bs-box-shadow-inset",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "focus-ring-width": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-focus-ring-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "focus-ring-opacity": {
+      "$type": "string",
+      "$value": "0.5",
+      "$extensions": {
+        "cssVariable": "--bs-focus-ring-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "focus-ring-color": {
+      "$type": "string",
+      "$value": "rgba(171, 5, 32, 0.5)",
+      "$extensions": {
+        "cssVariable": "--bs-focus-ring-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-valid-color": {
+      "$type": "string",
+      "$value": "#70b865",
+      "$extensions": {
+        "cssVariable": "--bs-form-valid-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-valid-border-color": {
+      "$type": "string",
+      "$value": "#70b865",
+      "$extensions": {
+        "cssVariable": "--bs-form-valid-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-invalid-color": {
+      "$type": "string",
+      "$value": "#a95c42",
+      "$extensions": {
+        "cssVariable": "--bs-form-invalid-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-invalid-border-color": {
+      "$type": "string",
+      "$value": "#a95c42",
+      "$extensions": {
+        "cssVariable": "--bs-form-invalid-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gutter-x": {
+      "$type": "string",
+      "$value": "1.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-gutter-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "gutter-y": {
+      "$type": "string",
+      "$value": "0",
+      "$extensions": {
+        "cssVariable": "--bs-gutter-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-xs": {
+      "$type": "string",
+      "$value": "0",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-xs",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-sm": {
+      "$type": "string",
+      "$value": "576px",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-sm",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-md": {
+      "$type": "string",
+      "$value": "768px",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-md",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-lg": {
+      "$type": "string",
+      "$value": "992px",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-lg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-xl": {
+      "$type": "string",
+      "$value": "1200px",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-xl",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breakpoint-xxl": {
+      "$type": "string",
+      "$value": "1400px",
+      "$extensions": {
+        "cssVariable": "--bs-breakpoint-xxl",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-color-type": {
+      "$type": "string",
+      "$value": "initial",
+      "$extensions": {
+        "cssVariable": "--bs-table-color-type",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-bg-type": {
+      "$type": "string",
+      "$value": "initial",
+      "$extensions": {
+        "cssVariable": "--bs-table-bg-type",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-color-state": {
+      "$type": "string",
+      "$value": "initial",
+      "$extensions": {
+        "cssVariable": "--bs-table-color-state",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-bg-state": {
+      "$type": "string",
+      "$value": "initial",
+      "$extensions": {
+        "cssVariable": "--bs-table-bg-state",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-color": {
+      "$type": "string",
+      "$value": "var(--bs-emphasis-color)",
+      "$extensions": {
+        "cssVariable": "--bs-table-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-table-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-table-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-accent-bg": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-table-accent-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-striped-color": {
+      "$type": "string",
+      "$value": "var(--bs-emphasis-color)",
+      "$extensions": {
+        "cssVariable": "--bs-table-striped-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-striped-bg": {
+      "$type": "string",
+      "$value": "rgba(222, 226, 230, 0.35)",
+      "$extensions": {
+        "cssVariable": "--bs-table-striped-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-active-color": {
+      "$type": "string",
+      "$value": "var(--bs-emphasis-color)",
+      "$extensions": {
+        "cssVariable": "--bs-table-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-active-bg": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-emphasis-color-rgb), 0.1)",
+      "$extensions": {
+        "cssVariable": "--bs-table-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-hover-color": {
+      "$type": "string",
+      "$value": "var(--bs-emphasis-color)",
+      "$extensions": {
+        "cssVariable": "--bs-table-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "table-hover-bg": {
+      "$type": "string",
+      "$value": "rgba(222, 226, 230, 0.6)",
+      "$extensions": {
+        "cssVariable": "--bs-table-hover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-select-bg-img": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-form-select-bg-img",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-check-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-form-check-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-check-bg-image": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-form-check-bg-image",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-switch-bg": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-form-switch-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "form-select-bg-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2370b865' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-form-select-bg-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-padding-x": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-btn-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-btn-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-font-family": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-btn-font-family",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-btn-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-font-weight": {
+      "$type": "string",
+      "$value": "500",
+      "$extensions": {
+        "cssVariable": "--bs-btn-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-line-height": {
+      "$type": "string",
+      "$value": "1.5",
+      "$extensions": {
+        "cssVariable": "--bs-btn-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-bg": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-btn-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-border-width": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--bs-btn-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-border-color": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-btn-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-border-radius": {
+      "$type": "string",
+      "$value": "3rem",
+      "$extensions": {
+        "cssVariable": "--bs-btn-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-hover-border-color": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-btn-hover-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-box-shadow": {
+      "$type": "string",
+      "$value": "inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-disabled-opacity": {
+      "$type": "string",
+      "$value": "0.65",
+      "$extensions": {
+        "cssVariable": "--bs-btn-disabled-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-focus-box-shadow": {
+      "$type": "string",
+      "$value": "0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-focus-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-hover-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-btn-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-hover-bg": {
+      "$type": "string",
+      "$value": "#91041b",
+      "$extensions": {
+        "cssVariable": "--bs-btn-hover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-focus-shadow-rgb": {
+      "$type": "string",
+      "$value": "184, 43, 65",
+      "$extensions": {
+        "cssVariable": "--bs-btn-focus-shadow-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-active-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-btn-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-active-bg": {
+      "$type": "string",
+      "$value": "#89041a",
+      "$extensions": {
+        "cssVariable": "--bs-btn-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-active-border-color": {
+      "$type": "string",
+      "$value": "#800418",
+      "$extensions": {
+        "cssVariable": "--bs-btn-active-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-active-shadow": {
+      "$type": "string",
+      "$value": "inset 0 3px 5px rgba(0, 0, 0, 0.125)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-active-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-disabled-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-btn-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-disabled-bg": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-btn-disabled-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-disabled-border-color": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-btn-disabled-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-zindex": {
+      "$type": "string",
+      "$value": "1000",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-min-width": {
+      "$type": "string",
+      "$value": "10rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-min-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-padding-x": {
+      "$type": "string",
+      "$value": "0",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-spacer": {
+      "$type": "string",
+      "$value": "0.125rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-spacer",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-color": {
+      "$type": "string",
+      "$value": "#e2e9eb",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-bg": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-inner-border-radius": {
+      "$type": "string",
+      "$value": "calc(var(--bs-border-radius) - var(--bs-border-width))",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-inner-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-divider-bg": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-divider-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-divider-margin-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-divider-margin-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow)",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-hover-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-hover-bg": {
+      "$type": "string",
+      "$value": "#1e5288",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-hover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-active-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-active-bg": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-link-disabled-color": {
+      "$type": "string",
+      "$value": "#6c757d",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-link-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-item-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-item-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-item-padding-y": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-item-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-header-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-header-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-header-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-header-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dropdown-header-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-dropdown-header-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "position": {
+      "$type": "string",
+      "$value": "start",
+      "$extensions": {
+        "cssVariable": "--bs-position",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-font-weight": {
+      "$type": "string",
+      "$value": "700",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-color": {
+      "$type": "string",
+      "$value": "#1e5288",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-hover-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-disabled-color": {
+      "$type": "string",
+      "$value": "#49595e",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-border-color": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-link-hover-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg) var(--bs-secondary-bg) #e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-link-hover-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-link-active-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-link-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-link-active-bg": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-link-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-tabs-link-active-border-color": {
+      "$type": "string",
+      "$value": "#e9ecef #e9ecef #fff",
+      "$extensions": {
+        "cssVariable": "--bs-nav-tabs-link-active-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-pills-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-nav-pills-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-pills-link-active-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-nav-pills-link-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-pills-link-active-bg": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-nav-pills-link-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-underline-gap": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-nav-underline-gap",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-underline-border-width": {
+      "$type": "string",
+      "$value": "0.125rem",
+      "$extensions": {
+        "cssVariable": "--bs-nav-underline-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-underline-link-active-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-nav-underline-link-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-padding-x": {
+      "$type": "string",
+      "$value": "0",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-padding-y": {
+      "$type": "string",
+      "$value": "0",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-color": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-emphasis-color-rgb), 0.65)",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-hover-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-disabled-color": {
+      "$type": "string",
+      "$value": "#49595e",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-active-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-padding-y": {
+      "$type": "string",
+      "$value": "0.3125rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-margin-end": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-margin-end",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-font-size": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-hover-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-nav-link-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-nav-link-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-padding-y": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-padding-x": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-font-size": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-icon-bg": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-icon-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-border-color": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-emphasis-color-rgb), 0.15)",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-border-radius": {
+      "$type": "string",
+      "$value": "3rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-focus-width": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-focus-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-toggler-transition": {
+      "$type": "string",
+      "$value": "box-shadow 0.15s ease-in-out",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-toggler-transition",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-spacer-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-spacer-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-spacer-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-spacer-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-title-spacer-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-title-spacer-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-title-color": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-title-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-subtitle-color": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-subtitle-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-card-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-card-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-card-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-box-shadow": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-inner-border-radius": {
+      "$type": "string",
+      "$value": "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+      "$extensions": {
+        "cssVariable": "--bs-card-inner-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-cap-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-cap-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-cap-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-cap-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-cap-bg": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-body-color-rgb), 0.03)",
+      "$extensions": {
+        "cssVariable": "--bs-card-cap-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-cap-color": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-cap-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-height": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-color": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-card-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-card-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-img-overlay-padding": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-img-overlay-padding",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "card-group-margin": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-card-group-margin",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-transition": {
+      "$type": "string",
+      "$value": "color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-transition",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-inner-border-radius": {
+      "$type": "string",
+      "$value": "calc(var(--bs-border-radius) - (var(--bs-border-width)))",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-inner-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-padding-x": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-bg": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23212529' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-icon-width": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-icon-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-icon-transform": {
+      "$type": "string",
+      "$value": "rotate(-180deg)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-icon-transform",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-icon-transition": {
+      "$type": "string",
+      "$value": "transform 0.2s ease-in-out",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-icon-transition",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-active-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2344020d' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-active-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-btn-focus-box-shadow": {
+      "$type": "string",
+      "$value": "0 0 0 0.25rem rgba(171, 5, 32, 0.5)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-btn-focus-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-body-padding-x": {
+      "$type": "string",
+      "$value": "1.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-body-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-body-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-body-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-active-color": {
+      "$type": "string",
+      "$value": "var(--bs-accordion-btn-color)",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "accordion-active-bg": {
+      "$type": "string",
+      "$value": "#e9ecef",
+      "$extensions": {
+        "cssVariable": "--bs-accordion-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-padding-y": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-margin-bottom": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-margin-bottom",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-bg": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-border-radius": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-divider-color": {
+      "$type": "string",
+      "$value": "#6c757d",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-divider-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-item-padding-x": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-item-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "breadcrumb-item-active-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-color)",
+      "$extensions": {
+        "cssVariable": "--bs-breadcrumb-item-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-padding-x": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-padding-y": {
+      "$type": "string",
+      "$value": "0.375rem",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-color": {
+      "$type": "string",
+      "$value": "#1e5288",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-hover-color": {
+      "$type": "string",
+      "$value": "#001c48",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-hover-bg": {
+      "$type": "string",
+      "$value": "var(--bs-tertiary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-hover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-hover-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-hover-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-focus-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-focus-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-focus-bg": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-focus-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-focus-box-shadow": {
+      "$type": "string",
+      "$value": "0 0 0 0.25rem rgba(12, 35, 75, 0.25)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-focus-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-active-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-active-bg": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-active-border-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-active-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-disabled-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-color)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-disabled-bg": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-disabled-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "pagination-disabled-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-pagination-disabled-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-padding-x": {
+      "$type": "string",
+      "$value": "0.65em",
+      "$extensions": {
+        "cssVariable": "--bs-badge-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-padding-y": {
+      "$type": "string",
+      "$value": "0.35em",
+      "$extensions": {
+        "cssVariable": "--bs-badge-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-font-size": {
+      "$type": "string",
+      "$value": "0.75em",
+      "$extensions": {
+        "cssVariable": "--bs-badge-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-font-weight": {
+      "$type": "string",
+      "$value": "700",
+      "$extensions": {
+        "cssVariable": "--bs-badge-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-badge-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "badge-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-badge-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-bg": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-alert-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-alert-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-alert-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-margin-bottom": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-alert-margin-bottom",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-color": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "cssVariable": "--bs-alert-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-border-color": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--bs-alert-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-border": {
+      "$type": "string",
+      "$value": "var(--bs-border-width) solid var(--bs-alert-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-alert-border",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-alert-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "alert-link-color": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "cssVariable": "--bs-alert-link-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-height": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-progress-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-font-size": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-progress-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-bg": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-progress-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-progress-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow-inset)",
+      "$extensions": {
+        "cssVariable": "--bs-progress-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-bar-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-progress-bar-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-bar-bg": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--bs-progress-bar-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "progress-bar-transition": {
+      "$type": "string",
+      "$value": "width 0.6s ease",
+      "$extensions": {
+        "cssVariable": "--bs-progress-bar-transition",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-item-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-item-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-item-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-item-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-action-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-action-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-action-hover-color": {
+      "$type": "string",
+      "$value": "var(--bs-emphasis-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-action-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-action-hover-bg": {
+      "$type": "string",
+      "$value": "var(--bs-tertiary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-action-hover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-action-active-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-action-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-action-active-bg": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-action-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-disabled-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-color)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-disabled-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-disabled-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-active-color": {
+      "$type": "string",
+      "$value": "#fff",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-active-bg": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "list-group-active-border-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-list-group-active-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-color": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-bg": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-opacity": {
+      "$type": "string",
+      "$value": "0.5",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-hover-opacity": {
+      "$type": "string",
+      "$value": "0.75",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-hover-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-focus-shadow": {
+      "$type": "string",
+      "$value": "0 0 0 0.25rem rgba(171, 5, 32, 0.5)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-focus-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-focus-opacity": {
+      "$type": "string",
+      "$value": "1",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-focus-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-disabled-opacity": {
+      "$type": "string",
+      "$value": "0.25",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-disabled-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "btn-close-filter": {
+      "$type": "string",
+      "$value": "invert(1) grayscale(100%) brightness(200%)",
+      "$extensions": {
+        "cssVariable": "--bs-btn-close-filter",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-zindex": {
+      "$type": "string",
+      "$value": "1090",
+      "$extensions": {
+        "cssVariable": "--bs-toast-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-padding-x": {
+      "$type": "string",
+      "$value": "0.75rem",
+      "$extensions": {
+        "cssVariable": "--bs-toast-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-toast-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-spacing": {
+      "$type": "string",
+      "$value": "1.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-toast-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-max-width": {
+      "$type": "string",
+      "$value": "350px",
+      "$extensions": {
+        "cssVariable": "--bs-toast-max-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-font-size": {
+      "$type": "string",
+      "$value": "0.875rem",
+      "$extensions": {
+        "cssVariable": "--bs-toast-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-color": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-toast-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-bg": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-body-bg-rgb), 0.85)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-header-color": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-color)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-header-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-header-bg": {
+      "$type": "string",
+      "$value": "rgba(var(--bs-body-bg-rgb), 0.85)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-header-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "toast-header-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-toast-header-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-zindex": {
+      "$type": "string",
+      "$value": "1055",
+      "$extensions": {
+        "cssVariable": "--bs-modal-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-width": {
+      "$type": "string",
+      "$value": "500px",
+      "$extensions": {
+        "cssVariable": "--bs-modal-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-padding": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-padding",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-margin": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-margin",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius-lg)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow-sm)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-inner-border-radius": {
+      "$type": "string",
+      "$value": "calc(var(--bs-border-radius-lg) - (var(--bs-border-width)))",
+      "$extensions": {
+        "cssVariable": "--bs-modal-inner-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-header-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-header-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-header-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-header-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-header-padding": {
+      "$type": "string",
+      "$value": "1rem 1rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-header-padding",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-header-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-header-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-header-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-header-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-title-line-height": {
+      "$type": "string",
+      "$value": "1.5",
+      "$extensions": {
+        "cssVariable": "--bs-modal-title-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-footer-gap": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-modal-footer-gap",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-footer-bg": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-modal-footer-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-footer-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-footer-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "modal-footer-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-modal-footer-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "backdrop-zindex": {
+      "$type": "string",
+      "$value": "1050",
+      "$extensions": {
+        "cssVariable": "--bs-backdrop-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "backdrop-bg": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-backdrop-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "backdrop-opacity": {
+      "$type": "string",
+      "$value": "0.5",
+      "$extensions": {
+        "cssVariable": "--bs-backdrop-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-zindex": {
+      "$type": "string",
+      "$value": "1080",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-max-width": {
+      "$type": "string",
+      "$value": "200px",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-max-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-padding-x": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-padding-y": {
+      "$type": "string",
+      "$value": "0.25rem",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-margin": {
+      "$type": "string",
+      "$value": "",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-margin",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-font-size": {
+      "$type": "string",
+      "$value": "0.875rem",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-bg": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius)",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-opacity": {
+      "$type": "string",
+      "$value": "0.9",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-arrow-width": {
+      "$type": "string",
+      "$value": "0.8rem",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-arrow-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "tooltip-arrow-height": {
+      "$type": "string",
+      "$value": "0.4rem",
+      "$extensions": {
+        "cssVariable": "--bs-tooltip-arrow-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-zindex": {
+      "$type": "string",
+      "$value": "1070",
+      "$extensions": {
+        "cssVariable": "--bs-popover-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-max-width": {
+      "$type": "string",
+      "$value": "276px",
+      "$extensions": {
+        "cssVariable": "--bs-popover-max-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-border-radius": {
+      "$type": "string",
+      "$value": "var(--bs-border-radius-lg)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-inner-border-radius": {
+      "$type": "string",
+      "$value": "calc(var(--bs-border-radius-lg) - var(--bs-border-width))",
+      "$extensions": {
+        "cssVariable": "--bs-popover-inner-border-radius",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-header-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-header-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-header-padding-y": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-header-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-header-font-size": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-header-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-header-color": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "cssVariable": "--bs-popover-header-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-header-bg": {
+      "$type": "string",
+      "$value": "var(--bs-secondary-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-header-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-body-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-body-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-body-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-body-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-body-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-body-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-arrow-width": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-arrow-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-arrow-height": {
+      "$type": "string",
+      "$value": "0.5rem",
+      "$extensions": {
+        "cssVariable": "--bs-popover-arrow-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "popover-arrow-border": {
+      "$type": "string",
+      "$value": "var(--bs-popover-border-color)",
+      "$extensions": {
+        "cssVariable": "--bs-popover-arrow-border",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "carousel-indicator-active-bg": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-carousel-indicator-active-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "carousel-caption-color": {
+      "$type": "string",
+      "$value": "#000",
+      "$extensions": {
+        "cssVariable": "--bs-carousel-caption-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "carousel-control-icon-filter": {
+      "$type": "string",
+      "$value": "invert(1) grayscale(100)",
+      "$extensions": {
+        "cssVariable": "--bs-carousel-control-icon-filter",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-width": {
+      "$type": "string",
+      "$value": "2rem",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-height": {
+      "$type": "string",
+      "$value": "2rem",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-vertical-align": {
+      "$type": "string",
+      "$value": "-0.125em",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-vertical-align",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-border-width": {
+      "$type": "string",
+      "$value": "0.25em",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-animation-speed": {
+      "$type": "string",
+      "$value": "0.75s",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-animation-speed",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "spinner-animation-name": {
+      "$type": "string",
+      "$value": "spinner-border",
+      "$extensions": {
+        "cssVariable": "--bs-spinner-animation-name",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-zindex": {
+      "$type": "string",
+      "$value": "1045",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-zindex",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-width": {
+      "$type": "string",
+      "$value": "400px",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-height": {
+      "$type": "string",
+      "$value": "30vh",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-padding-x": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-padding-y": {
+      "$type": "string",
+      "$value": "1rem",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-color": {
+      "$type": "string",
+      "$value": "var(--bs-body-color)",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-bg": {
+      "$type": "string",
+      "$value": "var(--bs-body-bg)",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-border-width": {
+      "$type": "string",
+      "$value": "var(--bs-border-width)",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-border-color-translucent)",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-box-shadow": {
+      "$type": "string",
+      "$value": "var(--bs-box-shadow-sm)",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-box-shadow",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-transition": {
+      "$type": "string",
+      "$value": "transform 0.3s ease-in-out",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-transition",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "offcanvas-title-line-height": {
+      "$type": "string",
+      "$value": "1.5",
+      "$extensions": {
+        "cssVariable": "--bs-offcanvas-title-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "aspect-ratio": {
+      "$type": "string",
+      "$value": "100%",
+      "$extensions": {
+        "cssVariable": "--bs-aspect-ratio",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "red-rgb": {
+      "$type": "string",
+      "$value": "171, 5, 32",
+      "$extensions": {
+        "cssVariable": "--bs-red-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.blue"
+      }
+    },
+    "bloom-rgb": {
+      "$type": "string",
+      "$value": "239, 64, 86",
+      "$extensions": {
+        "cssVariable": "--bs-bloom-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "chili-rgb": {
+      "$type": "string",
+      "$value": "139, 0, 21",
+      "$extensions": {
+        "cssVariable": "--bs-chili-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "blue-rgb": {
+      "$type": "string",
+      "$value": "12, 35, 75",
+      "$extensions": {
+        "cssVariable": "--bs-blue-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.red"
+      }
+    },
+    "sky-rgb": {
+      "$type": "string",
+      "$value": "129, 211, 235",
+      "$extensions": {
+        "cssVariable": "--bs-sky-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "oasis-rgb": {
+      "$type": "string",
+      "$value": "55, 141, 189",
+      "$extensions": {
+        "cssVariable": "--bs-oasis-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "azurite-rgb": {
+      "$type": "string",
+      "$value": "30, 82, 136",
+      "$extensions": {
+        "cssVariable": "--bs-azurite-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css",
+        "currentToken": "az.color.brand.azurite"
+      }
+    },
+    "midnight-rgb": {
+      "$type": "string",
+      "$value": "0, 28, 72",
+      "$extensions": {
+        "cssVariable": "--bs-midnight-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "cool-gray-rgb": {
+      "$type": "string",
+      "$value": "226, 233, 235",
+      "$extensions": {
+        "cssVariable": "--bs-cool-gray-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "warm-gray-rgb": {
+      "$type": "string",
+      "$value": "244, 237, 229",
+      "$extensions": {
+        "cssVariable": "--bs-warm-gray-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "leaf-rgb": {
+      "$type": "string",
+      "$value": "112, 184, 101",
+      "$extensions": {
+        "cssVariable": "--bs-leaf-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "river-rgb": {
+      "$type": "string",
+      "$value": "0, 125, 132",
+      "$extensions": {
+        "cssVariable": "--bs-river-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "silver-rgb": {
+      "$type": "string",
+      "$value": "158, 171, 174",
+      "$extensions": {
+        "cssVariable": "--bs-silver-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "mesa-rgb": {
+      "$type": "string",
+      "$value": "169, 92, 66",
+      "$extensions": {
+        "cssVariable": "--bs-mesa-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "ash-rgb": {
+      "$type": "string",
+      "$value": "64, 54, 53",
+      "$extensions": {
+        "cssVariable": "--bs-ash-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "sage-rgb": {
+      "$type": "string",
+      "$value": "74, 99, 78",
+      "$extensions": {
+        "cssVariable": "--bs-sage-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "dark-silver-rgb": {
+      "$type": "string",
+      "$value": "73, 89, 94",
+      "$extensions": {
+        "cssVariable": "--bs-dark-silver-rgb",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "border-opacity": {
+      "$type": "string",
+      "$value": "1",
+      "$extensions": {
+        "cssVariable": "--bs-border-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "text-opacity": {
+      "$type": "string",
+      "$value": "1",
+      "$extensions": {
+        "cssVariable": "--bs-text-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-opacity": {
+      "$type": "string",
+      "$value": "0.1",
+      "$extensions": {
+        "cssVariable": "--bs-link-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "link-underline-opacity": {
+      "$type": "string",
+      "$value": "1",
+      "$extensions": {
+        "cssVariable": "--bs-link-underline-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "bg-opacity": {
+      "$type": "string",
+      "$value": "1",
+      "$extensions": {
+        "cssVariable": "--bs-bg-opacity",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-font-size": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-font-size)",
+      "$extensions": {
+        "cssVariable": "--bs-nav-link-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-brand-padding-x": {
+      "$type": "string",
+      "$value": "12px",
+      "$extensions": {
+        "cssVariable": "--bs-navbar-brand-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    }
+  },
+  "az": {
+    "navbar-font-weight": {
+      "$type": "string",
+      "$value": "600",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-size": {
+      "$type": "string",
+      "$value": "18px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-line-height": {
+      "$type": "string",
+      "$value": "22px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-family": {
+      "$type": "string",
+      "$value": "proxima-nova-condensed, proxima-nova, calibri, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-family",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-font-weight) var(--az-navbar-font-size) / var(--az-navbar-line-height) var(--az-navbar-font-family)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-color": {
+      "$type": "string",
+      "$value": "#1e5288",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-hover-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-active-color": {
+      "$type": "string",
+      "$value": "#0c234b",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-font-disabled-color": {
+      "$type": "string",
+      "$value": "#49595e",
+      "$extensions": {
+        "cssVariable": "--az-navbar-font-disabled-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-border-color": {
+      "$type": "string",
+      "$value": "#e2e9eb",
+      "$extensions": {
+        "cssVariable": "--az-navbar-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-accent-color": {
+      "$type": "string",
+      "$value": "#ab0520",
+      "$extensions": {
+        "cssVariable": "--az-navbar-accent-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-min-height": {
+      "$type": "string",
+      "$value": "60px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-min-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-nav-item-margin-y": {
+      "$type": "string",
+      "$value": "18px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-nav-item-margin-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-nav-link-padding-y": {
+      "$type": "string",
+      "$value": "18px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-nav-link-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-vr-margin-y": {
+      "$type": "string",
+      "$value": "17px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-vr-margin-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%231e5288'%3e%3cpath d='m480-453-95-95q-11-11-27.5-11T329-548q-12 12-12 28.5t12 28.5l123 123q12 12 28 12t28-12l124-124q12-12 11.5-28T631-548q-12-11-28-11.5T575-548l-95 95Zm0 373q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-icon-active": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23ab0520'%3e%3cpath d='m480-453-95-95q-11-11-27.5-11T329-548q-12 12-12 28.5t12 28.5l123 123q12 12 28 12t28-12l124-124q12-12 11.5-28T631-548q-12-11-28-11.5T575-548l-95 95Zm0 373q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-icon-active",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-icon-active-child": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23ab0520'%3e%3cpath d='m480-453-95-95q-11-11-27.5-11T329-548q-12 12-12 28.5t12 28.5l123 123q12 12 28 12t28-12l124-124q12-12 11.5-28T631-548q-12-11-28-11.5T575-548l-95 95Zm0 373q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-icon-active-child",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-padding-x": {
+      "$type": "string",
+      "$value": "12px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-icon-gap": {
+      "$type": "string",
+      "$value": "8px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-icon-gap",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-icon-size": {
+      "$type": "string",
+      "$value": "24px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-icon-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-toggle-padding-y": {
+      "$type": "string",
+      "$value": "17px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-toggle-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-dropdown-max-width": {
+      "$type": "string",
+      "$value": "50%",
+      "$extensions": {
+        "cssVariable": "--az-navbar-dropdown-max-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-secondary-dropdown-item-padding-x": {
+      "$type": "string",
+      "$value": "20px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-secondary-dropdown-item-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-secondary-dropdown-item-padding-y": {
+      "$type": "string",
+      "$value": "12px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-secondary-dropdown-item-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-tertiary-menu-padding-y": {
+      "$type": "string",
+      "$value": "16px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-tertiary-menu-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-tertiary-menu-item-padding-y": {
+      "$type": "string",
+      "$value": "8px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-tertiary-menu-item-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-tertiary-menu-item-padding-start": {
+      "$type": "string",
+      "$value": "30px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-tertiary-menu-item-padding-start",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-focus-ring": {
+      "$type": "string",
+      "$value": "0 0 0 0.25rem rgba(171, 5, 32, 0.5)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-focus-ring",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-focus-ring-inset": {
+      "$type": "string",
+      "$value": "inset 0 0 0 0.25rem rgba(171, 5, 32, 0.5)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-focus-ring-inset",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-width": {
+      "$type": "string",
+      "$value": "265px",
+      "$extensions": {
+        "cssVariable": "--az-search-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-height": {
+      "$type": "string",
+      "$value": "43px",
+      "$extensions": {
+        "cssVariable": "--az-search-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-padding-y": {
+      "$type": "string",
+      "$value": "5px",
+      "$extensions": {
+        "cssVariable": "--az-search-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-padding-x": {
+      "$type": "string",
+      "$value": "15px",
+      "$extensions": {
+        "cssVariable": "--az-search-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-btn-padding": {
+      "$type": "string",
+      "$value": "9px",
+      "$extensions": {
+        "cssVariable": "--az-search-btn-padding",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-input-padding": {
+      "$type": "string",
+      "$value": "6px 12px 6px 12px",
+      "$extensions": {
+        "cssVariable": "--az-search-input-padding",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-icon-size": {
+      "$type": "string",
+      "$value": "24px",
+      "$extensions": {
+        "cssVariable": "--az-search-icon-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-color": {
+      "$type": "string",
+      "$value": "var(--bs-white)",
+      "$extensions": {
+        "cssVariable": "--az-search-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-border-width": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-search-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-border-color": {
+      "$type": "string",
+      "$value": "var(--az-search-color)",
+      "$extensions": {
+        "cssVariable": "--az-search-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='43.535' height='43.535' viewBox='0 0 43.535 43.535' fill='none'%3e%3cellipse cx='17.972' cy='17.831' rx='15.472' ry='15.331' stroke='%23fff' stroke-width='5'/%3e%3cline x1='31' y1='31' x2='40' y2='40' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-search-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-icon-hover": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='43.535' height='43.535' viewBox='0 0 43.535 43.535' fill='none'%3e%3cellipse cx='17.972' cy='17.831' rx='15.472' ry='15.331' stroke='%2381d3eb' stroke-width='5'/%3e%3cline x1='31' y1='31' x2='40' y2='40' stroke='%2381d3eb' stroke-width='5' stroke-linecap='round'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-search-icon-hover",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-font": {
+      "$type": "string",
+      "$value": "normal normal normal 16px/22px proxima-nova",
+      "$extensions": {
+        "cssVariable": "--az-search-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-focus-ring-color": {
+      "$type": "string",
+      "$value": "var(--bs-sky)",
+      "$extensions": {
+        "cssVariable": "--az-search-focus-ring-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "search-focus-ring-width": {
+      "$type": "string",
+      "$value": "1px",
+      "$extensions": {
+        "cssVariable": "--az-search-focus-ring-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-height": {
+      "$type": "string",
+      "$value": "100px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-mobile-padding-xy": {
+      "$type": "string",
+      "$value": "20px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-mobile-padding-xy",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-bg": {
+      "$type": "string",
+      "$value": "var(--bs-blue)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-bottom-border-color": {
+      "$type": "string",
+      "$value": "var(--bs-red)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-bottom-border-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-bottom-border-width": {
+      "$type": "string",
+      "$value": "3px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-bottom-border-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-brand-height": {
+      "$type": "string",
+      "$value": "60px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-brand-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-bg": {
+      "$type": "string",
+      "$value": "var(--bs-red)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-bg",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-hover-color": {
+      "$type": "string",
+      "$value": "var(--bs-chili)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-focus-color": {
+      "$type": "string",
+      "$value": "var(--bs-bloom)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-focus-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-focus-width": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-focus-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-focus-offset": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-focus-offset",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-focus-ring-color": {
+      "$type": "string",
+      "$value": "var(--bs-sky)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-focus-ring-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-focus-ring-width": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-focus-ring-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-icon-open": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='35' height='35' viewBox='0 0 35 35' fill='none'%3e%3cline x1='2.5' y1='2.5' x2='32.5' y2='2.5' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3cline x1='2.5' y1='17.5' x2='32.5' y2='17.5' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3cline x1='2.5' y1='32.5' x2='32.5' y2='32.5' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-icon-open",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-icon-close": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='36.07' height='36.07' viewBox='0 0 36.07 36.07' fill='none'%3e%3cline x1='4' y1='4' x2='32.07' y2='32.07' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3cline x1='32.07' y1='4' x2='4' y2='32.07' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-icon-close",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-toggler-icon-size": {
+      "$type": "string",
+      "$value": "30px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-toggler-icon-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-font-weight": {
+      "$type": "string",
+      "$value": "bold",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-font-size": {
+      "$type": "string",
+      "$value": "22px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-line-height": {
+      "$type": "string",
+      "$value": "27px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-fullscreen-actions-font-weight) var(--az-navbar-fullscreen-actions-font-size) / var(--az-navbar-fullscreen-actions-line-height) proxima-nova-condensed",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-separator-width": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-separator-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-actions-separator-color": {
+      "$type": "string",
+      "$value": "var(--bs-bloom)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-actions-separator-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-font": {
+      "$type": "string",
+      "$value": "normal normal bold 16px/20px proxima-nova-condensed",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-letter-spacing": {
+      "$type": "string",
+      "$value": ".18px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-brand-font": {
+      "$type": "string",
+      "$value": "normal normal bold 18px/22px proxima-nova-condensed",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-brand-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-brand-letter-spacing": {
+      "$type": "string",
+      "$value": ".36px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-brand-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-navbar-padding-y": {
+      "$type": "string",
+      "$value": "9px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-navbar-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-nav-link-padding-x": {
+      "$type": "string",
+      "$value": "10px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-nav-link-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-footer-nav-link-padding-y": {
+      "$type": "string",
+      "$value": "9px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-footer-nav-link-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-top-fade-size": {
+      "$type": "string",
+      "$value": "40px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-top-fade-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-bottom-fade-size": {
+      "$type": "string",
+      "$value": "30px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-bottom-fade-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-fade-color": {
+      "$type": "string",
+      "$value": "var(--bs-blue)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-fade-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-scrollbar-thumb-color": {
+      "$type": "string",
+      "$value": "#061226",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-scrollbar-thumb-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-scrollbar-track-color": {
+      "$type": "string",
+      "$value": "transparent",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-scrollbar-track-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-focus-ring-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-focus-ring-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-focus-ring-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-focus-ring-width": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-focus-ring-width)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-focus-ring-width",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='39.68' height='39.68' viewBox='0 0 39.68 39.68'%3e%3ccircle fill='none' stroke='%23fff' stroke-width='2' cx='19.84' cy='19.84' r='18.84'/%3e%3cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' d='M16.27 10.42l9.42 9.42-9.42 9.42'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-icon-hover": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='41.88' height='41.88' viewBox='0 0 41.88 41.88'%3e%3ccircle fill='none' stroke='%2381d3eb' stroke-width='3' cx='20.94' cy='20.94' r='19.44'/%3e%3cpath fill='none' stroke='%2381d3eb' stroke-width='3' stroke-linecap='round' d='M17.26 11.22l9.72 9.72-9.72 9.72'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-icon-hover",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-icon-active": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42'%3e%3cg transform='translate%281 1%29'%3e%3ccircle fill='%2381d3eb' stroke='none' cx='20' cy='20' r='20' transform='translate%280 40%29 rotate%28-90%29'/%3e%3cpath fill='none' stroke='%230c234b' stroke-width='3' stroke-linecap='round' d='M-23110.98-11472l10,10-10,10' transform='translate%2823127.197 11482%29'/%3e%3c/g%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-icon-active",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-font-weight": {
+      "$type": "string",
+      "$value": "bold",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-font-size": {
+      "$type": "string",
+      "$value": "20px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-line-height": {
+      "$type": "string",
+      "$value": "24px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-font-family": {
+      "$type": "string",
+      "$value": "proxima-nova-condensed",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-font-family",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-fullscreen-modal-menu-font-weight) var(--az-navbar-fullscreen-modal-menu-font-size) / var(--az-navbar-fullscreen-modal-menu-line-height) var(--az-navbar-fullscreen-modal-menu-font-family)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-letter-spacing": {
+      "$type": "string",
+      "$value": ".4px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-color": {
+      "$type": "string",
+      "$value": "var(--bs-white)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-hover-color": {
+      "$type": "string",
+      "$value": "var(--bs-sky)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-active-color": {
+      "$type": "string",
+      "$value": "var(--bs-sky)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-underline-height": {
+      "$type": "string",
+      "$value": "1px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-underline-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-font-weight": {
+      "$type": "string",
+      "$value": "600",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-font-size": {
+      "$type": "string",
+      "$value": "48px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-line-height": {
+      "$type": "string",
+      "$value": "48px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-font-family": {
+      "$type": "string",
+      "$value": "garamond-premier-pro",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-font-family",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-fullscreen-modal-menu-primary-font-weight) var(--az-navbar-fullscreen-modal-menu-primary-font-size) / var(--az-navbar-fullscreen-modal-menu-primary-line-height) var(--az-navbar-fullscreen-modal-menu-primary-font-family)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-letter-spacing": {
+      "$type": "string",
+      "$value": ".1px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-hover-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-hover-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-active-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-active-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-primary-underline-height": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-primary-underline-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-font-weight": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-font-weight)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-font-size": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-font-size)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-line-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-line-height)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-fullscreen-modal-menu-secondary-font-weight) var(--az-navbar-fullscreen-modal-menu-secondary-font-size) / var(--az-navbar-fullscreen-modal-menu-secondary-line-height) var(--az-navbar-fullscreen-modal-menu-secondary-font-family)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-letter-spacing": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-letter-spacing)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-hover-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-hover-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-active-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-letter-active-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-secondary-underline-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-underline-height)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-secondary-underline-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-font-weight": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-font-weight)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-font-weight",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-font-size": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-font-size)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-font-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-line-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-line-height)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-font": {
+      "$type": "string",
+      "$value": "normal normal var(--az-navbar-fullscreen-modal-menu-tertiary-font-weight) var(--az-navbar-fullscreen-modal-menu-tertiary-font-size) / var(--az-navbar-fullscreen-modal-menu-tertiary-line-height) var(--az-navbar-fullscreen-modal-menu-tertiary-font-family)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-font",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-letter-spacing": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-letter-spacing)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-letter-spacing",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-hover-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-hover-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-hover-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-active-color": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-active-color)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-active-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-tertiary-underline-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-underline-height)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-tertiary-underline-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-separator-color": {
+      "$type": "string",
+      "$value": "var(--bs-azurite)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-separator-color",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-col-spacing-x": {
+      "$type": "string",
+      "$value": "24px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-col-spacing-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-focus-text-inset-x": {
+      "$type": "string",
+      "$value": "2px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-focus-text-inset-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-focus-text-padding-x": {
+      "$type": "string",
+      "$value": "4px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-focus-text-padding-x",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "nav-link-text-underline-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-underline-height)",
+      "$extensions": {
+        "cssVariable": "--az-nav-link-text-underline-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-nav-link-line-height": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-modal-menu-line-height)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-nav-link-line-height",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-padding-y": {
+      "$type": "string",
+      "$value": "15px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-padding-y",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-nav-link-padding-top": {
+      "$type": "string",
+      "$value": "var(--bs-nav-link-padding-y)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-nav-link-padding-top",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-nav-toggle-padding-top": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-nav-toggle-padding-y)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-nav-toggle-padding-top",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-modal-menu-nav-toggle-separator-top": {
+      "$type": "string",
+      "$value": "var(--az-navbar-fullscreen-nav-toggle-padding-y)",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-modal-menu-nav-toggle-separator-top",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-size": {
+      "$type": "string",
+      "$value": "40px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-size",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-nav-toggle-separator-offset": {
+      "$type": "string",
+      "$value": "24px",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-nav-toggle-separator-offset",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-back-icon": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42'%3e%3cg transform='translate%281 1%29'%3e%3ccircle fill='none' stroke='%23fff' stroke-width='2' cx='20' cy='20' r='20' transform='translate%280 40%29 rotate%28-90%29'/%3e%3cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' d='M-23110.98-11472l10,10-10,10' transform='translate%2823127.197 11482%29'/%3e%3c/g%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-back-icon",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-back-icon-active": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%2381d3eb'%3e%3cpath d='m480-453-95-95q-11-11-27.5-11T329-548q-12 12-12 28.5t12 28.5l123 123q12 12 28 12t28-12l124-124q12-12 11.5-28T631-548q-12-11-28-11.5T575-548l-95 95Zm0 373q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-back-icon-active",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    },
+    "navbar-fullscreen-back-icon-active-child": {
+      "$type": "string",
+      "$value": "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%2381d3eb'%3e%3cpath d='m480-453-95-95q-11-11-27.5-11T329-548q-12 12-12 28.5t12 28.5l123 123q12 12 28 12t28-12l124-124q12-12 11.5-28T631-548q-12-11-28-11.5T575-548l-95 95Zm0 373q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z'/%3e%3c/svg%3e\")",
+      "$extensions": {
+        "cssVariable": "--az-navbar-fullscreen-back-icon-active-child",
+        "source": "https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css"
+      }
+    }
+  }
+}

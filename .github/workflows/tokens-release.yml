@@ -1,0 +1,81 @@
+name: Publish design tokens release
+run-name: Publish design tokens for `${{ github.event.release.tag_name || inputs.tag }}`
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to build and (re-)dispatch
+        required: false
+
+jobs:
+  publish:
+    name: Build tokens and notify arizona-bootstrap
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Resolve release tag
+        id: resolve
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            tag="${{ github.event.release.tag_name }}"
+          else
+            tag="${{ inputs.tag }}"
+            if [ -z "$tag" ]; then
+              tag="$(gh release view --repo ${{ github.repository }} --json tagName -q .tagName)"
+            fi
+          fi
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository at release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ steps.resolve.outputs.tag }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build tokens
+        run: npm run build:tokens
+
+      - name: Record release sha
+        id: sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Attach token artifacts to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ steps.resolve.outputs.tag }}" \
+            packages/tokens/dist/tokens.scss \
+            packages/tokens/dist/tokens.css \
+            packages/tokens/dist/tokens.vars.js \
+            packages/tokens/dist/tokens.vars.d.ts \
+            --repo ${{ github.repository }} \
+            --clobber
+
+      - name: Notify arizona-bootstrap
+        uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: az-digital/arizona-bootstrap
+          event-type: az_design_tokens_release
+          client-payload: >-
+            {
+              "version": "${{ steps.resolve.outputs.tag }}",
+              "tag": "${{ steps.resolve.outputs.tag }}",
+              "sha": "${{ steps.sha.outputs.sha }}",
+              "tokens_scss_url": "https://github.com/${{ github.repository }}/releases/download/${{ steps.resolve.outputs.tag }}/tokens.scss",
+              "tokens_css_url": "https://github.com/${{ github.repository }}/releases/download/${{ steps.resolve.outputs.tag }}/tokens.css"
+            }

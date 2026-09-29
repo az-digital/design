@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { useState } from 'react';
+import { TokenDetail } from '@unpunnyfuns/swatchbook-addon';
+import migrationCsv from '../../tokens/arizona-bootstrap-5-1.csv?raw';
+import overrideCss from '../../tokens/arizona-bootstrap-5-1-overrides.css?raw';
+import { az as azVars } from '../../tokens/dist/tokens.vars.js';
+import { downloadText } from './tokenStats';
+
+export const TokenDetailLink = ({ path }) => {
+  const [open, setOpen] = useState(false);
+  const chipBackground = path.split('.').slice(1).reduce(
+    (value, key) => value?.[key.replace(/-([a-z])/g, (_match, letter) => letter.toUpperCase())],
+    azVars,
+  ) ?? 'transparent';
+  return <>
+    <button type="button" onClick={() => setOpen(true)} style={{ border: 0, padding: 0, background: 'transparent', color: 'inherit', cursor: 'pointer' }}>
+      <span aria-hidden="true" style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 4, background: chipBackground, border: '1px solid rgba(0,0,0,.18)', boxShadow: '0 1px 2px rgba(0,0,0,.12)', verticalAlign: 'middle', marginRight: 8 }}></span>
+      <code>{path}</code>
+    </button>
+    {open && <div role="dialog" aria-modal="true" aria-label={path} onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', justifyContent: 'flex-end', background: 'rgba(0,0,0,.35)' }}>
+      <div onClick={(event) => event.stopPropagation()} style={{ width: 'min(480px, 100%)', height: '100%', overflow: 'auto', padding: 24, background: 'white', boxShadow: '-4px 0 16px rgba(0,0,0,.2)' }}>
+        <button type="button" onClick={() => setOpen(false)} aria-label="Close token details" style={{ float: 'right' }}>Close</button>
+        <TokenDetail path={path} />
+      </div>
+    </div>}
+  </>;
+};
+
+export const allLegacyTokens = (() => {
+  const parseCsvLine = (line) => {
+    const fields = [];
+    const fieldPattern = /(?:^|,)(?:"((?:[^"]|"")*)"|([^,]*))/g;
+    let match;
+    while ((match = fieldPattern.exec(line))) fields.push((match[1] ?? match[2]).replaceAll('""', '"'));
+    return fields;
+  };
+  return migrationCsv.trim().split('\n').slice(1).map(parseCsvLine);
+})();
+
+<Meta title="Tokens/Arizona Bootstrap 5.1/CSS Override" />
+
+# Arizona Bootstrap 5.1 CSS Override
+
+Use this file to override Arizona Bootstrap 5.1 CSS custom properties with current Arizona Design Tokens where a verified mapping exists. The source is the upstream [`arizona-bootstrap.css`](https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css).
+
+## Sources
+
+- [Arizona Bootstrap compiled CSS](https://github.com/az-digital/arizona-bootstrap/blob/main/dist/css/arizona-bootstrap.css)
+- [Current tokens](https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json)
+- {allLegacyTokens.length} known custom properties in the migration CSV
+
+<p>
+  <a href="#" onClick={(event) => { event.preventDefault(); downloadText(migrationCsv, 'arizona-bootstrap-5-1.csv', 'text/csv'); }}>Download source CSV</a>
+  {' | '}
+  <a href="#" onClick={(event) => { event.preventDefault(); downloadText(overrideCss, 'arizona-bootstrap-5-1-overrides.css', 'text/css'); }}>Download CSS override</a>
+</p>
+
+Load the CSS override after `arizona-bootstrap.css` so the current mapped token values replace the corresponding Bootstrap custom properties.
+
+## CSS custom-property override mappings
+
+<table style={{ width: '100%', tableLayout: 'fixed' }}>
+  <colgroup>
+    <col style={{ width: '35%' }} />
+    <col style={{ width: '35%' }} />
+    <col style={{ width: '30%' }} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Arizona Bootstrap 5.1</th>
+      <th>Current Design Token</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {allLegacyTokens.map(([legacyVariable, currentPath, value]) => (
+      <tr key={legacyVariable}>
+        <td><code>{legacyVariable}</code></td>
+        <td>{currentPath ? <TokenDetailLink path={currentPath} /> : null}</td>
+        <td><code>{value}</code></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## Migration rules
+
+1. Replace references to an upstream CSS variable with its confirmed current token.
+2. When migrating compiled CSS, replace the upstream `--bs-*` variable with the current CSS variable.
+3. Do not infer mappings for semantic tokens until an exact current-token target is confirmed.
