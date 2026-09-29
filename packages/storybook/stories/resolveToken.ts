@@ -82,7 +82,7 @@ export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
       items.push({
         name: path.at(-1) ?? tokenPath,
         token: tokenPath,
-        cssVar: `--${tokenPath.replaceAll('.', '-')}`,
+        cssVar: `var(--${tokenPath.replaceAll('.', '-')})`,
         hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
         value: formatTokenValue(resolvedValue),
       });

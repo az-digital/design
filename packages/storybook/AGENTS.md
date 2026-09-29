@@ -227,6 +227,11 @@ import { getTokenDisplayItems } from './resolveToken';
 <TokenDisplay items={getTokenDisplayItems('az.color.brand.chili')} />
 ```
 
+Both `TokenDisplay` and `ColorSwatchGrid` render each token with the shared
+`Token` pill from `./Token` (the pill plus its `TokenDetails` side drawer).
+Use `<Token data={...} />` directly when a page needs a single token
+reference; don't build another pill or drawer.
+
 Don't wrap non-`<Story>` content in `<Canvas>`. In this Storybook version
 (10.6.0), `<Canvas>` silently falls back to rendering the docs page's primary
 story when given children that aren't a recognized `<Story>` block. Render
