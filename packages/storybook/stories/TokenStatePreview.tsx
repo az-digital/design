@@ -30,7 +30,7 @@ export type ButtonState = {
  * entry in `states`, side by side, each recreating that state's look from
  * its own tokens — so a viewer can compare Default/Hover/Focus-visible
  * without needing to actually hover or Tab to each one. Below that, the
- * searchable token catalog for `tokenFilter`.
+ * token catalog for `tokenFilter`.
  */
 export function TokenStatePreview({
   children,
@@ -68,10 +68,7 @@ export function TokenStatePreview({
         })}
       </div>
       {tokenFilter && (
-        <TokenDisplay
-          items={getTokenDisplayItems(tokenFilter.replace(/\*+$/, ''))}
-          searchLabel="Search tokens in use"
-        />
+        <TokenDisplay items={getTokenDisplayItems(tokenFilter.replace(/\*+$/, ''))} />
       )}
     </div>
   );

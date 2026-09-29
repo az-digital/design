@@ -143,7 +143,7 @@ instance that changes as a viewer actually hovers/tabs to it. Two reasons:
   test — this documents design intent, same as a "Tokens by state" table
   does, not live CSS behavior (see "Design tokens vs. CSS vs. Figma" below).
 - It sidesteps needing a hand-built, per-state token list at all. Pass
-  `TokenStatePreview` one `tokenFilter` and it renders the searchable
+  `TokenStatePreview` one `tokenFilter` and it renders the
   `TokenDisplay` catalog for that filter below the state row. `TokenDisplay`
   is the in-repository token UI; use it instead of adding a token-table addon.
 
@@ -216,8 +216,9 @@ finding about design tokens.
 
 ## Token references
 
-Use `TokenDisplay` for searchable token catalogs with values, color swatches,
-and an inspector showing source values and alias chains:
+Use `TokenDisplay` for token catalogs: each token renders as a pill (with a
+color swatch for color tokens), and clicking one opens an inspector with its
+CSS variable, Sass variable, and generated-file locations:
 
 ```mdx
 import { TokenDisplay } from './TokenDisplay';

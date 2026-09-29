@@ -55,15 +55,11 @@ export function resolveValue(path: string): unknown {
   return chain.length > 0 ? chain[chain.length - 1].value : undefined;
 }
 
-function formatTokenValue(value: unknown): string {
-  if (typeof value === 'string' || typeof value === 'number') return String(value);
-  if (typeof value === 'object' && value !== null && 'value' in value && 'unit' in value) {
-    const dimension = value as { value: unknown; unit: unknown };
-    return `${dimension.value}${dimension.unit}`;
-  }
-  return JSON.stringify(value) ?? String(value);
-}
-
+/**
+ * Every token under `prefix` in tokens.json, in the shape `TokenDisplay` renders.
+ * Colors carry their fully resolved (alias-followed) hex so the swatch matches
+ * the generated CSS; `cssVar` mirrors style-dictionary's kebab-case naming.
+ */
 export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
   const items: TokenDisplayItem[] = [];
   const descendantPrefix = prefix.endsWith('.') ? prefix : `${prefix}.`;
@@ -75,19 +71,12 @@ export function getTokenDisplayItems(prefix: string): TokenDisplayItem[] {
 
     if ('$value' in token) {
       if (tokenPath !== prefix && !tokenPath.startsWith(descendantPrefix)) return;
-      const chain = resolveChain(tokenPath);
-      const resolvedValue = chain.at(-1)?.value;
-      const value = formatTokenValue(resolvedValue);
+      const resolvedValue = resolveValue(tokenPath);
       items.push({
         name: path.at(-1) ?? tokenPath,
         token: tokenPath,
-        type: token.$type ?? 'unknown',
-        value,
-        sourceValue: formatTokenValue(token.$value),
         cssVar: `--${tokenPath.replaceAll('.', '-')}`,
         hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
-        description: token.$description,
-        aliasChain: chain.map((link) => ({ token: link.path, value: formatTokenValue(link.value) })),
       });
       return;
     }

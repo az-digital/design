@@ -70,8 +70,8 @@ base/semantic tier to alias to yet (padding, font size, border radius, ...)
 is hard-coded to the component's real production value instead of blocked
 on that tier existing — both kinds get repointed to alias through a
 semantic tier later, without changing their names, once one exists. Each
-component's own Storybook Docs page also shows a filtered, searchable view
+component's own Storybook Docs page also shows a filtered view
 of just its tokens — see [Button's](./?path=/docs/components-button--docs) for an
 example.
 
-<TokenDisplay items={getTokenDisplayItems('az.component.')} searchLabel="Search component tokens" />
+<TokenDisplay items={getTokenDisplayItems('az.component.')} />
