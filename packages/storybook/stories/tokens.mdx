@@ -5,7 +5,8 @@ import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
 export const { sourceFiles, artifacts } = getTokensData();

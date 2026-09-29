@@ -2,7 +2,6 @@
 // Loading the build-time token data first means every export below can read it synchronously.
 import './preview-data';
 
-export { ColorSwatchGrid } from './ColorSwatchGrid';
 export { ComponentTokenIndex, tokenState } from './ComponentTokenIndex';
 export { Token, TokenDetails, TokenDetailsContent } from './Token';
 export { TokenDisplay } from './TokenDisplay';

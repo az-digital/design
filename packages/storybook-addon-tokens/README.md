@@ -10,7 +10,7 @@ Your Style Dictionary config decides which outputs exist. The addon reads it; it
 
 - **Tokens tab.** An addon panel next to Controls that lists the tokens a story uses. It's opt-in per story, like Controls.
 - **Token details.** Click any token to see its resolved value, its description, an **alias tree** (where the value comes from, what else shares it, and what depends on it; click a node to walk the tree), the source file, and every output file Style Dictionary derives from it, with how to reference the token there and the value that file gets.
-- **Doc blocks** for MDX pages: `Token`, `TokenTable`, `TokenDisplay`, `ColorSwatchGrid`, and `ComponentTokenIndex`.
+- **Doc blocks** for MDX pages: `Token`, `TokenTable`, `TokenDisplay`, and `ComponentTokenIndex`, plus data helpers for building your own (for example, brand swatch cards that embed the `Token` pill).
 
 Token values are always shown exactly as your source file writes them. Where an output writes something different (Style Dictionary's color transform re-cases hex, for example, or a dimension transform converts units), the details show both.
 
@@ -82,9 +82,7 @@ Set it on a story file's meta to cover every story in it, or on a single story t
 ### Doc blocks
 
 ```mdx
-import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
-
-<ColorSwatchGrid prefix="az.color.brand." />
+import { ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
 
 <TokenDisplay prefix="az.color.semantic." layout="table" />
 
@@ -92,11 +90,10 @@ import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/
 <ComponentTokenIndex component="button" />
 ```
 
-- `ColorSwatchGrid`: swatch cards for every color under `prefix`, with RGB, HEX, and (from the token's `$extensions.cmyk` / `$extensions.pantone`) CMYK and Pantone.
 - `TokenDisplay`: token pills, or `layout="table"` for one row per token: Token · Type · Alias of · Resolved value.
 - `ComponentTokenIndex`: every component's tokens, one collapsed row per component, with search, type filters, and a Style / State grouping switch. `component="button"` shows one component's tokens without the index.
 
-Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly.
+Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly, and for site-specific presentations: this repo's brand swatch cards (`packages/storybook/stories/ColorSwatchGrid.tsx`) are built from `getTokenDisplayItems` and the `Token` pill rather than shipped in the addon.
 
 ## How component tokens are grouped
 
