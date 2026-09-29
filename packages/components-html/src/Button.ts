@@ -42,12 +42,13 @@ export function renderButton(props: ButtonProps = {}): string {
   ]
     .filter(Boolean)
     .join(' ');
+  const safeClasses = escapeHtml(classes);
 
   const label = escapeHtml(text);
 
   if (htmlTag === 'button') {
-    return `<button type="button" class="${classes}"${disabled ? ' disabled' : ''}>${label}</button>`;
+    return `<button type="button" class="${safeClasses}"${disabled ? ' disabled' : ''}>${label}</button>`;
   }
 
-  return `<a href="${escapeHtml(href)}" role="button" class="${classes}"${disabled ? ' aria-disabled="true" tabindex="-1"' : ''}>${label}</a>`;
+  return `<a href="${escapeHtml(href)}" role="button" class="${safeClasses}"${disabled ? ' aria-disabled="true" tabindex="-1"' : ''}>${label}</a>`;
 }
