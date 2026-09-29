@@ -237,6 +237,15 @@ directly) shows the same tokens as one row per token: the `Token` pill, its
 `$type`, the token it aliases directly ("Alias of"), and its resolved value. Keep platform-specific names (CSS variables, Sass variables,
 ...) out of the row; they belong in the details view alongside each other.
 
+For component tokens, use `ComponentTokenIndex` from `./ComponentTokenIndex`
+instead of a flat list: with no props it's the Tokens page's searchable index
+(one collapsed row per component); with `component="button"` it's that
+component's docs-page view. Both split tokens into Shared plus one group per
+variant, and by state (Default, Hover, Focus, ...), with a "Group by" toggle
+between style-first and state-first. The grouping is read from token paths,
+so it depends on the `<variant>.<state>.<part>` structure in
+`packages/tokens/AGENTS.md`; nothing needs registering when a component is added.
+
 Every story can also list its tokens in the **Tokens** addon panel
 (`.storybook/tokens-panel.tsx`) by declaring which `tokens.json` groups it
 uses, usually once on the story file's meta:

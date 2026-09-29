@@ -50,11 +50,26 @@ export function TokenTable({
   items,
   selectedToken,
   onSelect,
+  groupBy,
 }: {
   items: TokenData[];
   selectedToken?: string | null;
   onSelect?: (token: string) => void;
+  /**
+   * Split rows under labelled sub-header rows, e.g. by state (Default, Hover,
+   * Focus). Returns the group label for a row; groups appear in the order their
+   * first row does, so sort `items` to control it.
+   */
+  groupBy?: (item: TokenData) => string;
 }) {
+  const sections: Array<{ label?: string; items: TokenData[] }> = [];
+  for (const item of items) {
+    const label = groupBy?.(item);
+    const section = sections.find((candidate) => candidate.label === label);
+    if (section) section.items.push(item);
+    else sections.push({ label, items: [item] });
+  }
+
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 13, color: '#1f2430' }}>
@@ -66,8 +81,16 @@ export function TokenTable({
             <th scope="col" style={HEADER_CELL}>RESOLVED VALUE</th>
           </tr>
         </thead>
-        <tbody>
-          {items.map((item) => (
+        {sections.map((section) => (
+        <tbody key={section.label ?? 'all'}>
+          {section.label !== undefined && (
+            <tr>
+              <th scope="colgroup" colSpan={4} style={{ padding: '10px 12px 4px', textAlign: 'left', fontSize: 11, fontWeight: 700, color: '#1e5288', borderBottom: '1px solid #eef1f4' }}>
+                {section.label} <span style={{ color: '#9aa4b2', fontWeight: 400 }}>· {section.items.length}</span>
+              </th>
+            </tr>
+          )}
+          {section.items.map((item) => (
             <tr key={item.token} style={{ background: selectedToken === item.token ? '#f1f4f7' : undefined }}>
               <td style={CELL}>
                 <Token
@@ -88,6 +111,7 @@ export function TokenTable({
             </tr>
           ))}
         </tbody>
+        ))}
       </table>
     </div>
   );

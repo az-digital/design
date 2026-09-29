@@ -1,6 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenDisplay } from './TokenDisplay';
-import { getTokenDisplayItems } from './resolveToken';
+import { ComponentTokenIndex } from './ComponentTokenIndex';
 import * as ButtonStories from './button.stories';
 
 {/* `of={ButtonStories}` attaches this page to button.stories.tsx's own title ("Components/Button"),
@@ -51,7 +50,7 @@ See the "Solid Red On Cool Gray" story in the sidebar for a live, interactive ve
 
 Every one of Button's own design tokens — `az.component.button.*`. Structure (padding, label font, border, sizes, the focus-visible ring) is shared by every style; each style — `solid.*`, `outline.*` — adds only the colors it changes, named by the part they color (`container`, `border`, `label`) and grouped by state. Colors alias through a semantic tier down to the brand palette; padding, font, and border each alias a primitive dimension/font-weight/opacity value directly, since nothing else in the system needs those specific values yet. If Button's props or variants ever change, this is the place to add or update the corresponding component token.
 
-<TokenDisplay items={getTokenDisplayItems('az.component.button.')} layout="table" />
+<ComponentTokenIndex component="button" />
 
 ## Do's and Don'ts
 
