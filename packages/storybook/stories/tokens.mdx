@@ -6,6 +6,9 @@ import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
+import { getTokenDisplayItems, resolveValue } from './resolveToken';
+import { TokenDisplay } from './TokenDisplay';
+import { ComponentTokenIndex } from './ComponentTokenIndex';
 
 export const githubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/tokens.json';
 export const tokensCssGithubUrl = 'https://github.com/az-digital/design/blob/create-bootstrap-scss-artifact/packages/tokens/dist/tokens.css';
@@ -21,7 +24,7 @@ export const generatedCssVariable = (key) => {
 };
 export const generatedSassVariable = (key) => tokensScssRaw.match(new RegExp(`(\\$az-color-brand-${escapeRegExp(key)}):`))?.[1] ?? `$az-color-brand-${key}`;
 export const brandColors = Object.entries(tokensDocument.az.color.brand).map(([key, token]) => {
-  const colorValue = token.$value;
+  const colorValue = resolveValue(`az.color.brand.${key}`);
   return {
     name: key.replace(/(^|[-_])(\w)/g, (_match, _sep, letter) => ` ${letter.toUpperCase()}`).trim(),
     token: `az.color.brand.${key}`,
@@ -57,4 +60,14 @@ Source file: `packages/tokens/tokens.json`
 
 ## Colors
 
+Arizona's brand palette (`az.color.brand.*`), the raw color values every other color token is built from.
+
 <ColorSwatchGrid colors={brandColors} />
+
+## Component tokens
+
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens; sizes, weights, and opacities point at primitive values.
+
+Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
+
+<ComponentTokenIndex />
