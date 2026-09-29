@@ -84,7 +84,21 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
     for (const file of platformConfig.files ?? []) {
       const builtIn = BUILT_IN_REFERENCES[file.format] ?? ((name) => name);
       const reference = file.options?.tokenReference ?? ((token) => builtIn(token.name, file));
-      const valueOf = file.options?.tokenValue ?? (WRITES_VALUE.has(file.format) ? (token) => token.$value ?? token.value : () => undefined);
+      const byPath = new Map(allTokens.map((token) => [token.path.join('.'), token]));
+      // With `outputReferences`, a built-in format writes an alias as a
+      // reference to the token it aliases (e.g. `var(--az-color-semantic-...)`)
+      // instead of the resolved value, so report what the file really contains.
+      const writtenAsReference = (token) => {
+        if (!file.options?.outputReferences) return undefined;
+        if (typeof file.options.outputReferences === 'function' && !file.options.outputReferences(token, { dictionary: { allTokens } })) return undefined;
+        const original = token.original?.$value ?? token.original?.value;
+        const alias = typeof original === 'string' ? original.match(/^\{(.+)\}$/)?.[1] : undefined;
+        const target = alias && byPath.get(alias);
+        return target ? builtIn(target.name, file) : undefined;
+      };
+      const valueOf =
+        file.options?.tokenValue ??
+        (WRITES_VALUE.has(file.format) ? (token) => writtenAsReference(token) ?? token.$value ?? token.value : () => undefined);
       const tokens = {};
       for (const token of allTokens) {
         if (typeof file.filter === 'function' && !file.filter(token, platformConfig)) continue;
