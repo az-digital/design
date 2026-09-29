@@ -89,6 +89,8 @@ In `tokens.css` and `tokens.scss`, a token that aliases another is written as a 
 
 Never edit files in `dist/` directly — they're regenerated on every token build.
 
+The published `@az-digital/tokens` package includes the source `tokens.json` alongside `dist/`, for tools that consume DTCG tokens directly (Figma / Tokens Studio, or another team's own Style Dictionary build): `@az-digital/tokens/tokens.json`. Generated files are imported by path, e.g. `@az-digital/tokens/dist/tokens.css`.
+
 ## Storybook Notes
 
 The Storybook package renders the design token catalog, groups nested token values, and provides a review surface for design decisions and naming conventions.
