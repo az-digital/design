@@ -1,103 +1,64 @@
 export const az: {
   "color": {
-    "arroyoBlue": string,
-    "azurite": string,
-    "bloom": string,
-    "blue": string,
-    "bougainvillea": string,
     "brand": {
-      "arroyoBlue": string,
-      "azurite": string,
-      "bloom": string,
-      "blue": string,
-      "bougainvillea": string,
-      "brick": string,
-      "caliche": string,
-      "chili": string,
-      "cloud": string,
-      "rain": string,
       "red": string,
+      "blue": string,
+      "tinta": string,
+      "azurite": string,
+      "chili": string,
+      "bloom": string,
+      "arroyoBlue": string,
+      "rain": string,
+      "sonoranRed": string,
+      "bougainvillea": string,
       "saguaro": string,
       "shade": string,
-      "sonoranRed": string,
-      "tinta": string,
+      "brick": string,
+      "cloud": string,
+      "caliche": string,
       "white": string
     },
-    "brick": string,
-    "caliche": string,
-    "chili": string,
-    "cloud": string,
-    "rain": string,
-    "red": string,
-    "saguaro": string,
     "semantic": {
       "action": {
         "default": string,
-        "focusRing": string,
-        "hover": string
+        "hover": string,
+        "focusRing": string
       }
-    },
-    "shade": string,
-    "sonoranRed": string,
-    "tinta": string,
-    "white": string
+    }
+  },
+  "dimension": {
+    "1": string,
+    "2": string,
+    "4": string,
+    "6": string,
+    "8": string,
+    "10": string,
+    "12": string,
+    "14": string,
+    "16": string,
+    "18": string,
+    "20": string,
+    "22": string,
+    "24": string,
+    "30": string,
+    "36": string,
+    "48": string,
+    "50": string,
+    "211": string,
+    "9-6": string,
+    "19-8": string,
+    "266-41": string
+  },
+  "fontWeight": {
+    "500": string,
+    "700": string
+  },
+  "opacity": {
+    "65": string
   },
   "component": {
-    "accordion": {
-      "body": {
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "border": {
-        "radius": string,
-        "width": string
-      },
-      "button": {
-        "label": {
-          "font": {
-            "size": string
-          }
-        },
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      }
-    },
-    "arizonaHeader": {
-      "height": string,
-      "logo": {
-        "height": string,
-        "marginLeft": string,
-        "sm": {
-          "height": string,
-          "width": string
-        },
-        "width": string
-      }
-    },
     "button": {
-      "border": {
-        "radius": string,
-        "width": string
-      },
-      "color": string,
-      "disabled": {
-        "opacity": string
-      },
-      "focusVisible": {
-        "ring": string
-      },
-      "focus": {
-        "color": string
-      },
-      "hover": {
-        "color": string
-      },
       "label": {
-        "color": string,
         "font": {
           "size": string,
           "weight": string
@@ -107,27 +68,160 @@ export const az: {
         "x": string,
         "y": string
       },
+      "border": {
+        "width": string,
+        "radius": string
+      },
+      "disabled": {
+        "opacity": string
+      },
+      "focusVisible": {
+        "ring": string
+      },
       "size": {
-        "lg": {
+        "sm": {
+          "padding": {
+            "x": string,
+            "y": string
+          },
           "label": {
             "font": {
               "size": string
             }
-          },
-          "padding": {
-            "x": string,
-            "y": string
           }
         },
-        "sm": {
+        "lg": {
+          "padding": {
+            "x": string,
+            "y": string
+          },
           "label": {
             "font": {
               "size": string
             }
           },
+          "border": {
+            "radius": string
+          }
+        }
+      },
+      "solid": {
+        "container": {
+          "color": string
+        },
+        "label": {
+          "color": string
+        },
+        "hover": {
+          "container": {
+            "color": string
+          }
+        },
+        "focus": {
+          "container": {
+            "color": string
+          }
+        }
+      },
+      "outline": {
+        "border": {
+          "color": string
+        },
+        "label": {
+          "color": string
+        },
+        "hover": {
+          "container": {
+            "color": string
+          },
+          "border": {
+            "color": string
+          },
+          "label": {
+            "color": string
+          }
+        },
+        "focus": {
+          "container": {
+            "color": string
+          },
+          "border": {
+            "color": string
+          },
+          "label": {
+            "color": string
+          }
+        }
+      }
+    },
+    "accordion": {
+      "button": {
+        "padding": {
+          "x": string,
+          "y": string
+        },
+        "label": {
+          "font": {
+            "size": string
+          }
+        }
+      },
+      "body": {
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "border": {
+        "width": string,
+        "radius": string
+      }
+    },
+    "tabs": {
+      "label": {
+        "padding": {
+          "x": string,
+          "y": string
+        },
+        "font": {
+          "weight": string
+        },
+        "color": string,
+        "hover": {
+          "color": string
+        },
+        "active": {
+          "color": string
+        }
+      },
+      "variant": {
+        "tabs": {
+          "active": {
+            "background": string
+          }
+        },
+        "underline": {
+          "gap": string,
+          "border": {
+            "width": string
+          }
+        }
+      }
+    },
+    "nav": {
+      "utility": {
+        "margin": {
+          "top": string,
+          "bottom": string
+        },
+        "item": {
           "padding": {
-            "x": string,
-            "y": string
+            "x": string
+          }
+        },
+        "label": {
+          "font": {
+            "weight": string
           }
         }
       }
@@ -139,96 +233,33 @@ export const az: {
           "y": string
         }
       },
+      "title": {
+        "margin": {
+          "bottom": string
+        }
+      },
       "border": {
-        "radius": string,
-        "width": string
+        "width": string,
+        "radius": string
       },
       "cap": {
         "padding": {
           "x": string,
           "y": string
         }
-      },
-      "title": {
-        "margin": {
-          "bottom": string
-        }
       }
     },
-    "nav": {
-      "utility": {
-        "item": {
-          "padding": {
-            "x": string
-          }
-        },
-        "label": {
-          "font": {
-            "weight": string
-          }
-        },
-        "margin": {
-          "bottom": string,
-          "top": string
-        }
-      }
-    },
-    "tabs": {
-      "label": {
-        "active": {
-          "color": string
-        },
-        "color": string,
-        "font": {
-          "weight": string
-        },
-        "hover": {
-          "color": string
-        },
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "variant": {
-        "tabs": {
-          "active": {
-            "background": string
-          }
-        },
-        "underline": {
-          "border": {
-            "width": string
-          },
-          "gap": string
+    "arizonaHeader": {
+      "height": string,
+      "logo": {
+        "marginLeft": string,
+        "width": string,
+        "height": string,
+        "sm": {
+          "width": string,
+          "height": string
         }
       }
     }
-  },
-  "dimension": {
-    "1": string,
-    "2": string,
-    "4": string,
-    "6": string,
-    "8": string,
-    "10": string,
-    "14": string,
-    "16": string,
-    "18": string,
-    "20": string,
-    "24": string,
-    "48": string,
-    "50": string,
-    "96": string,
-    "198": string,
-    "211": string,
-    "26641": string
-  },
-  "fontWeight": {
-    "500": string,
-    "700": string
-  },
-  "opacity": {
-    "65": string
   }
 };

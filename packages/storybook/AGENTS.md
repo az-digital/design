@@ -71,14 +71,14 @@ session alone; verify in an actual browser, or ask the user to.
   `of={}` makes the MDX page replace the autodocs entry for that exact title,
   so it appears as the top-level "Docs" entry alongside the component's
   stories in the sidebar, not as a separate child page.
-- A full, general component token table lives on that same main Docs page
-  (e.g. `<TokenTable filter="az.component.button.**" />`) — the one broad
+- A full, general component token catalog lives on that same main Docs page
+  (e.g. `<TokenDisplay items={getTokenDisplayItems('az.component.button.')} />`) — the one broad
   reference for the whole component. Don't split it out to a sub-page by
   default.
 - A per-story state comparison (Default/Hover/Focus-visible, etc.) does not
   live on the main Docs page — it lives on that story's own individual page,
   via `TokenStatePreview` (see "Comparing interaction states" below). The
-  Docs page only gets the one general, full token table plus a `<Source
+  Docs page only gets the one general, full token catalog plus a `<Source
   of={...}/>` code-only block for any story whose approved frame needs a
   non-default detail (e.g. a non-white background) called out — not a
   second live `<Canvas>` (see the Canvas limitation further down) and not a
@@ -142,14 +142,10 @@ instance that changes as a viewer actually hovers/tabs to it. Two reasons:
   token value (via a small scoped `<style>` block), not a live pseudo-class
   test — this documents design intent, same as a "Tokens by state" table
   does, not live CSS behavior (see "Design tokens vs. CSS vs. Figma" below).
-- It sidesteps needing a hand-built, per-state token list at all. Pass
-  `TokenStatePreview` one `tokenFilter` and it renders the full,
-  always-visible `TokenTable` for that filter below the state row —
-  `TokenTable` already expands a row in place on click to show its
-  description and alias chain (built into `@unpunnyfuns/swatchbook-addon`,
-  confirmed by reading its own type definitions) — don't hand-roll an alias
-  chain renderer or a hover/focus-driven token list again; both were tried
-  here first and replaced by this.
+- It sidesteps needing a hand-built, per-state token list at all. The
+  story's tokens are listed in the in-repository Tokens addon panel (set
+  `parameters.tokens` on the meta; `{ disable: true }` on a story with no
+  tokens of its own), not rendered in the canvas under the state row.
 
 A real, functional interaction check (does focus actually land, does an
 `onClick` fire) still belongs in a `play` function — that's a different
@@ -194,7 +190,7 @@ each state look like).
 These are three separate questions. Keep them separate:
 
 1. What does `tokens.json` define? Read `packages/tokens/tokens.json` (or the
-   generated `TokenTable`/`ColorPalette` blocks), not component CSS.
+   generated `TokenDisplay`/`ColorPalette` blocks), not component CSS.
 2. What does the shipped CSS currently do? If this needs answering, verify
    empirically in a real browser (genuine click/hover/Tab-key input,
    `getComputedStyle`, `.matches(':hover')`), not by reading a
@@ -218,26 +214,71 @@ it, especially for a third-party/vendored stylesheet built by a separate
 pipeline. Don't grep compiled CSS for `var(--az-` and report the result as a
 finding about design tokens.
 
-## Token chips
+## Figma designs
 
-For a compact, single-token reference (path, type badge, color swatch,
-value — no search box or heading):
+Every story sets `parameters.design` so the **Design** tab
+(`@storybook/addon-designs`) shows its Figma frames. Link to the variants in
+the master **Buttons** component set (node `2017:6282`, under "Master
+Components - DO NOT EDIT" in the AZ Digital UX Design System file), not to
+copies placed on design pages, which get moved or deleted. Give each story one
+design per state it previews (Default, Hover, Focus), named after the state; see
+`BUTTON_DESIGNS` in `button.stories.tsx`. Viewers need to be logged in to Figma
+to see the embed.
+
+## Arizona Bootstrap shim
+
+Stories render real Arizona Bootstrap from the CDN, which doesn't match our
+design tokens everywhere yet. `.storybook/arizona-bootstrap-shim.css` (loaded
+after it, Storybook only) closes those gaps by pointing Bootstrap's own
+variables (`--bs-btn-*`, `--az-btn-focus-outline-color`) at our tokens, so a
+story renders what `tokens.json` says. Rules for it:
+
+- Only `var(--az-…)` references, never literal values.
+- One rule per gap, with a comment naming it (e.g. Bootstrap gives
+  `:focus-visible` the hover look; a focused solid button keeps its resting
+  fill). When Arizona Bootstrap adopts the tokens, delete that rule.
+- It styles the stories only; it isn't a fix to Arizona Bootstrap and never
+  ships.
+
+## Token references
+
+All token UI comes from `@az-digital/storybook-addon-tokens`
+(`packages/storybook-addon-tokens`, see its README). Import doc blocks from the
+package, never from `./stories`:
 
 ```mdx
-<TokenTable filter="az.color.brand.chili" searchable={false} caption="" />
+import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
+
+<TokenDisplay prefix="az.color.semantic." layout="table" />
+<ComponentTokenIndex component="button" />
 ```
 
-An exact (non-wildcard) `filter` path narrows the table to that one row;
-`searchable={false}` and `caption=""` remove the search box and header text.
-`<ColorPalette filter="..." />` renders a larger card and is the wrong
-component for this — use `TokenTable` with an exact filter instead.
+- Use the package's `Token` pill (and its details drawer) for any single token
+  reference; don't build another pill or drawer.
+- Token rows show the token path, `$type`, "Alias of", and the resolved value.
+  Platform names (CSS variables, Sass variables, ...) belong in the details
+  view's Outputs, which come from the Style Dictionary config, not in a row.
+- `ComponentTokenIndex` groups tokens by reading their paths, so it depends on
+  the `<variant>.<state>.<part>` structure in `packages/tokens/AGENTS.md`.
+- The **Tokens** tab is opt-in, like Controls: it appears only on stories that
+  set `parameters.tokens`, usually once on the story file's meta:
+
+  ```ts
+  parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
+  ```
+
+- Values in stories (e.g. state previews) come from the package's
+  `resolveValue(path)`, which reads the same data as the doc blocks.
+- The addon reloads when `tokens.json` or the Style Dictionary config changes.
+  Changes to the addon's own `manager.tsx` (or the `Token` / `TokenTable` files
+  it imports) still need a Storybook restart, and files the manager imports
+  need a default `React` import for its classic JSX runtime.
 
 Don't wrap non-`<Story>` content in `<Canvas>`. In this Storybook version
 (10.6.0), `<Canvas>` silently falls back to rendering the docs page's primary
-story when given children that aren't a recognized `<Story>` block, so
-`<Canvas><TokenTable .../></Canvas>` renders the button, not the token table,
-with no error. Render `<TokenTable>` (or any other plain component) as
-direct JSX, without a `<Canvas>` wrapper.
+story when given children that aren't a recognized `<Story>` block. Render
+`TokenDisplay` (or any other plain component) as direct JSX, without a
+`<Canvas>` wrapper.
 
 A second `<Canvas><Story of={X}/></Canvas>` on an attached MDX docs page does
 not work correctly in this Storybook version: it always re-renders the first

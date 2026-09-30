@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as CardStories from './card.stories';
 
 {/* `of={CardStories}` attaches this page to card.stories.tsx's own title
@@ -64,4 +64,4 @@ the **fourth** component in a row to hit this exact gap (Accordion, Tabs, Nav, n
 Card) — a real, recurring pattern worth raising with the design/tokens team rather
 than something to keep re-noting quietly.
 
-<TokenTable filter="az.component.card.**" />
+<ComponentTokenIndex component="card" />

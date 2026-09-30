@@ -427,26 +427,32 @@ the build exits 0** — a lint warning doesn't mean the output is correct
 either, since `core/valid-dimension` is a warning, not an error:
 
 ```bash
-npm run build -w @az-digital/tokens   # regenerates dist/tokens.css, dist/tokens.vars.js, and Storybook's .swatchbook/tokens.d.ts
+npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
 ```
 
-**Expose them with a filtered `Tokens` story**, using swatchbook's
-`TokenTable` (already a Storybook addon here — no new dependency):
+**Expose them in Storybook** with `@az-digital/storybook-addon-tokens`
+(see `packages/storybook-addon-tokens/README.md`). No separate "Tokens" story:
 
-```tsx
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+- Declare the component's tokens once on its story file's meta, so each story
+  gets the **Tokens** tab (opt-in, like Controls):
 
-export const Tokens: Story = {
-  render: () => <TokenTable filter="az.component.card.**" />,
-};
-```
+  ```tsx
+  const meta = {
+    parameters: { tokens: 'az.component.card.' },
+  } satisfies Meta;
+  ```
 
-You don't need to do anything else for these to show up in the global token
-catalog (`packages/storybook/stories/tokens.mdx`) — its unfiltered
-`<TokenTable />` and `<TokenNavigator />` already include every token. If you
-want them called out there as their own group too (the way "Component
-tokens" already is for Button), add a filtered section following that same
-pattern.
+- Show the component's tokens on its Docs page:
+
+  ```mdx
+  import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+
+  <ComponentTokenIndex component="card" />
+  ```
+
+Nothing else is needed for them to appear in the Tokens page's Component
+tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
+`tokens.json`, and groups the component's tokens by reading their paths.
 
 ## Consuming source live (no build step needed in Storybook)
 

@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as NavStories from './nav.stories';
 
 {/* `of={NavStories}` attaches this page to nav.stories.tsx's own title
@@ -71,4 +71,4 @@ places, consistent with Accordion and Tabs:
   real distinction needs one"), not something to decide unilaterally while building
   this component.
 
-<TokenTable filter="az.component.nav.**" />
+<ComponentTokenIndex component="nav" />

@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as AccordionStories from './accordion.stories';
 
 {/* `of={AccordionStories}` attaches this page to accordion.stories.tsx's own title
@@ -77,4 +77,4 @@ alias them to. Per `packages/tokens/AGENTS.md`, that's real work (adding a base 
 tier) rather than something to alias around by inventing a token that points at a
 plausible-looking hex — flag it to the design/tokens team rather than adding one here.
 
-<TokenTable filter="az.component.accordion.**" />
+<ComponentTokenIndex component="accordion" />
