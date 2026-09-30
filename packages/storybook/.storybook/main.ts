@@ -15,6 +15,8 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
+    // Design tab: each story shows its Figma frames (parameters.design).
+    getAbsolutePath("@storybook/addon-designs"),
     {
       // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
       name: getAbsolutePath("@az-digital/storybook-addon-tokens"),

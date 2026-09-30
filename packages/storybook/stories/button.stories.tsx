@@ -36,6 +36,33 @@ const SOLID_BUTTON_TOKENS = [...STRUCTURAL_BUTTON_TOKENS, 'az.component.button.f
 const OUTLINE_BUTTON_TOKENS = [...STRUCTURAL_BUTTON_TOKENS, 'az.component.button.focus-visible.', 'az.component.button.outline.'];
 
 /**
+ * Figma designs for the Design tab (@storybook/addon-designs). Every story links
+ * to its variants in the master "Buttons" component set of the AZ Digital UX
+ * Design System file (Master Components - DO NOT EDIT), one per state the story
+ * previews: Default, Hover, and Focus.
+ */
+const FIGMA_FILE = 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System';
+const figmaNode = (nodeId: string, name: string) => ({ type: 'figma' as const, name, url: `${FIGMA_FILE}?node-id=${nodeId.replace(':', '-')}` });
+const figmaStates = (defaultId: string, hoverId: string, focusId: string) => [
+  figmaNode(defaultId, 'Default'),
+  figmaNode(hoverId, 'Hover'),
+  figmaNode(focusId, 'Focus'),
+];
+const BUTTON_DESIGNS = {
+  set: figmaNode('2017:6282', 'Buttons (all variants)'),
+  solidRed: figmaStates('2017:6281', '2019:6293', '2546:1534'),
+  solidRedLarge: figmaStates('2017:6283', '2019:6295', '2546:1538'),
+  outlineRed: figmaStates('2384:1115', '2384:1124', '2583:1556'),
+  outlineRedLarge: figmaStates('2384:1118', '2384:1127', '2585:1563'),
+  solidWhiteOnRed: figmaStates('2411:3552', '2411:3555', '2585:1578'),
+  outlineWhiteOnRed: figmaStates('2411:3602', '2411:3605', '2585:1581'),
+  solidSkyBlue: figmaStates('2411:2263', '2411:2266', '2585:1566'),
+  outlineSkyBlue: figmaStates('2411:3509', '2411:3512', '2585:1569'),
+  solidWhiteOnOasis: figmaStates('2423:3659', '2423:3664', '2588:1590'),
+  outlineWhiteOnOasis: figmaStates('2423:3698', '2423:3700', '2588:1596'),
+};
+
+/**
  * Default/Hover/Focus-visible shown side by side, each recreating that
  * state's look directly from its own resolved token — not a live
  * `:hover`/`:focus-visible` test (there's no way to make all three
@@ -341,6 +368,7 @@ export const DocsControls: Story = {
     background: 'none',
   },
   parameters: {
+    design: BUTTON_DESIGNS.set,
     controls: { disable: false },
   },
   render: (args, context) => {
@@ -377,10 +405,7 @@ export const DocsControls: Story = {
  */
 export const SolidRedOnWhite: Story = {
   parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-339&t=4ghDRUE8AF5L7RhP-4',
-    },
+    design: BUTTON_DESIGNS.solidRed,
   },
   render: (args, context) => {
     const button = renderImplementation('Button', implementations, args, context);
@@ -420,10 +445,7 @@ export const SolidRedOnWhite: Story = {
  */
 export const SolidRedOnCoolGray: Story = {
   parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-537&t=4ghDRUE8AF5L7RhP-4',
-    },
+    design: BUTTON_DESIGNS.solidRed,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
   render: (args, context) => {
@@ -464,10 +486,7 @@ export const SolidRedOnWhiteLarge: Story = {
     size: 'lg',
   },
   parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-339&t=4ghDRUE8AF5L7RhP-4',
-    },
+    design: BUTTON_DESIGNS.solidRedLarge,
   },
   render: (args, context) => {
     const button = renderImplementation('Button', implementations, args, context);
@@ -504,10 +523,7 @@ export const SolidRedOnCoolGrayLarge: Story = {
     size: 'lg',
   },
   parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-537&t=4ghDRUE8AF5L7RhP-4',
-    },
+    design: BUTTON_DESIGNS.solidRedLarge,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
   render: (args, context) => {
@@ -624,7 +640,7 @@ function ColorNotImplementedPlaceholder({ color }: { color: string }) {
 }
 
 export const SolidRedOnWarmGray: Story = {
-  parameters: { tokens: SOLID_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
+  parameters: { design: BUTTON_DESIGNS.solidRed, tokens: SOLID_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-red" />
@@ -643,7 +659,7 @@ export const SolidRedOnWarmGray: Story = {
 };
 
 export const SolidWhiteTextRedOnAzRed: Story = {
-  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
+  parameters: { design: BUTTON_DESIGNS.solidWhiteOnRed, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-white-text-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-red" />
@@ -673,6 +689,7 @@ export const SolidRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
+    design: BUTTON_DESIGNS.solidSkyBlue,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
@@ -694,6 +711,7 @@ export const SolidRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
+    design: BUTTON_DESIGNS.solidSkyBlue,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
@@ -711,7 +729,7 @@ export const SolidRainOnAzurite: Story = {
 };
 
 export const SolidWhiteTextBlueOnOasis: Story = {
-  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
+  parameters: { design: BUTTON_DESIGNS.solidWhiteOnOasis, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-blue" />
@@ -743,6 +761,7 @@ export const OutlineRedOnWhite: Story = {
     style: 'outline',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineRed,
     tokens: OUTLINE_BUTTON_TOKENS,
   },
   render: (args, context) => {
@@ -779,6 +798,7 @@ export const OutlineRedOnCoolGray: Story = {
     style: 'outline',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineRed,
     tokens: OUTLINE_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
@@ -817,6 +837,7 @@ export const OutlineRedOnWhiteLarge: Story = {
     size: 'lg',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineRedLarge,
     tokens: OUTLINE_BUTTON_TOKENS,
   },
   render: (args, context) => {
@@ -853,6 +874,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
     size: 'lg',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineRedLarge,
     tokens: OUTLINE_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
   },
@@ -889,7 +911,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
  * `color` prop.
  */
 export const OutlineRedOnWarmGray: Story = {
-  parameters: { tokens: OUTLINE_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
+  parameters: { design: BUTTON_DESIGNS.outlineRed, tokens: OUTLINE_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-red" />
@@ -908,7 +930,7 @@ export const OutlineRedOnWarmGray: Story = {
 };
 
 export const OutlineWhiteOnAzRed: Story = {
-  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
+  parameters: { design: BUTTON_DESIGNS.outlineWhiteOnRed, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-red', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-red" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />
@@ -932,6 +954,7 @@ export const OutlineRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineSkyBlue,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
@@ -954,6 +977,7 @@ export const OutlineRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
+    design: BUTTON_DESIGNS.outlineSkyBlue,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
@@ -971,7 +995,7 @@ export const OutlineRainOnAzurite: Story = {
 };
 
 export const OutlineWhiteOnOasis: Story = {
-  parameters: { tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
+  parameters: { design: BUTTON_DESIGNS.outlineWhiteOnOasis, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />

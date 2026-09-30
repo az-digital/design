@@ -214,6 +214,17 @@ it, especially for a third-party/vendored stylesheet built by a separate
 pipeline. Don't grep compiled CSS for `var(--az-` and report the result as a
 finding about design tokens.
 
+## Figma designs
+
+Every story sets `parameters.design` so the **Design** tab
+(`@storybook/addon-designs`) shows its Figma frames. Link to the variants in
+the master **Buttons** component set (node `2017:6282`, under "Master
+Components - DO NOT EDIT" in the AZ Digital UX Design System file), not to
+copies placed on design pages, which get moved or deleted. Give each story one
+design per state it previews (Default, Hover, Focus), named after the state; see
+`BUTTON_DESIGNS` in `button.stories.tsx`. Viewers need to be logged in to Figma
+to see the embed.
+
 ## Arizona Bootstrap shim
 
 Stories render real Arizona Bootstrap from the CDN, which doesn't match our
