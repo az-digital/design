@@ -39,10 +39,10 @@ const OUTLINE_BUTTON_TOKENS = [...STRUCTURAL_BUTTON_TOKENS, 'az.component.button
  * Default/Hover/Focus-visible shown side by side, each recreating that
  * state's look directly from its own resolved token — not a live
  * `:hover`/`:focus-visible` test (there's no way to make all three
- * genuinely true at once across separate instances). Hover and focus-visible
- * share the same container color by design (see `packages/tokens/AGENTS.md`
- * — focus without a visible ring looks identical to hover); focus-visible
- * additionally shows the ring, the one property exclusive to it.
+ * genuinely true at once across separate instances). Per the Figma Buttons
+ * component, a focused solid button keeps its resting fill (see
+ * `packages/tokens/AGENTS.md`); focus-visible adds the ring, the one property
+ * exclusive to it.
  */
 const SOLID_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },
@@ -581,10 +581,9 @@ function contextButtonImplementations(bgClass: string, btnClass: string): Implem
  * Forces each state's look via Bootstrap's own per-button-class CSS custom
  * properties (`--bs-btn-hover-*`, `--az-btn-focus-outline-color`) — never a
  * literal color — so this works for any real `.btn-*` class without needing
- * to know what color it resolves to. Same state model as `SOLID_BUTTON_STATES`
- * (focus-visible = hover look + ring; plain focus isn't a separate look),
- * just sourced from Bootstrap's variables instead of `az.component.button.*`
- * tokens, since these variants don't have their own tokens.
+ * to know what color it resolves to. It follows Bootstrap's state model
+ * (focus-visible = hover look + ring), sourced from Bootstrap's variables
+ * because these variants don't have `az.component.button.*` tokens yet.
  */
 const GENERIC_BOOTSTRAP_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },

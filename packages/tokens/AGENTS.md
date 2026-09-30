@@ -60,8 +60,8 @@ what the color looks like instead of what it's for.
 
 Component-specific tokens. Every one aliases a primitive — never a literal
 directly, color or number. This applies just as much to structural tokens as
-to color: `az.component.button.padding.x` aliases `{az.dimension.20}`, not a
-bare `20`. Number primitives live in their own type-grouped tiers —
+to color: `az.component.button.padding.x` aliases `{az.dimension.30}`, not a
+bare `30`. Number primitives live in their own type-grouped tiers —
 `az.dimension.*` for px-like sizes, `az.font-weight.*`, `az.opacity.*` — kept
 separate because a font-weight and a spacing value being both "numbers"
 doesn't make them the same kind of thing.
@@ -91,10 +91,13 @@ that isn't actually demonstrated:
 - States nest inside the style, then the part:
   `solid.hover.container.color`, `outline.focus.label.color` — grouped by
   state (`hover`, `focus`), not folded into the part as suffixed siblings
-  (`container.color-hover`, ...). `focus.*` aliases the same style's
-  `hover.*` directly — a component token aliasing another component token,
-  not semantic — because plain focus (any means) is deliberately identical
-  to hover; see the mistake log. `az.component.button.focus-visible.ring`
+  (`container.color-hover`, ...). `focus.*` aliases another state of the
+  same style directly — a component token aliasing another component token,
+  not semantic — to record which look a focused button takes. Per the Figma
+  Buttons component: a focused **solid** button keeps its resting fill
+  (`solid.focus.container.color` → `solid.container.color`); a focused
+  **outline** button takes its hover look (`outline.focus.*` →
+  `outline.hover.*`). `az.component.button.focus-visible.ring`
   stays shared at the root, separate from `focus`, because the ring is the
   one property exclusive to focus-*visible* (keyboard) focus, and it's the
   same for every style on light surfaces. (Arizona Bootstrap switches it to
@@ -107,7 +110,7 @@ that isn't actually demonstrated:
   variant is a component concern: both styles still alias the same
   `az.color.semantic.action.*` colors, so no new semantic role was needed.
 - Structural tokens (`padding.x`, `.label.font.size`, `.border.radius`)
-  still alias a primitive each (`az.dimension.20`, etc.); they just don't
+  still alias a primitive each (`az.dimension.30`, etc.); they just don't
   need a semantic tier in between yet. `.label.font.size` lives under
   `label` (with each style's `label.color`) because both describe the
   button's displayed text — grouped by what part of the component they
@@ -169,7 +172,17 @@ is a design decision about what that choice means. They don't have to match.
   still documents that focus was deliberately set equal to hover, it isn't
   just an accidental duplicate) and moving `ring` out to its own
   `focus-visible.ring`, so only the one property exclusive to the
-  keyboard-visible case lives under that name.
+  keyboard-visible case lives under that name. (Later superseded for solid
+  buttons: the Figma Buttons component keeps the resting fill on focus, so
+  `solid.focus.container.color` now aliases `solid.container.color`; outline
+  focus still matches hover.)
+- Button's structural values (padding `20`/`8`, label `16` at weight `500`,
+  radius `48`, large `16`/`8` with `20` labels) taken from Arizona
+  Bootstrap's compiled CSS. Bootstrap is an implementation, not a design
+  source. Fixed by taking them from the Figma Buttons component (padding
+  `30`/`12`, large `36`/`14`; label `18` / large `22`, Bold; radius `24` /
+  large `30`). Where Figma has no design (the `sm` size, disabled opacity), the
+  old values remain and are open questions, not decisions.
 - `az.component.button.font.size`/`.weight` and
   `az.component.button.label.color` as two separate top-level groups —
   `font` and `label` are both properties of the same thing, the button's

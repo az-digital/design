@@ -30,13 +30,16 @@ export const az: {
     "2": string,
     "4": string,
     "8": string,
+    "12": string,
     "14": string,
-    "16": string,
-    "20": string,
-    "48": string
+    "18": string,
+    "22": string,
+    "24": string,
+    "30": string,
+    "36": string
   },
   "fontWeight": {
-    "500": string
+    "700": string
   },
   "opacity": {
     "65": string
@@ -84,6 +87,9 @@ export const az: {
             "font": {
               "size": string
             }
+          },
+          "border": {
+            "radius": string
           }
         }
       },
