@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { getTokenDisplayItems } from './resolveToken';
-import { useTokensData, type TokenTree } from './store';
+import { useTokensData, type TokenRecord } from './store';
 import { getTokenNode } from './tokenGraph';
 import type { TokenData } from './Token';
 import { TokenTable } from './TokenTable';
@@ -62,11 +62,23 @@ function isVariantGroup(root: TokenGroup, key: string): boolean {
   });
 }
 
+/** Token paths nested back into their groups, in source order; each token is a `{ $value }` leaf. */
+function toGroupTree(records: TokenRecord[]): TokenGroup {
+  const tree: TokenGroup = {};
+  for (const { path, value } of records) {
+    const segments = path.split('.');
+    let group = tree;
+    for (const segment of segments.slice(0, -1)) group = (group[segment] ??= {}) as TokenGroup;
+    group[segments[segments.length - 1]] = { $value: value };
+  }
+  return tree;
+}
+
 /**
  * Component tokens live in a `component` group under the tree's top-level
  * group (`az.component.button.*`), whatever that top-level group is called.
  */
-function findComponents(tree: TokenTree): { base: string; group: TokenGroup } | undefined {
+function findComponents(tree: TokenGroup): { base: string; group: TokenGroup } | undefined {
   for (const root of childGroupKeys(tree)) {
     const group = (tree[root] as TokenGroup).component;
     if (isGroup(group)) return { base: `${root}.component`, group };
@@ -74,8 +86,8 @@ function findComponents(tree: TokenTree): { base: string; group: TokenGroup } | 
   return undefined;
 }
 
-function buildComponentEntries(tree: TokenTree): ComponentEntry[] {
-  const found = findComponents(tree);
+function buildComponentEntries(records: TokenRecord[]): ComponentEntry[] {
+  const found = findComponents(toGroupTree(records));
   if (!found) return [];
   const { base, group: components } = found;
 
