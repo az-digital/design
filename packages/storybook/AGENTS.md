@@ -214,6 +214,21 @@ it, especially for a third-party/vendored stylesheet built by a separate
 pipeline. Don't grep compiled CSS for `var(--az-` and report the result as a
 finding about design tokens.
 
+## Arizona Bootstrap shim
+
+Stories render real Arizona Bootstrap from the CDN, which doesn't match our
+design tokens everywhere yet. `.storybook/arizona-bootstrap-shim.css` (loaded
+after it, Storybook only) closes those gaps by pointing Bootstrap's own
+variables (`--bs-btn-*`, `--az-btn-focus-outline-color`) at our tokens, so a
+story renders what `tokens.json` says. Rules for it:
+
+- Only `var(--az-…)` references, never literal values.
+- One rule per gap, with a comment naming it (e.g. Bootstrap gives
+  `:focus-visible` the hover look; a focused solid button keeps its resting
+  fill). When Arizona Bootstrap adopts the tokens, delete that rule.
+- It styles the stories only; it isn't a fix to Arizona Bootstrap and never
+  ships.
+
 ## Token references
 
 All token UI comes from `@az-digital/storybook-addon-tokens`
