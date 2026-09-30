@@ -178,11 +178,12 @@ is a design decision about what that choice means. They don't have to match.
   focus still matches hover.)
 - Button's structural values (padding `20`/`8`, label `16` at weight `500`,
   radius `48`, large `16`/`8` with `20` labels) taken from Arizona
-  Bootstrap's compiled CSS. Bootstrap is an implementation, not a design
-  source. Fixed by taking them from the Figma Buttons component (padding
-  `30`/`12`, large `36`/`14`; label `18` / large `22`, Bold; radius `24` /
-  large `30`). Where Figma has no design (the `sm` size, disabled opacity), the
-  old values remain and are open questions, not decisions.
+  Bootstrap's compiled CSS even though the Figma Buttons component defines
+  them. Figma comes first; Arizona Bootstrap is the fallback only where Figma
+  has no design yet. Fixed by taking them from the Figma Buttons component
+  (padding `30`/`12`, large `36`/`14`; label `18` / large `22`, Bold; radius
+  `24` / large `30`). Where Figma has no design (the `sm` size, disabled
+  opacity), the Arizona Bootstrap values stay until Figma designs them.
 - `az.component.button.font.size`/`.weight` and
   `az.component.button.label.color` as two separate top-level groups —
   `font` and `label` are both properties of the same thing, the button's
