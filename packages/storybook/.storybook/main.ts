@@ -1,12 +1,15 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
+
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-mcp',
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@storybook/addon-mcp"),
     {
-      name: '@unpunnyfuns/swatchbook-addon',
+      name: getAbsolutePath("@unpunnyfuns/swatchbook-addon"),
       options: {
         config: {
           // no resolver/themes yet: single tokens.json, one synthetic theme
@@ -16,20 +19,23 @@ const config: StorybookConfig = {
       },
     },
   ],
+
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
-  docs: {
-    autodocs: false,
-  },
+
   viteFinal: async (viteConfig) => ({
     ...viteConfig,
     build: {
       ...viteConfig.build,
       assetsInlineLimit: 0,
     },
-  }),
+  })
 };
 
 export default config;
+
+function getAbsolutePath(value: string): string {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}
