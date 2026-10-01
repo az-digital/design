@@ -5,45 +5,45 @@ describe('information architecture structure', () => {
   it('captures the primary design system hierarchy', () => {
     expect(primaryDesignSystemStructure).toEqual([
       {
-        title: 'Primary Design System',
+        title: 'Primary',
         children: [
           {
-            title: 'Primary Design System/Foundations',
+            title: 'Primary/Foundations',
             children: [
-              'Primary Design System/Foundations/Foundations overview',
+              'Primary/Foundations/Foundations overview',
               {
-                title: 'Primary Design System/Foundations/Accessibility',
+                title: 'Primary/Foundations/Accessibility',
                 children: [
-                  'Primary Design System/Foundations/Accessibility/Designing',
-                  'Primary Design System/Foundations/Accessibility/Writing & Text',
+                  'Primary/Foundations/Accessibility/Designing',
+                  'Primary/Foundations/Accessibility/Writing & Text',
                 ],
               },
               {
-                title: 'Primary Design System/Foundations/Content Design',
+                title: 'Primary/Foundations/Content Design',
                 children: [
-                  'Primary Design System/Foundations/Content Design/Alt text guidance',
-                  'Primary Design System/Foundations/Content Design/Style guide for writing',
+                  'Primary/Foundations/Content Design/Alt text guidance',
+                  'Primary/Foundations/Content Design/Style guide for writing',
                 ],
               },
             ],
           },
           {
-            title: 'Primary Design System/Components',
+            title: 'Primary/Components',
             children: [
               {
-                title: 'Primary Design System/Components/Buttons',
+                title: 'Primary/Components/Buttons',
                 children: [
-                  'Primary Design System/Components/Buttons/Icon buttons',
-                  'Primary Design System/Components/Buttons/Segmented Control',
+                  'Primary/Components/Buttons/Icon buttons',
+                  'Primary/Components/Buttons/Segmented Control',
                 ],
               },
               {
-                title: 'Primary Design System/Components/Containers',
+                title: 'Primary/Components/Containers',
                 children: [
-                  'Primary Design System/Components/Containers/Accordions',
-                  'Primary Design System/Components/Containers/Card',
-                  'Primary Design System/Components/Containers/Table',
-                  'Primary Design System/Components/Containers/Tabs',
+                  'Primary/Components/Containers/Accordions',
+                  'Primary/Components/Containers/Card',
+                  'Primary/Components/Containers/Table',
+                  'Primary/Components/Containers/Tabs',
                 ],
               },
             ],
