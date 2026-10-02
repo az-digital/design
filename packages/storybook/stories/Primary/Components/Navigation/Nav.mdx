@@ -1,16 +1,16 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
 import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
-import * as NavStories from './nav.stories';
+import * as NavStories from './Nav.stories';
 
-{/* `of={NavStories}` attaches this page to nav.stories.tsx's own title
-    ("Components/Nav"), so it replaces the autodocs page for that group instead
+{/* `of={NavStories}` attaches this page to Nav.stories.tsx's own title
+    ("Primary/Components/Navigation/Nav"), so it replaces the autodocs page for that group instead
     of adding a separate nested entry. */}
 <Meta of={NavStories} />
 
 # Nav
 
 Nav renders a list of links sharing a single style — a plain static link list, not a
-dynamic tab-panel switcher (see [Tabs](?path=/docs/components-tabs--docs) for that).
+dynamic tab-panel switcher (see [Tabs](?path=/docs/primary-components-containers-tabs--docs) for that).
 Purely presentational: no real interactive behavior, so unlike Accordion/Tabs, this
 component is hand-rolled rather than wrapping `react-bootstrap`.
 
@@ -46,7 +46,7 @@ component is hand-rolled rather than wrapping `react-bootstrap`.
 Both components share the same underlying `.nav`/`.nav-link` markup and styling, but
 solve different problems: `Nav` is a static list of real links (each `href` navigates
 somewhere, or is just a placeholder `#`), while
-[`Tabs`](?path=/docs/components-tabs--docs) is a dynamic ARIA `tablist`/`tabpanel`
+[`Tabs`](?path=/docs/primary-components-containers-tabs--docs) is a dynamic ARIA `tablist`/`tabpanel`
 interface that swaps visible content in place without navigating. If you need
 `data-bs-toggle`, `role="tab"`, or a `tab-content` panel, that's `Tabs`, not `Nav`.
 

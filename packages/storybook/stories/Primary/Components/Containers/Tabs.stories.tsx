@@ -2,8 +2,8 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Tabs } from '@az-digital/components-react';
 import { renderTabs } from '@az-digital/components-html';
-import type { Implementations } from './implementations';
-import { renderImplementation } from './implementations';
+import type { Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
 
 type TabsArgs = Parameters<typeof renderTabs>[0];
 
@@ -45,7 +45,7 @@ function TabsArgsShape(_args: TabsArgs) {
 }
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Primary/Components/Containers/Tabs',
   // Set only so react-docgen can attach Tabs's prop table to this story file's
   // documentation — see the equivalent comment in button.stories.tsx for why this
   // must stay a bare reference to the imported `Tabs`.
@@ -103,7 +103,7 @@ export const Underline: Story = {
  * Arizona-specific), and the same dynamic tabbed component as every story
  * above — just laid out vertically. Not the same thing as the docs' separate
  * "Vertical Pills" example, which is Arizona-custom, static nested nav
- * markup with no tab-content panels at all — see tabs.mdx.
+ * markup with no tab-content panels at all — see Tabs.mdx.
  */
 export const Vertical: Story = {
   args: { id: 'tabs-vertical-example', variant: 'pills', vertical: true },

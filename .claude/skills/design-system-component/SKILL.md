@@ -57,7 +57,7 @@ For a component named `Card` that needs both implementations, you'd create:
 packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
-packages/storybook/stories/card.stories.tsx               # the story
+packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx  # the story (in main's IA folder; replaces Card.mdx's placeholder with the Docs page)
 packages/tokens/tokens.json                                # az.component.card.* entries — see below
 ```
 

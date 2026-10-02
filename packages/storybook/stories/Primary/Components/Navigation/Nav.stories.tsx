@@ -2,8 +2,8 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Nav } from '@az-digital/components-react';
 import { renderNav } from '@az-digital/components-html';
-import type { Implementations } from './implementations';
-import { renderImplementation } from './implementations';
+import type { Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
 
 type NavArgs = Parameters<typeof renderNav>[0];
 
@@ -43,7 +43,7 @@ function NavArgsShape(_args: NavArgs) {
 }
 
 const meta = {
-  title: 'Components/Nav',
+  title: 'Primary/Components/Navigation/Nav',
   // Set only so react-docgen can attach Nav's prop table to this story file's
   // documentation — see the equivalent comment in button.stories.tsx for why this
   // must stay a bare reference to the imported `Nav`.

@@ -3,8 +3,8 @@ import { createElement } from 'react';
 import { ArizonaHeader } from '@az-digital/components-react';
 import { renderArizonaHeader } from '@az-digital/components-html';
 import type { ArizonaHeaderProps } from '@az-digital/components-html';
-import type { Implementations } from './implementations';
-import { renderImplementation } from './implementations';
+import type { Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
 
 // Not `Parameters<typeof renderArizonaHeader>[0]` (the pattern most stories use) —
 // renderArizonaHeader's default parameter value (`= {}`) makes that resolve to
@@ -46,7 +46,7 @@ function ArizonaHeaderArgsShape(_args: ArizonaHeaderArgs) {
 }
 
 const meta = {
-  title: 'Components/ArizonaHeader',
+  title: 'Primary/Components/Navigation/Arizona Header',
   // Set only so react-docgen can attach ArizonaHeader's prop table to this story file's
   // documentation — see the equivalent comment in button.stories.tsx for why this
   // must stay a bare reference to the imported `ArizonaHeader`.

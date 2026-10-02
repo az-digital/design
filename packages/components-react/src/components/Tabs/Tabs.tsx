@@ -35,7 +35,7 @@ export type TabsProps = {
    * own vertical-tabs example — genuinely upstream Bootstrap behavior, not
    * Arizona-specific (unlike "Vertical Pills" in the same docs page, which is
    * a different, static/non-interactive nav pattern this component doesn't
-   * cover — see tabs.mdx).
+   * cover — see Primary/Components/Containers/Tabs.mdx).
    */
   vertical?: boolean;
   /** Proportionately fills the available width across tab items (`.nav-fill`). */
