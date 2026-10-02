@@ -27,6 +27,14 @@ const config: StorybookConfig = {
 
   viteFinal: async (viteConfig) => ({
     ...viteConfig,
+    resolve: {
+      ...viteConfig.resolve,
+      alias: {
+        ...viteConfig.resolve?.alias,
+        // stable path to packages/tokens, independent of story folder depth
+        '@tokens': fileURLToPath(new URL('../../tokens', import.meta.url)),
+      },
+    },
     build: {
       ...viteConfig.build,
       assetsInlineLimit: 0,
