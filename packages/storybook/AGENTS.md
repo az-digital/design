@@ -11,7 +11,7 @@ capable of rendering. Keep that distinction in front of every decision here:
   let a viewer freely combine props into something nobody actually approved
   — see "Only add a story for a prop combination with an approved Figma
   frame" under Stories, and the "NO PAIRS" reasoning behind
-  `argTypes.color.options` in `Buttons.stories.tsx` (background-paired colors
+  `argTypes.color.options` in `Button.stories.tsx` (background-paired colors
   are excluded from the untethered playground because picking one there
   produces a combination nothing approved).
 - Never invent a prop value, CSS class, or a mapping between them to make a
@@ -25,7 +25,7 @@ capable of rendering. Keep that distinction in front of every decision here:
 - If something genuinely isn't implemented yet (no CSS, no token), document
   that plainly — a "not yet implemented" doc comment, an explicit
   placeholder in the story (see `ColorNotImplementedPlaceholder` in
-  `Buttons.stories.tsx`) — rather than papering over the gap so it looks
+  `Button.stories.tsx`) — rather than papering over the gap so it looks
   finished.
 - If there's no design token for a color (or other value), don't mention it
   in the docs prose at all. Documenting something with no token behind it
@@ -69,13 +69,19 @@ session alone; verify in an actual browser, or ask the user to.
   `stories/Primary/Components/<Group>/`. When that folder already has a
   placeholder page for the component (e.g. `Containers/Card.mdx`), the
   component's Docs page replaces it: keep the placeholder's title as the
-  stories' `title`, and its intro text on the Docs page. Button, for
-  example, is `Primary/Components/Buttons` (`Buttons/Docs.mdx` and
-  `Buttons/Buttons.stories.tsx`). Shared story helpers (`implementations.tsx`,
-  `TokenStatePreview.tsx`) stay at the root of `stories/`.
+  stories' `title`. A group's own landing page (`<Group>/Docs.mdx`, titled
+  `Primary/Components/<Group>`) is not a component placeholder: leave it,
+  and give the component its own title inside the group. Never title a
+  component's stories with the group's title: Storybook would then mix the
+  component's stories, its Docs page, and the group's other pages in one
+  list. Button, for example, is `Primary/Components/Buttons/Button`
+  (`Buttons/Button.mdx` and `Buttons/Button.stories.tsx`), beside the
+  Buttons landing page, Icon buttons, and Segmented Control. Shared story
+  helpers (`implementations.tsx`, `TokenStatePreview.tsx`) stay at the root
+  of `stories/`.
 - One combined Docs page per component, not a nested "Guidelines" page.
   Attach the MDX doc to the component's own title with `<Meta of={ButtonStories} />`
-  (import `* as ButtonStories from './Buttons.stories'`) — not `<Meta title="Primary/Components/Buttons/Guidelines" />`.
+  (import `* as ButtonStories from './Button.stories'`) — not `<Meta title="Primary/Components/Buttons/Guidelines" />`.
   `of={}` makes the MDX page replace the autodocs entry for that exact title,
   so it appears as the top-level "Docs" entry alongside the component's
   stories in the sidebar, not as a separate child page.
@@ -133,7 +139,7 @@ session alone; verify in an actual browser, or ask the user to.
   `preview.ts`). A story with no shared meta-level `implementations` to
   collide with (i.e. it doesn't use `renderImplementation`/args at all) can
   use plain `parameters.implementations` — see `contextButtonImplementations`
-  in `Buttons.stories.tsx` for the pattern.
+  in `Button.stories.tsx` for the pattern.
 
 ## Comparing interaction states
 
@@ -190,7 +196,7 @@ each state look like).
   `KeyboardEvent`) is the only reliable way to reproduce `:focus-visible`.
   Don't write a play function that asserts `:focus-visible`-gated styling —
   assert plain focus reachability only (see `SolidRedOnWhite`'s play
-  function in `Buttons.stories.tsx`), and use `TokenStatePreview` (below) if
+  function in `Button.stories.tsx`), and use `TokenStatePreview` (below) if
   you need to actually show what focus-visible looks like.
 
 ## Design tokens vs. CSS vs. Figma
@@ -230,7 +236,7 @@ the master **Buttons** component set (node `2017:6282`, under "Master
 Components - DO NOT EDIT" in the AZ Digital UX Design System file), not to
 copies placed on design pages, which get moved or deleted. Give each story one
 design per state it previews (Default, Hover, Focus), named after the state; see
-`BUTTON_DESIGNS` in `Buttons.stories.tsx`. Viewers need to be logged in to Figma
+`BUTTON_DESIGNS` in `Button.stories.tsx`. Viewers need to be logged in to Figma
 to see the embed.
 
 ## Arizona Bootstrap shim

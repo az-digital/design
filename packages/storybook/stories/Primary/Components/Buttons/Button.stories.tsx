@@ -190,7 +190,7 @@ function ButtonArgsShape(_args: ButtonArgs) {
 }
 
 const meta = {
-  title: 'Primary/Components/Buttons',
+  title: 'Primary/Components/Buttons/Button',
   // Set only so react-docgen can attach Button's prop table to this story file's
   // documentation (see the Storybook MCP addon-mcp component manifest) — rendering
   // itself always goes through `render: ButtonStory` below. Must stay a bare reference
