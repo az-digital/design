@@ -71,12 +71,12 @@ session alone; verify in an actual browser, or ask the user to.
   component's Docs page replaces it: keep the placeholder's title as the
   stories' `title`. A group's own landing page (`<Group>/Docs.mdx`, titled
   `Primary/Components/<Group>`) is not a component placeholder: leave it,
-  and give the component its own title inside the group. Never title a
-  component's stories with the group's title: Storybook would then mix the
-  component's stories, its Docs page, and the group's other pages in one
-  list. Button, for example, is `Primary/Components/Buttons/Button`
-  (`Buttons/Button.mdx` and `Buttons/Button.stories.tsx`), beside the
-  Buttons landing page, Icon buttons, and Segmented Control. Shared story
+  and give the component its own title inside the group. Don't nest other
+  pages under a component's own title: Storybook lists them in among the
+  component's stories, with its Docs page last. Buttons has no landing
+  page or other patterns, so Button is that whole entry,
+  `Primary/Components/Buttons` (`Buttons/Button.mdx` and
+  `Buttons/Button.stories.tsx`): its Docs page, then its stories. Shared story
   helpers (`implementations.tsx`, `TokenStatePreview.tsx`) stay at the root
   of `stories/`.
 - One combined Docs page per component, not a nested "Guidelines" page.
