@@ -124,7 +124,9 @@ const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9]/g, '')
 /**
  * This Storybook's docs pages by the last segment of their title, normalized
  * (`Primary/Components/Buttons` → `buttons`), so a component links to its docs
- * page wherever the site files it, and only when it has one.
+ * page wherever the site files it, and only when it has one. When two pages
+ * share a name, a page attached to stories (the component's own docs) wins over
+ * a standalone MDX page such as a placeholder.
  */
 function useDocsPages(): Map<string, string> {
   const [pages, setPages] = useState<Map<string, string>>(new Map());
@@ -132,15 +134,17 @@ function useDocsPages(): Map<string, string> {
     let cancelled = false;
     fetch('./index.json')
       .then((response) => (response.ok ? response.json() : { entries: {} }))
-      .then((index: { entries?: Record<string, { id: string; type?: string; title?: string }> }) => {
+      .then((index: { entries?: Record<string, { id: string; type?: string; title?: string; tags?: string[] }> }) => {
         if (cancelled) return;
-        const found = new Map<string, string>();
+        const found = new Map<string, { id: string; attached: boolean }>();
         for (const entry of Object.values(index.entries ?? {})) {
           if (entry.type !== 'docs' || !entry.title) continue;
           const key = normalize(entry.title.split('/').at(-1) ?? '');
-          if (!found.has(key)) found.set(key, entry.id);
+          const attached = !entry.tags?.includes('unattached-mdx');
+          const existing = found.get(key);
+          if (!existing || (attached && !existing.attached)) found.set(key, { id: entry.id, attached });
         }
-        setPages(found);
+        setPages(new Map([...found].map(([key, { id }]) => [key, id])));
       })
       .catch(() => {});
     return () => {
