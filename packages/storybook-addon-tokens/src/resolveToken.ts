@@ -1,4 +1,4 @@
-import { getTokensData, getTokensVersion, type TokenArtifact } from './store';
+import { getTokensData, getTokensVersion, type TokenArtifact, type TokenRecord } from './store';
 
 /** One design token, as the `Token` pill, tables, and details drawer render it. */
 export type TokenData = {
@@ -17,50 +17,51 @@ export type TokenData = {
   extensions?: Record<string, unknown>;
 };
 
-export type TokenNode = {
-  $type?: string;
-  $value?: unknown;
-  $description?: string;
-  $extensions?: Record<string, unknown>;
-};
-
 export type ResolvedLink = { path: string; type: string; value: unknown };
 
-const ALIAS_PATTERN = /^\{(.+)\}$/;
-const MAX_CHAIN_LENGTH = 10;
+type Order = 'path' | 'source';
 
-export function isAlias(value: unknown): value is string {
-  return typeof value === 'string' && ALIAS_PATTERN.test(value);
+let cache: { version: number; byPath: Map<string, TokenRecord>; items: TokenData[]; sourceOrder: TokenData[] } | undefined;
+
+function getIndex() {
+  if (cache?.version === getTokensVersion()) return cache;
+  const records = getTokensData().tokens;
+  const sourceOrder = records.map(
+    (record): TokenData => ({
+      token: record.path,
+      name: record.path.split('.').at(-1) ?? record.path,
+      type: record.type,
+      hex: record.type === 'color' && typeof record.resolvedValue === 'string' ? record.resolvedValue : undefined,
+      value: formatTokenValue(record.resolvedValue),
+      description: record.description,
+      extensions: record.extensions,
+    }),
+  );
+  const items = [...sourceOrder].sort((a, b) => a.token.localeCompare(b.token));
+  cache = { version: getTokensVersion(), byPath: new Map(records.map((record) => [record.path, record])), items, sourceOrder };
+  return cache;
 }
 
-export function getNodeAtPath(path: string): TokenNode | undefined {
-  let node: unknown = getTokensData().tokens;
-  for (const segment of path.split('.')) {
-    if (typeof node !== 'object' || node === null) return undefined;
-    node = (node as Record<string, unknown>)[segment];
-  }
-  return node as TokenNode | undefined;
+/** One token as Style Dictionary read it, by path. */
+export function getTokenRecord(path: string): TokenRecord | undefined {
+  return getIndex().byPath.get(path);
 }
 
-/** Follows `$value: "{other.path}"` alias references to their final, literal value. */
+/**
+ * `path`, then each token it aliases in turn, down to the one with a literal
+ * value. Style Dictionary has already rejected broken and circular references.
+ */
 export function resolveChain(path: string): ResolvedLink[] {
   const chain: ResolvedLink[] = [];
-  let currentPath = path;
-  for (let i = 0; i < MAX_CHAIN_LENGTH; i++) {
-    const node = getNodeAtPath(currentPath);
-    if (!node || node.$value === undefined) break;
-    chain.push({ path: currentPath, type: node.$type ?? 'unknown', value: node.$value });
-    const aliasMatch = typeof node.$value === 'string' ? node.$value.match(ALIAS_PATTERN) : null;
-    if (!aliasMatch) break;
-    currentPath = aliasMatch[1];
+  for (let record = getTokenRecord(path); record; record = record.aliasOf ? getTokenRecord(record.aliasOf) : undefined) {
+    chain.push({ path: record.path, type: record.type ?? 'unknown', value: record.value });
   }
   return chain;
 }
 
-/** Resolves `path` all the way down to its final, literal (non-alias) value, as the source file writes it. */
+/** The value Style Dictionary resolves `path` to, as the source file writes it. */
 export function resolveValue(path: string): unknown {
-  const chain = resolveChain(path);
-  return chain.length > 0 ? chain[chain.length - 1].value : undefined;
+  return getTokenRecord(path)?.resolvedValue;
 }
 
 /** A value for display, printed as the source file writes it (DTCG dimensions as `20px`). */
@@ -71,39 +72,9 @@ export function formatTokenValue(value: unknown): string {
   return typeof value === 'string' ? value : JSON.stringify(value) ?? String(value);
 }
 
-let cache: { version: number; items: TokenData[]; sourceOrder: TokenData[] } | undefined;
-
-type Order = 'path' | 'source';
-
-/** Every token in the tree, sorted by path, or with `order: 'source'` in the order the source file lists them. */
+/** Every token, sorted by path, or with `order: 'source'` in the order the source file lists them. */
 export function getAllTokenItems({ order = 'path' }: { order?: Order } = {}): TokenData[] {
-  if (cache?.version === getTokensVersion()) return order === 'source' ? cache.sourceOrder : cache.items;
-  const items: TokenData[] = [];
-  const visit = (node: unknown, path: string[]) => {
-    if (typeof node !== 'object' || node === null || Array.isArray(node)) return;
-    const token = node as TokenNode;
-    if ('$value' in token) {
-      const tokenPath = path.join('.');
-      const resolvedValue = resolveValue(tokenPath);
-      items.push({
-        token: tokenPath,
-        name: path.at(-1) ?? tokenPath,
-        type: token.$type,
-        hex: token.$type === 'color' && typeof resolvedValue === 'string' ? resolvedValue : undefined,
-        value: formatTokenValue(resolvedValue),
-        description: token.$description,
-        extensions: token.$extensions,
-      });
-      return;
-    }
-    for (const [key, value] of Object.entries(node)) {
-      if (!key.startsWith('$')) visit(value, [...path, key]);
-    }
-  };
-  visit(getTokensData().tokens, []);
-  const sourceOrder = [...items];
-  items.sort((a, b) => a.token.localeCompare(b.token));
-  cache = { version: getTokensVersion(), items, sourceOrder };
+  const { items, sourceOrder } = getIndex();
   return order === 'source' ? sourceOrder : items;
 }
 

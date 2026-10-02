@@ -42,6 +42,8 @@ const config: StorybookConfig = {
         ...(Array.isArray(viteConfig.resolve?.alias) ? viteConfig.resolve.alias : []),
         { find: '@az-digital/components-react', replacement: resolve(__dirname, '../../components-react/src/index.ts') },
         { find: '@az-digital/components-html', replacement: resolve(__dirname, '../../components-html/src/index.ts') },
+        // Stable path to packages/tokens, independent of story folder depth.
+        { find: '@tokens', replacement: resolve(__dirname, '../../tokens') },
       ],
     },
     build: {
