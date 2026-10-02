@@ -220,7 +220,7 @@ These are three separate questions. Keep them separate:
    different place if it belongs anywhere.
 
 A CSS custom property is not a design token. `var(--bs-btn-hover-bg)` and
-`az.color.brand.chili` are different kinds of thing — one is a CSS authoring
+`az.color.brand.sonoran-red` are different kinds of thing — one is a CSS authoring
 mechanism, the other is a named design decision in `tokens.json`. Whether a
 stylesheet's compiled output references (or doesn't reference) a `--az-*`
 custom property says nothing about whether a design token was used to define

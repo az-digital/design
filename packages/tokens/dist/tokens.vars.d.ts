@@ -5,7 +5,6 @@ export const az: {
       "blue": string,
       "tinta": string,
       "azurite": string,
-      "chili": string,
       "bloom": string,
       "arroyoBlue": string,
       "rain": string,
