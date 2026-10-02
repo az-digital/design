@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import StyleDictionary from 'style-dictionary';
+import { getReferences } from 'style-dictionary/utils';
 
 /**
  * How to reference a token from each of Style Dictionary's built-in formats,
@@ -26,16 +27,33 @@ const BUILT_IN_REFERENCES = {
 /** Built-in formats that write each token's derived value into the file. */
 const WRITES_VALUE = new Set(['css/variables', 'scss/variables', 'scss/map-flat', 'less/variables', 'javascript/es6', 'json/flat', 'android/resources']);
 
+/** A platform with no transforms: Style Dictionary resolves aliases but leaves values as the source file writes them. */
+const SOURCE_PLATFORM = 'storybook-addon-tokens/source';
+
 /**
- * The token tree as the source file writes it. Style Dictionary adds its own
- * bookkeeping to every token (`filePath`, `isSource`, `original`, `name`,
- * `path`, `attributes`, ...); a DTCG token's own properties all start with `$`,
- * so keep only those on tokens. Groups are copied as they are.
+ * Every token, in source order, as Style Dictionary reads it: its value as the
+ * source file writes it, the value Style Dictionary resolves it to (before any
+ * platform transform), and the token it aliases, if its whole value is one
+ * reference. Style Dictionary also rejects broken and circular references here.
  */
-function stripBookkeeping(node) {
-  if (typeof node !== 'object' || node === null || Array.isArray(node)) return node;
-  if ('$value' in node) return Object.fromEntries(Object.entries(node).filter(([key]) => key.startsWith('$')));
-  return Object.fromEntries(Object.entries(node).map(([key, value]) => [key, stripBookkeeping(value)]));
+async function readTokens(sd) {
+  const prop = (token, name) => (sd.usesDtcg ? token[`$${name}`] : token[name === 'description' ? 'comment' : name]);
+  const source = await sd.extend({ platforms: { [SOURCE_PLATFORM]: {} } });
+  const { allTokens, tokens } = await source.getPlatformTokens(SOURCE_PLATFORM);
+  return allTokens.map((token) => {
+    const value = prop(token.original, 'value');
+    const references = getReferences(value, tokens, { usesDtcg: sd.usesDtcg, unfilteredTokens: tokens });
+    const aliasOf = references.length === 1 && value === references[0].key ? references[0].path.join('.') : undefined;
+    return {
+      path: token.path.join('.'),
+      type: prop(token, 'type'),
+      description: prop(token, 'description'),
+      extensions: token.$extensions,
+      value,
+      resolvedValue: prop(token, 'value'),
+      aliasOf,
+    };
+  });
 }
 
 function toDisplayValue(value) {
@@ -57,9 +75,9 @@ const toPosix = (path) => path.split('\\').join('/');
 
 /**
  * Loads the Style Dictionary config at `configPath` and returns, without
- * writing any files: the source token tree exactly as the source files write
- * it, and for every output file in every platform, how each token is
- * referenced in that file and the value Style Dictionary derives for it.
+ * writing any files: every token as Style Dictionary reads it, and for every
+ * output file in every platform, how each token is referenced in that file and
+ * the value Style Dictionary derives for it.
  */
 export async function collectTokens(configPath, { repositoryUrl } = {}) {
   const absoluteConfig = resolve(configPath);
@@ -78,6 +96,9 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
   const repoPath = (absolutePath) => toPosix(relative(repoRoot, absolutePath));
   const link = (path) => (repositoryUrl ? `${repositoryUrl.replace(/\/?$/, '/')}${path}` : undefined);
 
+  const tokens = await readTokens(sd);
+  const aliasOf = new Map(tokens.map((token) => [token.path, token.aliasOf]));
+
   const artifacts = [];
   for (const [platform, platformConfig] of Object.entries(sd.options.platforms ?? {})) {
     const { allTokens } = await sd.getPlatformTokens(platform);
@@ -91,21 +112,20 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
       const writtenAsReference = (token) => {
         if (!file.options?.outputReferences) return undefined;
         if (typeof file.options.outputReferences === 'function' && !file.options.outputReferences(token, { dictionary: { allTokens } })) return undefined;
-        const original = token.original?.$value ?? token.original?.value;
-        const alias = typeof original === 'string' ? original.match(/^\{(.+)\}$/)?.[1] : undefined;
+        const alias = aliasOf.get(token.path.join('.'));
         const target = alias && byPath.get(alias);
         return target ? builtIn(target.name, file) : undefined;
       };
       const valueOf =
         file.options?.tokenValue ??
         (WRITES_VALUE.has(file.format) ? (token) => writtenAsReference(token) ?? token.$value ?? token.value : () => undefined);
-      const tokens = {};
+      const written = {};
       for (const token of allTokens) {
         if (typeof file.filter === 'function' && !file.filter(token, platformConfig)) continue;
-        tokens[token.path.join('.')] = { reference: reference(token), value: toDisplayValue(valueOf(token)) };
+        written[token.path.join('.')] = { reference: reference(token), value: toDisplayValue(valueOf(token)) };
       }
       const path = repoPath(join(configDir, platformConfig.buildPath ?? '', file.destination));
-      artifacts.push({ platform, format: typeof file.format === 'string' ? file.format : 'custom', path, url: link(path), tokens });
+      artifacts.push({ platform, format: typeof file.format === 'string' ? file.format : 'custom', path, url: link(path), tokens: written });
     }
   }
 
@@ -114,10 +134,8 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
     return { path, url: /[*?{]/.test(pattern) ? undefined : link(path) };
   });
 
-  // Keep token groups only; `$themes` / `$metadata` are Tokens Studio bookkeeping.
-  const tree = Object.fromEntries(Object.entries(stripBookkeeping(sd.tokens)).filter(([key]) => !key.startsWith('$')));
   return {
-    data: { tokens: tree, sourceFiles, artifacts },
+    data: { tokens, sourceFiles, artifacts },
     watch: [absoluteConfig, ...(fromConfig(config.source) ?? []), ...(fromConfig(config.include) ?? [])],
   };
 }

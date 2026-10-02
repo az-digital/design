@@ -38,7 +38,7 @@ function TokensPanelContent() {
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix));
   const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
 
-  if (Object.keys(data.tokens).length === 0) {
+  if (data.tokens.length === 0) {
     return <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>Loading tokens…</p>;
   }
   if (items.length === 0) {

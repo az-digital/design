@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import tokensDocument from '../../tokens/tokens.json';
-import tokensCssRaw from '../../tokens/dist/tokens.css?raw';
-import tokensScssRaw from '../../tokens/dist/tokens.scss?raw';
-import tokensVarsJsRaw from '../../tokens/dist/tokens.vars.js?raw';
-import tokensVarsDtsRaw from '../../tokens/dist/tokens.vars.d.ts?raw';
+import tokensDocument from '@tokens/tokens.json';
+import tokensCssRaw from '@tokens/dist/tokens.css?raw';
+import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
+import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
+import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
 import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
@@ -19,7 +19,7 @@ export const tokensVarsDtsGithubUrl = outputUrl('tokens.vars.d.ts');
 export const specUrl = 'https://www.designtokens.org/tr/2025.10/color/';
 export const tokenCounts = countTokens(tokensDocument);
 
-<Meta title="Tokens" />
+<Meta title="Primary/Foundations/Tokens" />
 
 # Design Tokens
 

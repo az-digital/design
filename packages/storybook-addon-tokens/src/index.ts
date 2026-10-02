@@ -8,4 +8,4 @@ export { TokenDisplay } from './TokenDisplay';
 export { TokenTable } from './TokenTable';
 export { getAllTokenItems, getTokenArtifacts, getTokenData, getTokenDisplayItems, resolveChain, resolveValue, type TokenData } from './resolveToken';
 export { getAncestors, getTokenNode } from './tokenGraph';
-export { getTokensData, useTokensData, type TokenArtifact, type TokensData, type TokenTree } from './store';
+export { getTokensData, useTokensData, type TokenArtifact, type TokenRecord, type TokensData } from './store';

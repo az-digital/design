@@ -93,7 +93,7 @@ import { ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-t
 - `TokenDisplay`: token pills, or `layout="table"` for one row per token: Token · Type · Alias of · Resolved value.
 - `ComponentTokenIndex`: every component's tokens, one collapsed row per component, with search, type filters, and a Style / State grouping switch. `component="button"` shows one component's tokens without the index.
 
-Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly, and for site-specific presentations: this repo's brand swatch cards (`packages/storybook/stories/ColorSwatchGrid.tsx`) are built from `getTokenDisplayItems` and the `Token` pill rather than shipped in the addon.
+Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly, and for site-specific presentations: this repo's brand swatch cards (`packages/storybook/stories/Primary/Foundations/Tokens/ColorSwatchGrid.tsx`) are built from `getTokenDisplayItems` and the `Token` pill rather than shipped in the addon.
 
 ## How component tokens are grouped
 
@@ -109,6 +109,6 @@ A top-level group counts as a **variant** when it overrides a part the component
 
 ## How it works
 
-- **Node side** (`src/preset.js`, `src/node/`): the preset adds a Vite plugin. The plugin loads your Style Dictionary config, collects the source token tree and each platform's outputs, and serves them to the preview as a virtual module.
+- **Node side** (`src/preset.js`, `src/node/`): the preset adds a Vite plugin. The plugin loads your Style Dictionary config, has Style Dictionary read every token (its value as written, what it resolves to, and the token it aliases) and each platform's outputs, and serves them to the preview as a virtual module.
 - **Preview** (`src/index.ts`, `src/preview.ts`): the doc blocks read that data synchronously. The preview also sends it to the Tokens tab over Storybook's channel.
 - **Manager** (`src/manager.tsx`): the Tokens tab, which receives the data from the preview.
