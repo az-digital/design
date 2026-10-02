@@ -119,23 +119,39 @@ function buildComponentEntries(records: TokenRecord[]): ComponentEntry[] {
 /** Text a search matches against: the token path, its type, what it aliases, and its resolved value. */
 const searchText = (item: TokenData) => [item.token, item.type, getTokenNode(item.token)?.parent, item.hex, item.value].filter(Boolean).join(' ').toLowerCase();
 
-/** Docs ids that exist in this Storybook, so a component only links to a docs page it actually has. */
-function useDocsIds(): Set<string> {
-  const [ids, setIds] = useState<Set<string>>(new Set());
+const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+/**
+ * This Storybook's docs pages by the last segment of their title, normalized
+ * (`Primary/Components/Buttons` → `buttons`), so a component links to its docs
+ * page wherever the site files it, and only when it has one.
+ */
+function useDocsPages(): Map<string, string> {
+  const [pages, setPages] = useState<Map<string, string>>(new Map());
   useEffect(() => {
     let cancelled = false;
     fetch('./index.json')
       .then((response) => (response.ok ? response.json() : { entries: {} }))
-      .then((index: { entries?: Record<string, unknown> }) => {
-        if (!cancelled) setIds(new Set(Object.keys(index.entries ?? {})));
+      .then((index: { entries?: Record<string, { id: string; type?: string; title?: string }> }) => {
+        if (cancelled) return;
+        const found = new Map<string, string>();
+        for (const entry of Object.values(index.entries ?? {})) {
+          if (entry.type !== 'docs' || !entry.title) continue;
+          const key = normalize(entry.title.split('/').at(-1) ?? '');
+          if (!found.has(key)) found.set(key, entry.id);
+        }
+        setPages(found);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, []);
-  return ids;
+  return pages;
 }
+
+/** The docs page for component `name` (`button`), titled for the component or its plural (`Buttons`). */
+const docsIdFor = (pages: Map<string, string>, name: string) => pages.get(normalize(name)) ?? pages.get(`${normalize(name)}s`);
 
 const CHIP: CSSProperties = {
   border: '1px solid #c9d1da',
@@ -253,7 +269,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
   const allEntries = useMemo(() => buildComponentEntries(tokens), [tokens]);
   const [mode, setMode] = useState<GroupMode>('style');
   const entries = component ? allEntries.filter((entry) => entry.name === component) : allEntries;
-  const docsIds = useDocsIds();
+  const docsPages = useDocsPages();
   const [query, setQuery] = useState('');
   const [types, setTypes] = useState<Set<string>>(new Set());
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
@@ -335,7 +351,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
         <div style={{ border: '1px solid #dfe3ea', borderRadius: 8, overflow: 'hidden' }}>
           {entries.map((entry, index) => {
             const isOpen = expanded.has(entry.name);
-            const docsId = `components-${entry.name}--docs`;
+            const docsId = docsIdFor(docsPages, entry.name);
             const { sizes } = entry;
             const styles = entry.variants.filter((variant) => variant !== 'size');
             return (
@@ -355,7 +371,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
                     {styles.length > 0 && <> · styles: {styles.join(', ')}</>}
                     {sizes.length > 0 && <> · sizes: {sizes.join(', ')}</>}
                   </span>
-                  {docsIds.has(docsId) && (
+                  {docsId && (
                     <a href={`./?path=/docs/${docsId}`} target="_top" style={{ marginLeft: 'auto', fontSize: 13, color: '#1d65a6' }}>
                       {title(entry.name)} docs →
                     </a>

@@ -5,10 +5,10 @@ import { expect } from 'storybook/test';
 import { useArgs } from 'storybook/preview-api';
 import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
-import type { ImplementationKey, Implementations } from './implementations';
-import { renderImplementation } from './implementations';
-import type { ButtonState } from './TokenStatePreview';
-import { TokenStatePreview } from './TokenStatePreview';
+import type { ImplementationKey, Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
+import type { ButtonState } from '../../../TokenStatePreview';
+import { TokenStatePreview } from '../../../TokenStatePreview';
 import { resolveValue } from '@az-digital/storybook-addon-tokens';
 
 // `background` is presentation-only (see `DocsControls`/`DocsControlsPreview`) — it wraps
@@ -190,7 +190,7 @@ function ButtonArgsShape(_args: ButtonArgs) {
 }
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Primary/Components/Buttons',
   // Set only so react-docgen can attach Button's prop table to this story file's
   // documentation (see the Storybook MCP addon-mcp component manifest) — rendering
   // itself always goes through `render: ButtonStory` below. Must stay a bare reference
