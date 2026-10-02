@@ -15,7 +15,7 @@ don't collapse two that are actually doing different jobs. What matters:
 ## 1. Brand (`az.color.brand.*`)
 
 Arizona's named palette, and the lowest color layer: raw values, no meaning
-attached. Names describe the color itself — `red`, `chili`, `bloom`,
+attached. Names describe the color itself — `red`, `sonoran-red`, `bloom`,
 `arroyo-blue`. `$value` is always a literal, written as lowercase hex
 (`#ab0520`), never an alias.
 
@@ -52,7 +52,7 @@ level back — with real role names — the day a second variant actually
 exists to justify it.
 
 A color name anywhere in a semantic token's own path is wrong, full stop —
-`az.color.semantic.action.red-hover` and `az.color.semantic.action.chili` are
+`az.color.semantic.action.red-hover` and `az.color.semantic.action.sonoran-red` are
 both wrong for the same reason `redHover` was wrong below: the name encodes
 what the color looks like instead of what it's for.
 
