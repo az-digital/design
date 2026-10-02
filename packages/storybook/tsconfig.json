@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "vitest"
+      "vitest",
+      "vite/client"
     ]
   },
   "include": [
