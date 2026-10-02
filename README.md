@@ -129,5 +129,5 @@ This repo is intended to support both token authoring and visual review in one p
 Use the Storybook token pages to find assets, import tokens, or contribute changes:
 
 - Tokens > Downloads
-- Tokens > Design Tools
+- Tokens > How to Use
 - Tokens > Contributing
