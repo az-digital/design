@@ -2,6 +2,7 @@ export const primaryDesignSystemStructure = [
   {
     title: 'Primary',
     children: [
+      'Primary/Overview',
       {
         title: 'Primary/Foundations',
         children: [
