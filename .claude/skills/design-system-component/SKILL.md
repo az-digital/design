@@ -25,7 +25,7 @@ only needed in a Drupal theme doesn't need React. A single Storybook story
 still drives whichever implementations a component has from the same args,
 via a shared toolbar switcher and docs code panel.
 
-`packages/storybook/stories/button.stories.tsx` (both implementations) and
+`packages/storybook/stories/Primary/Components/Buttons/Buttons.stories.tsx` (both implementations) and
 `packages/storybook/stories/implementations.tsx` (the shared machinery) are
 the reference — read them alongside this skill. Everything below explains
 the *why* behind their shape so you can extend the pattern to a new
@@ -163,7 +163,7 @@ story:
 
    ```tsx
    const meta = {
-     title: 'Components/Card',
+     title: 'Primary/Components/Containers/Card',
      render: CardStory,
      parameters: { implementations },
      // ...
@@ -201,7 +201,7 @@ import { renderImplementation } from './implementations';
 type CardArgs = Parameters<typeof renderCard>[0];
 
 const asReactCode = (args: CardArgs) => {
-  /* build a minimal JSX string from non-default args, see button.stories.tsx */
+  /* build a minimal JSX string from non-default args, see Buttons.stories.tsx */
   return `<Card />`;
 };
 
@@ -226,7 +226,7 @@ function CardArgsShape(_args: CardArgs) {
 }
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Primary/Components/Containers/Card',
   render: CardStory,
   args: { /* defaults */ },
   parameters: { implementations },
@@ -297,7 +297,7 @@ React toggle, which kept rendering instead of showing the placeholder.
 
 **Use a distinct parameter name that only ever exists at the story level**,
 so there's nothing for Storybook to merge it with — `implementationsOverride`,
-already wired up in both `button.stories.tsx`'s `render` function and
+already wired up in both `Buttons.stories.tsx`'s `render` function and
 `.storybook/preview.ts`'s `docs.source.transform`:
 
 ```tsx
@@ -320,7 +320,7 @@ If you add this pattern to a new component's stories, wire the same
 
 `source` functions (like `asReactCode` in the Button story) should only emit
 props that differ from their defaults, so the snippet stays readable — see
-`button.stories.tsx` for the pattern. `htmlSource` can usually just call your
+`Buttons.stories.tsx` for the pattern. `htmlSource` can usually just call your
 `render<Name>(args)` function directly, since that already returns the exact
 markup being shown.
 
