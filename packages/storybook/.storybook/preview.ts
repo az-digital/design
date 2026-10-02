@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
-import '../../tokens/dist/tokens.css';
+import '@tokens/dist/tokens.css';
 
 const preview: Preview = {
   parameters: {
