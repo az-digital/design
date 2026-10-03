@@ -56,10 +56,10 @@ const BUTTON_DESIGNS = {
   outlineRedLarge: figmaStates('2384:1118', '2384:1127', '2585:1563'),
   solidWhiteOnRed: figmaStates('2411:3552', '2411:3555', '2585:1578'),
   outlineWhiteOnRed: figmaStates('2411:3602', '2411:3605', '2585:1581'),
-  solidSkyBlue: figmaStates('2411:2263', '2411:2266', '2585:1566'),
-  outlineSkyBlue: figmaStates('2411:3509', '2411:3512', '2585:1569'),
-  solidWhiteOnOasis: figmaStates('2423:3659', '2423:3664', '2588:1590'),
-  outlineWhiteOnOasis: figmaStates('2423:3698', '2423:3700', '2588:1596'),
+  solidRain: figmaStates('2411:2263', '2411:2266', '2585:1566'),
+  outlineRain: figmaStates('2411:3509', '2411:3512', '2585:1569'),
+  solidWhiteOnArroyoBlue: figmaStates('2423:3659', '2423:3664', '2588:1590'),
+  outlineWhiteOnArroyoBlue: figmaStates('2423:3698', '2423:3700', '2588:1596'),
 };
 
 /**
@@ -156,7 +156,7 @@ const implementations: Implementations<ButtonArgs> = {
 /**
  * For a story whose approved Figma frame shows a non-white page background:
  * wraps each implementation's Code-panel source in a real utility class
- * (e.g. `bg-cool-gray`) so the copyable example matches what the frame
+ * (e.g. `bg-cool-gray`, Arizona Bootstrap's class for Cloud) so the copyable example matches what the frame
  * actually needs. A white background isn't shown this way — it's the
  * implicit default a page already has, so noting it in every example would
  * just be noise.
@@ -273,15 +273,15 @@ type Story = StoryObj<typeof meta>;
  */
 /**
  * Which backgrounds are offered depends on the selected `color` — only combinations an
- * approved story actually demonstrates. `red` mirrors SolidRedOnWhite/CoolGray/WarmGray;
+ * approved story actually demonstrates. `red` mirrors SolidRedOnWhite/Cloud/Caliche;
  * `rain` mirrors SolidRainOnAzBlue/Azurite. `white`/`blue` have no approved-story
  * background pairing yet, so they only offer the plain white default.
  */
 const COLOR_BACKGROUND_OPTIONS: Record<string, { value: string; label: string }[]> = {
   red: [
     { value: 'none', label: 'White' },
-    { value: 'bg-cool-gray', label: 'Cool Gray' },
-    { value: 'bg-warm-gray', label: 'Warm Gray' },
+    { value: 'bg-cool-gray', label: 'Cloud' },
+    { value: 'bg-warm-gray', label: 'Caliche' },
   ],
   rain: [
     { value: 'bg-blue', label: 'Az Blue' },
@@ -436,14 +436,15 @@ export const SolidRedOnWhite: Story = {
 };
 
 /**
- * Mirrors the approved Figma frame "Solid Button Red w/ Cool Gray Background."
+ * Mirrors the approved Figma frame "Solid Button Red w/ Cool Gray Background"
+ * (Cool Gray is Cloud's old name).
  * Same button, same tokens as `SolidRedOnWhite` — nothing about Button's own
  * component tokens changes here. The only difference is the surrounding page
  * background, so this story exists to confirm the button still reads
  * correctly against `az.color.brand.cloud` (#e5eff7), not to introduce any
  * new token.
  */
-export const SolidRedOnCoolGray: Story = {
+export const SolidRedOnCloud: Story = {
   parameters: {
     design: BUTTON_DESIGNS.solidRed,
     implementationsOverride: withBackgroundClassSource('bg-cool-gray', implementations),
@@ -514,11 +515,11 @@ export const SolidRedOnWhiteLarge: Story = {
 };
 
 /**
- * Mirrors `SolidRedOnWhiteLarge`, on the Cool Gray background — same
- * relationship as `SolidRedOnCoolGray` to `SolidRedOnWhite`: only the page
+ * Mirrors `SolidRedOnWhiteLarge`, on the Cloud background — same
+ * relationship as `SolidRedOnCloud` to `SolidRedOnWhite`: only the page
  * background differs, nothing about Button's own tokens changes.
  */
-export const SolidRedOnCoolGrayLarge: Story = {
+export const SolidRedOnCloudLarge: Story = {
   args: {
     size: 'lg',
   },
@@ -557,7 +558,7 @@ export const SolidRedOnCoolGrayLarge: Story = {
  * classes (`.btn-red`, `.btn-white-text-red`, `.btn-white-text-blue`), not
  * routed through `Button`/`renderButton` since their color values
  * (`white-text-red`, `white-text-blue`) aren't part of that component's
- * typed `color` prop. Warm gray is a light surface using plain `.btn-red` /
+ * typed `color` prop. Caliche is a light surface using plain `.btn-red` /
  * `.btn-outline-red`, so those stories list that style's tokens. The other
  * pairings' colors depend on the surface they sit on, which has no tokens
  * yet, so they list only `STRUCTURAL_BUTTON_TOKENS`.
@@ -639,7 +640,7 @@ function ColorNotImplementedPlaceholder({ color }: { color: string }) {
   );
 }
 
-export const SolidRedOnWarmGray: Story = {
+export const SolidRedOnCaliche: Story = {
   parameters: { design: BUTTON_DESIGNS.solidRed, tokens: SOLID_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
@@ -689,7 +690,7 @@ export const SolidRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
-    design: BUTTON_DESIGNS.solidSkyBlue,
+    design: BUTTON_DESIGNS.solidRain,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
@@ -711,7 +712,7 @@ export const SolidRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
-    design: BUTTON_DESIGNS.solidSkyBlue,
+    design: BUTTON_DESIGNS.solidRain,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
@@ -728,8 +729,8 @@ export const SolidRainOnAzurite: Story = {
   },
 };
 
-export const SolidWhiteTextBlueOnOasis: Story = {
-  parameters: { design: BUTTON_DESIGNS.solidWhiteOnOasis, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
+export const SolidWhiteTextBlueOnArroyoBlue: Story = {
+  parameters: { design: BUTTON_DESIGNS.solidWhiteOnArroyoBlue, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-white-text-blue') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-white-text-blue" />
@@ -790,10 +791,10 @@ export const OutlineRedOnWhite: Story = {
 };
 
 /**
- * Mirrors `OutlineRedOnWhite` on the Cool Gray background — same
- * relationship as `SolidRedOnCoolGray` to `SolidRedOnWhite`.
+ * Mirrors `OutlineRedOnWhite` on the Cloud background — same
+ * relationship as `SolidRedOnCloud` to `SolidRedOnWhite`.
  */
-export const OutlineRedOnCoolGray: Story = {
+export const OutlineRedOnCloud: Story = {
   args: {
     style: 'outline',
   },
@@ -866,9 +867,9 @@ export const OutlineRedOnWhiteLarge: Story = {
 };
 
 /**
- * Mirrors `OutlineRedOnCoolGray` at the Large size.
+ * Mirrors `OutlineRedOnCloud` at the Large size.
  */
-export const OutlineRedOnCoolGrayLarge: Story = {
+export const OutlineRedOnCloudLarge: Story = {
   args: {
     style: 'outline',
     size: 'lg',
@@ -910,7 +911,7 @@ export const OutlineRedOnCoolGrayLarge: Story = {
  * the same reason as the Solid ones: `rain`/`white` aren't part of its typed
  * `color` prop.
  */
-export const OutlineRedOnWarmGray: Story = {
+export const OutlineRedOnCaliche: Story = {
   parameters: { design: BUTTON_DESIGNS.outlineRed, tokens: OUTLINE_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-warm-gray', 'btn-outline-red') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-warm-gray" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
@@ -954,7 +955,7 @@ export const OutlineRainOnAzBlue: Story = {
     color: 'rain',
   },
   parameters: {
-    design: BUTTON_DESIGNS.outlineSkyBlue,
+    design: BUTTON_DESIGNS.outlineRain,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-blue', implementations),
   },
@@ -977,7 +978,7 @@ export const OutlineRainOnAzurite: Story = {
     color: 'rain',
   },
   parameters: {
-    design: BUTTON_DESIGNS.outlineSkyBlue,
+    design: BUTTON_DESIGNS.outlineRain,
     tokens: STRUCTURAL_BUTTON_TOKENS,
     implementationsOverride: withBackgroundClassSource('bg-azurite', implementations),
   },
@@ -994,8 +995,8 @@ export const OutlineRainOnAzurite: Story = {
   },
 };
 
-export const OutlineWhiteOnOasis: Story = {
-  parameters: { design: BUTTON_DESIGNS.outlineWhiteOnOasis, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
+export const OutlineWhiteOnArroyoBlue: Story = {
+  parameters: { design: BUTTON_DESIGNS.outlineWhiteOnArroyoBlue, tokens: STRUCTURAL_BUTTON_TOKENS, implementationsOverride: contextButtonImplementations('bg-oasis', 'btn-outline-white') },
   render: () => (
     <TokenStatePreview pageBackgroundClassName="bg-oasis" states={GENERIC_BOOTSTRAP_BUTTON_STATES}>
       <ContextButton btnClass="btn-outline-white" />

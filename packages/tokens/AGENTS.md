@@ -15,9 +15,17 @@ don't collapse two that are actually doing different jobs. What matters:
 ## 1. Brand (`az.color.brand.*`)
 
 Arizona's named palette, and the lowest color layer: raw values, no meaning
-attached. Names describe the color itself — `red`, `sonoran-red`, `bloom`,
+attached. Names describe the color itself — `red`, `sonoran-red`, `bougainvillea`,
 `arroyo-blue`. `$value` is always a literal, written as lowercase hex
 (`#ab0520`), never an alias.
+
+The palette's current names replaced older ones. Arizona Bootstrap (5.2.0)
+classes and older Figma frames still use the old names, so translate rather
+than adding the old name as a token: Midnight → Tinta, Oasis → Arroyo Blue,
+Sky → Rain, Chili → Sonoran Red, Bloom → Bougainvillea, Leaf → Saguaro,
+River → Shade, Mesa → Brick, Cool Gray → Cloud, Warm Gray → Caliche (AZ Blue,
+AZ Red, and Azurite are unchanged). For example, a story on a Cloud
+background uses Arizona Bootstrap's `bg-cool-gray` class.
 
 There's no separate primitive layer underneath brand. One existed for a while
 (`az.color.red`, with `brand.red = {az.color.red}`), but every brand color

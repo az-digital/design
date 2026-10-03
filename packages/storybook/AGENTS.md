@@ -303,7 +303,7 @@ page, render non-story content as plain JSX instead, or keep only one live
 `<Canvas>` per page.
 
 To show a second story's *code* (not a live render) on the docs page,
-`<Source of={ButtonStories.SolidRedOnCoolGray} />` (from
+`<Source of={ButtonStories.SolidRedOnCloud} />` (from
 `@storybook/addon-docs/blocks`) works without hitting the limitation above —
 it reads through the same `docs.source.transform` as the main Canvas's own
 "Show code" toggle, but doesn't mount a second live canvas at all, so it

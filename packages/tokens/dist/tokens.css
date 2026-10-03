@@ -3,7 +3,6 @@
   --az-color-brand-blue: #0c234b;
   --az-color-brand-tinta: #03132e;
   --az-color-brand-azurite: #1e5288;
-  --az-color-brand-bloom: #ef4056;
   --az-color-brand-arroyo-blue: #106ab1;
   --az-color-brand-rain: #81ceeb;
   --az-color-brand-sonoran-red: #850000;
@@ -40,7 +39,7 @@
   --az-opacity-65: 0.65; /** 65%. */
   --az-color-semantic-action-default: var(--az-color-brand-red); /** Primary action color, resting state (solid fill; outline border and label) — aliases the brand palette. */
   --az-color-semantic-action-hover: var(--az-color-brand-sonoran-red); /** Primary action color, hover state — aliases the brand palette. */
-  --az-color-semantic-action-focus-ring: var(--az-color-brand-bloom); /** Focus-visible ring color for actions — aliases the brand palette. */
+  --az-color-semantic-action-focus-ring: var(--az-color-brand-bougainvillea); /** Focus-visible ring color for actions — aliases the brand palette. */
   --az-component-button-label-font-size: var(--az-dimension-18); /** Button label (text) size at the default size, for every style. size.sm and size.lg replace it. */
   --az-component-button-label-font-weight: var(--az-font-weight-700); /** Button label (text) weight (Bold), for every style and size. */
   --az-component-button-padding-x: var(--az-dimension-30); /** Horizontal space between the button's edge and its label at the default size. size.sm and size.lg replace it. */
