@@ -5,7 +5,6 @@ export const az = {
       "blue": "var(--az-color-brand-blue)",
       "tinta": "var(--az-color-brand-tinta)",
       "azurite": "var(--az-color-brand-azurite)",
-      "bloom": "var(--az-color-brand-bloom)",
       "arroyoBlue": "var(--az-color-brand-arroyo-blue)",
       "rain": "var(--az-color-brand-rain)",
       "sonoranRed": "var(--az-color-brand-sonoran-red)",
