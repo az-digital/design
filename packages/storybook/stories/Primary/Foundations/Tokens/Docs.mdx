@@ -5,7 +5,7 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ComponentTokenIndex, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
@@ -42,9 +42,15 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 <ColorSwatchGrid prefix="az.color.brand." />
 
+## Semantic tokens
+
+Colors named for their purpose, not their appearance (`az.color.semantic.*`). Each one points at a brand color, and components point at these instead of at brand colors directly, so changing one semantic token updates every component that uses it for that purpose. Open a token to see its alias tree, including which component tokens use it.
+
+<TokenDisplay prefix="az.color.semantic." layout="table" />
+
 ## Component tokens
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens; sizes, weights, and opacities point at primitive values.
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at the semantic tokens above; sizes, weights, and opacities point at primitive values.
 
 Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
 
