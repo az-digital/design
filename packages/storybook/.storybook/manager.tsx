@@ -1,6 +1,5 @@
 import React from 'react';
 import { addons } from 'storybook/manager-api';
-
 addons.setConfig({
   sidebar: {
     // A component's own sidebar row only expands/collapses its children by default —

@@ -1,103 +1,62 @@
 export const az = {
   "color": {
-    "arroyoBlue": "var(--az-color-arroyo-blue)",
-    "azurite": "var(--az-color-azurite)",
-    "bloom": "var(--az-color-bloom)",
-    "blue": "var(--az-color-blue)",
-    "bougainvillea": "var(--az-color-bougainvillea)",
     "brand": {
-      "arroyoBlue": "var(--az-color-brand-arroyo-blue)",
-      "azurite": "var(--az-color-brand-azurite)",
-      "bloom": "var(--az-color-brand-bloom)",
-      "blue": "var(--az-color-brand-blue)",
-      "bougainvillea": "var(--az-color-brand-bougainvillea)",
-      "brick": "var(--az-color-brand-brick)",
-      "caliche": "var(--az-color-brand-caliche)",
-      "chili": "var(--az-color-brand-chili)",
-      "cloud": "var(--az-color-brand-cloud)",
-      "rain": "var(--az-color-brand-rain)",
       "red": "var(--az-color-brand-red)",
+      "blue": "var(--az-color-brand-blue)",
+      "tinta": "var(--az-color-brand-tinta)",
+      "azurite": "var(--az-color-brand-azurite)",
+      "arroyoBlue": "var(--az-color-brand-arroyo-blue)",
+      "rain": "var(--az-color-brand-rain)",
+      "sonoranRed": "var(--az-color-brand-sonoran-red)",
+      "bougainvillea": "var(--az-color-brand-bougainvillea)",
       "saguaro": "var(--az-color-brand-saguaro)",
       "shade": "var(--az-color-brand-shade)",
-      "sonoranRed": "var(--az-color-brand-sonoran-red)",
-      "tinta": "var(--az-color-brand-tinta)",
+      "brick": "var(--az-color-brand-brick)",
+      "cloud": "var(--az-color-brand-cloud)",
+      "caliche": "var(--az-color-brand-caliche)",
       "white": "var(--az-color-brand-white)"
     },
-    "brick": "var(--az-color-brick)",
-    "caliche": "var(--az-color-caliche)",
-    "chili": "var(--az-color-chili)",
-    "cloud": "var(--az-color-cloud)",
-    "rain": "var(--az-color-rain)",
-    "red": "var(--az-color-red)",
-    "saguaro": "var(--az-color-saguaro)",
     "semantic": {
       "action": {
         "default": "var(--az-color-semantic-action-default)",
-        "focusRing": "var(--az-color-semantic-action-focus-ring)",
-        "hover": "var(--az-color-semantic-action-hover)"
+        "hover": "var(--az-color-semantic-action-hover)",
+        "focusRing": "var(--az-color-semantic-action-focus-ring)"
       }
-    },
-    "shade": "var(--az-color-shade)",
-    "sonoranRed": "var(--az-color-sonoran-red)",
-    "tinta": "var(--az-color-tinta)",
-    "white": "var(--az-color-white)"
+    }
+  },
+  "dimension": {
+    "1": "var(--az-dimension-1)",
+    "2": "var(--az-dimension-2)",
+    "4": "var(--az-dimension-4)",
+    "6": "var(--az-dimension-6)",
+    "8": "var(--az-dimension-8)",
+    "10": "var(--az-dimension-10)",
+    "12": "var(--az-dimension-12)",
+    "14": "var(--az-dimension-14)",
+    "16": "var(--az-dimension-16)",
+    "18": "var(--az-dimension-18)",
+    "20": "var(--az-dimension-20)",
+    "22": "var(--az-dimension-22)",
+    "24": "var(--az-dimension-24)",
+    "30": "var(--az-dimension-30)",
+    "36": "var(--az-dimension-36)",
+    "48": "var(--az-dimension-48)",
+    "50": "var(--az-dimension-50)",
+    "211": "var(--az-dimension-211)",
+    "9-6": "var(--az-dimension-9-6)",
+    "19-8": "var(--az-dimension-19-8)",
+    "266-41": "var(--az-dimension-266-41)"
+  },
+  "fontWeight": {
+    "500": "var(--az-font-weight-500)",
+    "700": "var(--az-font-weight-700)"
+  },
+  "opacity": {
+    "65": "var(--az-opacity-65)"
   },
   "component": {
-    "accordion": {
-      "body": {
-        "padding": {
-          "x": "var(--az-component-accordion-body-padding-x)",
-          "y": "var(--az-component-accordion-body-padding-y)"
-        }
-      },
-      "border": {
-        "radius": "var(--az-component-accordion-border-radius)",
-        "width": "var(--az-component-accordion-border-width)"
-      },
-      "button": {
-        "label": {
-          "font": {
-            "size": "var(--az-component-accordion-button-label-font-size)"
-          }
-        },
-        "padding": {
-          "x": "var(--az-component-accordion-button-padding-x)",
-          "y": "var(--az-component-accordion-button-padding-y)"
-        }
-      }
-    },
-    "arizonaHeader": {
-      "height": "var(--az-component-arizona-header-height)",
-      "logo": {
-        "height": "var(--az-component-arizona-header-logo-height)",
-        "marginLeft": "var(--az-component-arizona-header-logo-margin-left)",
-        "sm": {
-          "height": "var(--az-component-arizona-header-logo-sm-height)",
-          "width": "var(--az-component-arizona-header-logo-sm-width)"
-        },
-        "width": "var(--az-component-arizona-header-logo-width)"
-      }
-    },
     "button": {
-      "border": {
-        "radius": "var(--az-component-button-border-radius)",
-        "width": "var(--az-component-button-border-width)"
-      },
-      "color": "var(--az-component-button-color)",
-      "disabled": {
-        "opacity": "var(--az-component-button-disabled-opacity)"
-      },
-      "focusVisible": {
-        "ring": "var(--az-component-button-focus-visible-ring)"
-      },
-      "focus": {
-        "color": "var(--az-component-button-focus-color)"
-      },
-      "hover": {
-        "color": "var(--az-component-button-hover-color)"
-      },
       "label": {
-        "color": "var(--az-component-button-label-color)",
         "font": {
           "size": "var(--az-component-button-label-font-size)",
           "weight": "var(--az-component-button-label-font-weight)"
@@ -107,27 +66,160 @@ export const az = {
         "x": "var(--az-component-button-padding-x)",
         "y": "var(--az-component-button-padding-y)"
       },
+      "border": {
+        "width": "var(--az-component-button-border-width)",
+        "radius": "var(--az-component-button-border-radius)"
+      },
+      "disabled": {
+        "opacity": "var(--az-component-button-disabled-opacity)"
+      },
+      "focusVisible": {
+        "ring": "var(--az-component-button-focus-visible-ring)"
+      },
       "size": {
+        "sm": {
+          "padding": {
+            "x": "var(--az-component-button-size-sm-padding-x)",
+            "y": "var(--az-component-button-size-sm-padding-y)"
+          },
+          "label": {
+            "font": {
+              "size": "var(--az-component-button-size-sm-label-font-size)"
+            }
+          }
+        },
         "lg": {
+          "padding": {
+            "x": "var(--az-component-button-size-lg-padding-x)",
+            "y": "var(--az-component-button-size-lg-padding-y)"
+          },
           "label": {
             "font": {
               "size": "var(--az-component-button-size-lg-label-font-size)"
             }
           },
-          "padding": {
-            "x": "var(--az-component-button-size-lg-padding-x)",
-            "y": "var(--az-component-button-size-lg-padding-y)"
+          "border": {
+            "radius": "var(--az-component-button-size-lg-border-radius)"
+          }
+        }
+      },
+      "solid": {
+        "container": {
+          "color": "var(--az-component-button-solid-container-color)"
+        },
+        "label": {
+          "color": "var(--az-component-button-solid-label-color)"
+        },
+        "hover": {
+          "container": {
+            "color": "var(--az-component-button-solid-hover-container-color)"
           }
         },
-        "sm": {
-          "label": {
-            "font": {
-              "size": "var(--az-component-button-size-sm-label-font-size)"
-            }
+        "focus": {
+          "container": {
+            "color": "var(--az-component-button-solid-focus-container-color)"
+          }
+        }
+      },
+      "outline": {
+        "border": {
+          "color": "var(--az-component-button-outline-border-color)"
+        },
+        "label": {
+          "color": "var(--az-component-button-outline-label-color)"
+        },
+        "hover": {
+          "container": {
+            "color": "var(--az-component-button-outline-hover-container-color)"
           },
+          "border": {
+            "color": "var(--az-component-button-outline-hover-border-color)"
+          },
+          "label": {
+            "color": "var(--az-component-button-outline-hover-label-color)"
+          }
+        },
+        "focus": {
+          "container": {
+            "color": "var(--az-component-button-outline-focus-container-color)"
+          },
+          "border": {
+            "color": "var(--az-component-button-outline-focus-border-color)"
+          },
+          "label": {
+            "color": "var(--az-component-button-outline-focus-label-color)"
+          }
+        }
+      }
+    },
+    "accordion": {
+      "button": {
+        "padding": {
+          "x": "var(--az-component-accordion-button-padding-x)",
+          "y": "var(--az-component-accordion-button-padding-y)"
+        },
+        "label": {
+          "font": {
+            "size": "var(--az-component-accordion-button-label-font-size)"
+          }
+        }
+      },
+      "body": {
+        "padding": {
+          "x": "var(--az-component-accordion-body-padding-x)",
+          "y": "var(--az-component-accordion-body-padding-y)"
+        }
+      },
+      "border": {
+        "width": "var(--az-component-accordion-border-width)",
+        "radius": "var(--az-component-accordion-border-radius)"
+      }
+    },
+    "tabs": {
+      "label": {
+        "padding": {
+          "x": "var(--az-component-tabs-label-padding-x)",
+          "y": "var(--az-component-tabs-label-padding-y)"
+        },
+        "font": {
+          "weight": "var(--az-component-tabs-label-font-weight)"
+        },
+        "color": "var(--az-component-tabs-label-color)",
+        "hover": {
+          "color": "var(--az-component-tabs-label-hover-color)"
+        },
+        "active": {
+          "color": "var(--az-component-tabs-label-active-color)"
+        }
+      },
+      "variant": {
+        "tabs": {
+          "active": {
+            "background": "var(--az-component-tabs-variant-tabs-active-background)"
+          }
+        },
+        "underline": {
+          "gap": "var(--az-component-tabs-variant-underline-gap)",
+          "border": {
+            "width": "var(--az-component-tabs-variant-underline-border-width)"
+          }
+        }
+      }
+    },
+    "nav": {
+      "utility": {
+        "margin": {
+          "top": "var(--az-component-nav-utility-margin-top)",
+          "bottom": "var(--az-component-nav-utility-margin-bottom)"
+        },
+        "item": {
           "padding": {
-            "x": "var(--az-component-button-size-sm-padding-x)",
-            "y": "var(--az-component-button-size-sm-padding-y)"
+            "x": "var(--az-component-nav-utility-item-padding-x)"
+          }
+        },
+        "label": {
+          "font": {
+            "weight": "var(--az-component-nav-utility-label-font-weight)"
           }
         }
       }
@@ -139,96 +231,33 @@ export const az = {
           "y": "var(--az-component-card-body-padding-y)"
         }
       },
+      "title": {
+        "margin": {
+          "bottom": "var(--az-component-card-title-margin-bottom)"
+        }
+      },
       "border": {
-        "radius": "var(--az-component-card-border-radius)",
-        "width": "var(--az-component-card-border-width)"
+        "width": "var(--az-component-card-border-width)",
+        "radius": "var(--az-component-card-border-radius)"
       },
       "cap": {
         "padding": {
           "x": "var(--az-component-card-cap-padding-x)",
           "y": "var(--az-component-card-cap-padding-y)"
         }
-      },
-      "title": {
-        "margin": {
-          "bottom": "var(--az-component-card-title-margin-bottom)"
-        }
       }
     },
-    "nav": {
-      "utility": {
-        "item": {
-          "padding": {
-            "x": "var(--az-component-nav-utility-item-padding-x)"
-          }
-        },
-        "label": {
-          "font": {
-            "weight": "var(--az-component-nav-utility-label-font-weight)"
-          }
-        },
-        "margin": {
-          "bottom": "var(--az-component-nav-utility-margin-bottom)",
-          "top": "var(--az-component-nav-utility-margin-top)"
-        }
-      }
-    },
-    "tabs": {
-      "label": {
-        "active": {
-          "color": "var(--az-component-tabs-label-active-color)"
-        },
-        "color": "var(--az-component-tabs-label-color)",
-        "font": {
-          "weight": "var(--az-component-tabs-label-font-weight)"
-        },
-        "hover": {
-          "color": "var(--az-component-tabs-label-hover-color)"
-        },
-        "padding": {
-          "x": "var(--az-component-tabs-label-padding-x)",
-          "y": "var(--az-component-tabs-label-padding-y)"
-        }
-      },
-      "variant": {
-        "tabs": {
-          "active": {
-            "background": "var(--az-component-tabs-variant-tabs-active-background)"
-          }
-        },
-        "underline": {
-          "border": {
-            "width": "var(--az-component-tabs-variant-underline-border-width)"
-          },
-          "gap": "var(--az-component-tabs-variant-underline-gap)"
+    "arizonaHeader": {
+      "height": "var(--az-component-arizona-header-height)",
+      "logo": {
+        "marginLeft": "var(--az-component-arizona-header-logo-margin-left)",
+        "width": "var(--az-component-arizona-header-logo-width)",
+        "height": "var(--az-component-arizona-header-logo-height)",
+        "sm": {
+          "width": "var(--az-component-arizona-header-logo-sm-width)",
+          "height": "var(--az-component-arizona-header-logo-sm-height)"
         }
       }
     }
-  },
-  "dimension": {
-    "1": "var(--az-dimension-1)",
-    "2": "var(--az-dimension-2)",
-    "4": "var(--az-dimension-4)",
-    "6": "var(--az-dimension-6)",
-    "8": "var(--az-dimension-8)",
-    "10": "var(--az-dimension-10)",
-    "14": "var(--az-dimension-14)",
-    "16": "var(--az-dimension-16)",
-    "18": "var(--az-dimension-18)",
-    "20": "var(--az-dimension-20)",
-    "24": "var(--az-dimension-24)",
-    "48": "var(--az-dimension-48)",
-    "50": "var(--az-dimension-50)",
-    "96": "var(--az-dimension-9-6)",
-    "198": "var(--az-dimension-19-8)",
-    "211": "var(--az-dimension-211)",
-    "26641": "var(--az-dimension-266-41)"
-  },
-  "fontWeight": {
-    "500": "var(--az-font-weight-500)",
-    "700": "var(--az-font-weight-700)"
-  },
-  "opacity": {
-    "65": "var(--az-opacity-65)"
   }
 };

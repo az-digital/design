@@ -19,7 +19,7 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 - Look up existing token names, groups, and generated CSS variable names
   before referencing or adding one.
-- Fetch the `Tokens/Contributing` and `Tokens/Design Tools` docs pages
+- Fetch the `Primary/Foundations/Tokens/Contributing` and `Primary/Foundations/Tokens/How to Use` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 

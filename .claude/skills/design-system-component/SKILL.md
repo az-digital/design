@@ -25,7 +25,7 @@ only needed in a Drupal theme doesn't need React. A single Storybook story
 still drives whichever implementations a component has from the same args,
 via a shared toolbar switcher and docs code panel.
 
-`packages/storybook/stories/button.stories.tsx` (both implementations) and
+`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (both implementations) and
 `packages/storybook/stories/implementations.tsx` (the shared machinery) are
 the reference — read them alongside this skill. Everything below explains
 the *why* behind their shape so you can extend the pattern to a new
@@ -57,7 +57,7 @@ For a component named `Card` that needs both implementations, you'd create:
 packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
-packages/storybook/stories/card.stories.tsx               # the story
+packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx  # the story (in main's IA folder; replaces Card.mdx's placeholder with the Docs page)
 packages/tokens/tokens.json                                # az.component.card.* entries — see below
 ```
 
@@ -163,7 +163,7 @@ story:
 
    ```tsx
    const meta = {
-     title: 'Components/Card',
+     title: 'Primary/Components/Containers/Card',
      render: CardStory,
      parameters: { implementations },
      // ...
@@ -201,7 +201,7 @@ import { renderImplementation } from './implementations';
 type CardArgs = Parameters<typeof renderCard>[0];
 
 const asReactCode = (args: CardArgs) => {
-  /* build a minimal JSX string from non-default args, see button.stories.tsx */
+  /* build a minimal JSX string from non-default args, see Button.stories.tsx */
   return `<Card />`;
 };
 
@@ -226,7 +226,7 @@ function CardArgsShape(_args: CardArgs) {
 }
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Primary/Components/Containers/Card',
   render: CardStory,
   args: { /* defaults */ },
   parameters: { implementations },
@@ -297,7 +297,7 @@ React toggle, which kept rendering instead of showing the placeholder.
 
 **Use a distinct parameter name that only ever exists at the story level**,
 so there's nothing for Storybook to merge it with — `implementationsOverride`,
-already wired up in both `button.stories.tsx`'s `render` function and
+already wired up in both `Button.stories.tsx`'s `render` function and
 `.storybook/preview.ts`'s `docs.source.transform`:
 
 ```tsx
@@ -320,7 +320,7 @@ If you add this pattern to a new component's stories, wire the same
 
 `source` functions (like `asReactCode` in the Button story) should only emit
 props that differ from their defaults, so the snippet stays readable — see
-`button.stories.tsx` for the pattern. `htmlSource` can usually just call your
+`Button.stories.tsx` for the pattern. `htmlSource` can usually just call your
 `render<Name>(args)` function directly, since that already returns the exact
 markup being shown.
 
@@ -427,26 +427,32 @@ the build exits 0** — a lint warning doesn't mean the output is correct
 either, since `core/valid-dimension` is a warning, not an error:
 
 ```bash
-npm run build -w @az-digital/tokens   # regenerates dist/tokens.css, dist/tokens.vars.js, and Storybook's .swatchbook/tokens.d.ts
+npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
 ```
 
-**Expose them with a filtered `Tokens` story**, using swatchbook's
-`TokenTable` (already a Storybook addon here — no new dependency):
+**Expose them in Storybook** with `@az-digital/storybook-addon-tokens`
+(see `packages/storybook-addon-tokens/README.md`). No separate "Tokens" story:
 
-```tsx
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+- Declare the component's tokens once on its story file's meta, so each story
+  gets the **Tokens** tab (opt-in, like Controls):
 
-export const Tokens: Story = {
-  render: () => <TokenTable filter="az.component.card.**" />,
-};
-```
+  ```tsx
+  const meta = {
+    parameters: { tokens: 'az.component.card.' },
+  } satisfies Meta;
+  ```
 
-You don't need to do anything else for these to show up in the global token
-catalog (`packages/storybook/stories/tokens.mdx`) — its unfiltered
-`<TokenTable />` and `<TokenNavigator />` already include every token. If you
-want them called out there as their own group too (the way "Component
-tokens" already is for Button), add a filtered section following that same
-pattern.
+- Show the component's tokens on its Docs page:
+
+  ```mdx
+  import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+
+  <ComponentTokenIndex component="card" />
+  ```
+
+Nothing else is needed for them to appear in the Tokens page's Component
+tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
+`tokens.json`, and groups the component's tokens by reading their paths.
 
 ## Consuming source live (no build step needed in Storybook)
 

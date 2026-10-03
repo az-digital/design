@@ -38,7 +38,7 @@ export type AccordionProps = {
    * `accordion-anchors.js` (part of `arizona-bootstrap`'s JS bundle), not
    * from this package. The "Copied!" tooltip additionally depends on
    * Bootstrap's Tooltip plugin being initialized on the page — see
-   * `accordion.mdx`. Works best paired with `alwaysOpen`: with
+   * `Primary/Components/Containers/Accordions.mdx`. Works best paired with `alwaysOpen`: with
    * `data-bs-parent` grouping, opening a linked item also collapses its
    * sibling, which can read as a stutter on a fresh page load.
    */
