@@ -1,0 +1,27 @@
+{
+  "name": "@az-digital/components-quickstart",
+  "version": "0.0.1",
+  "description": "Arizona Quickstart components (Drupal single directory components) implementing the Arizona Digital design system.",
+  "type": "module",
+  "files": [
+    "components/**/*.component.yml",
+    "components/**/*.twig",
+    "components/**/*.css",
+    "!components/**/*.src.css"
+  ],
+  "keywords": [
+    "design-system",
+    "drupal",
+    "sdc",
+    "arizona-quickstart",
+    "az-digital"
+  ],
+  "author": "Arizona Digital",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "node scripts/build-css.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.5"
+  }
+}

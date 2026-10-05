@@ -1,0 +1,71 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Button
+status: experimental
+description: Arizona Digital button. Renders an Arizona Bootstrap button as a link or a button element. Same props as the design system's HTML, React, and web component buttons.
+libraryOverrides:
+  dependencies:
+    - az_barrio/arizona-bootstrap-css
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Text
+      description: The button's label.
+      examples:
+        - Apply to Arizona
+    href:
+      type: string
+      format: uri-reference
+      title: Href
+      description: URL for the link when html_tag is `a`. Defaults to `#`.
+    style:
+      type: string
+      title: Style
+      description: Button style. Defaults to `solid`.
+      enum:
+        - solid
+        - outline
+        - link
+      meta:enum:
+        solid: Solid
+        outline: Outline
+        link: Link
+    color:
+      type: string
+      title: Color
+      description: Button color. Defaults to `red`.
+      enum:
+        - red
+        - rain
+      meta:enum:
+        red: Red
+        rain: Rain
+    size:
+      type: string
+      title: Size
+      description: Size modifier. Leave empty for the default size.
+      enum:
+        - sm
+        - lg
+      meta:enum:
+        sm: Small
+        lg: Large
+    html_tag:
+      type: string
+      title: HTML tag
+      description: Element to render. Defaults to `a`.
+      enum:
+        - a
+        - button
+      meta:enum:
+        a: Link
+        button: Button
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Disabled state. Links get the `disabled` class, `aria-disabled`, and `tabindex="-1"` instead of the native attribute.
+    active:
+      type: boolean
+      title: Active
+      description: Pre-toggles the button to its active state.
