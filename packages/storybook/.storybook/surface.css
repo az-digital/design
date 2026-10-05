@@ -1,10 +1,18 @@
 /*
- * PROOF OF CONCEPT (surface modes), Storybook only. Paints a surface with its
- * own semantic tokens, so switching the Surface toolbar shows the page the
- * way a site would. See packages/tokens/scripts/build-modes.mjs.
+ * PROOF OF CONCEPT (surface modes), Storybook only. Paints a dark surface with
+ * its own semantic tokens, so the Theme toolbar shows the page the way a site
+ * would. The light default is left alone, so stories look exactly as they do
+ * without the toolbar. See packages/tokens/scripts/build-modes.mjs.
  */
-html[data-az-surface] body,
+html[data-az-surface="dark"] body,
 .az-surface-frame {
   background-color: var(--az-color-semantic-surface-default);
   color: var(--az-color-semantic-text-default);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-az-surface="auto"] body {
+    background-color: var(--az-color-semantic-surface-default);
+    color: var(--az-color-semantic-text-default);
+  }
 }
