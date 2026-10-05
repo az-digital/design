@@ -281,8 +281,11 @@ import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/
   parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
   ```
 
-- Values in stories (e.g. state previews) come from the package's
-  `resolveValue(path)`, which reads the same data as the doc blocks.
+- Values in stories (e.g. state previews) use the token's generated CSS
+  variable from `@az-digital/tokens/dist/tokens.vars.js` (see `tokenVar` in
+  `Button.stories.tsx`), not the package's `resolveValue(path)`: a CSS
+  variable resolves on whatever surface the preview sits on, so it follows
+  token modes like dark, while `resolveValue` returns one fixed value.
 - The addon reloads when `tokens.json` or the Style Dictionary config changes.
   Changes to the addon's own `manager.tsx` (or the `Token` / `TokenTable` files
   it imports) still need a Storybook restart, and files the manager imports

@@ -19,10 +19,10 @@ const globBase = (pattern) => {
  * config or one of its source files changes, so token edits show up without
  * restarting Storybook.
  */
-export function tokensPlugin({ styleDictionary, repositoryUrl }) {
+export function tokensPlugin({ styleDictionary, repositoryUrl, modes }) {
   let collected;
   const collect = async () => {
-    collected = await collectTokens(styleDictionary, { repositoryUrl });
+    collected = await collectTokens(styleDictionary, { repositoryUrl, modes });
     return collected;
   };
   const isWatched = (file) =>

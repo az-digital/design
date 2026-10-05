@@ -44,6 +44,22 @@ const config: StorybookConfig = {
 
 When Storybook starts (or builds), the addon runs your config's platforms in memory with Style Dictionary's own API. It writes no files. For every output file it records each token's reference and derived value. It re-runs whenever the config or one of its `source` files changes, so token edits show up without restarting Storybook.
 
+### Modes (e.g. dark)
+
+If some tokens change value in a mode, keep those overrides in their own file (one file per mode, the way Figma variable modes import them) and list it under `modes`, with the Storybook globals that select it:
+
+```ts
+options: {
+  styleDictionary: '../tokens/style-dictionary.config.mjs',
+  modes: {
+    // Source paths are relative to the Style Dictionary config, like its own `source`.
+    dark: { label: 'Dark', source: ['tokens.dark.json'], globals: { theme: 'Dark' } },
+  },
+},
+```
+
+The addon reads each mode with your config's source plus the mode's files layered on top. While Storybook's globals match a mode (here, `@storybook/addon-themes` set to Dark), the Tokens tab, the token details, and the doc blocks show that mode's resolved values and alias tree, and label them with the mode. Outputs still show the base files.
+
 ### References for custom formats
 
 For Style Dictionary's built-in formats (`css/variables`, `scss/variables`, `less/variables`, `javascript/es6`, `android/resources`, `ios-swift/*`, …) the addon knows how a token is referenced. A custom format declares it in that file's `options`, next to the code that produces the output:

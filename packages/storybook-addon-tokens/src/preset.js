@@ -11,6 +11,11 @@ import { isAbsolute, resolve } from 'node:path';
  *   relative to Storybook's config directory.
  * - `repositoryUrl`: base URL that repo-relative file paths are appended to
  *   for links, e.g. `https://github.com/org/repo/blob/main/`.
+ * - `modes`: token modes such as dark, by name. Each lists `source` files
+ *   (relative to the Style Dictionary config, like its own `source`) layered
+ *   over the config's source, and the Storybook `globals` that select it, e.g.
+ *   `{ dark: { source: ['tokens.dark.json'], globals: { theme: 'Dark' } } }`.
+ *   An optional `label` names it in the Tokens tab.
  */
 export const viteFinal = async (config, options) => {
   if (!options.styleDictionary) {
@@ -18,5 +23,5 @@ export const viteFinal = async (config, options) => {
   }
   const { tokensPlugin } = await import('./node/vite-plugin.js');
   const styleDictionary = isAbsolute(options.styleDictionary) ? options.styleDictionary : resolve(options.configDir, options.styleDictionary);
-  return { ...config, plugins: [...(config.plugins ?? []), tokensPlugin({ styleDictionary, repositoryUrl: options.repositoryUrl })] };
+  return { ...config, plugins: [...(config.plugins ?? []), tokensPlugin({ styleDictionary, repositoryUrl: options.repositoryUrl, modes: options.modes })] };
 };

@@ -1,7 +1,7 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
-import { useTokensData } from './store';
+import { getActiveMode, useTokensData, useTokensVersion } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
 export type { TokenData } from './resolveToken';
@@ -167,6 +167,9 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
  */
 export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onNavigate: (token: string) => void }) {
   const { sourceFiles } = useTokensData();
+  // Re-render when the token mode (e.g. dark) changes, and say which one this is.
+  useTokensVersion();
+  const mode = getActiveMode();
   // Printed exactly as the source file writes it: never re-cased or reformatted.
   const resolved = data.hex ?? data.value;
   const outputs = getTokenArtifacts(data.token);
@@ -175,7 +178,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
     <div style={{ display: 'grid', gap: 22, fontSize: 13 }}>
       {resolved && (
         <div>
-          <div style={{ ...SECTION_LABEL, marginBottom: 7 }}>RESOLVED VALUE</div>
+          <div style={{ ...SECTION_LABEL, marginBottom: 7 }}>RESOLVED VALUE{mode ? ` (${mode.label.toUpperCase()})` : ''}</div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 16 }}>
             {data.hex && <span style={{ width: 18, height: 18, borderRadius: 3, background: data.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
             {resolved}

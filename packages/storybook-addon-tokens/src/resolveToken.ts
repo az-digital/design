@@ -1,4 +1,4 @@
-import { getTokensData, getTokensVersion, type TokenArtifact, type TokenRecord } from './store';
+import { getActiveTokens, getTokensData, getTokensVersion, type TokenArtifact, type TokenRecord } from './store';
 
 /** One design token, as the `Token` pill, tables, and details drawer render it. */
 export type TokenData = {
@@ -25,7 +25,8 @@ let cache: { version: number; byPath: Map<string, TokenRecord>; items: TokenData
 
 function getIndex() {
   if (cache?.version === getTokensVersion()) return cache;
-  const records = getTokensData().tokens;
+  // The active mode's values (e.g. dark), or the base ones.
+  const records = getActiveTokens();
   const sourceOrder = records.map(
     (record): TokenData => ({
       token: record.path,

@@ -26,6 +26,10 @@ const config: StorybookConfig = {
       options: {
         styleDictionary: "../../tokens/style-dictionary.config.mjs",
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
+        // PROOF OF CONCEPT (surface modes): dark values (placeholders), selected by the Theme toolbar.
+        modes: {
+          dark: { label: 'Dark', source: ['tokens.dark.json'], globals: { theme: 'Dark' } },
+        },
       },
     },
   ],
