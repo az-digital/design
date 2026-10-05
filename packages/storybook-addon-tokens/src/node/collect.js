@@ -79,7 +79,7 @@ const toPosix = (path) => path.split('\\').join('/');
  * output file in every platform, how each token is referenced in that file and
  * the value Style Dictionary derives for it.
  */
-export async function collectTokens(configPath, { repositoryUrl, modes = {} } = {}) {
+export async function collectTokens(configPath, { repositoryUrl, modes = {}, baseModeLabel } = {}) {
   const absoluteConfig = resolve(configPath);
   const configDir = dirname(absoluteConfig);
   const repoRoot = findRepoRoot(configDir);
@@ -149,7 +149,7 @@ export async function collectTokens(configPath, { repositoryUrl, modes = {} } = 
   });
 
   return {
-    data: { tokens, sourceFiles, artifacts, modes: modeRecords },
+    data: { tokens, sourceFiles, artifacts, modes: modeRecords, baseLabel: baseModeLabel ?? 'Default' },
     watch: [
       absoluteConfig,
       ...(fromConfig(config.source) ?? []),

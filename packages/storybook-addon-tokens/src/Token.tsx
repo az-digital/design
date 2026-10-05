@@ -1,7 +1,8 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
-import { getActiveMode, useTokensData, useTokensVersion } from './store';
+import { getModeFork, getModeViews } from './modes';
+import { useTokensData, useTokensVersion } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
 export type { TokenData } from './resolveToken';
@@ -73,14 +74,49 @@ const TREE_LEVEL_LIMIT = 6;
 const TREE_ROW_HEIGHT = 36;
 const TREE_LINE = '1px solid #b8c1cc';
 
-type TreeRow = { token: string; guides: Array<'pipe' | 'blank'>; branch?: 'tee' | 'elbow' } | { more: number; key: string; guides: Array<'pipe' | 'blank'>; onExpand: () => void };
+type ModeLabel = { label: string; active: boolean; value?: unknown };
+type TreeRow =
+  | { token: string; guides: Array<'pipe' | 'blank'>; branch?: 'tee' | 'elbow' | 'start'; mode?: ModeLabel; switches?: boolean; key?: string }
+  | { more: number; key: string; guides: Array<'pipe' | 'blank'>; onExpand: () => void };
 
-/** One 20px column of tree connector: a vertical guide line, a branch into this row, or nothing. */
-function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' }) {
+/** A mode's name as a small chip: filled for the mode Storybook is showing, outlined for the others. */
+function ModeChip({ label, active }: { label: string; active: boolean }) {
+  return (
+    <span
+      style={{
+        marginLeft: 8,
+        padding: '1px 7px',
+        borderRadius: 999,
+        fontSize: 10,
+        fontWeight: 700,
+        letterSpacing: '0.06em',
+        whiteSpace: 'nowrap',
+        textTransform: 'uppercase',
+        border: `1px solid ${active ? '#1e5288' : '#b8c1cc'}`,
+        background: active ? '#1e5288' : 'transparent',
+        color: active ? '#fff' : '#56657a',
+      }}
+    >
+      {label}
+    </span>
+  );
+}
+
+const displayValue = (value: unknown) =>
+  typeof value === 'object' && value !== null && 'value' in value && 'unit' in value ? `${(value as { value: unknown }).value}${(value as { unit: unknown }).unit}` : String(value);
+
+/**
+ * One 20px column of tree connector: a vertical guide line, a branch into this
+ * row, or nothing. `start` opens a bracket (a branch going down only), used to
+ * join several mode roots into the token they all lead to.
+ */
+function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' | 'start' }) {
   return (
     <span aria-hidden="true" style={{ position: 'relative', width: 20, flex: '0 0 20px', alignSelf: 'stretch' }}>
-      {kind !== 'blank' && <span style={{ position: 'absolute', left: 9, top: 0, height: kind === 'elbow' ? '50%' : '100%', borderLeft: TREE_LINE }} />}
-      {(kind === 'tee' || kind === 'elbow') && <span style={{ position: 'absolute', left: 9, top: '50%', width: 11, borderTop: TREE_LINE }} />}
+      {kind !== 'blank' && (
+        <span style={{ position: 'absolute', left: 9, top: kind === 'start' ? '50%' : 0, height: kind === 'elbow' || kind === 'start' ? '50%' : '100%', borderLeft: TREE_LINE }} />
+      )}
+      {(kind === 'tee' || kind === 'elbow' || kind === 'start') && <span style={{ position: 'absolute', left: 9, top: '50%', width: 11, borderTop: TREE_LINE }} />}
     </span>
   );
 }
@@ -107,17 +143,43 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
   };
 
   const rows: TreeRow[] = [];
-  // Single chain down from the root to the direct parent.
-  ancestors.forEach((ancestor, depth) => {
-    rows.push({ token: ancestor, guides: Array(Math.max(depth - 1, 0)).fill('blank'), branch: depth > 0 ? 'elbow' : undefined });
+  // With modes (e.g. dark), a token's chain can split: one token aliases something
+  // different per mode. Each mode's chain above that token is listed first, labeled
+  // with its mode, and the switching token gets a "changes per mode" badge; from
+  // there down the tree is the same in every mode.
+  const fork = getModeFork(token);
+  const upperLength = fork ? (fork.switchToken === token ? ancestors.length : ancestors.indexOf(fork.switchToken)) : 0;
+  const below = ancestors.slice(upperLength);
+  // Mode roots joined by a bracket that runs down into the switching token:
+  // ┌ brand.red LIGHT / ├ brand.rain DARK / └ semantic.action.default.
+  const bracket = fork?.uppers.every((upper) => upper.chain.length === 1);
+  if (fork) {
+    fork.uppers.forEach((upper, upperIndex) =>
+      upper.chain.forEach((node, index) =>
+        rows.push({
+          token: node,
+          key: `${upper.name}:${node}`,
+          guides: Array(Math.max(index - 1, 0)).fill('blank'),
+          branch: bracket ? (upperIndex === 0 ? 'start' : 'tee') : index > 0 ? 'elbow' : undefined,
+          mode: index === 0 ? { label: upper.label, active: upper.active, value: upper.value } : undefined,
+        }),
+      ),
+    );
+  }
+  // Single chain down from the root (or the switching token) to the direct parent.
+  const depthOffset = fork ? 1 : 0;
+  below.forEach((ancestor, index) => {
+    const depth = index + depthOffset;
+    rows.push({ token: ancestor, guides: Array(Math.max(depth - 1, 0)).fill('blank'), branch: depth > 0 ? 'elbow' : undefined, switches: ancestor === fork?.switchToken });
   });
   // The parent's children (the selected token and its siblings), with the selected token's own children nested under it.
-  const siblingDepth = ancestors.length;
+  const siblingDepth = below.length + depthOffset;
   const siblingGuides: Array<'pipe' | 'blank'> = Array(Math.max(siblingDepth - 1, 0)).fill('blank');
-  const { shown: shownSiblings, hidden: hiddenSiblings } = limited('siblings', siblings);
+  // When the selected token is the one that switches, its parent differs per mode, so siblings aren't meaningful.
+  const { shown: shownSiblings, hidden: hiddenSiblings } = limited('siblings', fork?.switchToken === token ? [token] : siblings);
   shownSiblings.forEach((sibling, index) => {
     const isLast = index === shownSiblings.length - 1 && hiddenSiblings === 0;
-    rows.push({ token: sibling, guides: siblingGuides, branch: siblingDepth > 0 ? (isLast ? 'elbow' : 'tee') : undefined });
+    rows.push({ token: sibling, guides: siblingGuides, branch: siblingDepth > 0 ? (isLast ? 'elbow' : 'tee') : undefined, switches: sibling === fork?.switchToken });
     if (sibling !== token) return;
     const childGuides: Array<'pipe' | 'blank'> = siblingDepth > 0 ? [...siblingGuides, isLast ? 'blank' : 'pipe'] : [];
     const { shown: shownChildren, hidden: hiddenChildren } = limited('children', children);
@@ -146,13 +208,20 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
         }
         const data = getTokenData(row.token);
         if (!data) return null;
-        const isRoot = row.token === (ancestors[0] ?? token) && row.branch === undefined;
+        const isRoot = !fork && row.token === (ancestors[0] ?? token) && row.branch === undefined;
         return (
-          <div key={row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
+          <div key={row.key ?? row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
             {row.guides.map((guide, index) => <TreeGuide key={index} kind={guide} />)}
             {row.branch && <TreeGuide kind={row.branch} />}
             <Token data={data} swatch selected={row.token === token} onSelect={() => onNavigate(row.token)} style={{ whiteSpace: 'nowrap', flexShrink: 0 }} />
             {isRoot && rootValue && <code style={{ marginLeft: 10, fontSize: 12, color: '#56657a', whiteSpace: 'nowrap' }}>{rootValue.hex ?? rootValue.value}</code>}
+            {row.mode && (
+              <>
+                {row.mode.value !== undefined && <code style={{ marginLeft: 10, fontSize: 12, color: '#56657a', whiteSpace: 'nowrap' }}>{displayValue(row.mode.value)}</code>}
+                <ModeChip label={row.mode.label} active={row.mode.active} />
+              </>
+            )}
+            {row.switches && <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#8a4b00', whiteSpace: 'nowrap' }}>⇄ changes per mode</span>}
             {row.token === token && <span style={{ marginLeft: 10, fontSize: 12, fontWeight: 700, color: '#1e5288', whiteSpace: 'nowrap' }}>← this token</span>}
           </div>
         );
@@ -169,7 +238,9 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
   const { sourceFiles } = useTokensData();
   // Re-render when the token mode (e.g. dark) changes, and say which one this is.
   useTokensVersion();
-  const mode = getActiveMode();
+  // Every mode's value, when they differ (e.g. light and dark).
+  const modeViews = getModeViews(data.token);
+  const valuesDiffer = modeViews.some((view) => JSON.stringify(view.value) !== JSON.stringify(modeViews[0]?.value));
   // Printed exactly as the source file writes it: never re-cased or reformatted.
   const resolved = data.hex ?? data.value;
   const outputs = getTokenArtifacts(data.token);
@@ -178,11 +249,23 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
     <div style={{ display: 'grid', gap: 22, fontSize: 13 }}>
       {resolved && (
         <div>
-          <div style={{ ...SECTION_LABEL, marginBottom: 7 }}>RESOLVED VALUE{mode ? ` (${mode.label.toUpperCase()})` : ''}</div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 16 }}>
-            {data.hex && <span style={{ width: 18, height: 18, borderRadius: 3, background: data.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
-            {resolved}
-          </div>
+          <div style={{ ...SECTION_LABEL, marginBottom: 7 }}>{valuesDiffer ? 'RESOLVED VALUE PER MODE' : 'RESOLVED VALUE'}</div>
+          {valuesDiffer ? (
+            <div style={{ display: 'grid', gap: 6 }}>
+              {modeViews.map((view) => (
+                <div key={view.name} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 16, opacity: view.active ? 1 : 0.7 }}>
+                  {data.type === 'color' && typeof view.value === 'string' && <span style={{ width: 18, height: 18, borderRadius: 3, background: view.value, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
+                  <span style={{ fontWeight: view.active ? 700 : 400 }}>{displayValue(view.value)}</span>
+                  <ModeChip label={view.label} active={view.active} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 16 }}>
+              {data.hex && <span style={{ width: 18, height: 18, borderRadius: 3, background: data.hex, border: '1px solid rgba(25, 29, 35, 0.18)' }} />}
+              {resolved}
+            </div>
+          )}
           {data.description && <p style={{ margin: '8px 0 0', color: '#374151', fontSize: 13, lineHeight: 1.5 }}>{data.description}</p>}
         </div>
       )}

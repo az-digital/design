@@ -51,6 +51,8 @@ export type TokensData = {
   artifacts: TokenArtifact[];
   /** Modes from the addon's `modes` option; empty when there are none. */
   modes?: TokenMode[];
+  /** What to call the base values when there are modes, e.g. `Light`. */
+  baseLabel?: string;
 };
 
 const EMPTY: TokensData = { tokens: [], sourceFiles: [], artifacts: [] };

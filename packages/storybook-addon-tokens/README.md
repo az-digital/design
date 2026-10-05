@@ -58,7 +58,9 @@ options: {
 },
 ```
 
-The addon reads each mode with your config's source plus the mode's files layered on top. While Storybook's globals match a mode (here, `@storybook/addon-themes` set to Dark), the Tokens tab, the token details, and the doc blocks show that mode's resolved values and alias tree, and label them with the mode. Outputs still show the base files.
+The addon reads each mode with your config's source plus the mode's files layered on top. While Storybook's globals match a mode (here, `@storybook/addon-themes` set to Dark), the Tokens tab, the token details, and the doc blocks show that mode's resolved values and alias tree, and label them with the mode. Outputs still show the base files. `baseModeLabel` names the base values (e.g. `Light`).
+
+For a token whose value differs by mode, the token details list every mode's resolved value, and the alias tree draws where the modes split: each mode's own ancestors, labeled with the mode, joined into the token that switches (marked "changes per mode"), with everything below it shared.
 
 ### References for custom formats
 
