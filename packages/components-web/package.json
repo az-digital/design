@@ -1,0 +1,51 @@
+{
+  "name": "@az-digital/components-web",
+  "version": "0.0.1",
+  "description": "Web components implementing the Arizona Digital design system. Standalone: no Arizona Bootstrap CSS required.",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./az-button": {
+      "types": "./dist/button/az-button.d.ts",
+      "import": "./dist/az-button.js"
+    },
+    "./az-arizona-header": {
+      "types": "./dist/arizona-header/az-arizona-header.d.ts",
+      "import": "./dist/az-arizona-header.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "./dist/*.js"
+  ],
+  "keywords": [
+    "design-system",
+    "web-components",
+    "custom-elements",
+    "lit",
+    "az-digital"
+  ],
+  "author": "Arizona Digital",
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^3.3.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "build": "npm run build:tokens && vite build && vite build --mode cdn && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.5",
+    "typescript": "^5.7.3",
+    "vite": "^8.3.1"
+  }
+}

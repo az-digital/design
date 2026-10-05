@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>components-web standalone demo</title>
+    <!--
+      Deliberately no tokens.css and no Arizona Bootstrap: every component here
+      has to render from its own compiled-in token values.
+    -->
+    <script type="module" src="/src/index.ts"></script>
+    <style>
+      body { margin: 0; font-family: system-ui, sans-serif; }
+      main { padding: 24px; display: grid; gap: 16px; justify-items: start; }
+      .override { --az-color-semantic-action-default: #1e5288; --az-color-semantic-action-hover: #0c234b; }
+    </style>
+  </head>
+  <body>
+    <az-arizona-header></az-arizona-header>
+    <main>
+      <az-button href="#">Apply to Arizona</az-button>
+      <az-button variant="outline" href="#">Apply to Arizona</az-button>
+      <az-button size="lg">Large button</az-button>
+      <az-button disabled>Disabled button</az-button>
+      <az-button disabled href="#">Disabled link</az-button>
+      <div class="override">
+        <az-button href="#">Semantic token overridden on a parent</az-button>
+      </div>
+    </main>
+    <az-arizona-header variant="red"></az-arizona-header>
+  </body>
+</html>

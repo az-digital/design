@@ -20,6 +20,7 @@ const preview: Preview = {
         items: [
           { value: 'html', title: 'Arizona Bootstrap' },
           { value: 'react', title: 'React Bootstrap' },
+          { value: 'web', title: 'Web Components' },
         ],
         dynamicTitle: true,
       },

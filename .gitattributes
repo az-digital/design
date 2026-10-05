@@ -3,4 +3,6 @@
 # Marked generated so GitHub's language stats and diff/PR review UI treat it
 # as machine-generated code, not hand-written source.
 packages/components-react/dist/** linguist-generated
+packages/components-web/dist/** linguist-generated
+packages/components-web/src/generated/** linguist-generated
 packages/tokens/dist/** linguist-generated

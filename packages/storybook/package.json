@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@az-digital/components-html": "*",
-    "@az-digital/components-react": "*"
+    "@az-digital/components-react": "*",
+    "@az-digital/components-web": "*"
   },
   "devDependencies": {
     "@az-digital/storybook-addon-tokens": "*",

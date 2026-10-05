@@ -4,9 +4,10 @@ import type { StoryContext } from '@storybook/react-vite';
 /**
  * Kinds of implementation a component might have. Add to this list (and to
  * the `implementation` toolbar item in `.storybook/preview.ts`) as new
- * implementation kinds come online — e.g. `web` for actual Web Components.
+ * implementation kinds come online. `web` is `@az-digital/components-web`'s
+ * custom elements.
  */
-export type ImplementationKey = 'html' | 'react';
+export type ImplementationKey = 'html' | 'react' | 'web';
 
 export type ImplementationEntry<Args> = {
   render: (args: Args) => ReactElement;
