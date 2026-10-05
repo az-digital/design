@@ -5,6 +5,8 @@ import { expect } from 'storybook/test';
 import { useArgs } from 'storybook/preview-api';
 import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
+// Registers <az-button>.
+import '@az-digital/components-web';
 import type { ImplementationKey, Implementations } from '../../../implementations';
 import { renderImplementation } from '../../../implementations';
 import type { ButtonState } from '../../../TokenStatePreview';
@@ -73,10 +75,10 @@ const BUTTON_DESIGNS = {
  */
 const SOLID_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },
-  { label: 'Hover', css: `& .btn { background-color: ${resolveValue('az.component.button.solid.hover.container.color')} !important; }` },
+  { label: 'Hover', css: `& .btn, & az-button::part(control) { background-color: ${resolveValue('az.component.button.solid.hover.container.color')} !important; }` },
   {
     label: 'Focus-visible',
-    css: `& .btn {
+    css: `& .btn, & az-button::part(control) {
       background-color: ${resolveValue('az.component.button.solid.focus.container.color')} !important;
       outline: 2px solid ${resolveValue('az.component.button.focus-visible.ring')} !important;
       outline-offset: 2px;
@@ -88,12 +90,15 @@ const SOLID_BUTTON_STATES: ButtonState[] = [
  * Same state model as `SOLID_BUTTON_STATES`, from the `outline.*` tokens:
  * an outline button fills on hover/focus, so container, border, and label
  * all change together instead of just the fill.
+ *
+ * Both state lists also target `az-button::part(control)`: `.btn` can't reach
+ * inside the web component's shadow root, but its exposed part can be styled.
  */
 const OUTLINE_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },
   {
     label: 'Hover',
-    css: `& .btn {
+    css: `& .btn, & az-button::part(control) {
       color: ${resolveValue('az.component.button.outline.hover.label.color')} !important;
       background-color: ${resolveValue('az.component.button.outline.hover.container.color')} !important;
       border-color: ${resolveValue('az.component.button.outline.hover.border.color')} !important;
@@ -101,7 +106,7 @@ const OUTLINE_BUTTON_STATES: ButtonState[] = [
   },
   {
     label: 'Focus-visible',
-    css: `& .btn {
+    css: `& .btn, & az-button::part(control) {
       color: ${resolveValue('az.component.button.outline.focus.label.color')} !important;
       background-color: ${resolveValue('az.component.button.outline.focus.container.color')} !important;
       border-color: ${resolveValue('az.component.button.outline.focus.border.color')} !important;
@@ -128,7 +133,37 @@ const asReactCode = (args: ButtonArgs) => {
   return `<Button${propsString}>${args.text ?? 'Learn More'}</Button>`;
 };
 
-/** Button has both implementations. A component that only needs one omits the other key entirely. */
+/**
+ * `<az-button>` shown in the docs code panel when Implementation is set to Web
+ * Components. Its API differs from the others in two places (see `AzButton`):
+ * `variant` stands in for `style`, and `href` alone picks a link over a button.
+ */
+const webAttributes = (args: ButtonArgs) => ({
+  variant: args.style,
+  color: args.color,
+  size: args.size,
+  href: args.htmlTag === 'button' ? undefined : (args.href ?? '#'),
+  disabled: args.disabled,
+  active: args.active,
+});
+
+const asWebCode = (args: ButtonArgs) => {
+  const { variant, color, size, href, disabled, active } = webAttributes(args);
+  const attributes: string[] = [];
+
+  if (variant && variant !== 'solid') attributes.push(`variant="${variant}"`);
+  if (color && color !== 'red') attributes.push(`color="${color}"`);
+  if (size) attributes.push(`size="${size}"`);
+  if (href) attributes.push(`href="${href}"`);
+  if (disabled) attributes.push('disabled');
+  if (active) attributes.push('active');
+
+  const attributesString = attributes.length > 0 ? ` ${attributes.join(' ')}` : '';
+
+  return `<az-button${attributesString}>${args.text ?? 'Learn More'}</az-button>`;
+};
+
+/** Button has every implementation. A component that only needs some omits the other keys entirely. */
 const implementations: Implementations<ButtonArgs> = {
   html: {
     render: (args) => <div dangerouslySetInnerHTML={{ __html: renderButton(args) }} />,
@@ -151,6 +186,10 @@ const implementations: Implementations<ButtonArgs> = {
       ),
     source: asReactCode,
   },
+  web: {
+    render: (args) => createElement('az-button', webAttributes(args), args.text),
+    source: asWebCode,
+  },
 };
 
 /**
@@ -171,13 +210,23 @@ function withBackgroundClassSource(bgClass: string, base: Implementations<Button
     wrapped[key] = {
       ...entry,
       source:
-        key === 'html'
-          ? (args) => `<div class="${bgClass}">\n  ${entry.source(args)}\n</div>`
-          : (args) => `<div className="${bgClass}">\n  ${entry.source(args)}\n</div>`,
+        key === 'react'
+          ? (args) => `<div className="${bgClass}">\n  ${entry.source(args)}\n</div>`
+          : (args) => `<div class="${bgClass}">\n  ${entry.source(args)}\n</div>`,
     };
   }
 
   return wrapped;
+}
+
+/**
+ * The button a story's play function focuses. Role queries don't search shadow
+ * roots, so with Implementation set to Web Components this finds the
+ * `<az-button>` host instead: focusing it delegates to its inner control, and
+ * the host then reports focus.
+ */
+function getButton(canvas: { getAllByRole: (role: string, options: { name: string }) => HTMLElement[] }, canvasElement: HTMLElement): HTMLElement {
+  return canvasElement.querySelector<HTMLElement>('az-button') ?? canvas.getAllByRole('button', { name: 'Apply to Arizona' })[0];
 }
 
 function ButtonStory(args: ButtonArgs, context: StoryContext) {
@@ -420,11 +469,11 @@ export const SolidRedOnWhite: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ canvas, canvasElement, step }) => {
     // There are 3 state previews (Default/Hover/Focus-visible) rendered from the same
-    // `button` element reused 3 times, so this matches all 3 — a real Tab/focus check on
-    // any of them is representative of the others.
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+    // `button` element reused 3 times, so a real Tab/focus check on the first one is
+    // representative of the others.
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -462,8 +511,8 @@ export const SolidRedOnCloud: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -502,8 +551,8 @@ export const SolidRedOnWhiteLarge: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -540,8 +589,8 @@ export const SolidRedOnCloudLarge: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -647,8 +696,8 @@ export const SolidRedOnCaliche: Story = {
       <ContextButton btnClass="btn-red" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -666,8 +715,8 @@ export const SolidWhiteTextRedOnAzRed: Story = {
       <ContextButton btnClass="btn-white-text-red" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -736,8 +785,8 @@ export const SolidWhiteTextBlueOnArroyoBlue: Story = {
       <ContextButton btnClass="btn-white-text-blue" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -778,8 +827,8 @@ export const OutlineRedOnWhite: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -816,8 +865,8 @@ export const OutlineRedOnCloud: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -854,8 +903,8 @@ export const OutlineRedOnWhiteLarge: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -892,8 +941,8 @@ export const OutlineRedOnCloudLarge: Story = {
       </TokenStatePreview>
     );
   },
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -918,8 +967,8 @@ export const OutlineRedOnCaliche: Story = {
       <ContextButton btnClass="btn-outline-red" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -937,8 +986,8 @@ export const OutlineWhiteOnAzRed: Story = {
       <ContextButton btnClass="btn-outline-white" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();
@@ -1002,8 +1051,8 @@ export const OutlineWhiteOnArroyoBlue: Story = {
       <ContextButton btnClass="btn-outline-white" />
     </TokenStatePreview>
   ),
-  play: async ({ canvas, step }) => {
-    const [button] = canvas.getAllByRole('button', { name: 'Apply to Arizona' });
+  play: async ({ canvas, canvasElement, step }) => {
+    const button = getButton(canvas, canvasElement);
 
     await step('Focus: button should receive keyboard focus', async () => {
       button.focus();

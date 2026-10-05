@@ -6,66 +6,75 @@ description: >-
   a Storybook story for one. Also use it whenever asked to follow "the
   component pattern", add an "HTML and/or React version" of something, wire
   up a Storybook implementation toggle, or add/associate design tokens with a
-  component — this repo can ship a component as React, as plain HTML, or
-  both, with a shared Storybook toolbar switcher and code panel across all of
-  them, and every component is expected to have its own component-tier
-  design tokens too. The wiring has real gotchas (see below) that are easy
+  component — this repo can ship a component as React, as plain HTML, as a
+  web component (custom element), or any combination, with a shared
+  Storybook toolbar switcher and code panel across all of them, and every
+  component is expected to have its own component-tier design tokens too. The wiring has real gotchas (see below) that are easy
   to get wrong by improvising instead of following this structure.
-applyTo: "packages/components-react/**,packages/components-html/**,packages/storybook/stories/**,packages/storybook/.storybook/**,packages/tokens/tokens.json"
+applyTo: "packages/components-react/**,packages/components-html/**,packages/components-web/**,packages/storybook/stories/**,packages/storybook/.storybook/**,packages/tokens/tokens.json"
 ---
 
 # Design-system component pattern
 
 Components in this repo can have a React implementation
 (`@az-digital/components-react`), a plain HTML/CSS implementation
-(`@az-digital/components-html`), or both — whichever a component actually
-needs. There's no requirement that every component exist in every package;
-a component only needed in a React app doesn't need an HTML version, and one
-only needed in a Drupal theme doesn't need React. A single Storybook story
+(`@az-digital/components-html`), a web component implementation
+(`@az-digital/components-web`), or any combination — whichever a component
+actually needs. There's no requirement that every component exist in every
+package; a component only needed in a React app doesn't need an HTML
+version, and one only needed in a Drupal theme doesn't need React. A single Storybook story
 still drives whichever implementations a component has from the same args,
 via a shared toolbar switcher and docs code panel.
 
-`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (both implementations) and
+`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (all three implementations) and
 `packages/storybook/stories/implementations.tsx` (the shared machinery) are
 the reference — read them alongside this skill. Everything below explains
 the *why* behind their shape so you can extend the pattern to a new
 component correctly.
 
-## Why two packages, not one
+## Why three packages, not one
 
 - `components-html` is what a Drupal theme (or any non-React consumer) can use
   directly — it's just a function that returns an HTML string using Arizona
   Bootstrap's real CSS classes. No framework, no build step to consume.
 - `components-react` is the React component for React/Next.js apps.
-- When a component has both, they share the same prop shape (color, style,
-  size, etc.) on purpose, so one set of Storybook args/controls can drive
-  either implementation without translation.
+- `components-web` is Lit-based custom elements (`<az-button>`) for places
+  the other two can't reach well: platforms where you can only add a script
+  tag, apps in other frameworks, embedded widgets, pages whose CSS would
+  clash with Arizona Bootstrap. It's an equal implementation, not an add-on.
+  Unlike the other two, it's **standalone**: it doesn't use Arizona
+  Bootstrap's CSS at all, and its styles come only from design tokens.
+- When a component has more than one, they share the same prop shape
+  (color, style, size, etc.) on purpose, so one set of Storybook
+  args/controls can drive every implementation without translation. Web
+  components deviate only where a platform rule forces it (see
+  `components-web` below).
 - Neither package is Drupal-specific (no Twig/SDC). Drupal's own templates
   live in `az_quickstart`/`az_barrio` and are out of scope here — don't pull
   them into this repo.
-- It's called `components-html`, not `components-web`, on purpose: "web
-  components" is a real, distinct thing — the Lit-based custom elements in
-  the separate `az-web-components` project (candidate for a future
-  `packages/components-web`, per issue #16). Keep that name free; this
-  package is plain HTML/CSS, nothing more.
+- `components-html` is plain HTML/CSS, nothing more. "Web components" is a
+  distinct thing, the custom elements in `components-web`, which replaces
+  the separate `az-web-components` repos (issue #16; plan in
+  `packages/components-web/PLAN.md`).
 
 ## Adding a new component: file layout
 
-For a component named `Card` that needs both implementations, you'd create:
+For a component named `Card` that needs all three implementations, you'd create:
 
 ```
 packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
+packages/components-web/src/card/az-card.ts               # <az-card> custom element
 packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx  # the story (in main's IA folder; replaces Card.mdx's placeholder with the Docs page)
 packages/tokens/tokens.json                                # az.component.card.* entries — see below
 ```
 
-If `Card` only needs one implementation, just skip the package it doesn't
-need — the story (below) reflects that by only filling in the
+If `Card` doesn't need every implementation, just skip the packages it
+doesn't need — the story (below) reflects that by only filling in the
 `implementations` key(s) that exist. Add whichever exports you do create to
-that package's barrel file (`packages/components-react/src/index.ts` and/or
-`packages/components-html/src/index.ts`). The token entries aren't optional
+that package's barrel file (`packages/components-react/src/index.ts`,
+`packages/components-html/src/index.ts`, `packages/components-web/src/index.ts`). The token entries aren't optional
 the same way, though — every component is expected to have some, however
 small (see "Component tokens" below).
 
@@ -113,6 +122,51 @@ same way the React version does, and escape any interpolated text content
 Keep the prop type name and shape identical to the React version's props
 (minus anything React-only, like `children` vs. a plain `text` string) —
 that's what lets one story drive both.
+
+### `components-web/src/<name>/az-<name>.ts`
+
+Follow `az-button.ts`'s shape:
+
+- **Lit, without decorators.** Declare properties in `static properties`
+  and the fields with `declare`, and set defaults in the constructor. The
+  same source then compiles identically under Storybook's Vite, the package
+  build, and plain `tsc`, with no decorator or class-field settings to keep
+  in sync.
+- **Register with `define('az-card', AzCard)`** (`src/define.ts`), not
+  `customElements.define` directly: it skips a tag that's already defined,
+  so a page loading the CDN bundle and an npm import doesn't throw. Add the
+  tag to `HTMLElementTagNameMap` too.
+- **Styles come only from tokens.** Import `az` from `src/generated/tokens.ts`
+  and interpolate with `unsafeCSS`, e.g. `padding: ${t(az.component.card.cap.padding.x)}`.
+  Each entry is a `var()` chain that follows the token's aliases down to its
+  resolved value, so the component renders on a page with no Arizona CSS,
+  and a page can still override any layer. Never write a literal value; if a
+  value has no token, hardcode it with a comment naming the gap and record
+  it in `packages/components-web/PLAN.md` (Arizona Header's background and
+  container widths are the current examples). Don't use Arizona Bootstrap's
+  CSS or class names.
+- **Variants are reflected attributes** (`reflect: true`), styled with
+  `:host([variant='outline'][color='red']) .control`. Only style values that
+  have tokens; accept other values without styling them, the same way
+  html/react generate `btn-${color}` whether or not its CSS exists.
+- **Accessibility across the shadow boundary:** render a native `<button>`
+  / `<a>` inside the shadow root, set `delegatesFocus: true` in
+  `shadowRootOptions`, and never point ARIA references across roots.
+- **Expose a `part`** on the main inner element (`part="control"`) so
+  consumers, and Storybook's state previews, can style it.
+- **Same props as html/react, except where the platform forces a change.**
+  A custom element can't reuse a global HTML attribute, so Button's `style`
+  is `variant`. Document every difference in the class's doc comment.
+- Add the component to `src/index.ts`, to the `lib.entry` map in
+  `vite.config.ts`, to `exports` in `package.json`, and an example of it to
+  the standalone demo page, `index.html`.
+- **Don't add a `sideEffects` field to `components-web/package.json`.**
+  Every component module registers its element when imported. With
+  `sideEffects` set, the production Storybook build (rolldown) dropped
+  `import '@az-digital/components-web'` entirely, so no element was defined
+  and every web story rendered as plain text, while the dev server, which
+  doesn't tree-shake, looked fine. Check web stories in `npm run
+  build:storybook`'s output, not only in the dev server.
 
 ### `storybook/stories/<name>.stories.tsx`
 
@@ -188,6 +242,32 @@ story:
    trips `no-unused-vars` — this is intentional dead code that only exists
    for its type, so silence it rather than working around it.
 
+5. **For a web component, import the package for its side effect and render
+   the tag with `createElement`.** `import '@az-digital/components-web';`
+   registers the elements. React 19 sets custom element properties
+   directly, so pass props as an object; map any prop whose name differs
+   (`variant: args.style`):
+
+   ```tsx
+   web: {
+     render: (args) => createElement('az-card', { title: args.title }),
+     source: (args) => `<az-card title="${args.title}"></az-card>`,
+   },
+   ```
+
+   Two things don't reach into a shadow root, so stories need adjusting:
+
+   - **`play` functions:** role queries don't search shadow roots. Find the
+     host element instead (`canvasElement.querySelector('az-button')`):
+     `host.focus()` delegates to the inner control, and the host then
+     reports focus. See `getButton` in `Button.stories.tsx`.
+   - **`TokenStatePreview` state CSS:** `& .btn` can't style inside the
+     shadow root. Also target the exposed part:
+     `& .btn, & az-button::part(control) { ... }`.
+
+   `withBackgroundClassSource`-style helpers that wrap the Code-panel source
+   should write `className` only for `react`; html and web both use `class`.
+
 ### Condensed template (both implementations)
 
 ```tsx
@@ -253,9 +333,12 @@ const implementations: Implementations<CardArgs> = {
 
 ## Partial implementation coverage
 
-The toolbar's Implementation switcher always offers every known kind (`HTML`,
-`React`, ...) — Storybook's toolbar items are defined once, globally, in
-`preview.ts`, and can't shrink per-story. So a component that only has an
+The toolbar's Implementation switcher always offers every known kind
+(Arizona Bootstrap, React Bootstrap, Web Components) — its items come from
+`IMPLEMENTATIONS` in `implementations.tsx`, read once, globally, by
+`preview.ts`, and can't shrink per-story. The Components Overview page's
+library picker reads the same list. To add a new kind, add it to
+`ImplementationKey` and `IMPLEMENTATIONS`; nothing else needs editing. So a component that only has an
 HTML implementation still shows a "React" option in the switcher; selecting
 it calls `renderImplementation`, finds no `react` key in that story's
 `implementations` map, and renders `ImplementationPlaceholder` instead — a
@@ -335,7 +418,9 @@ loaded once for all stories via `packages/storybook/.storybook/preview-head.html
 
 Don't write local CSS stubs for a new component — use the real Bootstrap
 classes (`.btn-red`, `.card`, etc.) so what you see in Storybook matches
-production. If you need to bump the pinned version, do it deliberately (not
+production. This applies to html and react only: web components carry their
+own token-based styles and never use Arizona Bootstrap (see
+`components-web` above). If you need to bump the pinned version, do it deliberately (not
 to `main`, which is a moving target) and check the class names you depend on
 still exist at the new version.
 
@@ -345,90 +430,94 @@ Every component needs its own entries in `packages/tokens/tokens.json`,
 under `az.component.<name>.*` — one per real, distinct visual decision the
 component makes: not just color, but the structural properties too
 (padding, font size/weight, border width/radius, disabled opacity, size
-variant overrides, ...). `Button`'s are the reference — 15 tokens covering
-its full CSS custom property surface, sourced directly from Arizona
-Bootstrap's actual compiled `.btn`/`.btn-sm`/`.btn-lg` rules (verified via
-the CDN CSS, not guessed):
+variant overrides, ...).
+
+**Read `packages/tokens/AGENTS.md` before adding or renaming one.** It's the
+source of truth for the layers (brand → semantic → component for color;
+`az.dimension.*`, `az.font-weight.*`, `az.opacity.*` primitives for
+everything else), what each layer's names may describe, which layer a token
+may alias, and the `<variant>.<state>.<part>` structure. In short:
+
+- **Every component token is an alias, never a literal**, color or number.
+  Colors alias a semantic token when one exists for that role
+  (`{az.color.semantic.action.default}`), otherwise a brand color. Numbers
+  alias their primitive (`{az.component.button.padding.x}` →
+  `{az.dimension.30}`). If the primitive doesn't exist yet, add it to its
+  tier; don't put the number on the component token.
+- **Shared structure at the component root, one group per demonstrated
+  style** holding only what that style changes (`solid.*`, `outline.*`),
+  grouped by state, named by the part they color.
+- **Values come from Figma first**, Arizona Bootstrap's compiled CSS only
+  where Figma has no design for it. Don't estimate, and don't borrow a value
+  from another component.
+
+`Button`'s tokens are the reference. An excerpt, with `$description`s left
+out (every real token has one, saying what it's for):
 
 ```json
-"component": {
-  "button": {
-    "color": {
-      "red": { "$type": "color", "$value": "{az.color.brand.red}" },
-      "blue": { "$type": "color", "$value": "{az.color.brand.blue}" }
-    },
-    "padding": {
-      "x": { "$type": "dimension", "$value": { "value": 1.25, "unit": "rem" } },
-      "y": { "$type": "dimension", "$value": { "value": 0.5, "unit": "rem" } }
-    },
+"button": {
+  "padding": {
+    "x": { "$type": "dimension", "$value": "{az.dimension.30}" }
+  },
+  "label": {
     "font": {
-      "size": { "$type": "dimension", "$value": { "value": 1, "unit": "rem" } },
-      "weight": { "$type": "fontWeight", "$value": 500 }
-    },
-    "border": {
-      "width": { "$type": "dimension", "$value": { "value": 2, "unit": "px" } },
-      "radius": { "$type": "dimension", "$value": { "value": 3, "unit": "rem" } }
-    },
-    "disabled": { "opacity": { "$type": "number", "$value": 0.65 } },
-    "size": {
-      "sm": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } },
-      "lg": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } }
+      "size": { "$type": "dimension", "$value": "{az.dimension.18}" },
+      "weight": { "$type": "number", "$value": "{az.font-weight.700}" }
     }
+  },
+  "solid": {
+    "container": { "color": { "$type": "color", "$value": "{az.color.semantic.action.default}" } },
+    "label": { "color": { "$type": "color", "$value": "{az.color.brand.white}" } },
+    "hover": {
+      "container": { "color": { "$type": "color", "$value": "{az.color.semantic.action.hover}" } }
+    }
+  },
+  "focus-visible": {
+    "ring": { "$type": "color", "$value": "{az.color.semantic.action.focus-ring}" }
   }
 }
 ```
 
+and the primitives they alias:
+
+```json
+"dimension": { "30": { "$type": "dimension", "$value": { "value": 30, "unit": "px" } } },
+"font-weight": { "700": { "$type": "number", "$value": 700 } }
+```
+
 **Why this tier exists, and why it's not optional:** without it, a
-component's styling reaches straight down to raw brand/base primitives (or,
-for anything that isn't a color, to nothing at all — just a hard-coded value
-buried in Bootstrap's CSS) with no named, inspectable indirection point
-specific to that component. With component tokens, a component's actual
-design decisions are explicit and repointable later without touching the
+component's styling reaches straight down to brand colors or primitives
+(or, for anything without a token, to a hard-coded value buried in
+Bootstrap's CSS) with no named, inspectable indirection point specific to
+that component. With component tokens, a component's actual design
+decisions are explicit and repointable later without touching the
 component itself.
 
-**Colors alias to existing base/brand tokens — don't invent new hex values.**
-`$value` for a color token should be a DTCG alias (`{az.color.brand.red}`),
-pointing at a base/brand token that already exists. There's no semantic tier
-yet, so component color tokens alias straight to base/brand tokens for now;
-when a semantic tier is added later, they get repointed to alias through it
-instead, without changing their own names. If a color variant's primitive
-doesn't exist yet (Arizona Bootstrap's CSS supports more button colors than
-`tokens.json` has base tokens for — `sky`, `white`, `redbar`, ...), that's
-real work: add the base token for real, or leave that variant out, rather
-than inventing a plausible-looking hex value to alias to.
+**Style Dictionary pitfalls** (the build is `style-dictionary.config.mjs`,
+`transformGroup: 'css'`; each verified directly):
 
-**Everything else — hard-code to the real, current production value.**
-Unlike colors, there's no base/semantic tier at all yet for spacing,
-typography, or other structural properties, so blocking on one would mean
-never adding these tokens. Pull the literal value from Arizona Bootstrap's
-actual compiled CSS (`curl` the CDN URL from the Styling section above and
-grep the component's base rule and its variants) — don't estimate or reuse
-a value from a different component. When a base/semantic tier for these
-exists later, repoint the alias the same way colors will be.
+- **Write dimensions as DTCG objects, `{ "value": 30, "unit": "px" }`.** A
+  bare number is the trap: `"$value": 16` compiles to `16rem`, not `16px`,
+  with no warning. (A string like `"1.25rem"` compiles as written, but use
+  the object form to match the rest of the file.)
+- **Never put alias-shaped text in a `$description`.** Style Dictionary
+  tries to resolve `{az.dimension.9.6}` in prose as a reference, and the
+  build fails with a reference error.
+- **A broken alias fails the build** ("Some token references (1) could not
+  be found", exit code 1), so a clean build means every alias resolves. It
+  doesn't mean an alias points at the *right* token; check the values.
 
-**Dimension tokens need the DTCG object format, not a plain string — this
-isn't a style preference, the plain string silently produces broken CSS.**
-`{ "$type": "dimension", "$value": "1.25rem" }` passes `terrazzo.config.ts`'s
-lint (`core/valid-dimension` is `'warn'`, and even at `'error'` its
-`legacyFormat` option doesn't actually work for dimensions in the installed
-`@terrazzo/parser` version), but `@terrazzo/plugin-css`'s dimension
-serializer requires the `{ value, unit }` object shape to render anything —
-give it a plain string and every consumer of that token silently gets
-`undefinedundefined` instead of a real value. Verified directly: switching
-11 dimension tokens from strings to objects was the difference between
-`--az-component-button-padding-x: undefinedundefined` and the correct
-`1.25rem`. Colors don't have this problem — legacy hex strings compile
-correctly — so this is dimension-specific, not a general "avoid legacy
-format" rule.
-
-**After editing `tokens.json`, always check the compiled CSS, not just that
-the build exits 0** — a lint warning doesn't mean the output is correct
-(see above), and `npm run build -w @az-digital/tokens`'s exit code doesn't
-either, since `core/valid-dimension` is a warning, not an error:
+**After editing `tokens.json`, rebuild and check the generated output**, not
+just that the build exits 0:
 
 ```bash
-npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
+npm run build -w @az-digital/tokens   # regenerates dist/: tokens.css, tokens.scss, tokens.vars.js, tokens.vars.d.ts
+npm run build:tokens -w @az-digital/components-web   # regenerates components-web/src/generated/tokens.ts
 ```
+
+Both outputs are committed. Web components read tokens from
+`src/generated/tokens.ts`, not from the tokens package's `dist/`, so a token
+change doesn't reach them until the second command runs.
 
 **Expose them in Storybook** with `@az-digital/storybook-addon-tokens`
 (see `packages/storybook-addon-tokens/README.md`). No separate "Tokens" story:
@@ -451,14 +540,16 @@ npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaSc
   ```
 
 Nothing else is needed for them to appear in the Tokens page's Component
-tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
-`tokens.json`, and groups the component's tokens by reading their paths.
+tokens index (`packages/storybook/stories/Primary/Foundations/Tokens/Docs.mdx`):
+it's built from `tokens.json`, and groups the component's tokens by reading
+their paths.
 
 ## Consuming source live (no build step needed in Storybook)
 
 `packages/storybook/.storybook/main.ts` aliases
-`@az-digital/components-react` and `@az-digital/components-html` straight to
-their `src/index.ts` via a Vite `resolve.alias`. This means Storybook always
+`@az-digital/components-react`, `@az-digital/components-html`, and
+`@az-digital/components-web` straight to their `src/index.ts` via a Vite
+`resolve.alias`. This means Storybook always
 reflects your latest source while developing — you don't need to run a build
 for Storybook itself to pick up changes. You only need `main.ts` changes if
 you're adding an entirely new *package* (not a new component inside an
@@ -469,24 +560,28 @@ existing one).
 ```bash
 npm run build -w @az-digital/tokens             # only if you touched tokens.json — regenerates dist/tokens.css etc.
 npm run build -w @az-digital/components-react   # regenerates dist/*.d.ts — needed for `tsc` even though Storybook uses live source via the alias
+npm run build -w @az-digital/components-web     # regenerates its token file and dist/ (npm modules + CDN bundle)
 npm run lint:storybook                           # CI gate
 npm run test:storybook                           # CI gate
 ```
 
 There's no standalone `tsc --noEmit` CI gate yet, but run it anyway
-(`npx tsc --noEmit -p packages/storybook/tsconfig.json`) before calling
-something done — type errors here are easy to introduce via the `Meta<T>`
+(`npx tsc --noEmit -p packages/storybook/tsconfig.json`, and
+`npm run typecheck -w @az-digital/components-web` for web components)
+before calling something done — type errors here are easy to introduce via the `Meta<T>`
 trick above and won't be caught by lint or the (currently empty) test suite.
 
 Then verify visually: start Storybook (`npm run dev:storybook` or the
 `storybook` launch config), open the new story, and check both the canvas
 and the docs "Code" panel while toggling the Implementation switcher through
 every option — including ones the component doesn't implement, to confirm
-the placeholder shows up instead of an error. Per the gotcha above, a broken
+the placeholder shows up instead of an error. For a web component, also
+open `npm run dev -w @az-digital/components-web`'s standalone page
+(`packages/components-web/index.html`, which loads no Arizona CSS) and
+confirm it renders correctly there. Per the gotcha above, a broken
 sync between canvas and code panel is easy to miss just by looking at the
-canvas. If you added tokens, `npm run build -w @az-digital/tokens` will
-already fail loudly (`Could not resolve alias ...`) on a broken alias
-reference — verified directly — so a clean build there means the alias
-chain is sound. Still open the `Tokens` story once to confirm the actual
-swatch/value looks right, since a *resolvable* alias can still point at the
-wrong token.
+canvas. If you added tokens, a clean `npm run build -w @az-digital/tokens` means
+every alias resolves (a broken one fails the build), but a resolvable alias
+can still point at the wrong token: open the component's Docs page and the
+story's **Tokens** tab, and click through the token pills to check each
+resolved value.

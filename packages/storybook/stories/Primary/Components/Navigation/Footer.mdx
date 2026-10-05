@@ -1,0 +1,28 @@
+import { Meta, Canvas, Story, Source } from '@storybook/addon-docs/blocks';
+import * as FooterStories from './Footer.stories';
+
+<Meta of={FooterStories} />
+
+# Footer
+
+The University of Arizona footer: University utility links, the Information For, Topics, Resources, and Connect link groups, the land acknowledgment, and the copyright. Its layout and content follow the footer on Arizona Quickstart 3 sites, such as <a href="https://president.arizona.edu/" target="_blank" rel="noreferrer">president.arizona.edu</a>.
+
+<Canvas>
+  <Story of={FooterStories.Default} />
+</Canvas>
+
+The links are fixed University content, the same on every site, so they aren't configurable.
+
+## Libraries
+
+Footer is a web component so far: `<az-footer>`. It's built for sites that can't use Arizona Quickstart, like vendor platforms where you can only add a script tag. It replaces the `<az-footer>` from the Slate template that catalog.arizona.edu loads today.
+
+## Site logo
+
+The footer shows the University wordmark. A site can show its own logo instead by placing a link in the `logo` slot. Size the image yourself; the footer doesn't style slotted content.
+
+<Source of={FooterStories.WithSiteLogo} />
+
+## Analytics
+
+Google Tag Manager's click triggers can't see links inside a web component. So each link click pushes a `shadow_event_click` entry to `window.dataLayer`, in the same shape as the Slate template's footer, and existing triggers keep working.

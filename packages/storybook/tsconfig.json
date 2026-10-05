@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@az-digital/components-react": ["../components-react/src/index.ts"],
-      "@az-digital/components-html": ["../components-html/src/index.ts"]
+      "@az-digital/components-html": ["../components-html/src/index.ts"],
+      "@az-digital/components-web": ["../components-web/src/index.ts"]
     }
   },
   "include": [

@@ -3,6 +3,8 @@ import { createElement } from 'react';
 import { ArizonaHeader } from '@az-digital/components-react';
 import { renderArizonaHeader } from '@az-digital/components-html';
 import type { ArizonaHeaderProps } from '@az-digital/components-html';
+// Registers <az-arizona-header>.
+import '@az-digital/components-web';
 import type { Implementations } from '../../../implementations';
 import { renderImplementation } from '../../../implementations';
 
@@ -25,6 +27,19 @@ const asReactCode = (args: ArizonaHeaderArgs) => {
   return `<ArizonaHeader${propsString} />`;
 };
 
+/** `<az-arizona-header>` shown in the docs code panel when Implementation is set to Web Components. */
+const asWebCode = (args: ArizonaHeaderArgs) => {
+  const attributes: string[] = [];
+
+  if (args.id && args.id !== 'header_arizona') attributes.push(`id="${args.id}"`);
+  if (args.variant && args.variant !== 'blue') attributes.push(`variant="${args.variant}"`);
+  if (args.fixedOnMobile) attributes.push('fixed-on-mobile');
+
+  const attributesString = attributes.length > 0 ? ` ${attributes.join(' ')}` : '';
+
+  return `<az-arizona-header${attributesString}></az-arizona-header>`;
+};
+
 const implementations: Implementations<ArizonaHeaderArgs> = {
   html: {
     render: (args) => <div dangerouslySetInnerHTML={{ __html: renderArizonaHeader(args) }} />,
@@ -33,6 +48,10 @@ const implementations: Implementations<ArizonaHeaderArgs> = {
   react: {
     render: (args) => createElement(ArizonaHeader, args),
     source: asReactCode,
+  },
+  web: {
+    render: (args) => createElement('az-arizona-header', { id: args.id ?? 'header_arizona', variant: args.variant, fixedOnMobile: args.fixedOnMobile }),
+    source: asWebCode,
   },
 };
 

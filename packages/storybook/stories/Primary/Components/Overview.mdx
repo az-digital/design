@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { ForImplementation, ImplementationPicker } from './LibraryOverview';
 
 <Meta title="Primary/Components/Overview" />
 
@@ -6,9 +7,167 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The Components section is the reusable library of interface patterns that teams can apply consistently across Arizona Digital products.
 
+Arizona's products are built in many different ways, so each component can come in up to three libraries. All three follow the same Figma designs and use the same design tokens. Pick the library that fits your product to read how it works. Your choice also switches every component page and story to that library.
+
+<ImplementationPicker />
+
+<ForImplementation value="html">
+
+## Components with an implementation
+
+- <a href="./?path=/docs/primary-components-containers-accordions--docs&globals=implementation:html" target="_top">Accordion</a>
+- <a href="./?path=/docs/primary-components-navigation-arizona-header--docs&globals=implementation:html" target="_top">Arizona Header</a>
+- <a href="./?path=/docs/primary-components-buttons--docs&globals=implementation:html" target="_top">Button</a>
+- <a href="./?path=/docs/primary-components-containers-card--docs&globals=implementation:html" target="_top">Card</a>
+- <a href="./?path=/docs/primary-components-navigation-nav--docs&globals=implementation:html" target="_top">Nav</a>
+- <a href="./?path=/docs/primary-components-containers-tabs--docs&globals=implementation:html" target="_top">Tabs</a>
+
+## Arizona Bootstrap
+
+Plain HTML that uses <a href="https://digital.arizona.edu/arizona-bootstrap" target="_blank" rel="noreferrer">Arizona Bootstrap</a>'s classes. Use it for anything that outputs its own HTML.
+
+### Best for
+
+- Drupal sites, including Arizona Quickstart, and other CMS themes and templates.
+- Static sites.
+- Server-rendered apps in PHP, Python, Ruby, or any other language.
+
+### How to use it
+
+1. Load Arizona Bootstrap's CSS on your page. Components with interactive behavior, like Accordion and Tabs, also need its JavaScript:
+
+   ```html
+   <link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/css/arizona-bootstrap.css">
+   <script defer src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/js/arizona-bootstrap.bundle.min.js"></script>
+   ```
+
+2. Open a component's page and copy its markup from the **Code** panel.
+
+There's nothing to install. The markup in the examples comes from `@az-digital/components-html`, which keeps it in step with the other two libraries.
+
+> Arizona Bootstrap 5.2.0 doesn't use the design tokens yet, so a few values can differ from what you see here. Storybook adjusts Arizona Bootstrap's buttons to match the tokens.
+
+</ForImplementation>
+
+<ForImplementation value="react">
+
+## Components with an implementation
+
+- <a href="./?path=/docs/primary-components-containers-accordions--docs&globals=implementation:react" target="_top">Accordion</a>
+- <a href="./?path=/docs/primary-components-navigation-arizona-header--docs&globals=implementation:react" target="_top">Arizona Header</a>
+- <a href="./?path=/docs/primary-components-buttons--docs&globals=implementation:react" target="_top">Button</a>
+- <a href="./?path=/docs/primary-components-containers-card--docs&globals=implementation:react" target="_top">Card</a>
+- <a href="./?path=/docs/primary-components-navigation-nav--docs&globals=implementation:react" target="_top">Nav</a>
+- <a href="./?path=/docs/primary-components-containers-tabs--docs&globals=implementation:react" target="_top">Tabs</a>
+
+## React Bootstrap
+
+React components for React and Next.js apps, from `@az-digital/components-react`. They render Arizona Bootstrap's markup, so they look the same as the Arizona Bootstrap library.
+
+### Best for
+
+- React apps.
+- Next.js apps, including the App Router and Server Components.
+
+### How to use it
+
+1. Install the package:
+
+   ```bash
+   npm install @az-digital/components-react
+   ```
+
+2. Load Arizona Bootstrap's CSS on your page. The components don't ship their own CSS. You don't need Arizona Bootstrap's JavaScript: interactive components handle their own behavior.
+
+   ```html
+   <link rel="stylesheet" href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.0/css/arizona-bootstrap.css">
+   ```
+
+3. Import each component from its own path:
+
+   ```jsx
+   import { Button } from '@az-digital/components-react/Button';
+
+   <Button href="/apply">Apply to Arizona</Button>
+   ```
+
+> Not published to npm yet.
+
+### How it's built
+
+- Components with interactive behavior, like Accordion and Tabs, wrap <a href="https://react-bootstrap.github.io/" target="_blank" rel="noreferrer">React Bootstrap</a>, which handles focus, keyboard support, and ARIA.
+- Presentational components, like Button and Card, are plain React with no extra dependencies.
+- **Next.js:** Button, Card, Nav, and Arizona Header work in Server Components when imported from their own path. Accordion and Tabs are Client Components. Importing from `@az-digital/components-react` itself loads everything as a Client Component.
+
+</ForImplementation>
+
+<ForImplementation value="web">
+
+## Components with an implementation
+
+- <a href="./?path=/docs/primary-components-navigation-arizona-header--docs&globals=implementation:web" target="_top">Arizona Header</a>
+- <a href="./?path=/docs/primary-components-buttons--docs&globals=implementation:web" target="_top">Button</a>
+- <a href="./?path=/docs/primary-components-navigation-footer--docs&globals=implementation:web" target="_top">Footer</a>
+
+More are on the way. Component pages show a placeholder when the selected library doesn't have that component yet.
+
+## Web Components
+
+Custom HTML elements, like `<az-button>`, from `@az-digital/components-web`. They work in any browser page, with any framework or none, and don't need any other CSS or JavaScript.
+
+### Best for
+
+- Platforms you don't control, where you can only add a script tag: vendor tools, learning management systems, hosted CMS themes.
+- Apps built with Angular, Vue, Svelte, or no framework.
+- Widgets embedded on department or partner sites.
+- Pages whose own CSS would clash with Arizona Bootstrap.
+
+### How to use it
+
+Load the components with one script tag:
+
+```html
+<script type="module" src="https://cdn.digital.arizona.edu/lib/components-web/v0.0.1/az-components.min.js"></script>
+
+<az-button href="/apply">Apply to Arizona</az-button>
+```
+
+Or install the package and import only the components you use:
+
+```bash
+npm install @az-digital/components-web
+```
+
+```js
+import '@az-digital/components-web/az-button';
+```
+
+> Not published to npm or the CDN yet.
+
+### How it's built
+
+- Each component carries its own styles, built from the design tokens, inside its shadow DOM. Your page's CSS can't break it, and it doesn't need Arizona Bootstrap.
+- Components use your page's font.
+- **Customizing:** set a design token on the component or any parent element, and the component uses your value. Each component also exposes parts you can style with `::part()`:
+
+  ```css
+  .my-section {
+    --az-color-semantic-action-default: #1e5288;
+  }
+
+  az-button::part(control) {
+    text-transform: uppercase;
+  }
+  ```
+
+- Attribute names follow the other libraries, with two exceptions on Button: `variant` instead of `style` (`style` is reserved by HTML), and `href` alone makes it a link instead of a button.
+
+</ForImplementation>
+
 ## Included groups
 
 - Buttons
 - Containers
+- Navigation
 
 This section is intentionally staged as a foundation for the initial system and can expand as new patterns are approved.

@@ -2,11 +2,22 @@ import type { ReactElement } from 'react';
 import type { StoryContext } from '@storybook/react-vite';
 
 /**
- * Kinds of implementation a component might have. Add to this list (and to
- * the `implementation` toolbar item in `.storybook/preview.ts`) as new
- * implementation kinds come online — e.g. `web` for actual Web Components.
+ * Kinds of implementation a component might have. Add to this list, and to
+ * `IMPLEMENTATIONS` below, as new implementation kinds come online. `web` is
+ * `@az-digital/components-web`'s custom elements.
  */
-export type ImplementationKey = 'html' | 'react';
+export type ImplementationKey = 'html' | 'react' | 'web';
+
+/**
+ * Each implementation's display name, in toolbar order. The toolbar and the
+ * Components Overview page's library picker both read this, so they always
+ * offer the same libraries under the same names.
+ */
+export const IMPLEMENTATIONS: { key: ImplementationKey; title: string }[] = [
+  { key: 'html', title: 'Arizona Bootstrap' },
+  { key: 'react', title: 'React Bootstrap' },
+  { key: 'web', title: 'Web Components' },
+];
 
 export type ImplementationEntry<Args> = {
   render: (args: Args) => ReactElement;
