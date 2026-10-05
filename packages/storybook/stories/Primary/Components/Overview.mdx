@@ -7,7 +7,7 @@ import { ForImplementation, ImplementationPicker } from './LibraryOverview';
 
 The Components section is the reusable library of interface patterns that teams can apply consistently across Arizona Digital products.
 
-Arizona's products are built in many different ways, so each component can come in up to three libraries. All three follow the same Figma designs and use the same design tokens. Pick the library that fits your product to read how it works. Your choice also switches every component page and story to that library.
+Arizona's products are built in many different ways, so each component can come in up to four libraries. All of them follow the same Figma designs and use the same design tokens. Pick the library that fits your product to read how it works. Your choice also switches every component page and story to that library.
 
 <ImplementationPicker />
 
@@ -28,7 +28,7 @@ Plain HTML that uses <a href="https://digital.arizona.edu/arizona-bootstrap" tar
 
 ### Best for
 
-- Drupal sites, including Arizona Quickstart, and other CMS themes and templates.
+- Drupal sites other than Arizona Quickstart, and other CMS themes and templates.
 - Static sites.
 - Server-rendered apps in PHP, Python, Ruby, or any other language.
 
@@ -161,6 +161,46 @@ import '@az-digital/components-web/az-button';
   ```
 
 - Attribute names follow the other libraries, with two exceptions on Button: `variant` instead of `style` (`style` is reserved by HTML), and `href` alone makes it a link instead of a button.
+
+</ForImplementation>
+
+<ForImplementation value="quickstart">
+
+## Components with an implementation
+
+- <a href="./?path=/docs/primary-components-buttons--docs&globals=implementation:quickstart" target="_top">Button</a>
+
+More are on the way. Component pages show a placeholder when the selected library doesn't have that component yet.
+
+## Arizona Quickstart
+
+Drupal <a href="https://www.drupal.org/docs/develop/theming-drupal/using-single-directory-components" target="_blank" rel="noreferrer">single directory components</a> (SDC) for <a href="https://quickstart.arizona.edu/" target="_blank" rel="noreferrer">Arizona Quickstart</a>, from `@az-digital/components-quickstart`. They belong to the Quickstart install profile, so every Quickstart site has them, whatever its theme.
+
+### Best for
+
+- Arizona Quickstart sites: theme templates, subthemes, and custom modules.
+
+### How to use it
+
+Include a component in any Twig template by its ID, `az_quickstart:` and its name, and pass its props:
+
+```twig
+{% include 'az_quickstart:button' with {
+  text: 'Apply to Arizona',
+  href: '/apply',
+} only %}
+```
+
+Drupal attaches the component's CSS when it renders. The props are listed in each component's `.component.yml` and match the other libraries, in snake_case (`html_tag` instead of `htmlTag`).
+
+> Not part of Arizona Quickstart yet. The components are built to go in the profile's `components` folder.
+
+### How it's built
+
+- Each component is a folder with a `.component.yml` schema, a `.twig` template, and its CSS.
+- The markup uses Arizona Bootstrap's classes, which Quickstart already loads.
+- The CSS points Arizona Bootstrap's own variables at the design tokens, with the token values built in, so a component matches the tokens even where Arizona Bootstrap doesn't yet.
+- Storybook renders the templates with twig.js. Drupal renders them with its own Twig, so check new templates on a real Quickstart site too.
 
 </ForImplementation>
 

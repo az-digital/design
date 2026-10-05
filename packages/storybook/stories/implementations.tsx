@@ -4,9 +4,10 @@ import type { StoryContext } from '@storybook/react-vite';
 /**
  * Kinds of implementation a component might have. Add to this list, and to
  * `IMPLEMENTATIONS` below, as new implementation kinds come online. `web` is
- * `@az-digital/components-web`'s custom elements.
+ * `@az-digital/components-web`'s custom elements; `quickstart` is
+ * `@az-digital/components-quickstart`'s Drupal single directory components.
  */
-export type ImplementationKey = 'html' | 'react' | 'web';
+export type ImplementationKey = 'html' | 'react' | 'web' | 'quickstart';
 
 /**
  * Each implementation's display name, in toolbar order. The toolbar and the
@@ -17,6 +18,7 @@ export const IMPLEMENTATIONS: { key: ImplementationKey; title: string }[] = [
   { key: 'html', title: 'Arizona Bootstrap' },
   { key: 'react', title: 'React Bootstrap' },
   { key: 'web', title: 'Web Components' },
+  { key: 'quickstart', title: 'Arizona Quickstart' },
 ];
 
 export type ImplementationEntry<Args> = {

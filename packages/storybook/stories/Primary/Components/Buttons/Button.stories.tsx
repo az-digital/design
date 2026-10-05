@@ -7,6 +7,9 @@ import { Button } from '@az-digital/components-react';
 import { renderButton } from '@az-digital/components-html';
 // Registers <az-button>.
 import '@az-digital/components-web';
+import renderQuickstartButton from '@az-digital/components-quickstart/components/button/button.twig';
+// The CSS Quickstart attaches with the component; same rules as the Storybook shim, with token fallbacks.
+import '@az-digital/components-quickstart/components/button/button.css';
 import type { ImplementationKey, Implementations } from '../../../implementations';
 import { renderImplementation } from '../../../implementations';
 import type { ButtonState } from '../../../TokenStatePreview';
@@ -163,6 +166,29 @@ const asWebCode = (args: ButtonArgs) => {
   return `<az-button${attributesString}>${args.text ?? 'Learn More'}</az-button>`;
 };
 
+/** Props for the `az_quickstart:button` single directory component: the shared API in Drupal's snake_case. */
+const quickstartProps = (args: ButtonArgs) => ({
+  text: args.text,
+  href: args.href,
+  style: args.style,
+  color: args.color,
+  size: args.size,
+  html_tag: args.htmlTag,
+  disabled: args.disabled,
+  active: args.active,
+});
+
+/** Twig include shown in the docs code panel when Implementation is set to Arizona Quickstart. */
+const asQuickstartCode = (args: ButtonArgs) => {
+  const props = quickstartProps(args);
+  const defaults: Record<string, unknown> = { style: 'solid', color: 'red', html_tag: 'a', disabled: false, active: false };
+  const lines = Object.entries(props)
+    .filter(([key, value]) => value !== undefined && value !== '' && value !== defaults[key])
+    .map(([key, value]) => `  ${key}: ${typeof value === 'string' ? `'${value.replace(/'/g, "\\'")}'` : value},`);
+
+  return `{% include 'az_quickstart:button' with {\n${lines.join('\n')}\n} only %}`;
+};
+
 /** Button has every implementation. A component that only needs some omits the other keys entirely. */
 const implementations: Implementations<ButtonArgs> = {
   html: {
@@ -190,6 +216,10 @@ const implementations: Implementations<ButtonArgs> = {
     render: (args) => createElement('az-button', webAttributes(args), args.text),
     source: asWebCode,
   },
+  quickstart: {
+    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderQuickstartButton(quickstartProps(args)) }} />,
+    source: asQuickstartCode,
+  },
 };
 
 /**
@@ -200,6 +230,9 @@ const implementations: Implementations<ButtonArgs> = {
  * implicit default a page already has, so noting it in every example would
  * just be noise.
  */
+/** Indents every line after the first, for nesting a multi-line snippet (e.g. a Twig include) in a wrapper. */
+const indent = (code: string) => code.replace(/\n/g, '\n  ');
+
 function withBackgroundClassSource(bgClass: string, base: Implementations<ButtonArgs>): Implementations<ButtonArgs> {
   const wrapped: Implementations<ButtonArgs> = {};
 
@@ -211,8 +244,8 @@ function withBackgroundClassSource(bgClass: string, base: Implementations<Button
       ...entry,
       source:
         key === 'react'
-          ? (args) => `<div className="${bgClass}">\n  ${entry.source(args)}\n</div>`
-          : (args) => `<div class="${bgClass}">\n  ${entry.source(args)}\n</div>`,
+          ? (args) => `<div className="${bgClass}">\n  ${indent(entry.source(args))}\n</div>`
+          : (args) => `<div class="${bgClass}">\n  ${indent(entry.source(args))}\n</div>`,
     };
   }
 

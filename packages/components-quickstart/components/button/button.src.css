@@ -1,0 +1,89 @@
+/*
+ * Arizona Digital button for Arizona Quickstart.
+ *
+ * Quickstart loads Arizona Bootstrap, whose buttons don't match the design
+ * tokens yet. These rules point Bootstrap's own button variables at the
+ * tokens, the same rules as Storybook's arizona-bootstrap-shim.css, but
+ * shipped. Each rule names one gap; when Arizona Bootstrap adopts the tokens,
+ * its rule can go.
+ *
+ * Source file: write tokens as token(<token path>). `npm run build -w
+ * @az-digital/components-quickstart` writes button.css with each one replaced
+ * by a var() chain ending in its resolved value, so the button renders
+ * correctly on pages that don't load tokens.css. Don't edit button.css.
+ *
+ * Selectors are one level more specific than Arizona Bootstrap's (`:root .btn`
+ * over `.btn`) so they win however the stylesheets end up ordered.
+ */
+
+/* Structure shared by every button style. */
+:root .btn {
+  --bs-btn-padding-x: token(az.component.button.padding.x);
+  --bs-btn-padding-y: token(az.component.button.padding.y);
+  --bs-btn-font-size: token(az.component.button.label.font.size);
+  --bs-btn-font-weight: token(az.component.button.label.font.weight);
+  --bs-btn-border-width: token(az.component.button.border.width);
+  --bs-btn-border-radius: token(az.component.button.border.radius);
+  --bs-btn-disabled-opacity: token(az.component.button.disabled.opacity);
+  /*
+   * The Figma Buttons component trims the label's line box to its cap height
+   * (Figma "leading trim: cap height"), so its padding is measured from the
+   * capitals, not from a full line. text-box does the same in CSS.
+   */
+  text-box: trim-both cap alphabetic;
+}
+
+:root .btn.btn-lg {
+  --bs-btn-padding-x: token(az.component.button.size.lg.padding.x);
+  --bs-btn-padding-y: token(az.component.button.size.lg.padding.y);
+  --bs-btn-font-size: token(az.component.button.size.lg.label.font.size);
+  --bs-btn-border-radius: token(az.component.button.size.lg.border.radius);
+}
+
+:root .btn.btn-sm {
+  --bs-btn-padding-x: token(az.component.button.size.sm.padding.x);
+  --bs-btn-padding-y: token(az.component.button.size.sm.padding.y);
+  --bs-btn-font-size: token(az.component.button.size.sm.label.font.size);
+}
+
+/* Solid red (az.component.button.solid.*): a solid button's border is its fill. */
+:root .btn.btn-red {
+  --bs-btn-color: token(az.component.button.solid.label.color);
+  --bs-btn-bg: token(az.component.button.solid.container.color);
+  --bs-btn-border-color: token(az.component.button.solid.container.color);
+  --bs-btn-hover-color: token(az.component.button.solid.label.color);
+  --bs-btn-hover-bg: token(az.component.button.solid.hover.container.color);
+  --bs-btn-hover-border-color: token(az.component.button.solid.hover.container.color);
+  --bs-btn-disabled-color: token(az.component.button.solid.label.color);
+  --bs-btn-disabled-bg: token(az.component.button.solid.container.color);
+  --bs-btn-disabled-border-color: token(az.component.button.solid.container.color);
+  --az-btn-focus-outline-color: token(az.component.button.focus-visible.ring);
+}
+
+/*
+ * Bootstrap gives :focus-visible the hover look; a focused solid button keeps
+ * its resting fill (solid.focus.container.color), with the ring on top.
+ */
+:root .btn.btn-red:focus-visible {
+  color: token(az.component.button.solid.label.color);
+  background-color: token(az.component.button.solid.focus.container.color);
+  border-color: token(az.component.button.solid.focus.container.color);
+}
+
+/* Outline red (az.component.button.outline.*). */
+:root .btn.btn-outline-red {
+  --bs-btn-color: token(az.component.button.outline.label.color);
+  --bs-btn-border-color: token(az.component.button.outline.border.color);
+  --bs-btn-hover-color: token(az.component.button.outline.hover.label.color);
+  --bs-btn-hover-bg: token(az.component.button.outline.hover.container.color);
+  --bs-btn-hover-border-color: token(az.component.button.outline.hover.border.color);
+  --bs-btn-disabled-color: token(az.component.button.outline.label.color);
+  --bs-btn-disabled-border-color: token(az.component.button.outline.border.color);
+  --az-btn-focus-outline-color: token(az.component.button.focus-visible.ring);
+}
+
+:root .btn.btn-outline-red:focus-visible {
+  color: token(az.component.button.outline.focus.label.color);
+  background-color: token(az.component.button.outline.focus.container.color);
+  border-color: token(az.component.button.outline.focus.border.color);
+}

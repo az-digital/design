@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
+import twig from 'vite-plugin-twig-drupal';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -34,6 +35,18 @@ const config: StorybookConfig = {
 
   viteFinal: async (viteConfig) => ({
     ...viteConfig,
+    plugins: [
+      ...(viteConfig.plugins ?? []),
+      // Arizona Quickstart components are Drupal single directory components:
+      // importing a .twig file gives a function that renders it to HTML, with
+      // Drupal's Twig extensions (create_attribute, ...). `az_quickstart` is the
+      // profile's SDC namespace, so `az_quickstart:button` includes resolve.
+      twig({
+        namespaces: {
+          az_quickstart: resolve(__dirname, '../../components-quickstart/components'),
+        },
+      }),
+    ],
     resolve: {
       ...viteConfig.resolve,
       // Consume components-react, components-html, and components-web from source so Storybook

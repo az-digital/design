@@ -7,11 +7,12 @@ description: >-
   component pattern", add an "HTML and/or React version" of something, wire
   up a Storybook implementation toggle, or add/associate design tokens with a
   component — this repo can ship a component as React, as plain HTML, as a
-  web component (custom element), or any combination, with a shared
+  web component (custom element), as an Arizona Quickstart (Drupal SDC)
+  component, or any combination, with a shared
   Storybook toolbar switcher and code panel across all of them, and every
   component is expected to have its own component-tier design tokens too. The wiring has real gotchas (see below) that are easy
   to get wrong by improvising instead of following this structure.
-applyTo: "packages/components-react/**,packages/components-html/**,packages/components-web/**,packages/storybook/stories/**,packages/storybook/.storybook/**,packages/tokens/tokens.json"
+applyTo: "packages/components-react/**,packages/components-html/**,packages/components-web/**,packages/components-quickstart/**,packages/storybook/stories/**,packages/storybook/.storybook/**,packages/tokens/tokens.json"
 ---
 
 # Design-system component pattern
@@ -19,24 +20,26 @@ applyTo: "packages/components-react/**,packages/components-html/**,packages/comp
 Components in this repo can have a React implementation
 (`@az-digital/components-react`), a plain HTML/CSS implementation
 (`@az-digital/components-html`), a web component implementation
-(`@az-digital/components-web`), or any combination — whichever a component
-actually needs. There's no requirement that every component exist in every
+(`@az-digital/components-web`), an Arizona Quickstart implementation
+(`@az-digital/components-quickstart`, Drupal single directory components),
+or any combination — whichever a component actually needs. There's no requirement that every component exist in every
 package; a component only needed in a React app doesn't need an HTML
 version, and one only needed in a Drupal theme doesn't need React. A single Storybook story
 still drives whichever implementations a component has from the same args,
 via a shared toolbar switcher and docs code panel.
 
-`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (all three implementations) and
+`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (all four implementations) and
 `packages/storybook/stories/implementations.tsx` (the shared machinery) are
 the reference — read them alongside this skill. Everything below explains
 the *why* behind their shape so you can extend the pattern to a new
 component correctly.
 
-## Why three packages, not one
+## Why four packages, not one
 
-- `components-html` is what a Drupal theme (or any non-React consumer) can use
-  directly — it's just a function that returns an HTML string using Arizona
-  Bootstrap's real CSS classes. No framework, no build step to consume.
+- `components-html` is what a Drupal theme outside Quickstart (or any
+  non-React consumer) can use directly — it's just a function that returns
+  an HTML string using Arizona Bootstrap's real CSS classes. No framework,
+  no build step to consume.
 - `components-react` is the React component for React/Next.js apps.
 - `components-web` is Lit-based custom elements (`<az-button>`) for places
   the other two can't reach well: platforms where you can only add a script
@@ -49,9 +52,13 @@ component correctly.
   args/controls can drive every implementation without translation. Web
   components deviate only where a platform rule forces it (see
   `components-web` below).
-- Neither package is Drupal-specific (no Twig/SDC). Drupal's own templates
-  live in `az_quickstart`/`az_barrio` and are out of scope here — don't pull
-  them into this repo.
+- `components-quickstart` is Drupal single directory components (SDC) for
+  Arizona Quickstart: a `.component.yml` schema, a `.twig` template, and CSS
+  per component. They belong to the Quickstart **install profile**, not the
+  theme, so their IDs are `az_quickstart:<name>` (e.g. `{% include
+  'az_quickstart:button' %}`). Modeled on uaz-web/az-storybook's
+  `components-sdc`. Other Quickstart templates (`az_barrio`'s theme
+  templates, module templates) stay in az_quickstart.
 - `components-html` is plain HTML/CSS, nothing more. "Web components" is a
   distinct thing, the custom elements in `components-web`, which replaces
   the separate `az-web-components` repos (issue #16; plan in
@@ -59,13 +66,16 @@ component correctly.
 
 ## Adding a new component: file layout
 
-For a component named `Card` that needs all three implementations, you'd create:
+For a component named `Card` that needs all four implementations, you'd create:
 
 ```
 packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
 packages/components-web/src/card/az-card.ts               # <az-card> custom element
+packages/components-quickstart/components/card/card.component.yml  # SDC schema
+packages/components-quickstart/components/card/card.twig           # SDC template
+packages/components-quickstart/components/card/card.src.css        # SDC CSS source (builds card.css)
 packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx  # the story (in main's IA folder; replaces Card.mdx's placeholder with the Docs page)
 packages/tokens/tokens.json                                # az.component.card.* entries — see below
 ```
@@ -168,6 +178,29 @@ Follow `az-button.ts`'s shape:
   doesn't tree-shake, looked fine. Check web stories in `npm run
   build:storybook`'s output, not only in the dev server.
 
+### `components-quickstart/components/<name>/`
+
+Follow `button/`'s shape:
+
+- **`<name>.component.yml`:** the SDC schema. Props are the shared API in
+  Drupal's snake_case (`html_tag`, not `htmlTag`), with `enum`s limited to
+  the values html/react support. Depend on `az_barrio/arizona-bootstrap-css`
+  in `libraryOverrides` when the markup uses Arizona Bootstrap classes.
+- **`<name>.twig`:** render the same markup as `components-html`'s
+  `render<Name>()`, building classes naively from props. Start attributes
+  from Drupal's `attributes` (`attributes ?: create_attribute()`), so sites
+  can add their own. Write Twig that both Drupal's Twig and **twig.js**
+  understand, since Storybook renders with twig.js: no arrow functions
+  (`|filter(x => x)` fails to compile), so build class lists with
+  conditional `|merge`s.
+- **`<name>.src.css`:** reference tokens as `token(az.path.to.token)`; `npm
+  run build -w @az-digital/components-quickstart` writes `<name>.css` with
+  each replaced by a `var()` chain ending in the resolved value, because
+  Quickstart pages don't load `tokens.css`. Never edit the generated `.css`.
+  For components on Arizona Bootstrap markup, the CSS points Bootstrap's own
+  variables at the tokens (see `button.src.css`, the shipped counterpart of
+  the Storybook shim).
+
 ### `storybook/stories/<name>.stories.tsx`
 
 This is the part with a real gotcha, so follow the Button story's structure
@@ -266,7 +299,25 @@ story:
      `& .btn, & az-button::part(control) { ... }`.
 
    `withBackgroundClassSource`-style helpers that wrap the Code-panel source
-   should write `className` only for `react`; html and web both use `class`.
+   should write `className` only for `react`; html, web, and quickstart use
+   `class`.
+
+6. **For an Arizona Quickstart component, import its `.twig` file** (a
+   function returning HTML, from `vite-plugin-twig-drupal`, configured in
+   `.storybook/main.ts` with the `az_quickstart` namespace) and its built
+   `.css`. Map the args to its snake_case props, and show a Twig include in
+   the Code panel, listing only non-default props (see `quickstartProps` and
+   `asQuickstartCode` in `Button.stories.tsx`):
+
+   ```tsx
+   import renderQuickstartCard from '@az-digital/components-quickstart/components/card/card.twig';
+   import '@az-digital/components-quickstart/components/card/card.css';
+
+   quickstart: {
+     render: (args) => <div dangerouslySetInnerHTML={{ __html: renderQuickstartCard({ html_tag: args.htmlTag }) }} />,
+     source: (args) => `{% include 'az_quickstart:card' with {\n  html_tag: '${args.htmlTag}',\n} only %}`,
+   },
+   ```
 
 ### Condensed template (both implementations)
 
@@ -334,7 +385,7 @@ const implementations: Implementations<CardArgs> = {
 ## Partial implementation coverage
 
 The toolbar's Implementation switcher always offers every known kind
-(Arizona Bootstrap, React Bootstrap, Web Components) — its items come from
+(Arizona Bootstrap, React Bootstrap, Web Components, Arizona Quickstart) — its items come from
 `IMPLEMENTATIONS` in `implementations.tsx`, read once, globally, by
 `preview.ts`, and can't shrink per-story. The Components Overview page's
 library picker reads the same list. To add a new kind, add it to
@@ -513,9 +564,11 @@ just that the build exits 0:
 ```bash
 npm run build -w @az-digital/tokens   # regenerates dist/: tokens.css, tokens.scss, tokens.vars.js, tokens.vars.d.ts
 npm run build:tokens -w @az-digital/components-web   # regenerates components-web/src/generated/tokens.ts
+npm run build -w @az-digital/components-quickstart   # regenerates each Quickstart component's .css
 ```
 
-Both outputs are committed. Web components read tokens from
+All three outputs are committed. Quickstart components' CSS bakes in the
+same `var()` chains, so it needs regenerating after a token change too. Web components read tokens from
 `src/generated/tokens.ts`, not from the tokens package's `dist/`, so a token
 change doesn't reach them until the second command runs.
 
@@ -561,6 +614,7 @@ existing one).
 npm run build -w @az-digital/tokens             # only if you touched tokens.json — regenerates dist/tokens.css etc.
 npm run build -w @az-digital/components-react   # regenerates dist/*.d.ts — needed for `tsc` even though Storybook uses live source via the alias
 npm run build -w @az-digital/components-web     # regenerates its token file and dist/ (npm modules + CDN bundle)
+npm run build -w @az-digital/components-quickstart  # regenerates each Quickstart component's .css from its .src.css
 npm run lint:storybook                           # CI gate
 npm run test:storybook                           # CI gate
 ```

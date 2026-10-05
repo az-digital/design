@@ -1,0 +1,90 @@
+/* Generated from button.src.css by scripts/build-css.mjs. Don't edit. */
+/*
+ * Arizona Digital button for Arizona Quickstart.
+ *
+ * Quickstart loads Arizona Bootstrap, whose buttons don't match the design
+ * tokens yet. These rules point Bootstrap's own button variables at the
+ * tokens, the same rules as Storybook's arizona-bootstrap-shim.css, but
+ * shipped. Each rule names one gap; when Arizona Bootstrap adopts the tokens,
+ * its rule can go.
+ *
+ * Source file: write tokens as token(<token path>). `npm run build -w
+ * @az-digital/components-quickstart` writes button.css with each one replaced
+ * by a var() chain ending in its resolved value, so the button renders
+ * correctly on pages that don't load tokens.css. Don't edit button.css.
+ *
+ * Selectors are one level more specific than Arizona Bootstrap's (`:root .btn`
+ * over `.btn`) so they win however the stylesheets end up ordered.
+ */
+
+/* Structure shared by every button style. */
+:root .btn {
+  --bs-btn-padding-x: var(--az-component-button-padding-x, var(--az-dimension-30, 30px));
+  --bs-btn-padding-y: var(--az-component-button-padding-y, var(--az-dimension-12, 12px));
+  --bs-btn-font-size: var(--az-component-button-label-font-size, var(--az-dimension-18, 18px));
+  --bs-btn-font-weight: var(--az-component-button-label-font-weight, var(--az-font-weight-700, 700));
+  --bs-btn-border-width: var(--az-component-button-border-width, var(--az-dimension-2, 2px));
+  --bs-btn-border-radius: var(--az-component-button-border-radius, var(--az-dimension-24, 24px));
+  --bs-btn-disabled-opacity: var(--az-component-button-disabled-opacity, var(--az-opacity-65, 0.65));
+  /*
+   * The Figma Buttons component trims the label's line box to its cap height
+   * (Figma "leading trim: cap height"), so its padding is measured from the
+   * capitals, not from a full line. text-box does the same in CSS.
+   */
+  text-box: trim-both cap alphabetic;
+}
+
+:root .btn.btn-lg {
+  --bs-btn-padding-x: var(--az-component-button-size-lg-padding-x, var(--az-dimension-36, 36px));
+  --bs-btn-padding-y: var(--az-component-button-size-lg-padding-y, var(--az-dimension-14, 14px));
+  --bs-btn-font-size: var(--az-component-button-size-lg-label-font-size, var(--az-dimension-22, 22px));
+  --bs-btn-border-radius: var(--az-component-button-size-lg-border-radius, var(--az-dimension-30, 30px));
+}
+
+:root .btn.btn-sm {
+  --bs-btn-padding-x: var(--az-component-button-size-sm-padding-x, var(--az-dimension-8, 8px));
+  --bs-btn-padding-y: var(--az-component-button-size-sm-padding-y, var(--az-dimension-4, 4px));
+  --bs-btn-font-size: var(--az-component-button-size-sm-label-font-size, var(--az-dimension-14, 14px));
+}
+
+/* Solid red (az.component.button.solid.*): a solid button's border is its fill. */
+:root .btn.btn-red {
+  --bs-btn-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-bg: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-border-color: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-hover-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-hover-bg: var(--az-component-button-solid-hover-container-color, var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000)));
+  --bs-btn-hover-border-color: var(--az-component-button-solid-hover-container-color, var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000)));
+  --bs-btn-disabled-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-disabled-bg: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-disabled-border-color: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --az-btn-focus-outline-color: var(--az-component-button-focus-visible-ring, var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840)));
+}
+
+/*
+ * Bootstrap gives :focus-visible the hover look; a focused solid button keeps
+ * its resting fill (solid.focus.container.color), with the ring on top.
+ */
+:root .btn.btn-red:focus-visible {
+  color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  background-color: var(--az-component-button-solid-focus-container-color, var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
+  border-color: var(--az-component-button-solid-focus-container-color, var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
+}
+
+/* Outline red (az.component.button.outline.*). */
+:root .btn.btn-outline-red {
+  --bs-btn-color: var(--az-component-button-outline-label-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-border-color: var(--az-component-button-outline-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-hover-color: var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-hover-bg: var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-hover-border-color: var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-disabled-color: var(--az-component-button-outline-label-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --bs-btn-disabled-border-color: var(--az-component-button-outline-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
+  --az-btn-focus-outline-color: var(--az-component-button-focus-visible-ring, var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840)));
+}
+
+:root .btn.btn-outline-red:focus-visible {
+  color: var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff)));
+  background-color: var(--az-component-button-outline-focus-container-color, var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
+  border-color: var(--az-component-button-outline-focus-border-color, var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
+}

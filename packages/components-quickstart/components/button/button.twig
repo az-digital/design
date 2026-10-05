@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Arizona Digital button.
+ *
+ * Renders the same markup as @az-digital/components-html's renderButton and
+ * @az-digital/components-react's Button: Arizona Bootstrap button classes,
+ * built naively from the props (`btn-{{ color }}`) whether or not that
+ * color's CSS exists yet.
+ *
+ * Available variables:
+ * - text: The button's label.
+ * - href: URL when html_tag is `a`. Defaults to `#`.
+ * - style: `solid` (default), `outline`, or `link`.
+ * - color: `red` (default) or `rain`.
+ * - size: `sm`, `lg`, or empty for the default size.
+ * - html_tag: `a` (default) or `button`.
+ * - disabled: Disabled state. Links get the `disabled` class, aria-disabled,
+ *   and tabindex="-1" instead of the native attribute.
+ * - active: Pre-toggles the button to its active state.
+ * - attributes: Extra HTML attributes (Drupal provides this to every component).
+ *
+ * Usage:
+ * @code
+ * {% include 'az_quickstart:button' with {
+ *   text: 'Apply to Arizona',
+ *   href: '/apply',
+ * } only %}
+ * @endcode
+ */
+#}
+{% set html_tag = html_tag in ['a', 'button'] ? html_tag : 'a' %}
+{% set style = style|default('solid') %}
+{% set color = color|default('red') %}
+
+{# Conditional merges rather than an arrow-function filter: twig.js, which renders these in Storybook, has no arrow functions. #}
+{% set classes = ['btn', style == 'link' ? 'btn-link' : (style == 'outline' ? 'btn-outline-' ~ color : 'btn-' ~ color)] %}
+{% if size %}
+  {% set classes = classes|merge(['btn-' ~ size]) %}
+{% endif %}
+{% if disabled and html_tag == 'a' %}
+  {% set classes = classes|merge(['disabled']) %}
+{% endif %}
+{% if active %}
+  {% set classes = classes|merge(['active']) %}
+{% endif %}
+
+{% set attributes = (attributes ?: create_attribute()).addClass(classes) %}
+
+{% if html_tag == 'button' %}
+  {% set attributes = attributes.setAttribute('type', 'button') %}
+  {% if disabled %}
+    {% set attributes = attributes.setAttribute('disabled', true) %}
+  {% endif %}
+  <button{{ attributes }}>{{ text }}</button>
+{% else %}
+  {% set attributes = attributes.setAttribute('href', href|default('#')).setAttribute('role', 'button') %}
+  {% if disabled %}
+    {% set attributes = attributes.setAttribute('aria-disabled', 'true').setAttribute('tabindex', '-1') %}
+  {% endif %}
+  <a{{ attributes }}>{{ text }}</a>
+{% endif %}

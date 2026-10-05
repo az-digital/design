@@ -12,11 +12,12 @@
   "scripts": {
     "build:tokens": "npm run build -w @az-digital/tokens",
     "build:components-web": "npm run build -w @az-digital/components-web",
+    "build:components-quickstart": "npm run build -w @az-digital/components-quickstart",
     "build:storybook": "npm run build -w @az-digital/storybook",
     "dev:storybook": "npm run dev -w @az-digital/storybook",
     "lint:storybook": "npm run lint -w @az-digital/storybook",
     "test:storybook": "npm run test -w @az-digital/storybook",
-    "build:all": "npm run build:tokens && npm run build:components-web && npm run build:storybook"
+    "build:all": "npm run build:tokens && npm run build:components-web && npm run build:components-quickstart && npm run build:storybook"
   },
   "description": "Arizona Digital design system monorepo",
   "license": "MIT",
