@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) =>
               index: 'src/index.ts',
               'az-button': 'src/button/az-button.ts',
               'az-arizona-header': 'src/arizona-header/az-arizona-header.ts',
+              'az-footer': 'src/footer/az-footer.ts',
             },
             formats: ['es'],
           },

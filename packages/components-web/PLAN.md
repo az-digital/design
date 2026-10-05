@@ -162,6 +162,35 @@ Verified in Storybook (each Implementation) and on the standalone demo page
 - **Fixed header on mobile.** The page has to leave room for it; Arizona
   Bootstrap's `body:has(...)` rule can't see into a shadow root.
 
+### `az-footer`
+
+Copies the footer on Arizona Quickstart 3 sites (president.arizona.edu) and
+replaces the `<az-footer>` from az-marketing/slate-template, which
+catalog.arizona.edu (Coursedog) loads from
+`cdn.digital.arizona.edu/lib/temp-web-components/1.0.44/az-footer.js`.
+
+- **Matches Quickstart 3** to the pixel in height and column positions at
+  1280px (702px) and 375px (1847px). Links are fixed University content in
+  `src/footer/footer-links.ts`; Twitter is listed as X.
+- **New design where tokens exist:** the background is the new Caliche
+  (`#f2efea`, both live sites still use the old warm gray `#f4ede5`), and
+  the link lists use Nav's utility tokens.
+- **Logo:** the University wordmark, inlined as SVG from Arizona Bootstrap's
+  reversed logo with only its lettering recolored navy (the "A" keeps its own
+  substrate), so it matches the official color PNG. Sites can slot in their
+  own logo.
+- **Icons:** social icons are inlined SVG generated from az-icons 1.0.5,
+  because fonts declared inside a shadow root don't load.
+- **Analytics:** link clicks push `shadow_event_click` to `window.dataLayer`
+  in the Slate footer's shape, so existing GTM triggers keep working.
+- **Token gaps:** link color `#49595e` (shared with Nav utility), text
+  color, heading type, small text, divider, breakpoints and container widths.
+  No component tokens yet (`az.component.footer.*`); add them with design.
+- **Content differences from the Slate footer:** no address/phone line and
+  "Directory" instead of "A-Z Directory", following Quickstart 3.
+- **Rollout:** to replace the Slate footer on catalog.arizona.edu, publish
+  `az-footer.js` to the CDN and point the catalog's script tag at it.
+
 ## Steps
 
 - [x] Plan file
@@ -175,5 +204,6 @@ Verified in Storybook (each Implementation) and on the standalone demo page
 - [x] Standalone demo page (`index.html`, `npm run dev`)
 - [ ] Unit tests (Vitest browser mode) and axe checks
 - [ ] Custom Elements Manifest
+- [x] `az-footer` (web only), with Storybook stories and docs
 - [ ] Next components: Card, Nav (presentational), then Accordion, Tabs (behavior)
 - [ ] History import, Changesets, CI, CDN (later, before a PR)

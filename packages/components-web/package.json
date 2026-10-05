@@ -17,6 +17,10 @@
     "./az-arizona-header": {
       "types": "./dist/arizona-header/az-arizona-header.d.ts",
       "import": "./dist/az-arizona-header.js"
+    },
+    "./az-footer": {
+      "types": "./dist/footer/az-footer.d.ts",
+      "import": "./dist/az-footer.js"
     }
   },
   "files": [
