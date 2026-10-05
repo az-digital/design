@@ -31,6 +31,17 @@ export type TokenArtifact = {
   tokens: Record<string, { reference: string; value?: string }>;
 };
 
+/** A token mode (e.g. dark): its files layered over the base source, and the globals that select it. */
+export type TokenMode = {
+  name: string;
+  /** How the Tokens tab names it, e.g. `Dark`. */
+  label: string;
+  /** The Storybook globals that select this mode, e.g. `{ theme: 'Dark' }`. */
+  globals: Record<string, string>;
+  /** Every token as this mode resolves it. */
+  tokens: TokenRecord[];
+};
+
 /** Everything the addon knows, collected from your Style Dictionary config when Storybook starts. */
 export type TokensData = {
   /** Every token, in the order your source files list them. */
@@ -38,11 +49,16 @@ export type TokensData = {
   /** The Style Dictionary config's `source` files, relative to the repository root. */
   sourceFiles: Array<{ path: string; url?: string }>;
   artifacts: TokenArtifact[];
+  /** Modes from the addon's `modes` option; empty when there are none. */
+  modes?: TokenMode[];
+  /** What to call the base values when there are modes, e.g. `Light`. */
+  baseLabel?: string;
 };
 
 const EMPTY: TokensData = { tokens: [], sourceFiles: [], artifacts: [] };
 
 let current: TokensData = EMPTY;
+let activeModeName: string | undefined;
 let version = 0;
 const listeners = new Set<() => void>();
 
@@ -61,6 +77,29 @@ export function getTokensData(): TokensData {
   return current;
 }
 
+/** The mode whose globals all match `globals`, if any. */
+export function modeForGlobals(globals: Record<string, unknown>): TokenMode | undefined {
+  return current.modes?.find((mode) => Object.entries(mode.globals).every(([key, value]) => globals[key] === value));
+}
+
+/** Shows `mode`'s values everywhere (or the base values, for undefined). */
+export function setActiveMode(mode: TokenMode | undefined) {
+  if (mode?.name === activeModeName) return;
+  activeModeName = mode?.name;
+  version += 1;
+  listeners.forEach((listener) => listener());
+}
+
+/** The mode currently shown, if any. */
+export function getActiveMode(): TokenMode | undefined {
+  return current.modes?.find((mode) => mode.name === activeModeName);
+}
+
+/** Every token as the active mode resolves it, or the base tokens. */
+export function getActiveTokens(): TokenRecord[] {
+  return getActiveMode()?.tokens ?? current.tokens;
+}
+
 /** Changes every time the data does, for caches derived from it. */
 export function getTokensVersion(): number {
   return version;
@@ -74,4 +113,9 @@ const subscribe = (listener: () => void) => {
 /** Re-renders when the token data changes (e.g. when the Tokens tab first receives it). */
 export function useTokensData(): TokensData {
   return useSyncExternalStore(subscribe, getTokensData, getTokensData);
+}
+
+/** Re-renders when the token data or the active mode changes. */
+export function useTokensVersion(): number {
+  return useSyncExternalStore(subscribe, getTokensVersion, getTokensVersion);
 }

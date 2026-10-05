@@ -4,6 +4,10 @@ import type { Preview } from '@storybook/react-vite';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { IMPLEMENTATIONS, sourceForImplementation } from '../stories/implementations';
 import '@tokens/dist/tokens.css';
+// PROOF OF CONCEPT: placeholder dark mode values and the Surface toolbar's painting.
+import '@tokens/dist/tokens.dark.css';
+import './surface.css';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 // Storybook-only: points Arizona Bootstrap's button variables at our tokens (see the file).
 import './arizona-bootstrap-shim.css';
 
@@ -11,6 +15,22 @@ const preview: Preview = {
   initialGlobals: {
     implementation: 'html',
   },
+  // PROOF OF CONCEPT (surface modes): the Theme toolbar puts the chosen surface on
+  // <html> as data-az-surface (see packages/tokens/scripts/build-modes.mjs), and
+  // Arizona Bootstrap's own color mode on data-bs-theme. Both read the same
+  // toolbar value. Bootstrap has no "follow OS" mode, so auto stays light there.
+  decorators: [
+    withThemeByDataAttribute({
+      themes: { Light: 'light', Dark: 'dark', 'Follow OS': 'auto' },
+      defaultTheme: 'Light',
+      attributeName: 'data-az-surface',
+    }),
+    withThemeByDataAttribute({
+      themes: { Light: 'light', Dark: 'dark', 'Follow OS': 'light' },
+      defaultTheme: 'Light',
+      attributeName: 'data-bs-theme',
+    }),
+  ],
   globalTypes: {
     implementation: {
       description: 'Component implementation',

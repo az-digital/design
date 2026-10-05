@@ -21,6 +21,15 @@ export const az: {
         "default": string,
         "hover": string,
         "focusRing": string
+      },
+      "onAction": {
+        "default": string
+      },
+      "surface": {
+        "default": string
+      },
+      "text": {
+        "default": string
       }
     }
   },

@@ -49,13 +49,13 @@
 
 /* Solid red (az.component.button.solid.*): a solid button's border is its fill. */
 :root .btn.btn-red {
-  --bs-btn-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-color: var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)));
   --bs-btn-bg: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --bs-btn-border-color: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
-  --bs-btn-hover-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-hover-color: var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)));
   --bs-btn-hover-bg: var(--az-component-button-solid-hover-container-color, var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000)));
   --bs-btn-hover-border-color: var(--az-component-button-solid-hover-container-color, var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000)));
-  --bs-btn-disabled-color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-disabled-color: var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)));
   --bs-btn-disabled-bg: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --bs-btn-disabled-border-color: var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --az-btn-focus-outline-color: var(--az-component-button-focus-visible-ring, var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840)));
@@ -66,7 +66,7 @@
  * its resting fill (solid.focus.container.color), with the ring on top.
  */
 :root .btn.btn-red:focus-visible {
-  color: var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff));
+  color: var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)));
   background-color: var(--az-component-button-solid-focus-container-color, var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
   border-color: var(--az-component-button-solid-focus-container-color, var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
 }
@@ -75,7 +75,7 @@
 :root .btn.btn-outline-red {
   --bs-btn-color: var(--az-component-button-outline-label-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --bs-btn-border-color: var(--az-component-button-outline-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
-  --bs-btn-hover-color: var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff));
+  --bs-btn-hover-color: var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)));
   --bs-btn-hover-bg: var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --bs-btn-hover-border-color: var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
   --bs-btn-disabled-color: var(--az-component-button-outline-label-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)));
@@ -84,7 +84,7 @@
 }
 
 :root .btn.btn-outline-red:focus-visible {
-  color: var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff)));
+  color: var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))));
   background-color: var(--az-component-button-outline-focus-container-color, var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
   border-color: var(--az-component-button-outline-focus-border-color, var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))));
 }

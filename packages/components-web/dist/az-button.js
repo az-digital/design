@@ -1,4 +1,4 @@
-import { n as az, t as define } from "./define-Dls5JJHC.js";
+import { n as az, t as define } from "./define-CYUzZ04X.js";
 import { LitElement, css, html, nothing, unsafeCSS } from "lit";
 //#region src/button/az-button.ts
 var t = (value) => unsafeCSS(value);

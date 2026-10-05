@@ -1,11 +1,11 @@
 // Manager entry (added by the preset): registers the Tokens tab in Storybook's addon panel.
 // Default React import: Storybook bundles manager entries with the classic JSX runtime.
 import React, { useEffect, useState } from 'react';
-import { addons, types, useChannel, useParameter } from 'storybook/manager-api';
+import { addons, types, useChannel, useGlobals, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
 import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT } from './constants';
 import { getTokenData, getTokenDisplayItems } from './resolveToken';
-import { setTokensData, useTokensData, type TokensData } from './store';
+import { getActiveMode, modeForGlobals, setActiveMode, setTokensData, useTokensData, useTokensVersion, type TokensData } from './store';
 import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
 import { TokenTable } from './TokenTable';
 
@@ -27,6 +27,13 @@ function TokensPanelContent() {
   const [selectedToken, setSelectedToken] = useState<string | null>(null);
   const { width, setWidth } = useResizableWidth('az-token-panel-details-width', 340, 240, () => window.innerWidth - 320);
   const data = useTokensData();
+  // Show the token mode (e.g. dark) that matches the toolbar's globals.
+  const [globals] = useGlobals();
+  useEffect(() => {
+    setActiveMode(modeForGlobals(globals));
+  }, [globals, data]);
+  useTokensVersion();
+  const mode = getActiveMode();
 
   // The token data lives in the preview; ask for it, and take every update it sends.
   const emit = useChannel({ [DATA_EVENT]: (next: TokensData) => setTokensData(next) });
@@ -52,6 +59,7 @@ function TokensPanelContent() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: selected ? `minmax(0, 1fr) ${width}px` : '1fr', minHeight: '100%', background: '#fff', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       <div style={{ padding: '8px 4px', overflow: 'auto' }}>
+        {mode && <p style={{ margin: '4px 12px 8px', color: '#697786', fontSize: 12 }}>Showing {mode.label} mode values.</p>}
         <TokenTable items={items} selectedToken={selectedToken} onSelect={(token) => setSelectedToken((current) => (current === token ? null : token))} />
       </div>
       {selected && (

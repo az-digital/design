@@ -18,12 +18,19 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-mcp"),
     // Design tab: each story shows its Figma frames (parameters.design).
     getAbsolutePath("@storybook/addon-designs"),
+    // Theme toolbar (PROOF OF CONCEPT surface modes): sets data-az-surface, see preview.ts.
+    getAbsolutePath("@storybook/addon-themes"),
     {
       // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
       name: getAbsolutePath("@az-digital/storybook-addon-tokens"),
       options: {
         styleDictionary: "../../tokens/style-dictionary.config.mjs",
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
+        // PROOF OF CONCEPT (surface modes): dark values (placeholders), selected by the Theme toolbar.
+        baseModeLabel: 'Light',
+        modes: {
+          dark: { label: 'Dark', source: ['tokens.dark.json'], globals: { theme: 'Dark' } },
+        },
       },
     },
   ],

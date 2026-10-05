@@ -22,6 +22,15 @@ export declare const az: {
                 readonly hover: "var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000))";
                 readonly focusRing: "var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840))";
             };
+            readonly onAction: {
+                readonly default: "var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))";
+            };
+            readonly surface: {
+                readonly default: "var(--az-color-semantic-surface-default, var(--az-color-brand-white, #ffffff))";
+            };
+            readonly text: {
+                readonly default: "var(--az-color-semantic-text-default, var(--az-color-brand-tinta, #03132e))";
+            };
         };
     };
     readonly dimension: {
@@ -108,7 +117,7 @@ export declare const az: {
                     readonly color: "var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))";
                 };
                 readonly label: {
-                    readonly color: "var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff))";
+                    readonly color: "var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))";
                 };
                 readonly hover: {
                     readonly container: {
@@ -136,7 +145,7 @@ export declare const az: {
                         readonly color: "var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))";
                     };
                     readonly label: {
-                        readonly color: "var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff))";
+                        readonly color: "var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))";
                     };
                 };
                 readonly focus: {
@@ -147,7 +156,7 @@ export declare const az: {
                         readonly color: "var(--az-component-button-outline-focus-border-color, var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))))";
                     };
                     readonly label: {
-                        readonly color: "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff)))";
+                        readonly color: "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))))";
                     };
                 };
             };

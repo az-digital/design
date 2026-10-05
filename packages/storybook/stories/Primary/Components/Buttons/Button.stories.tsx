@@ -14,7 +14,18 @@ import type { ImplementationKey, Implementations } from '../../../implementation
 import { renderImplementation } from '../../../implementations';
 import type { ButtonState } from '../../../TokenStatePreview';
 import { TokenStatePreview } from '../../../TokenStatePreview';
-import { resolveValue } from '@az-digital/storybook-addon-tokens';
+import { az } from '@az-digital/tokens/dist/tokens.vars.js';
+
+/**
+ * A token's generated CSS variable, from tokens.vars.js (`var(--az-…)`), so a
+ * state preview resolves the token on whatever surface it sits on. A resolved
+ * value (resolveValue) would bake in the light mode value.
+ */
+const tokenVar = (path: string): string =>
+  path
+    .split('.')
+    .slice(1)
+    .reduce<unknown>((node, key) => (node as Record<string, unknown>)[key.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase())], az) as string;
 
 // `background` is presentation-only (see `DocsControls`/`DocsControlsPreview`) — it wraps
 // the rendered button in a page-background class, it isn't a real Button prop, so it's
@@ -69,7 +80,7 @@ const BUTTON_DESIGNS = {
 
 /**
  * Default/Hover/Focus-visible shown side by side, each recreating that
- * state's look directly from its own resolved token — not a live
+ * state's look directly from its own token — not a live
  * `:hover`/`:focus-visible` test (there's no way to make all three
  * genuinely true at once across separate instances). Per the Figma Buttons
  * component, a focused solid button keeps its resting fill (see
@@ -78,12 +89,12 @@ const BUTTON_DESIGNS = {
  */
 const SOLID_BUTTON_STATES: ButtonState[] = [
   { label: 'Default' },
-  { label: 'Hover', css: `& .btn, & az-button::part(control) { background-color: ${resolveValue('az.component.button.solid.hover.container.color')} !important; }` },
+  { label: 'Hover', css: `& .btn, & az-button::part(control) { background-color: ${tokenVar('az.component.button.solid.hover.container.color')} !important; }` },
   {
     label: 'Focus-visible',
     css: `& .btn, & az-button::part(control) {
-      background-color: ${resolveValue('az.component.button.solid.focus.container.color')} !important;
-      outline: 2px solid ${resolveValue('az.component.button.focus-visible.ring')} !important;
+      background-color: ${tokenVar('az.component.button.solid.focus.container.color')} !important;
+      outline: 2px solid ${tokenVar('az.component.button.focus-visible.ring')} !important;
       outline-offset: 2px;
     }`,
   },
@@ -102,18 +113,18 @@ const OUTLINE_BUTTON_STATES: ButtonState[] = [
   {
     label: 'Hover',
     css: `& .btn, & az-button::part(control) {
-      color: ${resolveValue('az.component.button.outline.hover.label.color')} !important;
-      background-color: ${resolveValue('az.component.button.outline.hover.container.color')} !important;
-      border-color: ${resolveValue('az.component.button.outline.hover.border.color')} !important;
+      color: ${tokenVar('az.component.button.outline.hover.label.color')} !important;
+      background-color: ${tokenVar('az.component.button.outline.hover.container.color')} !important;
+      border-color: ${tokenVar('az.component.button.outline.hover.border.color')} !important;
     }`,
   },
   {
     label: 'Focus-visible',
     css: `& .btn, & az-button::part(control) {
-      color: ${resolveValue('az.component.button.outline.focus.label.color')} !important;
-      background-color: ${resolveValue('az.component.button.outline.focus.container.color')} !important;
-      border-color: ${resolveValue('az.component.button.outline.focus.border.color')} !important;
-      outline: 2px solid ${resolveValue('az.component.button.focus-visible.ring')} !important;
+      color: ${tokenVar('az.component.button.outline.focus.label.color')} !important;
+      background-color: ${tokenVar('az.component.button.outline.focus.container.color')} !important;
+      border-color: ${tokenVar('az.component.button.outline.focus.border.color')} !important;
+      outline: 2px solid ${tokenVar('az.component.button.focus-visible.ring')} !important;
       outline-offset: 2px;
     }`,
   },

@@ -21,6 +21,15 @@ export const az = {
         "default": "var(--az-color-semantic-action-default)",
         "hover": "var(--az-color-semantic-action-hover)",
         "focusRing": "var(--az-color-semantic-action-focus-ring)"
+      },
+      "onAction": {
+        "default": "var(--az-color-semantic-on-action-default)"
+      },
+      "surface": {
+        "default": "var(--az-color-semantic-surface-default)"
+      },
+      "text": {
+        "default": "var(--az-color-semantic-text-default)"
       }
     }
   },

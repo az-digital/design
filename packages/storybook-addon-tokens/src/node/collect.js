@@ -79,7 +79,7 @@ const toPosix = (path) => path.split('\\').join('/');
  * output file in every platform, how each token is referenced in that file and
  * the value Style Dictionary derives for it.
  */
-export async function collectTokens(configPath, { repositoryUrl } = {}) {
+export async function collectTokens(configPath, { repositoryUrl, modes = {}, baseModeLabel } = {}) {
   const absoluteConfig = resolve(configPath);
   const configDir = dirname(absoluteConfig);
   const repoRoot = findRepoRoot(configDir);
@@ -129,13 +129,32 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
     }
   }
 
+  // Modes (e.g. dark): each layers its own files over the config's source, so a
+  // mode's file only holds the tokens whose value changes in it. Read the same
+  // way as the base tokens; the preview and the Tokens tab show whichever mode
+  // matches Storybook's current globals.
+  const modeRecords = [];
+  for (const [name, mode] of Object.entries(modes)) {
+    const modeSd = new StyleDictionary(
+      { ...config, source: [...(fromConfig(config.source) ?? []), ...fromConfig(mode.source ?? [])], include: fromConfig(config.include) },
+      { verbosity: 'silent' },
+    );
+    await modeSd.hasInitialized;
+    modeRecords.push({ name, label: mode.label ?? name, globals: mode.globals ?? {}, tokens: await readTokens(modeSd) });
+  }
+
   const sourceFiles = (config.source ?? []).map((pattern) => {
     const path = repoPath(join(configDir, pattern));
     return { path, url: /[*?{]/.test(pattern) ? undefined : link(path) };
   });
 
   return {
-    data: { tokens, sourceFiles, artifacts },
-    watch: [absoluteConfig, ...(fromConfig(config.source) ?? []), ...(fromConfig(config.include) ?? [])],
+    data: { tokens, sourceFiles, artifacts, modes: modeRecords, baseLabel: baseModeLabel ?? 'Default' },
+    watch: [
+      absoluteConfig,
+      ...(fromConfig(config.source) ?? []),
+      ...(fromConfig(config.include) ?? []),
+      ...Object.values(modes).flatMap((mode) => fromConfig(mode.source ?? [])),
+    ],
   };
 }

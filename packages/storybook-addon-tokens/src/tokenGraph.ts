@@ -1,5 +1,5 @@
 import { getAllTokenItems, getTokenRecord } from './resolveToken';
-import { getTokensData, getTokensVersion } from './store';
+import { getActiveTokens, getTokensVersion } from './store';
 
 /**
  * The tokens read as a graph: every token is a node, and every alias Style
@@ -20,7 +20,7 @@ let cache: { version: number; nodes: Map<string, TokenNode> } | undefined;
 
 function getNodes(): Map<string, TokenNode> {
   if (cache?.version === getTokensVersion()) return cache.nodes;
-  const records = getTokensData().tokens;
+  const records = getActiveTokens();
   const nodes = new Map<string, TokenNode>(records.map((record) => [record.path, { token: record.path, parent: record.aliasOf, children: [] }]));
   // In path order, so each token's children come out sorted.
   for (const { token } of getAllTokenItems()) {

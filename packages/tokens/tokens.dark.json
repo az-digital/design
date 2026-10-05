@@ -1,0 +1,46 @@
+{
+  "az": {
+    "color": {
+      "semantic": {
+        "action": {
+          "default": {
+            "$type": "color",
+            "$value": "{az.color.brand.rain}",
+            "$description": "PLACEHOLDER: dark mode value for action.default. Rain, from the approved Rain on AZ Blue button frames (10.5:1 on Tinta)."
+          },
+          "hover": {
+            "$type": "color",
+            "$value": "{az.color.brand.cloud}",
+            "$description": "PLACEHOLDER: dark mode value for action.hover."
+          },
+          "focus-ring": {
+            "$type": "color",
+            "$value": "{az.color.brand.white}",
+            "$description": "PLACEHOLDER: dark mode value for action.focus-ring, as Arizona Bootstrap uses on dark surfaces."
+          }
+        },
+        "on-action": {
+          "default": {
+            "$type": "color",
+            "$value": "{az.color.brand.tinta}",
+            "$description": "PLACEHOLDER: dark mode value for on-action.default, dark text on the light Rain fill."
+          }
+        },
+        "surface": {
+          "default": {
+            "$type": "color",
+            "$value": "{az.color.brand.tinta}",
+            "$description": "PLACEHOLDER: dark mode value for surface.default."
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{az.color.brand.white}",
+            "$description": "PLACEHOLDER: dark mode value for text.default."
+          }
+        }
+      }
+    }
+  }
+}
