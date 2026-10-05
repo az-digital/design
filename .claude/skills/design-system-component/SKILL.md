@@ -423,95 +423,94 @@ Every component needs its own entries in `packages/tokens/tokens.json`,
 under `az.component.<name>.*` — one per real, distinct visual decision the
 component makes: not just color, but the structural properties too
 (padding, font size/weight, border width/radius, disabled opacity, size
-variant overrides, ...). `Button`'s are the reference — 15 tokens covering
-its full CSS custom property surface, sourced directly from Arizona
-Bootstrap's actual compiled `.btn`/`.btn-sm`/`.btn-lg` rules (verified via
-the CDN CSS, not guessed):
+variant overrides, ...).
+
+**Read `packages/tokens/AGENTS.md` before adding or renaming one.** It's the
+source of truth for the layers (brand → semantic → component for color;
+`az.dimension.*`, `az.font-weight.*`, `az.opacity.*` primitives for
+everything else), what each layer's names may describe, which layer a token
+may alias, and the `<variant>.<state>.<part>` structure. In short:
+
+- **Every component token is an alias, never a literal**, color or number.
+  Colors alias a semantic token when one exists for that role
+  (`{az.color.semantic.action.default}`), otherwise a brand color. Numbers
+  alias their primitive (`{az.component.button.padding.x}` →
+  `{az.dimension.30}`). If the primitive doesn't exist yet, add it to its
+  tier; don't put the number on the component token.
+- **Shared structure at the component root, one group per demonstrated
+  style** holding only what that style changes (`solid.*`, `outline.*`),
+  grouped by state, named by the part they color.
+- **Values come from Figma first**, Arizona Bootstrap's compiled CSS only
+  where Figma has no design for it. Don't estimate, and don't borrow a value
+  from another component.
+
+`Button`'s tokens are the reference. An excerpt, with `$description`s left
+out (every real token has one, saying what it's for):
 
 ```json
-"component": {
-  "button": {
-    "color": {
-      "red": { "$type": "color", "$value": "{az.color.brand.red}" },
-      "blue": { "$type": "color", "$value": "{az.color.brand.blue}" }
-    },
-    "padding": {
-      "x": { "$type": "dimension", "$value": { "value": 1.25, "unit": "rem" } },
-      "y": { "$type": "dimension", "$value": { "value": 0.5, "unit": "rem" } }
-    },
+"button": {
+  "padding": {
+    "x": { "$type": "dimension", "$value": "{az.dimension.30}" }
+  },
+  "label": {
     "font": {
-      "size": { "$type": "dimension", "$value": { "value": 1, "unit": "rem" } },
-      "weight": { "$type": "fontWeight", "$value": 500 }
-    },
-    "border": {
-      "width": { "$type": "dimension", "$value": { "value": 2, "unit": "px" } },
-      "radius": { "$type": "dimension", "$value": { "value": 3, "unit": "rem" } }
-    },
-    "disabled": { "opacity": { "$type": "number", "$value": 0.65 } },
-    "size": {
-      "sm": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } },
-      "lg": { "padding": { "x": "...", "y": "..." }, "font": { "size": "..." } }
+      "size": { "$type": "dimension", "$value": "{az.dimension.18}" },
+      "weight": { "$type": "number", "$value": "{az.font-weight.700}" }
     }
+  },
+  "solid": {
+    "container": { "color": { "$type": "color", "$value": "{az.color.semantic.action.default}" } },
+    "label": { "color": { "$type": "color", "$value": "{az.color.brand.white}" } },
+    "hover": {
+      "container": { "color": { "$type": "color", "$value": "{az.color.semantic.action.hover}" } }
+    }
+  },
+  "focus-visible": {
+    "ring": { "$type": "color", "$value": "{az.color.semantic.action.focus-ring}" }
   }
 }
 ```
 
+and the primitives they alias:
+
+```json
+"dimension": { "30": { "$type": "dimension", "$value": { "value": 30, "unit": "px" } } },
+"font-weight": { "700": { "$type": "number", "$value": 700 } }
+```
+
 **Why this tier exists, and why it's not optional:** without it, a
-component's styling reaches straight down to raw brand/base primitives (or,
-for anything that isn't a color, to nothing at all — just a hard-coded value
-buried in Bootstrap's CSS) with no named, inspectable indirection point
-specific to that component. With component tokens, a component's actual
-design decisions are explicit and repointable later without touching the
+component's styling reaches straight down to brand colors or primitives
+(or, for anything without a token, to a hard-coded value buried in
+Bootstrap's CSS) with no named, inspectable indirection point specific to
+that component. With component tokens, a component's actual design
+decisions are explicit and repointable later without touching the
 component itself.
 
-**Colors alias to existing base/brand tokens — don't invent new hex values.**
-`$value` for a color token should be a DTCG alias (`{az.color.brand.red}`),
-pointing at a base/brand token that already exists. There's no semantic tier
-yet, so component color tokens alias straight to base/brand tokens for now;
-when a semantic tier is added later, they get repointed to alias through it
-instead, without changing their own names. If a color variant's primitive
-doesn't exist yet (Arizona Bootstrap's CSS supports more button colors than
-`tokens.json` has base tokens for — `sky`, `white`, `redbar`, ...), that's
-real work: add the base token for real, or leave that variant out, rather
-than inventing a plausible-looking hex value to alias to.
+**Style Dictionary pitfalls** (the build is `style-dictionary.config.mjs`,
+`transformGroup: 'css'`; each verified directly):
 
-**Everything else — hard-code to the real, current production value.**
-Unlike colors, there's no base/semantic tier at all yet for spacing,
-typography, or other structural properties, so blocking on one would mean
-never adding these tokens. Pull the literal value from Arizona Bootstrap's
-actual compiled CSS (`curl` the CDN URL from the Styling section above and
-grep the component's base rule and its variants) — don't estimate or reuse
-a value from a different component. When a base/semantic tier for these
-exists later, repoint the alias the same way colors will be.
+- **Write dimensions as DTCG objects, `{ "value": 30, "unit": "px" }`.** A
+  bare number is the trap: `"$value": 16` compiles to `16rem`, not `16px`,
+  with no warning. (A string like `"1.25rem"` compiles as written, but use
+  the object form to match the rest of the file.)
+- **Never put alias-shaped text in a `$description`.** Style Dictionary
+  tries to resolve `{az.dimension.9.6}` in prose as a reference, and the
+  build fails with a reference error.
+- **A broken alias fails the build** ("Some token references (1) could not
+  be found", exit code 1), so a clean build means every alias resolves. It
+  doesn't mean an alias points at the *right* token; check the values.
 
-**Dimension tokens need the DTCG object format, not a plain string — this
-isn't a style preference, the plain string silently produces broken CSS.**
-`{ "$type": "dimension", "$value": "1.25rem" }` passes `terrazzo.config.ts`'s
-lint (`core/valid-dimension` is `'warn'`, and even at `'error'` its
-`legacyFormat` option doesn't actually work for dimensions in the installed
-`@terrazzo/parser` version), but `@terrazzo/plugin-css`'s dimension
-serializer requires the `{ value, unit }` object shape to render anything —
-give it a plain string and every consumer of that token silently gets
-`undefinedundefined` instead of a real value. Verified directly: switching
-11 dimension tokens from strings to objects was the difference between
-`--az-component-button-padding-x: undefinedundefined` and the correct
-`1.25rem`. Colors don't have this problem — legacy hex strings compile
-correctly — so this is dimension-specific, not a general "avoid legacy
-format" rule.
-
-**After editing `tokens.json`, always check the compiled CSS, not just that
-the build exits 0** — a lint warning doesn't mean the output is correct
-(see above), and `npm run build -w @az-digital/tokens`'s exit code doesn't
-either, since `core/valid-dimension` is a warning, not an error:
+**After editing `tokens.json`, rebuild and check the generated output**, not
+just that the build exits 0:
 
 ```bash
-npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaScript token exports
+npm run build -w @az-digital/tokens   # regenerates dist/: tokens.css, tokens.scss, tokens.vars.js, tokens.vars.d.ts
 npm run build:tokens -w @az-digital/components-web   # regenerates components-web/src/generated/tokens.ts
 ```
 
-Web components read tokens from `src/generated/tokens.ts`, not from the
-tokens package's `dist/`, so a token change doesn't reach them until that
-second command runs. The file is committed, like `packages/tokens/dist`.
+Both outputs are committed. Web components read tokens from
+`src/generated/tokens.ts`, not from the tokens package's `dist/`, so a token
+change doesn't reach them until the second command runs.
 
 **Expose them in Storybook** with `@az-digital/storybook-addon-tokens`
 (see `packages/storybook-addon-tokens/README.md`). No separate "Tokens" story:
@@ -534,8 +533,9 @@ second command runs. The file is committed, like `packages/tokens/dist`.
   ```
 
 Nothing else is needed for them to appear in the Tokens page's Component
-tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
-`tokens.json`, and groups the component's tokens by reading their paths.
+tokens index (`packages/storybook/stories/Primary/Foundations/Tokens/Docs.mdx`):
+it's built from `tokens.json`, and groups the component's tokens by reading
+their paths.
 
 ## Consuming source live (no build step needed in Storybook)
 
@@ -573,9 +573,8 @@ open `npm run dev -w @az-digital/components-web`'s standalone page
 (`packages/components-web/index.html`, which loads no Arizona CSS) and
 confirm it renders correctly there. Per the gotcha above, a broken
 sync between canvas and code panel is easy to miss just by looking at the
-canvas. If you added tokens, `npm run build -w @az-digital/tokens` will
-already fail loudly (`Could not resolve alias ...`) on a broken alias
-reference — verified directly — so a clean build there means the alias
-chain is sound. Still open the `Tokens` story once to confirm the actual
-swatch/value looks right, since a *resolvable* alias can still point at the
-wrong token.
+canvas. If you added tokens, a clean `npm run build -w @az-digital/tokens` means
+every alias resolves (a broken one fails the build), but a resolvable alias
+can still point at the wrong token: open the component's Docs page and the
+story's **Tokens** tab, and click through the token pills to check each
+resolved value.
