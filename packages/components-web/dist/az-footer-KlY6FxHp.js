@@ -1,4 +1,4 @@
-import { n as az, t as define } from "./define-Dls5JJHC.js";
+import { n as az, t as define } from "./define-CYUzZ04X.js";
 import { LitElement, css, html, nothing, svg, unsafeCSS } from "lit";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 //#region src/footer/footer-links.ts

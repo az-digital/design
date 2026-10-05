@@ -53,7 +53,13 @@ export default {
           destination: 'tokens.css',
           format: 'css/variables',
           options: {
-            selector: ':root',
+            // PROOF OF CONCEPT (surface modes): declare every token on each surface
+            // ([data-az-surface]) as well as :root. A custom property resolves its
+            // var() references where it's declared, so component tokens have to be
+            // re-declared inside a dark surface to pick up its semantic values (see
+            // scripts/build-modes.mjs). :where() keeps this at zero specificity, so
+            // tokens.dark.css's overrides always win.
+            selector: ':where(:root, [data-az-surface])',
             showFileHeader: false,
             // Keep aliases as var() references, so the alias chain from tokens.json
             // survives into the CSS and overriding one variable updates its dependents.

@@ -17,11 +17,16 @@ var az = {
 			"caliche": "var(--az-color-brand-caliche, #f2efea)",
 			"white": "var(--az-color-brand-white, #ffffff)"
 		},
-		"semantic": { "action": {
-			"default": "var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))",
-			"hover": "var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000))",
-			"focusRing": "var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840))"
-		} }
+		"semantic": {
+			"action": {
+				"default": "var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))",
+				"hover": "var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000))",
+				"focusRing": "var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840))"
+			},
+			"onAction": { "default": "var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))" },
+			"surface": { "default": "var(--az-color-semantic-surface-default, var(--az-color-brand-white, #ffffff))" },
+			"text": { "default": "var(--az-color-semantic-text-default, var(--az-color-brand-tinta, #03132e))" }
+		}
 	},
 	"dimension": {
 		"1": "var(--az-dimension-1, 1px)",
@@ -86,7 +91,7 @@ var az = {
 			},
 			"solid": {
 				"container": { "color": "var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))" },
-				"label": { "color": "var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff))" },
+				"label": { "color": "var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))" },
 				"hover": { "container": { "color": "var(--az-component-button-solid-hover-container-color, var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000)))" } },
 				"focus": { "container": { "color": "var(--az-component-button-solid-focus-container-color, var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))))" } }
 			},
@@ -96,12 +101,12 @@ var az = {
 				"hover": {
 					"container": { "color": "var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))" },
 					"border": { "color": "var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))" },
-					"label": { "color": "var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff))" }
+					"label": { "color": "var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))" }
 				},
 				"focus": {
 					"container": { "color": "var(--az-component-button-outline-focus-container-color, var(--az-component-button-outline-hover-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))))" },
 					"border": { "color": "var(--az-component-button-outline-focus-border-color, var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))))" },
-					"label": { "color": "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff)))" }
+					"label": { "color": "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))))" }
 				}
 			}
 		},

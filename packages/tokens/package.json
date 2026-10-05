@@ -5,12 +5,14 @@
   "type": "module",
   "files": [
     "dist",
-    "tokens.json"
+    "tokens.json",
+    "tokens.dark.json"
   ],
   "exports": {
     "./tokens.json": "./tokens.json",
     "./dist/*": "./dist/*",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./tokens.dark.json": "./tokens.dark.json"
   },
   "keywords": [
     "design-tokens",
@@ -23,6 +25,6 @@
     "style-dictionary": "^5.5.5"
   },
   "scripts": {
-    "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs"
+    "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs && node scripts/build-modes.mjs"
   }
 }

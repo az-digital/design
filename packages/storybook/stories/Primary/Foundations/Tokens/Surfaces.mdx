@@ -1,0 +1,43 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { SurfaceComparison } from './SurfaceComparison';
+
+<Meta title="Primary/Foundations/Tokens/Surfaces (proof of concept)" />
+
+# Surfaces (proof of concept)
+
+> **Placeholder values.** Every dark mode color here is a stand-in to prove how surface modes work, not a design decision. Dark mode values need to come from design, in Figma.
+
+A **surface** is the background a page or section sits on. Dark mode is one surface; the design system's approved brand backgrounds, like AZ Blue, are others. Components don't need to know which surface they're on: they read semantic tokens, and each surface gives those tokens its own values.
+
+{/* Unstyled: the docs page's own link and text styles would otherwise restyle the buttons. */}
+<Unstyled>
+  <SurfaceComparison />
+</Unstyled>
+
+## How it works
+
+- **Brand colors and primitives never change.** Arizona Red is always Arizona Red.
+- **Semantic tokens change per surface.** `az.color.semantic.action.default` is Arizona Red on a light surface and Rain on a dark one, because red is only 2.4:1 against Tinta. The dark values live in `tokens.dark.json`, one file per mode, the way Figma variable modes import them.
+- **Component tokens never change either.** They alias semantic tokens, so they follow the surface. A component token that aliases a brand color directly can't follow it: Button's label color used to alias white, and now aliases `az.color.semantic.on-action.default`.
+
+## Using a surface
+
+Put `data-az-surface` on the page or any section, and load `tokens.css` and `tokens.dark.css`:
+
+```html
+<section data-az-surface="dark">…</section>
+```
+
+- `dark`: always dark.
+- `auto`: dark when the visitor's operating system is in dark mode.
+- `light`: light, for example a light section inside a dark page.
+
+Every library follows: the Arizona Bootstrap, React, and Quickstart buttons through the token-based button CSS, and web components through the tokens their styles read. Use the **Surface** toolbar to see any story on a dark surface.
+
+## Not covered yet
+
+- **Real dark values**, a neutral gray scale for surfaces, borders, and muted text, and status colors.
+- **Brand surfaces** such as AZ Blue and AZ Red, which would turn the approved "Rain on AZ Blue" button frames into tokens.
+- **The rest of the components.** Footer, Nav, Card, and the others still use colors without semantic tokens.
+- **The token addon and Figma:** the Tokens page and token drawer show only the light values, and Tokens Studio themes for the dark set (see issue 28).
+- **State previews:** the Default, Hover, and Focus-visible previews on Button stories show light values on every surface.

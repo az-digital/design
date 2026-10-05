@@ -4,13 +4,19 @@ import type { Preview } from '@storybook/react-vite';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { IMPLEMENTATIONS, sourceForImplementation } from '../stories/implementations';
 import '@tokens/dist/tokens.css';
+// PROOF OF CONCEPT: placeholder dark mode values and the Surface toolbar's painting.
+import '@tokens/dist/tokens.dark.css';
+import './surface.css';
+import { withSurface } from './surface';
 // Storybook-only: points Arizona Bootstrap's button variables at our tokens (see the file).
 import './arizona-bootstrap-shim.css';
 
 const preview: Preview = {
   initialGlobals: {
     implementation: 'html',
+    surface: 'light',
   },
+  decorators: [withSurface],
   globalTypes: {
     implementation: {
       description: 'Component implementation',
@@ -18,6 +24,20 @@ const preview: Preview = {
         title: 'Implementation',
         icon: 'component',
         items: IMPLEMENTATIONS.map(({ key, title }) => ({ value: key, title })),
+        dynamicTitle: true,
+      },
+    },
+    // PROOF OF CONCEPT (surface modes): which surface the story sits on.
+    surface: {
+      description: 'Surface (proof of concept, placeholder dark values)',
+      toolbar: {
+        title: 'Surface',
+        icon: 'contrast',
+        items: [
+          { value: 'light', title: 'Light surface' },
+          { value: 'dark', title: 'Dark surface (placeholder values)' },
+          { value: 'auto', title: 'Follow OS setting' },
+        ],
         dynamicTitle: true,
       },
     },

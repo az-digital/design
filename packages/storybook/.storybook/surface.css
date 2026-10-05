@@ -1,0 +1,10 @@
+/*
+ * PROOF OF CONCEPT (surface modes), Storybook only. Paints a surface with its
+ * own semantic tokens, so switching the Surface toolbar shows the page the
+ * way a site would. See packages/tokens/scripts/build-modes.mjs.
+ */
+html[data-az-surface] body,
+.az-surface-frame {
+  background-color: var(--az-color-semantic-surface-default);
+  color: var(--az-color-semantic-text-default);
+}

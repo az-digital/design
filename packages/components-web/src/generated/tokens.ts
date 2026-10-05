@@ -22,6 +22,15 @@ export const az = {
         "default": "var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))",
         "hover": "var(--az-color-semantic-action-hover, var(--az-color-brand-sonoran-red, #850000))",
         "focusRing": "var(--az-color-semantic-action-focus-ring, var(--az-color-brand-bougainvillea, #c62840))"
+      },
+      "onAction": {
+        "default": "var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))"
+      },
+      "surface": {
+        "default": "var(--az-color-semantic-surface-default, var(--az-color-brand-white, #ffffff))"
+      },
+      "text": {
+        "default": "var(--az-color-semantic-text-default, var(--az-color-brand-tinta, #03132e))"
       }
     }
   },
@@ -109,7 +118,7 @@ export const az = {
           "color": "var(--az-component-button-solid-container-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))"
         },
         "label": {
-          "color": "var(--az-component-button-solid-label-color, var(--az-color-brand-white, #ffffff))"
+          "color": "var(--az-component-button-solid-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))"
         },
         "hover": {
           "container": {
@@ -137,7 +146,7 @@ export const az = {
             "color": "var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520)))"
           },
           "label": {
-            "color": "var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff))"
+            "color": "var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff)))"
           }
         },
         "focus": {
@@ -148,7 +157,7 @@ export const az = {
             "color": "var(--az-component-button-outline-focus-border-color, var(--az-component-button-outline-hover-border-color, var(--az-color-semantic-action-default, var(--az-color-brand-red, #ab0520))))"
           },
           "label": {
-            "color": "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-brand-white, #ffffff)))"
+            "color": "var(--az-component-button-outline-focus-label-color, var(--az-component-button-outline-hover-label-color, var(--az-color-semantic-on-action-default, var(--az-color-brand-white, #ffffff))))"
           }
         }
       }
