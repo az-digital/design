@@ -160,6 +160,13 @@ Follow `az-button.ts`'s shape:
 - Add the component to `src/index.ts`, to the `lib.entry` map in
   `vite.config.ts`, to `exports` in `package.json`, and an example of it to
   the standalone demo page, `index.html`.
+- **Don't add a `sideEffects` field to `components-web/package.json`.**
+  Every component module registers its element when imported. With
+  `sideEffects` set, the production Storybook build (rolldown) dropped
+  `import '@az-digital/components-web'` entirely, so no element was defined
+  and every web story rendered as plain text, while the dev server, which
+  doesn't tree-shake, looked fine. Check web stories in `npm run
+  build:storybook`'s output, not only in the dev server.
 
 ### `storybook/stories/<name>.stories.tsx`
 

@@ -26,9 +26,6 @@
   "files": [
     "dist"
   ],
-  "sideEffects": [
-    "./dist/*.js"
-  ],
   "keywords": [
     "design-system",
     "web-components",
