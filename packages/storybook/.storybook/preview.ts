@@ -2,7 +2,7 @@
 
 import type { Preview } from '@storybook/react-vite';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
-import { sourceForImplementation } from '../stories/implementations';
+import { IMPLEMENTATIONS, sourceForImplementation } from '../stories/implementations';
 import '@tokens/dist/tokens.css';
 // Storybook-only: points Arizona Bootstrap's button variables at our tokens (see the file).
 import './arizona-bootstrap-shim.css';
@@ -17,11 +17,7 @@ const preview: Preview = {
       toolbar: {
         title: 'Implementation',
         icon: 'component',
-        items: [
-          { value: 'html', title: 'Arizona Bootstrap' },
-          { value: 'react', title: 'React Bootstrap' },
-          { value: 'web', title: 'Web Components' },
-        ],
+        items: IMPLEMENTATIONS.map(({ key, title }) => ({ value: key, title })),
         dynamicTitle: true,
       },
     },
