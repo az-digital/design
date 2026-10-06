@@ -2,12 +2,15 @@ import * as react from 'react';
 import { ReactNode } from 'react';
 
 type ButtonStyle = 'solid' | 'outline' | 'link';
-type ButtonColor = 'red' | 'blue';
+type ButtonColor = 'red' | 'rain';
 type ButtonSize = 'sm' | 'lg';
 type ButtonHtmlTag = 'button' | 'a';
 /**
- * Props mirror `@az-digital/components-html`'s `renderButton` 1:1 so the HTML
- * and React implementations render equivalent markup from the same args.
+ * Props otherwise mirror `@az-digital/components-html`'s `renderButton` so
+ * the HTML and React implementations render equivalent markup from the same
+ * args, except `color`: components-html additionally supports `success`
+ * (Bootstrap's stock semantic color, not an Arizona brand color) — no React
+ * implementation yet.
  */
 type ButtonProps = {
     /** HTML element to render. Defaults to `a`. */
