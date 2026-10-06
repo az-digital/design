@@ -19,24 +19,11 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 - Look up existing token names, groups, and generated CSS variable names
   before referencing or adding one.
-- Fetch the `Primary/Foundations/Tokens/Contributing` and `Primary/Foundations/Tokens/How to Use` docs pages
+- Fetch the `Primary/Tokens/Contributing` and `Primary/Tokens/Using in Figma` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
-## Naming design tokens
-
-Before adding or renaming a token in `packages/tokens/tokens.json`, read
-[packages/tokens/AGENTS.md](./packages/tokens/AGENTS.md) — token layers,
-what each layer's names are allowed to describe, and which layer a token is
-allowed to alias.
-
-## Writing stories and docs pages
-
-Before writing or restructuring a `.stories.tsx` or `.mdx` file in
-`packages/storybook`, read [packages/storybook/AGENTS.md](./packages/storybook/AGENTS.md)
-for page structure conventions, `play` function pitfalls, and how to keep
-"what tokens.json defines," "what the shipped CSS does," and "which token
-maps to which Figma state" as separate questions.
+When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; prefer semantic tokens except when explaining the palette or component-specific tokens. See `Primary/Tokens/Contributing` for the full convention.
 
 ## Storybook agent CLI
 

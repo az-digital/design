@@ -1,0 +1,61 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Tokens/Using in Code" />
+
+# Using Tokens in Code
+
+The Style Dictionary build generates platform-specific files from the canonical `packages/tokens/tokens.json` source. Use the output that matches your project, and prefer semantic tokens for product-facing UI. The current source contains brand colors; examples use one to demonstrate generated references, not as a recommendation for production UI.
+
+## CSS
+
+Import `dist/tokens.css` into your stylesheet, then reference custom properties:
+
+```css
+.notice {
+  color: var(--az-color-brand-red);
+}
+```
+
+## Sass
+
+Import `dist/tokens.scss` and use the generated Sass variables:
+
+```scss
+.notice {
+  color: $az-color-brand-red;
+}
+```
+
+Aliases remain references to their source token in both CSS and Sass, so changing a source value updates its dependents.
+
+## JavaScript
+
+Import `az` from `dist/tokens.vars.js`. Its nested properties use camel-cased token names and contain CSS custom-property references:
+
+```js
+import { az } from '@az-digital/tokens/dist/tokens.vars.js';
+
+element.style.color = az.color.brand.red;
+```
+
+## TypeScript
+
+The `dist/tokens.vars.d.ts` declarations describe the shape of the JavaScript export and provide typed token paths:
+
+```ts
+import { az } from '@az-digital/tokens/dist/tokens.vars.js';
+
+element.style.color = az.color.brand.red;
+```
+
+## Web components
+
+Load `tokens.css` in the document that hosts the component, then reference custom properties from the component stylesheet. CSS custom properties inherit through a web component's host into its shadow tree:
+
+```css
+:host {
+  color: var(--az-color-brand-red);
+}
+```
+
+Build the token package to regenerate the output files after changing the source tokens. Never edit generated files directly.

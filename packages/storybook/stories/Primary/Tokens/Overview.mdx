@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import tokensDocument from '@tokens/tokens.json';
+import tokensCssRaw from '@tokens/dist/tokens.css?raw';
+import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
+import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
+import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
+import { countTokens, downloadJson, downloadText } from './tokenStats';
+import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
+
+export const { sourceFiles, artifacts } = getTokensData();
+export const artifactUrl = (filename) => artifacts.find((artifact) => artifact.path.endsWith(`/${filename}`))?.url;
+export const githubUrl = sourceFiles[0]?.url;
+export const tokenCounts = countTokens(tokensDocument);
+
+<Meta title="Primary/Tokens/Overview" />
+
+# Tokens
+
+Tokens are the layer that carries design decisions into design tools and code. The source values are organized by tier:
+
+- **Brand tokens** define the identity palette and other brand primitives.
+- **Semantic tokens** give values meaning in context, such as text, surfaces, and actions.
+- **Component tokens** tune a specific component or state.
+
+Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions.
+
+Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-foundations-color--docs" target="_top">Foundations: Color</a>.
+
+## Downloads and links
+
+- **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color}
+- {githubUrl && <a href={githubUrl} target="_blank" rel="noopener noreferrer">View the source on GitHub</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a> · {artifactUrl('tokens.css') && <a href={artifactUrl('tokens.css')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensScssRaw, 'tokens.scss', 'text/x-scss'); }}>Download tokens.scss</a> · {artifactUrl('tokens.scss') && <a href={artifactUrl('tokens.scss')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a> · {artifactUrl('tokens.vars.js') && <a href={artifactUrl('tokens.vars.js')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsDtsRaw, 'tokens.vars.d.ts', 'text/plain'); }}>Download tokens.vars.d.ts</a> · {artifactUrl('tokens.vars.d.ts') && <a href={artifactUrl('tokens.vars.d.ts')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="https://www.designtokens.org/tr/2025.10/color/" target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
+
+Source file: `packages/tokens/tokens.json`
+
+## Semantic tokens
+
+Colors named for their purpose, not their appearance (`az.color.semantic.*`). Each one points at a brand color, and components point at these instead of at brand colors directly, so changing one semantic token updates every component that uses it for that purpose. Open a token to see its alias tree, including which component tokens use it.
+
+<TokenDisplay prefix="az.color.semantic." layout="table" />
+
+## Component tokens
+
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens; sizes, weights, and opacities point at primitive values.
+
+Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
+
+<ComponentTokenIndex />
