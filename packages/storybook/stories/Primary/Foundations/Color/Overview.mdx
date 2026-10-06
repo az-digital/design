@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Token, TokenDisplay, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 <Meta title="Primary/Foundations/Color" />
@@ -12,10 +11,4 @@ The swatches below document the brand palette. They are not a substitute for cho
 
 <ColorSwatchGrid prefix="az.color.brand." />
 
-## Semantic colors
-
-Semantic colors (`az.color.semantic.*`) are named for their purpose, not their appearance. Each one points at a brand color, and components use them instead of brand colors directly, so changing one updates every component that uses it for that purpose. For example, <Token data={getTokenData('az.color.semantic.action.default')} /> is the resting color of a primary action. Open a token to see its alias tree, including which component tokens use it.
-
-<TokenDisplay prefix="az.color.semantic." layout="table" />
-
-See <a href="./?path=/docs/primary-tokens-overview--docs" target="_top">Tokens</a> for naming tiers, downloads, and guidance on using tokens.
+The semantic colors that interfaces use, each pointing at one of these brand colors, are listed under <a href="./?path=/docs/primary-tokens-overview--docs" target="_top">Tokens</a>, along with naming tiers, the component token browser, and downloads.
