@@ -450,8 +450,8 @@ npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaSc
   <ComponentTokenIndex component="card" />
   ```
 
-Nothing else is needed for them to appear in the Tokens page's Component
-tokens index (`packages/storybook/stories/tokens.mdx`): it's built from
+Nothing else is needed for them to appear in the Component tokens index on
+Components › Overview (`packages/storybook/stories/Primary/Components/Overview.mdx`): it's built from
 `tokens.json`, and groups the component's tokens by reading their paths.
 
 ## Consuming source live (no build step needed in Storybook)

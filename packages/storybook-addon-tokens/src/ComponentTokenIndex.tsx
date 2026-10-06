@@ -262,7 +262,7 @@ function GroupModeToggle({ mode, onChange }: { mode: GroupMode; onChange: (mode:
 }
 
 /**
- * The Tokens page's component section: one collapsed row per component (built
+ * A component token index: one collapsed row per component (built
  * from tokens.json, so it never needs hand-maintaining), expanding into that
  * component's tokens grouped into Shared and one table per variant. Searching
  * (token path, type, alias, or value) or filtering by type switches to the

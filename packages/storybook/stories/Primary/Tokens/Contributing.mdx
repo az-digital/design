@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Primary/Foundations/Tokens/Contributing" />
+<Meta title="Primary/Tokens/Contributing" />
 
 # Contributing Token Changes
 
@@ -12,7 +12,7 @@ The currently supported contribution workflow uses Tokens Studio for Figma to pu
 
 - **Canonical file:** `packages/tokens/tokens.json`
 - **Sync mode:** single-file sync mode in Token Studio
-- **Generated output:** `packages/tokens/dist/tokens.json` is generated and must not be edited in Figma
+- **Generated output:** `packages/tokens/dist/` contains generated CSS, Sass, JavaScript, and TypeScript files. Never edit them directly; rebuild them from the source file.
 
 ## Branch policy
 
@@ -88,6 +88,13 @@ See Tokens Studio's <a href="https://docs.tokens.studio/token-storage/manage-syn
 - Use semantic tokens for production-facing design decisions such as surfaces, borders, and text.
 - Use base tokens only for token creation and audits, not for direct production UI assignments.
 - Apply tokens through Token Studio bindings so values stay tied to names instead of hardcoded hex values.
+
+## Referencing tokens in documentation
+
+- Use a clickable `Token` pill when referring to one specific token whose value, aliases, or platform outputs readers may want to inspect.
+- Use a code span for token path patterns such as `az.color.brand.*`, file paths, and literal code examples.
+- Place pills inline in prose or in table cells where they identify a specific token.
+- Prefer semantic tokens in usage guidance. Use brand tokens when explaining the palette or token relationships, and component tokens for component-specific guidance.
 
 ## Governance
 
