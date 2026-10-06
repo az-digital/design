@@ -19,11 +19,11 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 - Look up existing token names, groups, and generated CSS variable names
   before referencing or adding one.
-- Fetch the `Primary/Tokens/Contributing` and `Primary/Tokens/Using in Figma` docs pages
+- Fetch the `Primary/Foundations/Tokens/Contributing` and `Primary/Foundations/Tokens/Using in Figma` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
-When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; prefer semantic tokens except when explaining the palette or component-specific tokens. See `Primary/Tokens/Contributing` for the full convention.
+When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; prefer semantic tokens except when explaining the palette or component-specific tokens. See `Primary/Foundations/Tokens/Contributing` for the full convention.
 
 ## Naming design tokens
 
