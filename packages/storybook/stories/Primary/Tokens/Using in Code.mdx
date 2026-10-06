@@ -12,7 +12,7 @@ Import `dist/tokens.css` into your stylesheet, then reference custom properties:
 
 ```css
 .notice {
-  color: var(--az-color-semantic-text-primary);
+  color: var(--az-color-brand-red);
 }
 ```
 
@@ -22,7 +22,7 @@ Import `dist/tokens.scss` and use the generated Sass variables:
 
 ```scss
 .notice {
-  color: $az-color-semantic-text-primary;
+  color: $az-color-brand-red;
 }
 ```
 
@@ -35,7 +35,7 @@ Import `az` from `dist/tokens.vars.js`. Its nested properties use camel-cased to
 ```js
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 
-element.style.color = az.color.semantic.text.primary;
+element.style.color = az.color.brand.red;
 ```
 
 ## TypeScript
@@ -45,7 +45,7 @@ The `dist/tokens.vars.d.ts` declarations describe the shape of the JavaScript ex
 ```ts
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 
-element.style.color = az.color.semantic.text.primary;
+element.style.color = az.color.brand.red;
 ```
 
 ## Web components
@@ -54,7 +54,7 @@ Load `tokens.css` in the document that hosts the component, then reference custo
 
 ```css
 :host {
-  color: var(--az-color-semantic-text-primary);
+  color: var(--az-color-brand-red);
 }
 ```
 
