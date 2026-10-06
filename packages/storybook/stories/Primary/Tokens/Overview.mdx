@@ -1,12 +1,15 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Diagnostics } from '@unpunnyfuns/swatchbook-addon';
 import tokensDocument from '@tokens/tokens.json';
-import { az as azVars } from '@tokens/dist/tokens.vars.js';
 import tokensCssRaw from '@tokens/dist/tokens.css?raw';
+import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
+import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
+import { getTokensData } from '@az-digital/storybook-addon-tokens';
 
-export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const { sourceFiles, artifacts } = getTokensData();
+export const artifactUrl = (filename) => artifacts.find((artifact) => artifact.path.endsWith(`/${filename}`))?.url;
+export const githubUrl = sourceFiles[0]?.url;
 export const tokenCounts = countTokens(tokensDocument);
 
 <Meta title="Primary/Tokens/Overview" />
@@ -21,16 +24,17 @@ Tokens are the layer that carries design decisions into design tools and code. T
 
 Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions.
 
-<Diagnostics />
+Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-foundations-color--docs" target="_top">Foundations: Color</a>.
 
 ## Downloads and links
 
 - **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color}
-- <a href={githubUrl} target="_blank" rel="noopener noreferrer">View the source on GitHub</a>
+- {githubUrl && <a href={githubUrl} target="_blank" rel="noopener noreferrer">View the source on GitHub</a>}
 - <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
-- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a>
-- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a> · {artifactUrl('tokens.css') && <a href={artifactUrl('tokens.css')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensScssRaw, 'tokens.scss', 'text/x-scss'); }}>Download tokens.scss</a> · {artifactUrl('tokens.scss') && <a href={artifactUrl('tokens.scss')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a> · {artifactUrl('tokens.vars.js') && <a href={artifactUrl('tokens.vars.js')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsDtsRaw, 'tokens.vars.d.ts', 'text/plain'); }}>Download tokens.vars.d.ts</a> · {artifactUrl('tokens.vars.d.ts') && <a href={artifactUrl('tokens.vars.d.ts')} target="_blank" rel="noopener noreferrer">View on this branch</a>}
+- <a href="https://www.designtokens.org/tr/2025.10/color/" target="_blank" rel="noopener noreferrer">DTCG Color Format Spec</a>
 
 Source file: `packages/tokens/tokens.json`
-
-Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-foundations-color--docs" target="_top">Foundations: Color</a>.

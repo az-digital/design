@@ -53,7 +53,7 @@ export function renderContributingWorkflow(): string {
         <ul style="margin:0;padding-left:20px;color:#374151;">
           <li><strong>Canonical file:</strong> <code>packages/tokens/tokens.json</code></li>
           <li><strong>Sync mode:</strong> single-file sync mode in Token Studio</li>
-          <li><strong>Generated output:</strong> <code>packages/tokens/dist/tokens.json</code> is generated and must not be edited in Figma</li>
+          <li><strong>Generated output:</strong> files in <code>packages/tokens/dist/</code> are generated and must not be edited directly</li>
         </ul>
       </section>
 
