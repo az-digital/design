@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
-import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
 import '../../tokens/dist/tokens.css';
 import azTheme from './azTheme';
 import '@tokens/dist/tokens.css';
