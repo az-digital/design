@@ -10,7 +10,7 @@ export function renderQuickUse(): string {
       <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Figma: import into Variables</h2>
         <ol style="margin:0;padding-left:20px;color:#374151;">
-          <li>Open <a href="?path=/docs/primary-foundations-tokens-overview--docs" style="color:#0369a1;font-weight:700;">Tokens &gt; Overview</a>.</li>
+          <li>Open <a href="?path=/docs/primary-tokens-overview--docs" style="color:#0369a1;font-weight:700;">Tokens &gt; Overview</a>.</li>
           <li>Select <strong>Download tokens.json</strong>.</li>
           <li>Open the <strong>Variables</strong> tab in your Figma file.</li>
           <li>Select <strong>Import</strong> and choose the downloaded <code>tokens.json</code> file.</li>
@@ -30,7 +30,7 @@ export function renderQuickUse(): string {
         </ul>
       </section>
 
-      <p style="margin:0;color:#374151;">Need to update the source tokens? Continue to <a href="?path=/docs/primary-foundations-tokens-contributing--docs" style="color:#0369a1;font-weight:700;">Contributing</a>.</p>
+      <p style="margin:0;color:#374151;">Need to update the source tokens? Continue to <a href="?path=/docs/primary-tokens-contributing--docs" style="color:#0369a1;font-weight:700;">Contributing</a>.</p>
     </article>
   `;
 }

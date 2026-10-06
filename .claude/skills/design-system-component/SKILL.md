@@ -451,7 +451,7 @@ npm run build -w @az-digital/tokens   # regenerates the package's CSS and JavaSc
   ```
 
 Nothing else is needed for them to appear in the Component tokens index on
-Foundations › Tokens › Overview (`packages/storybook/stories/Primary/Foundations/Tokens/Overview.mdx`): it's built from
+Tokens › Overview (`packages/storybook/stories/Primary/Tokens/Overview.mdx`): it's built from
 `tokens.json`, and groups the component's tokens by reading their paths.
 
 ## Consuming source live (no build step needed in Storybook)
