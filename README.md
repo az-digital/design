@@ -87,7 +87,9 @@ The Storybook package renders the design token catalog, groups nested token valu
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
 
-The Tokens docs page also includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the real generated CSS custom properties from `dist/tokens.css` for each swatch's color.
+The Foundations/Color docs page includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/Primary/Foundations/Color/ColorSwatchGrid.tsx`) that renders colors as swatches with their name, HEX, RGB, CMYK, and Pantone (PMS) values, using the generated CSS custom properties from `dist/tokens.css` for each swatch's color.
+
+Use a clickable `Token` pill when referring to one specific token that readers may want to inspect. Use code spans for path patterns, file paths, and literal code examples. Prefer semantic tokens in usage guidance; use brand tokens to explain the palette and component tokens for component-specific guidance. See [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx) for the full convention.
 
 ### Storybook MCP for AI Agents
 
@@ -118,6 +120,7 @@ This repo is intended to support both token authoring and visual review in one p
 
 Use the Storybook token pages to find assets, import tokens, or contribute changes:
 
-- Tokens > Downloads
-- Tokens > Design Tools
+- Tokens > Overview
+- Tokens > Using in Figma
+- Tokens > Using in Code
 - Tokens > Contributing

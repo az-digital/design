@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Diagnostics } from '@unpunnyfuns/swatchbook-addon';
+import tokensDocument from '@tokens/tokens.json';
+import { az as azVars } from '@tokens/dist/tokens.vars.js';
+import tokensCssRaw from '@tokens/dist/tokens.css?raw';
+import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
+import { countTokens, downloadJson, downloadText } from './tokenStats';
+
+export const githubUrl = 'https://github.com/az-digital/design/blob/main/packages/tokens/tokens.json';
+export const tokenCounts = countTokens(tokensDocument);
+
+<Meta title="Primary/Tokens/Overview" />
+
+# Tokens
+
+Tokens are the layer that carries design decisions into design tools and code. The source values are organized by tier:
+
+- **Brand tokens** define the identity palette and other brand primitives.
+- **Semantic tokens** give values meaning in context, such as text, surfaces, and actions.
+- **Component tokens** tune a specific component or state.
+
+Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions.
+
+<Diagnostics />
+
+## Downloads and links
+
+- **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color}
+- <a href={githubUrl} target="_blank" rel="noopener noreferrer">View the source on GitHub</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadJson(tokensDocument, 'tokens.json'); }}>Download raw JSON</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensCssRaw, 'tokens.css', 'text/css'); }}>Download tokens.css</a>
+- <a href="#" onClick={(event) => { event.preventDefault(); downloadText(tokensVarsJsRaw, 'tokens.vars.js', 'text/javascript'); }}>Download tokens.vars.js</a>
+
+Source file: `packages/tokens/tokens.json`
+
+Learn how to [use tokens in Figma](./?path=/docs/primary-tokens-using-in-figma--docs), [use tokens in code](./?path=/docs/primary-tokens-using-in-code--docs), or [contribute token changes](./?path=/docs/primary-tokens-contributing--docs). For the brand palette and its usage guidance, see [Foundations: Color](./?path=/docs/primary-foundations-color--docs).
