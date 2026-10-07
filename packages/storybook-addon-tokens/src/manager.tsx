@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { addons, types, useChannel, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
 import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT } from './constants';
-import { getTokenDisplayItems } from './resolveToken';
+import { getTokenData, getTokenDisplayItems } from './resolveToken';
 import { setTokensData, useTokensData, type TokensData } from './store';
 import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
 import { TokenTable } from './TokenTable';
@@ -36,11 +36,7 @@ function TokensPanelContent() {
 
   const prefixes = parameter && !isDisabled(parameter) ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix));
-  const selected = items.find((item) => item.token === selectedToken);
-
-  useEffect(() => {
-    if (selectedToken && !items.some((item) => item.token === selectedToken)) setSelectedToken(null);
-  }, [items, selectedToken]);
+  const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
 
   if (data.tokens.length === 0) {
     return <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>Loading tokens…</p>;

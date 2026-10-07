@@ -1,6 +1,7 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
+import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
 export type { TokenData } from './resolveToken';
@@ -165,6 +166,7 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
  * Dictionary derives from it. Shared by the drawer and the Tokens addon panel.
  */
 export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onNavigate: (token: string) => void }) {
+  const { sourceFiles } = useTokensData();
   // Printed exactly as the source file writes it: never re-cased or reformatted.
   const resolved = data.hex ?? data.value;
   const outputs = getTokenArtifacts(data.token);
@@ -192,9 +194,15 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
         <div style={SECTION_LABEL}>SOURCE</div>
         <div style={FIELD}>
           <code style={CODE}>{data.token}</code>
-          {data.source && (
+          {sourceFiles.length > 0 && (
             <div style={{ marginTop: 6, color: '#697786', fontSize: 12 }}>
-              Defined in <FieldValue value={data.source.path} href={data.source.url} />
+              Defined in{' '}
+              {sourceFiles.map((file, index) => (
+                <span key={file.path}>
+                  {index > 0 && ', '}
+                  <FieldValue value={file.path} href={file.url} />
+                </span>
+              ))}
             </div>
           )}
         </div>
@@ -309,47 +317,21 @@ export function ResizeHandle({ width, onResize, label }: { width: number; onResi
 }
 
 /** `TokenDetailsContent` in a right-hand drawer over the page, closed by the backdrop, the × button, or Escape. */
-export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onClose: () => void; trigger: HTMLElement | null }) {
+export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () => void }) {
   const [shown, setShown] = useState(data);
-  const dialogRef = useRef<HTMLElement>(null);
   const { width, setWidth } = useResizableWidth('az-token-drawer-width', Math.min(window.innerWidth * 0.65, 760), 320, () => window.innerWidth - 48);
   useEffect(() => {
-    const dialog = dialogRef.current;
-    const firstFocusable = dialog?.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
-    (firstFocusable ?? dialog)?.focus();
-    return () => trigger?.focus();
-  }, [trigger]);
-
-  const handleDialogKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Escape') {
-      event.stopPropagation();
-      onClose();
-      return;
-    }
-    if (event.key !== 'Tab') return;
-    const focusable = Array.from(
-      event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'),
-    );
-    if (focusable.length === 0) {
-      event.preventDefault();
-      event.currentTarget.focus();
-      return;
-    }
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget || !event.currentTarget.contains(document.activeElement))) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && (document.activeElement === last || !event.currentTarget.contains(document.activeElement))) {
-      event.preventDefault();
-      first.focus();
-    }
-  };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onClose]);
 
   return (
     <>
-      <div aria-hidden="true" onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 10, background: 'rgba(28, 30, 34, 0.42)', cursor: 'default' }} />
-      <aside ref={dialogRef} role="dialog" aria-modal="true" aria-label={`${shown.token} details`} tabIndex={-1} onKeyDown={handleDialogKeyDown} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width, boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+      <button type="button" aria-label="Close token details" onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 10, width: '100%', height: '100%', border: 0, background: 'rgba(28, 30, 34, 0.42)', cursor: 'default' }} />
+      <aside role="dialog" aria-modal="true" aria-label={`${shown.token} details`} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width, boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, paddingBottom: 14, marginBottom: 20, borderBottom: '1px solid #e3e6eb' }}>
           <div style={{ display: 'grid', gap: 6 }}>
             {shown.token !== data.token && (
@@ -390,18 +372,17 @@ export function Token({
   onSelect?: () => void;
 }) {
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   const isSelected = selected ?? open;
   ensurePillStyles();
 
   return (
     <>
-      <button ref={triggerRef} type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
+      <button type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>
       </button>
-      {!onSelect && open && <TokenDetails data={data} trigger={triggerRef.current} onClose={() => setOpen(false)} />}
+      {!onSelect && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
     </>
   );
 }

@@ -9,8 +9,6 @@ export type TokenRecord = {
   description?: string;
   /** The token's `$extensions`, e.g. CMYK or Pantone values for a brand color. */
   extensions?: Record<string, unknown>;
-  /** The source file Style Dictionary read this token from, relative to the repository root. */
-  source?: { path: string; url?: string };
   /** The token's value exactly as the source file writes it: a literal, or an `{alias}`. */
   value: unknown;
   /** The value Style Dictionary resolves every alias to, as the source file writes it (no platform transforms). */
