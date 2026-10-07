@@ -88,3 +88,88 @@
   background-color: var(--az-component-button-outline-focus-container-color);
   border-color: var(--az-component-button-outline-focus-border-color);
 }
+
+/*
+ * Card (az.component.card.*), per the Figma Cards page (Non-Media, Media,
+ * Icon). Arizona Bootstrap's card is a white, bordered box with 16px padding;
+ * the Figma cards are a borderless Cloud-filled box with 24px padding and
+ * 16px corners.
+ */
+:root .card {
+  --bs-card-bg: var(--az-component-card-container-color);
+  --bs-card-color: var(--az-component-card-text-color);
+  --bs-card-border-width: var(--az-component-card-border-width);
+  --bs-card-border-radius: var(--az-component-card-border-radius);
+  --bs-card-inner-border-radius: var(--az-component-card-border-radius);
+  --bs-card-spacer-x: var(--az-component-card-body-padding-x);
+  --bs-card-spacer-y: var(--az-component-card-body-padding-y);
+  --bs-card-title-color: var(--az-component-card-title-color);
+  --bs-card-cap-padding-x: var(--az-component-card-cap-padding-x);
+  --bs-card-cap-padding-y: var(--az-component-card-cap-padding-y);
+}
+
+/*
+ * Arizona Bootstrap spaces the body's parts with each one's own bottom
+ * margin; the Figma cards use one even gap between title, text, and links.
+ */
+:root .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--az-component-card-body-gap);
+}
+
+:root .card-body > * {
+  margin: 0;
+}
+
+/*
+ * Title: Arizona Bootstrap's h5 size and heading color, not the card's. (Its
+ * line height stays Arizona Bootstrap's: Figma sets the title's to Auto, which
+ * isn't a designed value to make a token from.)
+ */
+:root .card-title {
+  color: var(--bs-card-title-color);
+  font-size: var(--az-component-card-title-font-size);
+  font-weight: var(--az-component-card-title-font-weight);
+}
+
+/* Body text: Arizona Bootstrap's body size and line height. */
+:root .card-text {
+  color: var(--az-component-card-text-color);
+  font-size: var(--az-component-card-text-font-size);
+  font-weight: var(--az-component-card-text-font-weight);
+  line-height: var(--az-component-card-text-line-height);
+}
+
+/*
+ * Links: Arizona Bootstrap sets card links side by side; the Figma Media
+ * cards stack them, closer together than the body's other parts.
+ */
+:root .card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--az-component-card-link-gap);
+}
+
+:root .card-link {
+  margin: 0;
+  color: var(--az-component-card-link-color);
+  font-size: var(--az-component-card-link-font-size);
+  font-weight: var(--az-component-card-link-font-weight);
+  line-height: var(--az-component-card-link-line-height);
+}
+
+/*
+ * Icon card (az.component.card.icon.*): Arizona Bootstrap has no card icon.
+ * The icon sits further from the title than the body gap, and the title
+ * takes the icon style's own color.
+ */
+:root .card-body > .card-icon {
+  margin-bottom: calc(var(--az-component-card-icon-gap) - var(--az-component-card-body-gap));
+}
+
+:root .card:has(> .card-body > .card-icon) {
+  --bs-card-title-color: var(--az-component-card-icon-title-color);
+}

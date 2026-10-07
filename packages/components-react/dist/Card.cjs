@@ -28,15 +28,16 @@ module.exports = __toCommonJS(Card_exports);
 var import_react = require("react");
 var import_jsx_runtime = require("react/jsx-runtime");
 var Card = (0, import_react.forwardRef)(function Card2(props, ref) {
-  const { header, image, title, subtitle, text, links, footer, className } = props;
+  const { header, image, icon, title, subtitle, text, links, footer, className } = props;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { ref, className: className ? `card ${className}` : "card", children: [
     header && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "card-header", children: header }),
     image && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: image.src, className: "card-img-top", alt: image.alt }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "card-body", children: [
+      icon && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: icon.src, className: "card-icon", alt: icon.alt }),
       title && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h5", { className: "card-title", children: title }),
       subtitle && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h6", { className: "card-subtitle mb-2 text-body-secondary", children: subtitle }),
       text && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "card-text", children: text }),
-      links?.map((link, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: link.href ?? "#", className: "card-link", children: link.label }, index))
+      links && links.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "card-links", children: links.map((link, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: link.href ?? "#", className: "card-link", children: link.label }, index)) })
     ] }),
     footer && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "card-footer", children: footer })
   ] });

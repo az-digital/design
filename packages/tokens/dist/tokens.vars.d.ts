@@ -21,10 +21,22 @@ export const az: {
         "default": string,
         "hover": string,
         "focusRing": string
+      },
+      "surface": {
+        "subtle": string
+      },
+      "text": {
+        "default": string,
+        "heading": string,
+        "accent": string
+      },
+      "link": {
+        "default": string
       }
     }
   },
   "dimension": {
+    "0": string,
     "1": string,
     "2": string,
     "4": string,
@@ -38,16 +50,19 @@ export const az: {
     "20": string,
     "22": string,
     "24": string,
+    "28": string,
     "30": string,
     "36": string,
     "48": string,
     "50": string,
+    "60": string,
     "211": string,
     "9-6": string,
     "19-8": string,
     "266-41": string
   },
   "fontWeight": {
+    "400": string,
     "500": string,
     "700": string
   },
@@ -225,20 +240,49 @@ export const az: {
       }
     },
     "card": {
-      "body": {
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "title": {
-        "margin": {
-          "bottom": string
-        }
+      "container": {
+        "color": string
       },
       "border": {
         "width": string,
         "radius": string
+      },
+      "body": {
+        "padding": {
+          "x": string,
+          "y": string
+        },
+        "gap": string
+      },
+      "title": {
+        "color": string,
+        "font": {
+          "size": string,
+          "weight": string
+        }
+      },
+      "text": {
+        "color": string,
+        "font": {
+          "size": string,
+          "weight": string
+        },
+        "lineHeight": string
+      },
+      "link": {
+        "color": string,
+        "font": {
+          "size": string,
+          "weight": string
+        },
+        "lineHeight": string,
+        "gap": string
+      },
+      "icon": {
+        "title": {
+          "color": string
+        },
+        "gap": string
       },
       "cap": {
         "padding": {

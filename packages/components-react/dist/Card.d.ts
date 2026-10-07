@@ -21,13 +21,18 @@ type CardProps = {
         src: string;
         alt: string;
     };
+    /** Optional icon (`.card-icon`), shown at the top of the body above the title. Leave `alt` empty when the icon is decorative. */
+    icon?: {
+        src: string;
+        alt: string;
+    };
     /** Card title, rendered as an `<h5 class="card-title">`. */
     title?: string;
     /** Card subtitle, rendered as an `<h6 class="card-subtitle">` directly beneath the title. */
     subtitle?: string;
     /** Body text. */
     text?: ReactNode;
-    /** Links rendered at the end of the body, each as its own `.card-link`. */
+    /** Links rendered at the end of the body, grouped in a `.card-links` stack, each as its own `.card-link`. */
     links?: CardLinkProps[];
     /** Optional footer, shown below everything else. */
     footer?: ReactNode;
