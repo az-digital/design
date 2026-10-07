@@ -89,7 +89,7 @@ $az-component-card-body-padding-y: $az-dimension-24; // Card body block padding,
 $az-component-card-body-gap: $az-dimension-12; // Space between the body's title, text, and links, for every style. Per Figma Cards (Non-Media, Media, Icon).
 $az-component-card-title-font-size: $az-dimension-22; // Card title size, for every style. Per Figma Cards (Non-Media, Media, Icon).
 $az-component-card-title-font-weight: $az-font-weight-700; // Card title weight (Bold), for every style. Per Figma Cards (Non-Media, Media, Icon).
-$az-component-card-text-font-size: $az-dimension-16; // Card body text size, for every style. Per Figma Cards (Non-Media, Media, Icon).
+$az-component-card-text-font-size: $az-dimension-18; // Card body text size, for every style: Arizona Bootstrap's 18px body copy (az-digital/arizona-bootstrap#2271), which replaces the 16px in the Figma Cards.
 $az-component-card-text-font-weight: $az-font-weight-400; // Card body text weight (Regular), for every style. Per Figma Cards (Non-Media, Media, Icon).
 $az-component-card-text-line-height: $az-dimension-28; // Card body text line height, for every style. Per Figma Cards (Non-Media, Media, Icon).
 $az-component-card-link-font-size: $az-dimension-16; // Card link text size. Per the Figma Media cards (Show Link=Yes).
