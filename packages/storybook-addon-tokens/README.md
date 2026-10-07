@@ -16,7 +16,9 @@ Token values are always shown exactly as your source file writes them. Where an 
 
 ## Install
 
-This addon is currently workspace-only and is not published to npm. It is linked into this repository's Storybook workspace as a local workspace package; external installation is not available.
+```sh
+npm install --save-dev @az-digital/storybook-addon-tokens
+```
 
 `style-dictionary` (v4 or later), `storybook` (v10), and `react` are peer dependencies: the addon uses your project's own Style Dictionary, so what it shows is exactly what your build produces.
 
@@ -91,7 +93,7 @@ import { ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-t
 - `TokenDisplay`: token pills, or `layout="table"` for one row per token: Token · Type · Alias of · Resolved value.
 - `ComponentTokenIndex`: every component's tokens, one collapsed row per component, with search, type filters, and a Style / State grouping switch. `component="button"` shows one component's tokens without the index.
 
-Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly, and for site-specific presentations: this repo's brand swatch cards (`packages/storybook/stories/Primary/Foundations/Color/ColorSwatchGrid.tsx`) are built from `getTokenDisplayItems` and the `Token` pill rather than shipped in the addon.
+Helpers such as `getTokenDisplayItems(prefix)`, `resolveValue(path)`, and `getTokenArtifacts(path)` are exported for stories that need token values directly, and for site-specific presentations: this repo's brand swatch cards (`packages/storybook/stories/Primary/Brand/Color/ColorSwatchGrid.tsx`) are built from `getTokenDisplayItems` and the `Token` pill rather than shipped in the addon.
 
 ## How component tokens are grouped
 

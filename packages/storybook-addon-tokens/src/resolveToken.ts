@@ -15,8 +15,6 @@ export type TokenData = {
   description?: string;
   /** The token's `$extensions`, e.g. CMYK or Pantone values for a brand color. */
   extensions?: Record<string, unknown>;
-  /** The source file this token was read from. */
-  source?: { path: string; url?: string };
 };
 
 export type ResolvedLink = { path: string; type: string; value: unknown };
@@ -37,7 +35,6 @@ function getIndex() {
       value: formatTokenValue(record.resolvedValue),
       description: record.description,
       extensions: record.extensions,
-      source: record.source,
     }),
   );
   const items = [...sourceOrder].sort((a, b) => a.token.localeCompare(b.token));

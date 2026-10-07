@@ -22,11 +22,11 @@ Tokens are the layer that carries design decisions into design tools and code. T
 - **Semantic tokens** give values meaning in context, such as text, surfaces, and actions: <Token data={getTokenData('az.color.semantic.action.default')} /> aliases the brand red for a primary action.
 - **Component tokens** tune a specific component or state: <Token data={getTokenData('az.component.button.solid.container.color')} /> aliases that semantic token for a solid button's fill.
 
-Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions. Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-foundations-color--docs" target="_top">Foundations: Color</a>.
+Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions. Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-brand-color--docs" target="_top">Brand: Color</a>.
 
 ## Brand tokens
 
-Brand tokens (`az.color.brand.*`) are Arizona's named palette: raw values with no meaning attached, and the end of every color alias chain. Open a token to see everything built on it. The palette's swatches, with CMYK and Pantone values, are in <a href="./?path=/docs/primary-foundations-color--docs" target="_top">Foundations: Color</a>.
+Brand tokens (`az.color.brand.*`) are Arizona's named palette: raw values with no meaning attached, and the end of every color alias chain. Open a token to see everything built on it. The palette's swatches are in <a href="./?path=/docs/primary-brand-color--docs" target="_top">Brand: Color</a>.
 
 {/* In tokens.json's order, like the swatches: the palette's order is deliberate. */}
 <TokenDisplay items={getTokenDisplayItems('az.color.brand.', { order: 'source' })} layout="table" />

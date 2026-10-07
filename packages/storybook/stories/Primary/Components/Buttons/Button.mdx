@@ -46,6 +46,13 @@ Button also has an approved Figma frame on a Cloud page background ("Solid Butto
 
 See the "Solid Red On Cloud" story in the sidebar for a live, interactive version. A white background needs no class of its own — it's the implicit default — so the Code panel on the story above doesn't show one.
 
+For the approved button-on-background examples, see the corresponding Figma sections:
+
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-583&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on White, Cloud (Cool Gray), and Caliche (Warm Gray)</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-584&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on AZ Blue and Azurite</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-585&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on AZ Red</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-586&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on Oasis (Arroyo Blue)</a>
+
 ## Tokens
 
 Every one of Button's own design tokens — `az.component.button.*`. Structure (padding, label font, border, sizes, the focus-visible ring) is shared by every style; each style — `solid.*`, `outline.*` — adds only the colors it changes, named by the part they color (`container`, `border`, `label`) and grouped by state. Colors alias through a semantic tier down to the brand palette; padding, font, and border each alias a primitive dimension/font-weight/opacity value directly, since nothing else in the system needs those specific values yet. If Button's props or variants ever change, this is the place to add or update the corresponding component token.

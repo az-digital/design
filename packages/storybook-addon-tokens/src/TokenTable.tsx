@@ -85,7 +85,7 @@ export function TokenTable({
         <tbody key={section.label ?? 'all'}>
           {section.label !== undefined && (
             <tr>
-              <th scope="rowgroup" colSpan={4} style={{ padding: '10px 12px 4px', textAlign: 'left', fontSize: 11, fontWeight: 700, color: '#1e5288', borderBottom: '1px solid #eef1f4' }}>
+              <th scope="colgroup" colSpan={4} style={{ padding: '10px 12px 4px', textAlign: 'left', fontSize: 11, fontWeight: 700, color: '#1e5288', borderBottom: '1px solid #eef1f4' }}>
                 {section.label} <span style={{ color: '#9aa4b2', fontWeight: 400 }}>· {section.items.length}</span>
               </th>
             </tr>
