@@ -15,11 +15,10 @@ const preview: Preview = {
           [
             'Overview',
             'Brand',
-            ['Overview', '*'],
+            ['Overview', 'Color', '*'],
             'Foundations',
             [
               'Overview',
-              'Color',
               'Layout',
               ['Overview', 'Grids and Spacing', 'Breakpoints', '*'],
               'Typography',
