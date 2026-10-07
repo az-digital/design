@@ -27,8 +27,7 @@ export const az = {
       },
       "text": {
         "default": "var(--az-color-semantic-text-default)",
-        "heading": "var(--az-color-semantic-text-heading)",
-        "accent": "var(--az-color-semantic-text-accent)"
+        "heading": "var(--az-color-semantic-text-heading)"
       },
       "link": {
         "default": "var(--az-color-semantic-link-default)"

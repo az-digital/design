@@ -47,7 +47,6 @@
   --az-color-semantic-surface-subtle: var(--az-color-brand-cloud); /** Quiet, tinted surface that sets a contained block of content apart from the page (card containers) — aliases the brand palette. */
   --az-color-semantic-text-default: var(--az-color-brand-tinta); /** Body text color — aliases the brand palette. */
   --az-color-semantic-text-heading: var(--az-color-brand-blue); /** Heading text color — aliases the brand palette. */
-  --az-color-semantic-text-accent: var(--az-color-brand-azurite); /** Accented text color, for a heading that should stand out from body text without reading as a link — aliases the brand palette. */
   --az-color-semantic-link-default: var(--az-color-brand-azurite); /** Text link color, resting state — aliases the brand palette. */
   --az-component-button-label-font-size: var(--az-dimension-18); /** Button label (text) size at the default size, for every style. size.sm and size.lg replace it. */
   --az-component-button-label-font-weight: var(--az-font-weight-700); /** Button label (text) weight (Bold), for every style and size. */
@@ -117,7 +116,7 @@
   --az-component-button-outline-focus-label-color: var(--az-component-button-outline-hover-label-color); /** Outline button's label (text) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
   --az-component-tabs-label-active-color: var(--az-component-tabs-label-hover-color); /** Tab label color, active/selected state — aliases hover.color directly: the compiled CSS uses the same value for both, across every variant below. */
   --az-component-card-container-color: var(--az-color-semantic-surface-subtle); /** Card container (fill) color, for every style. Per Figma Cards (Non-Media, Media, Icon). */
-  --az-component-card-title-color: var(--az-color-semantic-text-accent); /** Card title color (Non-Media and Media cards). The icon style replaces it (icon.title.color). Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-title-color: var(--az-color-semantic-link-default); /** Card title color (Non-Media and Media cards): the link color. The icon style replaces it (icon.title.color). Per Figma Cards (Non-Media, Media, Icon). */
   --az-component-card-text-color: var(--az-color-semantic-text-default); /** Card body text color, for every style. Per Figma Cards (Non-Media, Media, Icon). */
   --az-component-card-link-color: var(--az-color-semantic-link-default); /** Card link color, resting state. Per the Figma Media cards (Show Link=Yes). */
   --az-component-card-icon-title-color: var(--az-color-semantic-text-heading); /** Icon card's title color; replaces title.color. Per the Figma Icon Card. */

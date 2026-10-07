@@ -27,8 +27,7 @@ export const az: {
       },
       "text": {
         "default": string,
-        "heading": string,
-        "accent": string
+        "heading": string
       },
       "link": {
         "default": string
