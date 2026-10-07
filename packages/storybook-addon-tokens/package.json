@@ -12,6 +12,9 @@
     "./preview": "./src/preview.ts",
     "./package.json": "./package.json"
   },
+  "scripts": {
+    "test": "node --test"
+  },
   "files": [
     "src",
     "README.md"
@@ -25,6 +28,6 @@
   "peerDependencies": {
     "react": ">=18",
     "storybook": "^10.0.0",
-    "style-dictionary": ">=4"
+    "style-dictionary": "^5.4.4"
   }
 }

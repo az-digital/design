@@ -98,7 +98,7 @@ session alone; verify in an actual browser, or ask the user to.
   second live `<Canvas>` (see the Canvas limitation further down) and not a
   repeat of the state comparison.
 - Reserve a nested sub-page (`Primary/Components/Buttons/Something`, mirroring
-  `Primary/Foundations/Tokens/Contributing`) for content that's genuinely separate — a
+  `Primary/Tokens/Contributing`) for content that's genuinely separate — a
   contribution workflow, tooling instructions — not for splitting the main
   component reference apart by default. If unsure whether something belongs
   on the main page or a sub-page, default to the main page.
