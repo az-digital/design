@@ -38,3 +38,7 @@ server. `docs list`, `docs show`, and `stories find-by-component` run
 without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
+
+## Overview-page links
+
+When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
