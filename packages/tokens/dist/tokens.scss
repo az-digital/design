@@ -12,3 +12,30 @@ $az-color-brand-brick: #85372b;
 $az-color-brand-cloud: #e5eff7;
 $az-color-brand-caliche: #f2efea;
 $az-color-brand-white: #ffffff;
+$az-color-semantic-text-default: $az-color-brand-tinta; // Body text on the default surface — aliases the brand palette. There's no neutral gray scale yet, so this uses Tinta.
+$az-color-semantic-role-primary: $az-color-brand-red; // The `primary` role color (Bootstrap theme color; Arizona Bootstrap `$primary`) — aliases the brand palette.
+$az-color-semantic-role-secondary: $az-color-brand-blue; // The `secondary` role color (Bootstrap theme color; Arizona Bootstrap `$secondary`) — aliases the brand palette.
+$az-color-semantic-role-success: $az-color-brand-saguaro; // The `success` role color (Bootstrap theme color `success`) — aliases the brand palette. Arizona Bootstrap uses Leaf (`#70b865`); Saguaro is its current-palette name, with a different value.
+$az-color-semantic-role-info: $az-color-brand-rain; // The `info` role color (Bootstrap theme color `info`) — aliases the brand palette. Arizona Bootstrap's Sky, renamed Rain.
+$az-color-semantic-role-warning: $az-color-brand-brick; // The `warning` role color (Bootstrap theme color `warning`) — aliases the brand palette. Arizona Bootstrap uses a non-brand orange (`#f19e1f`); Brick replaces it here.
+$az-color-semantic-role-danger: $az-color-brand-brick; // The `danger` role color (Bootstrap theme color `danger`) — aliases the brand palette. Arizona Bootstrap uses Mesa (`#a95c42`); Brick is its current-palette name, with a different value.
+$az-color-semantic-role-light: $az-color-brand-cloud; // The `light` role color (Bootstrap theme color `light`) — aliases the brand palette. Arizona Bootstrap uses gray-300 (`#dee2e6`); Cloud replaces it here.
+$az-color-semantic-role-dark: $az-color-brand-tinta; // The `dark` role color (Bootstrap theme color `dark`) — aliases the brand palette. Arizona Bootstrap uses gray-800 (`#343a40`); Tinta replaces it here.
+$az-color-semantic-text-primary: $az-color-semantic-role-primary; // Text in the `primary` role color (Bootstrap `.text-primary`) — aliases `role.primary`.
+$az-color-semantic-text-secondary: $az-color-semantic-role-secondary; // Text in the `secondary` role color (Bootstrap `.text-secondary`) — aliases `role.secondary`.
+$az-color-semantic-text-success: $az-color-semantic-role-success; // Text in the `success` role color (Bootstrap `.text-success`) — aliases `role.success`.
+$az-color-semantic-text-info: $az-color-semantic-role-info; // Text in the `info` role color (Bootstrap `.text-info`) — aliases `role.info`.
+$az-color-semantic-text-warning: $az-color-semantic-role-warning; // Text in the `warning` role color (Bootstrap `.text-warning`) — aliases `role.warning`.
+$az-color-semantic-text-danger: $az-color-semantic-role-danger; // Text in the `danger` role color (Bootstrap `.text-danger`) — aliases `role.danger`.
+$az-color-semantic-text-light: $az-color-semantic-role-light; // Text in the `light` role color (Bootstrap `.text-light`) — aliases `role.light`.
+$az-color-semantic-text-dark: $az-color-semantic-role-dark; // Text in the `dark` role color (Bootstrap `.text-dark`) — aliases `role.dark`.
+$az-color-semantic-text-body: $az-color-semantic-text-default; // Body text (Bootstrap `$body-color`) — aliases `text.default`. Arizona Bootstrap uses gray-900 (`#212529`).
+$az-color-semantic-text-emphasis-default: $az-color-semantic-text-default; // Emphasized text with no role (Bootstrap `$emphasis-color`) — aliases `text.default` for now.
+$az-color-semantic-text-emphasis-primary: $az-color-semantic-role-primary; // Emphasized text in the `primary` role (Bootstrap `$primary-text-emphasis`) — aliases `role.primary` for now.
+$az-color-semantic-text-emphasis-secondary: $az-color-semantic-role-secondary; // Emphasized text in the `secondary` role (Bootstrap `$secondary-text-emphasis`) — aliases `role.secondary` for now.
+$az-color-semantic-text-emphasis-success: $az-color-semantic-role-success; // Emphasized text in the `success` role (Bootstrap `$success-text-emphasis`) — aliases `role.success` for now.
+$az-color-semantic-text-emphasis-info: $az-color-semantic-role-info; // Emphasized text in the `info` role (Bootstrap `$info-text-emphasis`) — aliases `role.info` for now.
+$az-color-semantic-text-emphasis-warning: $az-color-semantic-role-warning; // Emphasized text in the `warning` role (Bootstrap `$warning-text-emphasis`) — aliases `role.warning` for now.
+$az-color-semantic-text-emphasis-danger: $az-color-semantic-role-danger; // Emphasized text in the `danger` role (Bootstrap `$danger-text-emphasis`) — aliases `role.danger` for now.
+$az-color-semantic-text-emphasis-light: $az-color-semantic-role-light; // Emphasized text in the `light` role (Bootstrap `$light-text-emphasis`) — aliases `role.light` for now.
+$az-color-semantic-text-emphasis-dark: $az-color-semantic-role-dark; // Emphasized text in the `dark` role (Bootstrap `$dark-text-emphasis`) — aliases `role.dark` for now.
