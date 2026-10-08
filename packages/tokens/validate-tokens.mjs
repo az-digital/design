@@ -54,7 +54,7 @@ function validComposite(type, value) {
     case 'transition':
       return (
         isDuration(value.duration) &&
-        isDuration(value.delay) &&
+        (value.delay === undefined || isDuration(value.delay)) &&
         (Array.isArray(value.timingFunction) || (typeof value.timingFunction === 'string' && value.timingFunction.length > 0) || isAlias(value.timingFunction))
       );
     case 'shadow':
