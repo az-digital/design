@@ -1,14 +1,43 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Markdown, Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Primary/Components/Overview" />
+
+export const implementationReadmes = import.meta.glob('../../../../components-*/README.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+});
 
 # Components
 
 The Components section is the reusable library of interface patterns that teams can apply consistently across Arizona Digital products.
 
-## Included groups
+## Component groups
 
 - Buttons
 - Containers
+- Indicators
+- Inputs
+- Navigation
+- Popups
 
-This section is intentionally staged as a foundation for the initial system and can expand as new patterns are approved.
+## Choose an implementation
+
+Each implementation README is the source of truth for its use cases, setup, token use, contribution workflow, and verification steps. Open a library below to read its guide.
+
+{Object.entries(implementationReadmes)
+  .sort(([left], [right]) => left.localeCompare(right))
+  .map(([path, readme]) => {
+    const title = readme.match(/^# (.+)$/m)?.[1] ?? path.split('/').at(-2);
+
+    return (
+      <details key={path}>
+        <summary>{title}</summary>
+        <Markdown>{readme}</Markdown>
+      </details>
+    );
+  })}
+
+## Contribute a component
+
+See [Contributing components](./?path=/docs/primary-components-contributing--docs) for the shared component workflow and definition of done.
