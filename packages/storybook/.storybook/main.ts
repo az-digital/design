@@ -1,6 +1,8 @@
-import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/react-vite';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Link token files at the branch this Storybook is built from: the PR's branch
 // for review-site builds of a pull request, the pushed branch for other CI
@@ -13,6 +15,8 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
+    // Design tab: each story shows its Figma frames (parameters.design).
+    getAbsolutePath("@storybook/addon-designs"),
     {
       // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
       name: getAbsolutePath("@az-digital/storybook-addon-tokens"),
@@ -32,11 +36,15 @@ const config: StorybookConfig = {
     ...viteConfig,
     resolve: {
       ...viteConfig.resolve,
-      alias: {
-        ...viteConfig.resolve?.alias,
-        // stable path to packages/tokens, independent of story folder depth
-        '@tokens': fileURLToPath(new URL('../../tokens', import.meta.url)),
-      },
+      // Consume components-react and components-html from source so Storybook
+      // always reflects the latest components without requiring a package build.
+      alias: [
+        ...(Array.isArray(viteConfig.resolve?.alias) ? viteConfig.resolve.alias : []),
+        { find: '@az-digital/components-react', replacement: resolve(__dirname, '../../components-react/src/index.ts') },
+        { find: '@az-digital/components-html', replacement: resolve(__dirname, '../../components-html/src/index.ts') },
+        // Stable path to packages/tokens, independent of story folder depth.
+        { find: '@tokens', replacement: resolve(__dirname, '../../tokens') },
+      ],
     },
     build: {
       ...viteConfig.build,

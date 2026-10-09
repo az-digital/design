@@ -1,4 +1,4 @@
 node_modules/
 packages/*/node_modules/
 packages/storybook/storybook-static/
-debug-storybook.log
+*.log
