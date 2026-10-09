@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Components/Contributing" />
+
+# Contributing Components
+
+Use this workflow for every component, regardless of its implementation library. The package READMEs linked from [Components → Overview](./?path=/docs/primary-components-overview--docs) provide platform-specific setup and verification.
+
+## Component workflow
+
+### 1. Propose the component
+
+Open an issue in [az-digital/design](https://github.com/az-digital/design/issues) describing the need, users, context, and desired behavior. Link any existing product example or design. Repository maintainers confirm the scope, intended audiences, and which implementation(s) are appropriate before implementation begins.
+
+### 2. Agree on the design in Figma
+
+Link the approved Figma component or frame from the issue and Storybook docs. Contributors who need Figma access should follow the guidance tracked in [issue #66](https://github.com/az-digital/design/issues/66); that issue is the source for the access page once it is published.
+
+### 3. Define component tokens
+
+Use component tokens under `az.component.<name>.*` for component-specific values. Reuse existing semantic tokens where they already express the design decision; do not create duplicate values or hard-code token values into a component. Follow [Tokens → Contributing](./?path=/docs/primary-foundations-tokens-contributing--docs) for authoring, review, and build steps.
+
+### 4. Select implementations
+
+Not every component needs an implementation in every library. The issue owner and maintainers decide the required implementations based on the component's users and target platforms. Shipping one implementation is appropriate when it meets the approved need and the other platforms are out of scope; record that decision and any missing implementations in the issue or component docs.
+
+Keep behavior and shared story args aligned across the implementations that are in scope. Adapt prop naming where a platform requires it, and document any difference rather than pretending the APIs are identical.
+
+### 5. Add the Storybook story
+
+Add a story for each implementation that is in scope. Use shared args to compare implementations, and ensure the **Code** panel shows the actual source users need for the selected implementation (HTML, JSX, custom-element markup, or Twig). Link the story to the relevant Figma frame; use the design integration when available, or a direct Figma link until then.
+
+### 6. Review and verify
+
+Open a pull request with the issue and Figma links. Run the relevant package checks and Storybook tests/build, share the Storybook preview, and ask reviewers to verify the target platform as well as the Storybook rendering. Check semantic HTML, keyboard operation, focus visibility, accessible names, contrast, responsive behavior, and relevant automated accessibility checks.
+
+## Component definition of done
+
+- [ ] The component request and scope are approved, including the required implementation(s).
+- [ ] The approved Figma design is linked from the issue and the Storybook docs.
+- [ ] Required `az.component.<name>.*` tokens are defined and consumed; gaps or intentional exceptions are recorded.
+- [ ] Every in-scope implementation is complete, with API differences and out-of-scope implementations documented.
+- [ ] Storybook has useful states and variants using shared args, a working implementation selector where applicable, a truthful **Code** panel, and a Figma link.
+- [ ] Accessibility, responsive behavior, and the target platform have been checked; results and any known limitations are recorded.
+- [ ] Relevant builds, lint, and tests pass, and the pull request has a preview and the required maintainer review.
+
+## Adding an implementation package
+
+Before adding a library, agree on its audience and verification target. A package is not ready to be offered as a supported implementation until its README explains how to use and verify it.
+
+- [ ] Add a package README with **What it is / Best for**, **Install / use**, **How it consumes tokens**, **Contribute to it**, and **Verification**.
+- [ ] Add the implementation to the shared `IMPLEMENTATIONS` list used by the Storybook toolbar and Components Overview.
+- [ ] Add stories with a working **Code** panel for that implementation.
+- [ ] Add package build and lint scripts and wire its build into the root `build:all` command.
+- [ ] Add or update its entry in `.github/CODEOWNERS`.
+- [ ] Agree on release and versioning before publishing; track the repository-wide approach in [issue #50](https://github.com/az-digital/design/issues/50).
+- [ ] Update `.claude/skills/design-system-component/SKILL.md` to link to the human docs and package README without duplicating their conventions.
+- [ ] Verify the package on its target platform, not only in Storybook; document any remaining platform checks and limitations.

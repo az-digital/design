@@ -1,6 +1,6 @@
 # Arizona Digital Design System
 
-A design token and Storybook workspace for the Arizona Digital design system. This repo contains the source token definitions, generated token output, and a Storybook environment for reviewing and validating visual tokens.
+A design token and Storybook workspace for the Arizona Digital design system. This repo contains the source token definitions, generated token output, component-package contributor guides, and a Storybook environment for reviewing and validating the system.
 
 ## Repository Structure
 
@@ -8,6 +8,10 @@ This is an npm workspaces monorepo with three packages:
 
 ```text
 ├── packages/
+│   ├── components-html/          #   contributor guide for the HTML implementation
+│   ├── components-react/         #   contributor guide for the React implementation
+│   ├── components-web/           #   contributor guide for the Web Components implementation
+│   ├── components-quickstart/    #   contributor guide for the Drupal implementation
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── style-dictionary.config.mjs
@@ -29,6 +33,8 @@ This is an npm workspaces monorepo with three packages:
 ├── README.md                  # this file
 └── .gitignore
 ```
+
+The `components-*` folders currently provide contributor documentation; each implementation's source package is added with its implementation work.
 
 | Package | Path | Purpose |
 |---------|------|---------|
@@ -123,6 +129,8 @@ When updating tokens or Storybook behavior:
 3. Run the relevant tests before shipping changes.
 
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
+
+When adding a component or implementation package, follow [Components → Contributing](packages/storybook/stories/Primary/Components/Contributing.mdx). The [Components Overview](packages/storybook/stories/Primary/Components/Overview.mdx) renders each implementation's README directly, so keep the relevant [HTML](packages/components-html/README.md), [React](packages/components-react/README.md), [Web Components](packages/components-web/README.md), or [Arizona Quickstart](packages/components-quickstart/README.md) guide current. Agent-specific workflow is in [design-system-component/SKILL.md](.claude/skills/design-system-component/SKILL.md).
 
 ## Token Collaboration Docs
 
