@@ -10,12 +10,12 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "vitest"
+      "vitest",
+      "vite/client"
     ]
   },
   "include": [
     ".storybook",
-    "stories",
-    ".swatchbook/**/*.d.ts"
+    "stories"
   ]
 }
