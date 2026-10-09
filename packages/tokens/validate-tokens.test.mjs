@@ -25,4 +25,58 @@ describe('validateTokens', () => {
   it('rejects tokens without an inherited or local type', () => {
     assert.throws(() => validateTokens({ token: { $value: 'value' } }), /token: missing \$type/);
   });
+
+  it('accepts valid typography composite tokens', () => {
+    assert.doesNotThrow(() => validateTokens({
+      text: {
+        $type: 'typography',
+        body: {
+          $value: {
+            fontFamily: 'Arial',
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: 1.5,
+          },
+        },
+      },
+    }));
+  });
+
+  it('rejects invalid typography composite tokens', () => {
+    assert.throws(() => validateTokens({
+      text: {
+        $type: 'typography',
+        body: { $value: { fontSize: 'large' } },
+      },
+    }), /text\.body: invalid \$value for type "typography"/);
+  });
+
+  it('accepts valid transition composite tokens', () => {
+    assert.doesNotThrow(() => validateTokens({
+      animation: {
+        $type: 'transition',
+        fade: {
+          $value: {
+            duration: '200ms',
+            delay: '0ms',
+            timingFunction: 'ease-in',
+          },
+        },
+      },
+    }));
+  });
+
+  it('rejects invalid transition composite tokens', () => {
+    assert.throws(() => validateTokens({
+      animation: {
+        $type: 'transition',
+        fade: {
+          $value: {
+            duration: 'fast',
+            timingFunction: 'ease-in',
+          },
+        },
+      },
+    }), /animation\.fade: invalid \$value for type "transition"/);
+  });
 });
