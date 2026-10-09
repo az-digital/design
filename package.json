@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build:tokens": "npm run build -w @az-digital/tokens",
+    "test:tokens": "npm test -w @az-digital/tokens",
     "build:storybook": "npm run build -w @az-digital/storybook",
     "dev:storybook": "npm run dev -w @az-digital/storybook",
     "lint:storybook": "npm run lint -w @az-digital/storybook",
