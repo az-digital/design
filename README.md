@@ -99,6 +99,17 @@ It also includes small validation tests covering token grouping and metadata par
 
 The token UI (token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand color swatches on the Tokens page (`packages/storybook/stories/Primary/Foundations/Tokens/ColorSwatchGrid.tsx`) are this site's own, and embed the addon's token pill. It reads `packages/tokens/style-dictionary.config.mjs`, so the details for each token show exactly what each output file derives from it. See its [README](packages/storybook-addon-tokens/README.md).
 
+### Published Storybook
+
+Each published release is hosted on digital.arizona.edu by version:
+
+- `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
+- [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
+
+To publish, bump `version` in `package.json` (keep the workspace packages in sync), merge to `main`, then publish a GitHub release tagged `v<version>` (e.g. `v0.0.1`). `.github/workflows/publish-docs-site.yml` checks that the tag matches `package.json` and sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`.
+
+Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
+
 ### Storybook MCP for AI Agents
 
 Storybook includes `@storybook/addon-mcp`, which exposes a local Model Context Protocol server while the Storybook dev server is running. See [AGENTS.md](./AGENTS.md) for how coding agents should use it.

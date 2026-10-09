@@ -5,7 +5,11 @@ import type { StorybookConfig } from '@storybook/react-vite';
 // Link token files at the branch this Storybook is built from: the PR's branch
 // for review-site builds of a pull request, the pushed branch for other CI
 // builds, and main locally (a local branch may not exist on GitHub).
-const gitRef = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || "main";
+const gitRef =
+  process.env.STORYBOOK_GIT_REF ||
+  process.env.GITHUB_HEAD_REF ||
+  process.env.GITHUB_REF_NAME ||
+  "main";
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
