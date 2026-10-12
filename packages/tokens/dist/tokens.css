@@ -13,6 +13,7 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-dimension-0: 0px;
   --az-dimension-1: 1px;
   --az-dimension-2: 2px;
   --az-dimension-4: 4px;
@@ -26,20 +27,27 @@
   --az-dimension-20: 20px;
   --az-dimension-22: 22px;
   --az-dimension-24: 24px;
+  --az-dimension-28: 28px;
   --az-dimension-30: 30px;
   --az-dimension-36: 36px;
   --az-dimension-48: 48px;
   --az-dimension-50: 50px;
+  --az-dimension-60: 60px;
   --az-dimension-211: 211px;
   --az-dimension-9-6: 9.6px; /** 9.6 — named with a hyphen, not a literal decimal point: a dot in a token's own name segment is ambiguous with the alias path separator (an alias to `az.dimension.9.6` would parse as segments "9" then "6", not "9.6"). */
   --az-dimension-19-8: 19.8px;
   --az-dimension-266-41: 266.41px;
+  --az-font-weight-400: 400;
   --az-font-weight-500: 500;
   --az-font-weight-700: 700;
   --az-opacity-65: 0.65; /** 65%. */
   --az-color-semantic-action-default: var(--az-color-brand-red); /** Primary action color, resting state (solid fill; outline border and label) — aliases the brand palette. */
   --az-color-semantic-action-hover: var(--az-color-brand-sonoran-red); /** Primary action color, hover state — aliases the brand palette. */
   --az-color-semantic-action-focus-ring: var(--az-color-brand-bougainvillea); /** Focus-visible ring color for actions — aliases the brand palette. */
+  --az-color-semantic-surface-subtle: var(--az-color-brand-cloud); /** Quiet, tinted surface that sets a contained block of content apart from the page (card containers) — aliases the brand palette. */
+  --az-color-semantic-text-default: var(--az-color-brand-tinta); /** Body text color — aliases the brand palette. */
+  --az-color-semantic-text-heading: var(--az-color-brand-blue); /** Heading text color — aliases the brand palette. */
+  --az-color-semantic-link-default: var(--az-color-brand-azurite); /** Text link color, resting state — aliases the brand palette. */
   --az-component-button-label-font-size: var(--az-dimension-18); /** Button label (text) size at the default size, for every style. size.sm and size.lg replace it. */
   --az-component-button-label-font-weight: var(--az-font-weight-700); /** Button label (text) weight (Bold), for every style and size. */
   --az-component-button-padding-x: var(--az-dimension-30); /** Horizontal space between the button's edge and its label at the default size. size.sm and size.lg replace it. */
@@ -75,11 +83,21 @@
   --az-component-nav-utility-margin-bottom: var(--az-dimension-24); /** az.component.nav.utility.margin.bottom = 1.5rem */
   --az-component-nav-utility-item-padding-x: var(--az-dimension-9-6); /** az.component.nav.utility.item.padding.x = 0.6rem */
   --az-component-nav-utility-label-font-weight: var(--az-font-weight-500); /** az.component.nav.utility.label.font.weight = 500 */
-  --az-component-card-body-padding-x: var(--az-dimension-16); /** az.component.card.body.padding.x = 1rem */
-  --az-component-card-body-padding-y: var(--az-dimension-16); /** az.component.card.body.padding.y = 1rem */
-  --az-component-card-title-margin-bottom: var(--az-dimension-8); /** az.component.card.title.margin.bottom = 0.5rem */
-  --az-component-card-border-width: var(--az-dimension-1); /** az.component.card.border.width = 1px */
-  --az-component-card-border-radius: var(--az-dimension-6); /** az.component.card.border.radius = 0.375rem */
+  --az-component-card-border-width: var(--az-dimension-0); /** Card border width, for every style. The Figma cards have no border; their fill sets them apart instead. */
+  --az-component-card-border-radius: var(--az-dimension-16); /** Card corner radius, for every style. A Media card's image takes the top two corners. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-body-padding-x: var(--az-dimension-24); /** Card body inline padding, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-body-padding-y: var(--az-dimension-24); /** Card body block padding, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-body-gap: var(--az-dimension-12); /** Space between the body's title, text, and links, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-title-font-size: var(--az-dimension-22); /** Card title size, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-title-font-weight: var(--az-font-weight-700); /** Card title weight (Bold), for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-text-font-size: var(--az-dimension-18); /** Card body text size, for every style: Arizona Bootstrap's 18px body copy (az-digital/arizona-bootstrap#2271), which replaces the 16px in the Figma Cards. */
+  --az-component-card-text-font-weight: var(--az-font-weight-400); /** Card body text weight (Regular), for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-text-line-height: var(--az-dimension-28); /** Card body text line height, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-link-font-size: var(--az-dimension-16); /** Card link text size. Per the Figma Media cards (Show Link=Yes). */
+  --az-component-card-link-font-weight: var(--az-font-weight-700); /** Card link text weight (Bold). Per the Figma Media cards (Show Link=Yes). */
+  --az-component-card-link-line-height: var(--az-dimension-28); /** Card link line height. Per the Figma Media cards (Show Link=Yes). */
+  --az-component-card-link-gap: var(--az-dimension-4); /** Space between stacked card links. Per the Figma Media cards (Show Link=Yes). */
+  --az-component-card-icon-gap: var(--az-dimension-60); /** Icon card: space between the icon and the title. Per the Figma Icon Card. */
   --az-component-card-cap-padding-x: var(--az-dimension-16); /** az.component.card.cap.padding.x = 1rem — header/footer padding. */
   --az-component-card-cap-padding-y: var(--az-dimension-8); /** az.component.card.cap.padding.y = 0.5rem — header/footer padding. */
   --az-component-arizona-header-height: var(--az-dimension-50); /** az.component.arizona-header.height = 50px — fixed height on mobile viewports (below the sm breakpoint). */
@@ -97,6 +115,11 @@
   --az-component-button-outline-hover-border-color: var(--az-color-semantic-action-default); /** Outline button's border color, hover state. Unchanged from resting; matches the new fill. */
   --az-component-button-outline-focus-label-color: var(--az-component-button-outline-hover-label-color); /** Outline button's label (text) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
   --az-component-tabs-label-active-color: var(--az-component-tabs-label-hover-color); /** Tab label color, active/selected state — aliases hover.color directly: the compiled CSS uses the same value for both, across every variant below. */
+  --az-component-card-container-color: var(--az-color-semantic-surface-subtle); /** Card container (fill) color, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-title-color: var(--az-color-semantic-link-default); /** Card title color (Non-Media and Media cards): the link color. The icon style replaces it (icon.title.color). Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-text-color: var(--az-color-semantic-text-default); /** Card body text color, for every style. Per Figma Cards (Non-Media, Media, Icon). */
+  --az-component-card-link-color: var(--az-color-semantic-link-default); /** Card link color, resting state. Per the Figma Media cards (Show Link=Yes). */
+  --az-component-card-icon-title-color: var(--az-color-semantic-text-heading); /** Icon card's title color; replaces title.color. Per the Figma Icon Card. */
   --az-component-button-solid-focus-container-color: var(--az-component-button-solid-container-color); /** Solid button's container (fill) color, focus state. Aliases solid.container.color directly: a focused solid button keeps its resting fill, and focus-visible adds the ring. */
   --az-component-button-outline-focus-container-color: var(--az-component-button-outline-hover-container-color); /** Outline button's container (fill) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
   --az-component-button-outline-focus-border-color: var(--az-component-button-outline-hover-border-color); /** Outline button's border color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */

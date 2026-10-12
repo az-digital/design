@@ -1,6 +1,6 @@
 import {
   Card
-} from "./chunk-V5UTOVJR.js";
+} from "./chunk-NOYIAMO3.js";
 export {
   Card
 };

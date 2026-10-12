@@ -34,7 +34,7 @@ type AccordionProps = {
      * than reused: that script is wired directly against Bootstrap's own
      * Collapse/Tooltip instances and `*.bs.*` events, which `react-bootstrap`
      * doesn't emit. Works best paired with `alwaysOpen`, same caveat as the
-     * HTML implementation — see `accordion.mdx`.
+     * HTML implementation — see `Primary/Components/Containers/Accordions.mdx`.
      */
     anchors?: boolean;
     className?: string;

@@ -5,6 +5,29 @@ import { renderCard } from '@az-digital/components-html';
 import type { CardProps } from '@az-digital/components-html';
 import type { Implementations } from '../../../implementations';
 import { renderImplementation } from '../../../implementations';
+import personRaisedHandIcon from './assets/person-raised-hand.svg';
+import campusEveningPanorama from './assets/campus-evening-panorama.png';
+
+/**
+ * Figma designs for the Design tab (@storybook/addon-designs). Links go to the
+ * card components on the Cards page of the AZ Digital UX Design System file,
+ * not to copies placed elsewhere.
+ */
+const FIGMA_FILE = 'https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System';
+const figmaNode = (nodeId: string, name: string) => ({ type: 'figma' as const, name, url: `${FIGMA_FILE}?node-id=${nodeId.replace(':', '-')}` });
+const CARD_DESIGNS = {
+  nonMedia: figmaNode('2678:515', 'Non-Media Card - 3X'),
+  icon: figmaNode('2670:261', 'Icon Card - 4X'),
+  media: figmaNode('2687:349', 'Media Card - 3X, Show Link=No'),
+  mediaWithLinks: figmaNode('2700:759', 'Media Card - 3X, Show Link=Yes'),
+};
+
+/**
+ * Renders a fixed reference story at its Figma frame's width. Card width comes
+ * from the grid column it sits in (3 or 4 across a 1296px container), not from
+ * the card itself, so it isn't a card token.
+ */
+const atWidth = (width: number) => (Story: () => ReturnType<typeof createElement>) => <div style={{ maxWidth: width }}><Story /></div>;
 
 // Not `Parameters<typeof renderCard>[0]` (the pattern other stories use) — renderCard's
 // default parameter value (`= {}`) makes that resolve to `CardProps | undefined`, which
@@ -17,6 +40,7 @@ const asReactCode = (args: CardArgs) => {
 
   if (args?.header) props.push(`header="${args.header}"`);
   if (args?.image) props.push(`image={{ src: "${args.image.src}", alt: "${args.image.alt}" }}`);
+  if (args?.icon) props.push(`icon={{ src: "${args.icon.src}", alt: "${args.icon.alt}" }}`);
   if (args?.title) props.push(`title="${args.title}"`);
   if (args?.subtitle) props.push(`subtitle="${args.subtitle}"`);
   if (args?.text) props.push(`text="${args.text}"`);
@@ -64,6 +88,7 @@ const meta = {
   },
   parameters: {
     implementations,
+    tokens: 'az.component.card.',
     // Every story here relies on the meta-level custom `render`, so Storybook's
     // default ('auto') Code-panel behavior would fall back to static story source
     // instead of running `docs.source.transform` — see the equivalent comment in
@@ -107,4 +132,51 @@ export const HeaderAndFooter: Story = {
     text: 'With supporting text below as a natural lead-in to additional content.',
     footer: '2 days ago',
   },
+};
+
+/** Mirrors the Figma Non-Media Card (3 across): title and text on the Cloud surface. */
+export const NonMediaCard: Story = {
+  args: {
+    title: 'Academic calendar',
+    text: 'View the first and last day of classes, holidays, finals schedules, commencement ceremonies, and more.',
+  },
+  decorators: [atWidth(416)],
+  parameters: { design: CARD_DESIGNS.nonMedia, controls: { disable: true } },
+};
+
+/** Mirrors the Figma Icon Card (4 across): an icon above the title, and the icon style's title color. */
+export const IconCard: Story = {
+  args: {
+    icon: { src: personRaisedHandIcon, alt: '' },
+    title: 'Admissions',
+    text: 'Become a Wildcat and embrace “Bear Down!” Explore information on applying, transferring, Arizona Online, and more.',
+  },
+  decorators: [atWidth(306)],
+  parameters: { design: CARD_DESIGNS.icon, controls: { disable: true } },
+};
+
+/** Mirrors the Figma Media Card (3 across, Show Link=No): an image cap above the body. */
+export const MediaCard: Story = {
+  args: {
+    image: { src: campusEveningPanorama, alt: 'The University of Arizona campus at dusk' },
+    title: 'Main campus',
+    text: 'Our beautiful Tucson home base with hundreds of degree choices.',
+  },
+  decorators: [atWidth(416)],
+  parameters: { design: CARD_DESIGNS.media, controls: { disable: true } },
+};
+
+/** Mirrors the Figma Media Card (3 across, Show Link=Yes): links stacked at the end of the body. */
+export const MediaCardWithLinks: Story = {
+  args: {
+    image: { src: campusEveningPanorama, alt: 'The University of Arizona campus at dusk' },
+    title: 'Main campus',
+    text: 'Our beautiful Tucson home base with hundreds of degree choices.',
+    links: [
+      { label: 'Explore majors' },
+      { label: 'Visit campus' },
+    ],
+  },
+  decorators: [atWidth(416)],
+  parameters: { design: CARD_DESIGNS.mediaWithLinks, controls: { disable: true } },
 };

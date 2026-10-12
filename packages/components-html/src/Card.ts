@@ -27,13 +27,18 @@ export type CardProps = {
     src: string;
     alt: string;
   };
+  /** Optional icon (`.card-icon`), shown at the top of the body above the title. Leave `alt` empty when the icon is decorative. */
+  icon?: {
+    src: string;
+    alt: string;
+  };
   /** Card title, rendered as an `<h5 class="card-title">`. */
   title?: string;
   /** Card subtitle, rendered as an `<h6 class="card-subtitle">` directly beneath the title. */
   subtitle?: string;
   /** Body text. */
   text?: string;
-  /** Links rendered at the end of the body, each as its own `.card-link`. */
+  /** Links rendered at the end of the body, grouped in a `.card-links` stack, each as its own `.card-link`. */
   links?: CardLinkProps[];
   /** Optional footer, shown below everything else. */
   footer?: string;
@@ -41,18 +46,19 @@ export type CardProps = {
 
 /** Renders the Card as an HTML string using Arizona Bootstrap's real card markup/classes. */
 export function renderCard(props: CardProps = {}): string {
-  const { header, image, title, subtitle, text, links, footer } = props;
+  const { header, image, icon, title, subtitle, text, links, footer } = props;
 
   const headerHtml = header ? `\n  <div class="card-header">${escapeHtml(header)}</div>` : '';
   const imageHtml = image ? `\n  <img src="${escapeHtml(image.src)}" class="card-img-top" alt="${escapeHtml(image.alt)}">` : '';
   const footerHtml = footer ? `\n  <div class="card-footer">${escapeHtml(footer)}</div>` : '';
 
+  const iconHtml = icon ? `\n    <img src="${escapeHtml(icon.src)}" class="card-icon" alt="${escapeHtml(icon.alt)}">` : '';
   const titleHtml = title ? `\n    <h5 class="card-title">${escapeHtml(title)}</h5>` : '';
   const subtitleHtml = subtitle ? `\n    <h6 class="card-subtitle mb-2 text-body-secondary">${escapeHtml(subtitle)}</h6>` : '';
   const textHtml = text ? `\n    <p class="card-text">${escapeHtml(text)}</p>` : '';
-  const linksHtml = links && links.length > 0 ? `\n    ${links.map((link) => `<a href="${escapeHtml(link.href ?? '#')}" class="card-link">${escapeHtml(link.label)}</a>`).join('\n    ')}` : '';
+  const linksHtml = links && links.length > 0 ? `\n    <div class="card-links">\n      ${links.map((link) => `<a href="${escapeHtml(link.href ?? '#')}" class="card-link">${escapeHtml(link.label)}</a>`).join('\n      ')}\n    </div>` : '';
 
-  const bodyHtml = `\n  <div class="card-body">${titleHtml}${subtitleHtml}${textHtml}${linksHtml}\n  </div>`;
+  const bodyHtml = `\n  <div class="card-body">${iconHtml}${titleHtml}${subtitleHtml}${textHtml}${linksHtml}\n  </div>`;
 
   return `<div class="card">${headerHtml}${imageHtml}${bodyHtml}${footerHtml}\n</div>`;
 }

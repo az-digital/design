@@ -21,10 +21,21 @@ export const az = {
         "default": "var(--az-color-semantic-action-default)",
         "hover": "var(--az-color-semantic-action-hover)",
         "focusRing": "var(--az-color-semantic-action-focus-ring)"
+      },
+      "surface": {
+        "subtle": "var(--az-color-semantic-surface-subtle)"
+      },
+      "text": {
+        "default": "var(--az-color-semantic-text-default)",
+        "heading": "var(--az-color-semantic-text-heading)"
+      },
+      "link": {
+        "default": "var(--az-color-semantic-link-default)"
       }
     }
   },
   "dimension": {
+    "0": "var(--az-dimension-0)",
     "1": "var(--az-dimension-1)",
     "2": "var(--az-dimension-2)",
     "4": "var(--az-dimension-4)",
@@ -38,16 +49,19 @@ export const az = {
     "20": "var(--az-dimension-20)",
     "22": "var(--az-dimension-22)",
     "24": "var(--az-dimension-24)",
+    "28": "var(--az-dimension-28)",
     "30": "var(--az-dimension-30)",
     "36": "var(--az-dimension-36)",
     "48": "var(--az-dimension-48)",
     "50": "var(--az-dimension-50)",
+    "60": "var(--az-dimension-60)",
     "211": "var(--az-dimension-211)",
     "9-6": "var(--az-dimension-9-6)",
     "19-8": "var(--az-dimension-19-8)",
     "266-41": "var(--az-dimension-266-41)"
   },
   "fontWeight": {
+    "400": "var(--az-font-weight-400)",
     "500": "var(--az-font-weight-500)",
     "700": "var(--az-font-weight-700)"
   },
@@ -225,20 +239,49 @@ export const az = {
       }
     },
     "card": {
-      "body": {
-        "padding": {
-          "x": "var(--az-component-card-body-padding-x)",
-          "y": "var(--az-component-card-body-padding-y)"
-        }
-      },
-      "title": {
-        "margin": {
-          "bottom": "var(--az-component-card-title-margin-bottom)"
-        }
+      "container": {
+        "color": "var(--az-component-card-container-color)"
       },
       "border": {
         "width": "var(--az-component-card-border-width)",
         "radius": "var(--az-component-card-border-radius)"
+      },
+      "body": {
+        "padding": {
+          "x": "var(--az-component-card-body-padding-x)",
+          "y": "var(--az-component-card-body-padding-y)"
+        },
+        "gap": "var(--az-component-card-body-gap)"
+      },
+      "title": {
+        "color": "var(--az-component-card-title-color)",
+        "font": {
+          "size": "var(--az-component-card-title-font-size)",
+          "weight": "var(--az-component-card-title-font-weight)"
+        }
+      },
+      "text": {
+        "color": "var(--az-component-card-text-color)",
+        "font": {
+          "size": "var(--az-component-card-text-font-size)",
+          "weight": "var(--az-component-card-text-font-weight)"
+        },
+        "lineHeight": "var(--az-component-card-text-line-height)"
+      },
+      "link": {
+        "color": "var(--az-component-card-link-color)",
+        "font": {
+          "size": "var(--az-component-card-link-font-size)",
+          "weight": "var(--az-component-card-link-font-weight)"
+        },
+        "lineHeight": "var(--az-component-card-link-line-height)",
+        "gap": "var(--az-component-card-link-gap)"
+      },
+      "icon": {
+        "title": {
+          "color": "var(--az-component-card-icon-title-color)"
+        },
+        "gap": "var(--az-component-card-icon-gap)"
       },
       "cap": {
         "padding": {
