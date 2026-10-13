@@ -29,6 +29,9 @@ Re-downloading and re-importing `tokens.json` every time it changes is manual. I
 
 - Use semantic tokens for production-facing text, surfaces, borders, and states.
 - Use brand tokens (`az.color.brand.*`) for token creation and audits, not direct production UI assignments.
+- Use status tokens only for success, info, warning, and danger feedback; they are not brand or decorative colors. Prefer semantic status tokens for fills, text, alert backgrounds, and borders.
+- Status color is never the only status cue. Include a text label and, where useful, an icon.
+- The status palette is proposed and awaits University Marketing & Brand Management approval.
 - Keep layers bound to variables so future imports can update values consistently.
 
 Need to update the source tokens? Continue to <a href="./?path=/docs/primary-foundations-tokens-contributing--docs" target="_top">Contributing</a>.

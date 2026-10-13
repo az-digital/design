@@ -5,7 +5,7 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ComponentTokenIndex, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
@@ -41,6 +41,23 @@ Source file: `packages/tokens/tokens.json`
 Arizona's brand palette (`az.color.brand.*`), the raw color values every other color token is built from.
 
 <ColorSwatchGrid prefix="az.color.brand." />
+
+## Status colors
+
+Status colors are a separate, proposed palette for success, info, warning, and danger feedback — never brand colors or decoration. The values below are drafts pending approval from University Marketing & Brand Management.
+
+<TokenDisplay prefix="az.color.status." layout="table" />
+
+Use the semantic tokens in components: `role.*` for solid fills, `text.*` for status text, `text-emphasis.*` for text on subtle backgrounds, `bg-subtle.*` for feedback surfaces, and `border-subtle.*` for their borders. The amber warning and red danger roles are intentionally distinct.
+
+| Pairing | Minimum contrast |
+| --- | ---: |
+| Status text (500) on white | 5.0:1 |
+| White text on a solid status fill (500) | 5.0:1 |
+| Emphasized text (900) on a subtle background (100) | 7.0:1 |
+| Status border (500) against its subtle background (100) | 4.5:1 |
+
+These proposed pairings meet WCAG 2.1 AA text contrast; the border pairing also exceeds the 3:1 non-text contrast requirement. Never communicate status by color alone: include a text label and, where useful, a recognizable icon.
 
 ## Component tokens
 
