@@ -13,4 +13,51 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-color-status-green-100: #e8f5e9; /** Proposed pale green status background tint. Reserved for feedback; not a brand or decorative color. Pending University Marketing & Brand Management approval. */
+  --az-color-status-green-500: #2e7d32; /** Proposed green status color for fills, text, borders, and icons. Provides at least 5:1 contrast with white. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-green-900: #195b1d; /** Proposed dark green for emphasized status text on the 100 tint. Provides at least 7:1 contrast with its tint. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-blue-100: #e3f2fd; /** Proposed pale blue status background tint. Reserved for feedback; not a brand or decorative color. Pending University Marketing & Brand Management approval. */
+  --az-color-status-blue-500: #1565c0; /** Proposed blue status color for fills, text, borders, and icons. Provides at least 5:1 contrast with white. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-blue-900: #0d47a1; /** Proposed dark blue for emphasized status text on the 100 tint. Provides at least 7:1 contrast with its tint. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-amber-100: #fff4e5; /** Proposed pale amber status background tint. Reserved for feedback; not a brand or decorative color. Pending University Marketing & Brand Management approval. */
+  --az-color-status-amber-500: #b45309; /** Proposed amber status color for fills, text, borders, and icons. Provides at least 5:1 contrast with white. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-amber-900: #7c2d12; /** Proposed dark amber for emphasized status text on the 100 tint. Provides at least 8:1 contrast with its tint. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-red-100: #fdecea; /** Proposed pale red status background tint. Reserved for feedback; not a brand or decorative color. Pending University Marketing & Brand Management approval. */
+  --az-color-status-red-500: #b42318; /** Proposed red status color for fills, text, borders, and icons. Provides at least 6:1 contrast with white. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-status-red-900: #7f1d1d; /** Proposed dark red for emphasized status text on the 100 tint. Provides at least 8:1 contrast with its tint. Reserved for feedback; pending University Marketing & Brand Management approval. */
+  --az-color-semantic-text-default: var(--az-color-brand-tinta); /** Default body text color; aliases the brand palette because no neutral gray scale is available yet. */
+  --az-color-semantic-text-emphasis-success: var(--az-color-status-green-900); /** Emphasized success-alert text; aliases the proposed dark green status color. */
+  --az-color-semantic-text-emphasis-info: var(--az-color-status-blue-900); /** Emphasized informational-alert text; aliases the proposed dark blue status color. */
+  --az-color-semantic-text-emphasis-warning: var(--az-color-status-amber-900); /** Emphasized warning-alert text; aliases the proposed dark amber status color. */
+  --az-color-semantic-text-emphasis-danger: var(--az-color-status-red-900); /** Emphasized danger-alert text; aliases the proposed dark red status color. */
+  --az-color-semantic-role-primary: var(--az-color-brand-red); /** Primary role color for solid fills; aliases the brand red. */
+  --az-color-semantic-role-secondary: var(--az-color-brand-blue); /** Secondary role color for solid fills; aliases the brand blue. */
+  --az-color-semantic-role-success: var(--az-color-status-green-500); /** Success role color for solid fills, badges, and buttons; aliases the proposed green status color. */
+  --az-color-semantic-role-info: var(--az-color-status-blue-500); /** Info role color for solid fills, badges, and buttons; aliases the proposed blue status color. */
+  --az-color-semantic-role-warning: var(--az-color-status-amber-500); /** Warning role color for solid fills, badges, and buttons; aliases the proposed amber status color. */
+  --az-color-semantic-role-danger: var(--az-color-status-red-500); /** Danger role color for solid fills, badges, and buttons; aliases the proposed red status color. */
+  --az-color-semantic-role-light: var(--az-color-brand-cloud); /** Light role color; aliases the brand cloud color. */
+  --az-color-semantic-role-dark: var(--az-color-brand-tinta); /** Dark role color; aliases the brand tinta color. */
+  --az-color-semantic-bg-subtle-success: var(--az-color-status-green-100); /** Subtle success feedback background; aliases the proposed light green status tint. */
+  --az-color-semantic-bg-subtle-info: var(--az-color-status-blue-100); /** Subtle informational feedback background; aliases the proposed light blue status tint. */
+  --az-color-semantic-bg-subtle-warning: var(--az-color-status-amber-100); /** Subtle warning feedback background; aliases the proposed light amber status tint. */
+  --az-color-semantic-bg-subtle-danger: var(--az-color-status-red-100); /** Subtle danger feedback background; aliases the proposed light red status tint. */
+  --az-color-semantic-border-subtle-success: var(--az-color-status-green-500); /** Success feedback border; aliases the proposed green status color. */
+  --az-color-semantic-border-subtle-info: var(--az-color-status-blue-500); /** Informational feedback border; aliases the proposed blue status color. */
+  --az-color-semantic-border-subtle-warning: var(--az-color-status-amber-500); /** Warning feedback border; aliases the proposed amber status color. */
+  --az-color-semantic-border-subtle-danger: var(--az-color-status-red-500); /** Danger feedback border; aliases the proposed red status color. */
+  --az-color-semantic-text-primary: var(--az-color-semantic-role-primary); /** Text in the primary role; aliases role.primary. */
+  --az-color-semantic-text-secondary: var(--az-color-semantic-role-secondary); /** Text in the secondary role; aliases role.secondary. */
+  --az-color-semantic-text-success: var(--az-color-semantic-role-success); /** Success text on the default background; aliases the proposed green status color. */
+  --az-color-semantic-text-info: var(--az-color-semantic-role-info); /** Informational text on the default background; aliases the proposed blue status color. */
+  --az-color-semantic-text-warning: var(--az-color-semantic-role-warning); /** Warning text on the default background; aliases the proposed amber status color. */
+  --az-color-semantic-text-danger: var(--az-color-semantic-role-danger); /** Danger text on the default background; aliases the proposed red status color. */
+  --az-color-semantic-text-light: var(--az-color-semantic-role-light); /** Text in the light role; aliases role.light. */
+  --az-color-semantic-text-dark: var(--az-color-semantic-role-dark); /** Text in the dark role; aliases role.dark. */
+  --az-color-semantic-text-body: var(--az-color-semantic-text-default); /** Body text color; aliases text.default. */
+  --az-color-semantic-text-emphasis-default: var(--az-color-semantic-text-default); /** Emphasized text without a status; aliases text.default. */
+  --az-color-semantic-text-emphasis-primary: var(--az-color-semantic-role-primary); /** Emphasized primary-role text; aliases role.primary. */
+  --az-color-semantic-text-emphasis-secondary: var(--az-color-semantic-role-secondary); /** Emphasized secondary-role text; aliases role.secondary. */
+  --az-color-semantic-text-emphasis-light: var(--az-color-semantic-role-light); /** Emphasized light-role text; aliases role.light. */
+  --az-color-semantic-text-emphasis-dark: var(--az-color-semantic-role-dark); /** Emphasized dark-role text; aliases role.dark. */
 }
