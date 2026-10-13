@@ -21,8 +21,6 @@ const preview: Preview = {
               'Overview',
               'Layout',
               ['Overview', 'Grids and Spacing', 'Breakpoints', '*'],
-              'Typography',
-              ['*'],
               'Accessibility',
               ['*'],
               'Content Design',
