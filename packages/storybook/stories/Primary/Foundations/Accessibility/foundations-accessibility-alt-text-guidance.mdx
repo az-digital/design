@@ -19,12 +19,15 @@ Prefer real, selectable text to an image of text. If an image of text is necessa
 
 ## Examples
 
-| Context | Appropriate alternative | Avoid |
-| --- | --- | --- |
-| An article about campus architecture uses a photo of Old Main at sunset. | `Old Main’s sandstone facade at sunset.` | `Photo` or a long inventory of incidental details. |
-| The same photo is used in a card whose visible link text is “Plan a campus visit.” | `alt=""` because the visible link text already names the destination. | Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose. |
-| A chart shows enrollment increasing over five years. | `Enrollment increased each year from 2020 to 2024.` Add a nearby data table with the values. | `Bar chart` with no explanation of the information. |
-| A decorative flourish appears beside a heading that already states the same idea. | `alt=""` | A description that repeats the heading. |
+<table>
+  <tbody>
+    <tr><th>Context</th><th>Appropriate alternative</th><th>Avoid</th></tr>
+    <tr><td>An article about campus architecture uses a photo of Old Main at sunset.</td><td><code>Old Main’s sandstone facade at sunset.</code></td><td><code>Photo</code> or a long inventory of incidental details.</td></tr>
+    <tr><td>The same photo is used in a card whose visible link text is “Plan a campus visit.”</td><td><code>alt=""</code> because the visible link text already names the destination.</td><td>Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose.</td></tr>
+    <tr><td>A chart shows enrollment increasing over five years.</td><td><code>Enrollment increased each year from 2020 to 2024.</code> Add a nearby data table with the values.</td><td><code>Bar chart</code> with no explanation of the information.</td></tr>
+    <tr><td>A decorative flourish appears beside a heading that already states the same idea.</td><td><code>alt=""</code></td><td>A description that repeats the heading.</td></tr>
+  </tbody>
+</table>
 
 These examples are starting points, not text to reuse without checking the image and its context. Any suggested or generated description must be reviewed for accuracy and purpose.
 
