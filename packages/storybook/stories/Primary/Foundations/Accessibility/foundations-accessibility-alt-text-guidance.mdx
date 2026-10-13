@@ -4,4 +4,53 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Alt text guidance
 
-This page captures the expectations for meaningful image descriptions so content remains accessible and understandable to all users.
+Use this guidance to make images understandable to people who cannot see them. Choose an image alternative based on the image’s purpose in its specific context, and review every description for accuracy. This page covers still images, logos, icons and SVGs, charts, diagrams, and images of text; it does not cover video or audio alternatives.
+
+## Start with the image’s purpose
+
+An image’s alternative communicates what the image contributes to the page, not everything that can be seen in it. The same image can need a different alternative in a different context.
+
+- **Informative images** convey information that is not already available in nearby text. Describe the relevant information, not just the fact that an image is present.
+- **Decorative or redundant images** add no information beyond nearby text or are included only for visual effect. Use an empty alternative (`alt=""`) so assistive technology can skip them. Empty alt is intentional; omitting the `alt` attribute can cause a screen reader to announce a file name instead.
+- **Functional images** act as links or controls. Describe the action or destination when the image is the only label. When visible text already gives the link or control its accessible name, avoid repeating it in the image alternative.
+- **Complex images**, such as charts, maps, and diagrams, need a concise alternative identifying their subject or takeaway and a nearby or linked text explanation of the essential details. A data table can provide an equivalent for a chart.
+
+Prefer real, selectable text to an image of text. If an image of text is necessary, make the same wording available as text and provide an alternative that conveys its purpose. There is no single character limit that works for every image: be concise, but include the information needed in context.
+
+## Examples
+
+| Context | Appropriate alternative | Avoid |
+| --- | --- | --- |
+| An article about campus architecture uses a photo of Old Main at sunset. | `Old Main’s sandstone facade at sunset.` | `Photo` or a long inventory of incidental details. |
+| The same photo is used in a card whose visible link text is “Plan a campus visit.” | `alt=""` because the visible link text already names the destination. | Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose. |
+| A chart shows enrollment increasing over five years. | `Enrollment increased each year from 2020 to 2024.` Add a nearby data table with the values. | `Bar chart` with no explanation of the information. |
+| A decorative flourish appears beside a heading that already states the same idea. | `alt=""` | A description that repeats the heading. |
+
+These examples are starting points, not text to reuse without checking the image and its context. Any suggested or generated description must be reviewed for accuracy and purpose.
+
+## Guidance for common components
+
+- **Cards:** If the image is decorative or the card’s visible title and link already convey its purpose, use `alt=""`. If it adds distinct information, describe that contribution without repeating the card title.
+- **Hero and banner images:** Use an alternative only for information the image adds beyond the page heading and nearby copy. Avoid generic phrases such as “hero image” or “banner.”
+- **Headshots and profile images:** When the person’s identity matters and is not already stated nearby, use their name. If a visible name already identifies the person, the portrait is often redundant and can use `alt=""`.
+- **Arizona logos:** Describe the logo’s purpose in context. For a logo that is the only content in a link to the University of Arizona home page, use a name such as “University of Arizona home.” If the same link already contains the visible university name, use `alt=""` for the redundant logo. Follow the approved brand name and avoid repeating nearby text.
+
+Assess redundancy for each image in its actual context; the same image may be informative in one place and decorative in another.
+
+## Icons, SVGs, and background images
+
+- A meaningful CSS background image cannot have an `alt` attribute. Put essential information in visible text or another text alternative in the page rather than making CSS the only way to access it.
+- Hide decorative icons from assistive technology (for example, with `aria-hidden="true"`). An icon-only button or link still needs an accessible name that describes its action or destination; do not rely on the icon’s appearance alone.
+- Give a meaningful inline SVG an accessible name and appropriate image semantics, such as a `<title>` referenced by `aria-labelledby` with `role="img"`. If the SVG is decorative, hide it from assistive technology instead. Ensure its text alternative is available to users of the supported implementation.
+
+## Responsibilities
+
+- **Designers:** In Figma handoffs, identify whether each image is informative, functional, or decorative and propose its description in context. Call out visible text that makes an image redundant, and flag complex images that need a longer explanation or data.
+- **Developers:** Preserve image descriptions through HTML, React, and web component implementations. Set the `alt` property on image elements; use `alt=""` for decorative images. Ensure component APIs pass that value through, and provide accessible names for icon-only controls. Do not put essential information only in CSS backgrounds.
+- **Content editors:** When adding media in Drupal or Arizona Quickstart, enter alt text in the media’s alternative-text field when the image conveys information. Leave it empty for decorative or redundant images when the editor supports an empty alternative. Review descriptions in the page where the media is used; do not use captions, filenames, or image titles as substitutes.
+
+For editorial language beyond image descriptions, see the [Style guide for writing](?path=/docs/primary-foundations-content-design-style-guide-for-writing--docs).
+
+## Further guidance
+
+For detailed University of Arizona recommendations, see the [Accessibility Do/Don’t Library](https://accessibility.arizona.edu/tools-checklists/dodont-library) and [Alt Text Quick Reference Card (PDF)](https://accessibility.arizona.edu/sites/default/files/2026-01/Quick-Reference-Cards-Accessibility-at-Arizona-Alt-Text.pdf). For conformance criteria, see [WCAG 2.2 Success Criterion 1.1.1: Non-text Content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) and [1.4.5: Images of Text](https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html).
