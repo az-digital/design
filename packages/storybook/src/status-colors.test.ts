@@ -39,6 +39,15 @@ describe('status color tokens', () => {
       expect(semantic['text-emphasis'][role].$value).toBe(`{az.color.status.${hue}.900}`);
       expect(semantic['bg-subtle'][role].$value).toBe(`{az.color.status.${hue}.100}`);
       expect(semantic['border-subtle'][role].$value).toBe(`{az.color.status.${hue}.500}`);
+      for (const token of [
+        semantic.role[role],
+        semantic.text[role],
+        semantic['text-emphasis'][role],
+        semantic['bg-subtle'][role],
+        semantic['border-subtle'][role],
+      ]) {
+        expect(token.$description).toBeTruthy();
+      }
     }
   });
 
