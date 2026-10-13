@@ -50,12 +50,17 @@ Status colors are a separate, proposed palette for success, info, warning, and d
 
 Use the semantic tokens in components: `role.*` for solid fills, `text.*` for status text, `text-emphasis.*` for text on subtle backgrounds, `bg-subtle.*` for feedback surfaces, and `border-subtle.*` for their borders. The amber warning and red danger roles are intentionally distinct.
 
-| Pairing | Minimum contrast |
-| --- | ---: |
-| Status text (500) on white | 5.0:1 |
-| White text on a solid status fill (500) | 5.0:1 |
-| Emphasized text (900) on a subtle background (100) | 7.0:1 |
-| Status border (500) against its subtle background (100) | 4.5:1 |
+<table>
+  <thead>
+    <tr><th>Pairing</th><th>Minimum contrast</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Status text (500) on white</td><td>5.0:1</td></tr>
+    <tr><td>White text on a solid status fill (500)</td><td>5.0:1</td></tr>
+    <tr><td>Emphasized text (900) on a subtle background (100)</td><td>7.0:1</td></tr>
+    <tr><td>Status border (500) against its subtle background (100)</td><td>4.5:1</td></tr>
+  </tbody>
+</table>
 
 These proposed pairings meet WCAG 2.1 AA text contrast; the border pairing also exceeds the 3:1 non-text contrast requirement. Never communicate status by color alone: include a text label and, where useful, a recognizable icon.
 
