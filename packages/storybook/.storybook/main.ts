@@ -9,6 +9,7 @@ const gitRef = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || "ma
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
+  staticDirs: ['../../../public'],
 
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
