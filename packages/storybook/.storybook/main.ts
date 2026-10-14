@@ -2,6 +2,11 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/react-vite';
 
+// Link token files at the branch this Storybook is built from: the PR's branch
+// for review-site builds of a pull request, the pushed branch for other CI
+// builds, and main locally (a local branch may not exist on GitHub).
+const gitRef = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || "main";
+
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
 
@@ -9,13 +14,11 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
     {
-      name: getAbsolutePath("@unpunnyfuns/swatchbook-addon"),
+      // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
+      name: getAbsolutePath("@az-digital/storybook-addon-tokens"),
       options: {
-        config: {
-          // no resolver/themes yet: single tokens.json, one synthetic theme
-          tokens: ['../tokens/tokens.json'],
-          cssVarPrefix: '',
-        },
+        styleDictionary: "../../tokens/style-dictionary.config.mjs",
+        repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
       },
     },
   ],
