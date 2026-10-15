@@ -65,6 +65,9 @@ jobs:
           echo "AZ_REVIEW_BASEURL=/design/pr-${{ github.event.pull_request.number }}" >> "${GITHUB_ENV}"
 
       - name: Build Storybook
+        env:
+          # Link "View on GitHub" to the PR's branch (or the pushed branch).
+          STORYBOOK_GIT_REF: ${{ github.head_ref || github.ref_name }}
         run: npm run build:storybook
 
       - name: Configure AWS credentials
