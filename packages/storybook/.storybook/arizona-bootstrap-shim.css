@@ -1,0 +1,90 @@
+/*
+ * Arizona Bootstrap shim — Storybook only, never shipped.
+ *
+ * The stories render real Arizona Bootstrap (loaded from the CDN in
+ * preview-head.html), whose buttons don't match our design tokens yet. This
+ * file closes each gap by pointing Bootstrap's own button variables at our
+ * tokens, so what a story renders is what tokens.json says. Every value is a
+ * `var(--az-…)` reference: nothing here is a literal, so it follows the tokens
+ * automatically. Each rule names one gap; when Arizona Bootstrap adopts the
+ * tokens, its rule can go.
+ *
+ * Selectors are one level more specific than Arizona Bootstrap's (`:root .btn`
+ * over `.btn`) so they win however the two stylesheets end up ordered.
+ */
+
+/* Structure shared by every button style. */
+:root .btn {
+  --bs-btn-padding-x: var(--az-component-button-padding-x);
+  --bs-btn-padding-y: var(--az-component-button-padding-y);
+  --bs-btn-font-size: var(--az-component-button-label-font-size);
+  --bs-btn-font-weight: var(--az-component-button-label-font-weight);
+  --bs-btn-border-width: var(--az-component-button-border-width);
+  --bs-btn-border-radius: var(--az-component-button-border-radius);
+  --bs-btn-disabled-opacity: var(--az-component-button-disabled-opacity);
+  /*
+   * The Figma Buttons component trims the label's line box to its cap height
+   * (Figma "leading trim: cap height"), so its padding is measured from the
+   * capitals, not from a full line. text-box does the same in CSS; browsers
+   * without it render the label's full line height, about 10px taller.
+   */
+  text-box: trim-both cap alphabetic;
+}
+
+:root .btn.btn-lg {
+  --bs-btn-padding-x: var(--az-component-button-size-lg-padding-x);
+  --bs-btn-padding-y: var(--az-component-button-size-lg-padding-y);
+  --bs-btn-font-size: var(--az-component-button-size-lg-label-font-size);
+  --bs-btn-border-radius: var(--az-component-button-size-lg-border-radius);
+}
+
+:root .btn.btn-sm {
+  --bs-btn-padding-x: var(--az-component-button-size-sm-padding-x);
+  --bs-btn-padding-y: var(--az-component-button-size-sm-padding-y);
+  --bs-btn-font-size: var(--az-component-button-size-sm-label-font-size);
+}
+
+/*
+ * Solid red (az.component.button.solid.*). The tokens have no separate solid
+ * border color: a solid button's border is its fill.
+ */
+:root .btn.btn-red {
+  --bs-btn-color: var(--az-component-button-solid-label-color);
+  --bs-btn-bg: var(--az-component-button-solid-container-color);
+  --bs-btn-border-color: var(--az-component-button-solid-container-color);
+  --bs-btn-hover-color: var(--az-component-button-solid-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-solid-hover-container-color);
+  --bs-btn-hover-border-color: var(--az-component-button-solid-hover-container-color);
+  --bs-btn-disabled-color: var(--az-component-button-solid-label-color);
+  --bs-btn-disabled-bg: var(--az-component-button-solid-container-color);
+  --bs-btn-disabled-border-color: var(--az-component-button-solid-container-color);
+  --az-btn-focus-outline-color: var(--az-component-button-focus-visible-ring);
+}
+
+/*
+ * Bootstrap gives :focus-visible the hover look; a focused solid button keeps
+ * its resting fill (solid.focus.container.color), with the ring on top.
+ */
+:root .btn.btn-red:focus-visible {
+  color: var(--az-component-button-solid-label-color);
+  background-color: var(--az-component-button-solid-focus-container-color);
+  border-color: var(--az-component-button-solid-focus-container-color);
+}
+
+/* Outline red (az.component.button.outline.*). */
+:root .btn.btn-outline-red {
+  --bs-btn-color: var(--az-component-button-outline-label-color);
+  --bs-btn-border-color: var(--az-component-button-outline-border-color);
+  --bs-btn-hover-color: var(--az-component-button-outline-hover-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-hover-container-color);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-hover-border-color);
+  --bs-btn-disabled-color: var(--az-component-button-outline-label-color);
+  --bs-btn-disabled-border-color: var(--az-component-button-outline-border-color);
+  --az-btn-focus-outline-color: var(--az-component-button-focus-visible-ring);
+}
+
+:root .btn.btn-outline-red:focus-visible {
+  color: var(--az-component-button-outline-focus-label-color);
+  background-color: var(--az-component-button-outline-focus-container-color);
+  border-color: var(--az-component-button-outline-focus-border-color);
+}
