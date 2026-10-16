@@ -43,7 +43,7 @@ export const az: {
       "container": {
         "color": string
       },
-      "red": {
+      "primary-1": {
         "container": {
           "color": string
         },

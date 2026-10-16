@@ -43,18 +43,18 @@ export const az = {
       "container": {
         "color": "var(--az-component-arizona-header-container-color)"
       },
-      "red": {
+      "primary-1": {
         "container": {
-          "color": "var(--az-component-arizona-header-red-container-color)"
+          "color": "var(--az-component-arizona-header-primary-1-container-color)"
         },
         "focusVisible": {
           "ring": {
-            "color": "var(--az-component-arizona-header-red-focus-visible-ring-color)"
+            "color": "var(--az-component-arizona-header-primary-1-focus-visible-ring-color)"
           }
         },
         "button": {
           "label": {
-            "color": "var(--az-component-arizona-header-red-button-label-color)"
+            "color": "var(--az-component-arizona-header-primary-1-button-label-color)"
           }
         }
       },
