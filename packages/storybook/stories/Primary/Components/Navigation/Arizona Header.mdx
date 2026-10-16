@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+
+<Meta title="Primary/Components/Navigation/Arizona Header" />
+
+# Arizona Header
+
+The University of Arizona wordmark header, required on all `arizona.edu` subdomains.
+It's a custom Arizona Bootstrap component, with no equivalent in upstream Bootstrap.
+
+## Colors
+
+- **Blue** (default): the current, recommended header. Arizona Bootstrap made it the
+  default, and took it out of experimental status, in 5.2
+  (az-digital/arizona-bootstrap#2299).
+- **Red**: the original header color. It's still available, but Arizona Bootstrap plans
+  to deprecate it, so don't use it for new sites.
+
+## Tokens
+
+`az.component.arizona-header.*` records the header's design decisions, every value
+taken from Arizona Bootstrap:
+
+- **Fill:** <Token data={getTokenData('az.component.arizona-header.container.color')} />,
+  through the <Token data={getTokenData('az.color.semantic.surface.inverse')} /> surface.
+  The original red header's fill, <Token data={getTokenData('az.component.arizona-header.red.container.color')} />,
+  replaces it, and stays until Arizona Bootstrap deprecates the red header.
+- **Size:** the header is at least 50px tall, and exactly 50px below 992px.
+- **Keyboard focus:** the logo and header buttons draw a 2px White ring inside their
+  edges, with 2px corners.
+- **Header buttons** (`.btn-arizona-header`, for adding search and menu toggles on
+  mobile): White text and icons, at least 60px wide and as tall as the header.
+- **Fixed on mobile:** when the header is pinned to the top of the screen below 992px,
+  linked sections stop 58px below the top when scrolled to, so the header doesn't
+  cover them.
+
+<TokenTable items={getTokenDisplayItems('az.component.arizona-header.')} />
