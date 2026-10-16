@@ -18,14 +18,9 @@ export const az: {
     },
     "semantic": {
       "surface": {
-        "primary-1": string,
-        "primary-2": string
+        "brand": string
       },
-      "onPrimary-1": {
-        "default": string,
-        "focusRing": string
-      },
-      "onPrimary-2": {
+      "onBrand": {
         "default": string,
         "focusRing": string
       }
@@ -42,21 +37,6 @@ export const az: {
       "height": string,
       "container": {
         "color": string
-      },
-      "primary-1": {
-        "container": {
-          "color": string
-        },
-        "focusVisible": {
-          "ring": {
-            "color": string
-          }
-        },
-        "button": {
-          "label": {
-            "color": string
-          }
-        }
       },
       "focusVisible": {
         "ring": {

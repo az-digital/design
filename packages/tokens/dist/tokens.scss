@@ -1,5 +1,5 @@
-$az-color-brand-red: #ab0520;
-$az-color-brand-blue: #0c234b;
+$az-color-brand-red: #ab0520; // Arizona Red, primary color 1.
+$az-color-brand-blue: #0c234b; // Arizona Blue, primary color 2.
 $az-color-brand-tinta: #03132e;
 $az-color-brand-azurite: #1e5288;
 $az-color-brand-arroyo-blue: #106ab1;
@@ -16,21 +16,15 @@ $az-dimension-2: 2px;
 $az-dimension-50: 50px;
 $az-dimension-58: 58px;
 $az-dimension-60: 60px;
-$az-color-semantic-surface-primary-1: $az-color-brand-red; // Surface in primary color 1 (Red), one of Arizona's two primary brand colors. Used by the original red Arizona Header, which Arizona Bootstrap plans to deprecate (az-digital/arizona-bootstrap#2299) — aliases the brand palette.
-$az-color-semantic-surface-primary-2: $az-color-brand-blue; // Surface in primary color 2 (Blue), one of Arizona's two primary brand colors. Used by the Arizona Header, the default since Arizona Bootstrap 5.2 (az-digital/arizona-bootstrap#2299) — aliases the brand palette.
-$az-color-semantic-on-primary-1-default: $az-color-brand-white; // Text and icons on surface.primary-1 — aliases the brand palette.
-$az-color-semantic-on-primary-1-focus-ring: $az-color-brand-white; // Keyboard focus ring on surface.primary-1 — aliases the brand palette.
-$az-color-semantic-on-primary-2-default: $az-color-brand-white; // Text and icons on surface.primary-2 — aliases the brand palette.
-$az-color-semantic-on-primary-2-focus-ring: $az-color-brand-white; // Keyboard focus ring on surface.primary-2 — aliases the brand palette.
+$az-color-semantic-surface-brand: $az-color-brand-blue; // The brand surface: the surface that follows the brand, such as the Arizona Header's fill. Blue by default since Arizona Bootstrap 5.2 (az-digital/arizona-bootstrap#2299). A theme can point it at another primary color, such as Red for the original red header; repoint on-brand.* with it — aliases the brand palette.
+$az-color-semantic-on-brand-default: $az-color-brand-white; // Text and icons on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
+$az-color-semantic-on-brand-focus-ring: $az-color-brand-white; // Keyboard focus ring on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
 $az-component-arizona-header-height: $az-dimension-50; // Header height: its minimum height at every screen size, and its fixed height below 992px. Per Arizona Bootstrap.
 $az-component-arizona-header-focus-visible-ring-width: $az-dimension-2; // Width of the inset keyboard focus ring on the logo and header buttons. Per Arizona Bootstrap.
 $az-component-arizona-header-focus-visible-border-radius: $az-dimension-2; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners. Per Arizona Bootstrap.
 $az-component-arizona-header-button-min-width: $az-dimension-60; // Header button (.btn-arizona-header) minimum width. Per Arizona Bootstrap.
 $az-component-arizona-header-fixed-on-mobile-scroll-offset: $az-dimension-58; // When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them. Per Arizona Bootstrap.
-$az-component-arizona-header-container-color: $az-color-semantic-surface-primary-2; // Header fill: primary color 2 (Blue), the default since Arizona Bootstrap 5.2. Per az-digital/arizona-bootstrap#2299.
-$az-component-arizona-header-primary-1-container-color: $az-color-semantic-surface-primary-1; // The original red header's fill: primary color 1 (Red). Replaces container.color. Arizona Bootstrap plans to deprecate the red header; don't use it for new sites. Per az-digital/arizona-bootstrap#2299.
-$az-component-arizona-header-primary-1-focus-visible-ring-color: $az-color-semantic-on-primary-1-focus-ring; // Keyboard focus ring on the original red header's logo and buttons; replaces focus-visible.ring.color. Per Arizona Bootstrap.
-$az-component-arizona-header-primary-1-button-label-color: $az-color-semantic-on-primary-1-default; // Header button text and icon color on the original red header; replaces button.label.color. Per Arizona Bootstrap.
-$az-component-arizona-header-focus-visible-ring-color: $az-color-semantic-on-primary-2-focus-ring; // Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. Per Arizona Bootstrap.
-$az-component-arizona-header-button-label-color: $az-color-semantic-on-primary-2-default; // Header button (.btn-arizona-header) text and icon color. Per Arizona Bootstrap.
+$az-component-arizona-header-container-color: $az-color-semantic-surface-brand; // Header fill: the brand surface, Blue by default since Arizona Bootstrap 5.2 (az-digital/arizona-bootstrap#2299). The original red header comes from a theme that points surface.brand at Red.
+$az-component-arizona-header-focus-visible-ring-color: $az-color-semantic-on-brand-focus-ring; // Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. Per Arizona Bootstrap.
+$az-component-arizona-header-button-label-color: $az-color-semantic-on-brand-default; // Header button (.btn-arizona-header) text and icon color. Per Arizona Bootstrap.
 $az-component-arizona-header-button-min-height: $az-component-arizona-header-height; // Header button (.btn-arizona-header) minimum height: the header's own height. Per Arizona Bootstrap.

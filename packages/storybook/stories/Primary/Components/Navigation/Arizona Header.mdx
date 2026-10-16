@@ -22,21 +22,16 @@ It's a custom Arizona Bootstrap component, with no equivalent in upstream Bootst
 taken from Arizona Bootstrap:
 
 - **Fill:** <Token data={getTokenData('az.component.arizona-header.container.color')} />,
-  through the <Token data={getTokenData('az.color.semantic.surface.primary-2')} /> surface
-  (Blue). The original red header's fill, <Token data={getTokenData('az.component.arizona-header.primary-1.container.color')} />,
-  uses <Token data={getTokenData('az.color.semantic.surface.primary-1')} /> (Red) instead,
-  and stays until Arizona Bootstrap deprecates the red header.
+  through the <Token data={getTokenData('az.color.semantic.surface.brand')} /> surface:
+  Blue by default. The original red header isn't a separate set of tokens: a theme
+  would point `surface.brand` at Red (keeping `on-brand.*` White). There are no themes
+  yet, and the red header is only needed until Arizona Bootstrap deprecates it.
 - **Size:** the header is at least 50px tall, and exactly 50px below 992px.
 - **Keyboard focus:** the logo and header buttons draw a 2px ring inside their edges,
-  with 2px corners, in the surface's focus-ring color:
-  <Token data={getTokenData('az.color.semantic.on-primary-2.focus-ring')} />, or
-  <Token data={getTokenData('az.color.semantic.on-primary-1.focus-ring')} /> on the red header.
-  Both are White.
+  with 2px corners, in <Token data={getTokenData('az.color.semantic.on-brand.focus-ring')} /> (White).
 - **Header buttons** (`.btn-arizona-header`, for adding search and menu toggles on
-  mobile): text and icons in the surface's on color,
-  <Token data={getTokenData('az.color.semantic.on-primary-2.default')} />, or
-  <Token data={getTokenData('az.color.semantic.on-primary-1.default')} /> on the red header.
-  Both are White. The buttons are at least 60px wide and as tall as the header.
+  mobile): text and icons in <Token data={getTokenData('az.color.semantic.on-brand.default')} />
+  (White), at least 60px wide and as tall as the header.
 - **Logo:** the wordmark is a White image file, so no token colors it.
 - **Fixed on mobile:** when the header is pinned to the top of the screen below 992px,
   linked sections stop 58px below the top when scrolled to, so the header doesn't

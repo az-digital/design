@@ -18,16 +18,11 @@ export const az = {
     },
     "semantic": {
       "surface": {
-        "primary-1": "var(--az-color-semantic-surface-primary-1)",
-        "primary-2": "var(--az-color-semantic-surface-primary-2)"
+        "brand": "var(--az-color-semantic-surface-brand)"
       },
-      "onPrimary-1": {
-        "default": "var(--az-color-semantic-on-primary-1-default)",
-        "focusRing": "var(--az-color-semantic-on-primary-1-focus-ring)"
-      },
-      "onPrimary-2": {
-        "default": "var(--az-color-semantic-on-primary-2-default)",
-        "focusRing": "var(--az-color-semantic-on-primary-2-focus-ring)"
+      "onBrand": {
+        "default": "var(--az-color-semantic-on-brand-default)",
+        "focusRing": "var(--az-color-semantic-on-brand-focus-ring)"
       }
     }
   },
@@ -42,21 +37,6 @@ export const az = {
       "height": "var(--az-component-arizona-header-height)",
       "container": {
         "color": "var(--az-component-arizona-header-container-color)"
-      },
-      "primary-1": {
-        "container": {
-          "color": "var(--az-component-arizona-header-primary-1-container-color)"
-        },
-        "focusVisible": {
-          "ring": {
-            "color": "var(--az-component-arizona-header-primary-1-focus-visible-ring-color)"
-          }
-        },
-        "button": {
-          "label": {
-            "color": "var(--az-component-arizona-header-primary-1-button-label-color)"
-          }
-        }
       },
       "focusVisible": {
         "ring": {
