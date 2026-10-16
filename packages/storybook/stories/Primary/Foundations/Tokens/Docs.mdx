@@ -5,7 +5,7 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ComponentTokenIndex, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ComponentTokenIndex, TokenDisplay, getTokensData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
@@ -41,6 +41,12 @@ Source file: `packages/tokens/tokens.json`
 Arizona's brand palette (`az.color.brand.*`), the raw color values every other color token is built from.
 
 <ColorSwatchGrid prefix="az.color.brand." />
+
+## Semantic colors
+
+Purpose-based aliases onto the brand palette (`az.color.semantic.*`), named for what a color is for, never for what it looks like. `surface.*` holds background colors that content sits on; `text.*` holds text and icon colors; `action.*` holds colors for interactive elements, such as focus rings. Every value traces back to a brand color, so a design decision changes in one place. Use these, not brand colors, in components and production UI.
+
+<TokenDisplay prefix="az.color.semantic." layout="table" />
 
 ## Component tokens
 
