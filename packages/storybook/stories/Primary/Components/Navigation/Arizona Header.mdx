@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+
+<Meta title="Primary/Components/Navigation/Arizona Header" />
+
+# Arizona Header
+
+## Colors
+
+- **Blue** (default): the current, recommended header color.
+- **Red**: the original header color. It's being retired, so don't use it for new sites.
+
+## Tokens
+
+`az.component.brand-header.*` records the header's design decisions. Each token's
+description names where its value comes from.
+
+- **Fill:** <Token data={getTokenData('az.component.brand-header.container.color')} />
+  points at the brand surface, <Token data={getTokenData('az.color.semantic.surface.brand')} />,
+  which is Blue by default. The original red header isn't a separate set of tokens: a theme
+  would point `surface.brand` at Red (keeping `on-brand.*` White). There are no themes
+  yet, and the red header is only needed until it's retired.
+- **Size:** the header is at least 50px tall, and exactly 50px below 992px. The wordmark
+  is 211 × 16px below 576px and 266.41 × 19.8px from 576px up, 10px from the header's
+  left edge.
+- **Keyboard focus:** the logo and header buttons draw a 2px ring inside their edges,
+  with 2px corners, in <Token data={getTokenData('az.color.semantic.on-brand.focus-ring')} /> (White).
+- **Header buttons** (for adding search and menu toggles on mobile): at least 60px
+  wide and as tall as the header, with 4px of padding above and below.
+  - **Label:** text in <Token data={getTokenData('az.color.semantic.on-brand.default')} />
+    (White), 10px with a 10px line height, 2px below the icon.
+  - **Icon:** 24px square, the same color as the label. Use an SVG (inline or from a
+    sprite) with `fill="currentColor"` so it picks up that color.
+- **Logo:** the wordmark's color, <Token data={getTokenData('az.component.brand-header.logo.color')} />,
+  points at <Token data={getTokenData('az.color.semantic.on-brand.logo')} />, which is White.
+  The wordmark is a single color, so its color can change with the surface behind it.
+  It has its own token rather than sharing the text color's (`on-brand.default`), so
+  changing the text color doesn't recolor the logo.
+- **Motion:** the off-canvas panel the header buttons open slides in over 300ms,
+  ease-in-out, and the backdrop behind it fades in over 150ms. Header buttons change
+  color and show their focus ring over 150ms. They haven't been
+  reviewed by design yet, and all of them turn off when someone asks for reduced
+  motion.
+- **Fixed on mobile:** when the header is pinned to the top of the screen below 992px,
+  linked sections stop 58px below the top when scrolled to, so the header doesn't
+  cover them.
+
+<TokenTable items={getTokenDisplayItems('az.component.brand-header.')} />
