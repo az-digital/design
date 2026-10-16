@@ -33,7 +33,7 @@ export const az: {
     "60": string
   },
   "component": {
-    "arizonaHeader": {
+    "brandHeader": {
       "height": string,
       "container": {
         "color": string

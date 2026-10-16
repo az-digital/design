@@ -13,10 +13,10 @@ import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digit
 
 ## Tokens
 
-`az.component.arizona-header.*` records the header's design decisions. Each token's
+`az.component.brand-header.*` records the header's design decisions. Each token's
 description names where its value comes from.
 
-- **Fill:** <Token data={getTokenData('az.component.arizona-header.container.color')} />,
+- **Fill:** <Token data={getTokenData('az.component.brand-header.container.color')} />,
   through the <Token data={getTokenData('az.color.semantic.surface.brand')} /> surface:
   Blue by default. The original red header isn't a separate set of tokens: a theme
   would point `surface.brand` at Red (keeping `on-brand.*` White). There are no themes
@@ -31,4 +31,4 @@ description names where its value comes from.
   linked sections stop 58px below the top when scrolled to, so the header doesn't
   cover them.
 
-<TokenTable items={getTokenDisplayItems('az.component.arizona-header.')} />
+<TokenTable items={getTokenDisplayItems('az.component.brand-header.')} />

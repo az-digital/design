@@ -33,29 +33,29 @@ export const az = {
     "60": "var(--az-dimension-60)"
   },
   "component": {
-    "arizonaHeader": {
-      "height": "var(--az-component-arizona-header-height)",
+    "brandHeader": {
+      "height": "var(--az-component-brand-header-height)",
       "container": {
-        "color": "var(--az-component-arizona-header-container-color)"
+        "color": "var(--az-component-brand-header-container-color)"
       },
       "focusVisible": {
         "ring": {
-          "color": "var(--az-component-arizona-header-focus-visible-ring-color)",
-          "width": "var(--az-component-arizona-header-focus-visible-ring-width)"
+          "color": "var(--az-component-brand-header-focus-visible-ring-color)",
+          "width": "var(--az-component-brand-header-focus-visible-ring-width)"
         },
         "border": {
-          "radius": "var(--az-component-arizona-header-focus-visible-border-radius)"
+          "radius": "var(--az-component-brand-header-focus-visible-border-radius)"
         }
       },
       "button": {
         "label": {
-          "color": "var(--az-component-arizona-header-button-label-color)"
+          "color": "var(--az-component-brand-header-button-label-color)"
         },
-        "minWidth": "var(--az-component-arizona-header-button-min-width)",
-        "minHeight": "var(--az-component-arizona-header-button-min-height)"
+        "minWidth": "var(--az-component-brand-header-button-min-width)",
+        "minHeight": "var(--az-component-brand-header-button-min-height)"
       },
       "fixedOnMobile": {
-        "scrollOffset": "var(--az-component-arizona-header-fixed-on-mobile-scroll-offset)"
+        "scrollOffset": "var(--az-component-brand-header-fixed-on-mobile-scroll-offset)"
       }
     }
   }
