@@ -17,15 +17,17 @@ export const az: {
       "white": string
     },
     "semantic": {
-      "action": {
-        "focusRingInverse": string
-      },
       "surface": {
-        "inverse": string,
-        "brand": string
+        "primary-1": string,
+        "primary-2": string
       },
-      "text": {
-        "inverse": string
+      "onPrimary-1": {
+        "default": string,
+        "focusRing": string
+      },
+      "onPrimary-2": {
+        "default": string,
+        "focusRing": string
       }
     }
   },
@@ -44,6 +46,16 @@ export const az: {
       "red": {
         "container": {
           "color": string
+        },
+        "focusVisible": {
+          "ring": {
+            "color": string
+          }
+        },
+        "button": {
+          "label": {
+            "color": string
+          }
         }
       },
       "focusVisible": {

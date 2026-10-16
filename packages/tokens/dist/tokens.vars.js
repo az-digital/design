@@ -17,15 +17,17 @@ export const az = {
       "white": "var(--az-color-brand-white)"
     },
     "semantic": {
-      "action": {
-        "focusRingInverse": "var(--az-color-semantic-action-focus-ring-inverse)"
-      },
       "surface": {
-        "inverse": "var(--az-color-semantic-surface-inverse)",
-        "brand": "var(--az-color-semantic-surface-brand)"
+        "primary-1": "var(--az-color-semantic-surface-primary-1)",
+        "primary-2": "var(--az-color-semantic-surface-primary-2)"
       },
-      "text": {
-        "inverse": "var(--az-color-semantic-text-inverse)"
+      "onPrimary-1": {
+        "default": "var(--az-color-semantic-on-primary-1-default)",
+        "focusRing": "var(--az-color-semantic-on-primary-1-focus-ring)"
+      },
+      "onPrimary-2": {
+        "default": "var(--az-color-semantic-on-primary-2-default)",
+        "focusRing": "var(--az-color-semantic-on-primary-2-focus-ring)"
       }
     }
   },
@@ -44,6 +46,16 @@ export const az = {
       "red": {
         "container": {
           "color": "var(--az-component-arizona-header-red-container-color)"
+        },
+        "focusVisible": {
+          "ring": {
+            "color": "var(--az-component-arizona-header-red-focus-visible-ring-color)"
+          }
+        },
+        "button": {
+          "label": {
+            "color": "var(--az-component-arizona-header-red-button-label-color)"
+          }
         }
       },
       "focusVisible": {
