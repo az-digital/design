@@ -1,0 +1,161 @@
+/*
+ * Arizona Bootstrap shim — Storybook only, never shipped.
+ *
+ * Arizona Bootstrap is loaded from the CDN in preview-head.html. This file
+ * points its styles at our design tokens, so any Arizona Bootstrap markup in
+ * Storybook renders what tokens.json says. It's also the reference for how
+ * each token maps onto Arizona Bootstrap's classes. Every
+ * value is a `var(--az-…)` reference, so it follows the tokens automatically;
+ * the two exceptions say why. When Arizona Bootstrap adopts the tokens, its rules
+ * can go.
+ *
+ * Selectors are one level more specific than Arizona Bootstrap's (`:root
+ * .arizona-header` over `.arizona-header`) so they win however the two
+ * stylesheets end up ordered.
+ */
+
+/*
+ * Brand header (az.component.brand-header.*): Arizona Bootstrap's
+ * .arizona-header.
+ *
+ * The fill follows the brand surface, whatever bg-* class the markup uses:
+ * the header's color is a theme decision, not a per-instance one. !important
+ * because Bootstrap's bg-* utilities are !important.
+ */
+:root .arizona-header {
+  background-color: var(--az-component-brand-header-container-color) !important;
+}
+
+/*
+ * The off-canvas panel's top bar (Home and Close) sits where the header was
+ * and holds header buttons, so it takes the header's fill. Arizona Bootstrap's
+ * example markup hard-codes text-bg-red there, left over from the red header.
+ * !important because Bootstrap's text-bg-* utilities are !important.
+ */
+:root .arizona-header .offcanvas-header {
+  background-color: var(--az-component-brand-header-container-color) !important;
+}
+
+:root .arizona-header > .container > .row,
+:root .arizona-logo {
+  min-height: var(--az-component-brand-header-height);
+}
+
+/*
+ * Wordmark logo in the logo color token. Arizona Bootstrap draws it as an
+ * <img> of a White SVG, which CSS can't recolor, so the shim hides the image's
+ * own pixels (object-position moves them out of the box) and paints the box in
+ * the token color, masked to the wordmark's shape. The mask URL is the same
+ * file the markup uses: the shim's second non-token value, since it's an asset.
+ * In a real implementation, an inline SVG with fill: currentColor is cleaner.
+ */
+:root .arizona-line-logo {
+  object-position: -99999px 0;
+  background-color: var(--az-component-brand-header-logo-color);
+  mask: url("https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg") center / contain no-repeat;
+}
+
+/* Wordmark size and spacing: small below the sm breakpoint, large from it up. */
+:root .arizona-line-logo {
+  max-width: var(--az-component-brand-header-logo-width);
+  height: var(--az-component-brand-header-logo-height);
+  margin-left: var(--az-component-brand-header-logo-margin-left);
+}
+
+@media (min-width: 576px) {
+  :root .arizona-line-logo {
+    max-width: var(--az-component-brand-header-logo-sm-width);
+    height: var(--az-component-brand-header-logo-sm-height);
+  }
+}
+
+/*
+ * Keyboard focus: an inset ring, with rounded corners. outline: 0 is the other
+ * non-token value: in Arizona Bootstrap 5.2, the 2026 button focus style
+ * (.btn:focus-visible, a 2px Bloom outline outside the button) comes after the
+ * header's own rule with the same specificity, so header buttons draw that
+ * outline instead of the inset ring the header design calls for.
+ */
+:root .arizona-logo:focus-visible,
+:root .btn-arizona-header:focus-visible {
+  outline: 0;
+  border-radius: var(--az-component-brand-header-focus-visible-border-radius);
+  box-shadow: inset 0 0 0 var(--az-component-brand-header-focus-visible-ring-width) var(--az-component-brand-header-focus-visible-ring-color);
+}
+
+/*
+ * Header buttons. !important on color because Arizona Bootstrap gives
+ * .btn-arizona-header its color through .text-white, which is !important.
+ */
+:root .btn-arizona-header {
+  min-width: var(--az-component-brand-header-button-min-width);
+  min-height: var(--az-component-brand-header-button-min-height);
+  color: var(--az-component-brand-header-button-label-color) !important;
+}
+
+:root .btn-arizona-header {
+  padding-top: var(--az-component-brand-header-button-padding-y);
+  padding-bottom: var(--az-component-brand-header-button-padding-y);
+}
+
+/*
+ * Header button icon: a box icon.size square, in icon.color. Arizona
+ * Bootstrap's markup uses a Material Symbols font glyph, so the shim sizes it
+ * with font-size; an SVG icon (inline or from a sprite) takes the same token
+ * as its width and height, and its color through fill="currentColor".
+ */
+:root .btn-arizona-header > .icon,
+:root .btn-arizona-header > svg {
+  width: var(--az-component-brand-header-button-icon-size);
+  height: var(--az-component-brand-header-button-icon-size);
+  color: var(--az-component-brand-header-button-icon-color);
+}
+
+:root .btn-arizona-header > .icon {
+  font-size: var(--az-component-brand-header-button-icon-size);
+  line-height: var(--az-component-brand-header-button-icon-size);
+}
+
+/* Header button label, below the icon. */
+:root .btn-arizona-header > .icon-text {
+  margin-top: var(--az-component-brand-header-button-gap);
+  font-size: var(--az-component-brand-header-button-label-font-size);
+  line-height: var(--az-component-brand-header-button-label-line-height);
+}
+
+/*
+ * Motion. Only durations and easings: Bootstrap turns these transitions off
+ * for reduced motion with `transition: none`, and setting the transition
+ * shorthand here would turn them back on.
+ */
+:root .btn-arizona-header {
+  transition-duration: var(--az-component-brand-header-button-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-button-transition-easing);
+}
+
+/* The off-canvas panel the header buttons open, sliding in from the side. */
+:root .arizona-header .offcanvas {
+  transition-duration: var(--az-component-brand-header-offcanvas-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-offcanvas-transition-easing);
+}
+
+/*
+ * Its backdrop. Bootstrap adds the backdrop at the end of <body>, outside the
+ * header, so this targets it only while a header panel is open.
+ */
+:root body:has(.arizona-header .offcanvas.show, .arizona-header .offcanvas.showing, .arizona-header .offcanvas.hiding) .offcanvas-backdrop.fade {
+  transition-duration: var(--az-component-brand-header-offcanvas-backdrop-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-offcanvas-backdrop-transition-easing);
+}
+
+/* Below 992px the header has a fixed height, and can be pinned to the top. */
+@media screen and (max-width: 992px) {
+  :root .arizona-header {
+    height: var(--az-component-brand-header-height);
+  }
+
+  :root body:has(.az-fixed-header-on-mobile) {
+    --az-scroll-margin-top: var(--az-component-brand-header-fixed-on-mobile-scroll-offset);
+    padding-top: var(--az-component-brand-header-height);
+  }
+}
