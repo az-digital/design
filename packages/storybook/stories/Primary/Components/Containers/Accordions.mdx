@@ -1,7 +1,76 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
 
 <Meta title="Primary/Components/Containers/Accordions" />
 
 # Accordions
 
-This page serves as the landing place for collapsed-content patterns that allow users to reveal additional information without overwhelming the layout.
+A stack of titles that each open to show more content. Each title has a circled plus
+icon on the right, which becomes a minus while the item is open.
+
+## Colors come from the surface
+
+An accordion sits on the default surface, <Token data={getTokenData('az.color.semantic.surface.default')} />
+(White), with no fill of its own, and takes its colors from that surface's on-color group:
+
+- **Titles and their icons:** <Token data={getTokenData('az.color.semantic.on-default.link-supporting')} />
+  (Azurite), and <Token data={getTokenData('az.color.semantic.on-default.link-supporting-hover')} />
+  (Blue) on hover and while the item is open.
+- **The line under each title:** <Token data={getTokenData('az.color.semantic.on-default.border')} />,
+  a neutral gray at 50% opacity.
+- **Keyboard focus:** <Token data={getTokenData('az.color.semantic.on-default.focus-ring')} />
+  (Bougainvillea), a 2px ring 2px outside the title.
+- **The Copy link:** <Token data={getTokenData('az.color.semantic.on-default.link')} /> (Red),
+  and <Token data={getTokenData('az.color.semantic.on-default.link-hover')} /> (Sonoran Red)
+  on hover, like other links.
+
+## Shape and spacing
+
+- **Titles:** no space to the left or right, so they line up with the text around
+  them, and 16px above and below. A 1px line runs under each one.
+- **Body:** no space to the left or right, and 30px above and below (40px from 768px up).
+
+## Sizes
+
+Every size is Semibold, except Small, which is Bold. Large is the default.
+
+Each size sets the title's text size and line height, its letter spacing, the gap
+between the title and its icon, the icon's diameter and the length of its lines.
+
+- **Large, below 768px:** 34px text on a 38px line, 0.09px letter spacing, a 24px gap,
+  a 44px icon with 25px lines.
+- **Large, from 768px up:** 44px text on a 52px line, 0.12px letter spacing, a 27px gap,
+  a 50px icon with 29px lines.
+- **Medium:** 28px text on a 36px line, no letter spacing, a 22px gap, a 40px icon with
+  23px lines.
+- **Small:** 22px text on a 28.8px line, no letter spacing, a 16px gap, a 30px icon with
+  18px lines.
+
+## Typefaces
+
+Titles are serif by default (<Token data={getTokenData('az.font-family.serif')} />),
+or sans serif (<Token data={getTokenData('az.font-family.sans')} />) for a lighter look,
+such as an accordion in a narrow text column.
+
+## The icon
+
+A circle with a plus inside, drawn in the title's color. Its circle and lines are 2px
+thick, and 3px on hover and while the item is open, when the plus becomes a minus.
+The lines have rounded ends.
+
+## Copy link
+
+An accordion item can end with a **Copy link**: a link icon followed by the label
+"Copy link", 8px below the body's content.
+
+- **Look:** a 24px icon, 6px before the label. Only the label is underlined, 4.5px below
+  the text (0.25em at the 18px body size).
+- **Copying:** clicking it copies the item's URL. The icon changes to a check, and a
+  "Copied!" message appears; it shows on click only, never on hover. The label doesn't
+  change. Screen readers announce that the link was copied, and it works without a mouse.
+- **Opening a linked item:** visiting that URL opens the item and scrolls its title to
+  the top of the screen, smoothly. The scroll stops 0px from the top, or below a fixed
+  header by the header's own scroll offset.
+- Anchored accordions work best when opening one item doesn't close the others.
+
+<TokenTable items={getTokenDisplayItems('az.component.accordion.')} />

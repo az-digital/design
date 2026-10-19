@@ -16,6 +16,9 @@ export const az: {
       "caliche": string,
       "white": string
     },
+    "neutral": {
+      "grayAlpha-50": string
+    },
     "semantic": {
       "surface": {
         "brand": string,
@@ -31,8 +34,12 @@ export const az: {
       },
       "onDefault": {
         "link": string,
-        "linkQuiet": string,
-        "accent": string
+        "linkHover": string,
+        "linkSupporting": string,
+        "linkSupportingHover": string,
+        "accent": string,
+        "border": string,
+        "focusRing": string
       }
     }
   },
@@ -40,6 +47,7 @@ export const az: {
     "0": string,
     "1": string,
     "2": string,
+    "3": string,
     "4": string,
     "5": string,
     "6": string,
@@ -49,23 +57,46 @@ export const az: {
     "12": string,
     "15": string,
     "16": string,
+    "18": string,
     "22": string,
+    "23": string,
     "24": string,
+    "25": string,
+    "27": string,
+    "28": string,
+    "29": string,
+    "30": string,
+    "34": string,
+    "36": string,
+    "38": string,
+    "40": string,
     "43": string,
+    "44": string,
     "50": string,
+    "52": string,
     "58": string,
     "60": string,
     "211": string,
     "265": string,
+    "0-09": string,
+    "0-12": string,
     "2-4": string,
+    "4-5": string,
     "9-744": string,
     "19-2": string,
     "19-8": string,
+    "28-8": string,
     "266-41": string
+  },
+  "fontFamily": {
+    "serif": string,
+    "sans": string
   },
   "fontWeight": {
     "400": string,
-    "500": string
+    "500": string,
+    "600": string,
+    "700": string
   },
   "duration": {
     "150": string,
@@ -261,6 +292,157 @@ export const az: {
           "gap": string,
           "raise": string
         }
+      }
+    },
+    "accordion": {
+      "title": {
+        "color": string,
+        "font": {
+          "family": string,
+          "size": string,
+          "weight": string
+        },
+        "lineHeight": string,
+        "letterSpacing": string,
+        "padding": {
+          "x": string,
+          "y": string
+        },
+        "gap": string
+      },
+      "rule": {
+        "color": string,
+        "width": string
+      },
+      "icon": {
+        "color": string,
+        "size": string,
+        "line": {
+          "length": string,
+          "border": {
+            "radius": string
+          }
+        },
+        "stroke": {
+          "width": string
+        }
+      },
+      "body": {
+        "padding": {
+          "x": string,
+          "y": string
+        }
+      },
+      "md": {
+        "title": {
+          "font": {
+            "size": string
+          },
+          "lineHeight": string,
+          "letterSpacing": string,
+          "gap": string
+        },
+        "icon": {
+          "size": string,
+          "line": {
+            "length": string
+          }
+        },
+        "body": {
+          "padding": {
+            "y": string
+          }
+        }
+      },
+      "hover": {
+        "title": {
+          "color": string
+        },
+        "icon": {
+          "stroke": {
+            "width": string
+          }
+        }
+      },
+      "open": {
+        "title": {
+          "color": string
+        },
+        "icon": {
+          "stroke": {
+            "width": string
+          }
+        }
+      },
+      "focusVisible": {
+        "ring": {
+          "color": string,
+          "width": string,
+          "offset": string
+        }
+      },
+      "size": {
+        "medium": {
+          "title": {
+            "font": {
+              "size": string
+            },
+            "lineHeight": string,
+            "letterSpacing": string,
+            "gap": string
+          },
+          "icon": {
+            "size": string,
+            "line": {
+              "length": string
+            }
+          }
+        },
+        "small": {
+          "title": {
+            "font": {
+              "size": string,
+              "weight": string
+            },
+            "lineHeight": string,
+            "letterSpacing": string,
+            "gap": string
+          },
+          "icon": {
+            "size": string,
+            "line": {
+              "length": string
+            }
+          }
+        }
+      },
+      "typeface": {
+        "sans": {
+          "title": {
+            "font": {
+              "family": string
+            }
+          }
+        }
+      },
+      "anchor": {
+        "link": {
+          "color": string
+        },
+        "hover": {
+          "link": {
+            "color": string
+          }
+        },
+        "icon": {
+          "size": string
+        },
+        "gap": string,
+        "marginTop": string,
+        "underline": {
+          "offset": string
+        },
+        "scrollOffset": string
       }
     }
   }

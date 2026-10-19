@@ -319,3 +319,172 @@
   padding-left: calc(var(--az-component-breadcrumb-home-icon-size) + var(--az-component-breadcrumb-home-icon-gap) - 3.5px);
   margin-left: calc(3.5px - var(--az-component-breadcrumb-home-icon-size) - var(--az-component-breadcrumb-home-icon-gap));
 }
+
+/*
+ * Accordion (az.component.accordion.*, colors from on-default.*): Bootstrap's
+ * .accordion, with az-storybook's markup for the circled plus/minus icon
+ * (.accordion-sdc-icon) and its .accordion--size-* and .accordion--typeface-*
+ * classes. Bootstrap's --bs-accordion-* variables point at the tokens; the
+ * sizes go through local --az-accordion-* variables so each size class only
+ * changes what it changes.
+ */
+:root .accordion {
+  --bs-accordion-border-width: 0;
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-inner-border-radius: 0;
+  --bs-accordion-bg: transparent;
+  --bs-accordion-btn-bg: transparent;
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-color: var(--az-component-accordion-title-color);
+  --bs-accordion-active-color: var(--az-component-accordion-open-title-color);
+  --bs-accordion-btn-padding-x: var(--az-component-accordion-title-padding-x);
+  --bs-accordion-btn-padding-y: var(--az-component-accordion-title-padding-y);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-body-padding-x: var(--az-component-accordion-body-padding-x);
+  --bs-accordion-body-padding-y: var(--az-component-accordion-body-padding-y);
+  --az-accordion-title-font-family: var(--az-component-accordion-title-font-family);
+  --az-accordion-title-font-size: var(--az-component-accordion-title-font-size);
+  --az-accordion-title-font-weight: var(--az-component-accordion-title-font-weight);
+  --az-accordion-title-line-height: var(--az-component-accordion-title-line-height);
+  --az-accordion-title-letter-spacing: var(--az-component-accordion-title-letter-spacing);
+  --az-accordion-title-gap: var(--az-component-accordion-title-gap);
+  --az-accordion-icon-size: var(--az-component-accordion-icon-size);
+  --az-accordion-icon-line-length: var(--az-component-accordion-icon-line-length);
+}
+
+@media (min-width: 768px) {
+  :root .accordion {
+    --bs-accordion-body-padding-y: var(--az-component-accordion-md-body-padding-y);
+    --az-accordion-title-font-size: var(--az-component-accordion-md-title-font-size);
+    --az-accordion-title-line-height: var(--az-component-accordion-md-title-line-height);
+    --az-accordion-title-letter-spacing: var(--az-component-accordion-md-title-letter-spacing);
+    --az-accordion-title-gap: var(--az-component-accordion-md-title-gap);
+    --az-accordion-icon-size: var(--az-component-accordion-md-icon-size);
+    --az-accordion-icon-line-length: var(--az-component-accordion-md-icon-line-length);
+  }
+}
+
+/* Medium and small don't change at 768px; the extra class outranks the media query. */
+:root .accordion.accordion--size-medium {
+  --az-accordion-title-font-size: var(--az-component-accordion-size-medium-title-font-size);
+  --az-accordion-title-line-height: var(--az-component-accordion-size-medium-title-line-height);
+  --az-accordion-title-letter-spacing: var(--az-component-accordion-size-medium-title-letter-spacing);
+  --az-accordion-title-gap: var(--az-component-accordion-size-medium-title-gap);
+  --az-accordion-icon-size: var(--az-component-accordion-size-medium-icon-size);
+  --az-accordion-icon-line-length: var(--az-component-accordion-size-medium-icon-line-length);
+}
+
+:root .accordion.accordion--size-small {
+  --az-accordion-title-font-size: var(--az-component-accordion-size-small-title-font-size);
+  --az-accordion-title-font-weight: var(--az-component-accordion-size-small-title-font-weight);
+  --az-accordion-title-line-height: var(--az-component-accordion-size-small-title-line-height);
+  --az-accordion-title-letter-spacing: var(--az-component-accordion-size-small-title-letter-spacing);
+  --az-accordion-title-gap: var(--az-component-accordion-size-small-title-gap);
+  --az-accordion-icon-size: var(--az-component-accordion-size-small-icon-size);
+  --az-accordion-icon-line-length: var(--az-component-accordion-size-small-icon-line-length);
+}
+
+:root .accordion.accordion--typeface-sans-serif {
+  --az-accordion-title-font-family: var(--az-component-accordion-typeface-sans-title-font-family);
+}
+
+:root .accordion .accordion-button {
+  --az-accordion-icon-stroke-width: var(--az-component-accordion-icon-stroke-width);
+  gap: var(--az-accordion-title-gap);
+  font-family: var(--az-accordion-title-font-family);
+  font-size: var(--az-accordion-title-font-size);
+  font-weight: var(--az-accordion-title-font-weight);
+  line-height: var(--az-accordion-title-line-height);
+  letter-spacing: var(--az-accordion-title-letter-spacing);
+  border-bottom: var(--az-component-accordion-rule-width) solid var(--az-component-accordion-rule-color);
+}
+
+:root .accordion .accordion-button:hover {
+  --az-accordion-icon-stroke-width: var(--az-component-accordion-hover-icon-stroke-width);
+  color: var(--az-component-accordion-hover-title-color);
+}
+
+:root .accordion .accordion-button:not(.collapsed) {
+  --az-accordion-icon-stroke-width: var(--az-component-accordion-open-icon-stroke-width);
+  box-shadow: none;
+}
+
+:root .accordion .accordion-button:focus-visible {
+  z-index: 3;
+  outline: var(--az-component-accordion-focus-visible-ring-width) solid var(--az-component-accordion-focus-visible-ring-color);
+  outline-offset: var(--az-component-accordion-focus-visible-ring-offset);
+}
+
+/* The circled plus/minus replaces Bootstrap's chevron. */
+:root .accordion .accordion-button::after {
+  content: none;
+}
+
+:root .accordion .accordion-sdc-icon-wrapper {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+:root .accordion .accordion-sdc-icon {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--az-accordion-icon-size);
+  height: var(--az-accordion-icon-size);
+  color: var(--az-component-accordion-icon-color);
+  border: var(--az-accordion-icon-stroke-width) solid currentColor;
+  border-radius: 50%;
+}
+
+/* The icon follows the title's color on hover and while open. */
+:root .accordion .accordion-button:hover .accordion-sdc-icon,
+:root .accordion .accordion-button:not(.collapsed) .accordion-sdc-icon {
+  color: inherit;
+}
+
+:root .accordion .accordion-sdc-icon-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--az-accordion-icon-line-length);
+  height: var(--az-accordion-icon-stroke-width);
+  background-color: currentColor;
+  border-radius: var(--az-component-accordion-icon-line-border-radius);
+  transform: translate(-50%, -50%);
+}
+
+:root .accordion .accordion-sdc-icon-line--vertical {
+  width: var(--az-accordion-icon-stroke-width);
+  height: var(--az-accordion-icon-line-length);
+}
+
+:root .accordion .accordion-button[aria-expanded="true"] .accordion-sdc-icon-line--vertical {
+  display: none;
+}
+
+/*
+ * Copy link (az-digital/arizona-bootstrap#2247): an .icon-link with a Material
+ * Symbols icon, inside a wrapper at the bottom of the body. Only the label is
+ * underlined.
+ */
+:root .accordion-item {
+  scroll-margin-top: var(--az-component-accordion-anchor-scroll-offset);
+}
+
+:root .accordion-body :has(> .az-accordion-anchor) {
+  padding-top: var(--az-component-accordion-anchor-margin-top);
+}
+
+:root .az-accordion-anchor {
+  gap: var(--az-component-accordion-anchor-gap);
+  color: var(--az-component-accordion-anchor-link-color);
+  text-underline-offset: var(--az-component-accordion-anchor-underline-offset);
+}
+
+:root .az-accordion-anchor:hover {
+  color: var(--az-component-accordion-anchor-hover-link-color);
+}
+
+:root .az-accordion-anchor .material-symbols-rounded {
+  font-size: var(--az-component-accordion-anchor-icon-size);
+}

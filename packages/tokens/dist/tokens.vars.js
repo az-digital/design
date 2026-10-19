@@ -16,6 +16,9 @@ export const az = {
       "caliche": "var(--az-color-brand-caliche)",
       "white": "var(--az-color-brand-white)"
     },
+    "neutral": {
+      "grayAlpha-50": "var(--az-color-neutral-gray-alpha-50)"
+    },
     "semantic": {
       "surface": {
         "brand": "var(--az-color-semantic-surface-brand)",
@@ -31,8 +34,12 @@ export const az = {
       },
       "onDefault": {
         "link": "var(--az-color-semantic-on-default-link)",
-        "linkQuiet": "var(--az-color-semantic-on-default-link-quiet)",
-        "accent": "var(--az-color-semantic-on-default-accent)"
+        "linkHover": "var(--az-color-semantic-on-default-link-hover)",
+        "linkSupporting": "var(--az-color-semantic-on-default-link-supporting)",
+        "linkSupportingHover": "var(--az-color-semantic-on-default-link-supporting-hover)",
+        "accent": "var(--az-color-semantic-on-default-accent)",
+        "border": "var(--az-color-semantic-on-default-border)",
+        "focusRing": "var(--az-color-semantic-on-default-focus-ring)"
       }
     }
   },
@@ -40,6 +47,7 @@ export const az = {
     "0": "var(--az-dimension-0)",
     "1": "var(--az-dimension-1)",
     "2": "var(--az-dimension-2)",
+    "3": "var(--az-dimension-3)",
     "4": "var(--az-dimension-4)",
     "5": "var(--az-dimension-5)",
     "6": "var(--az-dimension-6)",
@@ -49,23 +57,46 @@ export const az = {
     "12": "var(--az-dimension-12)",
     "15": "var(--az-dimension-15)",
     "16": "var(--az-dimension-16)",
+    "18": "var(--az-dimension-18)",
     "22": "var(--az-dimension-22)",
+    "23": "var(--az-dimension-23)",
     "24": "var(--az-dimension-24)",
+    "25": "var(--az-dimension-25)",
+    "27": "var(--az-dimension-27)",
+    "28": "var(--az-dimension-28)",
+    "29": "var(--az-dimension-29)",
+    "30": "var(--az-dimension-30)",
+    "34": "var(--az-dimension-34)",
+    "36": "var(--az-dimension-36)",
+    "38": "var(--az-dimension-38)",
+    "40": "var(--az-dimension-40)",
     "43": "var(--az-dimension-43)",
+    "44": "var(--az-dimension-44)",
     "50": "var(--az-dimension-50)",
+    "52": "var(--az-dimension-52)",
     "58": "var(--az-dimension-58)",
     "60": "var(--az-dimension-60)",
     "211": "var(--az-dimension-211)",
     "265": "var(--az-dimension-265)",
+    "0-09": "var(--az-dimension-0-09)",
+    "0-12": "var(--az-dimension-0-12)",
     "2-4": "var(--az-dimension-2-4)",
+    "4-5": "var(--az-dimension-4-5)",
     "9-744": "var(--az-dimension-9-744)",
     "19-2": "var(--az-dimension-19-2)",
     "19-8": "var(--az-dimension-19-8)",
+    "28-8": "var(--az-dimension-28-8)",
     "266-41": "var(--az-dimension-266-41)"
+  },
+  "fontFamily": {
+    "serif": "var(--az-font-family-serif)",
+    "sans": "var(--az-font-family-sans)"
   },
   "fontWeight": {
     "400": "var(--az-font-weight-400)",
-    "500": "var(--az-font-weight-500)"
+    "500": "var(--az-font-weight-500)",
+    "600": "var(--az-font-weight-600)",
+    "700": "var(--az-font-weight-700)"
   },
   "duration": {
     "150": "var(--az-duration-150)",
@@ -261,6 +292,157 @@ export const az = {
           "gap": "var(--az-component-breadcrumb-home-icon-gap)",
           "raise": "var(--az-component-breadcrumb-home-icon-raise)"
         }
+      }
+    },
+    "accordion": {
+      "title": {
+        "color": "var(--az-component-accordion-title-color)",
+        "font": {
+          "family": "var(--az-component-accordion-title-font-family)",
+          "size": "var(--az-component-accordion-title-font-size)",
+          "weight": "var(--az-component-accordion-title-font-weight)"
+        },
+        "lineHeight": "var(--az-component-accordion-title-line-height)",
+        "letterSpacing": "var(--az-component-accordion-title-letter-spacing)",
+        "padding": {
+          "x": "var(--az-component-accordion-title-padding-x)",
+          "y": "var(--az-component-accordion-title-padding-y)"
+        },
+        "gap": "var(--az-component-accordion-title-gap)"
+      },
+      "rule": {
+        "color": "var(--az-component-accordion-rule-color)",
+        "width": "var(--az-component-accordion-rule-width)"
+      },
+      "icon": {
+        "color": "var(--az-component-accordion-icon-color)",
+        "size": "var(--az-component-accordion-icon-size)",
+        "line": {
+          "length": "var(--az-component-accordion-icon-line-length)",
+          "border": {
+            "radius": "var(--az-component-accordion-icon-line-border-radius)"
+          }
+        },
+        "stroke": {
+          "width": "var(--az-component-accordion-icon-stroke-width)"
+        }
+      },
+      "body": {
+        "padding": {
+          "x": "var(--az-component-accordion-body-padding-x)",
+          "y": "var(--az-component-accordion-body-padding-y)"
+        }
+      },
+      "md": {
+        "title": {
+          "font": {
+            "size": "var(--az-component-accordion-md-title-font-size)"
+          },
+          "lineHeight": "var(--az-component-accordion-md-title-line-height)",
+          "letterSpacing": "var(--az-component-accordion-md-title-letter-spacing)",
+          "gap": "var(--az-component-accordion-md-title-gap)"
+        },
+        "icon": {
+          "size": "var(--az-component-accordion-md-icon-size)",
+          "line": {
+            "length": "var(--az-component-accordion-md-icon-line-length)"
+          }
+        },
+        "body": {
+          "padding": {
+            "y": "var(--az-component-accordion-md-body-padding-y)"
+          }
+        }
+      },
+      "hover": {
+        "title": {
+          "color": "var(--az-component-accordion-hover-title-color)"
+        },
+        "icon": {
+          "stroke": {
+            "width": "var(--az-component-accordion-hover-icon-stroke-width)"
+          }
+        }
+      },
+      "open": {
+        "title": {
+          "color": "var(--az-component-accordion-open-title-color)"
+        },
+        "icon": {
+          "stroke": {
+            "width": "var(--az-component-accordion-open-icon-stroke-width)"
+          }
+        }
+      },
+      "focusVisible": {
+        "ring": {
+          "color": "var(--az-component-accordion-focus-visible-ring-color)",
+          "width": "var(--az-component-accordion-focus-visible-ring-width)",
+          "offset": "var(--az-component-accordion-focus-visible-ring-offset)"
+        }
+      },
+      "size": {
+        "medium": {
+          "title": {
+            "font": {
+              "size": "var(--az-component-accordion-size-medium-title-font-size)"
+            },
+            "lineHeight": "var(--az-component-accordion-size-medium-title-line-height)",
+            "letterSpacing": "var(--az-component-accordion-size-medium-title-letter-spacing)",
+            "gap": "var(--az-component-accordion-size-medium-title-gap)"
+          },
+          "icon": {
+            "size": "var(--az-component-accordion-size-medium-icon-size)",
+            "line": {
+              "length": "var(--az-component-accordion-size-medium-icon-line-length)"
+            }
+          }
+        },
+        "small": {
+          "title": {
+            "font": {
+              "size": "var(--az-component-accordion-size-small-title-font-size)",
+              "weight": "var(--az-component-accordion-size-small-title-font-weight)"
+            },
+            "lineHeight": "var(--az-component-accordion-size-small-title-line-height)",
+            "letterSpacing": "var(--az-component-accordion-size-small-title-letter-spacing)",
+            "gap": "var(--az-component-accordion-size-small-title-gap)"
+          },
+          "icon": {
+            "size": "var(--az-component-accordion-size-small-icon-size)",
+            "line": {
+              "length": "var(--az-component-accordion-size-small-icon-line-length)"
+            }
+          }
+        }
+      },
+      "typeface": {
+        "sans": {
+          "title": {
+            "font": {
+              "family": "var(--az-component-accordion-typeface-sans-title-font-family)"
+            }
+          }
+        }
+      },
+      "anchor": {
+        "link": {
+          "color": "var(--az-component-accordion-anchor-link-color)"
+        },
+        "hover": {
+          "link": {
+            "color": "var(--az-component-accordion-anchor-hover-link-color)"
+          }
+        },
+        "icon": {
+          "size": "var(--az-component-accordion-anchor-icon-size)"
+        },
+        "gap": "var(--az-component-accordion-anchor-gap)",
+        "marginTop": "var(--az-component-accordion-anchor-margin-top)",
+        "underline": {
+          "offset": "var(--az-component-accordion-anchor-underline-offset)"
+        },
+        "scrollOffset": "var(--az-component-accordion-anchor-scroll-offset)"
       }
     }
   }

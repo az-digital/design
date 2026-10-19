@@ -13,9 +13,11 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-color-neutral-gray-alpha-50: rgba(112, 112, 112, 0.5); /** Neutral gray (#707070) at 50% opacity. Not a brand color: a neutral for rules and dividers. */
   --az-dimension-0: 0px;
   --az-dimension-1: 1px;
   --az-dimension-2: 2px;
+  --az-dimension-3: 3px;
   --az-dimension-4: 4px;
   --az-dimension-5: 5px;
   --az-dimension-6: 6px;
@@ -25,21 +27,42 @@
   --az-dimension-12: 12px;
   --az-dimension-15: 15px;
   --az-dimension-16: 16px;
+  --az-dimension-18: 18px;
   --az-dimension-22: 22px;
+  --az-dimension-23: 23px;
   --az-dimension-24: 24px;
+  --az-dimension-25: 25px;
+  --az-dimension-27: 27px;
+  --az-dimension-28: 28px;
+  --az-dimension-29: 29px;
+  --az-dimension-30: 30px;
+  --az-dimension-34: 34px;
+  --az-dimension-36: 36px;
+  --az-dimension-38: 38px;
+  --az-dimension-40: 40px;
   --az-dimension-43: 43px;
+  --az-dimension-44: 44px;
   --az-dimension-50: 50px;
+  --az-dimension-52: 52px;
   --az-dimension-58: 58px;
   --az-dimension-60: 60px;
   --az-dimension-211: 211px;
   --az-dimension-265: 265px;
+  --az-dimension-0-09: 0.09px;
+  --az-dimension-0-12: 0.12px;
   --az-dimension-2-4: 2.4px;
+  --az-dimension-4-5: 4.5px;
   --az-dimension-9-744: 9.744px;
   --az-dimension-19-2: 19.2px;
   --az-dimension-19-8: 19.8px;
+  --az-dimension-28-8: 28.8px;
   --az-dimension-266-41: 266.41px;
+  --az-font-family-serif: garamond-premier-pro, Georgia, 'Times New Roman', serif; /** Serif: Garamond Premier Pro, falling back to Georgia and Times New Roman. */
+  --az-font-family-sans: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; /** Sans serif: Proxima Nova, falling back to system sans-serif fonts. */
   --az-font-weight-400: 400; /** Regular. */
   --az-font-weight-500: 500; /** Medium. */
+  --az-font-weight-600: 600; /** Semibold. */
+  --az-font-weight-700: 700; /** Bold. */
   --az-duration-150: 150ms; /** 150 milliseconds. */
   --az-duration-300: 300ms; /** 300 milliseconds. */
   --az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /** CSS ease-in-out: starts and ends slowly. */
@@ -53,8 +76,12 @@
   --az-color-semantic-on-brand-focus-ring: var(--az-color-brand-white); /** Keyboard focus ring on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-color-semantic-on-brand-logo: var(--az-color-brand-white); /** Logo color on surface.brand, such as the Arizona Header's wordmark. Separate from on-brand.default because a logo's color is its own brand decision: it can't follow every change to text color. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-color-semantic-on-default-link: var(--az-color-brand-red); /** Ordinary links on surface.default, such as a link in running text or an accordion's Copy link — aliases the brand palette. */
-  --az-color-semantic-on-default-link-quiet: var(--az-color-brand-azurite); /** Links and controls on surface.default that are quieter than ordinary links, such as a breadcrumb's links and home icon — aliases the brand palette. */
+  --az-color-semantic-on-default-link-hover: var(--az-color-brand-sonoran-red); /** Ordinary links on surface.default, on hover — aliases the brand palette. */
+  --az-color-semantic-on-default-link-supporting: var(--az-color-brand-azurite); /** Supporting links and controls on surface.default, which back up ordinary links rather than compete with them, such as a breadcrumb's links and home icon or an accordion's titles — aliases the brand palette. */
+  --az-color-semantic-on-default-link-supporting-hover: var(--az-color-brand-blue); /** Supporting links and controls on surface.default on hover, or while open, such as an accordion's title — aliases the brand palette. */
   --az-color-semantic-on-default-accent: var(--az-color-brand-bougainvillea); /** Accent on surface.default, such as the dividers between breadcrumb items — aliases the brand palette. */
+  --az-color-semantic-on-default-border: var(--az-color-neutral-gray-alpha-50); /** Rules and dividers on surface.default, such as the line under each accordion title — aliases a neutral color. */
+  --az-color-semantic-on-default-focus-ring: var(--az-color-brand-bougainvillea); /** Keyboard focus ring on surface.default — aliases the brand palette. */
   --az-component-brand-header-height: var(--az-dimension-50); /** Header height: its minimum height at every screen size, and its fixed height below 992px. */
   --az-component-brand-header-logo-width: var(--az-dimension-211); /** Wordmark width below the sm breakpoint (576px). */
   --az-component-brand-header-logo-height: var(--az-dimension-16); /** Wordmark height below the sm breakpoint (576px). */
@@ -105,6 +132,51 @@
   --az-component-breadcrumb-home-icon-size: var(--az-dimension-19-2); /** Width and height of the house icon before Home (1.2rem). */
   --az-component-breadcrumb-home-icon-gap: var(--az-dimension-2-4); /** Space between the house icon and Home. */
   --az-component-breadcrumb-home-icon-raise: var(--az-dimension-2-4); /** How far the house icon sits above the text's top edge, so it lines up with the text the way it does on arizona.edu. */
+  --az-component-accordion-title-font-family: var(--az-font-family-serif); /** Title typeface: serif by default. typeface.sans replaces it. */
+  --az-component-accordion-title-font-size: var(--az-dimension-34); /** Title text size (large, the default size), below the md breakpoint (768px). */
+  --az-component-accordion-title-font-weight: var(--az-font-weight-600); /** Title weight (Semibold). */
+  --az-component-accordion-title-line-height: var(--az-dimension-38); /** Title line height (large), below 768px. */
+  --az-component-accordion-title-letter-spacing: var(--az-dimension-0-09); /** Title letter spacing (large), below 768px. */
+  --az-component-accordion-title-padding-x: var(--az-dimension-0); /** Space to the left and right of the title: none, so titles line up with the text around them. */
+  --az-component-accordion-title-padding-y: var(--az-dimension-16); /** Space above and below the title. */
+  --az-component-accordion-title-gap: var(--az-dimension-24); /** Space between the title text and its icon (large), below 768px. */
+  --az-component-accordion-rule-width: var(--az-dimension-1); /** Thickness of the line under each title. */
+  --az-component-accordion-icon-size: var(--az-dimension-44); /** Diameter of the circled icon (large), below 768px. */
+  --az-component-accordion-icon-line-length: var(--az-dimension-25); /** Length of the icon's plus/minus lines (large), below 768px. */
+  --az-component-accordion-icon-line-border-radius: var(--az-dimension-2); /** Rounded ends of the icon's lines. */
+  --az-component-accordion-icon-stroke-width: var(--az-dimension-2); /** Thickness of the icon's circle and lines, collapsed. */
+  --az-component-accordion-body-padding-x: var(--az-dimension-0); /** Space to the left and right of the body: none. */
+  --az-component-accordion-body-padding-y: var(--az-dimension-30); /** Space above and below the body, below 768px. */
+  --az-component-accordion-md-title-font-size: var(--az-dimension-44); /** Title text size (large) from the md breakpoint (768px) up. */
+  --az-component-accordion-md-title-line-height: var(--az-dimension-52); /** Title line height (large) from 768px up. */
+  --az-component-accordion-md-title-letter-spacing: var(--az-dimension-0-12); /** Title letter spacing (large) from 768px up. */
+  --az-component-accordion-md-title-gap: var(--az-dimension-27); /** Space between the title text and its icon (large) from 768px up. */
+  --az-component-accordion-md-icon-size: var(--az-dimension-50); /** Diameter of the circled icon (large) from 768px up. */
+  --az-component-accordion-md-icon-line-length: var(--az-dimension-29); /** Length of the icon's lines (large) from 768px up. */
+  --az-component-accordion-md-body-padding-y: var(--az-dimension-40); /** Space above and below the body from 768px up. */
+  --az-component-accordion-hover-icon-stroke-width: var(--az-dimension-3); /** Thickness of the icon's circle and lines on hover. */
+  --az-component-accordion-open-icon-stroke-width: var(--az-dimension-3); /** Thickness of the icon's circle and lines while open: the same as on hover. */
+  --az-component-accordion-focus-visible-ring-width: var(--az-dimension-2); /** Width of the keyboard focus ring. */
+  --az-component-accordion-focus-visible-ring-offset: var(--az-dimension-2); /** Space between a title and its keyboard focus ring. */
+  --az-component-accordion-size-medium-title-font-size: var(--az-dimension-28); /** Title text size, medium size. */
+  --az-component-accordion-size-medium-title-line-height: var(--az-dimension-36); /** Title line height, medium size. */
+  --az-component-accordion-size-medium-title-letter-spacing: var(--az-dimension-0); /** Title letter spacing, medium size: none. */
+  --az-component-accordion-size-medium-title-gap: var(--az-dimension-22); /** Space between the title text and its icon, medium size. */
+  --az-component-accordion-size-medium-icon-size: var(--az-dimension-40); /** Diameter of the circled icon, medium size. */
+  --az-component-accordion-size-medium-icon-line-length: var(--az-dimension-23); /** Length of the icon's lines, medium size. */
+  --az-component-accordion-size-small-title-font-size: var(--az-dimension-22); /** Title text size, small size. */
+  --az-component-accordion-size-small-title-font-weight: var(--az-font-weight-700); /** Title weight, small size (Bold). */
+  --az-component-accordion-size-small-title-line-height: var(--az-dimension-28-8); /** Title line height, small size. */
+  --az-component-accordion-size-small-title-letter-spacing: var(--az-dimension-0); /** Title letter spacing, small size: none. */
+  --az-component-accordion-size-small-title-gap: var(--az-dimension-16); /** Space between the title text and its icon, small size. */
+  --az-component-accordion-size-small-icon-size: var(--az-dimension-30); /** Diameter of the circled icon, small size. */
+  --az-component-accordion-size-small-icon-line-length: var(--az-dimension-18); /** Length of the icon's lines, small size. */
+  --az-component-accordion-typeface-sans-title-font-family: var(--az-font-family-sans); /** Title typeface for the sans serif style. */
+  --az-component-accordion-anchor-icon-size: var(--az-dimension-24); /** Size of the Copy link's icon (a link icon, then a check after copying). */
+  --az-component-accordion-anchor-gap: var(--az-dimension-6); /** Space between the Copy link's icon and its label. */
+  --az-component-accordion-anchor-margin-top: var(--az-dimension-8); /** Space above the Copy link, at the bottom of the body. */
+  --az-component-accordion-anchor-underline-offset: var(--az-dimension-4-5); /** How far below the label the Copy link's underline sits (0.25em at the 18px body size). Only the label is underlined, not the icon. */
+  --az-component-accordion-anchor-scroll-offset: var(--az-dimension-0); /** When a visitor opens a linked item, how far below the top of the screen its title stops. With a fixed header, use the header's scroll offset instead. */
   --az-component-brand-header-container-color: var(--az-color-semantic-surface-brand); /** Header fill: the brand surface, Blue by default. The original red header comes from a theme that points surface.brand at Red. */
   --az-component-brand-header-logo-color: var(--az-color-semantic-on-brand-logo); /** Color of the header's wordmark logo. */
   --az-component-brand-header-focus-visible-ring-color: var(--az-color-semantic-on-brand-focus-ring); /** Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. */
@@ -121,11 +193,19 @@
   --az-component-input-group-on-brand-focus-divider-color: var(--az-color-semantic-on-brand-accent); /** Divider color while the field or button has focus, on the brand surface. */
   --az-component-search-toggle-focus-visible-ring-color: var(--az-color-semantic-on-brand-accent); /** Keyboard focus ring on the button that shows the search form on small screens, on the brand surface. */
   --az-component-breadcrumb-container-color: var(--az-color-semantic-surface-default); /** Breadcrumb's fill. */
-  --az-component-breadcrumb-link-color: var(--az-color-semantic-on-default-link-quiet); /** Linked items' text. */
-  --az-component-breadcrumb-current-color: var(--az-color-semantic-on-default-link-quiet); /** The current page's item, which isn't a link. */
-  --az-component-breadcrumb-hover-link-color: var(--az-color-semantic-on-default-link-quiet); /** Linked items' text on hover: unchanged, so the underline shows the hover. */
+  --az-component-breadcrumb-link-color: var(--az-color-semantic-on-default-link-supporting); /** Linked items' text. */
+  --az-component-breadcrumb-current-color: var(--az-color-semantic-on-default-link-supporting); /** The current page's item, which isn't a link. */
+  --az-component-breadcrumb-hover-link-color: var(--az-color-semantic-on-default-link-supporting); /** Linked items' text on hover: unchanged, so the underline shows the hover. */
   --az-component-breadcrumb-divider-color: var(--az-color-semantic-on-default-accent); /** The / between items. */
-  --az-component-breadcrumb-home-icon-color: var(--az-color-semantic-on-default-link-quiet); /** The house icon before Home: the link color, and part of the link. */
+  --az-component-breadcrumb-home-icon-color: var(--az-color-semantic-on-default-link-supporting); /** The house icon before Home: the link color, and part of the link. */
+  --az-component-accordion-title-color: var(--az-color-semantic-on-default-link-supporting); /** Title text, collapsed. */
+  --az-component-accordion-rule-color: var(--az-color-semantic-on-default-border); /** The line under each title. */
+  --az-component-accordion-hover-title-color: var(--az-color-semantic-on-default-link-supporting-hover); /** Title text on hover. */
+  --az-component-accordion-focus-visible-ring-color: var(--az-color-semantic-on-default-focus-ring); /** Keyboard focus ring around a title. */
+  --az-component-accordion-anchor-link-color: var(--az-color-semantic-on-default-link); /** The Copy link at the bottom of an item's body: icon and label. */
+  --az-component-accordion-anchor-hover-link-color: var(--az-color-semantic-on-default-link-hover); /** The Copy link on hover. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
   --az-component-breadcrumb-hover-underline-color: var(--az-component-breadcrumb-hover-link-color); /** Underline under a linked item on hover: the same color as its text. */
+  --az-component-accordion-icon-color: var(--az-component-accordion-title-color); /** The plus/minus icon: the title's color. */
+  --az-component-accordion-open-title-color: var(--az-component-accordion-hover-title-color); /** Title text while the item is open: the same as on hover. */
 }
