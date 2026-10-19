@@ -458,19 +458,22 @@ export const az = {
       }
     },
     "backgroundPattern": {
-      "band": {
-        "width": "var(--az-component-background-pattern-band-width)",
-        "minWidth": "var(--az-component-background-pattern-band-min-width)",
-        "maxWidth": "var(--az-component-background-pattern-band-max-width)"
-      },
-      "tile": {
-        "size": "var(--az-component-background-pattern-tile-size)"
-      },
       "onDefault": {
         "color": "var(--az-component-background-pattern-on-default-color)"
       },
       "onBrand": {
         "color": "var(--az-component-background-pattern-on-brand-color)"
+      },
+      "monsoon": {
+        "image": "var(--az-component-background-pattern-monsoon-image)",
+        "band": {
+          "width": "var(--az-component-background-pattern-monsoon-band-width)",
+          "minWidth": "var(--az-component-background-pattern-monsoon-band-min-width)",
+          "maxWidth": "var(--az-component-background-pattern-monsoon-band-max-width)"
+        },
+        "tile": {
+          "size": "var(--az-component-background-pattern-monsoon-tile-size)"
+        }
       }
     }
   }

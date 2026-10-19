@@ -458,19 +458,22 @@ export const az: {
       }
     },
     "backgroundPattern": {
-      "band": {
-        "width": string,
-        "minWidth": string,
-        "maxWidth": string
-      },
-      "tile": {
-        "size": string
-      },
       "onDefault": {
         "color": string
       },
       "onBrand": {
         "color": string
+      },
+      "monsoon": {
+        "image": string,
+        "band": {
+          "width": string,
+          "minWidth": string,
+          "maxWidth": string
+        },
+        "tile": {
+          "size": string
+        }
       }
     }
   }

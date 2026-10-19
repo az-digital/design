@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import StyleDictionary from 'style-dictionary';
 
 /**
@@ -21,6 +22,33 @@ const percentageCss = {
   filter: (token) => token.path[1] === 'percentage' && typeof token.$value === 'number',
   transform: (token) => `${token.$value}%`,
 };
+
+/**
+ * Writes an asset token (`$type: "asset"`, a file path relative to this
+ * package, such as a pattern's SVG) as the file itself, embedded as a CSS
+ * data URI, so the output works wherever it's used with no files to host.
+ * DTCG has no type for files, so `asset` is this repo's own type.
+ */
+const assetDataUri = {
+  type: 'value',
+  filter: (token) => token.$type === 'asset',
+  transform: (token) => {
+    const svg = readFileSync(new URL(token.$value, import.meta.url), 'utf8')
+      .replace(/<\?xml[^>]*>/, '')
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/>\s+</g, '><')
+      .replace(/\s+/g, ' ')
+      .trim();
+    // Only what a data URI in url("…") can't hold is escaped: attribute quotes
+    // become single quotes, and %, #, < and > are percent-encoded, as are { and }
+    // so Style Dictionary doesn't read them as token references.
+    const encoded = svg.replace(/"/g, "'").replace(/[%#<>{}]/g, (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`);
+    return `url("data:image/svg+xml,${encoded}")`;
+  },
+};
+
+/** Style Dictionary's own asset/url only wraps the path in url(); asset/data-uri replaces it. */
+const withoutAssetUrl = (transforms) => transforms.filter((name) => name !== 'asset/url');
 
 const camelCase = (value) => value.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
@@ -66,6 +94,7 @@ export default {
     transforms: {
       'duration/css': durationCss,
       'percentage/css': percentageCss,
+      'asset/data-uri': assetDataUri,
     },
     formats: {
       'javascript/variables': ({ dictionary }) => `export const az = ${JSON.stringify(buildCssVariableTree(dictionary), null, 2)};\n`,
@@ -74,7 +103,7 @@ export default {
   },
   platforms: {
     css: {
-      transforms: [...StyleDictionary.hooks.transformGroups.css, 'duration/css', 'percentage/css'],
+      transforms: [...withoutAssetUrl(StyleDictionary.hooks.transformGroups.css), 'duration/css', 'percentage/css', 'asset/data-uri'],
       buildPath: 'dist/',
       files: [
         {
@@ -91,7 +120,7 @@ export default {
       ],
     },
     scss: {
-      transforms: [...StyleDictionary.hooks.transformGroups.scss, 'duration/css', 'percentage/css'],
+      transforms: [...withoutAssetUrl(StyleDictionary.hooks.transformGroups.scss), 'duration/css', 'percentage/css', 'asset/data-uri'],
       buildPath: 'dist/',
       files: [
         {

@@ -496,14 +496,14 @@ html:root {
 }
 
 /*
- * Background pattern (az.component.background-pattern.*, colors from
+ * Background patterns (az.component.background-pattern.*, colors from
  * on-default.* and on-brand.*): Arizona Bootstrap's Monsoon Sky wrappers
- * (.bg-monsoon-sky-start, .bg-monsoon-sky-end), now Monsoon Rain. Arizona
- * Bootstrap paints its SVG as a background image with Rain built in and fades
- * the layer to 40%. The shim uses the design system's monsoon-rain.svg as a
- * mask instead, painted in the surface's pattern color; the 40% is built into
- * the asset, so the layer's own opacity goes back to 1. The SVG's URL and that
- * 1 are the non-token values.
+ * (.bg-monsoon-sky-start, .bg-monsoon-sky-end), now Monsoon Rain
+ * (background-pattern.monsoon.*). Arizona Bootstrap paints its SVG as a
+ * background image with Rain built in and fades the layer to 40%. The shim
+ * masks the layer with the pattern's image token instead (the SVG, embedded),
+ * painted in the surface's pattern color; the 40% is built into the image, so
+ * the layer's own opacity goes back to 1, the one non-token value.
  *
  * The band is pinned to one edge and clamped (az-digital/arizona-bootstrap#2308),
  * which the 5.2.2 release this Storybook loads doesn't have yet.
@@ -520,13 +520,14 @@ html:root {
 
 :root .bg-monsoon-sky-start::before,
 :root .bg-monsoon-sky-end::before {
-  width: var(--az-component-background-pattern-band-width);
-  min-width: var(--az-component-background-pattern-band-min-width);
-  max-width: var(--az-component-background-pattern-band-max-width);
+  width: var(--az-component-background-pattern-monsoon-band-width);
+  min-width: var(--az-component-background-pattern-monsoon-band-min-width);
+  max-width: var(--az-component-background-pattern-monsoon-band-max-width);
   opacity: 1;
   background: var(--az-background-pattern-color);
-  mask: url("@tokens/assets/patterns/monsoon-rain.svg") repeat-y;
-  mask-size: var(--az-component-background-pattern-tile-size);
+  mask-image: var(--az-component-background-pattern-monsoon-image);
+  mask-repeat: repeat-y;
+  mask-size: var(--az-component-background-pattern-monsoon-tile-size);
 }
 
 :root .bg-monsoon-sky-start::before {
