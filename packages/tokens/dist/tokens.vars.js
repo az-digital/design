@@ -86,7 +86,12 @@ export const az = {
     "19-2": "var(--az-dimension-19-2)",
     "19-8": "var(--az-dimension-19-8)",
     "28-8": "var(--az-dimension-28-8)",
-    "266-41": "var(--az-dimension-266-41)"
+    "266-41": "var(--az-dimension-266-41)",
+    "semantic": {
+      "page": {
+        "scrollOffset": "var(--az-dimension-semantic-page-scroll-offset)"
+      }
+    }
   },
   "fontFamily": {
     "serif": "var(--az-font-family-serif)",
@@ -441,8 +446,7 @@ export const az = {
         "marginTop": "var(--az-component-accordion-anchor-margin-top)",
         "underline": {
           "offset": "var(--az-component-accordion-anchor-underline-offset)"
-        },
-        "scrollOffset": "var(--az-component-accordion-anchor-scroll-offset)"
+        }
       }
     }
   }

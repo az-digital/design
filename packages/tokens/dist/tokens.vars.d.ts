@@ -86,7 +86,12 @@ export const az: {
     "19-2": string,
     "19-8": string,
     "28-8": string,
-    "266-41": string
+    "266-41": string,
+    "semantic": {
+      "page": {
+        "scrollOffset": string
+      }
+    }
   },
   "fontFamily": {
     "serif": string,
@@ -441,8 +446,7 @@ export const az: {
         "marginTop": string,
         "underline": {
           "offset": string
-        },
-        "scrollOffset": string
+        }
       }
     }
   }

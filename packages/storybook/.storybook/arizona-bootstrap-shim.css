@@ -148,6 +148,16 @@
   transition-timing-function: var(--az-component-brand-header-offcanvas-backdrop-transition-easing);
 }
 
+/*
+ * The page's scroll offset (az.dimension.semantic.page.scroll-offset):
+ * Arizona Bootstrap applies --az-scroll-margin-top to every :target, such as
+ * an accordion item opened from a link. html:root outranks its own :root
+ * default; the fixed header below raises it.
+ */
+html:root {
+  --az-scroll-margin-top: var(--az-dimension-semantic-page-scroll-offset);
+}
+
 /* Below 992px the header has a fixed height, and can be pinned to the top. */
 @media screen and (max-width: 992px) {
   :root .arizona-header {
@@ -465,12 +475,8 @@
 /*
  * Copy link (az-digital/arizona-bootstrap#2247): an .icon-link with a Material
  * Symbols icon, inside a wrapper at the bottom of the body. Only the label is
- * underlined.
+ * underlined. Where a linked item stops is the page's scroll offset (above).
  */
-:root .accordion-item {
-  scroll-margin-top: var(--az-component-accordion-anchor-scroll-offset);
-}
-
 :root .accordion-body :has(> .az-accordion-anchor) {
   padding-top: var(--az-component-accordion-anchor-margin-top);
 }
