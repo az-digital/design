@@ -31,12 +31,24 @@ type ComponentEntry = {
  * (Default) look. Matches the `<variant>.<state>.<part>` structure in
  * packages/tokens/AGENTS.md.
  */
-const STATES = ['hover', 'focus', 'focus-visible', 'active', 'disabled'];
-const STATE_ORDER = ['default', ...STATES];
+const STATES = ['hover', 'open', 'focus', 'focus-visible', 'active', 'disabled'];
+
+/**
+ * Breakpoint groups (`breadcrumb.lg.margin-bottom`, `accordion.md.title.*`) and
+ * the screen width each starts at. They're shown alongside the states, labelled
+ * by width ("From 768px"), rather than as variants: a breakpoint isn't a style
+ * an author picks, and its tokens aren't the resting look.
+ */
+const BREAKPOINTS: Record<string, number> = { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400 };
+const CONDITIONS = [...Object.keys(BREAKPOINTS), ...STATES];
+const STATE_ORDER = ['default', ...CONDITIONS];
 
 export function tokenState(token: string, prefix: string): string {
-  return token.slice(prefix.length).split('.').find((segment) => STATES.includes(segment)) ?? 'default';
+  return token.slice(prefix.length).split('.').find((segment) => CONDITIONS.includes(segment)) ?? 'default';
 }
+
+/** A state's label: its name ("Hover"), or for a breakpoint, the width it starts at ("From 768px"). */
+const stateTitle = (state: string) => (state in BREAKPOINTS ? `From ${BREAKPOINTS[state]}px` : title(state));
 
 const isGroup = (value: unknown): value is TokenGroup => typeof value === 'object' && value !== null && !Array.isArray(value) && !('$value' in value);
 const childGroupKeys = (group: TokenGroup) => Object.keys(group).filter((key) => !key.startsWith('$') && isGroup(group[key]));
@@ -51,6 +63,8 @@ const title = (key: string) => key.replace(/(^|-)(\w)/g, (_match, sep: string, l
  * needed. Everything else is shared structure.
  */
 function isVariantGroup(root: TokenGroup, key: string): boolean {
+  // A top-level state or breakpoint (`hover.title.color`, `md.title.font.size`) changes the root's parts, but isn't a style an author picks.
+  if (CONDITIONS.includes(key)) return false;
   const rootParts = new Set(childGroupKeys(root).filter((part) => part !== key));
   const group = root[key];
   if (!isGroup(group)) return false;
@@ -191,13 +205,13 @@ function sortForMode(entry: ComponentEntry, items: TokenData[], mode: GroupMode)
 
 /** One component's tokens, sectioned by style (each split by state) or by state (each split by style). */
 function ComponentTokenGroups({ entry, mode }: { entry: ComponentEntry; mode: GroupMode }) {
-  const stateLabel = (item: TokenData) => title(tokenState(item.token, entry.prefix));
+  const stateLabel = (item: TokenData) => stateTitle(tokenState(item.token, entry.prefix));
   const sections =
     mode === 'style'
       ? entry.groups.map((group) => ({ key: group.key, label: group.label, items: [...group.items].sort(byState(entry.prefix)), groupBy: stateLabel }))
       : STATE_ORDER.map((state) => ({
           key: state,
-          label: title(state),
+          label: stateTitle(state),
           items: entry.items.filter((item) => tokenState(item.token, entry.prefix) === state),
           groupBy: entry.groupOf,
         }))
@@ -353,7 +367,7 @@ export function ComponentTokenIndex({ component }: { component?: string } = {}) 
           {results.map(({ entry, items }) => (
             <section key={entry.name} aria-label={`${title(entry.name)} matches`}>
               <h4 style={{ margin: '0 0 6px', fontSize: 15 }}>{title(entry.name)}</h4>
-              <TokenTable items={sortForMode(entry, items, mode)} groupBy={mode === 'style' ? entry.groupOf : (item) => title(tokenState(item.token, entry.prefix))} />
+              <TokenTable items={sortForMode(entry, items, mode)} groupBy={mode === 'style' ? entry.groupOf : (item) => stateTitle(tokenState(item.token, entry.prefix))} />
             </section>
           ))}
         </div>
