@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+
+<Meta title="Primary/Brand/Background Patterns" />
+
+export const Example = ({ placement, brand, width, children }) => (
+  <div
+    className={`bg-monsoon-sky-${placement}${brand ? ' text-bg-blue' : ''}`}
+    style={{ width, maxWidth: '100%', flexShrink: 0, padding: '48px 24px', margin: '0 0 24px', border: brand ? 0 : '1px solid #e5e7eb' }}
+  >
+    {/* The docs theme colors paragraphs; the section's text color should win. */}
+    <p style={{ margin: 0, maxWidth: '36em', color: 'inherit' }}>{children}</p>
+  </div>
+);
+
+# Background Patterns
+
+**Monsoon Rain** is a pattern of short vertical lines, like falling rain, that runs down one edge
+of a section. It's a quiet accent: it never covers the section, and text over it stays readable.
+
+## Placement
+
+The pattern sits in a band along the section's **start** edge or its **end** edge (left and right
+in left-to-right languages). The band is 20% of the section's width, but never narrower than 75px
+or wider than 200px, so it stays a small accent at every screen size. The pattern image is 300px
+square and repeats down the band from the top.
+
+<Example placement="start" width="100%">Monsoon Rain along the start edge of a default section.</Example>
+<Example placement="end" brand width="100%">Monsoon Rain along the end edge of a brand section.</Example>
+
+At phone width the band stays at least 75px wide:
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+  <Example placement="start" width="320px">Start edge, 320px wide.</Example>
+  <Example placement="end" brand width="320px">End edge, 320px wide.</Example>
+</div>
+
+## Color
+
+The pattern takes its color from the surface it's on, through that surface's on-color group:
+
+- **Default surface** (White): <Token data={getTokenData('az.color.semantic.on-default.pattern')} /> (Rain),
+  with dark text.
+- **Brand surface** (Blue): <Token data={getTokenData('az.color.semantic.on-brand.pattern')} /> (Rain),
+  with White text.
+
+These two combinations passed an accessibility review: White text on Blue keeps about 6.0:1 contrast
+where the pattern is darkest behind it, and dark text on White about 16.8:1. Test any other
+section color before using the pattern on it.
+
+## The asset
+
+`monsoon-rain.svg` ships with the tokens package at `assets/patterns/monsoon-rain.svg`. It's a mask,
+not a picture: it holds the pattern's shape and its 40% opacity, and the surface's pattern color
+paints it. One file works on every surface, and a theme can change the color without a new file.
+
+<TokenTable items={getTokenDisplayItems('az.component.background-pattern.')} />

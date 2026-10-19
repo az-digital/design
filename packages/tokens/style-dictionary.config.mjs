@@ -11,6 +11,17 @@ const durationCss = {
   transform: (token) => `${token.$value.value}${token.$value.unit}`,
 };
 
+/**
+ * Writes a percentage primitive (az.percentage.20, a plain number) as a CSS
+ * percentage (20%). DTCG has no percentage type, so these are numbers that
+ * only the percentage tier turns into percentages.
+ */
+const percentageCss = {
+  type: 'value',
+  filter: (token) => token.path[1] === 'percentage' && typeof token.$value === 'number',
+  transform: (token) => `${token.$value}%`,
+};
+
 const camelCase = (value) => value.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
 const setNestedValue = (target, path, value) => {
@@ -54,6 +65,7 @@ export default {
   hooks: {
     transforms: {
       'duration/css': durationCss,
+      'percentage/css': percentageCss,
     },
     formats: {
       'javascript/variables': ({ dictionary }) => `export const az = ${JSON.stringify(buildCssVariableTree(dictionary), null, 2)};\n`,
@@ -62,7 +74,7 @@ export default {
   },
   platforms: {
     css: {
-      transforms: [...StyleDictionary.hooks.transformGroups.css, 'duration/css'],
+      transforms: [...StyleDictionary.hooks.transformGroups.css, 'duration/css', 'percentage/css'],
       buildPath: 'dist/',
       files: [
         {
@@ -79,7 +91,7 @@ export default {
       ],
     },
     scss: {
-      transforms: [...StyleDictionary.hooks.transformGroups.scss, 'duration/css'],
+      transforms: [...StyleDictionary.hooks.transformGroups.scss, 'duration/css', 'percentage/css'],
       buildPath: 'dist/',
       files: [
         {

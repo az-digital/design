@@ -30,7 +30,8 @@ export const az: {
         "placeholder": string,
         "accent": string,
         "focusRing": string,
-        "logo": string
+        "logo": string,
+        "pattern": string
       },
       "onDefault": {
         "link": string,
@@ -39,7 +40,8 @@ export const az: {
         "linkSupportingHover": string,
         "accent": string,
         "border": string,
-        "focusRing": string
+        "focusRing": string,
+        "pattern": string
       }
     }
   },
@@ -76,8 +78,11 @@ export const az: {
     "52": string,
     "58": string,
     "60": string,
+    "75": string,
+    "200": string,
     "211": string,
     "265": string,
+    "300": string,
     "0-09": string,
     "0-12": string,
     "2-4": string,
@@ -102,6 +107,9 @@ export const az: {
     "500": string,
     "600": string,
     "700": string
+  },
+  "percentage": {
+    "20": string
   },
   "duration": {
     "150": string,
@@ -447,6 +455,22 @@ export const az: {
         "underline": {
           "offset": string
         }
+      }
+    },
+    "backgroundPattern": {
+      "band": {
+        "width": string,
+        "minWidth": string,
+        "maxWidth": string
+      },
+      "tile": {
+        "size": string
+      },
+      "onDefault": {
+        "color": string
+      },
+      "onBrand": {
+        "color": string
       }
     }
   }

@@ -494,3 +494,47 @@ html:root {
 :root .az-accordion-anchor .material-symbols-rounded {
   font-size: var(--az-component-accordion-anchor-icon-size);
 }
+
+/*
+ * Background pattern (az.component.background-pattern.*, colors from
+ * on-default.* and on-brand.*): Arizona Bootstrap's Monsoon Sky wrappers
+ * (.bg-monsoon-sky-start, .bg-monsoon-sky-end), now Monsoon Rain. Arizona
+ * Bootstrap paints its SVG as a background image with Rain built in and fades
+ * the layer to 40%. The shim uses the design system's monsoon-rain.svg as a
+ * mask instead, painted in the surface's pattern color; the 40% is built into
+ * the asset, so the layer's own opacity goes back to 1. The SVG's URL and that
+ * 1 are the non-token values.
+ *
+ * The band is pinned to one edge and clamped (az-digital/arizona-bootstrap#2308),
+ * which the 5.2.2 release this Storybook loads doesn't have yet.
+ */
+:root .bg-monsoon-sky-start,
+:root .bg-monsoon-sky-end {
+  --az-background-pattern-color: var(--az-component-background-pattern-on-default-color);
+}
+
+:root .text-bg-blue.bg-monsoon-sky-start,
+:root .text-bg-blue.bg-monsoon-sky-end {
+  --az-background-pattern-color: var(--az-component-background-pattern-on-brand-color);
+}
+
+:root .bg-monsoon-sky-start::before,
+:root .bg-monsoon-sky-end::before {
+  width: var(--az-component-background-pattern-band-width);
+  min-width: var(--az-component-background-pattern-band-min-width);
+  max-width: var(--az-component-background-pattern-band-max-width);
+  opacity: 1;
+  background: var(--az-background-pattern-color);
+  mask: url("@tokens/assets/patterns/monsoon-rain.svg") repeat-y;
+  mask-size: var(--az-component-background-pattern-tile-size);
+}
+
+:root .bg-monsoon-sky-start::before {
+  inset: 0 auto 0 0;
+  mask-position: top left;
+}
+
+:root .bg-monsoon-sky-end::before {
+  inset: 0 0 0 auto;
+  mask-position: top right;
+}

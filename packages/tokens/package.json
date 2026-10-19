@@ -5,11 +5,13 @@
   "type": "module",
   "files": [
     "dist",
-    "tokens.json"
+    "tokens.json",
+    "assets"
   ],
   "exports": {
     "./tokens.json": "./tokens.json",
     "./dist/*": "./dist/*",
+    "./assets/*": "./assets/*",
     "./package.json": "./package.json"
   },
   "keywords": [

@@ -30,7 +30,8 @@ export const az = {
         "placeholder": "var(--az-color-semantic-on-brand-placeholder)",
         "accent": "var(--az-color-semantic-on-brand-accent)",
         "focusRing": "var(--az-color-semantic-on-brand-focus-ring)",
-        "logo": "var(--az-color-semantic-on-brand-logo)"
+        "logo": "var(--az-color-semantic-on-brand-logo)",
+        "pattern": "var(--az-color-semantic-on-brand-pattern)"
       },
       "onDefault": {
         "link": "var(--az-color-semantic-on-default-link)",
@@ -39,7 +40,8 @@ export const az = {
         "linkSupportingHover": "var(--az-color-semantic-on-default-link-supporting-hover)",
         "accent": "var(--az-color-semantic-on-default-accent)",
         "border": "var(--az-color-semantic-on-default-border)",
-        "focusRing": "var(--az-color-semantic-on-default-focus-ring)"
+        "focusRing": "var(--az-color-semantic-on-default-focus-ring)",
+        "pattern": "var(--az-color-semantic-on-default-pattern)"
       }
     }
   },
@@ -76,8 +78,11 @@ export const az = {
     "52": "var(--az-dimension-52)",
     "58": "var(--az-dimension-58)",
     "60": "var(--az-dimension-60)",
+    "75": "var(--az-dimension-75)",
+    "200": "var(--az-dimension-200)",
     "211": "var(--az-dimension-211)",
     "265": "var(--az-dimension-265)",
+    "300": "var(--az-dimension-300)",
     "0-09": "var(--az-dimension-0-09)",
     "0-12": "var(--az-dimension-0-12)",
     "2-4": "var(--az-dimension-2-4)",
@@ -102,6 +107,9 @@ export const az = {
     "500": "var(--az-font-weight-500)",
     "600": "var(--az-font-weight-600)",
     "700": "var(--az-font-weight-700)"
+  },
+  "percentage": {
+    "20": "var(--az-percentage-20)"
   },
   "duration": {
     "150": "var(--az-duration-150)",
@@ -447,6 +455,22 @@ export const az = {
         "underline": {
           "offset": "var(--az-component-accordion-anchor-underline-offset)"
         }
+      }
+    },
+    "backgroundPattern": {
+      "band": {
+        "width": "var(--az-component-background-pattern-band-width)",
+        "minWidth": "var(--az-component-background-pattern-band-min-width)",
+        "maxWidth": "var(--az-component-background-pattern-band-max-width)"
+      },
+      "tile": {
+        "size": "var(--az-component-background-pattern-tile-size)"
+      },
+      "onDefault": {
+        "color": "var(--az-component-background-pattern-on-default-color)"
+      },
+      "onBrand": {
+        "color": "var(--az-component-background-pattern-on-brand-color)"
       }
     }
   }

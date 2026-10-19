@@ -46,8 +46,11 @@
   --az-dimension-52: 52px;
   --az-dimension-58: 58px;
   --az-dimension-60: 60px;
+  --az-dimension-75: 75px;
+  --az-dimension-200: 200px;
   --az-dimension-211: 211px;
   --az-dimension-265: 265px;
+  --az-dimension-300: 300px;
   --az-dimension-0-09: 0.09px;
   --az-dimension-0-12: 0.12px;
   --az-dimension-2-4: 2.4px;
@@ -63,6 +66,7 @@
   --az-font-weight-500: 500; /** Medium. */
   --az-font-weight-600: 600; /** Semibold. */
   --az-font-weight-700: 700; /** Bold. */
+  --az-percentage-20: 20%; /** 20%, a share of the size of what contains it. */
   --az-duration-150: 150ms; /** 150 milliseconds. */
   --az-duration-300: 300ms; /** 300 milliseconds. */
   --az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /** CSS ease-in-out: starts and ends slowly. */
@@ -75,6 +79,7 @@
   --az-color-semantic-on-brand-accent: var(--az-color-brand-rain); /** Accent for hover and focus on surface.brand, such as a form field's border while it has focus. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-color-semantic-on-brand-focus-ring: var(--az-color-brand-white); /** Keyboard focus ring on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-color-semantic-on-brand-logo: var(--az-color-brand-white); /** Logo color on surface.brand, such as the Arizona Header's wordmark. Separate from on-brand.default because a logo's color is its own brand decision: it can't follow every change to text color. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
+  --az-color-semantic-on-brand-pattern: var(--az-color-brand-rain); /** Decorative background patterns on surface.brand, such as Monsoon Rain. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-color-semantic-on-default-link: var(--az-color-brand-red); /** Ordinary links on surface.default, such as a link in running text or an accordion's Copy link — aliases the brand palette. */
   --az-color-semantic-on-default-link-hover: var(--az-color-brand-sonoran-red); /** Ordinary links on surface.default, on hover — aliases the brand palette. */
   --az-color-semantic-on-default-link-supporting: var(--az-color-brand-azurite); /** Supporting links and controls on surface.default, which back up ordinary links rather than compete with them, such as a breadcrumb's links and home icon or an accordion's titles — aliases the brand palette. */
@@ -82,6 +87,7 @@
   --az-color-semantic-on-default-accent: var(--az-color-brand-bougainvillea); /** Accent on surface.default, such as the dividers between breadcrumb items — aliases the brand palette. */
   --az-color-semantic-on-default-border: var(--az-color-neutral-gray-alpha-50); /** Rules and dividers on surface.default, such as the line under each accordion title — aliases a neutral color. */
   --az-color-semantic-on-default-focus-ring: var(--az-color-brand-bougainvillea); /** Keyboard focus ring on surface.default — aliases the brand palette. */
+  --az-color-semantic-on-default-pattern: var(--az-color-brand-rain); /** Decorative background patterns on surface.default, such as Monsoon Rain — aliases the brand palette. */
   --az-dimension-semantic-page-scroll-offset: var(--az-dimension-0); /** How far below the top of the screen a linked section stops when the page scrolls to it, such as an accordion item opened from a link. A fixed header raises it so the header doesn't cover the section. */
   --az-component-brand-header-height: var(--az-dimension-50); /** Header height: its minimum height at every screen size, and its fixed height below 992px. */
   --az-component-brand-header-logo-width: var(--az-dimension-211); /** Wordmark width below the sm breakpoint (576px). */
@@ -177,6 +183,10 @@
   --az-component-accordion-anchor-gap: var(--az-dimension-6); /** Space between the Copy link's icon and its label. */
   --az-component-accordion-anchor-margin-top: var(--az-dimension-8); /** Space above the Copy link, at the bottom of the body. */
   --az-component-accordion-anchor-underline-offset: var(--az-dimension-4-5); /** How far below the label the Copy link's underline sits (0.25em at the 18px body size). Only the label is underlined, not the icon. */
+  --az-component-background-pattern-band-width: var(--az-percentage-20); /** Width of the patterned band along a section's start or end edge, as a share of the section's width. */
+  --az-component-background-pattern-band-min-width: var(--az-dimension-75); /** Narrowest the band gets, on narrow screens. */
+  --az-component-background-pattern-band-max-width: var(--az-dimension-200); /** Widest the band gets, on wide screens, so the pattern stays a small accent. */
+  --az-component-background-pattern-tile-size: var(--az-dimension-300); /** Size of the pattern image, a mask in the pattern's color. It repeats down the band from the top. */
   --az-component-brand-header-container-color: var(--az-color-semantic-surface-brand); /** Header fill: the brand surface, Blue by default. The original red header comes from a theme that points surface.brand at Red. */
   --az-component-brand-header-logo-color: var(--az-color-semantic-on-brand-logo); /** Color of the header's wordmark logo. */
   --az-component-brand-header-focus-visible-ring-color: var(--az-color-semantic-on-brand-focus-ring); /** Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. */
@@ -204,6 +214,8 @@
   --az-component-accordion-focus-visible-ring-color: var(--az-color-semantic-on-default-focus-ring); /** Keyboard focus ring around a title. */
   --az-component-accordion-anchor-link-color: var(--az-color-semantic-on-default-link); /** The Copy link at the bottom of an item's body: icon and label. */
   --az-component-accordion-anchor-hover-link-color: var(--az-color-semantic-on-default-link-hover); /** The Copy link on hover. */
+  --az-component-background-pattern-on-default-color: var(--az-color-semantic-on-default-pattern); /** The pattern's color on a default (White) section. The pattern image is a mask, so this paints it. */
+  --az-component-background-pattern-on-brand-color: var(--az-color-semantic-on-brand-pattern); /** The pattern's color on a brand (Blue) section. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
   --az-component-breadcrumb-hover-underline-color: var(--az-component-breadcrumb-hover-link-color); /** Underline under a linked item on hover: the same color as its text. */
   --az-component-accordion-icon-color: var(--az-component-accordion-title-color); /** The plus/minus icon: the title's color. */
