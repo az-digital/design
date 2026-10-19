@@ -18,7 +18,8 @@ export const az: {
     },
     "semantic": {
       "surface": {
-        "brand": string
+        "brand": string,
+        "default": string
       },
       "onBrand": {
         "default": string,
@@ -27,10 +28,15 @@ export const az: {
         "accent": string,
         "focusRing": string,
         "logo": string
+      },
+      "onDefault": {
+        "link": string,
+        "accent": string
       }
     }
   },
   "dimension": {
+    "0": string,
     "1": string,
     "2": string,
     "4": string,
@@ -50,11 +56,15 @@ export const az: {
     "60": string,
     "211": string,
     "265": string,
+    "2-4": string,
+    "9-744": string,
+    "19-2": string,
     "19-8": string,
     "266-41": string
   },
   "fontWeight": {
-    "400": string
+    "400": string,
+    "500": string
   },
   "duration": {
     "150": string,
@@ -201,6 +211,54 @@ export const az: {
             "color": string,
             "width": string
           }
+        }
+      }
+    },
+    "breadcrumb": {
+      "container": {
+        "color": string
+      },
+      "padding": {
+        "x": string,
+        "y": string
+      },
+      "marginBottom": string,
+      "lg": {
+        "marginBottom": string
+      },
+      "item": {
+        "font": {
+          "size": string,
+          "weight": string
+        },
+        "lineHeight": string
+      },
+      "link": {
+        "color": string
+      },
+      "current": {
+        "color": string
+      },
+      "hover": {
+        "link": {
+          "color": string
+        },
+        "underline": {
+          "color": string,
+          "width": string,
+          "offset": string
+        }
+      },
+      "divider": {
+        "color": string,
+        "gap": string
+      },
+      "home": {
+        "icon": {
+          "color": string,
+          "size": string,
+          "gap": string,
+          "raise": string
         }
       }
     }

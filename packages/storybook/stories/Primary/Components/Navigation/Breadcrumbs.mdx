@@ -1,5 +1,38 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
 
 <Meta title="Primary/Components/Navigation/Breadcrumbs" />
 
 # Breadcrumbs
+
+A row of links from the home page to the current page, separated by `/`. The first item
+can be Home, with a house icon before it.
+
+## Colors come from the surface
+
+A breadcrumb sits on the default surface, <Token data={getTokenData('az.color.semantic.surface.default')} />
+(White), and takes its colors from that surface's on-color group, the way the
+Input Group takes its colors from the brand surface's:
+
+- **Links, the current page and the house icon:** <Token data={getTokenData('az.color.semantic.on-default.link')} />
+  (Azurite). Linked items don't change color on hover; a 1px underline in the same color,
+  5px below the text's baseline, shows the hover instead.
+- **Dividers:** <Token data={getTokenData('az.color.semantic.on-default.accent')} /> (Bougainvillea).
+
+Breadcrumbs on other surfaces come when a design needs them.
+
+## Type and spacing
+
+- **Type:** 16px Medium for every item, linked or current, with a 16px line height.
+- **Padding:** 12px above and below, and 0.609rem (about 9.7px) to the left and right.
+- **Dividers:** 8px of space on each side of the `/`.
+- **Below:** 16px of space under the breadcrumb, and none from the lg breakpoint (992px) up.
+
+## Home
+
+- **Icon:** a 19.2px (1.2rem) outlined house, 2.4px before "Home", raised 2.4px so it
+  lines up with the text the way it does on arizona.edu.
+- **Hover:** the icon is part of the link, so the underline starts at the house's left
+  edge and runs under "Home".
+
+<TokenTable items={getTokenDisplayItems('az.component.breadcrumb.')} />

@@ -18,7 +18,8 @@ export const az = {
     },
     "semantic": {
       "surface": {
-        "brand": "var(--az-color-semantic-surface-brand)"
+        "brand": "var(--az-color-semantic-surface-brand)",
+        "default": "var(--az-color-semantic-surface-default)"
       },
       "onBrand": {
         "default": "var(--az-color-semantic-on-brand-default)",
@@ -27,10 +28,15 @@ export const az = {
         "accent": "var(--az-color-semantic-on-brand-accent)",
         "focusRing": "var(--az-color-semantic-on-brand-focus-ring)",
         "logo": "var(--az-color-semantic-on-brand-logo)"
+      },
+      "onDefault": {
+        "link": "var(--az-color-semantic-on-default-link)",
+        "accent": "var(--az-color-semantic-on-default-accent)"
       }
     }
   },
   "dimension": {
+    "0": "var(--az-dimension-0)",
     "1": "var(--az-dimension-1)",
     "2": "var(--az-dimension-2)",
     "4": "var(--az-dimension-4)",
@@ -50,11 +56,15 @@ export const az = {
     "60": "var(--az-dimension-60)",
     "211": "var(--az-dimension-211)",
     "265": "var(--az-dimension-265)",
+    "2-4": "var(--az-dimension-2-4)",
+    "9-744": "var(--az-dimension-9-744)",
+    "19-2": "var(--az-dimension-19-2)",
     "19-8": "var(--az-dimension-19-8)",
     "266-41": "var(--az-dimension-266-41)"
   },
   "fontWeight": {
-    "400": "var(--az-font-weight-400)"
+    "400": "var(--az-font-weight-400)",
+    "500": "var(--az-font-weight-500)"
   },
   "duration": {
     "150": "var(--az-duration-150)",
@@ -201,6 +211,54 @@ export const az = {
             "color": "var(--az-component-search-toggle-focus-visible-ring-color)",
             "width": "var(--az-component-search-toggle-focus-visible-ring-width)"
           }
+        }
+      }
+    },
+    "breadcrumb": {
+      "container": {
+        "color": "var(--az-component-breadcrumb-container-color)"
+      },
+      "padding": {
+        "x": "var(--az-component-breadcrumb-padding-x)",
+        "y": "var(--az-component-breadcrumb-padding-y)"
+      },
+      "marginBottom": "var(--az-component-breadcrumb-margin-bottom)",
+      "lg": {
+        "marginBottom": "var(--az-component-breadcrumb-lg-margin-bottom)"
+      },
+      "item": {
+        "font": {
+          "size": "var(--az-component-breadcrumb-item-font-size)",
+          "weight": "var(--az-component-breadcrumb-item-font-weight)"
+        },
+        "lineHeight": "var(--az-component-breadcrumb-item-line-height)"
+      },
+      "link": {
+        "color": "var(--az-component-breadcrumb-link-color)"
+      },
+      "current": {
+        "color": "var(--az-component-breadcrumb-current-color)"
+      },
+      "hover": {
+        "link": {
+          "color": "var(--az-component-breadcrumb-hover-link-color)"
+        },
+        "underline": {
+          "color": "var(--az-component-breadcrumb-hover-underline-color)",
+          "width": "var(--az-component-breadcrumb-hover-underline-width)",
+          "offset": "var(--az-component-breadcrumb-hover-underline-offset)"
+        }
+      },
+      "divider": {
+        "color": "var(--az-component-breadcrumb-divider-color)",
+        "gap": "var(--az-component-breadcrumb-divider-gap)"
+      },
+      "home": {
+        "icon": {
+          "color": "var(--az-component-breadcrumb-home-icon-color)",
+          "size": "var(--az-component-breadcrumb-home-icon-size)",
+          "gap": "var(--az-component-breadcrumb-home-icon-gap)",
+          "raise": "var(--az-component-breadcrumb-home-icon-raise)"
         }
       }
     }
