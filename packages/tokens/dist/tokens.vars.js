@@ -31,6 +31,7 @@ export const az = {
       },
       "onDefault": {
         "link": "var(--az-color-semantic-on-default-link)",
+        "linkQuiet": "var(--az-color-semantic-on-default-link-quiet)",
         "accent": "var(--az-color-semantic-on-default-accent)"
       }
     }

@@ -31,6 +31,7 @@ export const az: {
       },
       "onDefault": {
         "link": string,
+        "linkQuiet": string,
         "accent": string
       }
     }

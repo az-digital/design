@@ -51,7 +51,8 @@ $az-color-semantic-on-brand-placeholder: $az-color-brand-white; // Placeholder t
 $az-color-semantic-on-brand-accent: $az-color-brand-rain; // Accent for hover and focus on surface.brand, such as a form field's border while it has focus. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
 $az-color-semantic-on-brand-focus-ring: $az-color-brand-white; // Keyboard focus ring on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
 $az-color-semantic-on-brand-logo: $az-color-brand-white; // Logo color on surface.brand, such as the Arizona Header's wordmark. Separate from on-brand.default because a logo's color is its own brand decision: it can't follow every change to text color. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
-$az-color-semantic-on-default-link: $az-color-brand-azurite; // Links on surface.default, and their hover underlines, such as a breadcrumb's links and home icon — aliases the brand palette.
+$az-color-semantic-on-default-link: $az-color-brand-red; // Ordinary links on surface.default, such as a link in running text or an accordion's Copy link — aliases the brand palette.
+$az-color-semantic-on-default-link-quiet: $az-color-brand-azurite; // Links and controls on surface.default that are quieter than ordinary links, such as a breadcrumb's links and home icon — aliases the brand palette.
 $az-color-semantic-on-default-accent: $az-color-brand-bougainvillea; // Accent on surface.default, such as the dividers between breadcrumb items — aliases the brand palette.
 $az-component-brand-header-height: $az-dimension-50; // Header height: its minimum height at every screen size, and its fixed height below 992px.
 $az-component-brand-header-logo-width: $az-dimension-211; // Wordmark width below the sm breakpoint (576px).
@@ -119,10 +120,10 @@ $az-component-input-group-on-brand-focus-border-color: $az-color-semantic-on-bra
 $az-component-input-group-on-brand-focus-divider-color: $az-color-semantic-on-brand-accent; // Divider color while the field or button has focus, on the brand surface.
 $az-component-search-toggle-focus-visible-ring-color: $az-color-semantic-on-brand-accent; // Keyboard focus ring on the button that shows the search form on small screens, on the brand surface.
 $az-component-breadcrumb-container-color: $az-color-semantic-surface-default; // Breadcrumb's fill.
-$az-component-breadcrumb-link-color: $az-color-semantic-on-default-link; // Linked items' text.
-$az-component-breadcrumb-current-color: $az-color-semantic-on-default-link; // The current page's item, which isn't a link.
-$az-component-breadcrumb-hover-link-color: $az-color-semantic-on-default-link; // Linked items' text on hover: unchanged, so the underline shows the hover.
+$az-component-breadcrumb-link-color: $az-color-semantic-on-default-link-quiet; // Linked items' text.
+$az-component-breadcrumb-current-color: $az-color-semantic-on-default-link-quiet; // The current page's item, which isn't a link.
+$az-component-breadcrumb-hover-link-color: $az-color-semantic-on-default-link-quiet; // Linked items' text on hover: unchanged, so the underline shows the hover.
 $az-component-breadcrumb-divider-color: $az-color-semantic-on-default-accent; // The / between items.
-$az-component-breadcrumb-home-icon-color: $az-color-semantic-on-default-link; // The house icon before Home: the link color, and part of the link.
+$az-component-breadcrumb-home-icon-color: $az-color-semantic-on-default-link-quiet; // The house icon before Home: the link color, and part of the link.
 $az-component-brand-header-button-icon-color: $az-component-brand-header-button-label-color; // Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor".
 $az-component-breadcrumb-hover-underline-color: $az-component-breadcrumb-hover-link-color; // Underline under a linked item on hover: the same color as its text.
