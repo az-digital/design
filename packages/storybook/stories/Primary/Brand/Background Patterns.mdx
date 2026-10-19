@@ -17,8 +17,8 @@ export const Example = ({ placement, brand, width, children }) => (
 
 Background patterns are quiet accents behind a section's content. They never cover the section, and
 text over them stays readable. Each pattern has its own tokens
-(`az.component.background-pattern.<pattern>.*`): its image, and where and how big it's drawn. Every
-pattern shares the same colors.
+(`az.component.background-pattern.<pattern>.*`) for where and how big it's drawn, and its own SVG.
+Every pattern shares the same colors.
 
 ## Monsoon Rain
 
@@ -55,18 +55,18 @@ Test any other section color, or a new pattern, before using it.
 
 ## Images
 
-A pattern's image token, such as <Token data={getTokenData('az.component.background-pattern.monsoon.image')} />,
-is the pattern itself: the build embeds its SVG in the token's output, so it works wherever the
-tokens do, with no files to host. The SVG is a mask, not a picture: it holds the pattern's shape and
-its opacity (40% for Monsoon Rain), and the surface's pattern color paints it. One image works on
-every surface, and the color can change without a new file. The source SVGs ship with the tokens
-package in `assets/patterns/`.
+Each pattern is an SVG that ships with the tokens package, in `assets/patterns/`. Monsoon Rain is
+`monsoon-rain.svg`. The SVG is a mask, not a picture: it holds the pattern's shape and its opacity
+(40% for Monsoon Rain), and the surface's pattern color paints it. One file works on every surface,
+and the color can change without a new file. Point at the file from the pattern's styles, and size
+and color it with its tokens.
 
 ## Adding a pattern
 
 1. Add its SVG to `assets/patterns/` as a mask: black shapes, with its opacity built in.
-2. Add a group for it, `background-pattern.<pattern>.*`, with an `image` token pointing at the file
-   and the tokens for where and how big it's drawn. Name it after the pattern, without color names.
+2. Add a group for it, `background-pattern.<pattern>.*`, with the tokens for where and how big it's
+   drawn. Name it after the pattern, without color names, and say which file it uses in the
+   group's descriptions.
 3. Add an example to this page, on each surface it's approved for.
 
 <TokenTable items={getTokenDisplayItems('az.component.background-pattern.')} />

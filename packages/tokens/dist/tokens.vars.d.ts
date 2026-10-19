@@ -465,7 +465,6 @@ export const az: {
         "color": string
       },
       "monsoon": {
-        "image": string,
         "band": {
           "width": string,
           "minWidth": string,

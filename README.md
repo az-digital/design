@@ -11,7 +11,7 @@ This is an npm workspaces monorepo with three packages:
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── style-dictionary.config.mjs
-│   │   ├── assets/             #   artwork the tokens point at (e.g. assets/patterns/*.svg)
+│   │   ├── assets/             #   artwork sized and colored by tokens (e.g. assets/patterns/*.svg)
 │   │   ├── dist/               #   generated output (committed, built by Style Dictionary)
 │   │   │   ├── tokens.css      #     CSS custom properties (--az-color-brand-*, etc.)
 │   │   │   ├── tokens.scss     #     Sass variables
@@ -86,7 +86,7 @@ npm run build:tokens
 - `tokens.scss` — Sass variables (e.g. `$az-color-brand-blue: #0c234b;`) for Sass-based builds.
 - `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the generated CSS variable names instead of reconstructing them.
 
-Asset tokens (`"$type": "asset"`, such as `az.component.background-pattern.monsoon.image`) point at a file in `packages/tokens/assets/`. In `tokens.css` and `tokens.scss` they come out as the file itself, embedded as a data URI (`url("data:image/svg+xml,…")`), so they work wherever the tokens do. `tokens.json` keeps the path, and the files ship with the package (`@az-digital/tokens/assets/…`) for tools such as Figma that import them directly. Pattern SVGs are masks: black shapes, painted with a color token.
+Artwork such as background patterns lives in `packages/tokens/assets/` and ships with the package (`@az-digital/tokens/assets/…`). It isn't a token: the DTCG format has no type for files, so implementations point at the file directly and size and color it with tokens. Pattern SVGs are masks: black shapes, painted with a color token.
 
 In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{az.color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
 

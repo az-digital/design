@@ -465,7 +465,6 @@ export const az = {
         "color": "var(--az-component-background-pattern-on-brand-color)"
       },
       "monsoon": {
-        "image": "var(--az-component-background-pattern-monsoon-image)",
         "band": {
           "width": "var(--az-component-background-pattern-monsoon-band-width)",
           "minWidth": "var(--az-component-background-pattern-monsoon-band-min-width)",
