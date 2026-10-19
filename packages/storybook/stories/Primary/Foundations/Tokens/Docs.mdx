@@ -55,6 +55,12 @@ Sizes and spacing (`az.dimension.*`), in pixels, smallest first.
 
 <TokenDisplay items={dimensionsBySize} layout="table" />
 
+### Font weights
+
+How heavy text is (`az.font-weight.*`), as numeric weights.
+
+<TokenDisplay items={getTokenDisplayItems('az.font-weight.', { order: 'source' })} layout="table" />
+
 ### Durations
 
 How long a change takes (`az.duration.*`), in milliseconds.

@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+
+<Meta title="Primary/Components/Inputs/Input Group" />
+
+# Input Group
+
+A text field with an attached button, such as a search form, a newsletter signup or an
+email field. The search form in a site's navigation is the first one designed.
+
+## Colors come from the surface
+
+A form's colors change with the surface it sits on, so the input group doesn't choose
+them. Each surface has an on-color group for whatever sits on it, and the input group
+has a matching group of its own that points at it. Only the brand surface (Blue) is
+designed so far:
+
+- **Text and icon:** <Token data={getTokenData('az.color.semantic.on-brand.default')} /> (White)
+- **Border, and the divider between field and button:** <Token data={getTokenData('az.color.semantic.on-brand.border')} /> (White)
+- **Placeholder:** <Token data={getTokenData('az.color.semantic.on-brand.placeholder')} /> (White)
+- **Hover and focus:** <Token data={getTokenData('az.color.semantic.on-brand.accent')} /> (Rain). The
+  icon turns Rain on hover; the border and divider turn Rain while the field or button
+  has focus, fading over 150ms.
+
+Colors for other surfaces, such as a White page, come when a design needs them.
+
+## Shape is the same everywhere
+
+- **Size:** 43px tall. The field has 6px of padding above and below its text, and 12px
+  to the left and right.
+- **Border:** 2px, around the field and button together, with 8px corners and a 2px
+  divider between them.
+- **Type:** 16px Regular, with a 22px line height.
+- **Button:** a 24px icon with 9px of padding around it.
+
+<TokenTable items={getTokenDisplayItems('az.component.input-group.')} />
+
+## Search
+
+The search form is an input group, so it adds only what's specific to search: it's up
+to 265px wide, with 5px above and below it and 15px to each side. On small screens, the
+button that shows it has a 1px keyboard focus ring in the accent color.
+
+<TokenTable items={getTokenDisplayItems('az.component.search.')} />

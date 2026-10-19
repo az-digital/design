@@ -22,23 +22,39 @@ export const az = {
       },
       "onBrand": {
         "default": "var(--az-color-semantic-on-brand-default)",
+        "border": "var(--az-color-semantic-on-brand-border)",
+        "placeholder": "var(--az-color-semantic-on-brand-placeholder)",
+        "accent": "var(--az-color-semantic-on-brand-accent)",
         "focusRing": "var(--az-color-semantic-on-brand-focus-ring)",
         "logo": "var(--az-color-semantic-on-brand-logo)"
       }
     }
   },
   "dimension": {
+    "1": "var(--az-dimension-1)",
     "2": "var(--az-dimension-2)",
     "4": "var(--az-dimension-4)",
+    "5": "var(--az-dimension-5)",
+    "6": "var(--az-dimension-6)",
+    "8": "var(--az-dimension-8)",
+    "9": "var(--az-dimension-9)",
     "10": "var(--az-dimension-10)",
+    "12": "var(--az-dimension-12)",
+    "15": "var(--az-dimension-15)",
     "16": "var(--az-dimension-16)",
+    "22": "var(--az-dimension-22)",
     "24": "var(--az-dimension-24)",
+    "43": "var(--az-dimension-43)",
     "50": "var(--az-dimension-50)",
     "58": "var(--az-dimension-58)",
     "60": "var(--az-dimension-60)",
     "211": "var(--az-dimension-211)",
+    "265": "var(--az-dimension-265)",
     "19-8": "var(--az-dimension-19-8)",
     "266-41": "var(--az-dimension-266-41)"
+  },
+  "fontWeight": {
+    "400": "var(--az-font-weight-400)"
   },
   "duration": {
     "150": "var(--az-duration-150)",
@@ -108,6 +124,82 @@ export const az = {
           "transition": {
             "duration": "var(--az-component-brand-header-offcanvas-backdrop-transition-duration)",
             "easing": "var(--az-component-brand-header-offcanvas-backdrop-transition-easing)"
+          }
+        }
+      }
+    },
+    "inputGroup": {
+      "height": "var(--az-component-input-group-height)",
+      "field": {
+        "padding": {
+          "x": "var(--az-component-input-group-field-padding-x)",
+          "y": "var(--az-component-input-group-field-padding-y)"
+        },
+        "font": {
+          "size": "var(--az-component-input-group-field-font-size)",
+          "weight": "var(--az-component-input-group-field-font-weight)"
+        },
+        "lineHeight": "var(--az-component-input-group-field-line-height)"
+      },
+      "button": {
+        "padding": "var(--az-component-input-group-button-padding)",
+        "icon": {
+          "size": "var(--az-component-input-group-button-icon-size)"
+        }
+      },
+      "border": {
+        "width": "var(--az-component-input-group-border-width)",
+        "radius": "var(--az-component-input-group-border-radius)"
+      },
+      "divider": {
+        "width": "var(--az-component-input-group-divider-width)",
+        "transition": {
+          "duration": "var(--az-component-input-group-divider-transition-duration)",
+          "easing": "var(--az-component-input-group-divider-transition-easing)"
+        }
+      },
+      "onBrand": {
+        "field": {
+          "color": "var(--az-component-input-group-on-brand-field-color)",
+          "placeholder": {
+            "color": "var(--az-component-input-group-on-brand-field-placeholder-color)"
+          }
+        },
+        "border": {
+          "color": "var(--az-component-input-group-on-brand-border-color)"
+        },
+        "divider": {
+          "color": "var(--az-component-input-group-on-brand-divider-color)"
+        },
+        "icon": {
+          "color": "var(--az-component-input-group-on-brand-icon-color)"
+        },
+        "hover": {
+          "icon": {
+            "color": "var(--az-component-input-group-on-brand-hover-icon-color)"
+          }
+        },
+        "focus": {
+          "border": {
+            "color": "var(--az-component-input-group-on-brand-focus-border-color)"
+          },
+          "divider": {
+            "color": "var(--az-component-input-group-on-brand-focus-divider-color)"
+          }
+        }
+      }
+    },
+    "search": {
+      "maxWidth": "var(--az-component-search-max-width)",
+      "padding": {
+        "x": "var(--az-component-search-padding-x)",
+        "y": "var(--az-component-search-padding-y)"
+      },
+      "toggle": {
+        "focusVisible": {
+          "ring": {
+            "color": "var(--az-component-search-toggle-focus-visible-ring-color)",
+            "width": "var(--az-component-search-toggle-focus-visible-ring-width)"
           }
         }
       }
