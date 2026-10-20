@@ -320,6 +320,16 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
     return () => trigger?.focus();
   }, [trigger]);
 
+  // Navigating an alias remounts the keyed alias tree, so the focused pill can
+  // disappear and focus fall back to the body. Pull focus back into the drawer
+  // when the shown token changes if it has left, keeping Tab and Escape working.
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog || dialog.contains(document.activeElement)) return;
+    const firstFocusable = dialog.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    (firstFocusable ?? dialog).focus();
+  }, [shown.token]);
+
   const handleDialogKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape') {
       event.stopPropagation();
@@ -362,10 +372,11 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
           <button type="button" onClick={onClose} aria-label="Close token details" style={{ width: 28, height: 28, border: '1px solid #d0d5dd', borderRadius: 5, background: '#fff', color: '#374151', cursor: 'pointer' }}>×</button>
         </div>
         <TokenDetailsContent data={shown} onNavigate={(token) => setShown(getTokenData(token) ?? shown)} />
+        {/* Inside the dialog so the Tab trap reaches it and its Escape bubbles to the handler; fixed position keeps it on the drawer's left edge. */}
+        <div style={{ position: 'fixed', top: 0, bottom: 0, right: width, zIndex: 12 }}>
+          <ResizeHandle width={width} onResize={setWidth} label="Resize token details" />
+        </div>
       </aside>
-      <div style={{ position: 'fixed', top: 0, bottom: 0, right: width, zIndex: 12 }}>
-        <ResizeHandle width={width} onResize={setWidth} label="Resize token details" />
-      </div>
     </>
   );
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { addons, types, useChannel, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
 import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT } from './constants';
-import { getTokenDisplayItems } from './resolveToken';
+import { getTokenData, getTokenDisplayItems } from './resolveToken';
 import { setTokensData, useTokensData, type TokensData } from './store';
 import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
 import { TokenTable } from './TokenTable';
@@ -36,11 +36,17 @@ function TokensPanelContent() {
 
   const prefixes = parameter && !isDisabled(parameter) ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix));
-  const selected = items.find((item) => item.token === selectedToken);
+  // Look the selection up in the full token index, not just this story's list,
+  // so following an alias to a related token outside the story's scope (e.g. a
+  // brand token behind a semantic one) still shows its details.
+  const selected = selectedToken ? getTokenData(selectedToken) : undefined;
 
+  // Drop a leftover selection when the story's token scope changes, not on every
+  // selection change — otherwise navigating to an out-of-scope token clears it.
+  const scope = prefixes.join('\n');
   useEffect(() => {
-    if (selectedToken && !items.some((item) => item.token === selectedToken)) setSelectedToken(null);
-  }, [items, selectedToken]);
+    setSelectedToken(null);
+  }, [scope]);
 
   if (data.tokens.length === 0) {
     return <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>Loading tokens…</p>;
