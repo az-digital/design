@@ -126,7 +126,11 @@ export const az: {
           "size": string,
           "weight": string
         },
-        "lineHeight": string
+        "lineHeight": string,
+        "color": string,
+        "placeholder": {
+          "color": string
+        }
       },
       "button": {
         "padding": string,
@@ -136,43 +140,31 @@ export const az: {
       },
       "border": {
         "width": string,
-        "radius": string
+        "radius": string,
+        "color": string
       },
       "divider": {
         "width": string,
         "transition": {
           "duration": string,
           "easing": string
+        },
+        "color": string
+      },
+      "icon": {
+        "color": string
+      },
+      "hover": {
+        "icon": {
+          "color": string
         }
       },
-      "onBrand": {
-        "field": {
-          "color": string,
-          "placeholder": {
-            "color": string
-          }
-        },
+      "focus": {
         "border": {
           "color": string
         },
         "divider": {
           "color": string
-        },
-        "icon": {
-          "color": string
-        },
-        "hover": {
-          "icon": {
-            "color": string
-          }
-        },
-        "focus": {
-          "border": {
-            "color": string
-          },
-          "divider": {
-            "color": string
-          }
         }
       }
     },

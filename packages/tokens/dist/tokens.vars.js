@@ -126,7 +126,11 @@ export const az = {
           "size": "var(--az-component-input-group-field-font-size)",
           "weight": "var(--az-component-input-group-field-font-weight)"
         },
-        "lineHeight": "var(--az-component-input-group-field-line-height)"
+        "lineHeight": "var(--az-component-input-group-field-line-height)",
+        "color": "var(--az-component-input-group-field-color)",
+        "placeholder": {
+          "color": "var(--az-component-input-group-field-placeholder-color)"
+        }
       },
       "button": {
         "padding": "var(--az-component-input-group-button-padding)",
@@ -136,43 +140,31 @@ export const az = {
       },
       "border": {
         "width": "var(--az-component-input-group-border-width)",
-        "radius": "var(--az-component-input-group-border-radius)"
+        "radius": "var(--az-component-input-group-border-radius)",
+        "color": "var(--az-component-input-group-border-color)"
       },
       "divider": {
         "width": "var(--az-component-input-group-divider-width)",
         "transition": {
           "duration": "var(--az-component-input-group-divider-transition-duration)",
           "easing": "var(--az-component-input-group-divider-transition-easing)"
+        },
+        "color": "var(--az-component-input-group-divider-color)"
+      },
+      "icon": {
+        "color": "var(--az-component-input-group-icon-color)"
+      },
+      "hover": {
+        "icon": {
+          "color": "var(--az-component-input-group-hover-icon-color)"
         }
       },
-      "onBrand": {
-        "field": {
-          "color": "var(--az-component-input-group-on-brand-field-color)",
-          "placeholder": {
-            "color": "var(--az-component-input-group-on-brand-field-placeholder-color)"
-          }
-        },
+      "focus": {
         "border": {
-          "color": "var(--az-component-input-group-on-brand-border-color)"
+          "color": "var(--az-component-input-group-focus-border-color)"
         },
         "divider": {
-          "color": "var(--az-component-input-group-on-brand-divider-color)"
-        },
-        "icon": {
-          "color": "var(--az-component-input-group-on-brand-icon-color)"
-        },
-        "hover": {
-          "icon": {
-            "color": "var(--az-component-input-group-on-brand-hover-icon-color)"
-          }
-        },
-        "focus": {
-          "border": {
-            "color": "var(--az-component-input-group-on-brand-focus-border-color)"
-          },
-          "divider": {
-            "color": "var(--az-component-input-group-on-brand-focus-divider-color)"
-          }
+          "color": "var(--az-component-input-group-focus-divider-color)"
         }
       }
     },

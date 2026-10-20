@@ -8,21 +8,20 @@ import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digit
 A text field with an attached button, such as a search form, a newsletter signup or an
 email field. The search form in a site's navigation is the first one designed.
 
-## Colors depend on the background
+## Colors
 
-A form's colors change with the background it sits on, so the input group's colors are
-in a group named for that background. Only a brand-colored background, such as a Blue
-navbar, is designed so far, in `on-brand`. Each color points straight at a brand color:
+These colors come from the search form on a Blue navbar, the only design so far. Each
+points straight at a brand color:
 
-- **Text and icon:** <Token data={getTokenData('az.component.input-group.on-brand.field.color')} /> (White)
-- **Border, and the divider between field and button:** <Token data={getTokenData('az.component.input-group.on-brand.border.color')} /> (White)
-- **Placeholder:** <Token data={getTokenData('az.component.input-group.on-brand.field.placeholder.color')} /> (White)
-- **Hover and focus:** <Token data={getTokenData('az.component.input-group.on-brand.focus.border.color')} /> (Rain). The
+- **Text and icon:** <Token data={getTokenData('az.component.input-group.field.color')} /> (White)
+- **Border, and the divider between field and button:** <Token data={getTokenData('az.component.input-group.border.color')} /> (White)
+- **Placeholder:** <Token data={getTokenData('az.component.input-group.field.placeholder.color')} /> (White)
+- **Hover and focus:** <Token data={getTokenData('az.component.input-group.focus.border.color')} /> (Rain). The
   icon turns Rain on hover; the border and divider turn Rain while the field or button
   has focus, fading over 150ms.
 
-Colors for other backgrounds, such as a White page, come as a group beside `on-brand`
-when a design needs them.
+When a design puts the input group on another background, such as a White page, a
+variant for it holds only the colors that change.
 
 ## Shape is the same everywhere
 

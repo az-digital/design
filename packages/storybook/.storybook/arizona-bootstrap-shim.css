@@ -160,7 +160,7 @@
 }
 
 /*
- * Forms (az.component.input-group.*, colors from its on-brand group): Arizona
+ * Forms (az.component.input-group.*): Arizona
  * Bootstrap's AZ Search (.az-search), a text field with an attached button on
  * a Blue navbar. AZ Search keeps its values in --az-search-* variables, so
  * this points those at the tokens. Search's own width and padding come from
@@ -178,16 +178,16 @@
   --az-search-btn-padding: var(--az-component-input-group-button-padding);
   --az-search-icon-size: var(--az-component-input-group-button-icon-size);
   --az-search-font: normal normal var(--az-component-input-group-field-font-weight) var(--az-component-input-group-field-font-size) / var(--az-component-input-group-field-line-height) proxima-nova;
-  --az-search-color: var(--az-component-input-group-on-brand-field-color);
+  --az-search-color: var(--az-component-input-group-field-color);
   --az-search-border-width: var(--az-component-input-group-border-width);
-  --az-search-border-color: var(--az-component-input-group-on-brand-border-color);
-  --az-search-focus-ring-color: var(--az-component-input-group-on-brand-focus-border-color);
+  --az-search-border-color: var(--az-component-input-group-border-color);
+  --az-search-focus-ring-color: var(--az-component-input-group-focus-border-color);
   --bs-border-radius: var(--az-component-input-group-border-radius);
 }
 
 /* Placeholder: its own token, though Arizona Bootstrap reuses the text color. */
 :root .az-search .form-control::placeholder {
-  color: var(--az-component-input-group-on-brand-field-placeholder-color);
+  color: var(--az-component-input-group-field-placeholder-color);
 }
 
 /*
@@ -197,7 +197,7 @@
  */
 :root .az-search .input-group .btn::before {
   width: var(--az-component-input-group-divider-width);
-  background-color: var(--az-component-input-group-on-brand-divider-color);
+  background-color: var(--az-component-input-group-divider-color);
   transition-duration: var(--az-component-input-group-divider-transition-duration);
   transition-timing-function: var(--az-component-input-group-divider-transition-easing);
 }
@@ -206,7 +206,7 @@
 :root .az-search .input-group .form-control:focus-visible + .btn::before,
 :root .az-search .input-group .btn:focus-visible::before,
 :root .az-search .input-group .btn:active::before {
-  background-color: var(--az-component-input-group-on-brand-focus-divider-color);
+  background-color: var(--az-component-input-group-focus-divider-color);
 }
 
 /*
@@ -216,14 +216,14 @@
  */
 :root .az-search .az-search-icon,
 :root .az-search .search-icon {
-  background-color: var(--az-component-input-group-on-brand-icon-color);
+  background-color: var(--az-component-input-group-icon-color);
   background-image: none;
   mask: var(--az-search-icon) center / contain no-repeat;
 }
 
 :root .az-search .btn:hover .az-search-icon,
 :root .az-search .btn:hover .search-icon {
-  background-color: var(--az-component-input-group-on-brand-hover-icon-color);
+  background-color: var(--az-component-input-group-hover-icon-color);
   background-image: none;
 }
 
