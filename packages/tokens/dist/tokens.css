@@ -13,4 +13,46 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-dimension-2: 2px;
+  --az-dimension-4: 4px;
+  --az-dimension-8: 8px;
+  --az-dimension-12: 12px;
+  --az-dimension-14: 14px;
+  --az-dimension-18: 18px;
+  --az-dimension-22: 22px;
+  --az-dimension-24: 24px;
+  --az-dimension-30: 30px;
+  --az-dimension-36: 36px;
+  --az-font-weight-700: 700;
+  --az-opacity-65: 0.65; /** 65%. */
+  --az-color-semantic-action-default: var(--az-color-brand-red); /** Primary action color, resting state (solid fill; outline border and label) — aliases the brand palette. */
+  --az-color-semantic-action-hover: var(--az-color-brand-sonoran-red); /** Primary action color, hover state — aliases the brand palette. */
+  --az-color-semantic-action-focus-ring: var(--az-color-brand-bougainvillea); /** Focus-visible ring color for actions — aliases the brand palette. */
+  --az-component-button-label-font-size: var(--az-dimension-18); /** Button label (text) size at the default size, for every style. size.sm and size.lg replace it. */
+  --az-component-button-label-font-weight: var(--az-font-weight-700); /** Button label (text) weight (Bold), for every style and size. */
+  --az-component-button-padding-x: var(--az-dimension-30); /** Horizontal space between the button's edge and its label at the default size. size.sm and size.lg replace it. */
+  --az-component-button-padding-y: var(--az-dimension-12); /** Vertical space between the button's edge and its label at the default size. size.sm and size.lg replace it. */
+  --az-component-button-border-width: var(--az-dimension-2); /** Button border thickness, for every style and size. Solid buttons draw it in their fill color; outline buttons in outline.border.color. */
+  --az-component-button-border-radius: var(--az-dimension-24); /** Button corner rounding at the default size, for every style: large enough to give buttons their pill shape. size.lg replaces it. */
+  --az-component-button-disabled-opacity: var(--az-opacity-65); /** Opacity applied to the whole button while disabled, for every style. */
+  --az-component-button-size-sm-padding-x: var(--az-dimension-8); /** Horizontal padding for small buttons (size sm), replacing padding.x. */
+  --az-component-button-size-sm-padding-y: var(--az-dimension-4); /** Vertical padding for small buttons (size sm), replacing padding.y. */
+  --az-component-button-size-sm-label-font-size: var(--az-dimension-14); /** Label (text) size for small buttons (size sm), replacing label.font.size. */
+  --az-component-button-size-lg-padding-x: var(--az-dimension-36); /** Horizontal padding for large buttons (size lg), replacing padding.x. */
+  --az-component-button-size-lg-padding-y: var(--az-dimension-14); /** Vertical padding for large buttons (size lg), replacing padding.y. */
+  --az-component-button-size-lg-label-font-size: var(--az-dimension-22); /** Label (text) size for large buttons (size lg), replacing label.font.size. */
+  --az-component-button-size-lg-border-radius: var(--az-dimension-30); /** Corner rounding for large buttons (size lg), replacing border.radius. */
+  --az-component-button-solid-label-color: var(--az-color-brand-white); /** Solid button's label (text) color. Same across default/hover/focus. */
+  --az-component-button-outline-hover-label-color: var(--az-color-brand-white); /** Outline button's label (text) color, hover state, on the filled container. */
+  --az-component-button-focus-visible-ring: var(--az-color-semantic-action-focus-ring); /** Button's focus-visible ring color on light surfaces, shared by every style: the one property exclusive to focus-visible (keyboard) focus; plain focus looks identical to hover. */
+  --az-component-button-solid-container-color: var(--az-color-semantic-action-default); /** Solid button's container (fill) color, resting state. */
+  --az-component-button-solid-hover-container-color: var(--az-color-semantic-action-hover); /** Solid button's container (fill) color, hover state. */
+  --az-component-button-outline-border-color: var(--az-color-semantic-action-default); /** Outline button's border color, resting state. The container has no fill until hover. */
+  --az-component-button-outline-label-color: var(--az-color-semantic-action-default); /** Outline button's label (text) color, resting state. */
+  --az-component-button-outline-hover-container-color: var(--az-color-semantic-action-default); /** Outline button's container (fill) color, hover state: fills with the resting action color. */
+  --az-component-button-outline-hover-border-color: var(--az-color-semantic-action-default); /** Outline button's border color, hover state. Unchanged from resting; matches the new fill. */
+  --az-component-button-outline-focus-label-color: var(--az-component-button-outline-hover-label-color); /** Outline button's label (text) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
+  --az-component-button-solid-focus-container-color: var(--az-component-button-solid-container-color); /** Solid button's container (fill) color, focus state. Aliases solid.container.color directly: a focused solid button keeps its resting fill, and focus-visible adds the ring. */
+  --az-component-button-outline-focus-container-color: var(--az-component-button-outline-hover-container-color); /** Outline button's container (fill) color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
+  --az-component-button-outline-focus-border-color: var(--az-component-button-outline-hover-border-color); /** Outline button's border color, focus state. Aliases outline.hover: focus (any means) always looks identical to hover. */
 }

@@ -5,7 +5,7 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { getTokensData } from '@az-digital/storybook-addon-tokens';
+import { ComponentTokenIndex, Token, TokenDisplay, getTokenData, getTokenDisplayItems, getTokensData } from '@az-digital/storybook-addon-tokens';
 
 export const { sourceFiles, artifacts } = getTokensData();
 export const artifactUrl = (filename) => artifacts.find((artifact) => artifact.path.endsWith(`/${filename}`))?.url;
@@ -18,13 +18,32 @@ export const tokenCounts = countTokens(tokensDocument);
 
 Tokens are the layer that carries design decisions into design tools and code. The source values are organized by tier:
 
-- **Brand tokens** define the identity palette and other brand primitives.
-- **Semantic tokens** give values meaning in context, such as text, surfaces, and actions.
-- **Component tokens** tune a specific component or state.
+- **Brand tokens** define the identity palette and other brand primitives, such as <Token data={getTokenData('az.color.brand.red')} />.
+- **Semantic tokens** give values meaning in context, such as text, surfaces, and actions: <Token data={getTokenData('az.color.semantic.action.default')} /> aliases the brand red for a primary action.
+- **Component tokens** tune a specific component or state: <Token data={getTokenData('az.component.button.solid.container.color')} /> aliases that semantic token for a solid button's fill.
 
-Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions.
+Use semantic tokens first when making product-facing decisions. Refer to brand tokens when explaining the palette or how semantic values are derived; use component tokens for component-specific decisions. Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-brand-color--docs" target="_top">Brand: Color</a>.
 
-Learn how to <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">use tokens in Figma</a>, <a href="./?path=/docs/primary-tokens-using-in-code--docs" target="_top">use tokens in code</a>, or <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">contribute token changes</a>. For the brand palette and its usage guidance, see <a href="./?path=/docs/primary-brand-color--docs" target="_top">Brand: Color</a>.
+## Brand tokens
+
+Brand tokens (`az.color.brand.*`) are Arizona's named palette: raw values with no meaning attached, and the end of every color alias chain. Open a token to see everything built on it. The palette's swatches are in <a href="./?path=/docs/primary-brand-color--docs" target="_top">Brand: Color</a>.
+
+{/* In tokens.json's order, like the swatches: the palette's order is deliberate. */}
+<TokenDisplay items={getTokenDisplayItems('az.color.brand.', { order: 'source' })} layout="table" />
+
+## Semantic tokens
+
+Semantic tokens (`az.color.semantic.*`) are named for their purpose, not their appearance. Each one points at a brand color above, and components use them instead of brand colors directly, so changing one updates every component that uses it for that purpose. Open a token to see its alias tree, including which component tokens use it.
+
+<TokenDisplay prefix="az.color.semantic." layout="table" />
+
+## Component tokens
+
+Component tokens (`az.component.<component>.*`) make each component's design decisions explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at the semantic tokens above; sizes, weights, and opacities point at primitive values.
+
+Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
+
+<ComponentTokenIndex />
 
 ## Downloads and links
 

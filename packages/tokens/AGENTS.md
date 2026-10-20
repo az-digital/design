@@ -1,0 +1,229 @@
+# Naming design tokens
+
+Tokens are layered: each layer aliases the one directly below it, and gets
+more specific to a purpose as you go up. For color this repo currently has
+three — brand, semantic, component — but the number isn't the rule. Add a
+layer when a real distinction needs one; don't add one for its own sake, and
+don't collapse two that are actually doing different jobs. What matters:
+
+- A token names what it's *for*, not what it *looks like* — except at the
+  lowest layer, whose only job is cataloging raw values.
+- A token aliases the layer directly below it. Skipping a layer (e.g. a
+  component token pointing straight at a brand color) loses the layer that
+  explains *why* — this is a mistake this repo has actually made; see below.
+
+## 1. Brand (`az.color.brand.*`)
+
+Arizona's named palette, and the lowest color layer: raw values, no meaning
+attached. Names describe the color itself — `red`, `sonoran-red`, `bougainvillea`,
+`arroyo-blue`. `$value` is always a literal, written as lowercase hex
+(`#ab0520`), never an alias.
+
+The palette's current names replaced older ones. Arizona Bootstrap (5.2.0)
+classes and older Figma frames still use the old names, so translate rather
+than adding the old name as a token: Midnight → Tinta, Oasis → Arroyo Blue,
+Sky → Rain, Chili → Sonoran Red, Bloom → Bougainvillea, Leaf → Saguaro,
+River → Shade, Mesa → Brick, Cool Gray → Cloud, Warm Gray → Caliche (AZ Blue,
+AZ Red, and Azurite are unchanged). For example, a story on a Cloud
+background uses Arizona Bootstrap's `bg-cool-gray` class.
+
+There's no separate primitive layer underneath brand. One existed for a while
+(`az.color.red`, with `brand.red = {az.color.red}`), but every brand color
+was a same-name 1:1 alias of it, so it made no distinction; see the mistake
+log. If a color ever needs a real scale (`red.500`, `red.700`, ...), add the
+primitive layer then, and have brand pick one named point from it.
+
+Dimension, font-weight, and opacity values do have primitive layers
+(`az.dimension.*`, `az.font-weight.*`, `az.opacity.*`) because they're the
+only layer for those values, not a copy of another one.
+
+## 2. Semantic (`az.color.semantic.*`)
+
+Purpose-based aliases onto brand. `$value` is always an alias
+(`{az.color.brand.red}`), never a literal.
+
+Names describe role and state, never appearance:
+
+- `az.color.semantic.action.default`
+- `az.color.semantic.action.hover`
+- `az.color.semantic.action.focus-ring`
+
+Structure as `<domain>.<state>`, no `<role>` level — don't invent a role you
+can't back with a real, demonstrated example. Button only has one shown
+variant today (no story or token for a second color exists), so introducing
+a role segment at all would mean exactly one role ever existing under it,
+which produces its own bug: naming that one role `default` collides with
+`default` already meaning "resting state" one level down
+(`action.default.default` — nonsensical to read, and wrong for the same
+reason `destructive`/`primary` was wrong; see the mistake log). Add the role
+level back — with real role names — the day a second variant actually
+exists to justify it.
+
+A color name anywhere in a semantic token's own path is wrong, full stop —
+`az.color.semantic.action.red-hover` and `az.color.semantic.action.sonoran-red` are
+both wrong for the same reason `redHover` was wrong below: the name encodes
+what the color looks like instead of what it's for.
+
+## 3. Component (`az.component.<name>.*`)
+
+Component-specific tokens. Every one aliases a primitive — never a literal
+directly, color or number. This applies just as much to structural tokens as
+to color: `az.component.button.padding.x` aliases `{az.dimension.30}`, not a
+bare `30`. Number primitives live in their own type-grouped tiers —
+`az.dimension.*` for px-like sizes, `az.font-weight.*`, `az.opacity.*` — kept
+separate because a font-weight and a spacing value being both "numbers"
+doesn't make them the same kind of thing.
+
+Aliases semantic (not brand or primitive directly) whenever a semantic
+concept exists for that value's role — today that's only true for color.
+There's no dimension-semantic tier yet because nothing has needed one: every
+button size today has exactly one meaning for its padding/font-size, so
+component aliasing primitive directly is correct, not a shortcut. Add a
+semantic dimension tier (e.g. a shared spacing scale reused with different
+meaning across components) the day a real distinction needs one — see the
+intro.
+
+Names describe the component's own concern, and don't invent a variant
+that isn't actually demonstrated:
+
+- Shared structure at the component root, one group per demonstrated
+  style variant for what that style changes:
+  `az.component.button.padding.x`, `.border.radius`, `.label.font.size`,
+  `.size.lg.*` are shared by every style; `az.component.button.solid.*` and
+  `az.component.button.outline.*` hold only their own colors. A variant is a
+  *group* of tokens (every part and state it changes), never one token.
+  Don't duplicate shared values into each style group.
+- Color tokens name the **part** they color: `solid.container.color`,
+  `outline.border.color`, `outline.label.color` — not a bare `color`, which
+  stops being unambiguous the moment a second style colors a different part.
+- States nest inside the style, then the part:
+  `solid.hover.container.color`, `outline.focus.label.color` — grouped by
+  state (`hover`, `focus`), not folded into the part as suffixed siblings
+  (`container.color-hover`, ...). `focus.*` aliases another state of the
+  same style directly — a component token aliasing another component token,
+  not semantic — to record which look a focused button takes. Per the Figma
+  Buttons component: a focused **solid** button keeps its resting fill
+  (`solid.focus.container.color` → `solid.container.color`); a focused
+  **outline** button takes its hover look (`outline.focus.*` →
+  `outline.hover.*`). `az.component.button.focus-visible.ring`
+  stays shared at the root, separate from `focus`, because the ring is the
+  one property exclusive to focus-*visible* (keyboard) focus, and it's the
+  same for every style on light surfaces. (Arizona Bootstrap switches it to
+  white on dark/brand surfaces; that's part of the unmodeled surface axis
+  below.)
+- Style names come from the component's real, demonstrated variants
+  (`solid`, `outline` — each backed by an approved Figma frame and story),
+  not from color (`red`) or invented roles (`destructive`/`primary`; see the
+  mistake log for why a role split was tried and reverted). A style
+  variant is a component concern: both styles still alias the same
+  `az.color.semantic.action.*` colors, so no new semantic role was needed.
+- Structural tokens (`padding.x`, `.label.font.size`, `.border.radius`)
+  still alias a primitive each (`az.dimension.30`, etc.); they just don't
+  need a semantic tier in between yet. `.label.font.size` lives under
+  `label` (with each style's `label.color`) because both describe the
+  button's displayed text — grouped by what part of the component they
+  belong to, not by CSS property category; see the mistake log.
+- Background/surface pairings (the same solid button in white-text-red on an
+  AZ red page, rain on AZ blue, ...) are **not** modeled yet: their colors
+  depend on the surface, not on a style choice, so they need surface names
+  that describe a role, not a color. Don't add `on-red`/`on-blue` groups.
+
+If the component's own prop API uses different vocabulary than its tokens
+(e.g. a `color` prop that takes literal `'red' | 'blue'`), that's fine — the
+prop is a presentational choice for the person using the component, the token
+is a design decision about what that choice means. They don't have to match.
+
+## Naming mistakes made and corrected in this repo (concrete examples)
+
+- `az.component.button.color.redHover` — wrong on two counts: `redHover` is
+  camelCase (multi-word token segments are kebab-case — enforced by
+  `core/consistent-naming` in `terrazzo.config.ts`, currently a warning, but
+  treat it as a hard rule), and it names the component's color variant
+  (`red`) instead of a role.
+- `az.component.button.color.destructive` aliasing `{az.color.brand.red}`
+  directly — kebab-case naming was right, but this skipped the semantic
+  tier. Fixed by pointing it at a semantic alias instead.
+- `destructive`/`primary` as a role split — invented from a single
+  Usage-guidance line ("Red signals a destructive action") with no actual
+  second variant to back it up: only one Button color is demonstrated by any
+  story or token today. Speculating a multi-role taxonomy from adjacent prose
+  is exactly the kind of naming this doc warns against — it asserts a
+  distinction ("this is for dangerous actions specifically") the component
+  hasn't earned yet.
+- `az.color.semantic.action.default.default` — first attempt at collapsing
+  the above to one role, naming that role `default`. Still wrong: with only
+  one role, the role level shouldn't exist at all — naming it `default`
+  collided with `default` already meaning "resting state" underneath it.
+  Dropped the role level entirely (`az.color.semantic.action.default` /
+  `.hover` / `.focus-ring`, `az.component.button.color`); add a role level
+  back — with real names — when a second variant exists.
+- A bare primitive color layer (`az.color.red`, first tried as
+  `az.color.primitive.red`) under brand, with every brand color a
+  same-name 1:1 alias of it (`brand.red = {az.color.red}`). Added because
+  brand holding literals was assumed to be a mistake, and justified by a
+  color scale that doesn't exist. It broke the rule at the top of this
+  file (don't add a layer for its own sake) and added an extra step to
+  every color's alias chain. Fixed by removing it: brand holds the
+  lowercase hex literals again, as it does on `main`.
+- `az.component.button.padding.x` holding `20` as a literal — only color got
+  primitive backing at first; dimension/font-weight/opacity tokens were left
+  as bare numbers. Fixed by adding `az.dimension.*`, `az.font-weight.*`, and
+  `az.opacity.*` primitive tiers and aliasing every component number token to
+  one of them, same as color.
+- `az.component.button.focus.color` and `.focus.ring` grouped under one
+  `focus` key, applied together as a single bundled "Focus" state — this
+  conflated two genuinely different things. Plain DOM focus (any means,
+  including a non-visible mouse focus) looks identical to hover: no separate
+  value, just the same background. Only focus-*visible* (keyboard) focus adds
+  the ring on top. Fixed by keeping `focus.color` (aliasing
+  `{az.component.button.hover.color}` explicitly, not deleting it — the token
+  still documents that focus was deliberately set equal to hover, it isn't
+  just an accidental duplicate) and moving `ring` out to its own
+  `focus-visible.ring`, so only the one property exclusive to the
+  keyboard-visible case lives under that name. (Later superseded for solid
+  buttons: the Figma Buttons component keeps the resting fill on focus, so
+  `solid.focus.container.color` now aliases `solid.container.color`; outline
+  focus still matches hover.)
+- Button's structural values (padding `20`/`8`, label `16` at weight `500`,
+  radius `48`, large `16`/`8` with `20` labels) taken from Arizona
+  Bootstrap's compiled CSS even though the Figma Buttons component defines
+  them. Figma comes first; Arizona Bootstrap is the fallback only where Figma
+  has no design yet. Fixed by taking them from the Figma Buttons component
+  (padding `30`/`12`, large `36`/`14`; label `18` / large `22`, Bold; radius
+  `24` / large `30`). Where Figma has no design (the `sm` size, disabled
+  opacity), the Arizona Bootstrap values stay until Figma designs them.
+- `az.component.button.font.size`/`.weight` and
+  `az.component.button.label.color` as two separate top-level groups —
+  `font` and `label` are both properties of the same thing, the button's
+  displayed text, so splitting them by "what kind of CSS property is this"
+  (typography vs. color) instead of "what part of the component is this"
+  scattered one concept across unrelated keys. Fixed by nesting `font` under
+  `label` (`az.component.button.label.font.size`/`.weight`,
+  `az.component.button.label.color`), and applying the same nesting to the
+  `sm`/`lg` size-variant overrides
+  (`az.component.button.size.sm.label.font.size`, not
+  `size.sm.font.size`) so the two structures stay consistent with each
+  other. Group by what part of the component a token describes, not by CSS
+  property category.
+
+- `az.component.button.color` / `.hover.color` / `.focus.color` /
+  `.label.color` as the only Button color tokens, after the stories already
+  demonstrated a second style (`outline`, from approved Figma frames). The
+  rule above ("add the variant level the day a second variant exists") was
+  right, but it wasn't applied when that day came, so outline stories
+  listed solid's fill color as their own. Fixed by moving color into
+  `az.component.button.solid.*` / `.outline.*` groups named by part
+  (`container`, `border`, `label`) and keeping structure shared.
+
+## Before adding a new token
+
+1. Does a semantic token already exist for this role + state? Reuse it
+   instead of adding another alias to the same brand color.
+2. Am I aliasing the tier directly below this one? Component → semantic →
+   brand. Never skip a tier.
+3. Does the name describe purpose/role/state? A literal color or appearance
+   word anywhere outside brand (or the dimension/font-weight/opacity
+   primitives) is wrong.
+4. Multi-word path segments are kebab-case.
+5. Does `$description` say what the token is *for*, not just restate its
+   value?

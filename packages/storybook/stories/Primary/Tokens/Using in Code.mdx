@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Using Tokens in Code
 
-The Style Dictionary build generates platform-specific files from the canonical `packages/tokens/tokens.json` source. Use the output that matches your project, and prefer semantic tokens for product-facing UI. The current source contains brand colors; examples use one to demonstrate generated references, not as a recommendation for production UI.
+The Style Dictionary build generates platform-specific files from the canonical `packages/tokens/tokens.json` source. Use the output that matches your project, and prefer semantic tokens for product-facing UI, as the examples below do.
 
 ## CSS
 
@@ -12,7 +12,7 @@ Import `dist/tokens.css` into your stylesheet, then reference custom properties:
 
 ```css
 .notice {
-  color: var(--az-color-brand-red);
+  color: var(--az-color-semantic-action-default);
 }
 ```
 
@@ -22,7 +22,7 @@ Import `dist/tokens.scss` and use the generated Sass variables:
 
 ```scss
 .notice {
-  color: $az-color-brand-red;
+  color: $az-color-semantic-action-default;
 }
 ```
 
@@ -35,7 +35,7 @@ Import `az` from `dist/tokens.vars.js`. Its nested properties use camel-cased to
 ```js
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 
-element.style.color = az.color.brand.red;
+element.style.color = az.color.semantic.action.default;
 ```
 
 ## TypeScript
@@ -45,7 +45,7 @@ The `dist/tokens.vars.d.ts` declarations describe the shape of the JavaScript ex
 ```ts
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 
-element.style.color = az.color.brand.red;
+element.style.color = az.color.semantic.action.default;
 ```
 
 ## Web components
@@ -54,7 +54,7 @@ Load `tokens.css` in the document that hosts the component, then reference custo
 
 ```css
 :host {
-  color: var(--az-color-brand-red);
+  color: var(--az-color-semantic-action-default);
 }
 ```
 
