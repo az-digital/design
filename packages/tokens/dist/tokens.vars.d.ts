@@ -54,20 +54,6 @@ export const az: {
     "serif": string,
     "sans": string
   },
-  "fontWeight": {
-    "400": string,
-    "500": string,
-    "600": string,
-    "700": string
-  },
-  "duration": {
-    "150": string,
-    "300": string
-  },
-  "easing": {
-    "easeInOut": string,
-    "linear": string
-  },
   "component": {
     "brandHeader": {
       "height": string,
