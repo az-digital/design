@@ -30,17 +30,6 @@ export const az: {
       }
     }
   },
-  "fontWeight": {
-    "400": string
-  },
-  "duration": {
-    "150": string,
-    "300": string
-  },
-  "easing": {
-    "easeInOut": string,
-    "linear": string
-  },
   "component": {
     "brandHeader": {
       "height": string,

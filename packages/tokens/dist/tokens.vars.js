@@ -30,17 +30,6 @@ export const az = {
       }
     }
   },
-  "fontWeight": {
-    "400": "var(--az-font-weight-400)"
-  },
-  "duration": {
-    "150": "var(--az-duration-150)",
-    "300": "var(--az-duration-300)"
-  },
-  "easing": {
-    "easeInOut": "var(--az-easing-ease-in-out)",
-    "linear": "var(--az-easing-linear)"
-  },
   "component": {
     "brandHeader": {
       "height": "var(--az-component-brand-header-height)",
