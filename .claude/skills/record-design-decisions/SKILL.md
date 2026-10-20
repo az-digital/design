@@ -126,9 +126,11 @@ building it.
 - **Tokenize decisions, not drawing details.** Give a value a token when it's a
   design decision someone could change (for a theme, surface, size or breakpoint) or
   one shared with something else: colors, type, padding, gaps, size variants. Leave
-  the internals of how a part is drawn (an icon's line length, stroke radius, an
-  underline offset) in the implementation's CSS or SVG. If the design renders a
-  decision the issue doesn't list, give it a token too, and say so in the PR.
+  the internals of how a part is drawn (the length of the lines in an icon, how
+  round their ends are) in the implementation's CSS or SVG. An alignment that went
+  through design review (an underline offset, an icon nudged into line with text) is
+  a decision. If the design renders a decision the issue doesn't list, give it a
+  token too, and say so in the PR.
 - **Only what the DTCG spec defines.** Use its types (`color`, `dimension`,
   `fontFamily`, `fontWeight`, `duration`, `cubicBezier`, `number`, and its composite
   types). Don't add a custom `$type`, or data the spec doesn't mention. A percentage
