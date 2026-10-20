@@ -83,6 +83,15 @@ See Tokens Studio's <a href="https://docs.tokens.studio/token-storage/manage-syn
 4. Review any name or alias changes before applying them in the design file.
 5. Update layers to use the new tokens rather than hard-coded values.
 
+## Export to Figma variables
+
+`tokens.json` defines one theme, **Mode 1** in the **AZ** group, which enables the `az` token set. Exporting it creates an **AZ** variable collection with a single **Mode 1** mode, the same name Figma gives a new collection's first mode.
+
+Themes are a Tokens Studio Pro feature, so what you get depends on your plan:
+
+- **Pro:** in **Export styles & variables to Figma**, choose **Themes** and select **AZ / Mode 1**. No extra mode is added.
+- **Free:** you can only export by token set, and Tokens Studio names both the collection and the mode after the set, `az`. Either keep `az` as the mode name, or after each export rename the `az` mode to **Mode 1** and delete the leftover empty mode.
+
 ## Designer usage guidance
 
 - Use semantic tokens for production-facing design decisions such as surfaces, borders, and text.
