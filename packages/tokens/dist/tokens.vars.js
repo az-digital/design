@@ -48,61 +48,6 @@ export const az = {
     }
   },
   "dimension": {
-    "0": "var(--az-dimension-0)",
-    "1": "var(--az-dimension-1)",
-    "2": "var(--az-dimension-2)",
-    "3": "var(--az-dimension-3)",
-    "4": "var(--az-dimension-4)",
-    "5": "var(--az-dimension-5)",
-    "6": "var(--az-dimension-6)",
-    "8": "var(--az-dimension-8)",
-    "9": "var(--az-dimension-9)",
-    "10": "var(--az-dimension-10)",
-    "12": "var(--az-dimension-12)",
-    "14": "var(--az-dimension-14)",
-    "15": "var(--az-dimension-15)",
-    "16": "var(--az-dimension-16)",
-    "18": "var(--az-dimension-18)",
-    "20": "var(--az-dimension-20)",
-    "22": "var(--az-dimension-22)",
-    "23": "var(--az-dimension-23)",
-    "24": "var(--az-dimension-24)",
-    "25": "var(--az-dimension-25)",
-    "26": "var(--az-dimension-26)",
-    "27": "var(--az-dimension-27)",
-    "28": "var(--az-dimension-28)",
-    "29": "var(--az-dimension-29)",
-    "30": "var(--az-dimension-30)",
-    "34": "var(--az-dimension-34)",
-    "36": "var(--az-dimension-36)",
-    "38": "var(--az-dimension-38)",
-    "40": "var(--az-dimension-40)",
-    "43": "var(--az-dimension-43)",
-    "44": "var(--az-dimension-44)",
-    "46": "var(--az-dimension-46)",
-    "48": "var(--az-dimension-48)",
-    "50": "var(--az-dimension-50)",
-    "52": "var(--az-dimension-52)",
-    "56": "var(--az-dimension-56)",
-    "58": "var(--az-dimension-58)",
-    "60": "var(--az-dimension-60)",
-    "62": "var(--az-dimension-62)",
-    "64": "var(--az-dimension-64)",
-    "74": "var(--az-dimension-74)",
-    "75": "var(--az-dimension-75)",
-    "200": "var(--az-dimension-200)",
-    "211": "var(--az-dimension-211)",
-    "265": "var(--az-dimension-265)",
-    "300": "var(--az-dimension-300)",
-    "0-09": "var(--az-dimension-0-09)",
-    "0-12": "var(--az-dimension-0-12)",
-    "2-4": "var(--az-dimension-2-4)",
-    "4-5": "var(--az-dimension-4-5)",
-    "9-744": "var(--az-dimension-9-744)",
-    "19-2": "var(--az-dimension-19-2)",
-    "19-8": "var(--az-dimension-19-8)",
-    "28-8": "var(--az-dimension-28-8)",
-    "266-41": "var(--az-dimension-266-41)",
     "semantic": {
       "page": {
         "scrollOffset": "var(--az-dimension-semantic-page-scroll-offset)"
@@ -121,10 +66,6 @@ export const az = {
   },
   "percentage": {
     "20": "var(--az-percentage-20)"
-  },
-  "ratio": {
-    "0-667": "var(--az-ratio-0-667)",
-    "1-042": "var(--az-ratio-1-042)"
   },
   "duration": {
     "150": "var(--az-duration-150)",
@@ -439,12 +380,6 @@ export const az = {
       "icon": {
         "color": "var(--az-component-accordion-icon-color)",
         "size": "var(--az-component-accordion-icon-size)",
-        "line": {
-          "length": "var(--az-component-accordion-icon-line-length)",
-          "border": {
-            "radius": "var(--az-component-accordion-icon-line-border-radius)"
-          }
-        },
         "stroke": {
           "width": "var(--az-component-accordion-icon-stroke-width)"
         }
@@ -465,10 +400,7 @@ export const az = {
           "gap": "var(--az-component-accordion-md-title-gap)"
         },
         "icon": {
-          "size": "var(--az-component-accordion-md-icon-size)",
-          "line": {
-            "length": "var(--az-component-accordion-md-icon-line-length)"
-          }
+          "size": "var(--az-component-accordion-md-icon-size)"
         },
         "body": {
           "padding": {
@@ -514,10 +446,7 @@ export const az = {
             "gap": "var(--az-component-accordion-size-medium-title-gap)"
           },
           "icon": {
-            "size": "var(--az-component-accordion-size-medium-icon-size)",
-            "line": {
-              "length": "var(--az-component-accordion-size-medium-icon-line-length)"
-            }
+            "size": "var(--az-component-accordion-size-medium-icon-size)"
           }
         },
         "small": {
@@ -531,10 +460,7 @@ export const az = {
             "gap": "var(--az-component-accordion-size-small-title-gap)"
           },
           "icon": {
-            "size": "var(--az-component-accordion-size-small-icon-size)",
-            "line": {
-              "length": "var(--az-component-accordion-size-small-icon-line-length)"
-            }
+            "size": "var(--az-component-accordion-size-small-icon-size)"
           }
         }
       },
