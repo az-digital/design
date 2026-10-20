@@ -27,19 +27,6 @@ export const az: {
       }
     }
   },
-  "dimension": {
-    "2": string,
-    "4": string,
-    "10": string,
-    "16": string,
-    "24": string,
-    "50": string,
-    "58": string,
-    "60": string,
-    "211": string,
-    "19-8": string,
-    "266-41": string
-  },
   "duration": {
     "150": string,
     "300": string
