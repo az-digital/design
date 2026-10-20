@@ -14,12 +14,11 @@ Alt text serves a few important purposes:
 - **Images that don't load:** Alt text can appear in place of an image if it fails to load, benefiting all users.
 - **Search engines:** Alt text helps search engines understand image content and can improve search results.
 
-### How to use this guide
+## How to use this guide
 
 Not every image needs the same type of alt text. The appropriate approach depends on the image's purpose and context on the page.
 
 Learn how to write accurate and meaningful alt text for different types of images, including photos, logos, icons, SVGs, charts, diagrams, and images of text. This guidance focuses on still images and does not cover video or audio alternatives.
-
 
 ## Start with the image’s purpose
 
@@ -38,29 +37,31 @@ Use real, selectable text instead of an image of text. If an image of text is ne
 
 <table>
   <tbody>
-    <tr><th>Context</th><th>Appropriate alternative</th><th>Avoid</th></tr>
-    <tr><td>An article about campus architecture uses a photo of Old Main at sunset.</td><td>“Old Main’s sandstone facade at sunset.”</td><td>“Photo” or a long inventory of incidental details.</td></tr>
-    <tr><td>The same photo is used in a card whose visible link text is “Plan a campus visit.”</td><td><code>alt=""</code><br /><em>The visible link text already names the destination.</em></td><td>Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose.</td></tr>
-    <tr><td>A chart shows enrollment increasing over five years.</td><td>“Enrollment increased each year from 2020 to 2024.”<br /><em>Add a nearby data table with the values.</em></td><td>“Bar chart” with no explanation of the information.</td></tr>
-    <tr><td>A decorative flourish appears beside a heading that already states the same idea.</td><td><code>alt=""</code></td><td>A description that repeats the heading.</td></tr>
+    <tr><th>Context</th><th>Appropriate alternative</th><th>Notes</th><th>Avoid</th></tr>
+    <tr><td>An article about campus architecture uses a photo of Old Main at sunset.</td><td>“Old Main’s sandstone facade at sunset.”</td><td></td><td>“Photo” or a long inventory of incidental details.</td></tr>
+    <tr><td>The same photo is used in a card whose visible link text is “Plan a campus visit.”</td><td><code>alt=""</code></td><td>The visible link text already names the destination.</td><td>Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose.</td></tr>
+    <tr><td>A chart shows enrollment increasing over five years.</td><td>“Enrollment increased each year from 2020 to 2024.”</td><td>Add a nearby data table with the values.</td><td>“Bar chart” with no explanation of the information.</td></tr>
+    <tr><td>A decorative flourish appears beside a heading that already states the same idea.</td><td><code>alt=""</code></td><td></td><td>A description that repeats the heading.</td></tr>
   </tbody>
 </table>
-
-These examples are starting points, not text to reuse without checking the image and its context.
 
 ## Guidance for common components
 
 - **Cards:** If the image is decorative or the card’s visible title and link already convey its purpose, use `alt=""`. If it adds distinct information, describe that contribution without repeating the card title.
 - **Hero and banner images:** Use an alternative only for information the image adds beyond the page heading and nearby copy. Avoid generic phrases such as “hero image” or “banner.”
 - **Headshots and profile images:** When the person’s identity matters and is not already stated nearby, use their name. If a visible name already identifies the person, the portrait is often redundant and can use `alt=""`.
-- **Arizona logos:** Describe the logo’s purpose in context. For a logo that is the only content in a link to the University of Arizona home page, use an alternative such as “University of Arizona home.” If the same link already contains the visible university name, use `alt=""` for the redundant logo. Follow the approved brand name and avoid repeating nearby text.
+- **Arizona logos:** Describe the logo’s purpose in context. For a logo that is the only content in a link to the University of Arizona home page, use an alternative such as “University of Arizona home.” If the link also includes the university’s name as visible text, the logo is redundant; use `alt=""` for it. Follow the approved brand name and avoid repeating nearby text.
 
 Assess redundancy for each image in its actual context; the same image may be informative in one place and decorative in another.
+
+### Reusing an image in more than one place
+
+In Drupal and Arizona Quickstart, alt text is stored with the media item, so every place that uses it shows the same alternative. Write that alt text for the image’s main informative use, and make sure it is still accurate everywhere the image appears. If a placement needs a different alternative, such as an empty one where the image is redundant, add a separate media item for that use instead of rewriting the shared alt text.
 
 ## Icons, SVGs, and background images
 
 - A meaningful CSS background image cannot have an `alt` attribute. Put essential information in visible text or another text alternative in the page rather than making CSS the only way to access it.
-- Hide decorative icons from assistive technology (for example, with `aria-hidden="true"`). An icon-only button or link still needs an accessible name that describes its action or destination; do not rely on the icon’s appearance alone.
+- Hide decorative icons from assistive technology (for example, with `aria-hidden="true"`). An icon is decorative when nearby text already says the same thing, such as a phone icon next to a link that shows the phone number. An icon-only button or link still needs an accessible name that describes its action or destination; do not rely on the icon’s appearance alone.
 - Give a meaningful inline SVG an accessible name and appropriate image semantics, such as a `<title>` referenced by `aria-labelledby` with `role="img"`. If the SVG is decorative, hide it from assistive technology instead. Ensure its text alternative is available to users of the supported implementation.
 
 ## Responsibilities
@@ -68,7 +69,7 @@ Assess redundancy for each image in its actual context; the same image may be in
 - **Designers:** In Figma handoffs, identify whether each image is informative, functional, or decorative and propose its description in context. Call out visible text that makes an image redundant, and flag complex images that need a longer explanation or data.
 - **Developers:** Preserve image descriptions through HTML, React, and web component implementations. Set the `alt` property on image elements; use `alt=""` for decorative images. Ensure component APIs pass that value through, and provide accessible names for icon-only controls. Do not put essential information only in CSS backgrounds.
 - **Content editors:** When adding media in Drupal or Arizona Quickstart, enter alt text in the media’s alternative-text field when the image conveys information. Leave it empty for decorative or redundant images when the editor supports an empty alternative. Review descriptions in the page where the media is used; do not use captions, filenames, or image titles as substitutes.
-- **Everyone:** Any suggested or generated image descriptions must be reviewed for accuracy and purpose.
+- **Everyone:** The examples in this guide are starting points, not text to reuse without checking the image and its context. Any suggested or generated image descriptions must be reviewed for accuracy and purpose.
 
 For editorial language beyond image descriptions, see the [Style guide for writing](?path=/docs/primary-foundations-content-design-style-guide-for-writing--docs).
 
