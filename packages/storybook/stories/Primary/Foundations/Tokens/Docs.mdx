@@ -11,8 +11,6 @@ import { ColorSwatchGrid } from './ColorSwatchGrid';
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
 export const { sourceFiles, artifacts } = getTokensData();
 
-{/* Smallest first. Sorted here, not by path or source order: path order is alphabetical (2 after 19.8), and parsing tokens.json moves integer-like keys (2, 10) ahead of keys like 19-8. */}
-export const dimensionsBySize = getTokenDisplayItems('az.dimension.').sort((a, b) => parseFloat(a.token.split('.').pop().replace('-', '.')) - parseFloat(b.token.split('.').pop().replace('-', '.')));
 export const outputUrl = (file) => artifacts.find((artifact) => artifact.path.endsWith(`/${file}`))?.url;
 export const githubUrl = sourceFiles[0]?.url;
 export const tokensCssGithubUrl = outputUrl('tokens.css');
@@ -47,13 +45,7 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 ## Primitives
 
-Raw values, grouped by type of measurement, that component tokens point at. Each name is the value itself, such as `az.dimension.50` for 50px, so a primitive never changes meaning. Use component tokens in designs and code, not primitives.
-
-### Dimensions
-
-Sizes and spacing (`az.dimension.*`), in pixels, smallest first.
-
-<TokenDisplay items={dimensionsBySize} layout="table" />
+Named values, grouped by type, that component tokens point at. Sizes aren't primitives: each component token holds its own size, and tokens share a size only when it's the same decision. Use component tokens in designs and code, not primitives.
 
 ### Durations
 
@@ -69,7 +61,7 @@ How a change speeds up and slows down (`az.easing.*`), as cubic Bézier curves.
 
 ## Component tokens
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at brand colors; sizes, weights, and opacities point at primitive values.
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at brand colors and weights at primitives; sizes are set on the component token itself.
 
 Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `brand.white` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
 
