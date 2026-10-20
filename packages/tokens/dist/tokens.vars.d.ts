@@ -18,17 +18,30 @@ export const az: {
     }
   },
   "dimension": {
+    "1": string,
     "2": string,
     "4": string,
+    "5": string,
+    "6": string,
+    "8": string,
+    "9": string,
     "10": string,
+    "12": string,
+    "15": string,
     "16": string,
+    "22": string,
     "24": string,
+    "43": string,
     "50": string,
     "58": string,
     "60": string,
     "211": string,
+    "265": string,
     "19-8": string,
     "266-41": string
+  },
+  "fontWeight": {
+    "400": string
   },
   "duration": {
     "150": string,
@@ -98,6 +111,82 @@ export const az: {
           "transition": {
             "duration": string,
             "easing": string
+          }
+        }
+      }
+    },
+    "inputGroup": {
+      "height": string,
+      "field": {
+        "padding": {
+          "x": string,
+          "y": string
+        },
+        "font": {
+          "size": string,
+          "weight": string
+        },
+        "lineHeight": string
+      },
+      "button": {
+        "padding": string,
+        "icon": {
+          "size": string
+        }
+      },
+      "border": {
+        "width": string,
+        "radius": string
+      },
+      "divider": {
+        "width": string,
+        "transition": {
+          "duration": string,
+          "easing": string
+        }
+      },
+      "onBrand": {
+        "field": {
+          "color": string,
+          "placeholder": {
+            "color": string
+          }
+        },
+        "border": {
+          "color": string
+        },
+        "divider": {
+          "color": string
+        },
+        "icon": {
+          "color": string
+        },
+        "hover": {
+          "icon": {
+            "color": string
+          }
+        },
+        "focus": {
+          "border": {
+            "color": string
+          },
+          "divider": {
+            "color": string
+          }
+        }
+      }
+    },
+    "search": {
+      "maxWidth": string,
+      "padding": {
+        "x": string,
+        "y": string
+      },
+      "toggle": {
+        "focusVisible": {
+          "ring": {
+            "color": string,
+            "width": string
           }
         }
       }

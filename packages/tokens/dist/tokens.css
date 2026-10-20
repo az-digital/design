@@ -13,17 +13,28 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-dimension-1: 1px;
   --az-dimension-2: 2px;
   --az-dimension-4: 4px;
+  --az-dimension-5: 5px;
+  --az-dimension-6: 6px;
+  --az-dimension-8: 8px;
+  --az-dimension-9: 9px;
   --az-dimension-10: 10px;
+  --az-dimension-12: 12px;
+  --az-dimension-15: 15px;
   --az-dimension-16: 16px;
+  --az-dimension-22: 22px;
   --az-dimension-24: 24px;
+  --az-dimension-43: 43px;
   --az-dimension-50: 50px;
   --az-dimension-58: 58px;
   --az-dimension-60: 60px;
   --az-dimension-211: 211px;
+  --az-dimension-265: 265px;
   --az-dimension-19-8: 19.8px;
   --az-dimension-266-41: 266.41px;
+  --az-font-weight-400: 400; /** Regular. */
   --az-duration-150: 150ms; /** 150 milliseconds. */
   --az-duration-300: 300ms; /** 300 milliseconds. */
   --az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /** CSS ease-in-out: starts and ends slowly. */
@@ -53,6 +64,32 @@
   --az-component-brand-header-offcanvas-transition-easing: var(--az-easing-ease-in-out); /** Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
   --az-component-brand-header-offcanvas-backdrop-transition-duration: var(--az-duration-150); /** How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
   --az-component-brand-header-offcanvas-backdrop-transition-easing: var(--az-easing-linear); /** Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
+  --az-component-input-group-height: var(--az-dimension-43); /** Height of a text field with an attached button. */
+  --az-component-input-group-field-padding-x: var(--az-dimension-12); /** Space between the field's left and right edges and its text. */
+  --az-component-input-group-field-padding-y: var(--az-dimension-6); /** Space above and below the field's text. */
+  --az-component-input-group-field-font-size: var(--az-dimension-16); /** Field text size. */
+  --az-component-input-group-field-font-weight: var(--az-font-weight-400); /** Field text weight (Regular). */
+  --az-component-input-group-field-line-height: var(--az-dimension-22); /** Field text line height. */
+  --az-component-input-group-button-padding: var(--az-dimension-9); /** Space around the attached button's icon. */
+  --az-component-input-group-button-icon-size: var(--az-dimension-24); /** The attached button's icon width and height. */
+  --az-component-input-group-border-width: var(--az-dimension-2); /** Border width around the field and button together. */
+  --az-component-input-group-border-radius: var(--az-dimension-8); /** Corner radius of the field and button together. */
+  --az-component-input-group-divider-transition-duration: var(--az-duration-150); /** How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
+  --az-component-input-group-divider-transition-easing: var(--az-easing-ease-in-out); /** Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
+  --az-component-input-group-on-brand-field-color: var(--az-color-brand-white); /** Field text color on a brand-colored background, such as a Blue navbar. */
+  --az-component-input-group-on-brand-field-placeholder-color: var(--az-color-brand-white); /** Placeholder text color on a brand-colored background. */
+  --az-component-input-group-on-brand-border-color: var(--az-color-brand-white); /** Border color on a brand-colored background, around the field and button. */
+  --az-component-input-group-on-brand-divider-color: var(--az-color-brand-white); /** Color of the line between the field and button on a brand-colored background. */
+  --az-component-input-group-on-brand-icon-color: var(--az-color-brand-white); /** The attached button's icon color on a brand-colored background. */
+  --az-component-input-group-on-brand-hover-icon-color: var(--az-color-brand-rain); /** The attached button's icon color on hover, on a brand-colored background. */
+  --az-component-input-group-on-brand-focus-border-color: var(--az-color-brand-rain); /** Border color while the field or button has focus, on a brand-colored background. */
+  --az-component-input-group-on-brand-focus-divider-color: var(--az-color-brand-rain); /** Divider color while the field or button has focus, on a brand-colored background. */
+  --az-component-search-max-width: var(--az-dimension-265); /** Search form's maximum width. It's an input group, so its other values come from az.component.input-group. */
+  --az-component-search-padding-x: var(--az-dimension-15); /** Space to the left and right of the search form. */
+  --az-component-search-padding-y: var(--az-dimension-5); /** Space above and below the search form. */
+  --az-component-search-toggle-focus-visible-ring-color: var(--az-color-brand-rain); /** Keyboard focus ring on the button that shows the search form on small screens, on a brand-colored background. */
+  --az-component-search-toggle-focus-visible-ring-width: var(--az-dimension-1); /** Width of that button's keyboard focus ring. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
   --az-component-brand-header-button-min-height: var(--az-component-brand-header-height); /** Header button minimum height: the header's own height. */
+  --az-component-input-group-divider-width: var(--az-component-input-group-border-width); /** Width of the line between the field and the button: the same as the border. */
 }
