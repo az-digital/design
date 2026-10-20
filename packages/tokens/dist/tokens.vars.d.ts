@@ -15,16 +15,6 @@ export const az: {
       "cloud": string,
       "caliche": string,
       "white": string
-    },
-    "semantic": {
-      "surface": {
-        "brand": string
-      },
-      "onBrand": {
-        "default": string,
-        "focusRing": string,
-        "logo": string
-      }
     }
   },
   "dimension": {

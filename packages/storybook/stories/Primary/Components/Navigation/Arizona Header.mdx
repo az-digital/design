@@ -16,26 +16,24 @@ import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digit
 description names where its value comes from.
 
 - **Fill:** <Token data={getTokenData('az.component.brand-header.container.color')} />
-  points at the brand surface, <Token data={getTokenData('az.color.semantic.surface.brand')} />,
-  which is Blue by default. The original red header isn't a separate set of tokens: a theme
-  would point `surface.brand` at Red (keeping `on-brand.*` White). There are no themes
-  yet, and the red header is only needed until it's retired.
+  is Blue. The original red header isn't a separate set of tokens: it points this token
+  at Red, and keeps every other color White. The red header is only needed until it's
+  retired.
 - **Size:** the header is at least 50px tall, and exactly 50px below 992px. The wordmark
   is 211 × 16px below 576px and 266.41 × 19.8px from 576px up, 10px from the header's
   left edge.
 - **Keyboard focus:** the logo and header buttons draw a 2px ring inside their edges,
-  with 2px corners, in <Token data={getTokenData('az.color.semantic.on-brand.focus-ring')} /> (White).
+  with 2px corners, in <Token data={getTokenData('az.component.brand-header.focus-visible.ring.color')} /> (White).
 - **Header buttons** (for adding search and menu toggles on mobile): at least 60px
   wide and as tall as the header, with 4px of padding above and below.
-  - **Label:** text in <Token data={getTokenData('az.color.semantic.on-brand.default')} />
+  - **Label:** text in <Token data={getTokenData('az.component.brand-header.button.label.color')} />
     (White), 10px with a 10px line height, 2px below the icon.
   - **Icon:** 24px square, the same color as the label. Use an SVG (inline or from a
     sprite) with `fill="currentColor"` so it picks up that color.
 - **Logo:** the wordmark's color, <Token data={getTokenData('az.component.brand-header.logo.color')} />,
-  points at <Token data={getTokenData('az.color.semantic.on-brand.logo')} />, which is White.
-  The wordmark is a single color, so its color can change with the surface behind it.
-  It has its own token rather than sharing the text color's (`on-brand.default`), so
-  changing the text color doesn't recolor the logo.
+  is White. The wordmark is a single color, so its color can change with the fill behind
+  it. It has its own token rather than sharing the label color, so changing the text
+  color doesn't recolor the logo.
 - **Motion:** the off-canvas panel the header buttons open slides in over 300ms,
   ease-in-out, and the backdrop behind it fades in over 150ms. Header buttons change
   color and show their focus ring over 150ms. They haven't been

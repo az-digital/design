@@ -15,16 +15,6 @@ export const az = {
       "cloud": "var(--az-color-brand-cloud)",
       "caliche": "var(--az-color-brand-caliche)",
       "white": "var(--az-color-brand-white)"
-    },
-    "semantic": {
-      "surface": {
-        "brand": "var(--az-color-semantic-surface-brand)"
-      },
-      "onBrand": {
-        "default": "var(--az-color-semantic-on-brand-default)",
-        "focusRing": "var(--az-color-semantic-on-brand-focus-ring)",
-        "logo": "var(--az-color-semantic-on-brand-logo)"
-      }
     }
   },
   "dimension": {

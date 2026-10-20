@@ -18,9 +18,8 @@
  * Brand header (az.component.brand-header.*): Arizona Bootstrap's
  * .arizona-header.
  *
- * The fill follows the brand surface, whatever bg-* class the markup uses:
- * the header's color is a theme decision, not a per-instance one. !important
- * because Bootstrap's bg-* utilities are !important.
+ * The fill comes from the container color token, whatever bg-* class the
+ * markup uses. !important because Bootstrap's bg-* utilities are !important.
  */
 :root .arizona-header {
   background-color: var(--az-component-brand-header-container-color) !important;

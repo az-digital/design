@@ -28,18 +28,18 @@
   --az-duration-300: 300ms; /** 300 milliseconds. */
   --az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /** CSS ease-in-out: starts and ends slowly. */
   --az-easing-linear: cubic-bezier(0, 0, 1, 1); /** CSS linear: a constant speed. */
-  --az-color-semantic-surface-brand: var(--az-color-brand-blue); /** The brand surface: the surface that follows the brand, such as the Arizona Header's fill. Blue by default; a theme can point it at another primary color, such as Red for the original red header. Repoint on-brand.* with it — aliases the brand palette. */
-  --az-color-semantic-on-brand-default: var(--az-color-brand-white); /** Text and icons on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
-  --az-color-semantic-on-brand-focus-ring: var(--az-color-brand-white); /** Keyboard focus ring on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
-  --az-color-semantic-on-brand-logo: var(--az-color-brand-white); /** Logo color on surface.brand, such as the Arizona Header's wordmark. Separate from on-brand.default because a logo's color is its own brand decision: it can't follow every change to text color. Repoint it whenever a theme repoints surface.brand — aliases the brand palette. */
   --az-component-brand-header-height: var(--az-dimension-50); /** Header height: its minimum height at every screen size, and its fixed height below 992px. */
+  --az-component-brand-header-container-color: var(--az-color-brand-blue); /** Header fill: Blue. The original red header points this at Red. */
+  --az-component-brand-header-logo-color: var(--az-color-brand-white); /** Color of the header's wordmark logo. Its own token rather than the label color, because a logo's color is its own brand decision. */
   --az-component-brand-header-logo-width: var(--az-dimension-211); /** Wordmark width below the sm breakpoint (576px). */
   --az-component-brand-header-logo-height: var(--az-dimension-16); /** Wordmark height below the sm breakpoint (576px). */
   --az-component-brand-header-logo-sm-width: var(--az-dimension-266-41); /** Wordmark width from the sm breakpoint (576px) up. */
   --az-component-brand-header-logo-sm-height: var(--az-dimension-19-8); /** Wordmark height from the sm breakpoint (576px) up. */
   --az-component-brand-header-logo-margin-left: var(--az-dimension-10); /** Space before the wordmark, at the header's left edge. */
+  --az-component-brand-header-focus-visible-ring-color: var(--az-color-brand-white); /** Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. */
   --az-component-brand-header-focus-visible-ring-width: var(--az-dimension-2); /** Width of the inset keyboard focus ring on the logo and header buttons. */
   --az-component-brand-header-focus-visible-border-radius: var(--az-dimension-2); /** Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners. */
+  --az-component-brand-header-button-label-color: var(--az-color-brand-white); /** Header button text and icon color. */
   --az-component-brand-header-button-label-font-size: var(--az-dimension-10); /** Header button label text size ("Search", "Menu"). */
   --az-component-brand-header-button-label-line-height: var(--az-dimension-10); /** Header button label line height. */
   --az-component-brand-header-button-icon-size: var(--az-dimension-24); /** Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph. */
@@ -53,10 +53,6 @@
   --az-component-brand-header-offcanvas-transition-easing: var(--az-easing-ease-in-out); /** Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
   --az-component-brand-header-offcanvas-backdrop-transition-duration: var(--az-duration-150); /** How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
   --az-component-brand-header-offcanvas-backdrop-transition-easing: var(--az-easing-linear); /** Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion. */
-  --az-component-brand-header-container-color: var(--az-color-semantic-surface-brand); /** Header fill: the brand surface, Blue by default. The original red header comes from a theme that points surface.brand at Red. */
-  --az-component-brand-header-logo-color: var(--az-color-semantic-on-brand-logo); /** Color of the header's wordmark logo. */
-  --az-component-brand-header-focus-visible-ring-color: var(--az-color-semantic-on-brand-focus-ring); /** Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. */
-  --az-component-brand-header-button-label-color: var(--az-color-semantic-on-brand-default); /** Header button text and icon color. */
-  --az-component-brand-header-button-min-height: var(--az-component-brand-header-height); /** Header button minimum height: the header's own height. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
+  --az-component-brand-header-button-min-height: var(--az-component-brand-header-height); /** Header button minimum height: the header's own height. */
 }
