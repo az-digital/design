@@ -43,25 +43,9 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 <ColorSwatchGrid prefix="az.color.brand." />
 
-## Primitives
-
-Named values, grouped by type, that component tokens point at. Sizes aren't primitives: each component token holds its own size, and tokens share a size only when it's the same decision. Use component tokens in designs and code, not primitives.
-
-### Durations
-
-How long a change takes (`az.duration.*`), in milliseconds.
-
-<TokenDisplay items={getTokenDisplayItems('az.duration.', { order: 'source' })} layout="table" />
-
-### Easings
-
-How a change speeds up and slows down (`az.easing.*`), as cubic Bézier curves.
-
-<TokenDisplay items={getTokenDisplayItems('az.easing.', { order: 'source' })} layout="table" />
-
 ## Component tokens
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at brand colors and weights at primitives; sizes are set on the component token itself.
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at brand colors; sizes, weights and timings are set on the component token itself.
 
 Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `brand.white` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
 
