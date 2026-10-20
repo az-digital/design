@@ -30,29 +30,6 @@ export const az: {
       }
     }
   },
-  "dimension": {
-    "1": string,
-    "2": string,
-    "4": string,
-    "5": string,
-    "6": string,
-    "8": string,
-    "9": string,
-    "10": string,
-    "12": string,
-    "15": string,
-    "16": string,
-    "22": string,
-    "24": string,
-    "43": string,
-    "50": string,
-    "58": string,
-    "60": string,
-    "211": string,
-    "265": string,
-    "19-8": string,
-    "266-41": string
-  },
   "fontWeight": {
     "400": string
   },
