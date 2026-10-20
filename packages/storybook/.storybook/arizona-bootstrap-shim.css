@@ -540,3 +540,160 @@ html:root {
   inset: 0 0 0 auto;
   mask-position: top right;
 }
+
+/*
+ * Typography (az.typography.*): body, lead and small copy, and the heading
+ * scale. Bootstrap reads the body styles from --bs-body-*; headings read
+ * --az-heading-font-family (az-digital/arizona-bootstrap#2285), which the
+ * serif and mixed heading styles switch.
+ *
+ * Element selectors skip the docs pages' own text (anything in .sbdocs-content
+ * that isn't in an Unstyled block or a story preview), so the docs keep their
+ * theme and only Arizona Bootstrap markup gets these styles.
+ *
+ * The body line height is a px token (28px). Arizona Bootstrap writes it
+ * unitless (1.5556, 28px at 18px) so it scales with the text; CSS can't divide
+ * one length by another to get that ratio, so the shim uses the px value.
+ */
+:root {
+  --bs-body-font-family: var(--az-font-family-sans);
+  --bs-body-font-size: var(--az-typography-body-font-size);
+  --bs-body-font-weight: var(--az-typography-body-font-weight);
+  --bs-body-line-height: var(--az-typography-body-line-height);
+  --az-heading-font-family: var(--az-typography-heading-font-family);
+}
+
+:root .lead {
+  font-size: var(--az-typography-lead-font-size);
+  font-weight: var(--az-typography-lead-font-weight);
+  line-height: var(--az-typography-lead-line-height);
+}
+
+:root small:not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)),
+:root .small {
+  font-size: var(--az-typography-small-font-size);
+  font-weight: var(--az-typography-small-font-weight);
+  line-height: var(--az-typography-small-line-height);
+}
+
+/* Heading margins are multiples of each heading's own size (em). */
+:root :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  margin: calc(var(--az-typography-heading-margin-top) * 1em) 0 calc(var(--az-typography-heading-margin-bottom) * 1em);
+  font-weight: var(--az-typography-heading-font-weight);
+  letter-spacing: var(--az-typography-heading-letter-spacing);
+}
+
+:root :is(h1, .h1):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  margin-top: calc(var(--az-typography-heading-h1-margin-top) * 1em);
+  font-size: var(--az-typography-heading-h1-font-size);
+  line-height: var(--az-typography-heading-h1-line-height);
+}
+
+:root :is(h2, .h2):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  font-size: var(--az-typography-heading-h2-font-size);
+  line-height: var(--az-typography-heading-h2-line-height);
+}
+
+:root :is(h3, .h3):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  font-size: var(--az-typography-heading-h3-font-size);
+  line-height: var(--az-typography-heading-h3-line-height);
+}
+
+:root :is(h4, .h4):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  font-size: var(--az-typography-heading-h4-font-size);
+  line-height: var(--az-typography-heading-h4-line-height);
+}
+
+:root :is(h5, .h5):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  font-size: var(--az-typography-heading-h5-font-size);
+  line-height: var(--az-typography-heading-h5-line-height);
+}
+
+:root :is(h6, .h6):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+  font-size: var(--az-typography-heading-h6-font-size);
+  line-height: var(--az-typography-heading-h6-line-height);
+}
+
+@media (min-width: 992px) {
+  :root :is(h1, .h1):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+    font-size: var(--az-typography-heading-lg-h1-font-size);
+    line-height: var(--az-typography-heading-lg-h1-line-height);
+  }
+
+  :root :is(h2, .h2):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+    font-size: var(--az-typography-heading-lg-h2-font-size);
+    line-height: var(--az-typography-heading-lg-h2-line-height);
+  }
+
+  :root :is(h3, .h3):not(.sbdocs-content :not(.sb-unstyled, .sb-unstyled *, .docs-story *)) {
+    font-size: var(--az-typography-heading-lg-h3-font-size);
+    line-height: var(--az-typography-heading-lg-h3-line-height);
+  }
+}
+
+:root .az-headings-serif,
+:root .az-headings-mixed :is(h1, h2, h3, .h1, .h2, .h3) {
+  --az-heading-font-family: var(--az-typography-heading-serif-font-family);
+}
+
+/*
+ * Lists (az.component.list.*): Arizona Bootstrap's focus point and checkmark
+ * bullets (az-digital/arizona-bootstrap#2266). Arizona Bootstrap paints each
+ * marker as an SVG with its colors built in. The shim masks the design
+ * system's marker SVGs instead, painted in the marker color tokens: the
+ * focus point is two layers (a Bougainvillea star under a Rain highlight),
+ * the checkmark one. The SVG URLs are the non-token values: assets.
+ */
+:root :is(.az-list-focus-points, .az-list-checkmarks) li {
+  padding-left: calc(var(--az-component-list-marker-size) + var(--az-component-list-marker-gap));
+}
+
+:root :is(.az-list-focus-points, .az-list-checkmarks) li::before,
+:root .az-list-focus-points li::after {
+  width: var(--az-component-list-marker-size);
+  height: var(--az-typography-body-line-height);
+  background-image: none;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: var(--az-component-list-marker-size) var(--az-component-list-marker-size);
+}
+
+:root .az-list-focus-points li::before {
+  background-color: var(--az-component-list-focus-point-color);
+  mask-image: url("@tokens/assets/markers/focus-point.svg");
+}
+
+/* The highlight layer sits on the star, in the same one-line box (the marker is centered on the item's first line). */
+:root .az-list-focus-points li::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  background-color: var(--az-component-list-focus-point-highlight-color);
+  mask-image: url("@tokens/assets/markers/focus-point-highlight.svg");
+}
+
+:root .az-list-checkmarks {
+  --az-list-checkmark-color: var(--az-component-list-checkmark-on-default-color);
+}
+
+:root :is(.text-bg-blue, .bg-blue) .az-list-checkmarks {
+  --az-list-checkmark-color: var(--az-component-list-checkmark-on-brand-color);
+}
+
+:root .az-list-checkmarks li::before {
+  background-color: var(--az-list-checkmark-color);
+  mask-image: url("@tokens/assets/markers/checkmark.svg");
+}
+
+:root :is(.az-list-focus-points, .az-list-checkmarks) > li:not(:last-child) {
+  margin-bottom: var(--az-component-list-item-gap);
+}
+
+:root :is(.az-list-focus-points, .az-list-checkmarks) ul {
+  margin-top: var(--az-component-list-nested-gap);
+}
+
+:root :is(.az-list-focus-points, .az-list-checkmarks) ul > li:not(:last-child) {
+  margin-bottom: var(--az-component-list-nested-gap);
+}

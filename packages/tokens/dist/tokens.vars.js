@@ -41,7 +41,9 @@ export const az = {
         "accent": "var(--az-color-semantic-on-default-accent)",
         "border": "var(--az-color-semantic-on-default-border)",
         "focusRing": "var(--az-color-semantic-on-default-focus-ring)",
-        "pattern": "var(--az-color-semantic-on-default-pattern)"
+        "pattern": "var(--az-color-semantic-on-default-pattern)",
+        "highlight": "var(--az-color-semantic-on-default-highlight)",
+        "icon": "var(--az-color-semantic-on-default-icon)"
       }
     }
   },
@@ -57,13 +59,16 @@ export const az = {
     "9": "var(--az-dimension-9)",
     "10": "var(--az-dimension-10)",
     "12": "var(--az-dimension-12)",
+    "14": "var(--az-dimension-14)",
     "15": "var(--az-dimension-15)",
     "16": "var(--az-dimension-16)",
     "18": "var(--az-dimension-18)",
+    "20": "var(--az-dimension-20)",
     "22": "var(--az-dimension-22)",
     "23": "var(--az-dimension-23)",
     "24": "var(--az-dimension-24)",
     "25": "var(--az-dimension-25)",
+    "26": "var(--az-dimension-26)",
     "27": "var(--az-dimension-27)",
     "28": "var(--az-dimension-28)",
     "29": "var(--az-dimension-29)",
@@ -74,10 +79,16 @@ export const az = {
     "40": "var(--az-dimension-40)",
     "43": "var(--az-dimension-43)",
     "44": "var(--az-dimension-44)",
+    "46": "var(--az-dimension-46)",
+    "48": "var(--az-dimension-48)",
     "50": "var(--az-dimension-50)",
     "52": "var(--az-dimension-52)",
+    "56": "var(--az-dimension-56)",
     "58": "var(--az-dimension-58)",
     "60": "var(--az-dimension-60)",
+    "62": "var(--az-dimension-62)",
+    "64": "var(--az-dimension-64)",
+    "74": "var(--az-dimension-74)",
     "75": "var(--az-dimension-75)",
     "200": "var(--az-dimension-200)",
     "211": "var(--az-dimension-211)",
@@ -111,6 +122,10 @@ export const az = {
   "percentage": {
     "20": "var(--az-percentage-20)"
   },
+  "ratio": {
+    "0-667": "var(--az-ratio-0-667)",
+    "1-042": "var(--az-ratio-1-042)"
+  },
   "duration": {
     "150": "var(--az-duration-150)",
     "300": "var(--az-duration-300)"
@@ -118,6 +133,100 @@ export const az = {
   "easing": {
     "easeInOut": "var(--az-easing-ease-in-out)",
     "linear": "var(--az-easing-linear)"
+  },
+  "typography": {
+    "body": {
+      "font": {
+        "size": "var(--az-typography-body-font-size)",
+        "weight": "var(--az-typography-body-font-weight)"
+      },
+      "lineHeight": "var(--az-typography-body-line-height)"
+    },
+    "lead": {
+      "font": {
+        "size": "var(--az-typography-lead-font-size)",
+        "weight": "var(--az-typography-lead-font-weight)"
+      },
+      "lineHeight": "var(--az-typography-lead-line-height)"
+    },
+    "small": {
+      "font": {
+        "size": "var(--az-typography-small-font-size)",
+        "weight": "var(--az-typography-small-font-weight)"
+      },
+      "lineHeight": "var(--az-typography-small-line-height)"
+    },
+    "heading": {
+      "font": {
+        "family": "var(--az-typography-heading-font-family)",
+        "weight": "var(--az-typography-heading-font-weight)"
+      },
+      "letterSpacing": "var(--az-typography-heading-letter-spacing)",
+      "marginTop": "var(--az-typography-heading-margin-top)",
+      "marginBottom": "var(--az-typography-heading-margin-bottom)",
+      "h1": {
+        "font": {
+          "size": "var(--az-typography-heading-h1-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h1-line-height)",
+        "marginTop": "var(--az-typography-heading-h1-margin-top)"
+      },
+      "h2": {
+        "font": {
+          "size": "var(--az-typography-heading-h2-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h2-line-height)"
+      },
+      "h3": {
+        "font": {
+          "size": "var(--az-typography-heading-h3-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h3-line-height)"
+      },
+      "h4": {
+        "font": {
+          "size": "var(--az-typography-heading-h4-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h4-line-height)"
+      },
+      "h5": {
+        "font": {
+          "size": "var(--az-typography-heading-h5-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h5-line-height)"
+      },
+      "h6": {
+        "font": {
+          "size": "var(--az-typography-heading-h6-font-size)"
+        },
+        "lineHeight": "var(--az-typography-heading-h6-line-height)"
+      },
+      "lg": {
+        "h1": {
+          "font": {
+            "size": "var(--az-typography-heading-lg-h1-font-size)"
+          },
+          "lineHeight": "var(--az-typography-heading-lg-h1-line-height)"
+        },
+        "h2": {
+          "font": {
+            "size": "var(--az-typography-heading-lg-h2-font-size)"
+          },
+          "lineHeight": "var(--az-typography-heading-lg-h2-line-height)"
+        },
+        "h3": {
+          "font": {
+            "size": "var(--az-typography-heading-lg-h3-font-size)"
+          },
+          "lineHeight": "var(--az-typography-heading-lg-h3-line-height)"
+        }
+      },
+      "serif": {
+        "font": {
+          "family": "var(--az-typography-heading-serif-font-family)"
+        }
+      }
+    }
   },
   "component": {
     "brandHeader": {
@@ -472,6 +581,32 @@ export const az = {
         },
         "tile": {
           "size": "var(--az-component-background-pattern-monsoon-tile-size)"
+        }
+      }
+    },
+    "list": {
+      "marker": {
+        "size": "var(--az-component-list-marker-size)",
+        "gap": "var(--az-component-list-marker-gap)"
+      },
+      "item": {
+        "gap": "var(--az-component-list-item-gap)"
+      },
+      "nested": {
+        "gap": "var(--az-component-list-nested-gap)"
+      },
+      "focusPoint": {
+        "color": "var(--az-component-list-focus-point-color)",
+        "highlight": {
+          "color": "var(--az-component-list-focus-point-highlight-color)"
+        }
+      },
+      "checkmark": {
+        "onDefault": {
+          "color": "var(--az-component-list-checkmark-on-default-color)"
+        },
+        "onBrand": {
+          "color": "var(--az-component-list-checkmark-on-brand-color)"
         }
       }
     }

@@ -1,0 +1,131 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+
+<Meta title="Primary/Foundations/Typography" tags={['tokens:list']} />
+
+{/* Unstyled keeps the docs page's own type styles off the specimens, so they show the tokens. */}
+export const Specimen = ({ children, brand }) => (
+  <Unstyled>
+    <div
+      className={brand ? 'text-bg-blue' : undefined}
+      style={{ padding: '24px 32px', margin: '0 0 24px', border: brand ? 0 : '1px solid #e5e7eb' }}
+    >
+      {children}
+    </div>
+  </Unstyled>
+);
+
+# Typography
+
+Text styles for running copy and headings (`az.typography.*`), and the list styles that go with
+them (`az.component.list.*`). Text colors aren't part of these styles: they come from the surface
+the text sits on.
+
+## Typefaces
+
+- **Sans serif:** <Token data={getTokenData('az.font-family.sans')} />, Proxima Nova. Body copy and
+  headings use it by default.
+- **Serif:** <Token data={getTokenData('az.font-family.serif')} />, Garamond Premier Pro, for pages
+  that opt into serif headings.
+
+## Copy
+
+- **Body:** 18px on a 28px line, Regular.
+- **Lead:** 20px on a 30px line, Medium, for an introductory paragraph.
+- **Small:** 16px on a 24px line, Regular.
+
+<Specimen>
+  <p className="lead">Lead copy introduces a page or section, a step larger than body copy.</p>
+  <p>Body copy is the text most people read most of the time. It's 18px, on a 28px line, so long passages stay comfortable to read on any screen.</p>
+  <p><small>Small copy is for captions, notes and fine print.</small></p>
+</Specimen>
+
+## Headings
+
+Every heading is Semibold, with no letter spacing. h1–h3 get larger from the lg breakpoint (992px)
+up; h4–h6 stay the same at every screen size.
+
+- **h1:** 48px on a 56px line; 64px on a 74px line from 992px up.
+- **h2:** 38px on a 46px line; 52px on a 62px line from 992px up.
+- **h3:** 30px on a 38px line; 40px on a 50px line from 992px up.
+- **h4:** 28px on a 36px line.
+- **h5:** 22px on a 30px line.
+- **h6:** 18px on a 26px line.
+
+Space around a heading scales with its size: 1.042 times its size above it, and 0.667 times below
+(<Token data={getTokenData('az.typography.heading.margin-top')} />,
+<Token data={getTokenData('az.typography.heading.margin-bottom')} />). h1 has 0.667 times its size
+above it too, so its spacing is even.
+
+<Specimen>
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+</Specimen>
+
+### Serif headings
+
+Headings are sans serif unless a page opts into a serif style, which uses
+<Token data={getTokenData('az.typography.heading.serif.font.family')} />:
+
+- **Serif:** every heading level is serif.
+- **Mixed:** h1–h3 are serif; h4–h6 stay sans serif.
+
+<Specimen>
+  <div className="az-headings-serif">
+    <h2>Serif: Heading 2</h2>
+    <h5>Serif: Heading 5</h5>
+  </div>
+  <div className="az-headings-mixed">
+    <h2>Mixed: Heading 2</h2>
+    <h5>Mixed: Heading 5</h5>
+  </div>
+</Specimen>
+
+## Lists
+
+Two bulleted list styles for body copy, each with a 20px marker centered on the item's first line,
+16px before the text. Items are 24px apart. A nested list sits 14px below its item, with its own
+items 14px apart.
+
+- **Focus points:** a <Token data={getTokenData('az.color.semantic.on-default.accent')} />
+  (Bougainvillea) disc with a four-pointed star cut into it, and a small
+  <Token data={getTokenData('az.color.semantic.on-default.highlight')} /> (Rain) star at its center.
+  It's the same on every surface.
+- **Checkmarks:** a disc with a check, <Token data={getTokenData('az.color.semantic.on-default.icon')} />
+  (Arroyo Blue) on the default surface, and <Token data={getTokenData('az.color.semantic.on-brand.accent')} />
+  (Rain) on the brand surface, where Arroyo Blue is too dark to read.
+
+The markers ship with the tokens package as masks, in `assets/markers/`: `focus-point.svg` and
+`focus-point-highlight.svg` (drawn on top), and `checkmark.svg`. The color tokens paint them.
+
+<Specimen>
+  <ul className="az-list-focus-points">
+    <li>A focus point marks a key idea.</li>
+    <li>Items are 24px apart.<ul><li>A nested item, 14px below its parent.</li><li>Another nested item.</li></ul></li>
+    <li>The last item keeps the list's usual space below it.</li>
+  </ul>
+</Specimen>
+
+<Specimen>
+  <ul className="az-list-checkmarks">
+    <li>A checkmark on the default surface.</li>
+    <li>Arroyo Blue, 20px, centered on the first line.</li>
+  </ul>
+</Specimen>
+
+<Specimen brand>
+  <ul className="az-list-checkmarks">
+    <li>A checkmark on the brand surface.</li>
+    <li>Rain, so it stays readable on Blue.</li>
+  </ul>
+</Specimen>
+
+## Tokens
+
+<TokenTable items={getTokenDisplayItems('az.typography.')} />
+
+<TokenTable items={getTokenDisplayItems('az.component.list.')} />

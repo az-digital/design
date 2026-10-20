@@ -1,0 +1,4 @@
+<!-- Focus point list marker, disc layer (a disc with a four-pointed star cut into it). A mask (black, the default fill): paint it with az.component.list.focus-point.color. Draw focus-point-highlight.svg on top. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <path d="M10.548,0A10.548,10.548,0,1,0,21.1,10.548,10.548,10.548,0,0,0,10.548,0m.236,20.485-.209.444-.208-.444A20.243,20.243,0,0,0,.542,10.724l-.45-.208.45-.21A20.238,20.238,0,0,0,10.334.486l.209-.45.209.45A20.235,20.235,0,0,0,20.6,10.311l.452.209-.452.209a20.241,20.241,0,0,0-9.814,9.755"/>
+</svg>

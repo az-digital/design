@@ -79,6 +79,12 @@ Shares of the size of what contains something (`az.percentage.*`), such as a ban
 
 <TokenDisplay items={getTokenDisplayItems('az.percentage.', { order: 'source' })} layout="table" />
 
+### Ratios
+
+Multiples of something's own size (`az.ratio.*`), such as space around a heading as a multiple of its text size.
+
+<TokenDisplay items={getTokenDisplayItems('az.ratio.', { order: 'source' })} layout="table" />
+
 ### Durations
 
 How long a change takes (`az.duration.*`), in milliseconds.
@@ -102,6 +108,12 @@ Purpose-based aliases onto the brand palette (`az.color.semantic.*`), named for 
 Purpose-based sizes (`az.dimension.semantic.*`) that apply across a page rather than to one component. `page.scroll-offset` is how far below the top of the screen a linked section stops when the page scrolls to it; a fixed header raises it so it doesn't cover the section.
 
 <TokenDisplay items={getTokenDisplayItems('az.dimension.semantic.', { order: 'source' })} layout="table" />
+
+## Typography
+
+Text styles for running copy and headings across the page (`az.typography.*`): body, lead and small copy, and the heading scale with its larger sizes from the lg breakpoint. Each aliases dimension, font weight and font family primitives. See the Typography page for how they look.
+
+<TokenDisplay items={getTokenDisplayItems('az.typography.', { order: 'source' })} layout="table" />
 
 ## Component tokens
 

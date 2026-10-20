@@ -41,7 +41,9 @@ export const az: {
         "accent": string,
         "border": string,
         "focusRing": string,
-        "pattern": string
+        "pattern": string,
+        "highlight": string,
+        "icon": string
       }
     }
   },
@@ -57,13 +59,16 @@ export const az: {
     "9": string,
     "10": string,
     "12": string,
+    "14": string,
     "15": string,
     "16": string,
     "18": string,
+    "20": string,
     "22": string,
     "23": string,
     "24": string,
     "25": string,
+    "26": string,
     "27": string,
     "28": string,
     "29": string,
@@ -74,10 +79,16 @@ export const az: {
     "40": string,
     "43": string,
     "44": string,
+    "46": string,
+    "48": string,
     "50": string,
     "52": string,
+    "56": string,
     "58": string,
     "60": string,
+    "62": string,
+    "64": string,
+    "74": string,
     "75": string,
     "200": string,
     "211": string,
@@ -111,6 +122,10 @@ export const az: {
   "percentage": {
     "20": string
   },
+  "ratio": {
+    "0-667": string,
+    "1-042": string
+  },
   "duration": {
     "150": string,
     "300": string
@@ -118,6 +133,100 @@ export const az: {
   "easing": {
     "easeInOut": string,
     "linear": string
+  },
+  "typography": {
+    "body": {
+      "font": {
+        "size": string,
+        "weight": string
+      },
+      "lineHeight": string
+    },
+    "lead": {
+      "font": {
+        "size": string,
+        "weight": string
+      },
+      "lineHeight": string
+    },
+    "small": {
+      "font": {
+        "size": string,
+        "weight": string
+      },
+      "lineHeight": string
+    },
+    "heading": {
+      "font": {
+        "family": string,
+        "weight": string
+      },
+      "letterSpacing": string,
+      "marginTop": string,
+      "marginBottom": string,
+      "h1": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string,
+        "marginTop": string
+      },
+      "h2": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string
+      },
+      "h3": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string
+      },
+      "h4": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string
+      },
+      "h5": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string
+      },
+      "h6": {
+        "font": {
+          "size": string
+        },
+        "lineHeight": string
+      },
+      "lg": {
+        "h1": {
+          "font": {
+            "size": string
+          },
+          "lineHeight": string
+        },
+        "h2": {
+          "font": {
+            "size": string
+          },
+          "lineHeight": string
+        },
+        "h3": {
+          "font": {
+            "size": string
+          },
+          "lineHeight": string
+        }
+      },
+      "serif": {
+        "font": {
+          "family": string
+        }
+      }
+    }
   },
   "component": {
     "brandHeader": {
@@ -472,6 +581,32 @@ export const az: {
         },
         "tile": {
           "size": string
+        }
+      }
+    },
+    "list": {
+      "marker": {
+        "size": string,
+        "gap": string
+      },
+      "item": {
+        "gap": string
+      },
+      "nested": {
+        "gap": string
+      },
+      "focusPoint": {
+        "color": string,
+        "highlight": {
+          "color": string
+        }
+      },
+      "checkmark": {
+        "onDefault": {
+          "color": string
+        },
+        "onBrand": {
+          "color": string
         }
       }
     }

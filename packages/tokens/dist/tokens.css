@@ -25,13 +25,16 @@
   --az-dimension-9: 9px;
   --az-dimension-10: 10px;
   --az-dimension-12: 12px;
+  --az-dimension-14: 14px;
   --az-dimension-15: 15px;
   --az-dimension-16: 16px;
   --az-dimension-18: 18px;
+  --az-dimension-20: 20px;
   --az-dimension-22: 22px;
   --az-dimension-23: 23px;
   --az-dimension-24: 24px;
   --az-dimension-25: 25px;
+  --az-dimension-26: 26px;
   --az-dimension-27: 27px;
   --az-dimension-28: 28px;
   --az-dimension-29: 29px;
@@ -42,10 +45,16 @@
   --az-dimension-40: 40px;
   --az-dimension-43: 43px;
   --az-dimension-44: 44px;
+  --az-dimension-46: 46px;
+  --az-dimension-48: 48px;
   --az-dimension-50: 50px;
   --az-dimension-52: 52px;
+  --az-dimension-56: 56px;
   --az-dimension-58: 58px;
   --az-dimension-60: 60px;
+  --az-dimension-62: 62px;
+  --az-dimension-64: 64px;
+  --az-dimension-74: 74px;
   --az-dimension-75: 75px;
   --az-dimension-200: 200px;
   --az-dimension-211: 211px;
@@ -61,12 +70,14 @@
   --az-dimension-28-8: 28.8px;
   --az-dimension-266-41: 266.41px;
   --az-font-family-serif: garamond-premier-pro, Georgia, 'Times New Roman', serif; /** Serif: Garamond Premier Pro, falling back to Georgia and Times New Roman. */
-  --az-font-family-sans: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; /** Sans serif: Proxima Nova, falling back to system sans-serif fonts. */
+  --az-font-family-sans: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; /** Sans serif: Proxima Nova, falling back to system sans-serif fonts, then emoji fonts. */
   --az-font-weight-400: 400; /** Regular. */
   --az-font-weight-500: 500; /** Medium. */
   --az-font-weight-600: 600; /** Semibold. */
   --az-font-weight-700: 700; /** Bold. */
   --az-percentage-20: 20%; /** 20%, a share of the size of what contains it. */
+  --az-ratio-0-667: 0.667; /** 0.667 times something's own size, such as a heading's font size. */
+  --az-ratio-1-042: 1.042; /** 1.042 times something's own size, such as a heading's font size. */
   --az-duration-150: 150ms; /** 150 milliseconds. */
   --az-duration-300: 300ms; /** 300 milliseconds. */
   --az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); /** CSS ease-in-out: starts and ends slowly. */
@@ -88,7 +99,43 @@
   --az-color-semantic-on-default-border: var(--az-color-neutral-gray-alpha-50); /** Rules and dividers on surface.default, such as the line under each accordion title — aliases a neutral color. */
   --az-color-semantic-on-default-focus-ring: var(--az-color-brand-bougainvillea); /** Keyboard focus ring on surface.default — aliases the brand palette. */
   --az-color-semantic-on-default-pattern: var(--az-color-brand-rain); /** Decorative background patterns on surface.default, such as Monsoon Rain — aliases the brand palette. */
+  --az-color-semantic-on-default-highlight: var(--az-color-brand-rain); /** A light second accent on surface.default, such as the small star at the center of a focus point list marker — aliases the brand palette. */
+  --az-color-semantic-on-default-icon: var(--az-color-brand-arroyo-blue); /** Decorative icons and markers on surface.default, such as a checklist's checkmarks — aliases the brand palette. */
   --az-dimension-semantic-page-scroll-offset: var(--az-dimension-0); /** How far below the top of the screen a linked section stops when the page scrolls to it, such as an accordion item opened from a link. A fixed header raises it so the header doesn't cover the section. */
+  --az-typography-body-font-size: var(--az-dimension-18); /** Body copy text size. */
+  --az-typography-body-font-weight: var(--az-font-weight-400); /** Body copy weight (Regular). */
+  --az-typography-body-line-height: var(--az-dimension-28); /** Body copy line height. */
+  --az-typography-lead-font-size: var(--az-dimension-20); /** Lead copy text size: an introductory paragraph a step larger than body copy. */
+  --az-typography-lead-font-weight: var(--az-font-weight-500); /** Lead copy weight (Medium). */
+  --az-typography-lead-line-height: var(--az-dimension-30); /** Lead copy, an introductory paragraph a step larger than body copy: line height. */
+  --az-typography-small-font-size: var(--az-dimension-16); /** Small copy text size. */
+  --az-typography-small-font-weight: var(--az-font-weight-400); /** Small copy weight (Regular). */
+  --az-typography-small-line-height: var(--az-dimension-24); /** Small copy line height. */
+  --az-typography-heading-font-family: var(--az-font-family-sans); /** Heading typeface: the same sans serif as body copy, unless a page opts into serif headings (heading.serif). */
+  --az-typography-heading-font-weight: var(--az-font-weight-600); /** Every heading level's weight (Semibold). */
+  --az-typography-heading-letter-spacing: var(--az-dimension-0); /** Every heading level's letter spacing: none. */
+  --az-typography-heading-margin-top: var(--az-ratio-1-042); /** Space above a heading (h2–h6), as a multiple of its own text size (1.042em). h1 replaces it. */
+  --az-typography-heading-margin-bottom: var(--az-ratio-0-667); /** Space below every heading, as a multiple of its own text size (0.667em). */
+  --az-typography-heading-h1-font-size: var(--az-dimension-48); /** h1 text size, below the lg breakpoint (992px). */
+  --az-typography-heading-h1-line-height: var(--az-dimension-56); /** h1 line height, below 992px. */
+  --az-typography-heading-h1-margin-top: var(--az-ratio-0-667); /** Space above h1, as a multiple of its text size (0.667em): the same as below it, so h1's spacing is even. */
+  --az-typography-heading-h2-font-size: var(--az-dimension-38); /** h2 text size, below the lg breakpoint (992px). */
+  --az-typography-heading-h2-line-height: var(--az-dimension-46); /** h2 line height, below 992px. */
+  --az-typography-heading-h3-font-size: var(--az-dimension-30); /** h3 text size, below the lg breakpoint (992px). */
+  --az-typography-heading-h3-line-height: var(--az-dimension-38); /** h3 line height, below 992px. */
+  --az-typography-heading-h4-font-size: var(--az-dimension-28); /** h4 text size, at every screen size. */
+  --az-typography-heading-h4-line-height: var(--az-dimension-36); /** h4 line height, at every screen size. */
+  --az-typography-heading-h5-font-size: var(--az-dimension-22); /** h5 text size, at every screen size. */
+  --az-typography-heading-h5-line-height: var(--az-dimension-30); /** h5 line height, at every screen size. */
+  --az-typography-heading-h6-font-size: var(--az-dimension-18); /** h6 text size, at every screen size. */
+  --az-typography-heading-h6-line-height: var(--az-dimension-26); /** h6 line height, at every screen size. */
+  --az-typography-heading-lg-h1-font-size: var(--az-dimension-64); /** h1 text size from the lg breakpoint (992px) up. */
+  --az-typography-heading-lg-h1-line-height: var(--az-dimension-74); /** h1 line height from 992px up. */
+  --az-typography-heading-lg-h2-font-size: var(--az-dimension-52); /** h2 text size from the lg breakpoint (992px) up. */
+  --az-typography-heading-lg-h2-line-height: var(--az-dimension-62); /** h2 line height from 992px up. */
+  --az-typography-heading-lg-h3-font-size: var(--az-dimension-40); /** h3 text size from the lg breakpoint (992px) up. */
+  --az-typography-heading-lg-h3-line-height: var(--az-dimension-50); /** h3 line height from 992px up. */
+  --az-typography-heading-serif-font-family: var(--az-font-family-serif); /** Heading typeface for pages that opt into serif headings: every level with the serif style, or only h1–h3 with the mixed style (h4–h6 stay sans serif). */
   --az-component-brand-header-height: var(--az-dimension-50); /** Header height: its minimum height at every screen size, and its fixed height below 992px. */
   --az-component-brand-header-logo-width: var(--az-dimension-211); /** Wordmark width below the sm breakpoint (576px). */
   --az-component-brand-header-logo-height: var(--az-dimension-16); /** Wordmark height below the sm breakpoint (576px). */
@@ -187,6 +234,10 @@
   --az-component-background-pattern-monsoon-band-min-width: var(--az-dimension-75); /** Narrowest the band gets, on narrow screens. */
   --az-component-background-pattern-monsoon-band-max-width: var(--az-dimension-200); /** Widest the band gets, on wide screens, so the pattern stays a small accent. */
   --az-component-background-pattern-monsoon-tile-size: var(--az-dimension-300); /** Size of Monsoon Rain's image (assets/patterns/monsoon-rain.svg, a mask in the pattern's color). It repeats down the band from the top. */
+  --az-component-list-marker-size: var(--az-dimension-20); /** Size of a focus point or checkmark marker. It's centered on the item's first line. */
+  --az-component-list-marker-gap: var(--az-dimension-16); /** Space between a marker and its item's text. */
+  --az-component-list-item-gap: var(--az-dimension-24); /** Space between list items. The last item keeps the list's usual space below it. */
+  --az-component-list-nested-gap: var(--az-dimension-14); /** Space between items in a nested list, and above the nested list. */
   --az-component-brand-header-container-color: var(--az-color-semantic-surface-brand); /** Header fill: the brand surface, Blue by default. The original red header comes from a theme that points surface.brand at Red. */
   --az-component-brand-header-logo-color: var(--az-color-semantic-on-brand-logo); /** Color of the header's wordmark logo. */
   --az-component-brand-header-focus-visible-ring-color: var(--az-color-semantic-on-brand-focus-ring); /** Keyboard focus ring on the logo and header buttons, drawn inside the element's edge. */
@@ -216,6 +267,10 @@
   --az-component-accordion-anchor-hover-link-color: var(--az-color-semantic-on-default-link-hover); /** The Copy link on hover. */
   --az-component-background-pattern-on-default-color: var(--az-color-semantic-on-default-pattern); /** Every pattern's color on a default (White) section. Pattern images are masks, so this paints them. */
   --az-component-background-pattern-on-brand-color: var(--az-color-semantic-on-brand-pattern); /** Every pattern's color on a brand (Blue) section. */
+  --az-component-list-focus-point-color: var(--az-color-semantic-on-default-accent); /** The focus point marker's disc, with a four-pointed star cut into it. The same on every surface. */
+  --az-component-list-focus-point-highlight-color: var(--az-color-semantic-on-default-highlight); /** The small star at the center of the focus point marker. The same on every surface. */
+  --az-component-list-checkmark-on-default-color: var(--az-color-semantic-on-default-icon); /** The checkmark marker on a default (White) section. */
+  --az-component-list-checkmark-on-brand-color: var(--az-color-semantic-on-brand-accent); /** The checkmark marker on a brand (Blue) section, where the default is too dark to read. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
   --az-component-breadcrumb-hover-underline-color: var(--az-component-breadcrumb-hover-link-color); /** Underline under a linked item on hover: the same color as its text. */
   --az-component-accordion-icon-color: var(--az-component-accordion-title-color); /** The plus/minus icon: the title's color. */
