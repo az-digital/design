@@ -17,29 +17,6 @@ export const az = {
       "white": "var(--az-color-brand-white)"
     }
   },
-  "dimension": {
-    "1": "var(--az-dimension-1)",
-    "2": "var(--az-dimension-2)",
-    "4": "var(--az-dimension-4)",
-    "5": "var(--az-dimension-5)",
-    "6": "var(--az-dimension-6)",
-    "8": "var(--az-dimension-8)",
-    "9": "var(--az-dimension-9)",
-    "10": "var(--az-dimension-10)",
-    "12": "var(--az-dimension-12)",
-    "15": "var(--az-dimension-15)",
-    "16": "var(--az-dimension-16)",
-    "22": "var(--az-dimension-22)",
-    "24": "var(--az-dimension-24)",
-    "43": "var(--az-dimension-43)",
-    "50": "var(--az-dimension-50)",
-    "58": "var(--az-dimension-58)",
-    "60": "var(--az-dimension-60)",
-    "211": "var(--az-dimension-211)",
-    "265": "var(--az-dimension-265)",
-    "19-8": "var(--az-dimension-19-8)",
-    "266-41": "var(--az-dimension-266-41)"
-  },
   "fontWeight": {
     "400": "var(--az-font-weight-400)"
   },
