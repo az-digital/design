@@ -76,20 +76,25 @@ building it.
   for rules, go in `az.color.neutral.*`.
 - **An alias records a relationship, not a number.** Alias a token only when the two
   are the same decision: a component color aliases a semantic color, a focused state
-  aliases its resting state, a component's text uses `az.typography.*`. Named,
-  approved values also stay primitives: brand colors, `az.font-family.*`,
-  `az.font-weight.*`, `az.duration.*`, `az.easing.*`.
-- **Sizes are literal values.** Write a dimension or ratio directly in the token that
-  uses it (`"$value": {"value": 34, "unit": "px"}`), not as an alias to a primitive
-  named after its value. Don't add `az.dimension.<value>` or `az.ratio.<value>`
-  tokens, and don't build a spacing scale: approved designs aren't on one, so a scale either changes approved values
-  or turns into a list of every value. A primitive named after its value can never
-  change without its name becoming wrong, and one used by unrelated things (padding
-  and a font size both at 16px) must never change at once. When several tokens
-  genuinely share one size decision, give it a named semantic token
-  (`az.dimension.semantic.page.scroll-offset`) and alias that. Percentages are the
-  one exception: the build only writes `%` for `az.percentage.*`, so a percentage
-  still aliases that tier.
+  aliases its resting state, a component's text uses `az.typography.*`.
+- **Primitives are named roles, never values.** Keep a primitive only when its name
+  is a role whose value could change everywhere at once: brand and neutral colors,
+  `az.font-family.sans` / `serif` (each a full font stack). A name that is its own
+  value (`dimension.16`, `duration.150`, `font-weight.400`, `easing.ease-in-out`)
+  can never change without becoming wrong, so it's not a primitive.
+- **Values are literal.** Write a size, ratio, percentage, weight, duration or easing
+  directly in the token that uses it (`"$value": {"value": 34, "unit": "px"}`,
+  `"$value": 600`), not as an alias to a primitive named after its value. Don't add
+  `az.dimension.<value>`, `az.ratio.*`, `az.percentage.*`, `az.font-weight.*`,
+  `az.duration.*` or `az.easing.*` tokens, and don't build a spacing scale: approved
+  designs aren't on one, so a scale either changes approved values or turns into a
+  list of every value. A primitive named after its value can never change without its
+  name becoming wrong, and one used by unrelated things (padding and a font size both
+  at 16px) must never change at once. When several tokens genuinely share one size
+  decision, give it a named semantic token
+  (`az.dimension.semantic.page.scroll-offset`) and alias that. The same goes for
+  motion: if design sets one transition for every hover, that's a named semantic
+  token, not `duration.150`.
 - **Page-wide values are semantic, not a component's.** A value every component
   shares, or one another component changes, belongs to the page: for example
   `az.dimension.semantic.page.scroll-offset` (where linked sections stop), which a
@@ -133,8 +138,10 @@ building it.
   token too, and say so in the PR.
 - **Only what the DTCG spec defines.** Use its types (`color`, `dimension`,
   `fontFamily`, `fontWeight`, `duration`, `cubicBezier`, `number`, and its composite
-  types). Don't add a custom `$type`, or data the spec doesn't mention. A percentage
-  is a `number` (`az.percentage.*`), which the build writes as `20%`.
+  types). Don't add a custom `$type`, or data the spec doesn't mention. Values DTCG
+  can't express are plain `number`s that implementations give a unit: a percentage
+  is `20` for 20% (`calc(var(--token) * 1%)`), and a multiple of the text size is
+  `1.042` (`calc(var(--token) * 1em)`). Say so in the description.
 - **Opacity isn't a token.** Designers don't want opacity tuned, so a fade that's
   part of an artwork (a pattern at 40%) is built into the asset.
 - **Keep it recreatable in Figma.** Designers rebuild these designs in Figma, so
