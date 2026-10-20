@@ -359,7 +359,8 @@ html:root {
   --az-accordion-title-letter-spacing: var(--az-component-accordion-title-letter-spacing);
   --az-accordion-title-gap: var(--az-component-accordion-title-gap);
   --az-accordion-icon-size: var(--az-component-accordion-icon-size);
-  --az-accordion-icon-line-length: var(--az-component-accordion-icon-line-length);
+  /* How the plus is drawn isn't a design decision, so its line length isn't a token. */
+  --az-accordion-icon-line-length: 25px;
 }
 
 @media (min-width: 768px) {
@@ -370,7 +371,7 @@ html:root {
     --az-accordion-title-letter-spacing: var(--az-component-accordion-md-title-letter-spacing);
     --az-accordion-title-gap: var(--az-component-accordion-md-title-gap);
     --az-accordion-icon-size: var(--az-component-accordion-md-icon-size);
-    --az-accordion-icon-line-length: var(--az-component-accordion-md-icon-line-length);
+    --az-accordion-icon-line-length: 29px;
   }
 }
 
@@ -381,7 +382,7 @@ html:root {
   --az-accordion-title-letter-spacing: var(--az-component-accordion-size-medium-title-letter-spacing);
   --az-accordion-title-gap: var(--az-component-accordion-size-medium-title-gap);
   --az-accordion-icon-size: var(--az-component-accordion-size-medium-icon-size);
-  --az-accordion-icon-line-length: var(--az-component-accordion-size-medium-icon-line-length);
+  --az-accordion-icon-line-length: 23px;
 }
 
 :root .accordion.accordion--size-small {
@@ -391,7 +392,7 @@ html:root {
   --az-accordion-title-letter-spacing: var(--az-component-accordion-size-small-title-letter-spacing);
   --az-accordion-title-gap: var(--az-component-accordion-size-small-title-gap);
   --az-accordion-icon-size: var(--az-component-accordion-size-small-icon-size);
-  --az-accordion-icon-line-length: var(--az-component-accordion-size-small-icon-line-length);
+  --az-accordion-icon-line-length: 18px;
 }
 
 :root .accordion.accordion--typeface-sans-serif {
@@ -459,7 +460,7 @@ html:root {
   width: var(--az-accordion-icon-line-length);
   height: var(--az-accordion-icon-stroke-width);
   background-color: currentColor;
-  border-radius: var(--az-component-accordion-icon-line-border-radius);
+  border-radius: 2px; /* Rounded line ends: drawing detail, not a token. */
   transform: translate(-50%, -50%);
 }
 

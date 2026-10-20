@@ -44,49 +44,6 @@ export const az: {
     }
   },
   "dimension": {
-    "0": string,
-    "1": string,
-    "2": string,
-    "3": string,
-    "4": string,
-    "5": string,
-    "6": string,
-    "8": string,
-    "9": string,
-    "10": string,
-    "12": string,
-    "15": string,
-    "16": string,
-    "18": string,
-    "22": string,
-    "23": string,
-    "24": string,
-    "25": string,
-    "27": string,
-    "28": string,
-    "29": string,
-    "30": string,
-    "34": string,
-    "36": string,
-    "38": string,
-    "40": string,
-    "43": string,
-    "44": string,
-    "50": string,
-    "52": string,
-    "58": string,
-    "60": string,
-    "211": string,
-    "265": string,
-    "0-09": string,
-    "0-12": string,
-    "2-4": string,
-    "4-5": string,
-    "9-744": string,
-    "19-2": string,
-    "19-8": string,
-    "28-8": string,
-    "266-41": string,
     "semantic": {
       "page": {
         "scrollOffset": string
@@ -322,12 +279,6 @@ export const az: {
       "icon": {
         "color": string,
         "size": string,
-        "line": {
-          "length": string,
-          "border": {
-            "radius": string
-          }
-        },
         "stroke": {
           "width": string
         }
@@ -348,10 +299,7 @@ export const az: {
           "gap": string
         },
         "icon": {
-          "size": string,
-          "line": {
-            "length": string
-          }
+          "size": string
         },
         "body": {
           "padding": {
@@ -397,10 +345,7 @@ export const az: {
             "gap": string
           },
           "icon": {
-            "size": string,
-            "line": {
-              "length": string
-            }
+            "size": string
           }
         },
         "small": {
@@ -414,10 +359,7 @@ export const az: {
             "gap": string
           },
           "icon": {
-            "size": string,
-            "line": {
-              "length": string
-            }
+            "size": string
           }
         }
       },

@@ -13,49 +13,7 @@ $az-color-brand-cloud: #e5eff7;
 $az-color-brand-caliche: #f2efea;
 $az-color-brand-white: #ffffff;
 $az-color-neutral-gray-alpha-50: rgba(112, 112, 112, 0.5); // Neutral gray (#707070) at 50% opacity. Not a brand color: a neutral for rules and dividers.
-$az-dimension-0: 0px;
-$az-dimension-1: 1px;
-$az-dimension-2: 2px;
-$az-dimension-3: 3px;
-$az-dimension-4: 4px;
-$az-dimension-5: 5px;
-$az-dimension-6: 6px;
-$az-dimension-8: 8px;
-$az-dimension-9: 9px;
-$az-dimension-10: 10px;
-$az-dimension-12: 12px;
-$az-dimension-15: 15px;
-$az-dimension-16: 16px;
-$az-dimension-18: 18px;
-$az-dimension-22: 22px;
-$az-dimension-23: 23px;
-$az-dimension-24: 24px;
-$az-dimension-25: 25px;
-$az-dimension-27: 27px;
-$az-dimension-28: 28px;
-$az-dimension-29: 29px;
-$az-dimension-30: 30px;
-$az-dimension-34: 34px;
-$az-dimension-36: 36px;
-$az-dimension-38: 38px;
-$az-dimension-40: 40px;
-$az-dimension-43: 43px;
-$az-dimension-44: 44px;
-$az-dimension-50: 50px;
-$az-dimension-52: 52px;
-$az-dimension-58: 58px;
-$az-dimension-60: 60px;
-$az-dimension-211: 211px;
-$az-dimension-265: 265px;
-$az-dimension-0-09: 0.09px;
-$az-dimension-0-12: 0.12px;
-$az-dimension-2-4: 2.4px;
-$az-dimension-4-5: 4.5px;
-$az-dimension-9-744: 9.744px;
-$az-dimension-19-2: 19.2px;
-$az-dimension-19-8: 19.8px;
-$az-dimension-28-8: 28.8px;
-$az-dimension-266-41: 266.41px;
+$az-dimension-semantic-page-scroll-offset: 0px; // How far below the top of the screen a linked section stops when the page scrolls to it, such as an accordion item opened from a link. A fixed header raises it so the header doesn't cover the section.
 $az-font-family-serif: garamond-premier-pro, Georgia, 'Times New Roman', serif; // Serif: Garamond Premier Pro, falling back to Georgia and Times New Roman.
 $az-font-family-sans: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; // Sans serif: Proxima Nova, falling back to system sans-serif fonts.
 $az-font-weight-400: 400; // Regular.
@@ -66,6 +24,81 @@ $az-duration-150: 150ms; // 150 milliseconds.
 $az-duration-300: 300ms; // 300 milliseconds.
 $az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); // CSS ease-in-out: starts and ends slowly.
 $az-easing-linear: cubic-bezier(0, 0, 1, 1); // CSS linear: a constant speed.
+$az-component-brand-header-height: 50px; // Header height: its minimum height at every screen size, and its fixed height below 992px.
+$az-component-brand-header-logo-width: 211px; // Wordmark width below the sm breakpoint (576px).
+$az-component-brand-header-logo-height: 16px; // Wordmark height below the sm breakpoint (576px).
+$az-component-brand-header-logo-sm-width: 266.41px; // Wordmark width from the sm breakpoint (576px) up.
+$az-component-brand-header-logo-sm-height: 19.8px; // Wordmark height from the sm breakpoint (576px) up.
+$az-component-brand-header-logo-margin-left: 10px; // Space before the wordmark, at the header's left edge.
+$az-component-brand-header-focus-visible-ring-width: 2px; // Width of the inset keyboard focus ring on the logo and header buttons.
+$az-component-brand-header-focus-visible-border-radius: 2px; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
+$az-component-brand-header-button-label-font-size: 10px; // Header button label text size ("Search", "Menu").
+$az-component-brand-header-button-label-line-height: 10px; // Header button label line height.
+$az-component-brand-header-button-icon-size: 24px; // Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.
+$az-component-brand-header-button-gap: 2px; // Space between a header button's icon and its label.
+$az-component-brand-header-button-padding-y: 4px; // Header button top and bottom padding.
+$az-component-brand-header-button-min-width: 60px; // Header button minimum width.
+$az-component-brand-header-fixed-on-mobile-scroll-offset: 58px; // When the header is fixed on mobile (below 992px): the page's scroll offset, how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them.
+$az-component-input-group-height: 43px; // Height of a text field with an attached button.
+$az-component-input-group-field-padding-x: 12px; // Space between the field's left and right edges and its text.
+$az-component-input-group-field-padding-y: 6px; // Space above and below the field's text.
+$az-component-input-group-field-font-size: 16px; // Field text size.
+$az-component-input-group-field-line-height: 22px; // Field text line height.
+$az-component-input-group-button-padding: 9px; // Space around the attached button's icon.
+$az-component-input-group-button-icon-size: 24px; // The attached button's icon width and height.
+$az-component-input-group-border-width: 2px; // Border width around the field and button together.
+$az-component-input-group-border-radius: 8px; // Corner radius of the field and button together.
+$az-component-search-max-width: 265px; // Search form's maximum width. It's an input group, so its other values come from az.component.input-group.
+$az-component-search-padding-x: 15px; // Space to the left and right of the search form.
+$az-component-search-padding-y: 5px; // Space above and below the search form.
+$az-component-search-toggle-focus-visible-ring-width: 1px; // Width of that button's keyboard focus ring.
+$az-component-breadcrumb-padding-x: 9.744px; // Space to the left and right of the breadcrumb (0.609rem).
+$az-component-breadcrumb-padding-y: 12px; // Space above and below the breadcrumb.
+$az-component-breadcrumb-margin-bottom: 16px; // Space below the breadcrumb, below the lg breakpoint (992px).
+$az-component-breadcrumb-lg-margin-bottom: 0px; // Space below the breadcrumb from the lg breakpoint (992px) up: none.
+$az-component-breadcrumb-item-font-size: 16px; // Size of every item's text, linked or current.
+$az-component-breadcrumb-item-line-height: 16px; // Line height of every item's text: the same as its size.
+$az-component-breadcrumb-hover-underline-width: 1px; // Thickness of the hover underline.
+$az-component-breadcrumb-hover-underline-offset: 5px; // How far below the text's baseline the hover underline sits, on every item, Home included.
+$az-component-breadcrumb-divider-gap: 8px; // Space on each side of the / between items.
+$az-component-breadcrumb-home-icon-size: 19.2px; // Width and height of the house icon before Home (1.2rem).
+$az-component-breadcrumb-home-icon-gap: 2.4px; // Space between the house icon and Home.
+$az-component-breadcrumb-home-icon-raise: 2.4px; // How far the house icon sits above the text's top edge, so it lines up with the text the way it does on arizona.edu.
+$az-component-accordion-title-font-size: 34px; // Title text size (large, the default size), below the md breakpoint (768px).
+$az-component-accordion-title-line-height: 38px; // Title line height (large), below 768px.
+$az-component-accordion-title-letter-spacing: 0.09px; // Title letter spacing (large), below 768px.
+$az-component-accordion-title-padding-x: 0px; // Space to the left and right of the title: none, so titles line up with the text around them.
+$az-component-accordion-title-padding-y: 16px; // Space above and below the title.
+$az-component-accordion-title-gap: 24px; // Space between the title text and its icon (large), below 768px.
+$az-component-accordion-rule-width: 1px; // Thickness of the line under each title.
+$az-component-accordion-icon-size: 44px; // Diameter of the circled icon (large), below 768px.
+$az-component-accordion-icon-stroke-width: 2px; // Thickness of the icon's circle and lines, collapsed.
+$az-component-accordion-body-padding-x: 0px; // Space to the left and right of the body: none.
+$az-component-accordion-body-padding-y: 30px; // Space above and below the body, below 768px.
+$az-component-accordion-md-title-font-size: 44px; // Title text size (large) from the md breakpoint (768px) up.
+$az-component-accordion-md-title-line-height: 52px; // Title line height (large) from 768px up.
+$az-component-accordion-md-title-letter-spacing: 0.12px; // Title letter spacing (large) from 768px up.
+$az-component-accordion-md-title-gap: 27px; // Space between the title text and its icon (large) from 768px up.
+$az-component-accordion-md-icon-size: 50px; // Diameter of the circled icon (large) from 768px up.
+$az-component-accordion-md-body-padding-y: 40px; // Space above and below the body from 768px up.
+$az-component-accordion-hover-icon-stroke-width: 3px; // Thickness of the icon's circle and lines on hover.
+$az-component-accordion-open-icon-stroke-width: 3px; // Thickness of the icon's circle and lines while open: the same as on hover.
+$az-component-accordion-focus-visible-ring-width: 2px; // Width of the keyboard focus ring.
+$az-component-accordion-focus-visible-ring-offset: 2px; // Space between a title and its keyboard focus ring.
+$az-component-accordion-size-medium-title-font-size: 28px; // Title text size, medium size.
+$az-component-accordion-size-medium-title-line-height: 36px; // Title line height, medium size.
+$az-component-accordion-size-medium-title-letter-spacing: 0px; // Title letter spacing, medium size: none.
+$az-component-accordion-size-medium-title-gap: 22px; // Space between the title text and its icon, medium size.
+$az-component-accordion-size-medium-icon-size: 40px; // Diameter of the circled icon, medium size.
+$az-component-accordion-size-small-title-font-size: 22px; // Title text size, small size.
+$az-component-accordion-size-small-title-line-height: 28.8px; // Title line height, small size.
+$az-component-accordion-size-small-title-letter-spacing: 0px; // Title letter spacing, small size: none.
+$az-component-accordion-size-small-title-gap: 16px; // Space between the title text and its icon, small size.
+$az-component-accordion-size-small-icon-size: 30px; // Diameter of the circled icon, small size.
+$az-component-accordion-anchor-icon-size: 24px; // Size of the Copy link's icon (a link icon, then a check after copying).
+$az-component-accordion-anchor-gap: 6px; // Space between the Copy link's icon and its label.
+$az-component-accordion-anchor-margin-top: 8px; // Space above the Copy link, at the bottom of the body.
+$az-component-accordion-anchor-underline-offset: 4.5px; // How far below the label the Copy link's underline sits (0.25em at the 18px body size). Only the label is underlined, not the icon.
 $az-color-semantic-surface-brand: $az-color-brand-blue; // The brand surface: the surface that follows the brand, such as the Arizona Header's fill. Blue by default; a theme can point it at another primary color, such as Red for the original red header. Repoint on-brand.* with it — aliases the brand palette.
 $az-color-semantic-surface-default: $az-color-brand-white; // The default surface: the page background most content sits on, such as a breadcrumb's fill. Use on-default.* for what sits on it — aliases the brand palette.
 $az-color-semantic-on-brand-default: $az-color-brand-white; // Text and icons on surface.brand. Repoint it whenever a theme repoints surface.brand — aliases the brand palette.
@@ -81,107 +114,26 @@ $az-color-semantic-on-default-link-supporting-hover: $az-color-brand-blue; // Su
 $az-color-semantic-on-default-accent: $az-color-brand-bougainvillea; // Accent on surface.default, such as the dividers between breadcrumb items — aliases the brand palette.
 $az-color-semantic-on-default-border: $az-color-neutral-gray-alpha-50; // Rules and dividers on surface.default, such as the line under each accordion title — aliases a neutral color.
 $az-color-semantic-on-default-focus-ring: $az-color-brand-bougainvillea; // Keyboard focus ring on surface.default — aliases the brand palette.
-$az-dimension-semantic-page-scroll-offset: $az-dimension-0; // How far below the top of the screen a linked section stops when the page scrolls to it, such as an accordion item opened from a link. A fixed header raises it so the header doesn't cover the section.
-$az-component-brand-header-height: $az-dimension-50; // Header height: its minimum height at every screen size, and its fixed height below 992px.
-$az-component-brand-header-logo-width: $az-dimension-211; // Wordmark width below the sm breakpoint (576px).
-$az-component-brand-header-logo-height: $az-dimension-16; // Wordmark height below the sm breakpoint (576px).
-$az-component-brand-header-logo-sm-width: $az-dimension-266-41; // Wordmark width from the sm breakpoint (576px) up.
-$az-component-brand-header-logo-sm-height: $az-dimension-19-8; // Wordmark height from the sm breakpoint (576px) up.
-$az-component-brand-header-logo-margin-left: $az-dimension-10; // Space before the wordmark, at the header's left edge.
-$az-component-brand-header-focus-visible-ring-width: $az-dimension-2; // Width of the inset keyboard focus ring on the logo and header buttons.
-$az-component-brand-header-focus-visible-border-radius: $az-dimension-2; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
-$az-component-brand-header-button-label-font-size: $az-dimension-10; // Header button label text size ("Search", "Menu").
-$az-component-brand-header-button-label-line-height: $az-dimension-10; // Header button label line height.
-$az-component-brand-header-button-icon-size: $az-dimension-24; // Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.
-$az-component-brand-header-button-gap: $az-dimension-2; // Space between a header button's icon and its label.
-$az-component-brand-header-button-padding-y: $az-dimension-4; // Header button top and bottom padding.
-$az-component-brand-header-button-min-width: $az-dimension-60; // Header button minimum width.
+$az-component-brand-header-button-min-height: $az-component-brand-header-height; // Header button minimum height: the header's own height.
 $az-component-brand-header-button-transition-duration: $az-duration-150; // How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-button-transition-easing: $az-easing-ease-in-out; // Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-component-brand-header-fixed-on-mobile-scroll-offset: $az-dimension-58; // When the header is fixed on mobile (below 992px): the page's scroll offset, how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them.
 $az-component-brand-header-offcanvas-transition-duration: $az-duration-300; // How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-transition-easing: $az-easing-ease-in-out; // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-duration: $az-duration-150; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-easing: $az-easing-linear; // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-component-input-group-height: $az-dimension-43; // Height of a text field with an attached button.
-$az-component-input-group-field-padding-x: $az-dimension-12; // Space between the field's left and right edges and its text.
-$az-component-input-group-field-padding-y: $az-dimension-6; // Space above and below the field's text.
-$az-component-input-group-field-font-size: $az-dimension-16; // Field text size.
 $az-component-input-group-field-font-weight: $az-font-weight-400; // Field text weight (Regular).
-$az-component-input-group-field-line-height: $az-dimension-22; // Field text line height.
-$az-component-input-group-button-padding: $az-dimension-9; // Space around the attached button's icon.
-$az-component-input-group-button-icon-size: $az-dimension-24; // The attached button's icon width and height.
-$az-component-input-group-border-width: $az-dimension-2; // Border width around the field and button together.
-$az-component-input-group-border-radius: $az-dimension-8; // Corner radius of the field and button together.
+$az-component-input-group-divider-width: $az-component-input-group-border-width; // Width of the line between the field and the button: the same as the border.
 $az-component-input-group-divider-transition-duration: $az-duration-150; // How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-input-group-divider-transition-easing: $az-easing-ease-in-out; // Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-component-search-max-width: $az-dimension-265; // Search form's maximum width. It's an input group, so its other values come from az.component.input-group.
-$az-component-search-padding-x: $az-dimension-15; // Space to the left and right of the search form.
-$az-component-search-padding-y: $az-dimension-5; // Space above and below the search form.
-$az-component-search-toggle-focus-visible-ring-width: $az-dimension-1; // Width of that button's keyboard focus ring.
-$az-component-breadcrumb-padding-x: $az-dimension-9-744; // Space to the left and right of the breadcrumb (0.609rem).
-$az-component-breadcrumb-padding-y: $az-dimension-12; // Space above and below the breadcrumb.
-$az-component-breadcrumb-margin-bottom: $az-dimension-16; // Space below the breadcrumb, below the lg breakpoint (992px).
-$az-component-breadcrumb-lg-margin-bottom: $az-dimension-0; // Space below the breadcrumb from the lg breakpoint (992px) up: none.
-$az-component-breadcrumb-item-font-size: $az-dimension-16; // Size of every item's text, linked or current.
 $az-component-breadcrumb-item-font-weight: $az-font-weight-500; // Weight of every item's text, linked or current.
-$az-component-breadcrumb-item-line-height: $az-dimension-16; // Line height of every item's text: the same as its size.
-$az-component-breadcrumb-hover-underline-width: $az-dimension-1; // Thickness of the hover underline.
-$az-component-breadcrumb-hover-underline-offset: $az-dimension-5; // How far below the text's baseline the hover underline sits, on every item, Home included.
-$az-component-breadcrumb-divider-gap: $az-dimension-8; // Space on each side of the / between items.
-$az-component-breadcrumb-home-icon-size: $az-dimension-19-2; // Width and height of the house icon before Home (1.2rem).
-$az-component-breadcrumb-home-icon-gap: $az-dimension-2-4; // Space between the house icon and Home.
-$az-component-breadcrumb-home-icon-raise: $az-dimension-2-4; // How far the house icon sits above the text's top edge, so it lines up with the text the way it does on arizona.edu.
 $az-component-accordion-title-font-family: $az-font-family-serif; // Title typeface: serif by default. typeface.sans replaces it.
-$az-component-accordion-title-font-size: $az-dimension-34; // Title text size (large, the default size), below the md breakpoint (768px).
 $az-component-accordion-title-font-weight: $az-font-weight-600; // Title weight (Semibold).
-$az-component-accordion-title-line-height: $az-dimension-38; // Title line height (large), below 768px.
-$az-component-accordion-title-letter-spacing: $az-dimension-0-09; // Title letter spacing (large), below 768px.
-$az-component-accordion-title-padding-x: $az-dimension-0; // Space to the left and right of the title: none, so titles line up with the text around them.
-$az-component-accordion-title-padding-y: $az-dimension-16; // Space above and below the title.
-$az-component-accordion-title-gap: $az-dimension-24; // Space between the title text and its icon (large), below 768px.
-$az-component-accordion-rule-width: $az-dimension-1; // Thickness of the line under each title.
-$az-component-accordion-icon-size: $az-dimension-44; // Diameter of the circled icon (large), below 768px.
-$az-component-accordion-icon-line-length: $az-dimension-25; // Length of the icon's plus/minus lines (large), below 768px.
-$az-component-accordion-icon-line-border-radius: $az-dimension-2; // Rounded ends of the icon's lines.
-$az-component-accordion-icon-stroke-width: $az-dimension-2; // Thickness of the icon's circle and lines, collapsed.
-$az-component-accordion-body-padding-x: $az-dimension-0; // Space to the left and right of the body: none.
-$az-component-accordion-body-padding-y: $az-dimension-30; // Space above and below the body, below 768px.
-$az-component-accordion-md-title-font-size: $az-dimension-44; // Title text size (large) from the md breakpoint (768px) up.
-$az-component-accordion-md-title-line-height: $az-dimension-52; // Title line height (large) from 768px up.
-$az-component-accordion-md-title-letter-spacing: $az-dimension-0-12; // Title letter spacing (large) from 768px up.
-$az-component-accordion-md-title-gap: $az-dimension-27; // Space between the title text and its icon (large) from 768px up.
-$az-component-accordion-md-icon-size: $az-dimension-50; // Diameter of the circled icon (large) from 768px up.
-$az-component-accordion-md-icon-line-length: $az-dimension-29; // Length of the icon's lines (large) from 768px up.
-$az-component-accordion-md-body-padding-y: $az-dimension-40; // Space above and below the body from 768px up.
-$az-component-accordion-hover-icon-stroke-width: $az-dimension-3; // Thickness of the icon's circle and lines on hover.
-$az-component-accordion-open-icon-stroke-width: $az-dimension-3; // Thickness of the icon's circle and lines while open: the same as on hover.
-$az-component-accordion-focus-visible-ring-width: $az-dimension-2; // Width of the keyboard focus ring.
-$az-component-accordion-focus-visible-ring-offset: $az-dimension-2; // Space between a title and its keyboard focus ring.
-$az-component-accordion-size-medium-title-font-size: $az-dimension-28; // Title text size, medium size.
-$az-component-accordion-size-medium-title-line-height: $az-dimension-36; // Title line height, medium size.
-$az-component-accordion-size-medium-title-letter-spacing: $az-dimension-0; // Title letter spacing, medium size: none.
-$az-component-accordion-size-medium-title-gap: $az-dimension-22; // Space between the title text and its icon, medium size.
-$az-component-accordion-size-medium-icon-size: $az-dimension-40; // Diameter of the circled icon, medium size.
-$az-component-accordion-size-medium-icon-line-length: $az-dimension-23; // Length of the icon's lines, medium size.
-$az-component-accordion-size-small-title-font-size: $az-dimension-22; // Title text size, small size.
 $az-component-accordion-size-small-title-font-weight: $az-font-weight-700; // Title weight, small size (Bold).
-$az-component-accordion-size-small-title-line-height: $az-dimension-28-8; // Title line height, small size.
-$az-component-accordion-size-small-title-letter-spacing: $az-dimension-0; // Title letter spacing, small size: none.
-$az-component-accordion-size-small-title-gap: $az-dimension-16; // Space between the title text and its icon, small size.
-$az-component-accordion-size-small-icon-size: $az-dimension-30; // Diameter of the circled icon, small size.
-$az-component-accordion-size-small-icon-line-length: $az-dimension-18; // Length of the icon's lines, small size.
 $az-component-accordion-typeface-sans-title-font-family: $az-font-family-sans; // Title typeface for the sans serif style.
-$az-component-accordion-anchor-icon-size: $az-dimension-24; // Size of the Copy link's icon (a link icon, then a check after copying).
-$az-component-accordion-anchor-gap: $az-dimension-6; // Space between the Copy link's icon and its label.
-$az-component-accordion-anchor-margin-top: $az-dimension-8; // Space above the Copy link, at the bottom of the body.
-$az-component-accordion-anchor-underline-offset: $az-dimension-4-5; // How far below the label the Copy link's underline sits (0.25em at the 18px body size). Only the label is underlined, not the icon.
 $az-component-brand-header-container-color: $az-color-semantic-surface-brand; // Header fill: the brand surface, Blue by default. The original red header comes from a theme that points surface.brand at Red.
 $az-component-brand-header-logo-color: $az-color-semantic-on-brand-logo; // Color of the header's wordmark logo.
 $az-component-brand-header-focus-visible-ring-color: $az-color-semantic-on-brand-focus-ring; // Keyboard focus ring on the logo and header buttons, drawn inside the element's edge.
 $az-component-brand-header-button-label-color: $az-color-semantic-on-brand-default; // Header button text and icon color.
-$az-component-brand-header-button-min-height: $az-component-brand-header-height; // Header button minimum height: the header's own height.
-$az-component-input-group-divider-width: $az-component-input-group-border-width; // Width of the line between the field and the button: the same as the border.
 $az-component-input-group-on-brand-field-color: $az-color-semantic-on-brand-default; // Field text color on the brand surface.
 $az-component-input-group-on-brand-field-placeholder-color: $az-color-semantic-on-brand-placeholder; // Placeholder text color on the brand surface.
 $az-component-input-group-on-brand-border-color: $az-color-semantic-on-brand-border; // Border color on the brand surface, around the field and button.
