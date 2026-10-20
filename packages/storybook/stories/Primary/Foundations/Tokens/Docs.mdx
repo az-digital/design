@@ -51,37 +51,13 @@ Colors outside the brand palette (`az.color.neutral.*`), for rules and dividers 
 
 ## Primitives
 
-Named values, grouped by type, that semantic and component tokens point at. Sizes aren't primitives: each semantic or component token holds its own size, and tokens share a size only when it's the same decision. Use semantic or component tokens in designs and code, not primitives.
+Named values that semantic and component tokens point at, where the name is a role rather than the value itself, so the value can change everywhere at once. Sizes, weights, durations and easings aren't primitives: each token holds its own, and tokens share a value only when it's the same decision. Use semantic or component tokens in designs and code, not primitives.
 
 ### Font families
 
 Typefaces with their fallbacks (`az.font-family.*`).
 
 <TokenDisplay items={getTokenDisplayItems('az.font-family.', { order: 'source' })} layout="table" />
-
-### Font weights
-
-How heavy text is (`az.font-weight.*`), as numeric weights.
-
-<TokenDisplay items={getTokenDisplayItems('az.font-weight.', { order: 'source' })} layout="table" />
-
-### Percentages
-
-Shares of the size of what contains something (`az.percentage.*`), such as a band 20% of a section's width.
-
-<TokenDisplay items={getTokenDisplayItems('az.percentage.', { order: 'source' })} layout="table" />
-
-### Durations
-
-How long a change takes (`az.duration.*`), in milliseconds.
-
-<TokenDisplay items={getTokenDisplayItems('az.duration.', { order: 'source' })} layout="table" />
-
-### Easings
-
-How a change speeds up and slows down (`az.easing.*`), as cubic Bézier curves.
-
-<TokenDisplay items={getTokenDisplayItems('az.easing.', { order: 'source' })} layout="table" />
 
 ## Semantic colors
 
@@ -97,7 +73,7 @@ Purpose-based sizes (`az.dimension.semantic.*`) that apply across a page rather 
 
 ## Component tokens
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens and weights at primitives; sizes are set on the component token itself.
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens; sizes, weights and timings are set on the component token itself.
 
 Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
 

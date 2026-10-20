@@ -522,7 +522,7 @@ html:root {
 
 :root .bg-monsoon-sky-start::before,
 :root .bg-monsoon-sky-end::before {
-  width: var(--az-component-background-pattern-monsoon-band-width);
+  width: calc(var(--az-component-background-pattern-monsoon-band-width) * 1%);
   min-width: var(--az-component-background-pattern-monsoon-band-min-width);
   max-width: var(--az-component-background-pattern-monsoon-band-max-width);
   opacity: 1;
