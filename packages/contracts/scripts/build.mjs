@@ -1,16 +1,20 @@
 // Checks the component contracts (contracts/*.contract.json) against the
-// tokens, and writes dist/contracts.json for docs tables.
+// tokens, writes dist/contracts.json for docs tables, and generates a CSS and a
+// Sass variable for each of a component's own values.
 //
 // A contract records one component's anatomy, independent of any platform: its
-// parts, and which token sets each part's design properties in its resting
-// look, its states and its breakpoints. It holds only token references; the
-// values stay in tokens.json, which builds as it always has.
+// parts, and what sets each part's design properties in its resting look, its
+// states and its breakpoints. A property either references a token in
+// tokens.json (a brand color or a shared decision) or holds the component's own
+// value, written like a DTCG token. Own values become variables named after
+// where they sit: brand-header › logo › sm › width is --az-brand-header-logo-sm-width.
 //
 // The build refuses, naming the problem, when a contract:
 // - doesn't match contract.schema.json,
-// - references a token that isn't in tokens.json, or
+// - references a token that isn't in tokens.json,
 // - leaves one of its component's own tokens (az.component.<id>.*) unused, so
-//   the contract and the tokens can't drift apart.
+//   the contract and the tokens can't drift apart, or
+// - generates a variable name that another value or a token already uses.
 //
 // It also reports component tokens that only point at another token, which the
 // contract could reference directly: wiring belongs in the contract.
@@ -32,10 +36,19 @@ const collect = (node, path) => {
 };
 collect(read(new URL('../tokens/tokens.json', root)), []);
 
+// A value as CSS and Sass write it.
+const format = ({ $type: type, $value: value }) => {
+  if (type === 'dimension' || type === 'duration') return `${value.value}${value.unit}`;
+  if (type === 'cubicBezier') return `cubic-bezier(${value.join(', ')})`;
+  return String(value);
+};
+
 const files = readdirSync(new URL('contracts/', root)).filter((file) => file.endsWith('.contract.json')).sort();
 const problems = [];
 const notes = [];
 const rows = [];
+const variables = new Map(); // generated name -> where it came from
+const tokenVariables = new Set([...tokens.keys()].map((path) => path.replaceAll('.', '-')));
 
 for (const file of files) {
   const contract = read(new URL(`contracts/${file}`, root));
@@ -52,14 +65,25 @@ for (const file of files) {
   const walk = (part, partPath) => {
     const add = (group, condition, kind) => {
       for (const [property, value] of Object.entries(group ?? {})) {
-        const token = value.slice(1, -1);
         const where = [...partPath, condition, property].filter(Boolean).join(' › ') || 'root';
+        const row = { contract: contract.id, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property };
+        if (typeof value === 'object') {
+          const name = ['az', contract.id, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
+          if (variables.has(name) || tokenVariables.has(name)) {
+            problems.push(`${file}: ${where} would generate --${name}, the same variable as ${variables.get(name) ?? 'a token in tokens.json'}`);
+            continue;
+          }
+          variables.set(name, `${file}: ${where}`);
+          rows.push({ ...row, token: null, type: value.$type, value: format(value), description: value.$description, variable: name });
+          continue;
+        }
+        const token = value.slice(1, -1);
         if (!tokens.has(token)) {
           problems.push(`${file}: ${where} references {${token}}, which isn't a token`);
           continue;
         }
         used.add(token);
-        rows.push({ contract: contract.id, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property, token });
+        rows.push({ ...row, token });
       }
     };
     add(part.tokens, null, 'default');
@@ -91,4 +115,8 @@ const dist = new URL('dist/', root);
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist);
 writeFileSync(new URL('contracts.json', dist), `${JSON.stringify(rows, null, 2)}\n`);
-console.log(`Checked ${files.length} contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves.`);
+
+const own = rows.filter((row) => row.variable);
+writeFileSync(new URL('contracts.css', dist), `:root {\n${own.map((row) => `  --${row.variable}: ${row.value}; /** ${row.description} */`).join('\n')}\n}\n`);
+writeFileSync(new URL('contracts.scss', dist), `${own.map((row) => `$${row.variable}: ${row.value}; // ${row.description}`).join('\n')}\n`);
+console.log(`Checked ${files.length} contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves, ${own.length} values generated as variables.`);

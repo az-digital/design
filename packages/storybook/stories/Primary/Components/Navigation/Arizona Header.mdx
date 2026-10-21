@@ -13,9 +13,10 @@ import { ContractAnatomy } from '../ContractAnatomy';
 
 ## Design decisions
 
-The header's contract (`brand-header.contract.json`) wires each of its parts to tokens:
-colors to brand colors, and sizes and timings to primitives (`az.dimension.*`,
-`az.duration.*` and `az.easing.*`). The header has no tokens of its own.
+The header's contract (`brand-header.contract.json`) sets each of its parts' design
+properties: its colors are brand colors, its focus ring width is the shared one, and its
+sizes and timings are the header's own values, written in the contract. The header has
+no tokens of its own.
 
 - **Fill:** <Token data={getTokenData('az.color.brand.blue')} />. The original red header
   isn't a separate set of tokens: its contract points the fill at Red, and keeps every
@@ -46,7 +47,7 @@ colors to brand colors, and sizes and timings to primitives (`az.dimension.*`,
 
 ## Anatomy
 
-Each part of the header, and the token that sets each of its design properties, from the
-header's contract.
+Each part of the header and each of its design properties, from the header's contract:
+the token it uses, or the header's own value and what it's for.
 
 <ContractAnatomy contract="brand-header" />

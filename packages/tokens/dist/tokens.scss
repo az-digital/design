@@ -12,19 +12,4 @@ $az-color-brand-brick: #85372b;
 $az-color-brand-cloud: #e5eff7;
 $az-color-brand-caliche: #f2efea;
 $az-color-brand-white: #ffffff;
-$az-dimension-2: 2px; // 2 pixels.
-$az-dimension-4: 4px; // 4 pixels.
-$az-dimension-10: 10px; // 10 pixels.
-$az-dimension-16: 16px; // 16 pixels.
-$az-dimension-24: 24px; // 24 pixels.
-$az-dimension-50: 50px; // 50 pixels.
-$az-dimension-58: 58px; // 58 pixels.
-$az-dimension-60: 60px; // 60 pixels.
-$az-dimension-211: 211px; // 211 pixels.
-$az-dimension-19-8: 19.8px; // 19.8 pixels.
-$az-dimension-266-41: 266.41px; // 266.41 pixels.
-$az-duration-150: 150ms; // 150 milliseconds.
-$az-duration-300: 300ms; // 300 milliseconds.
-$az-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); // CSS ease-in-out: starts and ends slowly.
-$az-easing-linear: cubic-bezier(0, 0, 1, 1); // CSS linear: a constant speed.
-$az-focus-ring-width: $az-dimension-2; // Width of the keyboard focus ring, everywhere one is drawn: links, buttons, and the header's logo and buttons.
+$az-focus-ring-width: 2px; // Width of the keyboard focus ring, everywhere one is drawn: links, buttons, and the header's logo and buttons.
