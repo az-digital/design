@@ -111,6 +111,13 @@ building it.
   points the part straight at the brand color instead. Text
   colors are on-colors too: there are no `text.*` or `text-emphasis.*` groups, since
   a text color means nothing without the surface it sits on.
+- **Shared decisions use Bootstrap 6's names.** When several components share a
+  decision (link color, focus ring, border, form-control sizing, body type), give it
+  one token named after Bootstrap 6's name for it, with Arizona's value
+  (`az.focus-ring.width` for `--focus-ring-width`), and point every contract at it.
+  Only when it's really shared; a single component's value stays its own. Don't adopt
+  Bootstrap 6's role names (`primary`, `accent`) until that's decided, and don't name
+  Bootstrap in token descriptions or docs.
 - **Bootstrap's names, only where the meaning matches.** `link`, `link-hover`,
   `border`, `focus-ring` and `placeholder` are Bootstrap's words. Don't borrow one
   that means something else: Bootstrap's "emphasis" means more contrast, and its
