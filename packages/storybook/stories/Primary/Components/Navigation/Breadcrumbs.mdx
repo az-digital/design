@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
 
 <Meta title="Primary/Components/Navigation/Breadcrumbs" />
 
@@ -34,5 +35,15 @@ Breadcrumbs on other surfaces come when a design needs them.
   lines up with the text the way it does on arizona.edu.
 - **Hover:** the icon is part of the link, so the underline starts at the house's left
   edge and runs under "Home".
+
+## Anatomy
+
+The breadcrumb's contract (`breadcrumb.contract.json`) names its parts, and the token that sets
+each part's design properties, at rest, on hover and from the lg breakpoint up. Colors point at the
+default surface's on-colors; sizes point at the breadcrumb's own tokens.
+
+<ContractAnatomy contract="breadcrumb" />
+
+## Tokens
 
 <TokenTable items={getTokenDisplayItems('az.component.breadcrumb.')} />

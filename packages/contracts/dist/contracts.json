@@ -1,0 +1,154 @@
+[
+  {
+    "contract": "breadcrumb",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.semantic.surface.default"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.component.breadcrumb.padding.x"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.component.breadcrumb.padding.y"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.component.breadcrumb.margin-bottom"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "lg",
+    "property": "margin-bottom",
+    "token": "az.component.breadcrumb.lg.margin-bottom"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "item",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": "az.component.breadcrumb.item.font.size"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "item",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.component.breadcrumb.item.font.weight"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "item",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": "az.component.breadcrumb.item.line-height"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.semantic.on-default.link-quiet"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "link",
+    "kind": "state",
+    "condition": "hover",
+    "property": "underline.color",
+    "token": "az.color.semantic.on-default.link-quiet"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "link",
+    "kind": "state",
+    "condition": "hover",
+    "property": "underline.width",
+    "token": "az.component.breadcrumb.hover.underline.width"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "link",
+    "kind": "state",
+    "condition": "hover",
+    "property": "underline.offset",
+    "token": "az.component.breadcrumb.hover.underline.offset"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "current",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.semantic.on-default.link-quiet"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.semantic.on-default.accent"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": "az.component.breadcrumb.divider.gap"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "home-icon",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.semantic.on-default.link-quiet"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "home-icon",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": "az.component.breadcrumb.home.icon.size"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "home-icon",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": "az.component.breadcrumb.home.icon.gap"
+  },
+  {
+    "contract": "breadcrumb",
+    "part": "home-icon",
+    "kind": "default",
+    "condition": null,
+    "property": "raise",
+    "token": "az.component.breadcrumb.home.icon.raise"
+  }
+]
