@@ -73,10 +73,12 @@ building it.
   means the same thing. Look at sibling components for the pattern to follow.
 - **Layers:** brand → semantic (`az.color.semantic.*`) → component
   (`az.component.<name>.*`). Colors outside the brand palette, such as a 50% gray
-  for rules, go in `az.color.neutral.*`.
+  for rules, go in `az.color.neutral.*`. A component's contract (below) sits on top:
+  it says which token sets each of the component's parts.
 - **An alias records a relationship, not a number.** Alias a token only when the two
-  are the same decision: a component color aliases a semantic color, a focused state
-  aliases its resting state, a component's text uses `az.typography.*`.
+  are the same decision: a focused state aliases its resting state, a component's
+  text uses `az.typography.*`. A component color that would only repeat a semantic
+  color isn't a token at all: the contract points the part at the semantic color.
 - **Primitives are named roles, never values.** Keep a primitive only when its name
   is a role whose value could change everywhere at once: brand and neutral colors,
   `az.font-family.sans` / `serif` (each a full font stack). A name that is its own
@@ -103,9 +105,11 @@ building it.
 - **Surfaces:** colors come from the surface a design sits on. `surface.<name>` is
   the fill (`surface.brand` is Blue and themeable; `surface.default` is White).
   `on-<surface>.*` holds what sits on it (`default`, `link`, `border`, `placeholder`,
-  `accent`, `focus-ring`, `logo`, `pattern`, ...). Component colors alias those,
-  through a surface-named group when a component can sit on more than one surface
-  (`input-group.on-brand.*`). Add an on-color only when something needs it. Text
+  `accent`, `focus-ring`, `logo`, `pattern`, ...). A component's contract points its
+  parts' colors at those directly. Add a component color token only when the color
+  isn't simply an on-color, through a surface-named group when the component can sit
+  on more than one surface (`input-group.on-brand.*`). Add an on-color only when
+  something needs it. Text
   colors are on-colors too: there are no `text.*` or `text-emphasis.*` groups, since
   a text color means nothing without the surface it sits on.
 - **Bootstrap's names, only where the meaning matches.** `link`, `link-hover`,
@@ -165,6 +169,24 @@ published with the tokens package.
   descriptions and on its docs page.
 - Palette renames apply to asset names too (Monsoon Sky → Monsoon Rain).
 
+### Contracts
+
+When the branch has `packages/contracts` (see its README), every component with
+tokens gets a contract, `packages/contracts/contracts/<name>.contract.json`: its
+anatomy, independent of any platform.
+
+- **Only token references.** Each part maps design properties, named the way tokens
+  are (`color`, `fill`, `padding.x`, `font.size`, `underline.offset`), to tokens. No
+  values, and no platform's property names (no `padding-inline`).
+- **Parts, states, breakpoints.** `anatomy.root` is the component; `parts` nest inside
+  it. `states` (`hover`, `focus-visible`, `active`, `open`, `disabled`) and
+  `breakpoints` (`sm`…`xxl`) hold only what changes.
+- **Colors go straight to semantic tokens.** Component tokens hold what's specific to
+  the component, such as sizes and weights.
+- **`npm run build:contracts` must pass.** It refuses a contract that doesn't match the
+  schema, references a missing token, or leaves one of the component's tokens unused.
+  Remove any component token it notes as only repeating a semantic color.
+
 ## 3. Record the values (`packages/tokens/tokens.json`)
 
 - Take each value from the source settled in step 1. Sizes are literals in the token
@@ -188,7 +210,9 @@ published with the tokens package.
 - Structure like the Arizona Header, Input Group and Breadcrumbs pages: short sections
   in plain language (where colors come from, shape and spacing, parts and states),
   with `<Token data={getTokenData('…')} />` pills for key semantic colors and
-  `<TokenTable items={getTokenDisplayItems('az.component.<name>.')} />`.
+  `<TokenTable items={getTokenDisplayItems('az.component.<name>.')} />`. With a
+  contract, add an Anatomy section, `<ContractAnatomy contract="<name>" />`, before
+  the token table.
 - The Tokens page's component index links a component to the docs page whose title
   matches its token name (or its plural). If they differ, tag the page:
   `<Meta title="…" tags={['tokens:<name>']} />`.
@@ -206,8 +230,8 @@ to the generated variable that replaces it.
 | Arizona Bootstrap | Replace with | Notes |
 |---|---|---|
 | `$breadcrumb-padding-x` / `--bs-breadcrumb-padding-x` | `var(--az-component-breadcrumb-padding-x)` | |
-| `.breadcrumb a` `color` | `var(--az-component-breadcrumb-link-color)` | |
-| `.breadcrumb-item-home::before` background SVG | `mask` of the same SVG, `background-color: var(--az-component-breadcrumb-home-icon-color)` | The SVG has Azurite built in |
+| `.breadcrumb a` `color` | `var(--az-color-semantic-on-default-link-quiet)` | The contract points the link at the semantic color |
+| `.breadcrumb-item-home::before` background SVG | `mask` of the same SVG, `background-color: var(--az-color-semantic-on-default-link-quiet)` | The SVG has Azurite built in |
 
 - Cover every token: the Sass variable when there is one, the CSS variable it
   compiles to, or the selector and property when the value is hard-coded.
@@ -242,7 +266,8 @@ For the shim:
 
 ### Verify
 
-- `npm run build:tokens` and `npm run lint:storybook` pass.
+- `npm run build:tokens`, `npm run build:contracts` (when the branch has contracts)
+  and `npm run lint:storybook` pass.
 - Storybook runs with `npm run dev:storybook` on port 6006; never another port. If
   it's already running, reuse it.
 - Open the docs page (`/iframe.html?id=<id>--docs&viewMode=docs`); check the headings
