@@ -7,7 +7,10 @@
 // states and its breakpoints. A property either references a token in
 // tokens.json (a brand color or a shared decision) or holds the component's own
 // value, written like a DTCG token. Own values become variables named after
-// where they sit: brand-header › logo › sm › width is --az-brand-header-logo-sm-width.
+// where they sit: brand-header › logo › sm › width is
+// --az-component-brand-header-logo-sm-width. The component segment keeps them
+// apart from implementations' own --az-* variables, such as Arizona Bootstrap's
+// --az-search-padding-x.
 //
 // The build refuses, naming the problem, when a contract:
 // - doesn't match contract.schema.json,
@@ -68,7 +71,7 @@ for (const file of files) {
         const where = [...partPath, condition, property].filter(Boolean).join(' › ') || 'root';
         const row = { contract: contract.id, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property };
         if (typeof value === 'object') {
-          const name = ['az', contract.id, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
+          const name = ['az', 'component', contract.id, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
           if (variables.has(name) || tokenVariables.has(name)) {
             problems.push(`${file}: ${where} would generate --${name}, the same variable as ${variables.get(name) ?? 'a token in tokens.json'}`);
             continue;

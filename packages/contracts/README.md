@@ -125,7 +125,10 @@ When it passes, it writes:
   an Anatomy table.
 - **`dist/contracts.css` and `dist/contracts.scss`:** a variable for each of a
   component's own values, named after where it sits: `brand-header` › `logo` › `sm` ›
-  `width` is `--az-brand-header-logo-sm-width` (`$az-brand-header-logo-sm-width`).
+  `width` is `--az-component-brand-header-logo-sm-width`
+  (`$az-component-brand-header-logo-sm-width`). The `component` segment keeps them apart
+  from an implementation's own `--az-*` variables, such as Arizona Bootstrap's
+  `--az-search-padding-x`.
   Colors and shared decisions aren't repeated here; use their token's variable.
 
 ## Adding a contract

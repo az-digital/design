@@ -1,22 +1,22 @@
-$az-brand-header-height: 50px; // Header height: its minimum height at every screen size, and its fixed height below 992px.
-$az-brand-header-fixed-on-mobile-scroll-offset: 58px; // When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them.
-$az-brand-header-logo-width: 211px; // Wordmark width below the sm breakpoint (576px).
-$az-brand-header-logo-height: 16px; // Wordmark height below the sm breakpoint (576px).
-$az-brand-header-logo-margin-left: 10px; // Space before the wordmark, at the header's left edge.
-$az-brand-header-logo-focus-visible-border-radius: 2px; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
-$az-brand-header-logo-sm-width: 266.41px; // Wordmark width from the sm breakpoint (576px) up.
-$az-brand-header-logo-sm-height: 19.8px; // Wordmark height from the sm breakpoint (576px) up.
-$az-brand-header-button-min-width: 60px; // Header button minimum width.
-$az-brand-header-button-min-height: 50px; // Header button minimum height: as tall as the header.
-$az-brand-header-button-padding-y: 4px; // Header button top and bottom padding.
-$az-brand-header-button-gap: 2px; // Space between a header button's icon and its label.
-$az-brand-header-button-transition-duration: 150ms; // How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-brand-header-button-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-brand-header-button-focus-visible-border-radius: 2px; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
-$az-brand-header-button-icon-size: 24px; // Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.
-$az-brand-header-button-label-font-size: 10px; // Header button label text size ("Search", "Menu").
-$az-brand-header-button-label-line-height: 10px; // Header button label line height.
-$az-brand-header-offcanvas-transition-duration: 300ms; // How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-height: 50px; // Header height: its minimum height at every screen size, and its fixed height below 992px.
+$az-component-brand-header-fixed-on-mobile-scroll-offset: 58px; // When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them.
+$az-component-brand-header-logo-width: 211px; // Wordmark width below the sm breakpoint (576px).
+$az-component-brand-header-logo-height: 16px; // Wordmark height below the sm breakpoint (576px).
+$az-component-brand-header-logo-margin-left: 10px; // Space before the wordmark, at the header's left edge.
+$az-component-brand-header-logo-focus-visible-border-radius: 2px; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
+$az-component-brand-header-logo-sm-width: 266.41px; // Wordmark width from the sm breakpoint (576px) up.
+$az-component-brand-header-logo-sm-height: 19.8px; // Wordmark height from the sm breakpoint (576px) up.
+$az-component-brand-header-button-min-width: 60px; // Header button minimum width.
+$az-component-brand-header-button-min-height: 50px; // Header button minimum height: as tall as the header.
+$az-component-brand-header-button-padding-y: 4px; // Header button top and bottom padding.
+$az-component-brand-header-button-gap: 2px; // Space between a header button's icon and its label.
+$az-component-brand-header-button-transition-duration: 150ms; // How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-button-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-button-focus-visible-border-radius: 2px; // Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.
+$az-component-brand-header-button-icon-size: 24px; // Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.
+$az-component-brand-header-button-label-font-size: 10px; // Header button label text size ("Search", "Menu").
+$az-component-brand-header-button-label-line-height: 10px; // Header button label line height.
+$az-component-brand-header-offcanvas-transition-duration: 300ms; // How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.

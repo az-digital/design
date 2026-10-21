@@ -18,7 +18,7 @@
  * Brand header (brand-header.contract.json): Arizona Bootstrap's
  * .arizona-header. Each value is what the contract sets that property to: a
  * brand color or shared token, or one of the header's own values, generated as
- * --az-brand-header-* in @az-digital/contracts/dist/contracts.css.
+ * --az-component-brand-header-* in @az-digital/contracts/dist/contracts.css.
  *
  * The fill is the contract's fill, Blue, whatever bg-* class the
  * markup uses. !important because Bootstrap's bg-* utilities are !important.
@@ -39,7 +39,7 @@
 
 :root .arizona-header > .container > .row,
 :root .arizona-logo {
-  min-height: var(--az-brand-header-height);
+  min-height: var(--az-component-brand-header-height);
 }
 
 /*
@@ -58,15 +58,15 @@
 
 /* Wordmark size and spacing: small below the sm breakpoint, large from it up. */
 :root .arizona-line-logo {
-  max-width: var(--az-brand-header-logo-width);
-  height: var(--az-brand-header-logo-height);
-  margin-left: var(--az-brand-header-logo-margin-left);
+  max-width: var(--az-component-brand-header-logo-width);
+  height: var(--az-component-brand-header-logo-height);
+  margin-left: var(--az-component-brand-header-logo-margin-left);
 }
 
 @media (min-width: 576px) {
   :root .arizona-line-logo {
-    max-width: var(--az-brand-header-logo-sm-width);
-    height: var(--az-brand-header-logo-sm-height);
+    max-width: var(--az-component-brand-header-logo-sm-width);
+    height: var(--az-component-brand-header-logo-sm-height);
   }
 }
 
@@ -84,11 +84,11 @@
 }
 
 :root .arizona-logo:focus-visible {
-  border-radius: var(--az-brand-header-logo-focus-visible-border-radius);
+  border-radius: var(--az-component-brand-header-logo-focus-visible-border-radius);
 }
 
 :root .btn-arizona-header:focus-visible {
-  border-radius: var(--az-brand-header-button-focus-visible-border-radius);
+  border-radius: var(--az-component-brand-header-button-focus-visible-border-radius);
 }
 
 /*
@@ -96,14 +96,14 @@
  * .btn-arizona-header its color through .text-white, which is !important.
  */
 :root .btn-arizona-header {
-  min-width: var(--az-brand-header-button-min-width);
-  min-height: var(--az-brand-header-button-min-height);
+  min-width: var(--az-component-brand-header-button-min-width);
+  min-height: var(--az-component-brand-header-button-min-height);
   color: var(--az-color-brand-white) !important;
 }
 
 :root .btn-arizona-header {
-  padding-top: var(--az-brand-header-button-padding-y);
-  padding-bottom: var(--az-brand-header-button-padding-y);
+  padding-top: var(--az-component-brand-header-button-padding-y);
+  padding-bottom: var(--az-component-brand-header-button-padding-y);
 }
 
 /*
@@ -114,21 +114,21 @@
  */
 :root .btn-arizona-header > .icon,
 :root .btn-arizona-header > svg {
-  width: var(--az-brand-header-button-icon-size);
-  height: var(--az-brand-header-button-icon-size);
+  width: var(--az-component-brand-header-button-icon-size);
+  height: var(--az-component-brand-header-button-icon-size);
   color: var(--az-color-brand-white);
 }
 
 :root .btn-arizona-header > .icon {
-  font-size: var(--az-brand-header-button-icon-size);
-  line-height: var(--az-brand-header-button-icon-size);
+  font-size: var(--az-component-brand-header-button-icon-size);
+  line-height: var(--az-component-brand-header-button-icon-size);
 }
 
 /* Header button label, below the icon. */
 :root .btn-arizona-header > .icon-text {
-  margin-top: var(--az-brand-header-button-gap);
-  font-size: var(--az-brand-header-button-label-font-size);
-  line-height: var(--az-brand-header-button-label-line-height);
+  margin-top: var(--az-component-brand-header-button-gap);
+  font-size: var(--az-component-brand-header-button-label-font-size);
+  line-height: var(--az-component-brand-header-button-label-line-height);
 }
 
 /*
@@ -137,14 +137,14 @@
  * shorthand here would turn them back on.
  */
 :root .btn-arizona-header {
-  transition-duration: var(--az-brand-header-button-transition-duration);
-  transition-timing-function: var(--az-brand-header-button-transition-easing);
+  transition-duration: var(--az-component-brand-header-button-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-button-transition-easing);
 }
 
 /* The off-canvas panel the header buttons open, sliding in from the side. */
 :root .arizona-header .offcanvas {
-  transition-duration: var(--az-brand-header-offcanvas-transition-duration);
-  transition-timing-function: var(--az-brand-header-offcanvas-transition-easing);
+  transition-duration: var(--az-component-brand-header-offcanvas-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-offcanvas-transition-easing);
 }
 
 /*
@@ -152,18 +152,18 @@
  * header, so this targets it only while a header panel is open.
  */
 :root body:has(.arizona-header .offcanvas.show, .arizona-header .offcanvas.showing, .arizona-header .offcanvas.hiding) .offcanvas-backdrop.fade {
-  transition-duration: var(--az-brand-header-offcanvas-backdrop-transition-duration);
-  transition-timing-function: var(--az-brand-header-offcanvas-backdrop-transition-easing);
+  transition-duration: var(--az-component-brand-header-offcanvas-backdrop-transition-duration);
+  transition-timing-function: var(--az-component-brand-header-offcanvas-backdrop-transition-easing);
 }
 
 /* Below 992px the header has a fixed height, and can be pinned to the top. */
 @media screen and (max-width: 992px) {
   :root .arizona-header {
-    height: var(--az-brand-header-height);
+    height: var(--az-component-brand-header-height);
   }
 
   :root body:has(.az-fixed-header-on-mobile) {
-    --az-scroll-margin-top: var(--az-brand-header-fixed-on-mobile-scroll-offset);
-    padding-top: var(--az-brand-header-height);
+    --az-scroll-margin-top: var(--az-component-brand-header-fixed-on-mobile-scroll-offset);
+    padding-top: var(--az-component-brand-header-height);
   }
 }
