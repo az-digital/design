@@ -20,3 +20,20 @@ $az-component-brand-header-offcanvas-transition-duration: 300ms; // How long the
 $az-component-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-input-group-height: 43px; // Height of a text field with an attached button.
+$az-component-input-group-border-width: 2px; // Border width around the field and button together.
+$az-component-input-group-border-radius: 8px; // Corner radius of the field and button together.
+$az-component-input-group-field-padding-x: 12px; // Space between the field's left and right edges and its text.
+$az-component-input-group-field-padding-y: 6px; // Space above and below the field's text.
+$az-component-input-group-field-font-size: 16px; // Field text size.
+$az-component-input-group-field-font-weight: 400; // Field text weight (Regular).
+$az-component-input-group-field-line-height: 22px; // Field text line height.
+$az-component-input-group-divider-width: 2px; // Width of the line between the field and the button: the same as the border.
+$az-component-input-group-divider-transition-duration: 150ms; // How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-input-group-divider-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-input-group-button-padding: 9px; // Space around the attached button's icon.
+$az-component-input-group-button-icon-size: 24px; // The attached button's icon width and height.
+$az-component-search-max-width: 265px; // Search form's maximum width.
+$az-component-search-padding-x: 15px; // Space to the left and right of the search form.
+$az-component-search-padding-y: 5px; // Space above and below the search form.
+$az-component-search-toggle-focus-visible-ring-width: 1px; // Width of that button's keyboard focus ring.

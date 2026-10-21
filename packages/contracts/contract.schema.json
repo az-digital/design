@@ -70,12 +70,13 @@
           "$ref": "#/$defs/tokens"
         },
         "states": {
-          "description": "What changes in an interaction state. Only what changes.",
+          "description": "What changes in an interaction state. Only what changes. focus-within is while the part, or anything inside it, has focus.",
           "type": "object",
           "propertyNames": {
             "enum": [
               "hover",
               "focus-visible",
+              "focus-within",
               "active",
               "open",
               "disabled"

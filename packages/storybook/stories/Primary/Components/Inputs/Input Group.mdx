@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
 
-<Meta title="Primary/Components/Inputs/Input Group" tags={['tokens:search']} />
+<Meta title="Primary/Components/Inputs/Input Group" />
 
 # Input Group
 
@@ -10,13 +11,14 @@ email field. The search form in a site's navigation is the first one designed.
 
 ## Colors
 
-These colors come from the search form on a Blue navbar, the only design so far. Each
-points straight at a brand color:
+These colors come from the search form on a Blue navbar, the only design so far. The
+input group's contract (`input-group.contract.json`) points each one straight at a brand
+color:
 
-- **Text and icon:** <Token data={getTokenData('az.component.input-group.field.color')} /> (White)
-- **Border, and the divider between field and button:** <Token data={getTokenData('az.component.input-group.border.color')} /> (White)
-- **Placeholder:** <Token data={getTokenData('az.component.input-group.field.placeholder.color')} /> (White)
-- **Hover and focus:** <Token data={getTokenData('az.component.input-group.focus.border.color')} /> (Rain). The
+- **Text and icon:** <Token data={getTokenData('az.color.brand.white')} />
+- **Border, and the divider between field and button:** <Token data={getTokenData('az.color.brand.white')} />
+- **Placeholder:** <Token data={getTokenData('az.color.brand.white')} />
+- **Hover and focus:** <Token data={getTokenData('az.color.brand.rain')} />. The
   icon turns Rain on hover; the border and divider turn Rain while the field or button
   has focus, fading over 150ms.
 
@@ -32,12 +34,15 @@ variant for it holds only the colors that change.
 - **Type:** 16px Regular, with a 22px line height.
 - **Button:** a 24px icon with 9px of padding around it.
 
-<TokenTable items={getTokenDisplayItems('az.component.input-group.')} />
+The input group has no tokens of its own: these values are in its contract.
+
+<ContractAnatomy contract="input-group" />
 
 ## Search
 
 The search form is an input group, so it adds only what's specific to search: it's up
 to 265px wide, with 5px above and below it and 15px to each side. On small screens, the
-button that shows it has a 1px keyboard focus ring in the accent color.
+button that shows it has a 1px keyboard focus ring in Rain. These values are in the
+search contract (`search.contract.json`).
 
-<TokenTable items={getTokenDisplayItems('az.component.search.')} />
+<ContractAnatomy contract="search" />
