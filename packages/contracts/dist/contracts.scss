@@ -20,3 +20,29 @@ $az-component-brand-header-offcanvas-transition-duration: 300ms; // How long the
 $az-component-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-button-padding-y: 9px; // Button top and bottom padding, so with its 24px line and 2px border the button is 46px tall.
+$az-component-button-padding-x: 28px; // Button left and right padding.
+$az-component-button-border-width: 2px; // Button border width, on every color, so outline and solid buttons are the same size.
+$az-component-button-border-radius: 256px; // Button corner radius: fully rounded ends (a pill) at every size.
+$az-component-button-gap: 4px; // Space between the label and an icon.
+$az-component-button-transition-duration: 150ms; // How long a button takes to change color on hover and focus. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-button-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for a button's color changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-button-focus-visible-ring-offset: 2px; // Gap between the button and its keyboard focus ring.
+$az-component-button-label-font-family: proxima-nova-condensed, "Proxima Nova Condensed", proxima-nova, calibri, sans-serif; // Button label typeface: Proxima Nova Condensed.
+$az-component-button-label-font-weight: 700; // Button label weight (Bold).
+$az-component-button-label-font-size: 18px; // Button label text size.
+$az-component-button-label-line-height: 24px; // Button label line height.
+$az-component-button-label-letter-spacing: 0.14px; // Button label letter spacing.
+$az-component-button-small-padding-y: 3px; // Small button top and bottom padding.
+$az-component-button-small-padding-x: 11px; // Small button left and right padding.
+$az-component-button-small-label-font-size: 16px; // Small button label text size.
+$az-component-button-small-label-line-height: 19px; // Small button label line height.
+$az-component-button-large-padding-y: 12px; // Large button top and bottom padding.
+$az-component-button-large-padding-x: 34px; // Large button left and right padding.
+$az-component-button-large-label-font-size: 22px; // Large button label text size.
+$az-component-button-large-label-line-height: 27px; // Large button label line height.
+$az-component-button-large-label-letter-spacing: 0.18px; // Large button label letter spacing.
+$az-component-button-rain-hover-fill: #65c0db; // The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.
+$az-component-button-rain-hover-border-color: #65c0db; // The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.
+$az-component-button-rain-focus-visible-fill: #65c0db; // The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.
+$az-component-button-rain-focus-visible-border-color: #65c0db; // The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.

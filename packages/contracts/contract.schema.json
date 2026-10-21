@@ -46,6 +46,16 @@
           "$ref": "#/$defs/part"
         }
       }
+    },
+    "variants": {
+      "description": "Ways the component varies, such as its size or color, each a set of options. An option changes only what differs from the anatomy; the anatomy is the component with no option chosen, or with each variant's default.",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/name"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/variant"
+      }
     }
   },
   "$defs": {
@@ -136,7 +146,7 @@
       "pattern": "^\\{az\\.[a-z0-9.-]+\\}$"
     },
     "value": {
-      "description": "The component's own value for a property, written like a DTCG 2025.10 token: a $type, a $value and a $description that says what the value is for.",
+      "description": "The component's own value for a property, written like a DTCG 2025.10 token: a $type, a $value and a $description that says what the value is for. A color value is only for a color that isn't in the brand palette yet; its description says why.",
       "type": "object",
       "required": [
         "$type",
@@ -151,7 +161,9 @@
             "duration",
             "cubicBezier",
             "fontWeight",
-            "number"
+            "number",
+            "color",
+            "fontFamily"
           ]
         },
         "$value": {},
@@ -250,8 +262,148 @@
               "type": "number"
             }
           }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "color"
+            },
+            "$value": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            }
+          }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "fontFamily"
+            },
+            "$value": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              ]
+            }
+          }
         }
       ]
+    },
+    "variant": {
+      "type": "object",
+      "required": [
+        "description",
+        "options"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "default": {
+          "description": "The option used when none is chosen, when the anatomy alone isn't complete (for example, it sets no colors).",
+          "$ref": "#/$defs/name"
+        },
+        "options": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "#/$defs/name"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/option"
+          }
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "description",
+        "anatomy"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "anatomy": {
+          "type": "object",
+          "required": [
+            "root"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "root": {
+              "$ref": "#/$defs/change"
+            }
+          }
+        }
+      }
+    },
+    "change": {
+      "description": "What an option changes in a part: only what differs from the anatomy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tokens": {
+          "description": "The part's resting look.",
+          "$ref": "#/$defs/tokens"
+        },
+        "states": {
+          "description": "What changes in an interaction state. Only what changes.",
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "hover",
+              "focus-visible",
+              "active",
+              "open",
+              "disabled"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        },
+        "breakpoints": {
+          "description": "What changes from a breakpoint's width up (sm 576px, md 768px, lg 992px, xl 1200px, xxl 1400px). Only what changes.",
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "sm",
+              "md",
+              "lg",
+              "xl",
+              "xxl"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        },
+        "parts": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/name"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/change"
+          }
+        }
+      }
     }
   }
 }

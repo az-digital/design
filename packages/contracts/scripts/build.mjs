@@ -17,7 +17,9 @@
 // - references a token that isn't in tokens.json,
 // - leaves one of its component's own tokens (az.component.<id>.*) unused, so
 //   the contract and the tokens can't drift apart, or
-// - generates a variable name that another value or a token already uses.
+// - generates a variable name that another value or a token already uses,
+// - has a variant option that changes a part the anatomy doesn't have, or
+// - names a variant default that isn't one of its options.
 //
 // It also reports component tokens that only point at another token, which the
 // contract could reference directly: wiring belongs in the contract.
@@ -43,6 +45,7 @@ collect(read(new URL('../tokens/tokens.json', root)), []);
 const format = ({ $type: type, $value: value }) => {
   if (type === 'dimension' || type === 'duration') return `${value.value}${value.unit}`;
   if (type === 'cubicBezier') return `cubic-bezier(${value.join(', ')})`;
+  if (type === 'fontFamily') return [value].flat().map((name) => (/\s/.test(name) ? `"${name}"` : name)).join(', ');
   return String(value);
 };
 
@@ -65,13 +68,18 @@ for (const file of files) {
   }
 
   const used = new Set();
-  const walk = (part, partPath) => {
+  // variant is { axis, option } for an option's changes, or null for the anatomy itself.
+  const walk = (part, partPath, variant = null, base = contract.anatomy.root) => {
+    if (!base) {
+      problems.push(`${file}: ${variant.axis} › ${variant.option} changes ${partPath.join(' › ')}, which isn't a part of the anatomy`);
+      return;
+    }
     const add = (group, condition, kind) => {
       for (const [property, value] of Object.entries(group ?? {})) {
-        const where = [...partPath, condition, property].filter(Boolean).join(' › ') || 'root';
-        const row = { contract: contract.id, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property };
+        const where = [variant && `${variant.axis} › ${variant.option}`, ...partPath, condition, property].filter(Boolean).join(' › ') || 'root';
+        const row = { contract: contract.id, variant: variant && `${variant.axis}.${variant.option}`, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property };
         if (typeof value === 'object') {
-          const name = ['az', 'component', contract.id, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
+          const name = ['az', 'component', contract.id, variant?.option, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
           if (variables.has(name) || tokenVariables.has(name)) {
             problems.push(`${file}: ${where} would generate --${name}, the same variable as ${variables.get(name) ?? 'a token in tokens.json'}`);
             continue;
@@ -92,9 +100,13 @@ for (const file of files) {
     add(part.tokens, null, 'default');
     for (const [state, group] of Object.entries(part.states ?? {})) add(group, state, 'state');
     for (const [breakpoint, group] of Object.entries(part.breakpoints ?? {})) add(group, breakpoint, 'breakpoint');
-    for (const [name, child] of Object.entries(part.parts ?? {})) walk(child, [...partPath, name]);
+    for (const [name, child] of Object.entries(part.parts ?? {})) walk(child, [...partPath, name], variant, base.parts?.[name] ?? null);
   };
   walk(contract.anatomy.root, []);
+  for (const [axis, { default: preset, options }] of Object.entries(contract.variants ?? {})) {
+    if (preset && !(preset in options)) problems.push(`${file}: ${axis}'s default, ${preset}, isn't one of its options`);
+    for (const [option, { anatomy }] of Object.entries(options)) walk(anatomy.root, [], { axis, option });
+  }
 
   const prefix = `az.component.${contract.id}.`;
   for (const [path, token] of tokens) {

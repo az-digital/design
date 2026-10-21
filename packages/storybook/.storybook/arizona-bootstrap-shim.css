@@ -168,3 +168,126 @@
     padding-top: var(--az-component-brand-header-height);
   }
 }
+
+/*
+ * Buttons (button.contract.json): Arizona Bootstrap's .btn, which keeps its
+ * values in --bs-btn-* variables, so this points those at the contract's
+ * values (--az-component-button-*) and brand colors. Bootstrap draws a
+ * focused button with its hover colors, which is what the contract says.
+ */
+:root .btn {
+  --bs-btn-padding-y: var(--az-component-button-padding-y);
+  --bs-btn-padding-x: var(--az-component-button-padding-x);
+  --bs-btn-font-family: var(--az-component-button-label-font-family);
+  --bs-btn-font-size: var(--az-component-button-label-font-size);
+  --bs-btn-font-weight: var(--az-component-button-label-font-weight);
+  --bs-btn-line-height: var(--az-component-button-label-line-height);
+  --bs-btn-border-width: var(--az-component-button-border-width);
+  --bs-btn-border-radius: var(--az-component-button-border-radius);
+  letter-spacing: var(--az-component-button-label-letter-spacing);
+  gap: var(--az-component-button-gap);
+  transition-duration: var(--az-component-button-transition-duration);
+  transition-timing-function: var(--az-component-button-transition-easing);
+}
+
+:root .btn:focus-visible {
+  outline-width: var(--az-focus-ring-width);
+  outline-offset: var(--az-component-button-focus-visible-ring-offset);
+}
+
+:root .btn-sm {
+  --bs-btn-padding-y: var(--az-component-button-small-padding-y);
+  --bs-btn-padding-x: var(--az-component-button-small-padding-x);
+  --bs-btn-font-size: var(--az-component-button-small-label-font-size);
+  --bs-btn-line-height: var(--az-component-button-small-label-line-height);
+  line-height: var(--az-component-button-small-label-line-height); /* 5.2 sets it directly, not through the variable */
+  --bs-btn-border-radius: var(--az-component-button-border-radius);
+}
+
+:root .btn-lg {
+  --bs-btn-padding-y: var(--az-component-button-large-padding-y);
+  --bs-btn-padding-x: var(--az-component-button-large-padding-x);
+  --bs-btn-font-size: var(--az-component-button-large-label-font-size);
+  --bs-btn-line-height: var(--az-component-button-large-label-line-height);
+  line-height: var(--az-component-button-large-label-line-height); /* 5.2 sets it directly, not through the variable */
+  --bs-btn-border-radius: var(--az-component-button-border-radius);
+  letter-spacing: var(--az-component-button-large-label-letter-spacing);
+}
+
+/* Colors, one rule per color variant. */
+:root .btn-red,
+:root .btn-primary {
+  --bs-btn-bg: var(--az-color-brand-red);
+  --bs-btn-border-color: var(--az-color-brand-red);
+  --bs-btn-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-color-brand-sonoran-red);
+  --bs-btn-hover-border-color: var(--az-color-brand-sonoran-red);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-color-brand-bougainvillea);
+}
+
+:root .btn-outline-red,
+:root .btn-outline-primary {
+  --bs-btn-border-color: var(--az-color-brand-red);
+  --bs-btn-color: var(--az-color-brand-red);
+  --bs-btn-hover-bg: var(--az-color-brand-red);
+  --bs-btn-hover-border-color: var(--az-color-brand-red);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-color-brand-bougainvillea);
+}
+
+:root .btn-sky {
+  --bs-btn-bg: var(--az-color-brand-rain);
+  --bs-btn-border-color: var(--az-color-brand-rain);
+  --bs-btn-color: var(--az-color-brand-blue);
+  --bs-btn-hover-bg: var(--az-component-button-rain-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-rain-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-tinta);
+  --az-btn-focus-outline-color: var(--az-color-brand-white);
+}
+
+:root .btn-outline-sky {
+  --bs-btn-border-color: var(--az-color-brand-rain);
+  --bs-btn-color: var(--az-color-brand-rain);
+  --bs-btn-hover-bg: var(--az-color-brand-rain);
+  --bs-btn-hover-border-color: var(--az-color-brand-rain);
+  --bs-btn-hover-color: var(--az-color-brand-tinta);
+  --az-btn-focus-outline-color: var(--az-color-brand-white);
+}
+
+:root .btn-white-text-red,
+:root .btn-white-text-blue {
+  --bs-btn-bg: var(--az-color-brand-white);
+  --bs-btn-border-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-color-brand-cloud);
+  --bs-btn-hover-border-color: var(--az-color-brand-cloud);
+  --az-btn-focus-outline-color: var(--az-color-brand-white);
+}
+
+:root .btn-white-text-red {
+  --bs-btn-color: var(--az-color-brand-red);
+  --bs-btn-hover-color: var(--az-color-brand-red);
+}
+
+:root .btn-white-text-blue {
+  --bs-btn-color: var(--az-color-brand-blue);
+  --bs-btn-hover-color: var(--az-color-brand-blue);
+}
+
+/*
+ * Arizona Bootstrap has one .btn-outline-white, with Gray 800 hover text. The
+ * contract has two, for the surface it sits on: Red text on Red, Blue text on
+ * Oasis (.bg-oasis, the older name for Arroyo Blue's background).
+ */
+:root .btn-outline-white {
+  --bs-btn-border-color: var(--az-color-brand-white);
+  --bs-btn-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-color-brand-white);
+  --bs-btn-hover-border-color: var(--az-color-brand-white);
+  --bs-btn-hover-color: var(--az-color-brand-red);
+  --az-btn-focus-outline-color: var(--az-color-brand-white);
+}
+
+:root :is(.bg-oasis, .bg-arroyo-blue) .btn-outline-white {
+  --bs-btn-hover-color: var(--az-color-brand-blue);
+}

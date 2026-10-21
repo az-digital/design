@@ -89,12 +89,20 @@ contracts likewise bind a component's parts to tokens.
   - **`tokens`:** its resting look. Each design property is either a reference to a
     token in `tokens.json` (`"{az.color.brand.blue}"`), or the component's own value,
     written like a DTCG 2025.10 token: a `$type` (`dimension`, `duration`,
-    `cubicBezier`, `fontWeight` or `number`), a `$value` and a `$description`.
-  - **`states`:** what changes in `hover`, `focus-visible`, `active`, `open` or
-    `disabled`. Only what changes.
+    `cubicBezier`, `fontFamily`, `fontWeight`, `number` or `color`), a `$value` and a
+    `$description`. A `color` value is only for a color that isn't in the brand palette
+    yet, such as the Rain button's hover fill, and its description says so.
+  - **`states`:** what changes in `hover`, `focus-visible`, `focus-within`, `active`,
+    `open` or `disabled`. Only what changes.
   - **`breakpoints`:** what changes from `sm` (576px), `md` (768px), `lg` (992px),
     `xl` (1200px) or `xxl` (1400px) up. Only what changes.
   - **`parts`:** the parts inside it.
+- **`variants`** (optional): ways the component varies, such as `size` or `color`. Each
+  has a `description`, its `options`, and a `default` when the anatomy alone isn't
+  complete (the button's anatomy sets no colors, so its `color` default is `red`). An
+  option has a `description` and an `anatomy` that holds only what it changes, in the
+  same shape. Its values generate variables with the option's name in them:
+  `--az-component-button-large-padding-y`.
 
 Design properties are named the way tokens are, not after any platform's properties:
 `color`, `fill`, `padding.x`, `gap`, `font.size`, `font.weight`, `line-height`,
@@ -113,7 +121,9 @@ The check refuses a contract, naming the problem, when it:
 - references a token that isn't in `tokens.json`,
 - leaves one of its component's own tokens (`az.component.<id>.*`) unused, if it
   has any, so the contract and the tokens can't drift apart, or
-- would generate a variable name that another value or a token already uses.
+- would generate a variable name that another value or a token already uses,
+- has a variant option that changes a part the anatomy doesn't have, or
+- names a variant `default` that isn't one of its options.
 
 It also notes component tokens that only point at another token, which the contract
 can reference directly. Those can be removed from `tokens.json`.

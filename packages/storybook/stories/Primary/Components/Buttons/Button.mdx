@@ -1,0 +1,111 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+
+<Meta title="Primary/Components/Buttons/Button" />
+
+# Button
+
+An action in a form, a dialog or a page: a label, and an optional icon, in a fully rounded
+shape.
+
+## Colors
+
+Each color is for a background. The button's contract (`button.contract.json`) points
+every color straight at a brand color.
+
+- **On White, Cool Gray or Warm Gray:**
+  - **Red,** the primary button: <Token data={getTokenData('az.color.brand.red')} /> with
+    White text, turning <Token data={getTokenData('az.color.brand.sonoran-red')} /> on
+    hover.
+  - **Outline Red:** a Red border and Red text, filling Red with White text on hover.
+- **On Blue or Azurite:**
+  - **Rain:** <Token data={getTokenData('az.color.brand.rain')} /> with Blue text, turning
+    a darker Rain (`#65c0db`) with <Token data={getTokenData('az.color.brand.tinta')} />
+    text on hover.
+  - **Outline Rain:** a Rain border and Rain text, filling Rain with Tinta text on hover.
+- **On Red:**
+  - **White, Red text:** White with Red text, turning
+    <Token data={getTokenData('az.color.brand.cloud')} /> on hover.
+  - **Outline White, Red text:** a White border and White text, filling White with Red
+    text on hover.
+- **On Oasis:**
+  - **White, Blue text:** White with Blue text, turning Cloud on hover.
+  - **Outline White, Blue text:** a White border and White text, filling White with Blue
+    text on hover.
+
+- **Keyboard focus:** a focused button looks the way it does on hover, with a ring 2px
+  outside it. The ring is <Token data={getTokenData('az.color.brand.bougainvillea')} /> on
+  the Red buttons and White on every other color, and its width is the shared
+  <Token data={getTokenData('az.focus-ring.width')} />.
+- **Rain's hover fill** (`#65c0db`) isn't in the brand palette yet. It's recorded in the
+  contract as a value, with a note saying so.
+
+## Size
+
+- **Default:** 46px tall: 18px text on a 24px line, with 9px of padding above and below
+  and 28px to each side.
+- **Small:** 29px tall: 16px text on a 19px line, with 3px above and below and 11px to
+  each side.
+- **Large:** 55px tall: 22px text on a 27px line, with 12px above and below and 34px to
+  each side, and 0.18px letter spacing instead of 0.14px.
+
+Every size has a 2px border, so outline and solid buttons line up, and fully rounded ends.
+The label is Proxima Nova Condensed Bold. An icon sits 4px from the label and doesn't
+change the button's height. Colors change over 150ms, ease-in-out, which hasn't been
+reviewed by design yet and turns off when someone asks for reduced motion.
+
+## Anatomy
+
+The button with no size or color chosen: its shape and type. Its colors come from a color
+variant, Red when none is chosen.
+
+<ContractAnatomy contract="button" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="button" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="button" variant="size.large" />
+
+### Colors
+
+Each color sets every color the button needs.
+
+#### Red
+
+<ContractAnatomy contract="button" variant="color.red" />
+
+#### Outline Red
+
+<ContractAnatomy contract="button" variant="color.outline-red" />
+
+#### Rain
+
+<ContractAnatomy contract="button" variant="color.rain" />
+
+#### Outline Rain
+
+<ContractAnatomy contract="button" variant="color.outline-rain" />
+
+#### White, Red text
+
+<ContractAnatomy contract="button" variant="color.white-text-red" />
+
+#### White, Blue text
+
+<ContractAnatomy contract="button" variant="color.white-text-blue" />
+
+#### Outline White, Red text
+
+<ContractAnatomy contract="button" variant="color.outline-white-text-red" />
+
+#### Outline White, Blue text
+
+<ContractAnatomy contract="button" variant="color.outline-white-text-blue" />
