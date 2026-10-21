@@ -2203,7 +2203,7 @@
     "token": null,
     "type": "color",
     "value": "#403635",
-    "description": "The outline warning button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired.",
+    "description": "The outline warning button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette.",
     "variable": "az-component-button-outline-warning-label-color"
   },
   {
@@ -2633,7 +2633,7 @@
     "token": null,
     "type": "color",
     "value": "#403635",
-    "description": "The outline light button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired.",
+    "description": "The outline light button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette.",
     "variable": "az-component-button-outline-light-label-color"
   },
   {

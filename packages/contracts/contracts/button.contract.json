@@ -2,12 +2,12 @@
   "$schema": "../contract.schema.json",
   "id": "button",
   "name": "Button",
-  "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes, a solid and an outline button in each brand color (Red and Blue on White, Cool Gray or Warm Gray; Rain on Blue or Azurite; White on Red or Oasis), and Bootstrap's role colors (success, danger, warning, info, light and dark), whose colors are Bootstrap's until marketing approves status colors. With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it.",
+  "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes, a solid and an outline button in each brand color (Red and Blue on White, Cloud or Caliche; Rain on Blue or Azurite; White on Red or Arroyo Blue), and Bootstrap's role colors (success, danger, warning, info, light and dark), whose colors are Bootstrap's until marketing approves status colors. With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it.",
   "sources": [
     "Arizona Bootstrap 5.3.x buttons, from az-digital/arizona-bootstrap#2281 (2026 brand buttons, which match the approved Adobe XD designs) and #2339",
     "az-digital/arizona-bootstrap#2378: small buttons use 16px text",
     "Figma Buttons component: the colors for each background, and the outline White buttons' hover text",
-    "az-digital/design#89: where the sources differ, Arizona Bootstrap wins; Bloom and Chili become Bougainvillea and Sonoran Red"
+    "az-digital/design#89: where the sources differ, Arizona Bootstrap wins; colors use the current palette's names and values"
   ],
   "variants": {
     "size": {
@@ -122,7 +122,7 @@
       "default": "red",
       "options": {
         "red": {
-          "description": "Red, the primary button, on White, Cool Gray or Warm Gray. Arizona Bootstrap: .btn-red and .btn-primary (.btn-primary in the semantic class name proposal, az-digital/arizona-bootstrap#2381).",
+          "description": "Red, the primary button, on White, Cloud or Caliche. Arizona Bootstrap: .btn-red and .btn-primary (.btn-primary in the semantic class name proposal, az-digital/arizona-bootstrap#2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -159,7 +159,7 @@
           }
         },
         "outline-red": {
-          "description": "A Red outline, on White, Cool Gray or Warm Gray. It fills Red on hover. Arizona Bootstrap: .btn-outline-red and .btn-outline-primary.",
+          "description": "A Red outline, on White, Cloud or Caliche. It fills Red on hover. Arizona Bootstrap: .btn-outline-red and .btn-outline-primary.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -195,7 +195,7 @@
           }
         },
         "blue": {
-          "description": "Blue, on White, Cool Gray or Warm Gray. Arizona Bootstrap: .btn-blue and .btn-secondary (.btn-primary-2 in #2381). It isn't in the XD designs or Figma yet (az-digital/arizona-bootstrap#2281, question 6).",
+          "description": "Blue, on White, Cloud or Caliche. Arizona Bootstrap: .btn-blue and .btn-secondary (.btn-primary-2 in #2381). It isn't in the XD designs or Figma yet (az-digital/arizona-bootstrap#2281, question 6).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -232,7 +232,7 @@
           }
         },
         "outline-blue": {
-          "description": "A Blue outline, on White, Cool Gray or Warm Gray. It fills Blue on hover. Arizona Bootstrap: .btn-outline-blue and .btn-outline-secondary (.btn-outline-primary-2 in #2381).",
+          "description": "A Blue outline, on White, Cloud or Caliche. It fills Blue on hover. Arizona Bootstrap: .btn-outline-blue and .btn-outline-secondary (.btn-outline-primary-2 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -268,7 +268,7 @@
           }
         },
         "rain": {
-          "description": "Rain with Blue text, on Blue or Azurite. Arizona Bootstrap: .btn-sky (.btn-secondary-4 in #2381).",
+          "description": "Rain with Blue text, on Blue or Azurite. Arizona Bootstrap: .btn-rain (.btn-secondary-4 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -321,7 +321,7 @@
           }
         },
         "outline-rain": {
-          "description": "A Rain outline, on Blue or Azurite. It fills Rain on hover. Arizona Bootstrap: .btn-outline-sky (.btn-outline-secondary-4 in #2381).",
+          "description": "A Rain outline, on Blue or Azurite. It fills Rain on hover. Arizona Bootstrap: .btn-outline-rain (.btn-outline-secondary-4 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -394,7 +394,7 @@
           }
         },
         "white-text-blue": {
-          "description": "White with Blue text, on Oasis. Arizona Bootstrap: .btn-white-text-blue (.btn-inverse-primary-2 in #2381).",
+          "description": "White with Blue text, on Arroyo Blue. Arizona Bootstrap: .btn-white-text-blue (.btn-inverse-primary-2 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -467,7 +467,7 @@
           }
         },
         "outline-white-text-blue": {
-          "description": "A White outline, on Oasis. It fills White with Blue text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
+          "description": "A White outline, on Arroyo Blue. It fills White with Blue text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -893,7 +893,7 @@
                     "color": {
                       "$type": "color",
                       "$value": "#403635",
-                      "$description": "The outline warning button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired."
+                      "$description": "The outline warning button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette."
                     }
                   },
                   "states": {
@@ -1127,7 +1127,7 @@
                     "color": {
                       "$type": "color",
                       "$value": "#403635",
-                      "$description": "The outline light button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired."
+                      "$description": "The outline light button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette."
                     }
                   },
                   "states": {

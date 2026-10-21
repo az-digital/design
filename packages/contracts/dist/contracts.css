@@ -93,7 +93,7 @@
   --az-component-button-outline-warning-focus-visible-fill: #f19e1f; /** The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
   --az-component-button-outline-warning-focus-visible-border-color: #f19e1f; /** The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
   --az-component-button-outline-warning-focus-visible-ring-color: #f19e1f; /** The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
-  --az-component-button-outline-warning-label-color: #403635; /** The outline warning button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired. */
+  --az-component-button-outline-warning-label-color: #403635; /** The outline warning button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette. */
   --az-component-button-outline-warning-label-hover-color: #000000; /** The outline warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette. */
   --az-component-button-outline-warning-label-focus-visible-color: #000000; /** The outline warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette. */
   --az-component-button-info-hover-fill: #94d5ee; /** The info button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
@@ -115,7 +115,7 @@
   --az-component-button-outline-light-focus-visible-fill: #dee2e6; /** The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
   --az-component-button-outline-light-focus-visible-border-color: #dee2e6; /** The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
   --az-component-button-outline-light-focus-visible-ring-color: #dee2e6; /** The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
-  --az-component-button-outline-light-label-color: #403635; /** The outline light button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired. */
+  --az-component-button-outline-light-label-color: #403635; /** The outline light button label: a dark gray (#403635), as Arizona Bootstrap ships it. It isn't in the brand palette. */
   --az-component-button-outline-light-label-hover-color: #000000; /** The outline light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette. */
   --az-component-button-outline-light-label-focus-visible-color: #000000; /** The outline light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette. */
   --az-component-button-dark-fill: #343a40; /** The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette. */
