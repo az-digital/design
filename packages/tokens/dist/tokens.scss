@@ -33,9 +33,3 @@ $az-component-brand-header-offcanvas-transition-duration: 300ms; // How long the
 $az-component-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
-$az-component-brand-header-container-color: $az-color-brand-blue; // Header fill: Blue. The original red header points this at Red.
-$az-component-brand-header-logo-color: $az-color-brand-white; // Color of the header's wordmark logo. Its own token rather than the label color, because a logo's color is its own brand decision.
-$az-component-brand-header-focus-visible-ring-color: $az-color-brand-white; // Keyboard focus ring on the logo and header buttons, drawn inside the element's edge.
-$az-component-brand-header-button-label-color: $az-color-brand-white; // Header button text and icon color.
-$az-component-brand-header-button-min-height: $az-component-brand-header-height; // Header button minimum height: the header's own height.
-$az-component-brand-header-button-icon-color: $az-component-brand-header-button-label-color; // Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor".

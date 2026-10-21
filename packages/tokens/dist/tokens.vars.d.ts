@@ -20,11 +20,7 @@ export const az: {
   "component": {
     "brandHeader": {
       "height": string,
-      "container": {
-        "color": string
-      },
       "logo": {
-        "color": string,
         "width": string,
         "height": string,
         "sm": {
@@ -35,7 +31,6 @@ export const az: {
       },
       "focusVisible": {
         "ring": {
-          "color": string,
           "width": string
         },
         "border": {
@@ -44,22 +39,19 @@ export const az: {
       },
       "button": {
         "label": {
-          "color": string,
           "font": {
             "size": string
           },
           "lineHeight": string
         },
         "icon": {
-          "size": string,
-          "color": string
+          "size": string
         },
         "gap": string,
         "padding": {
           "y": string
         },
         "minWidth": string,
-        "minHeight": string,
         "transition": {
           "duration": string,
           "easing": string

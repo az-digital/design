@@ -1,0 +1,242 @@
+[
+  {
+    "contract": "brand-header",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "brand-header",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": "az.component.brand-header.height"
+  },
+  {
+    "contract": "brand-header",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fixed-on-mobile.scroll-offset",
+    "token": "az.component.brand-header.fixed-on-mobile.scroll-offset"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "width",
+    "token": "az.component.brand-header.logo.width"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": "az.component.brand-header.logo.height"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-left",
+    "token": "az.component.brand-header.logo.margin-left"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.component.brand-header.focus-visible.ring.width"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.radius",
+    "token": "az.component.brand-header.focus-visible.border.radius"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "breakpoint",
+    "condition": "sm",
+    "property": "width",
+    "token": "az.component.brand-header.logo.sm.width"
+  },
+  {
+    "contract": "brand-header",
+    "part": "logo",
+    "kind": "breakpoint",
+    "condition": "sm",
+    "property": "height",
+    "token": "az.component.brand-header.logo.sm.height"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "min-width",
+    "token": "az.component.brand-header.button.min-width"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "min-height",
+    "token": "az.component.brand-header.height"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.component.brand-header.button.padding.y"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": "az.component.brand-header.button.gap"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": "az.component.brand-header.button.transition.duration"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": "az.component.brand-header.button.transition.easing"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.component.brand-header.focus-visible.ring.width"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.radius",
+    "token": "az.component.brand-header.focus-visible.border.radius"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button.icon",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button.icon",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": "az.component.brand-header.button.icon.size"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": "az.component.brand-header.button.label.font.size"
+  },
+  {
+    "contract": "brand-header",
+    "part": "button.label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": "az.component.brand-header.button.label.line-height"
+  },
+  {
+    "contract": "brand-header",
+    "part": "offcanvas",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": "az.component.brand-header.offcanvas.transition.duration"
+  },
+  {
+    "contract": "brand-header",
+    "part": "offcanvas",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": "az.component.brand-header.offcanvas.transition.easing"
+  },
+  {
+    "contract": "brand-header",
+    "part": "offcanvas.backdrop",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": "az.component.brand-header.offcanvas.backdrop.transition.duration"
+  },
+  {
+    "contract": "brand-header",
+    "part": "offcanvas.backdrop",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": "az.component.brand-header.offcanvas.backdrop.transition.easing"
+  }
+]

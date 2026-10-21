@@ -45,7 +45,7 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 ## Component tokens
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at brand colors; sizes, weights and timings are set on the component token itself.
+Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Each component's contract (`packages/contracts`) says which token sets each of its parts, and points a part's colors straight at the colors they use, so component tokens hold only what's specific to the component: sizes, weights and timings, set on the component token itself.
 
 Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `brand.white` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
 

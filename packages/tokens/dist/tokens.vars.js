@@ -20,11 +20,7 @@ export const az = {
   "component": {
     "brandHeader": {
       "height": "var(--az-component-brand-header-height)",
-      "container": {
-        "color": "var(--az-component-brand-header-container-color)"
-      },
       "logo": {
-        "color": "var(--az-component-brand-header-logo-color)",
         "width": "var(--az-component-brand-header-logo-width)",
         "height": "var(--az-component-brand-header-logo-height)",
         "sm": {
@@ -35,7 +31,6 @@ export const az = {
       },
       "focusVisible": {
         "ring": {
-          "color": "var(--az-component-brand-header-focus-visible-ring-color)",
           "width": "var(--az-component-brand-header-focus-visible-ring-width)"
         },
         "border": {
@@ -44,22 +39,19 @@ export const az = {
       },
       "button": {
         "label": {
-          "color": "var(--az-component-brand-header-button-label-color)",
           "font": {
             "size": "var(--az-component-brand-header-button-label-font-size)"
           },
           "lineHeight": "var(--az-component-brand-header-button-label-line-height)"
         },
         "icon": {
-          "size": "var(--az-component-brand-header-button-icon-size)",
-          "color": "var(--az-component-brand-header-button-icon-color)"
+          "size": "var(--az-component-brand-header-button-icon-size)"
         },
         "gap": "var(--az-component-brand-header-button-gap)",
         "padding": {
           "y": "var(--az-component-brand-header-button-padding-y)"
         },
         "minWidth": "var(--az-component-brand-header-button-min-width)",
-        "minHeight": "var(--az-component-brand-header-button-min-height)",
         "transition": {
           "duration": "var(--az-component-brand-header-button-transition-duration)",
           "easing": "var(--az-component-brand-header-button-transition-easing)"

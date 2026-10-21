@@ -1,0 +1,96 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "brand-header",
+  "name": "Arizona Header",
+  "description": "The university's header bar: the wordmark logo on Blue, with header buttons (such as Search and Menu) that open an off-canvas panel on small screens. Its parts are wired straight to brand colors: a Blue fill, and a White logo, labels, icons and focus ring. The original red header points the fill at Red.",
+  "sources": [
+    "Arizona Bootstrap 5.2: .arizona-header, .arizona-line-logo and .btn-arizona-header",
+    "az-digital/arizona-bootstrap#2299: the blue header is the default",
+    "Motion: Bootstrap's default transitions, not yet reviewed by design"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The header bar.",
+      "tokens": {
+        "fill": "{az.color.brand.blue}",
+        "height": "{az.component.brand-header.height}",
+        "fixed-on-mobile.scroll-offset": "{az.component.brand-header.fixed-on-mobile.scroll-offset}"
+      },
+      "parts": {
+        "logo": {
+          "description": "The wordmark, which links to the home page.",
+          "tokens": {
+            "color": "{az.color.brand.white}",
+            "width": "{az.component.brand-header.logo.width}",
+            "height": "{az.component.brand-header.logo.height}",
+            "margin-left": "{az.component.brand-header.logo.margin-left}"
+          },
+          "breakpoints": {
+            "sm": {
+              "width": "{az.component.brand-header.logo.sm.width}",
+              "height": "{az.component.brand-header.logo.sm.height}"
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.component.brand-header.focus-visible.ring.width}",
+              "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
+            }
+          }
+        },
+        "button": {
+          "description": "A header button, such as Search or Menu: an icon above a label.",
+          "tokens": {
+            "min-width": "{az.component.brand-header.button.min-width}",
+            "min-height": "{az.component.brand-header.height}",
+            "padding.y": "{az.component.brand-header.button.padding.y}",
+            "gap": "{az.component.brand-header.button.gap}",
+            "transition.duration": "{az.component.brand-header.button.transition.duration}",
+            "transition.easing": "{az.component.brand-header.button.transition.easing}"
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.component.brand-header.focus-visible.ring.width}",
+              "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
+            }
+          },
+          "parts": {
+            "icon": {
+              "description": "The button's icon, the same color as its label.",
+              "tokens": {
+                "color": "{az.color.brand.white}",
+                "size": "{az.component.brand-header.button.icon.size}"
+              }
+            },
+            "label": {
+              "description": "The button's label, such as \"Search\" or \"Menu\".",
+              "tokens": {
+                "color": "{az.color.brand.white}",
+                "font.size": "{az.component.brand-header.button.label.font.size}",
+                "line-height": "{az.component.brand-header.button.label.line-height}"
+              }
+            }
+          }
+        },
+        "offcanvas": {
+          "description": "The panel the header buttons open on small screens.",
+          "tokens": {
+            "transition.duration": "{az.component.brand-header.offcanvas.transition.duration}",
+            "transition.easing": "{az.component.brand-header.offcanvas.transition.easing}"
+          },
+          "parts": {
+            "backdrop": {
+              "description": "The backdrop behind the open panel.",
+              "tokens": {
+                "transition.duration": "{az.component.brand-header.offcanvas.backdrop.transition.duration}",
+                "transition.easing": "{az.component.brand-header.offcanvas.backdrop.transition.easing}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

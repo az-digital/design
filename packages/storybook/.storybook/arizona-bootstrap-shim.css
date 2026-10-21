@@ -22,7 +22,7 @@
  * markup uses. !important because Bootstrap's bg-* utilities are !important.
  */
 :root .arizona-header {
-  background-color: var(--az-component-brand-header-container-color) !important;
+  background-color: var(--az-color-brand-blue) !important;
 }
 
 /*
@@ -32,7 +32,7 @@
  * !important because Bootstrap's text-bg-* utilities are !important.
  */
 :root .arizona-header .offcanvas-header {
-  background-color: var(--az-component-brand-header-container-color) !important;
+  background-color: var(--az-color-brand-blue) !important;
 }
 
 :root .arizona-header > .container > .row,
@@ -50,7 +50,7 @@
  */
 :root .arizona-line-logo {
   object-position: -99999px 0;
-  background-color: var(--az-component-brand-header-logo-color);
+  background-color: var(--az-color-brand-white);
   mask: url("https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg") center / contain no-repeat;
 }
 
@@ -79,7 +79,7 @@
 :root .btn-arizona-header:focus-visible {
   outline: 0;
   border-radius: var(--az-component-brand-header-focus-visible-border-radius);
-  box-shadow: inset 0 0 0 var(--az-component-brand-header-focus-visible-ring-width) var(--az-component-brand-header-focus-visible-ring-color);
+  box-shadow: inset 0 0 0 var(--az-component-brand-header-focus-visible-ring-width) var(--az-color-brand-white);
 }
 
 /*
@@ -88,8 +88,8 @@
  */
 :root .btn-arizona-header {
   min-width: var(--az-component-brand-header-button-min-width);
-  min-height: var(--az-component-brand-header-button-min-height);
-  color: var(--az-component-brand-header-button-label-color) !important;
+  min-height: var(--az-component-brand-header-height);
+  color: var(--az-color-brand-white) !important;
 }
 
 :root .btn-arizona-header {
@@ -107,7 +107,7 @@
 :root .btn-arizona-header > svg {
   width: var(--az-component-brand-header-button-icon-size);
   height: var(--az-component-brand-header-button-icon-size);
-  color: var(--az-component-brand-header-button-icon-color);
+  color: var(--az-color-brand-white);
 }
 
 :root .btn-arizona-header > .icon {
