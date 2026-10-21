@@ -163,7 +163,8 @@
   }
 
   :root body:has(.az-fixed-header-on-mobile) {
-    --az-scroll-margin-top: var(--az-component-brand-header-fixed-on-mobile-scroll-offset);
+    /* Linked sections stop the header's height plus a gap below the top. */
+    --az-scroll-margin-top: calc(var(--az-component-brand-header-height) + var(--az-component-brand-header-fixed-on-mobile-scroll-gap));
     padding-top: var(--az-component-brand-header-height);
   }
 }
