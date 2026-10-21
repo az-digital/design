@@ -89,12 +89,5 @@
   --az-component-input-group-on-brand-focus-border-color: var(--az-color-semantic-on-brand-accent); /** Border color while the field or button has focus, on the brand surface. */
   --az-component-input-group-on-brand-focus-divider-color: var(--az-color-semantic-on-brand-accent); /** Divider color while the field or button has focus, on the brand surface. */
   --az-component-search-toggle-focus-visible-ring-color: var(--az-color-semantic-on-brand-accent); /** Keyboard focus ring on the button that shows the search form on small screens, on the brand surface. */
-  --az-component-breadcrumb-container-color: var(--az-color-semantic-surface-default); /** Breadcrumb's fill. */
-  --az-component-breadcrumb-link-color: var(--az-color-semantic-on-default-link-quiet); /** Linked items' text. */
-  --az-component-breadcrumb-current-color: var(--az-color-semantic-on-default-link-quiet); /** The current page's item, which isn't a link. */
-  --az-component-breadcrumb-hover-link-color: var(--az-color-semantic-on-default-link-quiet); /** Linked items' text on hover: unchanged, so the underline shows the hover. */
-  --az-component-breadcrumb-divider-color: var(--az-color-semantic-on-default-accent); /** The / between items. */
-  --az-component-breadcrumb-home-icon-color: var(--az-color-semantic-on-default-link-quiet); /** The house icon before Home: the link color, and part of the link. */
   --az-component-brand-header-button-icon-color: var(--az-component-brand-header-button-label-color); /** Header button icon color: the same as the label, so icons and text change together. An SVG icon picks it up through fill="currentColor". */
-  --az-component-breadcrumb-hover-underline-color: var(--az-component-breadcrumb-hover-link-color); /** Underline under a linked item on hover: the same color as its text. */
 }

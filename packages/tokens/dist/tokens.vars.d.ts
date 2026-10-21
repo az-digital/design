@@ -177,9 +177,6 @@ export const az: {
       }
     },
     "breadcrumb": {
-      "container": {
-        "color": string
-      },
       "padding": {
         "x": string,
         "y": string
@@ -195,29 +192,17 @@ export const az: {
         },
         "lineHeight": string
       },
-      "link": {
-        "color": string
-      },
-      "current": {
-        "color": string
-      },
       "hover": {
-        "link": {
-          "color": string
-        },
         "underline": {
-          "color": string,
           "width": string,
           "offset": string
         }
       },
       "divider": {
-        "color": string,
         "gap": string
       },
       "home": {
         "icon": {
-          "color": string,
           "size": string,
           "gap": string,
           "raise": string

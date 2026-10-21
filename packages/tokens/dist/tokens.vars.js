@@ -177,9 +177,6 @@ export const az = {
       }
     },
     "breadcrumb": {
-      "container": {
-        "color": "var(--az-component-breadcrumb-container-color)"
-      },
       "padding": {
         "x": "var(--az-component-breadcrumb-padding-x)",
         "y": "var(--az-component-breadcrumb-padding-y)"
@@ -195,29 +192,17 @@ export const az = {
         },
         "lineHeight": "var(--az-component-breadcrumb-item-line-height)"
       },
-      "link": {
-        "color": "var(--az-component-breadcrumb-link-color)"
-      },
-      "current": {
-        "color": "var(--az-component-breadcrumb-current-color)"
-      },
       "hover": {
-        "link": {
-          "color": "var(--az-component-breadcrumb-hover-link-color)"
-        },
         "underline": {
-          "color": "var(--az-component-breadcrumb-hover-underline-color)",
           "width": "var(--az-component-breadcrumb-hover-underline-width)",
           "offset": "var(--az-component-breadcrumb-hover-underline-offset)"
         }
       },
       "divider": {
-        "color": "var(--az-component-breadcrumb-divider-color)",
         "gap": "var(--az-component-breadcrumb-divider-gap)"
       },
       "home": {
         "icon": {
-          "color": "var(--az-component-breadcrumb-home-icon-color)",
           "size": "var(--az-component-breadcrumb-home-icon-size)",
           "gap": "var(--az-component-breadcrumb-home-icon-gap)",
           "raise": "var(--az-component-breadcrumb-home-icon-raise)"
