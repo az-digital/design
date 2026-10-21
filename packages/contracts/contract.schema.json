@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/az-digital/design/packages/contracts/contract.schema.json",
+  "title": "Component contract",
+  "description": "One component's anatomy, independent of any platform: the parts it's made of, and what sets each part's design properties in its resting look, its states and its breakpoints. A property is either a reference to a shared token in tokens.json (a brand color or a shared decision) or the component's own value, written like a DTCG token.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "description",
+    "anatomy"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "description": "The component's name. Its own tokens, if any, are az.component.<id>.*, and the contract must use every one of them.",
+      "$ref": "#/$defs/name"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "description": "Where the decisions come from: reviewed pull requests, design files.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "anatomy": {
+      "type": "object",
+      "required": [
+        "root"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "$ref": "#/$defs/part"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "part": {
+      "description": "A part of the component. The root is the component itself.",
+      "type": "object",
+      "required": [
+        "description"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tokens": {
+          "description": "The part's resting look.",
+          "$ref": "#/$defs/tokens"
+        },
+        "states": {
+          "description": "What changes in an interaction state. Only what changes.",
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "hover",
+              "focus-visible",
+              "active",
+              "open",
+              "disabled"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        },
+        "breakpoints": {
+          "description": "What changes from a breakpoint's width up (sm 576px, md 768px, lg 992px, xl 1200px, xxl 1400px). Only what changes.",
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "sm",
+              "md",
+              "lg",
+              "xl",
+              "xxl"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        },
+        "parts": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/name"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/part"
+          }
+        }
+      }
+    },
+    "tokens": {
+      "description": "Design properties, named the way tokens are (color, fill, padding.x, font.size, underline.offset), each set by a token reference or the component's own value.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*(\\.[a-z][a-z0-9]*(-[a-z0-9]+)*)*$"
+      },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/reference"
+          },
+          {
+            "$ref": "#/$defs/value"
+          }
+        ]
+      }
+    },
+    "reference": {
+      "description": "A reference to a token in tokens.json: a brand color or a decision several components share.",
+      "type": "string",
+      "pattern": "^\\{az\\.[a-z0-9.-]+\\}$"
+    },
+    "value": {
+      "description": "The component's own value for a property, written like a DTCG 2025.10 token: a $type, a $value and a $description that says what the value is for.",
+      "type": "object",
+      "required": [
+        "$type",
+        "$value",
+        "$description"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "enum": [
+            "dimension",
+            "duration",
+            "cubicBezier",
+            "fontWeight",
+            "number"
+          ]
+        },
+        "$value": {},
+        "$description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "$type": {
+              "const": "dimension"
+            },
+            "$value": {
+              "type": "object",
+              "required": [
+                "value",
+                "unit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unit": {
+                  "enum": [
+                    "px",
+                    "rem"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "duration"
+            },
+            "$value": {
+              "type": "object",
+              "required": [
+                "value",
+                "unit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "unit": {
+                  "enum": [
+                    "ms",
+                    "s"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "cubicBezier"
+            },
+            "$value": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "fontWeight"
+            },
+            "$value": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1000
+            }
+          }
+        },
+        {
+          "properties": {
+            "$type": {
+              "const": "number"
+            },
+            "$value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

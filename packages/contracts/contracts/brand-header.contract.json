@@ -1,0 +1,256 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "brand-header",
+  "name": "Arizona Header",
+  "description": "The university's header bar: the wordmark logo on Blue, with header buttons (such as Search and Menu) that open an off-canvas panel on small screens. Its colors are brand colors: a Blue fill, and a White logo, labels, icons and focus ring. The original red header points the fill at Red.",
+  "sources": [
+    "Arizona Bootstrap 5.2: .arizona-header, .arizona-line-logo and .btn-arizona-header",
+    "az-digital/arizona-bootstrap#2299: the blue header is the default",
+    "Motion: Bootstrap's default transitions, not yet reviewed by design"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The header bar.",
+      "tokens": {
+        "fill": "{az.color.brand.blue}",
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 50,
+            "unit": "px"
+          },
+          "$description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
+        },
+        "fixed-on-mobile.scroll-offset": {
+          "$type": "dimension",
+          "$value": {
+            "value": 58,
+            "unit": "px"
+          },
+          "$description": "When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them."
+        }
+      },
+      "parts": {
+        "logo": {
+          "description": "The wordmark, which links to the home page.",
+          "tokens": {
+            "color": "{az.color.brand.white}",
+            "width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 211,
+                "unit": "px"
+              },
+              "$description": "Wordmark width below the sm breakpoint (576px)."
+            },
+            "height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Wordmark height below the sm breakpoint (576px)."
+            },
+            "margin-left": {
+              "$type": "dimension",
+              "$value": {
+                "value": 10,
+                "unit": "px"
+              },
+              "$description": "Space before the wordmark, at the header's left edge."
+            }
+          },
+          "breakpoints": {
+            "sm": {
+              "width": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 266.41,
+                  "unit": "px"
+                },
+                "$description": "Wordmark width from the sm breakpoint (576px) up."
+              },
+              "height": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 19.8,
+                  "unit": "px"
+                },
+                "$description": "Wordmark height from the sm breakpoint (576px) up."
+              }
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.focus-ring.width}",
+              "border.radius": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
+              }
+            }
+          }
+        },
+        "button": {
+          "description": "A header button, such as Search or Menu: an icon above a label.",
+          "tokens": {
+            "min-width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 60,
+                "unit": "px"
+              },
+              "$description": "Header button minimum width."
+            },
+            "min-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 50,
+                "unit": "px"
+              },
+              "$description": "Header button minimum height: as tall as the header."
+            },
+            "padding.y": {
+              "$type": "dimension",
+              "$value": {
+                "value": 4,
+                "unit": "px"
+              },
+              "$description": "Header button top and bottom padding."
+            },
+            "gap": {
+              "$type": "dimension",
+              "$value": {
+                "value": 2,
+                "unit": "px"
+              },
+              "$description": "Space between a header button's icon and its label."
+            },
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 150,
+                "unit": "ms"
+              },
+              "$description": "How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.focus-ring.width}",
+              "border.radius": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
+              }
+            }
+          },
+          "parts": {
+            "icon": {
+              "description": "The button's icon, the same color as its label.",
+              "tokens": {
+                "color": "{az.color.brand.white}",
+                "size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 24,
+                    "unit": "px"
+                  },
+                  "$description": "Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph."
+                }
+              }
+            },
+            "label": {
+              "description": "The button's label, such as \"Search\" or \"Menu\".",
+              "tokens": {
+                "color": "{az.color.brand.white}",
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
+                  },
+                  "$description": "Header button label text size (\"Search\", \"Menu\")."
+                },
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
+                  },
+                  "$description": "Header button label line height."
+                }
+              }
+            }
+          }
+        },
+        "offcanvas": {
+          "description": "The panel the header buttons open on small screens.",
+          "tokens": {
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 300,
+                "unit": "ms"
+              },
+              "$description": "How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            }
+          },
+          "parts": {
+            "backdrop": {
+              "description": "The backdrop behind the open panel.",
+              "tokens": {
+                "transition.duration": {
+                  "$type": "duration",
+                  "$value": {
+                    "value": 150,
+                    "unit": "ms"
+                  },
+                  "$description": "How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+                },
+                "transition.easing": {
+                  "$type": "cubicBezier",
+                  "$value": [
+                    0,
+                    0,
+                    1,
+                    1
+                  ],
+                  "$description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

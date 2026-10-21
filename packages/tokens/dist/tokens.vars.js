@@ -17,70 +17,10 @@ export const az = {
       "white": "var(--az-color-brand-white)"
     }
   },
+  "focusRing": {
+    "width": "var(--az-focus-ring-width)"
+  },
   "component": {
-    "brandHeader": {
-      "height": "var(--az-component-brand-header-height)",
-      "container": {
-        "color": "var(--az-component-brand-header-container-color)"
-      },
-      "logo": {
-        "color": "var(--az-component-brand-header-logo-color)",
-        "width": "var(--az-component-brand-header-logo-width)",
-        "height": "var(--az-component-brand-header-logo-height)",
-        "sm": {
-          "width": "var(--az-component-brand-header-logo-sm-width)",
-          "height": "var(--az-component-brand-header-logo-sm-height)"
-        },
-        "marginLeft": "var(--az-component-brand-header-logo-margin-left)"
-      },
-      "focusVisible": {
-        "ring": {
-          "color": "var(--az-component-brand-header-focus-visible-ring-color)",
-          "width": "var(--az-component-brand-header-focus-visible-ring-width)"
-        },
-        "border": {
-          "radius": "var(--az-component-brand-header-focus-visible-border-radius)"
-        }
-      },
-      "button": {
-        "label": {
-          "color": "var(--az-component-brand-header-button-label-color)",
-          "font": {
-            "size": "var(--az-component-brand-header-button-label-font-size)"
-          },
-          "lineHeight": "var(--az-component-brand-header-button-label-line-height)"
-        },
-        "icon": {
-          "size": "var(--az-component-brand-header-button-icon-size)",
-          "color": "var(--az-component-brand-header-button-icon-color)"
-        },
-        "gap": "var(--az-component-brand-header-button-gap)",
-        "padding": {
-          "y": "var(--az-component-brand-header-button-padding-y)"
-        },
-        "minWidth": "var(--az-component-brand-header-button-min-width)",
-        "minHeight": "var(--az-component-brand-header-button-min-height)",
-        "transition": {
-          "duration": "var(--az-component-brand-header-button-transition-duration)",
-          "easing": "var(--az-component-brand-header-button-transition-easing)"
-        }
-      },
-      "fixedOnMobile": {
-        "scrollOffset": "var(--az-component-brand-header-fixed-on-mobile-scroll-offset)"
-      },
-      "offcanvas": {
-        "transition": {
-          "duration": "var(--az-component-brand-header-offcanvas-transition-duration)",
-          "easing": "var(--az-component-brand-header-offcanvas-transition-easing)"
-        },
-        "backdrop": {
-          "transition": {
-            "duration": "var(--az-component-brand-header-offcanvas-backdrop-transition-duration)",
-            "easing": "var(--az-component-brand-header-offcanvas-backdrop-transition-easing)"
-          }
-        }
-      }
-    },
     "inputGroup": {
       "height": "var(--az-component-input-group-height)",
       "field": {

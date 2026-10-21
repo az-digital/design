@@ -1,16 +1,3 @@
-import StyleDictionary from 'style-dictionary';
-
-/**
- * Writes a DTCG duration ({ value: 300, unit: 'ms' }) as a CSS time (300ms).
- * Style Dictionary's own time/seconds transform only matches its legacy `time`
- * type, so without this a duration prints as [object Object].
- */
-const durationCss = {
-  type: 'value',
-  filter: (token) => token.$type === 'duration' && typeof token.$value === 'object' && token.$value !== null,
-  transform: (token) => `${token.$value.value}${token.$value.unit}`,
-};
-
 const camelCase = (value) => value.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
 const setNestedValue = (target, path, value) => {
@@ -52,9 +39,6 @@ ${spacing}}`;
 export default {
   source: ['tokens.json'],
   hooks: {
-    transforms: {
-      'duration/css': durationCss,
-    },
     formats: {
       'javascript/variables': ({ dictionary }) => `export const az = ${JSON.stringify(buildCssVariableTree(dictionary), null, 2)};\n`,
       'typescript/declarations': ({ dictionary }) => `export const az: ${renderType(buildCssVariableTree(dictionary))};\n`,
@@ -62,7 +46,7 @@ export default {
   },
   platforms: {
     css: {
-      transforms: [...StyleDictionary.hooks.transformGroups.css, 'duration/css'],
+      transformGroup: 'css',
       buildPath: 'dist/',
       files: [
         {
@@ -79,7 +63,7 @@ export default {
       ],
     },
     scss: {
-      transforms: [...StyleDictionary.hooks.transformGroups.scss, 'duration/css'],
+      transformGroup: 'scss',
       buildPath: 'dist/',
       files: [
         {
