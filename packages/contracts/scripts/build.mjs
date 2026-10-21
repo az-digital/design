@@ -12,8 +12,8 @@
 // - leaves one of its component's own tokens (az.component.<id>.*) unused, so
 //   the contract and the tokens can't drift apart.
 //
-// It also reports component tokens that only restate a semantic color the
-// contract could reference directly.
+// It also reports component tokens that only point at another token, which the
+// contract could reference directly: wiring belongs in the contract.
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import Ajv2020 from 'ajv/dist/2020.js';
 
@@ -73,8 +73,8 @@ for (const file of files) {
   for (const [path, token] of tokens) {
     if (!path.startsWith(prefix) || used.has(path)) continue;
     const alias = typeof token.$value === 'string' && token.$value.startsWith('{') ? token.$value.slice(1, -1) : null;
-    if (alias?.startsWith('az.color.semantic.') || (alias?.startsWith(prefix) && token.$type === 'color')) {
-      notes.push(`${file}: ${path} only restates ${token.$value}; the contract references the color directly, so the token can go`);
+    if (alias) {
+      notes.push(`${file}: ${path} only points at ${token.$value}; the contract can reference that directly, so the token can go`);
     } else {
       problems.push(`${file}: ${path} isn't used by the contract`);
     }

@@ -108,9 +108,9 @@ The published `@az-digital/tokens` package includes the source `tokens.json` alo
 
 A component's contract (`packages/contracts/contracts/<component>.contract.json`) records its anatomy, independent of any platform: the parts it's made of, and which token sets each part's design properties at rest, in its states (hover, focus-visible…) and from its breakpoints. A contract holds only token references. The values stay in `tokens.json`, which builds as before.
 
-Because a contract can point a part straight at a semantic token, a component doesn't need its own token for a color that only repeats a semantic one. Component tokens (`az.component.<component>.*`) hold what's specific to the component, such as its sizes and weights. That keeps the token set, and the variables designers work with, small.
+The contract does the wiring that aliases used to do in `tokens.json`: it points each part straight at the token it uses, usually a brand color. So `tokens.json` holds values, not wiring. A component doesn't need its own token for a color, and a color doesn't need a semantic token just so one component has a name to point at. Semantic tokens are for decisions that are really shared or that a theme changes, such as the brand surface (`surface.brand`) and what sits on it (`on-brand.*`). Component tokens (`az.component.<component>.*`) hold what's specific to the component, such as its sizes and weights. That keeps the token set, and the variables designers work with, small.
 
-`npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, or leaves one of its component's own tokens unused. It also flags component tokens that only repeat a semantic color, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
+`npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, or leaves one of its component's own tokens unused. It also flags component tokens that only point at another token, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
 
 ## Storybook Notes
 

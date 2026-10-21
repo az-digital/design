@@ -30,9 +30,7 @@ export const az = {
         "logo": "var(--az-color-semantic-on-brand-logo)"
       },
       "onDefault": {
-        "link": "var(--az-color-semantic-on-default-link)",
-        "linkQuiet": "var(--az-color-semantic-on-default-link-quiet)",
-        "accent": "var(--az-color-semantic-on-default-accent)"
+        "link": "var(--az-color-semantic-on-default-link)"
       }
     }
   },

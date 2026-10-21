@@ -30,9 +30,7 @@ export const az: {
         "logo": string
       },
       "onDefault": {
-        "link": string,
-        "linkQuiet": string,
-        "accent": string
+        "link": string
       }
     }
   },

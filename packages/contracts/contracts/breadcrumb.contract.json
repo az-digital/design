@@ -2,7 +2,7 @@
   "$schema": "../contract.schema.json",
   "id": "breadcrumb",
   "name": "Breadcrumb",
-  "description": "A row of links from the home page to the current page, separated by /. The first item can be Home, with a house icon before it. It sits on the default surface and takes its colors from that surface's on-colors.",
+  "description": "A row of links from the home page to the current page, separated by /. The first item can be Home, with a house icon before it. Its parts are wired straight to brand colors: White behind it, Azurite text and icon, Bougainvillea dividers.",
   "sources": [
     "az-digital/arizona-bootstrap#2256: styling",
     "az-digital/arizona-bootstrap#2346: weight, size and the hover underline (design approved)",
@@ -12,7 +12,7 @@
     "root": {
       "description": "The breadcrumb itself.",
       "tokens": {
-        "fill": "{az.color.semantic.surface.default}",
+        "fill": "{az.color.brand.white}",
         "padding.x": "{az.component.breadcrumb.padding.x}",
         "padding.y": "{az.component.breadcrumb.padding.y}",
         "margin-bottom": "{az.component.breadcrumb.margin-bottom}"
@@ -34,11 +34,11 @@
         "link": {
           "description": "A linked item's text.",
           "tokens": {
-            "color": "{az.color.semantic.on-default.link-quiet}"
+            "color": "{az.color.brand.azurite}"
           },
           "states": {
             "hover": {
-              "underline.color": "{az.color.semantic.on-default.link-quiet}",
+              "underline.color": "{az.color.brand.azurite}",
               "underline.width": "{az.component.breadcrumb.hover.underline.width}",
               "underline.offset": "{az.component.breadcrumb.hover.underline.offset}"
             }
@@ -47,20 +47,20 @@
         "current": {
           "description": "The current page's item, which isn't a link.",
           "tokens": {
-            "color": "{az.color.semantic.on-default.link-quiet}"
+            "color": "{az.color.brand.azurite}"
           }
         },
         "divider": {
           "description": "The / between items.",
           "tokens": {
-            "color": "{az.color.semantic.on-default.accent}",
+            "color": "{az.color.brand.bougainvillea}",
             "gap": "{az.component.breadcrumb.divider.gap}"
           }
         },
         "home-icon": {
           "description": "The house icon before Home. It's part of the Home link.",
           "tokens": {
-            "color": "{az.color.semantic.on-default.link-quiet}",
+            "color": "{az.color.brand.azurite}",
             "size": "{az.component.breadcrumb.home.icon.size}",
             "gap": "{az.component.breadcrumb.home.icon.gap}",
             "raise": "{az.component.breadcrumb.home.icon.raise}"

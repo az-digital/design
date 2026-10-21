@@ -9,18 +9,15 @@ import { ContractAnatomy } from '../ContractAnatomy';
 A row of links from the home page to the current page, separated by `/`. The first item
 can be Home, with a house icon before it.
 
-## Colors come from the surface
+## Colors
 
-A breadcrumb sits on the default surface, <Token data={getTokenData('az.color.semantic.surface.default')} />
-(White), and takes its colors from that surface's on-color group, the way the
-Input Group takes its colors from the brand surface's:
+The breadcrumb's contract wires its parts straight to brand colors:
 
-- **Links, the current page and the house icon:** <Token data={getTokenData('az.color.semantic.on-default.link-quiet')} />
-  (Azurite). Linked items don't change color on hover; a 1px underline in the same color,
-  5px below the text's baseline, shows the hover instead.
-- **Dividers:** <Token data={getTokenData('az.color.semantic.on-default.accent')} /> (Bougainvillea).
-
-Breadcrumbs on other surfaces come when a design needs them.
+- **Behind it:** <Token data={getTokenData('az.color.brand.white')} />.
+- **Links, the current page and the house icon:** <Token data={getTokenData('az.color.brand.azurite')} />.
+  Linked items don't change color on hover; a 1px underline in the same color, 5px below
+  the text's baseline, shows the hover instead.
+- **Dividers:** <Token data={getTokenData('az.color.brand.bougainvillea')} />.
 
 ## Type and spacing
 
@@ -39,14 +36,14 @@ Breadcrumbs on other surfaces come when a design needs them.
 ## Anatomy
 
 The breadcrumb's contract (`breadcrumb.contract.json`) names its parts, and the token that sets
-each part's design properties, at rest, on hover and from the lg breakpoint up. Colors point at the
-default surface's on-colors; sizes point at the breadcrumb's own tokens.
+each part's design properties, at rest, on hover and from the lg breakpoint up. Colors point at
+brand colors; sizes point at the breadcrumb's own tokens.
 
 <ContractAnatomy contract="breadcrumb" />
 
 ## Tokens
 
-The breadcrumb's own tokens are its sizes and weight. Its colors are the default surface's
-on-colors, which the anatomy above points at directly.
+The breadcrumb's own tokens are its sizes and weight. Its colors are brand colors, which the
+anatomy above points at directly.
 
 <TokenTable items={getTokenDisplayItems('az.component.breadcrumb.')} />
