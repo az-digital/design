@@ -1,5 +1,5 @@
 $az-component-brand-header-height: 50px; // Header height: its minimum height at every screen size, and its fixed height below 992px.
-$az-component-brand-header-fixed-on-mobile-scroll-offset: 58px; // When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them.
+$az-component-brand-header-fixed-on-mobile-scroll-gap: 8px; // When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them.
 $az-component-brand-header-logo-width: 211px; // Wordmark width below the sm breakpoint (576px).
 $az-component-brand-header-logo-height: 16px; // Wordmark height below the sm breakpoint (576px).
 $az-component-brand-header-logo-margin-left: 10px; // Space before the wordmark, at the header's left edge.

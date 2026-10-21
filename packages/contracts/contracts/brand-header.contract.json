@@ -21,13 +21,13 @@
           },
           "$description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
         },
-        "fixed-on-mobile.scroll-offset": {
+        "fixed-on-mobile.scroll-gap": {
           "$type": "dimension",
           "$value": {
-            "value": 58,
+            "value": 8,
             "unit": "px"
           },
-          "$description": "When the header is fixed on mobile (below 992px): how far below the top of the screen linked sections stop when scrolled to, so the header doesn't cover them."
+          "$description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
         }
       },
       "parts": {
