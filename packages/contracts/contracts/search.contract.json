@@ -1,0 +1,58 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "search",
+  "name": "Search",
+  "description": "The search form in a site's navigation. It's an input group, so its field, button and colors come from the Input Group contract; this holds only what's specific to search, and the button that shows it on small screens.",
+  "sources": [
+    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The search form.",
+      "tokens": {
+        "max-width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 265,
+            "unit": "px"
+          },
+          "$description": "Search form's maximum width."
+        },
+        "padding.x": {
+          "$type": "dimension",
+          "$value": {
+            "value": 15,
+            "unit": "px"
+          },
+          "$description": "Space to the left and right of the search form."
+        },
+        "padding.y": {
+          "$type": "dimension",
+          "$value": {
+            "value": 5,
+            "unit": "px"
+          },
+          "$description": "Space above and below the search form."
+        }
+      },
+      "parts": {
+        "toggle": {
+          "description": "The button that shows the search form on small screens.",
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.rain}",
+              "ring.width": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 1,
+                  "unit": "px"
+                },
+                "$description": "Width of that button's keyboard focus ring."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

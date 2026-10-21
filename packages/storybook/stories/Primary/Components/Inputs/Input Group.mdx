@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+
+<Meta title="Primary/Components/Inputs/Input Group" />
+
+# Input Group
+
+A text field with an attached button, such as a search form, a newsletter signup or an
+email field. The search form in a site's navigation is the first one designed.
+
+## Colors
+
+These colors come from the search form on a Blue navbar, the only design so far. The
+input group's contract (`input-group.contract.json`) points each one straight at a brand
+color:
+
+- **Text and icon:** <Token data={getTokenData('az.color.brand.white')} />
+- **Border, and the divider between field and button:** <Token data={getTokenData('az.color.brand.white')} />
+- **Placeholder:** <Token data={getTokenData('az.color.brand.white')} />
+- **Hover and focus:** <Token data={getTokenData('az.color.brand.rain')} />. The
+  icon turns Rain on hover; the border and divider turn Rain while the field or button
+  has focus, fading over 150ms.
+
+When a design puts the input group on another background, such as a White page, a
+variant for it holds only the colors that change.
+
+## Shape is the same everywhere
+
+- **Size:** 43px tall. The field has 6px of padding above and below its text, and 12px
+  to the left and right.
+- **Border:** 2px, around the field and button together, with 8px corners and a 2px
+  divider between them.
+- **Type:** 16px Regular, with a 22px line height.
+- **Button:** a 24px icon with 9px of padding around it.
+
+The input group has no tokens of its own: these values are in its contract.
+
+<ContractAnatomy contract="input-group" />
+
+## Search
+
+The search form is an input group, so it adds only what's specific to search: it's up
+to 265px wide, with 5px above and below it and 15px to each side. On small screens, the
+button that shows it has a 1px keyboard focus ring in Rain. These values are in the
+search contract (`search.contract.json`).
+
+<ContractAnatomy contract="search" />

@@ -6,7 +6,7 @@
  * Bootstrap markup in Storybook renders what they say. It's also the reference for how
  * each token maps onto Arizona Bootstrap's classes. Every
  * value is a `var(--az-…)` reference, so it follows the tokens automatically;
- * the two exceptions say why. When Arizona Bootstrap adopts the tokens, its rules
+ * each exception says why. When Arizona Bootstrap adopts the tokens, its rules
  * can go.
  *
  * Selectors are one level more specific than Arizona Bootstrap's (`:root
@@ -167,4 +167,83 @@
     --az-scroll-margin-top: calc(var(--az-component-brand-header-height) + var(--az-component-brand-header-fixed-on-mobile-scroll-gap));
     padding-top: var(--az-component-brand-header-height);
   }
+}
+
+/*
+ * Forms (input-group.contract.json): Arizona Bootstrap's AZ Search
+ * (.az-search), a text field with an attached button on a Blue navbar. AZ
+ * Search keeps its values in --az-search-* variables, so this points those at
+ * brand colors and the input group's own values (--az-component-input-group-*).
+ * Search's own width and padding come from search.contract.json
+ * (--az-component-search-*).
+ *
+ * --az-search-font has one non-token value, the font family: there are no
+ * font family tokens yet.
+ */
+:root .az-search {
+  --az-search-width: var(--az-component-search-max-width);
+  --az-search-padding-y: var(--az-component-search-padding-y);
+  --az-search-padding-x: var(--az-component-search-padding-x);
+  --az-search-height: var(--az-component-input-group-height);
+  --az-search-input-padding: var(--az-component-input-group-field-padding-y) var(--az-component-input-group-field-padding-x);
+  --az-search-btn-padding: var(--az-component-input-group-button-padding);
+  --az-search-icon-size: var(--az-component-input-group-button-icon-size);
+  --az-search-font: normal normal var(--az-component-input-group-field-font-weight) var(--az-component-input-group-field-font-size) / var(--az-component-input-group-field-line-height) proxima-nova;
+  --az-search-color: var(--az-color-brand-white);
+  --az-search-border-width: var(--az-component-input-group-border-width);
+  --az-search-border-color: var(--az-color-brand-white);
+  --az-search-focus-ring-color: var(--az-color-brand-rain);
+  --bs-border-radius: var(--az-component-input-group-border-radius);
+}
+
+/* Placeholder: its own token, though Arizona Bootstrap reuses the text color. */
+:root .az-search .form-control::placeholder {
+  color: var(--az-color-brand-white);
+}
+
+/*
+ * The divider between field and button: its own width and color tokens,
+ * though Arizona Bootstrap reuses the border's. Only duration and easing are
+ * set, so reduced motion still turns the transition off.
+ */
+:root .az-search .input-group .btn::before {
+  width: var(--az-component-input-group-divider-width);
+  background-color: var(--az-color-brand-white);
+  transition-duration: var(--az-component-input-group-divider-transition-duration);
+  transition-timing-function: var(--az-component-input-group-divider-transition-easing);
+}
+
+:root .az-search .input-group .form-control:focus + .btn::before,
+:root .az-search .input-group .form-control:focus-visible + .btn::before,
+:root .az-search .input-group .btn:focus-visible::before,
+:root .az-search .input-group .btn:active::before {
+  background-color: var(--az-color-brand-rain);
+}
+
+/*
+ * Icon color. Arizona Bootstrap draws the icon from SVG data URIs with the
+ * colors built in (White, and Rain on hover), so CSS can't recolor them. The
+ * shim uses the same SVG as a mask and paints it with the token color instead.
+ */
+:root .az-search .az-search-icon,
+:root .az-search .search-icon {
+  background-color: var(--az-color-brand-white);
+  background-image: none;
+  mask: var(--az-search-icon) center / contain no-repeat;
+}
+
+:root .az-search .btn:hover .az-search-icon,
+:root .az-search .btn:hover .search-icon {
+  background-color: var(--az-color-brand-rain);
+  background-image: none;
+}
+
+/* The button that shows the search form on small screens: a thinner accent ring. */
+:root .az-search {
+  --az-search-focus-ring-width: var(--az-component-search-toggle-focus-visible-ring-width);
+}
+
+:root .az-search .az-search-toggle:focus-visible,
+:root .az-search .navbar-toggler-search:focus-visible {
+  box-shadow: 0 0 0 var(--az-component-search-toggle-focus-visible-ring-width) var(--az-color-brand-rain);
 }

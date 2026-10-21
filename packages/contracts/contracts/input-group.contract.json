@@ -1,0 +1,163 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "input-group",
+  "name": "Input Group",
+  "description": "A text field with an attached button, such as a search form, a newsletter signup or an email field. Its colors come from the search form on a Blue navbar, the only design so far: White text, border, divider and icon, turning Rain on hover and focus. When a design puts it on another background, such as a White page, that variant changes only its colors.",
+  "sources": [
+    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The field and button together, inside one border.",
+      "tokens": {
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 43,
+            "unit": "px"
+          },
+          "$description": "Height of a text field with an attached button."
+        },
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          },
+          "$description": "Border width around the field and button together."
+        },
+        "border.radius": {
+          "$type": "dimension",
+          "$value": {
+            "value": 8,
+            "unit": "px"
+          },
+          "$description": "Corner radius of the field and button together."
+        },
+        "border.color": "{az.color.brand.white}"
+      },
+      "states": {
+        "focus-within": {
+          "border.color": "{az.color.brand.rain}"
+        }
+      },
+      "parts": {
+        "field": {
+          "description": "The text field.",
+          "tokens": {
+            "padding.x": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Space between the field's left and right edges and its text."
+            },
+            "padding.y": {
+              "$type": "dimension",
+              "$value": {
+                "value": 6,
+                "unit": "px"
+              },
+              "$description": "Space above and below the field's text."
+            },
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Field text size."
+            },
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 400,
+              "$description": "Field text weight (Regular)."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Field text line height."
+            },
+            "color": "{az.color.brand.white}",
+            "placeholder.color": "{az.color.brand.white}"
+          }
+        },
+        "divider": {
+          "description": "The line between the field and the button.",
+          "tokens": {
+            "width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 2,
+                "unit": "px"
+              },
+              "$description": "Width of the line between the field and the button: the same as the border."
+            },
+            "color": "{az.color.brand.white}",
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 150,
+                "unit": "ms"
+              },
+              "$description": "How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            }
+          },
+          "states": {
+            "focus-within": {
+              "color": "{az.color.brand.rain}"
+            }
+          }
+        },
+        "button": {
+          "description": "The attached button, such as Search or Subscribe.",
+          "tokens": {
+            "padding": {
+              "$type": "dimension",
+              "$value": {
+                "value": 9,
+                "unit": "px"
+              },
+              "$description": "Space around the attached button's icon."
+            }
+          },
+          "parts": {
+            "icon": {
+              "description": "The button's icon.",
+              "tokens": {
+                "size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 24,
+                    "unit": "px"
+                  },
+                  "$description": "The attached button's icon width and height."
+                },
+                "color": "{az.color.brand.white}"
+              },
+              "states": {
+                "hover": {
+                  "color": "{az.color.brand.rain}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
