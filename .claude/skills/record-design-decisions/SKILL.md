@@ -77,8 +77,8 @@ building it.
   it says which token sets each of the component's parts.
 - **An alias records a relationship, not a number.** Alias a token only when the two
   are the same decision: a focused state aliases its resting state, a component's
-  text uses `az.typography.*`. A component color that would only repeat a semantic
-  color isn't a token at all: the contract points the part at the semantic color.
+  text uses `az.typography.*`. Wiring a part to a color isn't a token at all: the
+  contract does the wiring, so no component token only points at another token.
 - **Primitives are named roles, never values.** Keep a primitive only when its name
   is a role whose value could change everywhere at once: brand and neutral colors,
   `az.font-family.sans` / `serif` (each a full font stack). A name that is its own
@@ -105,11 +105,10 @@ building it.
 - **Surfaces:** colors come from the surface a design sits on. `surface.<name>` is
   the fill (`surface.brand` is Blue and themeable; `surface.default` is White).
   `on-<surface>.*` holds what sits on it (`default`, `link`, `border`, `placeholder`,
-  `accent`, `focus-ring`, `logo`, `pattern`, ...). A component's contract points its
-  parts' colors at those directly. Add a component color token only when the color
-  isn't simply an on-color, through a surface-named group when the component can sit
-  on more than one surface (`input-group.on-brand.*`). Add an on-color only when
-  something needs it. Text
+  `accent`, `focus-ring`, `logo`, `pattern`, ...). Add a semantic token only for a
+  decision that's really shared, or that a theme changes (`surface.brand` and
+  `on-brand.*`), never just to give one component a name to point at: its contract
+  points the part straight at the brand color instead. Text
   colors are on-colors too: there are no `text.*` or `text-emphasis.*` groups, since
   a text color means nothing without the surface it sits on.
 - **Bootstrap's names, only where the meaning matches.** `link`, `link-hover`,
@@ -181,11 +180,13 @@ anatomy, independent of any platform.
 - **Parts, states, breakpoints.** `anatomy.root` is the component; `parts` nest inside
   it. `states` (`hover`, `focus-visible`, `active`, `open`, `disabled`) and
   `breakpoints` (`sm`…`xxl`) hold only what changes.
-- **Colors go straight to semantic tokens.** Component tokens hold what's specific to
-  the component, such as sizes and weights.
+- **The contract does the wiring.** It points each part's colors straight at the
+  token they use, usually a brand color; semantic tokens only where the decision is
+  shared or themeable. Component tokens hold what's specific to the component, such
+  as sizes and weights.
 - **`npm run build:contracts` must pass.** It refuses a contract that doesn't match the
   schema, references a missing token, or leaves one of the component's tokens unused.
-  Remove any component token it notes as only repeating a semantic color.
+  Remove any component token it notes as only pointing at another token.
 
 ## 3. Record the values (`packages/tokens/tokens.json`)
 
@@ -230,8 +231,8 @@ to the generated variable that replaces it.
 | Arizona Bootstrap | Replace with | Notes |
 |---|---|---|
 | `$breadcrumb-padding-x` / `--bs-breadcrumb-padding-x` | `var(--az-component-breadcrumb-padding-x)` | |
-| `.breadcrumb a` `color` | `var(--az-color-semantic-on-default-link-quiet)` | The contract points the link at the semantic color |
-| `.breadcrumb-item-home::before` background SVG | `mask` of the same SVG, `background-color: var(--az-color-semantic-on-default-link-quiet)` | The SVG has Azurite built in |
+| `.breadcrumb a` `color` | `var(--az-color-brand-azurite)` | The contract points the link at the brand color |
+| `.breadcrumb-item-home::before` background SVG | `mask` of the same SVG, `background-color: var(--az-color-brand-azurite)` | The SVG has Azurite built in |
 
 - Cover every token: the Sass variable when there is one, the CSS variable it
   compiles to, or the selector and property when the value is hard-coded.
