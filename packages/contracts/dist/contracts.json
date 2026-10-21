@@ -69,7 +69,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.component.brand-header.focus-visible.ring.width"
+    "token": "az.focus-ring.width"
   },
   {
     "contract": "brand-header",
@@ -157,7 +157,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.component.brand-header.focus-visible.ring.width"
+    "token": "az.focus-ring.width"
   },
   {
     "contract": "brand-header",

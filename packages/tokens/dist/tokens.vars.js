@@ -17,6 +17,9 @@ export const az = {
       "white": "var(--az-color-brand-white)"
     }
   },
+  "focusRing": {
+    "width": "var(--az-focus-ring-width)"
+  },
   "component": {
     "brandHeader": {
       "height": "var(--az-component-brand-header-height)",
@@ -30,9 +33,6 @@ export const az = {
         "marginLeft": "var(--az-component-brand-header-logo-margin-left)"
       },
       "focusVisible": {
-        "ring": {
-          "width": "var(--az-component-brand-header-focus-visible-ring-width)"
-        },
         "border": {
           "radius": "var(--az-component-brand-header-focus-visible-border-radius)"
         }

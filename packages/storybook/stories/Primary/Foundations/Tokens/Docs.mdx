@@ -43,6 +43,12 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 <ColorSwatchGrid prefix="az.color.brand." />
 
+## Shared decisions
+
+Decisions every component that needs them shares, so they change in one place. Each is named the way implementations already name the same decision: `az.focus-ring.width` is the focus ring's width wherever one is drawn.
+
+<TokenDisplay items={getTokenDisplayItems('az.focus-ring.', { order: 'source' })} layout="table" />
+
 ## Component tokens
 
 Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Each component's contract (`packages/contracts`) says which token sets each of its parts, and points a part's colors straight at the colors they use, so component tokens hold only what's specific to the component: sizes, weights and timings, set on the component token itself.

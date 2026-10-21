@@ -19,8 +19,8 @@ A contract does the wiring instead. It points each part straight at the token it
 usually a brand color, so `tokens.json` holds values:
 
 - **Brand colors**, which contracts point at directly.
-- **Semantic tokens** only for decisions that are really shared or that a theme
-  changes. There are none yet.
+- **Shared and semantic tokens** only for decisions that are really shared or that a
+  theme changes, such as the focus ring's width (`az.focus-ring.width`).
 - **Component tokens** (`az.component.<component>.*`) only for what's specific to the
   component, such as its sizes and weights.
 

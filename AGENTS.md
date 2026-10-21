@@ -49,5 +49,11 @@ Point a part's colors straight at the token they use, usually a brand color.
 Don't add a component token, or a semantic token, just so one component has a
 name to point at; semantic tokens are for decisions that are really shared or
 that a theme changes. Remove any component token the check flags as
-redundant. See
+redundant.
+
+For a decision several components share (a link color, the focus ring, a
+border, form-control sizing, body type), add one token named after Bootstrap 6's
+name for it (`az.focus-ring.width` for `--focus-ring-width`), with Arizona's value,
+and point every contract at it. Don't adopt Bootstrap 6's role names (`primary`,
+`accent`) yet. See
 [packages/contracts/README.md](./packages/contracts/README.md).

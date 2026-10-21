@@ -17,6 +17,9 @@ export const az: {
       "white": string
     }
   },
+  "focusRing": {
+    "width": string
+  },
   "component": {
     "brandHeader": {
       "height": string,
@@ -30,9 +33,6 @@ export const az: {
         "marginLeft": string
       },
       "focusVisible": {
-        "ring": {
-          "width": string
-        },
         "border": {
           "radius": string
         }

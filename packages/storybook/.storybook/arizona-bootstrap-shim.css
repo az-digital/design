@@ -79,7 +79,7 @@
 :root .btn-arizona-header:focus-visible {
   outline: 0;
   border-radius: var(--az-component-brand-header-focus-visible-border-radius);
-  box-shadow: inset 0 0 0 var(--az-component-brand-header-focus-visible-ring-width) var(--az-color-brand-white);
+  box-shadow: inset 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-white);
 }
 
 /*

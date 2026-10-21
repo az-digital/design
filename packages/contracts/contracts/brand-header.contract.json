@@ -34,7 +34,7 @@
           "states": {
             "focus-visible": {
               "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.component.brand-header.focus-visible.ring.width}",
+              "ring.width": "{az.focus-ring.width}",
               "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
             }
           }
@@ -52,7 +52,7 @@
           "states": {
             "focus-visible": {
               "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.component.brand-header.focus-visible.ring.width}",
+              "ring.width": "{az.focus-ring.width}",
               "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
             }
           },

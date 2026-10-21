@@ -13,13 +13,13 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
+  --az-focus-ring-width: 2px; /** Width of the keyboard focus ring, everywhere one is drawn: links, buttons, and the header's logo and buttons. */
   --az-component-brand-header-height: 50px; /** Header height: its minimum height at every screen size, and its fixed height below 992px. */
   --az-component-brand-header-logo-width: 211px; /** Wordmark width below the sm breakpoint (576px). */
   --az-component-brand-header-logo-height: 16px; /** Wordmark height below the sm breakpoint (576px). */
   --az-component-brand-header-logo-sm-width: 266.41px; /** Wordmark width from the sm breakpoint (576px) up. */
   --az-component-brand-header-logo-sm-height: 19.8px; /** Wordmark height from the sm breakpoint (576px) up. */
   --az-component-brand-header-logo-margin-left: 10px; /** Space before the wordmark, at the header's left edge. */
-  --az-component-brand-header-focus-visible-ring-width: 2px; /** Width of the inset keyboard focus ring on the logo and header buttons. */
   --az-component-brand-header-focus-visible-border-radius: 2px; /** Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners. */
   --az-component-brand-header-button-label-font-size: 10px; /** Header button label text size ("Search", "Menu"). */
   --az-component-brand-header-button-label-line-height: 10px; /** Header button label line height. */

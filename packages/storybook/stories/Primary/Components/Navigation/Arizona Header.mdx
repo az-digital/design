@@ -23,8 +23,9 @@ colors straight to brand colors, and sizes and timings to the header's own token
 - **Size:** the header is at least 50px tall, and exactly 50px below 992px. The wordmark
   is 211 × 16px below 576px and 266.41 × 19.8px from 576px up, 10px from the header's
   left edge.
-- **Keyboard focus:** the logo and header buttons draw a 2px ring inside their edges,
-  with 2px corners, in <Token data={getTokenData('az.color.brand.white')} />.
+- **Keyboard focus:** the logo and header buttons draw a ring inside their edges, with
+  2px corners, in <Token data={getTokenData('az.color.brand.white')} />. Its width is the
+  shared focus ring width, <Token data={getTokenData('az.focus-ring.width')} /> (2px).
 - **Header buttons** (for adding search and menu toggles on mobile): at least 60px
   wide and as tall as the header, with 4px of padding above and below.
   - **Label:** text in <Token data={getTokenData('az.color.brand.white')} />, 10px with a
@@ -52,7 +53,8 @@ header's contract.
 
 ## Tokens
 
-The header's own tokens: its sizes, timings and scroll offset. Its colors are brand
+The header's own tokens: its sizes, timings and scroll offset. Its focus ring width is the
+shared one. Its colors are brand
 colors, which the anatomy above points at directly.
 
 <TokenTable items={getTokenDisplayItems('az.component.brand-header.')} />
