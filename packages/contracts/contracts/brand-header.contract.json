@@ -13,47 +13,47 @@
       "description": "The header bar.",
       "tokens": {
         "fill": "{az.color.brand.blue}",
-        "height": "{az.component.brand-header.height}",
-        "fixed-on-mobile.scroll-offset": "{az.component.brand-header.fixed-on-mobile.scroll-offset}"
+        "height": "{az.dimension.50}",
+        "fixed-on-mobile.scroll-offset": "{az.dimension.58}"
       },
       "parts": {
         "logo": {
           "description": "The wordmark, which links to the home page.",
           "tokens": {
             "color": "{az.color.brand.white}",
-            "width": "{az.component.brand-header.logo.width}",
-            "height": "{az.component.brand-header.logo.height}",
-            "margin-left": "{az.component.brand-header.logo.margin-left}"
+            "width": "{az.dimension.211}",
+            "height": "{az.dimension.16}",
+            "margin-left": "{az.dimension.10}"
           },
           "breakpoints": {
             "sm": {
-              "width": "{az.component.brand-header.logo.sm.width}",
-              "height": "{az.component.brand-header.logo.sm.height}"
+              "width": "{az.dimension.266-41}",
+              "height": "{az.dimension.19-8}"
             }
           },
           "states": {
             "focus-visible": {
               "ring.color": "{az.color.brand.white}",
               "ring.width": "{az.focus-ring.width}",
-              "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
+              "border.radius": "{az.dimension.2}"
             }
           }
         },
         "button": {
           "description": "A header button, such as Search or Menu: an icon above a label.",
           "tokens": {
-            "min-width": "{az.component.brand-header.button.min-width}",
-            "min-height": "{az.component.brand-header.height}",
-            "padding.y": "{az.component.brand-header.button.padding.y}",
-            "gap": "{az.component.brand-header.button.gap}",
-            "transition.duration": "{az.component.brand-header.button.transition.duration}",
-            "transition.easing": "{az.component.brand-header.button.transition.easing}"
+            "min-width": "{az.dimension.60}",
+            "min-height": "{az.dimension.50}",
+            "padding.y": "{az.dimension.4}",
+            "gap": "{az.dimension.2}",
+            "transition.duration": "{az.duration.150}",
+            "transition.easing": "{az.easing.ease-in-out}"
           },
           "states": {
             "focus-visible": {
               "ring.color": "{az.color.brand.white}",
               "ring.width": "{az.focus-ring.width}",
-              "border.radius": "{az.component.brand-header.focus-visible.border.radius}"
+              "border.radius": "{az.dimension.2}"
             }
           },
           "parts": {
@@ -61,15 +61,15 @@
               "description": "The button's icon, the same color as its label.",
               "tokens": {
                 "color": "{az.color.brand.white}",
-                "size": "{az.component.brand-header.button.icon.size}"
+                "size": "{az.dimension.24}"
               }
             },
             "label": {
               "description": "The button's label, such as \"Search\" or \"Menu\".",
               "tokens": {
                 "color": "{az.color.brand.white}",
-                "font.size": "{az.component.brand-header.button.label.font.size}",
-                "line-height": "{az.component.brand-header.button.label.line-height}"
+                "font.size": "{az.dimension.10}",
+                "line-height": "{az.dimension.10}"
               }
             }
           }
@@ -77,15 +77,15 @@
         "offcanvas": {
           "description": "The panel the header buttons open on small screens.",
           "tokens": {
-            "transition.duration": "{az.component.brand-header.offcanvas.transition.duration}",
-            "transition.easing": "{az.component.brand-header.offcanvas.transition.easing}"
+            "transition.duration": "{az.duration.300}",
+            "transition.easing": "{az.easing.ease-in-out}"
           },
           "parts": {
             "backdrop": {
               "description": "The backdrop behind the open panel.",
               "tokens": {
-                "transition.duration": "{az.component.brand-header.offcanvas.backdrop.transition.duration}",
-                "transition.easing": "{az.component.brand-header.offcanvas.backdrop.transition.easing}"
+                "transition.duration": "{az.duration.150}",
+                "transition.easing": "{az.easing.linear}"
               }
             }
           }

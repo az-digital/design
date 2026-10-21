@@ -16,13 +16,14 @@ is to give one component a name to point at. Those tokens add up, and each becom
 variable designers have to manage in Figma.
 
 A contract does the wiring instead. It points each part straight at the token it uses,
-usually a brand color, so `tokens.json` holds values:
+so `tokens.json` holds values, and components don't need tokens of their own:
 
-- **Brand colors**, which contracts point at directly.
+- **Brand colors**, for colors.
+- **Primitives** named after their values, for sizes and timings: `az.dimension.50`,
+  `az.duration.150`, `az.easing.ease-in-out`. A primitive's name is its value, so it
+  never changes; to change a component, point its contract at a different primitive.
 - **Shared and semantic tokens** only for decisions that are really shared or that a
   theme changes, such as the focus ring's width (`az.focus-ring.width`).
-- **Component tokens** (`az.component.<component>.*`) only for what's specific to the
-  component, such as its sizes and weights.
 
 The idea comes from the design-system contracts proof of concept
 ([southleft/ds-contracts-poc](https://github.com/southleft/ds-contracts-poc)), whose
@@ -45,17 +46,17 @@ contracts likewise bind a component's parts to tokens.
       "description": "The header bar.",
       "tokens": {
         "fill": "{az.color.brand.blue}",
-        "height": "{az.component.brand-header.height}"
+        "height": "{az.dimension.50}"
       },
       "parts": {
         "logo": {
           "description": "The wordmark, which links to the home page.",
           "tokens": {
             "color": "{az.color.brand.white}",
-            "width": "{az.component.brand-header.logo.width}"
+            "width": "{az.dimension.211}"
           },
           "breakpoints": {
-            "sm": { "width": "{az.component.brand-header.logo.sm.width}" }
+            "sm": { "width": "{az.dimension.266-41}" }
           },
           "states": {
             "focus-visible": { "ring.color": "{az.color.brand.white}" }
@@ -67,7 +68,7 @@ contracts likewise bind a component's parts to tokens.
 }
 ```
 
-- **`id`:** the component's name. Its own tokens are `az.component.<id>.*`.
+- **`id`:** the component's name. Its own tokens, if it has any, are `az.component.<id>.*`.
 - **`sources`:** where the decisions come from, such as reviewed pull requests.
 - **`anatomy`:** a tree of parts, starting at `root`, the component itself. Each part
   has a `description` and can have:
@@ -93,8 +94,8 @@ The check refuses a contract, naming the problem, when it:
 - doesn't match `contract.schema.json`, for example a value that isn't a token
   reference,
 - references a token that isn't in `tokens.json`, or
-- leaves one of its component's own tokens unused, so the contract and the tokens
-  can't drift apart.
+- leaves one of its component's own tokens (`az.component.<id>.*`) unused, if it
+  has any, so the contract and the tokens can't drift apart.
 
 It also notes component tokens that only point at another token, which the contract
 can reference directly. Those can be removed from `tokens.json`.
@@ -105,12 +106,12 @@ Anatomy table.
 
 ## Adding a contract
 
-1. Record the component's own values in `tokens.json`: its sizes and weights, as
-   component tokens. Add a semantic token only for a decision that's really shared or
-   that a theme changes.
+1. Add any primitive the component needs that `tokens.json` doesn't have yet, named
+   after its value (`az.dimension.24`). Add a semantic token only for a decision that's
+   really shared or that a theme changes.
 2. Write `contracts/<component>.contract.json`, pointing each part's colors at the
-   colors they use (usually brand colors) and its other properties at the component's
-   tokens.
+   colors they use (usually brand colors), its sizes and timings at primitives, and
+   shared decisions at their shared token.
 3. Run `npm run build:contracts`, and remove any component token it flags.
 4. Show the anatomy on the component's docs page:
    `<ContractAnatomy contract="<component>" />`.

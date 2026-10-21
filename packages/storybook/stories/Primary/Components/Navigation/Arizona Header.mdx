@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Token, TokenTable, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../ContractAnatomy';
 
-<Meta title="Primary/Components/Navigation/Arizona Header" tags={['tokens:brand-header']} />
+<Meta title="Primary/Components/Navigation/Arizona Header" />
 
 # Arizona Header
 
@@ -14,8 +14,8 @@ import { ContractAnatomy } from '../ContractAnatomy';
 ## Design decisions
 
 The header's contract (`brand-header.contract.json`) wires each of its parts to tokens:
-colors straight to brand colors, and sizes and timings to the header's own tokens,
-`az.component.brand-header.*`.
+colors to brand colors, and sizes and timings to primitives (`az.dimension.*`,
+`az.duration.*` and `az.easing.*`). The header has no tokens of its own.
 
 - **Fill:** <Token data={getTokenData('az.color.brand.blue')} />. The original red header
   isn't a separate set of tokens: its contract points the fill at Red, and keeps every
@@ -50,11 +50,3 @@ Each part of the header, and the token that sets each of its design properties, 
 header's contract.
 
 <ContractAnatomy contract="brand-header" />
-
-## Tokens
-
-The header's own tokens: its sizes, timings and scroll offset. Its focus ring width is the
-shared one. Its colors are brand
-colors, which the anatomy above points at directly.
-
-<TokenTable items={getTokenDisplayItems('az.component.brand-header.')} />

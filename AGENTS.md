@@ -45,9 +45,10 @@ When you add or change a component's tokens, update its contract in
 `packages/contracts/contracts/` and run `npm run build:contracts` before
 finishing. Follow its refusals; don't work around them. A contract holds only
 token references; it does the wiring that aliases used to do in `tokens.json`.
-Point a part's colors straight at the token they use, usually a brand color.
-Don't add a component token, or a semantic token, just so one component has a
-name to point at; semantic tokens are for decisions that are really shared or
+Point a part's colors straight at the token they use, usually a brand color,
+and its sizes and timings at primitives named after their values
+(`az.dimension.50`, `az.duration.150`). Don't add a component token, or a
+semantic token, just so one component has a name to point at; semantic tokens are for decisions that are really shared or
 that a theme changes. Remove any component token the check flags as
 redundant.
 

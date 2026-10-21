@@ -13,7 +13,7 @@
     "kind": "default",
     "condition": null,
     "property": "height",
-    "token": "az.component.brand-header.height"
+    "token": "az.dimension.50"
   },
   {
     "contract": "brand-header",
@@ -21,7 +21,7 @@
     "kind": "default",
     "condition": null,
     "property": "fixed-on-mobile.scroll-offset",
-    "token": "az.component.brand-header.fixed-on-mobile.scroll-offset"
+    "token": "az.dimension.58"
   },
   {
     "contract": "brand-header",
@@ -37,7 +37,7 @@
     "kind": "default",
     "condition": null,
     "property": "width",
-    "token": "az.component.brand-header.logo.width"
+    "token": "az.dimension.211"
   },
   {
     "contract": "brand-header",
@@ -45,7 +45,7 @@
     "kind": "default",
     "condition": null,
     "property": "height",
-    "token": "az.component.brand-header.logo.height"
+    "token": "az.dimension.16"
   },
   {
     "contract": "brand-header",
@@ -53,7 +53,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-left",
-    "token": "az.component.brand-header.logo.margin-left"
+    "token": "az.dimension.10"
   },
   {
     "contract": "brand-header",
@@ -77,7 +77,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.radius",
-    "token": "az.component.brand-header.focus-visible.border.radius"
+    "token": "az.dimension.2"
   },
   {
     "contract": "brand-header",
@@ -85,7 +85,7 @@
     "kind": "breakpoint",
     "condition": "sm",
     "property": "width",
-    "token": "az.component.brand-header.logo.sm.width"
+    "token": "az.dimension.266-41"
   },
   {
     "contract": "brand-header",
@@ -93,7 +93,7 @@
     "kind": "breakpoint",
     "condition": "sm",
     "property": "height",
-    "token": "az.component.brand-header.logo.sm.height"
+    "token": "az.dimension.19-8"
   },
   {
     "contract": "brand-header",
@@ -101,7 +101,7 @@
     "kind": "default",
     "condition": null,
     "property": "min-width",
-    "token": "az.component.brand-header.button.min-width"
+    "token": "az.dimension.60"
   },
   {
     "contract": "brand-header",
@@ -109,7 +109,7 @@
     "kind": "default",
     "condition": null,
     "property": "min-height",
-    "token": "az.component.brand-header.height"
+    "token": "az.dimension.50"
   },
   {
     "contract": "brand-header",
@@ -117,7 +117,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.component.brand-header.button.padding.y"
+    "token": "az.dimension.4"
   },
   {
     "contract": "brand-header",
@@ -125,7 +125,7 @@
     "kind": "default",
     "condition": null,
     "property": "gap",
-    "token": "az.component.brand-header.button.gap"
+    "token": "az.dimension.2"
   },
   {
     "contract": "brand-header",
@@ -133,7 +133,7 @@
     "kind": "default",
     "condition": null,
     "property": "transition.duration",
-    "token": "az.component.brand-header.button.transition.duration"
+    "token": "az.duration.150"
   },
   {
     "contract": "brand-header",
@@ -141,7 +141,7 @@
     "kind": "default",
     "condition": null,
     "property": "transition.easing",
-    "token": "az.component.brand-header.button.transition.easing"
+    "token": "az.easing.ease-in-out"
   },
   {
     "contract": "brand-header",
@@ -165,7 +165,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.radius",
-    "token": "az.component.brand-header.focus-visible.border.radius"
+    "token": "az.dimension.2"
   },
   {
     "contract": "brand-header",
@@ -181,7 +181,7 @@
     "kind": "default",
     "condition": null,
     "property": "size",
-    "token": "az.component.brand-header.button.icon.size"
+    "token": "az.dimension.24"
   },
   {
     "contract": "brand-header",
@@ -197,7 +197,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": "az.component.brand-header.button.label.font.size"
+    "token": "az.dimension.10"
   },
   {
     "contract": "brand-header",
@@ -205,7 +205,7 @@
     "kind": "default",
     "condition": null,
     "property": "line-height",
-    "token": "az.component.brand-header.button.label.line-height"
+    "token": "az.dimension.10"
   },
   {
     "contract": "brand-header",
@@ -213,7 +213,7 @@
     "kind": "default",
     "condition": null,
     "property": "transition.duration",
-    "token": "az.component.brand-header.offcanvas.transition.duration"
+    "token": "az.duration.300"
   },
   {
     "contract": "brand-header",
@@ -221,7 +221,7 @@
     "kind": "default",
     "condition": null,
     "property": "transition.easing",
-    "token": "az.component.brand-header.offcanvas.transition.easing"
+    "token": "az.easing.ease-in-out"
   },
   {
     "contract": "brand-header",
@@ -229,7 +229,7 @@
     "kind": "default",
     "condition": null,
     "property": "transition.duration",
-    "token": "az.component.brand-header.offcanvas.backdrop.transition.duration"
+    "token": "az.duration.150"
   },
   {
     "contract": "brand-header",
@@ -237,6 +237,6 @@
     "kind": "default",
     "condition": null,
     "property": "transition.easing",
-    "token": "az.component.brand-header.offcanvas.backdrop.transition.easing"
+    "token": "az.easing.linear"
   }
 ]
