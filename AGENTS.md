@@ -38,3 +38,13 @@ server. `docs list`, `docs show`, and `stories find-by-component` run
 without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
+
+## Component contracts
+
+When you add or change a component's tokens, update its contract in
+`packages/contracts/contracts/` and run `npm run build:contracts` before
+finishing. Follow its refusals; don't work around them. A contract holds only
+token references. Point a part's colors straight at semantic tokens rather
+than adding a component token that only repeats one, and remove any component
+token the check flags as redundant. See
+[packages/contracts/README.md](./packages/contracts/README.md).
