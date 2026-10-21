@@ -11,35 +11,40 @@ shape.
 
 ## Colors
 
-Each color is for a background. The button's contract (`button.contract.json`) points
-every color straight at a brand color.
+The button's contract (`button.contract.json`) has a solid and an outline button for each
+brand color, each for a background, and for each of Bootstrap's role colors.
 
 - **On White, Cool Gray or Warm Gray:**
   - **Red,** the primary button: <Token data={getTokenData('az.color.brand.red')} /> with
     White text, turning <Token data={getTokenData('az.color.brand.sonoran-red')} /> on
-    hover.
-  - **Outline Red:** a Red border and Red text, filling Red with White text on hover.
-- **On Blue or Azurite:**
-  - **Rain:** <Token data={getTokenData('az.color.brand.rain')} /> with Blue text, turning
-    a darker Rain (`#65c0db`) with <Token data={getTokenData('az.color.brand.tinta')} />
-    text on hover.
-  - **Outline Rain:** a Rain border and Rain text, filling Rain with Tinta text on hover.
-- **On Red:**
-  - **White, Red text:** White with Red text, turning
-    <Token data={getTokenData('az.color.brand.cloud')} /> on hover.
-  - **Outline White, Red text:** a White border and White text, filling White with Red
-    text on hover.
-- **On Oasis:**
-  - **White, Blue text:** White with Blue text, turning Cloud on hover.
-  - **Outline White, Blue text:** a White border and White text, filling White with Blue
-    text on hover.
+    hover. **Outline Red** fills Red on hover.
+  - **Blue:** <Token data={getTokenData('az.color.brand.blue')} /> with White text,
+    turning <Token data={getTokenData('az.color.brand.azurite')} /> on hover. **Outline
+    Blue** fills Blue on hover. Blue isn't in the designs yet.
+- **On Blue or Azurite:** **Rain,** <Token data={getTokenData('az.color.brand.rain')} />
+  with Blue text, turning a darker Rain (`#65c0db`) with
+  <Token data={getTokenData('az.color.brand.tinta')} /> text on hover. **Outline Rain**
+  fills Rain with Tinta text on hover.
+- **On Red:** **White, Red text,** turning
+  <Token data={getTokenData('az.color.brand.cloud')} /> on hover, and **outline White,
+  Red text,** which fills White with Red text on hover.
+- **On Oasis:** **White, Blue text,** turning Cloud on hover, and **outline White, Blue
+  text,** which fills White with Blue text on hover.
+- **Role colors:** success, danger, warning, info, light and dark, each solid and
+  outline. Their colors are Bootstrap's, as Arizona Bootstrap ships them, until marketing
+  approves status colors; only info (Rain) and the text on some of them are brand colors.
 
 - **Keyboard focus:** a focused button looks the way it does on hover, with a ring 2px
-  outside it. The ring is <Token data={getTokenData('az.color.brand.bougainvillea')} /> on
-  the Red buttons and White on every other color, and its width is the shared
-  <Token data={getTokenData('az.focus-ring.width')} />.
-- **Rain's hover fill** (`#65c0db`) isn't in the brand palette yet. It's recorded in the
-  contract as a value, with a note saying so.
+  outside it. Its width is the shared <Token data={getTokenData('az.focus-ring.width')} />.
+  The ring is <Token data={getTokenData('az.color.brand.bougainvillea')} /> on the Red
+  buttons, White on outline Rain and the White buttons, and the button's own color on the
+  others.
+- **Colors that aren't brand colors,** such as Rain's hover fill and the role colors, are
+  recorded in the contract as values, each with a note saying why.
+- **Class names:** each color's description in the contract gives its Arizona Bootstrap
+  classes: today's color-named and role classes, and the semantic names proposed in
+  az-digital/arizona-bootstrap#2381 (`.btn-primary-2`, `.btn-secondary-4`,
+  `.btn-inverse-primary`…).
 
 ## Size
 
@@ -86,6 +91,14 @@ Each color sets every color the button needs.
 
 <ContractAnatomy contract="button" variant="color.outline-red" />
 
+#### Blue
+
+<ContractAnatomy contract="button" variant="color.blue" />
+
+#### Outline Blue
+
+<ContractAnatomy contract="button" variant="color.outline-blue" />
+
 #### Rain
 
 <ContractAnatomy contract="button" variant="color.rain" />
@@ -109,3 +122,51 @@ Each color sets every color the button needs.
 #### Outline White, Blue text
 
 <ContractAnatomy contract="button" variant="color.outline-white-text-blue" />
+
+#### Success
+
+<ContractAnatomy contract="button" variant="color.success" />
+
+#### Outline success
+
+<ContractAnatomy contract="button" variant="color.outline-success" />
+
+#### Danger
+
+<ContractAnatomy contract="button" variant="color.danger" />
+
+#### Outline danger
+
+<ContractAnatomy contract="button" variant="color.outline-danger" />
+
+#### Warning
+
+<ContractAnatomy contract="button" variant="color.warning" />
+
+#### Outline warning
+
+<ContractAnatomy contract="button" variant="color.outline-warning" />
+
+#### Info
+
+<ContractAnatomy contract="button" variant="color.info" />
+
+#### Outline info
+
+<ContractAnatomy contract="button" variant="color.outline-info" />
+
+#### Light
+
+<ContractAnatomy contract="button" variant="color.light" />
+
+#### Outline light
+
+<ContractAnatomy contract="button" variant="color.outline-light" />
+
+#### Dark
+
+<ContractAnatomy contract="button" variant="color.dark" />
+
+#### Outline dark
+
+<ContractAnatomy contract="button" variant="color.outline-dark" />

@@ -214,7 +214,8 @@
   letter-spacing: var(--az-component-button-large-label-letter-spacing);
 }
 
-/* Colors, one rule per color variant. */
+/* Colors, one rule per color variant, with Arizona Bootstrap's color-named and role class names and the semantic names proposed in az-digital/arizona-bootstrap#2381. */
+
 :root .btn-red,
 :root .btn-primary {
   --bs-btn-bg: var(--az-color-brand-red);
@@ -236,17 +237,42 @@
   --az-btn-focus-outline-color: var(--az-color-brand-bougainvillea);
 }
 
-:root .btn-sky {
+:root .btn-blue,
+:root .btn-secondary,
+:root .btn-primary-2 {
+  --bs-btn-bg: var(--az-color-brand-blue);
+  --bs-btn-border-color: var(--az-color-brand-blue);
+  --bs-btn-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-color-brand-azurite);
+  --bs-btn-hover-border-color: var(--az-color-brand-azurite);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-color-brand-blue);
+}
+
+:root .btn-outline-blue,
+:root .btn-outline-secondary,
+:root .btn-outline-primary-2 {
+  --bs-btn-border-color: var(--az-color-brand-blue);
+  --bs-btn-color: var(--az-color-brand-blue);
+  --bs-btn-hover-bg: var(--az-color-brand-blue);
+  --bs-btn-hover-border-color: var(--az-color-brand-blue);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-color-brand-blue);
+}
+
+:root .btn-sky,
+:root .btn-secondary-4 {
   --bs-btn-bg: var(--az-color-brand-rain);
   --bs-btn-border-color: var(--az-color-brand-rain);
   --bs-btn-color: var(--az-color-brand-blue);
   --bs-btn-hover-bg: var(--az-component-button-rain-hover-fill);
   --bs-btn-hover-border-color: var(--az-component-button-rain-hover-border-color);
   --bs-btn-hover-color: var(--az-color-brand-tinta);
-  --az-btn-focus-outline-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-color-brand-rain);
 }
 
-:root .btn-outline-sky {
+:root .btn-outline-sky,
+:root .btn-outline-secondary-4 {
   --bs-btn-border-color: var(--az-color-brand-rain);
   --bs-btn-color: var(--az-color-brand-rain);
   --bs-btn-hover-bg: var(--az-color-brand-rain);
@@ -256,30 +282,29 @@
 }
 
 :root .btn-white-text-red,
-:root .btn-white-text-blue {
+:root .btn-inverse-primary {
   --bs-btn-bg: var(--az-color-brand-white);
   --bs-btn-border-color: var(--az-color-brand-white);
+  --bs-btn-color: var(--az-color-brand-red);
   --bs-btn-hover-bg: var(--az-color-brand-cloud);
   --bs-btn-hover-border-color: var(--az-color-brand-cloud);
+  --bs-btn-hover-color: var(--az-color-brand-red);
   --az-btn-focus-outline-color: var(--az-color-brand-white);
 }
 
-:root .btn-white-text-red {
-  --bs-btn-color: var(--az-color-brand-red);
-  --bs-btn-hover-color: var(--az-color-brand-red);
-}
-
-:root .btn-white-text-blue {
+:root .btn-white-text-blue,
+:root .btn-inverse-primary-2 {
+  --bs-btn-bg: var(--az-color-brand-white);
+  --bs-btn-border-color: var(--az-color-brand-white);
   --bs-btn-color: var(--az-color-brand-blue);
+  --bs-btn-hover-bg: var(--az-color-brand-cloud);
+  --bs-btn-hover-border-color: var(--az-color-brand-cloud);
   --bs-btn-hover-color: var(--az-color-brand-blue);
+  --az-btn-focus-outline-color: var(--az-color-brand-white);
 }
 
-/*
- * Arizona Bootstrap has one .btn-outline-white, with Gray 800 hover text. The
- * contract has two, for the surface it sits on: Red text on Red, Blue text on
- * Oasis (.bg-oasis, the older name for Arroyo Blue's background).
- */
-:root .btn-outline-white {
+:root .btn-outline-white,
+:root .btn-outline-inverse {
   --bs-btn-border-color: var(--az-color-brand-white);
   --bs-btn-color: var(--az-color-brand-white);
   --bs-btn-hover-bg: var(--az-color-brand-white);
@@ -288,6 +313,123 @@
   --az-btn-focus-outline-color: var(--az-color-brand-white);
 }
 
-:root :is(.bg-oasis, .bg-arroyo-blue) .btn-outline-white {
+
+/* outline-white-text-blue: Arizona Bootstrap has one outline White button; on Oasis its hover text is Blue. */
+
+:root :is(.bg-oasis, .bg-arroyo-blue) :is(.btn-outline-white, .btn-outline-inverse) {
   --bs-btn-hover-color: var(--az-color-brand-blue);
+}
+
+:root .btn-success {
+  --bs-btn-bg: var(--az-component-button-success-fill);
+  --bs-btn-border-color: var(--az-component-button-success-border-color);
+  --bs-btn-color: var(--az-color-brand-tinta);
+  --bs-btn-hover-bg: var(--az-component-button-success-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-success-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-tinta);
+  --az-btn-focus-outline-color: var(--az-component-button-success-focus-visible-ring-color);
+}
+
+:root .btn-outline-success {
+  --bs-btn-border-color: var(--az-component-button-outline-success-border-color);
+  --bs-btn-color: var(--az-component-button-outline-success-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-success-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-success-hover-border-color);
+  --bs-btn-hover-color: var(--az-component-button-outline-success-label-hover-color);
+  --az-btn-focus-outline-color: var(--az-component-button-outline-success-focus-visible-ring-color);
+}
+
+:root .btn-danger {
+  --bs-btn-bg: var(--az-component-button-danger-fill);
+  --bs-btn-border-color: var(--az-component-button-danger-border-color);
+  --bs-btn-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-component-button-danger-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-danger-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-component-button-danger-focus-visible-ring-color);
+}
+
+:root .btn-outline-danger {
+  --bs-btn-border-color: var(--az-component-button-outline-danger-border-color);
+  --bs-btn-color: var(--az-component-button-outline-danger-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-danger-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-danger-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-component-button-outline-danger-focus-visible-ring-color);
+}
+
+:root .btn-warning {
+  --bs-btn-bg: var(--az-component-button-warning-fill);
+  --bs-btn-border-color: var(--az-component-button-warning-border-color);
+  --bs-btn-color: var(--az-component-button-warning-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-warning-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-warning-hover-border-color);
+  --bs-btn-hover-color: var(--az-component-button-warning-label-hover-color);
+  --az-btn-focus-outline-color: var(--az-component-button-warning-focus-visible-ring-color);
+}
+
+:root .btn-outline-warning {
+  --bs-btn-border-color: var(--az-component-button-outline-warning-border-color);
+  --bs-btn-color: var(--az-component-button-outline-warning-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-warning-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-warning-hover-border-color);
+  --bs-btn-hover-color: var(--az-component-button-outline-warning-label-hover-color);
+  --az-btn-focus-outline-color: var(--az-component-button-outline-warning-focus-visible-ring-color);
+}
+
+:root .btn-info {
+  --bs-btn-bg: var(--az-color-brand-rain);
+  --bs-btn-border-color: var(--az-color-brand-rain);
+  --bs-btn-color: var(--az-color-brand-blue);
+  --bs-btn-hover-bg: var(--az-component-button-info-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-info-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-tinta);
+  --az-btn-focus-outline-color: var(--az-color-brand-rain);
+}
+
+:root .btn-outline-info {
+  --bs-btn-border-color: var(--az-color-brand-rain);
+  --bs-btn-color: var(--az-color-brand-azurite);
+  --bs-btn-hover-bg: var(--az-color-brand-rain);
+  --bs-btn-hover-border-color: var(--az-color-brand-rain);
+  --bs-btn-hover-color: var(--az-color-brand-tinta);
+  --az-btn-focus-outline-color: var(--az-color-brand-rain);
+}
+
+:root .btn-light {
+  --bs-btn-bg: var(--az-component-button-light-fill);
+  --bs-btn-border-color: var(--az-component-button-light-border-color);
+  --bs-btn-color: var(--az-color-brand-tinta);
+  --bs-btn-hover-bg: var(--az-component-button-light-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-light-hover-border-color);
+  --bs-btn-hover-color: var(--az-component-button-light-label-hover-color);
+  --az-btn-focus-outline-color: var(--az-component-button-light-focus-visible-ring-color);
+}
+
+:root .btn-outline-light {
+  --bs-btn-border-color: var(--az-component-button-outline-light-border-color);
+  --bs-btn-color: var(--az-component-button-outline-light-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-light-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-light-hover-border-color);
+  --bs-btn-hover-color: var(--az-component-button-outline-light-label-hover-color);
+  --az-btn-focus-outline-color: var(--az-component-button-outline-light-focus-visible-ring-color);
+}
+
+:root .btn-dark {
+  --bs-btn-bg: var(--az-component-button-dark-fill);
+  --bs-btn-border-color: var(--az-component-button-dark-border-color);
+  --bs-btn-color: var(--az-color-brand-white);
+  --bs-btn-hover-bg: var(--az-component-button-dark-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-dark-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-component-button-dark-focus-visible-ring-color);
+}
+
+:root .btn-outline-dark {
+  --bs-btn-border-color: var(--az-component-button-outline-dark-border-color);
+  --bs-btn-color: var(--az-component-button-outline-dark-label-color);
+  --bs-btn-hover-bg: var(--az-component-button-outline-dark-hover-fill);
+  --bs-btn-hover-border-color: var(--az-component-button-outline-dark-hover-border-color);
+  --bs-btn-hover-color: var(--az-color-brand-white);
+  --az-btn-focus-outline-color: var(--az-component-button-outline-dark-focus-visible-ring-color);
 }

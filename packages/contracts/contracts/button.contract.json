@@ -2,7 +2,7 @@
   "$schema": "../contract.schema.json",
   "id": "button",
   "name": "Button",
-  "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes and eight colors. Each color is for a background: Red and outline Red on White, Cool Gray or Warm Gray; Rain and outline Rain on Blue or Azurite; the White buttons and outline White on Red (Red text) or Oasis (Blue text). With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it.",
+  "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes, a solid and an outline button in each brand color (Red and Blue on White, Cool Gray or Warm Gray; Rain on Blue or Azurite; White on Red or Oasis), and Bootstrap's role colors (success, danger, warning, info, light and dark), whose colors are Bootstrap's until marketing approves status colors. With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it.",
   "sources": [
     "Arizona Bootstrap 5.3.x buttons, from az-digital/arizona-bootstrap#2281 (2026 brand buttons, which match the approved Adobe XD designs) and #2339",
     "az-digital/arizona-bootstrap#2378: small buttons use 16px text",
@@ -122,7 +122,7 @@
       "default": "red",
       "options": {
         "red": {
-          "description": "Red, the primary button, on White, Cool Gray or Warm Gray.",
+          "description": "Red, the primary button, on White, Cool Gray or Warm Gray. Arizona Bootstrap: .btn-red and .btn-primary (.btn-primary in the semantic class name proposal, az-digital/arizona-bootstrap#2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -159,7 +159,7 @@
           }
         },
         "outline-red": {
-          "description": "A Red outline, on White, Cool Gray or Warm Gray. It fills Red on hover.",
+          "description": "A Red outline, on White, Cool Gray or Warm Gray. It fills Red on hover. Arizona Bootstrap: .btn-outline-red and .btn-outline-primary.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -194,8 +194,81 @@
             }
           }
         },
+        "blue": {
+          "description": "Blue, on White, Cool Gray or Warm Gray. Arizona Bootstrap: .btn-blue and .btn-secondary (.btn-primary-2 in #2381). It isn't in the XD designs or Figma yet (az-digital/arizona-bootstrap#2281, question 6).",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.brand.blue}",
+                "border.color": "{az.color.brand.blue}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.azurite}",
+                  "border.color": "{az.color.brand.azurite}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.azurite}",
+                  "border.color": "{az.color.brand.azurite}",
+                  "ring.color": "{az.color.brand.blue}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-blue": {
+          "description": "A Blue outline, on White, Cool Gray or Warm Gray. It fills Blue on hover. Arizona Bootstrap: .btn-outline-blue and .btn-outline-secondary (.btn-outline-primary-2 in #2381).",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.blue}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.blue}",
+                  "border.color": "{az.color.brand.blue}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.blue}",
+                  "border.color": "{az.color.brand.blue}",
+                  "ring.color": "{az.color.brand.blue}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.blue}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "rain": {
-          "description": "Rain with Blue text, on Blue or Azurite.",
+          "description": "Rain with Blue text, on Blue or Azurite. Arizona Bootstrap: .btn-sky (.btn-secondary-4 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -226,7 +299,7 @@
                     "$value": "#65c0db",
                     "$description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it."
                   },
-                  "ring.color": "{az.color.brand.white}"
+                  "ring.color": "{az.color.brand.rain}"
                 }
               },
               "parts": {
@@ -248,7 +321,7 @@
           }
         },
         "outline-rain": {
-          "description": "A Rain outline, on Blue or Azurite. It fills Rain on hover.",
+          "description": "A Rain outline, on Blue or Azurite. It fills Rain on hover. Arizona Bootstrap: .btn-outline-sky (.btn-outline-secondary-4 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -284,7 +357,7 @@
           }
         },
         "white-text-red": {
-          "description": "White with Red text, on Red.",
+          "description": "White with Red text, on Red. Arizona Bootstrap: .btn-white-text-red (.btn-inverse-primary in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -321,7 +394,7 @@
           }
         },
         "white-text-blue": {
-          "description": "White with Blue text, on Oasis.",
+          "description": "White with Blue text, on Oasis. Arizona Bootstrap: .btn-white-text-blue (.btn-inverse-primary-2 in #2381).",
           "anatomy": {
             "root": {
               "tokens": {
@@ -358,7 +431,7 @@
           }
         },
         "outline-white-text-red": {
-          "description": "A White outline, on Red. It fills White with Red text on hover.",
+          "description": "A White outline, on Red. It fills White with Red text on hover. Arizona Bootstrap: .btn-outline-white (.btn-outline-inverse in #2381), whose hover text is Gray 800 instead.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -394,7 +467,7 @@
           }
         },
         "outline-white-text-blue": {
-          "description": "A White outline, on Oasis. It fills White with Blue text on hover.",
+          "description": "A White outline, on Oasis. It fills White with Blue text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -422,6 +495,784 @@
                     },
                     "focus-visible": {
                       "color": "{az.color.brand.blue}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "success": {
+          "description": "Success, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-success. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": {
+                  "$type": "color",
+                  "$value": "#70b865",
+                  "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                },
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#70b865",
+                  "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#85c37c",
+                    "$description": "The success button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#7ebf74",
+                    "$description": "The success button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#85c37c",
+                    "$description": "The success button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#7ebf74",
+                    "$description": "The success button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.tinta}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.tinta}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.tinta}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-success": {
+          "description": "An outline success button, filling on hover: .btn-outline-success.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#70b865",
+                  "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#70b865",
+                    "$description": "The success button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#70b865",
+                      "$description": "The outline success button label. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline success button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    },
+                    "focus-visible": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline success button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "danger": {
+          "description": "Danger, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-danger. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": {
+                  "$type": "color",
+                  "$value": "#a95c42",
+                  "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                },
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#a95c42",
+                  "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#904e38",
+                    "$description": "The danger button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#874a35",
+                    "$description": "The danger button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#904e38",
+                    "$description": "The danger button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#874a35",
+                    "$description": "The danger button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-danger": {
+          "description": "An outline danger button, filling on hover: .btn-outline-danger.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#a95c42",
+                  "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#a95c42",
+                    "$description": "The danger button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#a95c42",
+                      "$description": "The outline danger button label. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "warning": {
+          "description": "Warning, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-warning. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": {
+                  "$type": "color",
+                  "$value": "#f19e1f",
+                  "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                },
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#f19e1f",
+                  "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#f3ad41",
+                    "$description": "The warning button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#f2a835",
+                    "$description": "The warning button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#f3ad41",
+                    "$description": "The warning button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#f2a835",
+                    "$description": "The warning button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#000000",
+                      "$description": "The warning button label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    },
+                    "focus-visible": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-warning": {
+          "description": "An outline warning button, filling on hover: .btn-outline-warning.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#f19e1f",
+                  "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#f19e1f",
+                    "$description": "The warning button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#403635",
+                      "$description": "The outline warning button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    },
+                    "focus-visible": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline warning button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "info": {
+          "description": "Info, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-info. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.brand.rain}",
+                "border.color": "{az.color.brand.rain}"
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#94d5ee",
+                    "$description": "The info button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#8ed3ed",
+                    "$description": "The info button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#94d5ee",
+                    "$description": "The info button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#8ed3ed",
+                    "$description": "The info button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": "{az.color.brand.rain}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.blue}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.tinta}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.tinta}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-info": {
+          "description": "An outline info button, filling on hover: .btn-outline-info.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.rain}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.rain}",
+                  "border.color": "{az.color.brand.rain}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.rain}",
+                  "border.color": "{az.color.brand.rain}",
+                  "ring.color": "{az.color.brand.rain}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.azurite}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.tinta}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.tinta}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "light": {
+          "description": "Light, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-light. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": {
+                  "$type": "color",
+                  "$value": "#dee2e6",
+                  "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                },
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#dee2e6",
+                  "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#bdc0c4",
+                    "$description": "The light button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#b2b5b8",
+                    "$description": "The light button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#bdc0c4",
+                    "$description": "The light button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#b2b5b8",
+                    "$description": "The light button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.tinta}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    },
+                    "focus-visible": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-light": {
+          "description": "An outline light button, filling on hover: .btn-outline-light.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#dee2e6",
+                  "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#dee2e6",
+                    "$description": "The light button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#403635",
+                      "$description": "The outline light button label. Arizona Bootstrap's Ash, which isn't in the brand palette and is being retired."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    },
+                    "focus-visible": {
+                      "color": {
+                        "$type": "color",
+                        "$value": "#000000",
+                        "$description": "The outline light button hover label. Black, as Arizona Bootstrap ships it; it isn't in the brand palette."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "dark": {
+          "description": "Dark, one of Bootstrap's theme (role) colors, unchanged in Arizona Bootstrap: .btn-dark. Its colors are Bootstrap's until marketing approves status colors.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": {
+                  "$type": "color",
+                  "$value": "#343a40",
+                  "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                },
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#343a40",
+                  "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#52585d",
+                    "$description": "The dark button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#484e53",
+                    "$description": "The dark button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#52585d",
+                    "$description": "The dark button hover fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#484e53",
+                    "$description": "The dark button hover border. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.brand.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-dark": {
+          "description": "An outline dark button, filling on hover: .btn-outline-dark.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": {
+                  "$type": "color",
+                  "$value": "#343a40",
+                  "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                }
+              },
+              "states": {
+                "hover": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                },
+                "focus-visible": {
+                  "fill": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "border.color": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  },
+                  "ring.color": {
+                    "$type": "color",
+                    "$value": "#343a40",
+                    "$description": "The dark button fill. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                  }
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": {
+                      "$type": "color",
+                      "$value": "#343a40",
+                      "$description": "The outline dark button label. It's Bootstrap's theme color as Arizona Bootstrap ships it, kept until marketing approves status colors; it isn't in the brand palette."
+                    }
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.brand.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.brand.white}"
                     }
                   }
                 }
