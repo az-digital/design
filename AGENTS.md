@@ -25,6 +25,16 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; prefer semantic tokens except when explaining the palette or component-specific tokens. See `Primary/Tokens/Contributing` for the full convention.
 
+### Storybook navigation
+
+- When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position.
+- Verify the rendered sidebar order in Storybook.
+
+### MDX tables
+
+- Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
+- Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
+
 ## Storybook agent CLI
 
 The same skills and tools are also available from the command line, which
