@@ -16,5 +16,8 @@ export const az: {
       "caliche": string,
       "white": string
     }
+  },
+  "focusRing": {
+    "width": string
   }
 };

@@ -16,5 +16,8 @@ export const az = {
       "caliche": "var(--az-color-brand-caliche)",
       "white": "var(--az-color-brand-white)"
     }
+  },
+  "focusRing": {
+    "width": "var(--az-focus-ring-width)"
   }
 };

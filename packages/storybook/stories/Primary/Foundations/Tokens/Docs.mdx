@@ -5,11 +5,12 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { ComponentTokenIndex, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { TokenDisplay, getTokenDisplayItems, getTokensData } from '@az-digital/storybook-addon-tokens';
 import { ColorSwatchGrid } from './ColorSwatchGrid';
 
 {/* File links come from the tokens addon, which builds them for the branch this Storybook was built from. */}
 export const { sourceFiles, artifacts } = getTokensData();
+
 export const outputUrl = (file) => artifacts.find((artifact) => artifact.path.endsWith(`/${file}`))?.url;
 export const githubUrl = sourceFiles[0]?.url;
 export const tokensCssGithubUrl = outputUrl('tokens.css');
@@ -42,10 +43,12 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 <ColorSwatchGrid prefix="az.color.brand." />
 
-## Component tokens
+## Shared decisions
 
-Tokens scoped to a single component (`az.component.<component>.*`), so each component's design decisions are explicit and inspectable instead of implicit in its CSS. Structure shared by all of a component's variants sits at its root; each variant (a style like `solid` or `outline`, or a size) holds only what it changes. Colors point at semantic tokens; sizes, weights, and opacities point at primitive values.
+Decisions every component that needs them shares, so they change in one place. Each is named the way implementations already name the same decision: `az.focus-ring.width` is the focus ring's width wherever one is drawn.
 
-Expand a component to see its tokens by group, or search across every component by name, type, alias, or value (e.g. `semantic.action.default` finds every component token built on it). Each component's Docs page and the **Tokens** tab on its stories show the same tokens in context.
+<TokenDisplay items={getTokenDisplayItems('az.focus-ring.', { order: 'source' })} layout="table" />
 
-<ComponentTokenIndex />
+## Components
+
+Components don't have tokens of their own. Each component's contract (`packages/contracts`) sets each of its parts' design properties: colors point at brand colors, shared decisions at their shared token, and everything specific to the component, such as its sizes and timings, is a value in the contract itself, with a description of what it's for. Its docs page shows the contract as an Anatomy table.
