@@ -74,6 +74,8 @@ const TREE_LINE = '1px solid #b8c1cc';
 
 type TreeRow = { token: string; guides: Array<'pipe' | 'blank'>; branch?: 'tee' | 'elbow' } | { more: number; key: string; guides: Array<'pipe' | 'blank'>; onExpand: () => void };
 
+type LevelKey = 'siblings' | 'children';
+
 /** One 20px column of tree connector: a vertical guide line, a branch into this row, or nothing. */
 function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' }) {
   return (
@@ -91,19 +93,35 @@ function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' }) {
  * a node calls `onNavigate` with that token.
  */
 function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (token: string) => void }) {
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [expanded, setExpanded] = useState<Partial<Record<LevelKey, boolean>>>({});
+  const treeRef = useRef<HTMLDivElement>(null);
+  // The first token a "Show N more" button reveals. The button disappears once
+  // clicked, so focus moves to that token's pill instead of falling to the body
+  // (and out of the drawer's Tab trap and Escape handler).
+  const focusAfterExpand = useRef<string | null>(null);
   const ancestors = getAncestors(token);
   const parent = ancestors.at(-1);
   const siblings = parent ? getTokenNode(parent)?.children ?? [token] : [token];
   const children = getTokenNode(token)?.children ?? [];
 
-  const limited = (key: string, list: string[]) => {
+  const limited = (key: LevelKey, list: string[]) => {
     if (expanded[key] || list.length <= TREE_LEVEL_LIMIT) return { shown: list, hidden: 0 };
     // Always keep the selected token visible, even past the limit.
     const shown = list.slice(0, TREE_LEVEL_LIMIT);
     if (list.includes(token) && !shown.includes(token)) shown[shown.length - 1] = token;
     return { shown, hidden: list.length - shown.length };
   };
+  const expand = (key: LevelKey, list: string[], shown: string[]) => () => {
+    focusAfterExpand.current = list.find((item) => !shown.includes(item)) ?? null;
+    setExpanded((current) => ({ ...current, [key]: true }));
+  };
+
+  useEffect(() => {
+    const target = focusAfterExpand.current;
+    if (!target) return;
+    focusAfterExpand.current = null;
+    treeRef.current?.querySelector<HTMLElement>(`[data-token="${CSS.escape(target)}"] button`)?.focus();
+  }, [expanded]);
 
   const rows: TreeRow[] = [];
   // Single chain down from the root to the direct parent.
@@ -123,14 +141,14 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
     shownChildren.forEach((child, childIndex) => {
       rows.push({ token: child, guides: childGuides, branch: childIndex === shownChildren.length - 1 && hiddenChildren === 0 ? 'elbow' : 'tee' });
     });
-    if (hiddenChildren > 0) rows.push({ more: hiddenChildren, key: 'children', guides: [...childGuides], onExpand: () => setExpanded((current) => ({ ...current, children: true })) });
+    if (hiddenChildren > 0) rows.push({ more: hiddenChildren, key: 'children', guides: [...childGuides], onExpand: expand('children', children, shownChildren) });
   });
-  if (hiddenSiblings > 0) rows.push({ more: hiddenSiblings, key: 'siblings', guides: siblingGuides, onExpand: () => setExpanded((current) => ({ ...current, siblings: true })) });
+  if (hiddenSiblings > 0) rows.push({ more: hiddenSiblings, key: 'siblings', guides: siblingGuides, onExpand: expand('siblings', siblings, shownSiblings) });
 
   const rootValue = getTokenData(ancestors[0] ?? token);
 
   return (
-    <div role="tree" aria-label={`Alias tree for ${token}`} style={{ overflowX: 'auto' }}>
+    <div ref={treeRef} role="tree" aria-label={`Alias tree for ${token}`} style={{ overflowX: 'auto' }}>
       {rows.map((row) => {
         if ('more' in row) {
           return (
@@ -147,7 +165,7 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
         if (!data) return null;
         const isRoot = row.token === (ancestors[0] ?? token) && row.branch === undefined;
         return (
-          <div key={row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
+          <div key={row.token} data-token={row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
             {row.guides.map((guide, index) => <TreeGuide key={index} kind={guide} />)}
             {row.branch && <TreeGuide kind={row.branch} />}
             <Token data={data} swatch selected={row.token === token} onSelect={() => onNavigate(row.token)} style={{ whiteSpace: 'nowrap', flexShrink: 0 }} />
