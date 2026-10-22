@@ -6,6 +6,15 @@ on:
     branches:
       - main
 
+# One run at a time per review site. Each deploy runs `aws s3 sync --delete`
+# into the same folder, so two deploys running at once can finish in the wrong
+# order: the older one deletes the newer build's assets and leaves its
+# iframe.html pointing at files that are gone (seen on PR 79). Let the active
+# run finish so a failed replacement cannot leave a partially synced site.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 env:
   AZ_SITE_HOST: ${{ vars.AZ_SITE_HOST }}
 
