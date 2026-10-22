@@ -23,6 +23,16 @@ Connect to it (project name `az-digital-storybook`) and use it to:
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
+### Storybook navigation
+
+- When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position.
+- Verify the rendered sidebar order in Storybook.
+
+### MDX tables
+
+- Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
+- Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
+
 ## Storybook agent CLI
 
 The same skills and tools are also available from the command line, which
