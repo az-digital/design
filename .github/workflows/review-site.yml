@@ -40,6 +40,10 @@ jobs:
       - name: Run lint checks
         run: npm run lint:storybook
 
+      # The stories run as tests in Chromium, including each component's contract check.
+      - name: Install Playwright's Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Run Storybook tests
         run: npm run test:storybook
   review-site:

@@ -1,0 +1,617 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "button",
+  "name": "Button",
+  "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes, a solid and an outline button in each brand color (Red and Blue on White, Cloud or Caliche; Rain on Blue or Azurite; White on Red or Arroyo Blue). With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it.",
+  "sources": [
+    "Arizona Bootstrap 5.3.x buttons, from az-digital/arizona-bootstrap#2281 (2026 brand buttons, which match the approved Adobe XD designs) and #2339",
+    "az-digital/arizona-bootstrap#2378: small buttons use 16px text",
+    "Figma Buttons component: the colors for each background, and the outline White buttons' hover text",
+    "az-digital/design#89: where the sources differ, Arizona Bootstrap wins; colors use the current palette's names and values"
+  ],
+  "variants": {
+    "size": {
+      "description": "The button's size. With none chosen, it's the default size.",
+      "options": {
+        "small": {
+          "description": "A small button, 29px tall.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "padding.y": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 3,
+                    "unit": "px"
+                  },
+                  "$description": "Small button top and bottom padding."
+                },
+                "padding.x": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 11,
+                    "unit": "px"
+                  },
+                  "$description": "Small button left and right padding."
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 16,
+                        "unit": "px"
+                      },
+                      "$description": "Small button label text size."
+                    },
+                    "line-height": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 19,
+                        "unit": "px"
+                      },
+                      "$description": "Small button label line height."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "large": {
+          "description": "A large button, 55px tall.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "padding.y": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 12,
+                    "unit": "px"
+                  },
+                  "$description": "Large button top and bottom padding."
+                },
+                "padding.x": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 34,
+                    "unit": "px"
+                  },
+                  "$description": "Large button left and right padding."
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 22,
+                        "unit": "px"
+                      },
+                      "$description": "Large button label text size."
+                    },
+                    "line-height": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 27,
+                        "unit": "px"
+                      },
+                      "$description": "Large button label line height."
+                    },
+                    "letter-spacing": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 0.18,
+                        "unit": "px"
+                      },
+                      "$description": "Large button label letter spacing."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "color": {
+      "description": "The button's colors, each for the backgrounds named in its description.",
+      "default": "red",
+      "options": {
+        "red": {
+          "description": "Red, the primary button, on White, Cloud or Caliche. Arizona Bootstrap: .btn-red and .btn-primary.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.bg.button.red}",
+                "border.color": "{az.color.bg.button.red}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.bg.button.red-hover}",
+                  "border.color": "{az.color.bg.button.red-hover}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.bg.button.red-hover}",
+                  "border.color": "{az.color.bg.button.red-hover}",
+                  "ring.color": "{az.color.brand.bougainvillea}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-red": {
+          "description": "A Red outline, on White, Cloud or Caliche. It fills Red on hover. Arizona Bootstrap: .btn-outline-red and .btn-outline-primary.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.red}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.red}",
+                  "border.color": "{az.color.brand.red}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.red}",
+                  "border.color": "{az.color.brand.red}",
+                  "ring.color": "{az.color.brand.bougainvillea}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.red}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "blue": {
+          "description": "Blue, on White, Cloud or Caliche. Arizona Bootstrap: .btn-blue and .btn-secondary. It isn't in the XD designs or Figma yet (az-digital/arizona-bootstrap#2281, question 6).",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.bg.button.blue}",
+                "border.color": "{az.color.bg.button.blue}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.bg.button.blue-hover}",
+                  "border.color": "{az.color.bg.button.blue-hover}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.bg.button.blue-hover}",
+                  "border.color": "{az.color.bg.button.blue-hover}",
+                  "ring.color": "{az.color.brand.blue}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-blue": {
+          "description": "A Blue outline, on White, Cloud or Caliche. It fills Blue on hover. Arizona Bootstrap: .btn-outline-blue and .btn-outline-secondary.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.blue}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.blue}",
+                  "border.color": "{az.color.brand.blue}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.blue}",
+                  "border.color": "{az.color.brand.blue}",
+                  "ring.color": "{az.color.brand.blue}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.blue}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.white}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rain": {
+          "description": "Rain with Blue text, on Blue or Azurite. Arizona Bootstrap: .btn-rain.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.bg.button.rain}",
+                "border.color": "{az.color.bg.button.rain}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.bg.button.rain-hover}",
+                  "border.color": "{az.color.bg.button.rain-hover}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.bg.button.rain-hover}",
+                  "border.color": "{az.color.bg.button.rain-hover}",
+                  "ring.color": "{az.color.brand.rain}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.blue}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.tinta}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.tinta}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-rain": {
+          "description": "A Rain outline, on Blue or Azurite. It fills Rain on hover. Arizona Bootstrap: .btn-outline-rain.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.rain}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.rain}",
+                  "border.color": "{az.color.brand.rain}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.rain}",
+                  "border.color": "{az.color.brand.rain}",
+                  "ring.color": "{az.color.brand.white}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.rain}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.tinta}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.tinta}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "white-text-red": {
+          "description": "White with Red text, on Red. Arizona Bootstrap: .btn-white-text-red.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.bg.button.white}",
+                "border.color": "{az.color.bg.button.white}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}",
+                  "ring.color": "{az.color.brand.white}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.red}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.red}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.red}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "white-text-blue": {
+          "description": "White with Blue text, on Arroyo Blue. Arizona Bootstrap: .btn-white-text-blue.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "fill": "{az.color.bg.button.white}",
+                "border.color": "{az.color.bg.button.white}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}",
+                  "ring.color": "{az.color.brand.white}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.blue}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.blue}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.blue}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-white-text-red": {
+          "description": "A White outline, on Red. It fills White with Red text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.white}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.white}",
+                  "border.color": "{az.color.brand.white}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.white}",
+                  "border.color": "{az.color.brand.white}",
+                  "ring.color": "{az.color.brand.white}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.red}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.red}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outline-white-text-blue": {
+          "description": "A White outline, on Arroyo Blue. It fills White with Blue text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "border.color": "{az.color.brand.white}"
+              },
+              "states": {
+                "hover": {
+                  "fill": "{az.color.brand.white}",
+                  "border.color": "{az.color.brand.white}"
+                },
+                "focus-visible": {
+                  "fill": "{az.color.brand.white}",
+                  "border.color": "{az.color.brand.white}",
+                  "ring.color": "{az.color.brand.white}"
+                }
+              },
+              "parts": {
+                "label": {
+                  "tokens": {
+                    "color": "{az.color.fg.white}"
+                  },
+                  "states": {
+                    "hover": {
+                      "color": "{az.color.fg.blue}"
+                    },
+                    "focus-visible": {
+                      "color": "{az.color.fg.blue}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The button: its shape, border and padding. Its colors come from its color variant. A button that's only an icon keeps the same height.",
+      "tokens": {
+        "padding.y": {
+          "$type": "dimension",
+          "$value": {
+            "value": 9,
+            "unit": "px"
+          },
+          "$description": "Button top and bottom padding, so with its 24px line and 2px border the button is 46px tall."
+        },
+        "padding.x": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          },
+          "$description": "Button left and right padding."
+        },
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          },
+          "$description": "Button border width, on every color, so outline and solid buttons are the same size."
+        },
+        "border.radius": {
+          "$type": "dimension",
+          "$value": {
+            "value": 256,
+            "unit": "px"
+          },
+          "$description": "Button corner radius: fully rounded ends (a pill) at every size."
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": {
+            "value": 4,
+            "unit": "px"
+          },
+          "$description": "Space between the label and an icon."
+        },
+        "transition.duration": {
+          "$type": "duration",
+          "$value": {
+            "value": 150,
+            "unit": "ms"
+          },
+          "$description": "How long a button takes to change color on hover and focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+        },
+        "transition.easing": {
+          "$type": "cubicBezier",
+          "$value": [
+            0.42,
+            0,
+            0.58,
+            1
+          ],
+          "$description": "Easing for a button's color changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+        }
+      },
+      "states": {
+        "focus-visible": {
+          "ring.width": "{az.focus-ring.width.md}",
+          "ring.offset": {
+            "$type": "dimension",
+            "$value": {
+              "value": 2,
+              "unit": "px"
+            },
+            "$description": "Gap between the button and its keyboard focus ring."
+          }
+        }
+      },
+      "parts": {
+        "label": {
+          "description": "The button's text.",
+          "tokens": {
+            "font.family": {
+              "$type": "fontFamily",
+              "$value": [
+                "proxima-nova-condensed",
+                "Proxima Nova Condensed",
+                "proxima-nova",
+                "calibri",
+                "sans-serif"
+              ],
+              "$description": "Button label typeface: Proxima Nova Condensed."
+            },
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 700,
+              "$description": "Button label weight (Bold)."
+            },
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Button label text size."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Button label line height."
+            },
+            "letter-spacing": {
+              "$type": "dimension",
+              "$value": {
+                "value": 0.14,
+                "unit": "px"
+              },
+              "$description": "Button label letter spacing."
+            }
+          }
+        }
+      }
+    }
+  }
+}
