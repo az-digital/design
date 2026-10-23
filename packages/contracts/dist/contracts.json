@@ -98,7 +98,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
@@ -233,7 +233,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
@@ -455,7 +455,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "button",
@@ -659,7 +659,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.red"
+    "token": "az.color.bg.button.red"
   },
   {
     "contract": "button",
@@ -668,7 +668,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.color",
-    "token": "az.color.brand.red"
+    "token": "az.color.bg.button.red"
   },
   {
     "contract": "button",
@@ -677,7 +677,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.sonoran-red"
+    "token": "az.color.bg.button.red-hover"
   },
   {
     "contract": "button",
@@ -686,7 +686,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "border.color",
-    "token": "az.color.brand.sonoran-red"
+    "token": "az.color.bg.button.red-hover"
   },
   {
     "contract": "button",
@@ -695,7 +695,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.sonoran-red"
+    "token": "az.color.bg.button.red-hover"
   },
   {
     "contract": "button",
@@ -704,7 +704,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.color",
-    "token": "az.color.brand.sonoran-red"
+    "token": "az.color.bg.button.red-hover"
   },
   {
     "contract": "button",
@@ -722,7 +722,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -731,7 +731,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -740,7 +740,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -803,7 +803,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -812,7 +812,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -821,7 +821,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -830,7 +830,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.button.blue"
   },
   {
     "contract": "button",
@@ -839,7 +839,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.button.blue"
   },
   {
     "contract": "button",
@@ -848,7 +848,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.azurite"
+    "token": "az.color.bg.button.blue-hover"
   },
   {
     "contract": "button",
@@ -857,7 +857,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "border.color",
-    "token": "az.color.brand.azurite"
+    "token": "az.color.bg.button.blue-hover"
   },
   {
     "contract": "button",
@@ -866,7 +866,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.azurite"
+    "token": "az.color.bg.button.blue-hover"
   },
   {
     "contract": "button",
@@ -875,7 +875,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.color",
-    "token": "az.color.brand.azurite"
+    "token": "az.color.bg.button.blue-hover"
   },
   {
     "contract": "button",
@@ -893,7 +893,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -902,7 +902,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -911,7 +911,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -974,7 +974,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -983,7 +983,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -992,7 +992,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -1001,7 +1001,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.rain"
+    "token": "az.color.bg.button.rain"
   },
   {
     "contract": "button",
@@ -1010,7 +1010,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.color",
-    "token": "az.color.brand.rain"
+    "token": "az.color.bg.button.rain"
   },
   {
     "contract": "button",
@@ -1019,11 +1019,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": null,
-    "type": "color",
-    "value": "#65c0db",
-    "description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.",
-    "variable": "az-component-button-rain-hover-fill"
+    "token": "az.color.bg.button.rain-hover"
   },
   {
     "contract": "button",
@@ -1032,11 +1028,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "border.color",
-    "token": null,
-    "type": "color",
-    "value": "#65c0db",
-    "description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.",
-    "variable": "az-component-button-rain-hover-border-color"
+    "token": "az.color.bg.button.rain-hover"
   },
   {
     "contract": "button",
@@ -1045,11 +1037,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": null,
-    "type": "color",
-    "value": "#65c0db",
-    "description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.",
-    "variable": "az-component-button-rain-focus-visible-fill"
+    "token": "az.color.bg.button.rain-hover"
   },
   {
     "contract": "button",
@@ -1058,11 +1046,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.color",
-    "token": null,
-    "type": "color",
-    "value": "#65c0db",
-    "description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it.",
-    "variable": "az-component-button-rain-focus-visible-border-color"
+    "token": "az.color.bg.button.rain-hover"
   },
   {
     "contract": "button",
@@ -1080,7 +1064,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -1089,7 +1073,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.tinta"
+    "token": "az.color.fg.tinta"
   },
   {
     "contract": "button",
@@ -1098,7 +1082,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.tinta"
+    "token": "az.color.fg.tinta"
   },
   {
     "contract": "button",
@@ -1161,7 +1145,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.rain"
+    "token": "az.color.fg.rain"
   },
   {
     "contract": "button",
@@ -1170,7 +1154,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.tinta"
+    "token": "az.color.fg.tinta"
   },
   {
     "contract": "button",
@@ -1179,7 +1163,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.tinta"
+    "token": "az.color.fg.tinta"
   },
   {
     "contract": "button",
@@ -1188,7 +1172,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.white"
+    "token": "az.color.bg.button.white"
   },
   {
     "contract": "button",
@@ -1197,7 +1181,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.bg.button.white"
   },
   {
     "contract": "button",
@@ -1206,7 +1190,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1215,7 +1199,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "border.color",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1224,7 +1208,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1233,7 +1217,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.color",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1251,7 +1235,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -1260,7 +1244,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -1269,7 +1253,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -1278,7 +1262,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.white"
+    "token": "az.color.bg.button.white"
   },
   {
     "contract": "button",
@@ -1287,7 +1271,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.bg.button.white"
   },
   {
     "contract": "button",
@@ -1296,7 +1280,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1305,7 +1289,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "border.color",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1314,7 +1298,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1323,7 +1307,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "border.color",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.button.white-hover"
   },
   {
     "contract": "button",
@@ -1341,7 +1325,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -1350,7 +1334,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -1359,7 +1343,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -1422,7 +1406,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -1431,7 +1415,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -1440,7 +1424,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.red"
+    "token": "az.color.fg.red"
   },
   {
     "contract": "button",
@@ -1503,7 +1487,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "button",
@@ -1512,7 +1496,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",
@@ -1521,7 +1505,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.blue"
+    "token": "az.color.fg.blue"
   },
   {
     "contract": "button",

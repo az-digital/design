@@ -39,11 +39,11 @@ function TokensPanelContent() {
   const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
 
   if (data.tokens.length === 0) {
-    return <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>Loading tokens…</p>;
+    return <p style={{ margin: 0, padding: 16, color: '#616e7c', fontSize: 13 }}>Loading tokens…</p>;
   }
   if (items.length === 0) {
     return (
-      <p style={{ margin: 0, padding: 16, color: '#697786', fontSize: 13 }}>
+      <p style={{ margin: 0, padding: 16, color: '#616e7c', fontSize: 13 }}>
         No tokens match <code>{prefixes.join(', ')}</code>.
       </p>
     );

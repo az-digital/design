@@ -98,7 +98,9 @@ npm run build:contracts
 - `tokens.scss` — Sass variables (e.g. `$az-color-brand-blue: #0c234b;`) for Sass-based builds.
 - `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the generated CSS variable names instead of reconstructing them.
 
-In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{az.color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
+In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
+
+`tokens.json` is written the way Tokens Studio reads it, since it's also Tokens Studio's sync file. The top-level `az` is its token set, so references leave it out (`{color.brand.red}`); the Style Dictionary config adds it back before resolving them, so every token keeps its `az.` name in the build, the contracts and Storybook. Sizes are strings (`"8px"`) and font families are one comma-separated string: Tokens Studio doesn't read DTCG 2025.10's `{ "value": 8, "unit": "px" }` objects or font lists yet.
 
 Never edit files in `dist/` directly — they're regenerated on every token build.
 

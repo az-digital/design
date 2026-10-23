@@ -55,7 +55,7 @@ check flags as redundant.
 
 For a decision several components share (a link color, the focus ring, a
 border, form-control sizing, body type), add one token named after Bootstrap 6's
-name for it (`az.focus-ring.width` for `--focus-ring-width`), with Arizona's value,
+name for it (`az.focus-ring.width.md` for `--focus-ring-width`), with Arizona's value,
 and point every contract at it. Don't adopt Bootstrap 6's role names (`primary`,
 `accent`) yet. See
 [packages/contracts/README.md](./packages/contracts/README.md).

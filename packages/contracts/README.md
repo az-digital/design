@@ -19,7 +19,7 @@ so `tokens.json` stays small and components don't need tokens of their own:
 
 - **Brand colors**, which contracts point at for colors.
 - **Shared and semantic tokens** only for decisions that are really shared or that a
-  theme changes, such as the focus ring's width (`az.focus-ring.width`).
+  theme changes, such as the focus ring's width (`az.focus-ring.width.md`).
 - **The component's own values**, such as its sizes and timings, written in the
   contract like a DTCG token, with a description of what each is for. There are no
   primitives named after their values (`az.dimension.50`): a name that's its own value
@@ -91,7 +91,7 @@ contracts likewise bind a component's parts to tokens.
     written like a DTCG 2025.10 token: a `$type` (`dimension`, `duration`,
     `cubicBezier`, `fontFamily`, `fontWeight`, `number` or `color`), a `$value` and a
     `$description`. A `color` value is only for a color that isn't in the brand palette
-    yet, such as the Rain button's hover fill, and its description says so.
+    yet, such as a role button's status color, and its description says so.
   - **`states`:** what changes in `hover`, `focus-visible`, `focus-within`, `active`,
     `open` or `disabled`. Only what changes.
   - **`breakpoints`:** what changes from `sm` (576px), `md` (768px), `lg` (992px),

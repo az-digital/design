@@ -126,31 +126,31 @@
           "anatomy": {
             "root": {
               "tokens": {
-                "fill": "{az.color.brand.red}",
-                "border.color": "{az.color.brand.red}"
+                "fill": "{az.color.bg.button.red}",
+                "border.color": "{az.color.bg.button.red}"
               },
               "states": {
                 "hover": {
-                  "fill": "{az.color.brand.sonoran-red}",
-                  "border.color": "{az.color.brand.sonoran-red}"
+                  "fill": "{az.color.bg.button.red-hover}",
+                  "border.color": "{az.color.bg.button.red-hover}"
                 },
                 "focus-visible": {
-                  "fill": "{az.color.brand.sonoran-red}",
-                  "border.color": "{az.color.brand.sonoran-red}",
+                  "fill": "{az.color.bg.button.red-hover}",
+                  "border.color": "{az.color.bg.button.red-hover}",
                   "ring.color": "{az.color.brand.bougainvillea}"
                 }
               },
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.white}"
+                    "color": "{az.color.fg.white}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     }
                   }
                 }
@@ -179,14 +179,14 @@
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.red}"
+                    "color": "{az.color.fg.red}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     }
                   }
                 }
@@ -199,31 +199,31 @@
           "anatomy": {
             "root": {
               "tokens": {
-                "fill": "{az.color.brand.blue}",
-                "border.color": "{az.color.brand.blue}"
+                "fill": "{az.color.bg.button.blue}",
+                "border.color": "{az.color.bg.button.blue}"
               },
               "states": {
                 "hover": {
-                  "fill": "{az.color.brand.azurite}",
-                  "border.color": "{az.color.brand.azurite}"
+                  "fill": "{az.color.bg.button.blue-hover}",
+                  "border.color": "{az.color.bg.button.blue-hover}"
                 },
                 "focus-visible": {
-                  "fill": "{az.color.brand.azurite}",
-                  "border.color": "{az.color.brand.azurite}",
+                  "fill": "{az.color.bg.button.blue-hover}",
+                  "border.color": "{az.color.bg.button.blue-hover}",
                   "ring.color": "{az.color.brand.blue}"
                 }
               },
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.white}"
+                    "color": "{az.color.fg.white}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     }
                   }
                 }
@@ -252,14 +252,14 @@
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.blue}"
+                    "color": "{az.color.fg.blue}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.white}"
+                      "color": "{az.color.fg.white}"
                     }
                   }
                 }
@@ -272,47 +272,31 @@
           "anatomy": {
             "root": {
               "tokens": {
-                "fill": "{az.color.brand.rain}",
-                "border.color": "{az.color.brand.rain}"
+                "fill": "{az.color.bg.button.rain}",
+                "border.color": "{az.color.bg.button.rain}"
               },
               "states": {
                 "hover": {
-                  "fill": {
-                    "$type": "color",
-                    "$value": "#65c0db",
-                    "$description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it."
-                  },
-                  "border.color": {
-                    "$type": "color",
-                    "$value": "#65c0db",
-                    "$description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it."
-                  }
+                  "fill": "{az.color.bg.button.rain-hover}",
+                  "border.color": "{az.color.bg.button.rain-hover}"
                 },
                 "focus-visible": {
-                  "fill": {
-                    "$type": "color",
-                    "$value": "#65c0db",
-                    "$description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it."
-                  },
-                  "border.color": {
-                    "$type": "color",
-                    "$value": "#65c0db",
-                    "$description": "The Rain button's hover fill, a darker Rain. It isn't in the brand palette; Arizona Bootstrap and Figma both use it."
-                  },
+                  "fill": "{az.color.bg.button.rain-hover}",
+                  "border.color": "{az.color.bg.button.rain-hover}",
                   "ring.color": "{az.color.brand.rain}"
                 }
               },
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.blue}"
+                    "color": "{az.color.fg.blue}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.tinta}"
+                      "color": "{az.color.fg.tinta}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.tinta}"
+                      "color": "{az.color.fg.tinta}"
                     }
                   }
                 }
@@ -341,14 +325,14 @@
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.rain}"
+                    "color": "{az.color.fg.rain}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.tinta}"
+                      "color": "{az.color.fg.tinta}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.tinta}"
+                      "color": "{az.color.fg.tinta}"
                     }
                   }
                 }
@@ -361,31 +345,31 @@
           "anatomy": {
             "root": {
               "tokens": {
-                "fill": "{az.color.brand.white}",
-                "border.color": "{az.color.brand.white}"
+                "fill": "{az.color.bg.button.white}",
+                "border.color": "{az.color.bg.button.white}"
               },
               "states": {
                 "hover": {
-                  "fill": "{az.color.brand.cloud}",
-                  "border.color": "{az.color.brand.cloud}"
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}"
                 },
                 "focus-visible": {
-                  "fill": "{az.color.brand.cloud}",
-                  "border.color": "{az.color.brand.cloud}",
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}",
                   "ring.color": "{az.color.brand.white}"
                 }
               },
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.red}"
+                    "color": "{az.color.fg.red}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.red}"
+                      "color": "{az.color.fg.red}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.red}"
+                      "color": "{az.color.fg.red}"
                     }
                   }
                 }
@@ -398,31 +382,31 @@
           "anatomy": {
             "root": {
               "tokens": {
-                "fill": "{az.color.brand.white}",
-                "border.color": "{az.color.brand.white}"
+                "fill": "{az.color.bg.button.white}",
+                "border.color": "{az.color.bg.button.white}"
               },
               "states": {
                 "hover": {
-                  "fill": "{az.color.brand.cloud}",
-                  "border.color": "{az.color.brand.cloud}"
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}"
                 },
                 "focus-visible": {
-                  "fill": "{az.color.brand.cloud}",
-                  "border.color": "{az.color.brand.cloud}",
+                  "fill": "{az.color.bg.button.white-hover}",
+                  "border.color": "{az.color.bg.button.white-hover}",
                   "ring.color": "{az.color.brand.white}"
                 }
               },
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.blue}"
+                    "color": "{az.color.fg.blue}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.blue}"
+                      "color": "{az.color.fg.blue}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.blue}"
+                      "color": "{az.color.fg.blue}"
                     }
                   }
                 }
@@ -451,14 +435,14 @@
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.white}"
+                    "color": "{az.color.fg.white}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.red}"
+                      "color": "{az.color.fg.red}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.red}"
+                      "color": "{az.color.fg.red}"
                     }
                   }
                 }
@@ -487,14 +471,14 @@
               "parts": {
                 "label": {
                   "tokens": {
-                    "color": "{az.color.brand.white}"
+                    "color": "{az.color.fg.white}"
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.brand.blue}"
+                      "color": "{az.color.fg.blue}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.brand.blue}"
+                      "color": "{az.color.fg.blue}"
                     }
                   }
                 }
@@ -1348,7 +1332,7 @@
       },
       "states": {
         "focus-visible": {
-          "ring.width": "{az.focus-ring.width}",
+          "ring.width": "{az.focus-ring.width.md}",
           "ring.offset": {
             "$type": "dimension",
             "$value": {

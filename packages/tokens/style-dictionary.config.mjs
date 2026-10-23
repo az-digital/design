@@ -36,9 +36,27 @@ ${entries.map(([key, child]) => `${childSpacing}${JSON.stringify(key)}: ${typeof
 ${spacing}}`;
 };
 
+/**
+ * tokens.json is Tokens Studio's sync file, where the top-level `az` is a token set and
+ * references leave it out (`{color.brand.red}`). Style Dictionary keeps the set as the
+ * first part of every path (`az.color.brand.red`), so this adds the set name back to each
+ * reference before they're resolved.
+ */
+const withSetName = (node, set) => {
+  if (typeof node === 'string') return node.replace(new RegExp(`\\{(?!${set}\\.)([^}]+)\\}`, 'g'), `{${set}.$1}`);
+  if (Array.isArray(node)) return node.map((child) => withSetName(child, set));
+  if (node && typeof node === 'object') return Object.fromEntries(Object.entries(node).map(([key, child]) => [key, withSetName(child, set)]));
+  return node;
+};
+
 export default {
   source: ['tokens.json'],
+  preprocessors: ['tokens-studio-set-references'],
   hooks: {
+    preprocessors: {
+      'tokens-studio-set-references': (dictionary) =>
+        Object.fromEntries(Object.entries(dictionary).map(([key, value]) => [key, key.startsWith('$') ? value : withSetName(value, key)])),
+    },
     formats: {
       'javascript/variables': ({ dictionary }) => `export const az = ${JSON.stringify(buildCssVariableTree(dictionary), null, 2)};\n`,
       'typescript/declarations': ({ dictionary }) => `export const az: ${renderType(buildCssVariableTree(dictionary))};\n`,
