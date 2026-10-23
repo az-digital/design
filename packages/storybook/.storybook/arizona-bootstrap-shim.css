@@ -168,3 +168,265 @@
     padding-top: var(--az-component-brand-header-height);
   }
 }
+
+/*
+ * Card (card.contract.json): Arizona Bootstrap's .card, which keeps most of its
+ * values in --bs-card-* variables, so this points those at the contract's
+ * values (--az-component-card-*) and the brand colors it names, including the
+ * card's fill and border. Arizona Bootstrap's default card is White with a
+ * border, and a card changes that with classes: az-digital/arizona-bootstrap#2365's
+ * .card-bold-hover gives it a Cloud fill and no border.
+ *
+ * Storybook loads Arizona Bootstrap 5.2.2, and #2365 targets 5.3.x, so 5.2.2
+ * doesn't have #2365's classes (.card-icon, .card-bold-hover) or its changes to
+ * the .hover utility's image zoom. The shim adds them below, for cards only,
+ * reading every design value from the contracts. Rules that copy #2365's
+ * behavior, rather than set a contract value, say so.
+ */
+:root .card {
+  --bs-card-bg: var(--az-color-brand-cloud);
+  --bs-card-color: var(--az-color-brand-tinta);
+  --bs-card-title-color: var(--az-color-brand-azurite);
+  --bs-card-border-width: var(--az-component-card-border-width);
+  --bs-card-border-radius: var(--az-component-card-border-radius);
+  --bs-card-inner-border-radius: calc(var(--az-component-card-border-radius) - var(--az-component-card-border-width));
+  --bs-card-spacer-y: var(--az-component-card-body-padding-y);
+  --bs-card-spacer-x: var(--az-component-card-body-padding-x);
+  --bs-card-title-spacer-y: var(--az-component-card-title-margin-bottom);
+  --bs-card-cap-padding-y: var(--az-component-card-header-footer-padding-y);
+  --bs-card-cap-padding-x: var(--az-component-card-header-footer-padding-x);
+}
+
+/*
+ * The border comes back in forced colors (high contrast) mode, which removes
+ * the fill. The contract's border.width description asks for 1px, but has no
+ * value for it, so this uses Bootstrap's 1px border width.
+ */
+@media (forced-colors: active) {
+  :root .card {
+    --bs-card-border-width: var(--bs-border-width);
+  }
+}
+
+/*
+ * Title. Arizona Bootstrap's heading classes (.h5, which its card examples
+ * use) come later and set their own margin, size, weight, line height and
+ * color, so the shim sets each one here.
+ */
+:root .card-title {
+  margin-bottom: var(--az-component-card-title-margin-bottom);
+  font-size: var(--az-component-card-title-font-size);
+  font-weight: var(--az-component-card-title-font-weight);
+  line-height: var(--az-component-card-title-line-height);
+  color: var(--bs-card-title-color);
+}
+
+/* Text, and the space between it and what follows it. */
+:root .card-text {
+  font-size: var(--az-component-card-text-font-size);
+  font-weight: var(--az-component-card-text-font-weight);
+  line-height: var(--az-component-card-text-line-height);
+}
+
+:root .card-text:not(:last-child) {
+  margin-bottom: var(--az-component-card-text-margin-bottom);
+}
+
+/*
+ * Image and text card: the photo's shape, from the contract. object-fit: cover
+ * crops the photo to fill that shape, whatever shape the photo itself is.
+ */
+:root .card-img-top {
+  aspect-ratio: var(--az-component-card-image-aspect-ratio-width) / var(--az-component-card-image-aspect-ratio-height);
+  object-fit: cover;
+}
+
+/*
+ * Image zoom (.hover with .hover-img-zoom-in): #2365 zooms 8%, animates the
+ * zoom back out, and zooms for keyboard focus too. 5.2.2 zooms 3%, on hover and
+ * :focus only, so the shim sets all of it. A card zooms its image when Tab
+ * reaches its stretched link, which :has(:focus-visible) catches. The markup's
+ * .overflow-hidden on the card keeps the zoom inside its corners.
+ */
+:root .card.hover img.hover-img-zoom-in {
+  transition-property: transform;
+  transition-duration: var(--az-component-card-image-transition-duration);
+  transition-timing-function: var(--az-component-card-image-transition-easing);
+}
+
+:root .card.hover:hover img.hover-img-zoom-in {
+  transform: scale(var(--az-component-card-image-hover-scale));
+}
+
+:root .card.hover:is(:focus-visible, :has(:focus-visible)) img.hover-img-zoom-in {
+  transform: scale(var(--az-component-card-image-focus-visible-scale));
+}
+
+/* #2365's behavior, not a contract value: keyboard focus underlines the title too. */
+:root .card.hover:has(:focus-visible) .hover-text-underline {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root .card.hover img.hover-img-zoom-in {
+    transition: none;
+  }
+}
+
+/*
+ * Icon card: the icon (#2365's .card-icon). display: block and line-height: 1
+ * are #2365's behavior, not contract values.
+ */
+:root .card .card-icon {
+  display: block;
+  margin-bottom: var(--az-component-card-icon-margin-bottom);
+  font-size: var(--az-component-card-icon-size);
+  line-height: 1;
+  color: var(--az-color-brand-azurite);
+}
+
+/* #2365's behavior: an inline SVG icon is 1em square, so the icon size sets it the same as a font glyph. */
+:root .card svg.card-icon {
+  width: 1em;
+  height: 1em;
+}
+
+/*
+ * Link list card: a .list-unstyled list of .card-link links, one per line. The
+ * font family is the one design value here that isn't a token or contract
+ * value, because there are no font family tokens yet. The list has no space
+ * below it, because it's the last thing in the card.
+ */
+:root .card-link {
+  font-family: proxima-nova-condensed, sans-serif;
+  font-size: var(--az-component-card-link-font-size);
+  font-weight: var(--az-component-card-link-font-weight);
+  line-height: var(--az-component-card-link-line-height);
+  color: var(--az-color-brand-azurite);
+}
+
+:root .card-body > .list-unstyled {
+  margin-bottom: 0;
+}
+
+:root .card-body > .list-unstyled > li + li {
+  margin-top: var(--az-component-card-link-gap);
+}
+
+/*
+ * Call to action card: a button, or a .list-inline row of social icon links,
+ * below the text. The row has line-height: 1, which adds less space around its
+ * icons than the default line height, and its links aren't underlined. The row has no space below it, because it's the last thing
+ * in the card.
+ */
+:root .card-body > :is(.btn, .list-inline) {
+  margin-top: var(--az-component-card-action-margin-top);
+}
+
+:root .card-body > .list-inline {
+  margin-bottom: 0;
+  font-size: var(--az-component-card-social-link-size);
+  line-height: 1;
+}
+
+:root .card-body > .list-inline > .list-inline-item:not(:last-child) {
+  margin-right: var(--az-component-card-social-link-gap);
+}
+
+:root .card-body > .list-inline a {
+  color: var(--az-color-brand-red);
+  text-decoration: none;
+}
+
+/*
+ * Title on image card (title-on-image-card.contract.json): a square photo in a
+ * .ratio, with a .card-title in a .card-img-overlay. The gradient is the one
+ * .text-bg-gradient-blue draws, with its color from the contract.
+ */
+:root .card:has(> .card-img-overlay > .card-title) > .ratio {
+  --bs-aspect-ratio: calc(var(--az-component-title-on-image-card-image-aspect-ratio-height) / var(--az-component-title-on-image-card-image-aspect-ratio-width) * 100%);
+}
+
+:root .card-img-overlay > .card-title {
+  height: calc(var(--az-component-title-on-image-card-title-height) * 1%);
+  padding: 0 var(--az-component-title-on-image-card-title-padding-x) var(--az-component-title-on-image-card-title-padding-bottom);
+  color: var(--az-color-brand-white);
+  background-image: linear-gradient(180deg, transparent, var(--az-color-brand-blue));
+}
+
+/* The title link's keyboard focus ring is White, as .text-bg-gradient-blue draws it, so it shows on the photo. */
+:root .card-img-overlay > .card-title a:focus-visible {
+  box-shadow: 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-white);
+}
+
+/*
+ * Clickable card (clickable-card.contract.json): #2365's .card-bold-hover. Its
+ * hover colors show on hover and while keyboard focus is on a link inside the
+ * card. The fill, text and title follow the card variables above; the icon and
+ * other links are set directly.
+ */
+:root .card-bold-hover:is(:hover, :has(:focus-visible)) {
+  --bs-card-bg: var(--az-color-brand-blue);
+  --bs-card-color: var(--az-color-brand-white);
+  --bs-card-title-color: var(--az-color-brand-rain);
+}
+
+:root .card-bold-hover:is(:hover, :has(:focus-visible)) .card-icon {
+  color: var(--az-color-brand-rain);
+}
+
+:root .card-bold-hover:is(:hover, :has(:focus-visible)) a:not(.btn, .nav-link) {
+  color: var(--az-color-brand-white);
+}
+
+/* #2365's behavior, not a contract value: the title is underlined. */
+:root .card-bold-hover:is(:hover, :has(:focus-visible)) .card-title {
+  text-decoration: underline;
+}
+
+/*
+ * Keyboard focus rings, drawn in each link's own color, so each ring stands
+ * out from the card's fill as much as its link's text does. Arizona
+ * Bootstrap's default link ring is Red, which doesn't show on the Blue fill.
+ */
+:root .card-bold-hover .card-title a:focus-visible {
+  box-shadow: 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-rain);
+}
+
+:root .card-bold-hover a:not(.btn, .nav-link, .card-title a):focus-visible {
+  box-shadow: 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-white);
+}
+
+/* #2365's behavior: a device that can't hover, such as a phone, always underlines the title of a clickable card or a title on image card. */
+@media (hover: none) {
+  :root .card-bold-hover .card-title,
+  :root .card .hover-text-underline {
+    text-decoration: underline;
+  }
+}
+
+/*
+ * The fade. 5.2.2 has no transition here to adjust, so the shim sets the whole
+ * transition, and turns it off for reduced motion itself. Which properties fade
+ * (the fill, and the text, title and icon colors) is #2365's behavior.
+ */
+:root .card-bold-hover {
+  transition-property: background-color;
+}
+
+:root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+  transition-property: color;
+}
+
+:root .card-bold-hover,
+:root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+  transition-duration: var(--az-component-clickable-card-transition-duration);
+  transition-timing-function: var(--az-component-clickable-card-transition-easing);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root .card-bold-hover,
+  :root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+    transition: none;
+  }
+}

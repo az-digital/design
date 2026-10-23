@@ -20,3 +20,39 @@ $az-component-brand-header-offcanvas-transition-duration: 300ms; // How long the
 $az-component-brand-header-offcanvas-transition-easing: cubic-bezier(0.42, 0, 0.58, 1); // Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-duration: 150ms; // How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.
 $az-component-brand-header-offcanvas-backdrop-transition-easing: cubic-bezier(0, 0, 1, 1); // Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.
+$az-component-card-border-width: 0px; // Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge.
+$az-component-card-border-radius: 16px; // Card corner radius. An image takes the card's top corners, and stays inside them when it zooms.
+$az-component-card-image-aspect-ratio-width: 5; // Image shape: its width, against aspect-ratio.height. The image is 5:3.
+$az-component-card-image-aspect-ratio-height: 3; // Image shape: its height, against aspect-ratio.width. The image is 5:3.
+$az-component-card-image-transition-duration: 250ms; // How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms.
+$az-component-card-image-transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1); // Easing for the image zoom: ease. Turned off when someone asks for reduced motion.
+$az-component-card-image-hover-scale: 1.08; // How much the image grows on hover: 8% larger. Implementations use it as transform: scale().
+$az-component-card-image-focus-visible-scale: 1.08; // How much the image grows while keyboard focus is on the card's link: the same as on hover.
+$az-component-card-body-padding-x: 24px; // Space between the card's left and right edges and its content.
+$az-component-card-body-padding-y: 24px; // Space between the card's top and bottom edges (or its image) and its content.
+$az-component-card-icon-size: 64px; // Icon size: an icon font's font size, or an SVG's width and height.
+$az-component-card-icon-margin-bottom: 18px; // Space between the icon and the title's line.
+$az-component-card-title-font-size: 22px; // Card title text size.
+$az-component-card-title-font-weight: 700; // Card title weight: Bold.
+$az-component-card-title-line-height: 30px; // Card title line height. The space below the title is measured from this line.
+$az-component-card-title-margin-bottom: 8px; // Space between the title's line and the text below it.
+$az-component-card-text-font-size: 18px; // Card text size: the same as body text.
+$az-component-card-text-font-weight: 400; // Card text weight: Regular.
+$az-component-card-text-line-height: 28px; // Card text line height: the same as body text.
+$az-component-card-text-margin-bottom: 16px; // Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it.
+$az-component-card-link-font-size: 18px; // Card link text size.
+$az-component-card-link-font-weight: 600; // Card link weight: Semibold.
+$az-component-card-link-line-height: 28px; // Card link line height.
+$az-component-card-link-gap: 8px; // Space between the links in a list.
+$az-component-card-action-margin-top: 16px; // Space above a call to action, added to the space below the text: 32px between the text and the call to action.
+$az-component-card-social-link-size: 45px; // Social icon size: an icon font's font size, or an SVG's width and height.
+$az-component-card-social-link-gap: 8px; // Space between social icons in a row.
+$az-component-card-header-footer-padding-x: 24px; // Space to the left and right of the header's and footer's content: the same as the body's, so their text lines up.
+$az-component-card-header-footer-padding-y: 12px; // Space above and below the header's and footer's content: half the body's.
+$az-component-clickable-card-transition-duration: 300ms; // How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change.
+$az-component-clickable-card-transition-easing: cubic-bezier(0, 0, 0.58, 1); // Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion.
+$az-component-title-on-image-card-image-aspect-ratio-width: 1; // Photo shape: its width, against aspect-ratio.height. The photo is square.
+$az-component-title-on-image-card-image-aspect-ratio-height: 1; // Photo shape: its height, against aspect-ratio.width. The photo is square.
+$az-component-title-on-image-card-title-height: 50; // How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%).
+$az-component-title-on-image-card-title-padding-x: 24px; // Space between the photo's left and right edges and the title: the same as a card's padding.
+$az-component-title-on-image-card-title-padding-bottom: 24px; // Space between the photo's bottom edge and the title: the same as a card's padding.

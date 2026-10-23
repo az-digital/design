@@ -1,0 +1,65 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "title-on-image-card",
+  "name": "Title on Image Card",
+  "description": "A clickable square photo with the card's title on it, over a gradient, and no body. It's a card, so its corners, title type and image zoom come from the Card contract; this holds only the square shape, and the title's place and colors on the photo. Its colors don't change on hover, because the photo covers the card's fill: the photo zooms, and the title is underlined.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): the square image, the title's blue gradient over its bottom half, and the title's 24px padding"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card: a photo, with the title on it.",
+      "parts": {
+        "image": {
+          "description": "The photo, which fills the whole card, cropped to a square if it has to be.",
+          "tokens": {
+            "aspect-ratio.width": {
+              "$type": "number",
+              "$value": 1,
+              "$description": "Photo shape: its width, against aspect-ratio.height. The photo is square."
+            },
+            "aspect-ratio.height": {
+              "$type": "number",
+              "$value": 1,
+              "$description": "Photo shape: its height, against aspect-ratio.width. The photo is square."
+            }
+          }
+        },
+        "title": {
+          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo.",
+          "tokens": {
+            "color": "{az.color.brand.white}",
+            "gradient.color": "{az.color.brand.blue}",
+            "height": {
+              "$type": "number",
+              "$value": 50,
+              "$description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
+            },
+            "padding.x": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Space between the photo's left and right edges and the title: the same as a card's padding."
+            },
+            "padding.bottom": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Space between the photo's bottom edge and the title: the same as a card's padding."
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.focus-ring.width}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
