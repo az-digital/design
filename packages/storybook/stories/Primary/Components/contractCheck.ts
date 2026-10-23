@@ -66,6 +66,36 @@ function computed(cssProperty: string, value: string) {
   return result;
 }
 
+// Splits a computed list on its top-level commas, leaving the commas inside
+// cubic-bezier(…) alone.
+const list = (value: string) => value.split(/,(?![^(]*\))/).map((item) => item.trim());
+
+// The cubic-bezier each easing keyword stands for, so ease-in-out and
+// cubic-bezier(0.42, 0, 0.58, 1) compare as the same curve.
+const EASINGS: Record<string, string> = {
+  ease: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  'ease-in': 'cubic-bezier(0.42, 0, 1, 1)',
+  'ease-out': 'cubic-bezier(0, 0, 0.58, 1)',
+  'ease-in-out': 'cubic-bezier(0.42, 0, 0.58, 1)',
+};
+
+/**
+ * Puts a computed value in a form that compares the way it's drawn:
+ * - a transition list whose entries are all the same counts as one entry, since
+ *   Bootstrap transitions several properties with the same timing;
+ * - an easing keyword becomes its cubic-bezier;
+ * - a font stack is its first face, since the fallbacks after it are the
+ *   implementation's choice.
+ */
+function normalize(cssProperty: string, value: string) {
+  if (cssProperty === 'font-family') return list(value)[0].replace(/^["']|["']$/g, '').toLowerCase();
+  if (cssProperty === 'transition-duration' || cssProperty === 'transition-timing-function') {
+    const entries = list(value).map((entry) => EASINGS[entry] ?? entry);
+    return entries.every((entry) => entry === entries[0]) ? entries[0] : entries.join(', ');
+  }
+  return value;
+}
+
 /**
  * Compares a rendered element with what its contract says, and returns a line for
  * each property that differs. The default and focus-visible rows are read from the
@@ -84,8 +114,8 @@ export function checkContract(element: HTMLElement, contract: string, options: s
 
   const compare = (row: Row, actual: string) => {
     const cssProperty = CSS[row.property];
-    const expected = computed(cssProperty, expression(row));
-    const drawn = computed(cssProperty, actual);
+    const expected = normalize(cssProperty, computed(cssProperty, expression(row)));
+    const drawn = normalize(cssProperty, computed(cssProperty, actual));
     if (expected !== drawn) {
       const where = [row.part, row.condition].filter(Boolean).join(' › ');
       mismatches.push(`${name} › ${where} › ${row.property}: expected ${expected} (${row.token ?? row.value}), got ${drawn}`);
