@@ -1,0 +1,35 @@
+name: Publish Storybook to digital.arizona.edu
+run-name: Publish Storybook ${{ github.event.release.tag_name }} to digital.arizona.edu
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish-docs-site:
+    name: Publish Storybook to digital.arizona.edu/design
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository to workspace
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check release tag matches package.json version
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if [ "$TAG_NAME" != "v${version}" ]; then
+            echo "::error::Release tag ${TAG_NAME} must be v${version} to match package.json"
+            exit 1
+          fi
+
+      - name: Trigger digital.arizona.edu/design deploy
+        uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: az-digital/digital.arizona.edu
+          event-type: az_design_release
+          client-payload: '{"sha": "${{ github.sha }}", "tag": "${{ github.event.release.tag_name }}"}'
