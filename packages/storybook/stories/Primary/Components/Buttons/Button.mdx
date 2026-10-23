@@ -1,13 +1,20 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../ContractAnatomy';
+import * as ButtonStories from './Button.stories';
 
-<Meta title="Primary/Components/Buttons/Button" />
+<Meta of={ButtonStories} />
 
 # Button
 
 An action in a form, a dialog or a page: a label, and an optional icon, in a fully rounded
 shape.
+
+<Canvas of={ButtonStories.Default} sourceState="none" />
+
+<Controls of={ButtonStories.Default} />
+
+The button above is the current release, so until its updates land it doesn't match every value on this page: the default size is 10px padding on a 22px line, small buttons are 14px text on a 15px line, and Red's hover and focus ring are the old palette's colors.
 
 ## Colors
 
