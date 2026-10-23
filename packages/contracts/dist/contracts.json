@@ -967,7 +967,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -976,7 +976,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "state",
     "condition": "hover",
@@ -985,7 +985,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "state",
     "condition": "hover",
@@ -994,7 +994,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "state",
     "condition": "focus-visible",
@@ -1003,7 +1003,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "state",
     "condition": "focus-visible",
@@ -1012,7 +1012,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "root",
     "kind": "state",
     "condition": "focus-visible",
@@ -1021,7 +1021,7 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "label",
     "kind": "default",
     "condition": null,
@@ -1030,101 +1030,20 @@
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "label",
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.fg.red"
+    "token": "az.color.brand.gray.800"
   },
   {
     "contract": "button",
-    "variant": "color.outline-white-text-red",
+    "variant": "color.outline-white",
     "part": "label",
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.fg.red"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "default",
-    "condition": null,
-    "property": "border.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "state",
-    "condition": "hover",
-    "property": "fill",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "state",
-    "condition": "hover",
-    "property": "border.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "fill",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "border.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "root",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "label",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.fg.white"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "label",
-    "kind": "state",
-    "condition": "hover",
-    "property": "color",
-    "token": "az.color.fg.blue"
-  },
-  {
-    "contract": "button",
-    "variant": "color.outline-white-text-blue",
-    "part": "label",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "color",
-    "token": "az.color.fg.blue"
+    "token": "az.color.brand.gray.800"
   }
 ]

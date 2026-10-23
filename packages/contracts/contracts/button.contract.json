@@ -6,7 +6,7 @@
   "sources": [
     "Arizona Bootstrap 5.3.x buttons, from az-digital/arizona-bootstrap#2281 (2026 brand buttons, which match the approved Adobe XD designs) and #2339",
     "az-digital/arizona-bootstrap#2378: small buttons use 16px text",
-    "Figma Buttons component: the colors for each background, and the outline White buttons' hover text",
+    "Figma Buttons component: the colors for each background",
     "az-digital/design#89: where the sources differ, Arizona Bootstrap wins; colors use the current palette's names and values"
   ],
   "variants": {
@@ -414,8 +414,8 @@
             }
           }
         },
-        "outline-white-text-red": {
-          "description": "A White outline, on Red. It fills White with Red text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
+        "outline-white": {
+          "description": "A White outline, on Red or Arroyo Blue. It fills White with Gray 800 text on hover. Arizona Bootstrap: .btn-outline-white.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -439,46 +439,10 @@
                   },
                   "states": {
                     "hover": {
-                      "color": "{az.color.fg.red}"
+                      "color": "{az.color.brand.gray.800}"
                     },
                     "focus-visible": {
-                      "color": "{az.color.fg.red}"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "outline-white-text-blue": {
-          "description": "A White outline, on Arroyo Blue. It fills White with Blue text on hover. Arizona Bootstrap: .btn-outline-white, whose hover text is Gray 800 instead.",
-          "anatomy": {
-            "root": {
-              "tokens": {
-                "border.color": "{az.color.brand.white}"
-              },
-              "states": {
-                "hover": {
-                  "fill": "{az.color.brand.white}",
-                  "border.color": "{az.color.brand.white}"
-                },
-                "focus-visible": {
-                  "fill": "{az.color.brand.white}",
-                  "border.color": "{az.color.brand.white}",
-                  "ring.color": "{az.color.brand.white}"
-                }
-              },
-              "parts": {
-                "label": {
-                  "tokens": {
-                    "color": "{az.color.fg.white}"
-                  },
-                  "states": {
-                    "hover": {
-                      "color": "{az.color.fg.blue}"
-                    },
-                    "focus-visible": {
-                      "color": "{az.color.fg.blue}"
+                      "color": "{az.color.brand.gray.800}"
                     }
                   }
                 }
