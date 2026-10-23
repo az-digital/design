@@ -48,6 +48,16 @@ const CSS: Record<string, string> = {
   'ring.offset': 'outline-offset',
 };
 
+// A property drawn on several sides is checked on each of them, so uneven padding
+// or one odd corner doesn't pass because the first side matches.
+const SIDES: Record<string, string[]> = {
+  'border.color': ['border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color'],
+  'border.width': ['border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width'],
+  'border.radius': ['border-top-left-radius', 'border-top-right-radius', 'border-bottom-right-radius', 'border-bottom-left-radius'],
+  'padding.y': ['padding-top', 'padding-bottom'],
+  'padding.x': ['padding-left', 'padding-right'],
+};
+
 /**
  * What a contract sets for one combination of variant options: the anatomy's
  * rows, each replaced by the options' rows for the same part, state and property.
@@ -133,13 +143,16 @@ export function checkContract(element: HTMLElement, contract: string, options: s
     color: '--bs-btn-hover-color',
   };
 
-  const compare = (row: Row, actual: string) => {
-    const cssProperty = CSS[row.property];
-    const expected = normalize(cssProperty, computed(cssProperty, expression(row)));
-    const drawn = normalize(cssProperty, computed(cssProperty, actual));
-    if (expected !== drawn) {
-      const where = [row.part, row.condition].filter(Boolean).join(' › ');
-      mismatches.push(`${name} › ${where} › ${row.property}: expected ${expected} (${row.token ?? row.value}), got ${drawn}`);
+  // Compares a row with the value read for each CSS property it's drawn with.
+  const compare = (row: Row, read: (cssProperty: string) => string, cssProperties = SIDES[row.property] ?? [CSS[row.property]]) => {
+    for (const cssProperty of cssProperties) {
+      const expected = normalize(cssProperty, computed(cssProperty, expression(row)));
+      const drawn = normalize(cssProperty, computed(cssProperty, read(cssProperty)));
+      if (expected !== drawn) {
+        const where = [row.part, row.condition].filter(Boolean).join(' › ');
+        const side = cssProperties.length > 1 ? ` (${cssProperty})` : '';
+        mismatches.push(`${name} › ${where} › ${row.property}${side}: expected ${expected} (${row.token ?? row.value}), got ${drawn}`);
+      }
     }
   };
 
@@ -149,11 +162,12 @@ export function checkContract(element: HTMLElement, contract: string, options: s
 
   const atRest = getComputedStyle(element);
   for (const row of contractRowsFor.filter((r) => r.kind === 'default' && CSS[r.property])) {
-    compare(row, atRest.getPropertyValue(CSS[row.property]));
+    compare(row, (cssProperty) => atRest.getPropertyValue(cssProperty));
   }
 
   for (const row of contractRowsFor.filter((r) => r.condition === 'hover' && CSS[r.property])) {
-    compare(row, atRest.getPropertyValue(hoverVariable[row.property] ?? CSS[row.property]));
+    // One hover color covers every side, so it's read once.
+    compare(row, () => atRest.getPropertyValue(hoverVariable[row.property] ?? CSS[row.property]), [CSS[row.property]]);
   }
 
   const focusRows = contractRowsFor.filter((r) => r.condition === 'focus-visible' && CSS[r.property]);
@@ -165,7 +179,7 @@ export function checkContract(element: HTMLElement, contract: string, options: s
       mismatches.push(`${name}: couldn't give it keyboard focus to check its focus-visible rows`);
     } else {
       const focused = getComputedStyle(element);
-      for (const row of focusRows) compare(row, focused.getPropertyValue(CSS[row.property]));
+      for (const row of focusRows) compare(row, (cssProperty) => focused.getPropertyValue(cssProperty));
     }
     element.blur();
     element.style.transition = '';
