@@ -1,7 +1,240 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
 
 <Meta title="Primary/Components/Containers/Card" />
 
+export const photo = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="#868e96"/><circle cx="430" cy="170" r="70" fill="#adb5bd"/><path d="M0 600 L190 320 L330 470 L440 360 L600 540 L600 600 Z" fill="#6c757d"/></svg>')}`;
+
+export const row = { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(18rem, 1fr))', gap: '24px', alignItems: 'start', margin: '16px 0 40px' };
+
 # Card
 
-This page captures the reusable content-tile pattern with clear hierarchy, consistent spacing, and a predictable content structure.
+A container for one piece of content: a title and text, with an icon, a photo, a list of
+links or a call to action.
+
+## Kinds of cards
+
+- **Clickable cards:** the whole card is one link, and its colors change on hover.
+  - **Text only:** a title and text.
+  - **Icon:** an icon above the title.
+  - **Image and text:** a photo above the title, which zooms in on hover.
+- **Title on image:** a clickable square photo with only a title on it. The photo zooms
+  in on hover.
+- **Link list:** a title, text and a list of links. The card isn't a link itself, so it
+  has no hover colors.
+- **Call to action:** a title, text and a button or a row of social links. The card isn't
+  a link itself, so it has no hover colors.
+
+Cards may also have a header above the body and a footer below it.
+
+## Design decisions
+
+Three contracts hold the card's design decisions. The card's contract
+(`card.contract.json`) sets what every card shares. The clickable card's contract
+(`clickable-card.contract.json`) adds the hover colors, and the title on image card's
+contract (`title-on-image-card.contract.json`) adds its square photo and title. Their
+colors are brand colors, and their sizes and timings are the cards' own values, written
+in the contracts. Cards have no tokens of their own.
+
+### Every card
+
+- **Fill:** <Token data={getTokenData('az.color.brand.cloud')} />, with no border: the
+  fill sets the card apart from the page. In a forced colors (high contrast) mode, which
+  removes fills, the card draws a 1px border instead.
+- **Shape:** 16px corners.
+- **Padding:** 24px between the card's edges and its content. The header and footer have
+  24px to the left and right, so their text lines up with the body's, and 12px above and
+  below.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line,
+  before the text.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />: the same size as body text.
+  16px below the text, before more text or a list of links.
+
+### Clickable cards
+
+- **The whole card is one link:** the title is a link that covers the card.
+- **Hover:** the fill turns <Token data={getTokenData('az.color.brand.blue')} />, the text
+  and other links turn <Token data={getTokenData('az.color.brand.white')} />, and the
+  title and icon turn <Token data={getTokenData('az.color.brand.rain')} />. The title is
+  underlined.
+- **Keyboard focus:** when <kbd>Tab</kbd> reaches the title link or another link in the
+  card, the card shows its hover colors. The focused link's ring is drawn in its own color
+  (Rain on the title, White on other links), so the ring stands out from the fill as much
+  as the link's text does. Its width is the
+  shared <Token data={getTokenData('az.focus-ring.width')} /> (2px).
+- **Touch screens:** on a device that can't hover, such as a phone, the title is always
+  underlined.
+- **Motion:** the colors fade over 300ms, ease-out. The fade turns off when someone asks
+  for reduced motion; the colors still change.
+- **Icon:** 64px, in <Token data={getTokenData('az.color.brand.azurite')} />, with 18px
+  between it and the title's line. Use an icon font glyph at that font size, or an SVG at
+  that width and height with `fill="currentColor"`. The icon is decorative, so hide it
+  from screen readers with `aria-hidden="true"`.
+- **Photo:** 5:3, cropped to fill that shape, in the card's top corners. On hover and with
+  keyboard focus, it zooms in 8% over 250ms, ease, and zooms back out the same way. It
+  stays inside the card's corners. The zoom still happens when someone asks for reduced
+  motion, without the animation.
+
+### Title on image
+
+- **Photo:** square, cropped to fill it. It zooms the same way as a clickable card's photo.
+- **Title:** the card's title type, in
+  <Token data={getTokenData('az.color.brand.white')} />, at the bottom of the photo, 24px
+  from its left, right and bottom edges. Behind it, a gradient covers the bottom half of
+  the photo, from transparent to <Token data={getTokenData('az.color.brand.blue')} /> at
+  the bottom, so the title stays readable on any photo.
+- **Hover and keyboard focus:** the title is underlined. Its colors don't change: the
+  photo covers the card's fill. Its focus ring is White.
+
+### Link list
+
+- **Links:** 18px Semibold, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />, underlined, in Proxima Nova
+  Condensed. One per line, 8px apart.
+
+### Call to action
+
+- **Space:** 32px between the text and the call to action.
+- **Button:** a default size Red button.
+- **Social links:** 45px icons in <Token data={getTokenData('az.color.brand.red')} />,
+  8px apart. Each link names its site for screen readers.
+
+## Examples
+
+Hover a clickable card or a title on image card, or press <kbd>Tab</kbd> to reach its
+title link. The icons are the outline style of each icon, at a light weight, to match
+arizona.edu.
+
+### Title on image
+
+<Unstyled>
+  <div style={row}>
+    <div className="card hover overflow-hidden">
+      <div className="ratio overflow-hidden">
+        <img className="card-img object-fit-cover hover-img-zoom-in" src={photo} alt="" />
+      </div>
+      <div className="card-img-overlay p-0 d-flex flex-column">
+        <h3 className="card-title h5 mt-auto mb-0 d-flex align-items-end hover-text-underline">
+          <a href="#title-on-image" className="stretched-link text-reset text-decoration-none">Undergraduate</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+### Image and text
+
+<Unstyled>
+  <div style={row}>
+    <div className="card card-bold-hover hover overflow-hidden">
+      <div className="overflow-hidden">
+        <img className="card-img-top hover-img-zoom-in" src={photo} alt="" />
+      </div>
+      <div className="card-body">
+        <h3 className="card-title h5">
+          <a href="#image-and-text" className="stretched-link text-reset text-decoration-none">Undergraduate Degrees</a>
+        </h3>
+        <p className="card-text">Our undergraduate programs give you the freedom to follow your interests.</p>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+### Icon
+
+<Unstyled>
+  <div style={row}>
+    <div className="card card-bold-hover">
+      <div className="card-body">
+        <span className="card-icon material-symbols-rounded fw-light" style={{ fontVariationSettings: "'FILL' 0" }} aria-hidden="true">person_raised_hand</span>
+        <h3 className="card-title h5">
+          <a href="#icon" className="stretched-link text-reset text-decoration-none">Future Students</a>
+        </h3>
+        <p className="card-text">Become a Wildcat and embrace “Bear Down!” Explore information on applying, transferring, Arizona Online, and more.</p>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+### Text only
+
+<Unstyled>
+  <div style={row}>
+    <div className="card card-bold-hover">
+      <div className="card-body">
+        <h3 className="card-title h5">
+          <a href="#text-only" className="stretched-link text-reset text-decoration-none">Distance Locations</a>
+        </h3>
+        <p className="card-text">Close-to-home flexibility with locations across the state of Arizona.</p>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+### Link list
+
+<Unstyled>
+  <div style={row}>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title h5">Academic Resources</h3>
+        <p className="card-text">Find the support and guidance you need to succeed in the classroom. Explore tutoring options, connect with academic advisors, access the course catalog, and plan your academic journey.</p>
+        <ul className="list-unstyled">
+          <li><a href="#link-list" className="card-link">Contact Your Advisor</a></li>
+          <li><a href="#link-list" className="card-link">Course Catalog &amp; Degree Programs</a></li>
+          <li><a href="#link-list" className="card-link">Registrar &amp; Transcripts</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+### Call to action
+
+<Unstyled>
+  <div style={row}>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title h5">Bear Down Rundown</h3>
+        <p className="card-text">Your weekly update for all main campus undergraduates during the academic year.</p>
+        <a href="#call-to-action" className="btn btn-red">Subscribe</a>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-body">
+        <h3 className="card-title h5">Follow Along</h3>
+        <p className="card-text">Follow the university’s social media channels to stay up to date on events, campus highlights, and everything happening across Arizona.</p>
+        <ul className="list-inline">
+          <li className="list-inline-item"><a href="#call-to-action" aria-label="LinkedIn"><i className="az-icon-linkedin-circle" aria-hidden="true"></i></a></li>
+          <li className="list-inline-item"><a href="#call-to-action" aria-label="Instagram"><i className="az-icon-instagram-circle" aria-hidden="true"></i></a></li>
+          <li className="list-inline-item"><a href="#call-to-action" aria-label="Facebook"><i className="az-icon-facebook-circle" aria-hidden="true"></i></a></li>
+          <li className="list-inline-item"><a href="#call-to-action" aria-label="YouTube"><i className="az-icon-youtube-circle" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Unstyled>
+
+## Anatomy
+
+Each part of a card and each of its design properties, from the cards' contracts: the
+token it uses, or the card's own value and what it's for.
+
+### Every card
+
+<ContractAnatomy contract="card" />
+
+### Clickable card
+
+What a clickable card adds to the card.
+
+<ContractAnatomy contract="clickable-card" />
+
+### Title on image
+
+What a title on image card adds to the card.
+
+<ContractAnatomy contract="title-on-image-card" />

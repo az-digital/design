@@ -1,0 +1,93 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "clickable-card",
+  "name": "Clickable Card",
+  "description": "A card that is one link: its title link covers the whole card. The approved kinds are text only, icon, and image and text cards. It's a card, so its fill, shape, padding, type, icon and image come from the Card contract; this holds only the colors the card changes to on hover and with keyboard focus, and how fast they change. Title on image cards are clickable too, but keep their own colors (title-on-image-card).",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): .card-bold-hover: the hover colors, and their 300ms ease-out fade",
+    "az-digital/arizona-bootstrap#2365's card designs: the text only, icon, and image and text cards all use .card-bold-hover"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card. It shows its hover colors on hover, and while keyboard focus is on its title link or another link inside it (focus-visible), so keyboard users see the same change.",
+      "tokens": {
+        "transition.duration": {
+          "$type": "duration",
+          "$value": {
+            "value": 300,
+            "unit": "ms"
+          },
+          "$description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+        },
+        "transition.easing": {
+          "$type": "cubicBezier",
+          "$value": [
+            0,
+            0,
+            0.58,
+            1
+          ],
+          "$description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+        }
+      },
+      "states": {
+        "hover": {
+          "fill": "{az.color.brand.blue}"
+        },
+        "focus-visible": {
+          "fill": "{az.color.brand.blue}"
+        }
+      },
+      "parts": {
+        "icon": {
+          "description": "The icon, in an icon card.",
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.rain}"
+            }
+          }
+        },
+        "title": {
+          "description": "The title, a link that covers the whole card. With keyboard focus, its ring is drawn in its own color, so the ring stands out from the card's fill as much as its text does.",
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.rain}",
+              "ring.color": "{az.color.brand.rain}",
+              "ring.width": "{az.focus-ring.width}"
+            }
+          }
+        },
+        "text": {
+          "description": "The card's text.",
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.white}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.white}"
+            }
+          }
+        },
+        "link": {
+          "description": "Other links in the card, such as a link in its text. With keyboard focus, a link's ring is drawn in its own color, so the ring stands out from the card's fill as much as the link's text does.",
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.white}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.white}",
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.focus-ring.width}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
