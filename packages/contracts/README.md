@@ -138,15 +138,17 @@ implementation with its contract.
 A contract doesn't generate CSS, Sass or any other platform's code, so the component's
 own values live in one place. An implementation uses token outputs from
 `@az-digital/tokens` for tokens, and writes the component's own values as its platform
-needs them: the Storybook shim sets `--bs-btn-padding-y: 9px` because the button's
-contract says `9px`.
+needs them: Arizona Bootstrap's `$btn-padding-y` should be `9px` because the button's
+contract says `9px`. A contract's pull request gives each implementation's maintainers
+update instructions: which of their variables and rules change, and to what.
 
-A contract check keeps them in step. `checkContract`
-(`packages/storybook/stories/Primary/Components/contractCheck.ts`) renders an
-implementation in a real browser and compares each property's computed style with the
-contract's token or value, at rest, with keyboard focus and on hover, and lists every
-property that differs. A component's check is a story with a `play` function that runs
-it (the button's is `MatchesContract`); `npm run test:storybook` runs it in CI.
+A contract check keeps them in step once an implementation has been updated.
+`checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
+renders an implementation in a real browser and compares each property's computed
+style with the contract's token or value, at rest, with keyboard focus and on hover,
+and lists every property that differs. A component's check is a story with a `play`
+function that renders the implementation's markup and runs it;
+`npm run test:storybook` runs it in CI.
 
 ## Adding a contract
 
@@ -155,9 +157,9 @@ it (the button's is `MatchesContract`); `npm run test:storybook` runs it in CI.
    everything else as the component's own values.
    Name any new token as the Naming page describes.
 2. Run `npm run build:contracts`, and remove any component token it flags.
-3. In each implementation, use the tokens' variables for tokens and write the
-   component's own values as the contract says them.
-4. Add a contract check story that renders the implementation and runs
-   `checkContract`, so it fails when the two drift apart.
+3. In the pull request, write update instructions for each implementation: which
+   variables and rules change, to which token or value.
+4. Once an implementation has been updated, add a contract check story that renders
+   it and runs `checkContract`, so it fails when the two drift apart.
 5. Show the anatomy on the component's docs page:
    `<ContractAnatomy contract="<component>" />`.

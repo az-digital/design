@@ -66,5 +66,7 @@ finishing. Follow its refusals; don't work around them.
   [packages/contracts/README.md](./packages/contracts/README.md).
 - **No platform output:** contracts generate nothing for a platform, so never add
   CSS, Sass or other platform output to them.
-- **Contract checks:** each component gets a contract check story that runs
-  `checkContract`, and `npm run test:storybook` must pass.
+- **Implementations:** don't patch an implementation's styles in Storybook. Write
+  its update instructions in the pull request description instead. Once an
+  implementation has been updated, add a contract check story that runs
+  `checkContract`; `npm run test:storybook` must pass.
