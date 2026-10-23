@@ -1,5 +1,18 @@
 import rows from '@contracts/dist/contracts.json';
 
+// Each contract's variant defaults, such as the button's color default (red), by contract id.
+const defaults = Object.fromEntries(
+  Object.values(
+    import.meta.glob<{ id: string; variants?: Record<string, { default?: string }> }>(
+      '../../../../contracts/contracts/*.contract.json',
+      { eager: true, import: 'default' },
+    ),
+  ).map((contract) => [
+    contract.id,
+    Object.entries(contract.variants ?? {}).flatMap(([axis, { default: option }]) => (option ? [[axis, option]] : [])),
+  ]),
+);
+
 // One design property from dist/contracts.json: a token, or the component's own value.
 type Row = {
   contract: string;
@@ -38,10 +51,18 @@ const CSS: Record<string, string> = {
 /**
  * What a contract sets for one combination of variant options: the anatomy's
  * rows, each replaced by the options' rows for the same part, state and property.
+ * An axis with a default that the options leave out takes its default, so a
+ * button with no color option is checked as Red.
  */
 export function contractRows(contract: string, options: string[]): Row[] {
+  const chosen = [
+    ...(defaults[contract] ?? [])
+      .filter(([axis]) => !options.some((option) => option.startsWith(`${axis}.`)))
+      .map(([axis, option]) => `${axis}.${option}`),
+    ...options,
+  ];
   const byKey = new Map<string, Row>();
-  for (const variant of [null, ...options]) {
+  for (const variant of [null, ...chosen]) {
     for (const row of rows as Row[]) {
       if (row.contract === contract && row.variant === variant) {
         byKey.set([row.part, row.kind, row.condition, row.property].join(' '), row);
