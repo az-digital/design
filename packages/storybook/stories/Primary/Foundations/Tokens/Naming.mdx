@@ -31,6 +31,7 @@ Only the namespace and category are required. Leave out any part that doesn't ap
 - **Join a state to the part before it.** A state is written after a hyphen, not as its own part, and the resting value has none: `az.color.bg.button.red`, `az.color.bg.button.red-hover`, `az.opacity.button-disabled`. That keeps `red` a single token; it couldn't also be the start of `red.hover`.
 - **Use lowercase words or numbers.** Join words inside one part with a hyphen: `arroyo-blue`.
 - **Shared decisions take Bootstrap 6's name.** A decision many components share, such as the focus ring or a border, is named the way Bootstrap 6 names it, with Arizona's value and a size step: `az.focus-ring.width.md` for `--focus-ring-width`, `az.border.width.sm` and `.md` for `--border-width`.
+- **No role names yet.** Don't name tokens after roles such as `primary` or `accent`. Red and Blue are both primary colors, and which role each one plays hasn't been decided.
 - **Prefer a component or context name over a one-off.** A token named for `button` can be used by anything button-like, so you don't need a new token for each component.
 
 ## From Figma to code
