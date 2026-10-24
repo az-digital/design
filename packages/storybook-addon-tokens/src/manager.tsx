@@ -36,7 +36,17 @@ function TokensPanelContent() {
 
   const prefixes = parameter && !isDisabled(parameter) ? [parameter as string | string[]].flat() : [];
   const items = prefixes.flatMap((prefix) => getTokenDisplayItems(prefix));
-  const selected = items.find((item) => item.token === selectedToken) ?? (selectedToken ? getTokenData(selectedToken) : undefined);
+  // Look the selection up in the full token index, not just this story's list,
+  // so following an alias to a related token outside the story's scope (e.g. a
+  // brand token behind a semantic one) still shows its details.
+  const selected = selectedToken ? getTokenData(selectedToken) : undefined;
+
+  // Drop a leftover selection when the story's token scope changes, not on every
+  // selection change — otherwise navigating to an out-of-scope token clears it.
+  const scope = prefixes.join('\n');
+  useEffect(() => {
+    setSelectedToken(null);
+  }, [scope]);
 
   if (data.tokens.length === 0) {
     return <p style={{ margin: 0, padding: 16, color: '#616e7c', fontSize: 13 }}>Loading tokens…</p>;

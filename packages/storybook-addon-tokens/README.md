@@ -16,9 +16,7 @@ Token values are always shown exactly as your source file writes them. Where an 
 
 ## Install
 
-```sh
-npm install --save-dev @az-digital/storybook-addon-tokens
-```
+This addon is currently workspace-only and is not published to npm. It is linked into this repository's Storybook workspace as a local workspace package; external installation is not available.
 
 `style-dictionary` (v4 or later), `storybook` (v10), and `react` are peer dependencies: the addon uses your project's own Style Dictionary, so what it shows is exactly what your build produces.
 

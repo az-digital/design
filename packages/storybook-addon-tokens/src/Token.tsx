@@ -1,7 +1,6 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
-import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
 export type { TokenData } from './resolveToken';
@@ -75,6 +74,8 @@ const TREE_LINE = '1px solid #b8c1cc';
 
 type TreeRow = { token: string; guides: Array<'pipe' | 'blank'>; branch?: 'tee' | 'elbow' } | { more: number; key: string; guides: Array<'pipe' | 'blank'>; onExpand: () => void };
 
+type LevelKey = 'siblings' | 'children';
+
 /** One 20px column of tree connector: a vertical guide line, a branch into this row, or nothing. */
 function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' }) {
   return (
@@ -92,19 +93,35 @@ function TreeGuide({ kind }: { kind: 'pipe' | 'blank' | 'tee' | 'elbow' }) {
  * a node calls `onNavigate` with that token.
  */
 function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (token: string) => void }) {
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [expanded, setExpanded] = useState<Partial<Record<LevelKey, boolean>>>({});
+  const treeRef = useRef<HTMLDivElement>(null);
+  // The first token a "Show N more" button reveals. The button disappears once
+  // clicked, so focus moves to that token's pill instead of falling to the body
+  // (and out of the drawer's Tab trap and Escape handler).
+  const focusAfterExpand = useRef<string | null>(null);
   const ancestors = getAncestors(token);
   const parent = ancestors.at(-1);
   const siblings = parent ? getTokenNode(parent)?.children ?? [token] : [token];
   const children = getTokenNode(token)?.children ?? [];
 
-  const limited = (key: string, list: string[]) => {
+  const limited = (key: LevelKey, list: string[]) => {
     if (expanded[key] || list.length <= TREE_LEVEL_LIMIT) return { shown: list, hidden: 0 };
     // Always keep the selected token visible, even past the limit.
     const shown = list.slice(0, TREE_LEVEL_LIMIT);
     if (list.includes(token) && !shown.includes(token)) shown[shown.length - 1] = token;
     return { shown, hidden: list.length - shown.length };
   };
+  const expand = (key: LevelKey, list: string[], shown: string[]) => () => {
+    focusAfterExpand.current = list.find((item) => !shown.includes(item)) ?? null;
+    setExpanded((current) => ({ ...current, [key]: true }));
+  };
+
+  useEffect(() => {
+    const target = focusAfterExpand.current;
+    if (!target) return;
+    focusAfterExpand.current = null;
+    treeRef.current?.querySelector<HTMLElement>(`[data-token="${CSS.escape(target)}"] button`)?.focus();
+  }, [expanded]);
 
   const rows: TreeRow[] = [];
   // Single chain down from the root to the direct parent.
@@ -124,14 +141,14 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
     shownChildren.forEach((child, childIndex) => {
       rows.push({ token: child, guides: childGuides, branch: childIndex === shownChildren.length - 1 && hiddenChildren === 0 ? 'elbow' : 'tee' });
     });
-    if (hiddenChildren > 0) rows.push({ more: hiddenChildren, key: 'children', guides: [...childGuides], onExpand: () => setExpanded((current) => ({ ...current, children: true })) });
+    if (hiddenChildren > 0) rows.push({ more: hiddenChildren, key: 'children', guides: [...childGuides], onExpand: expand('children', children, shownChildren) });
   });
-  if (hiddenSiblings > 0) rows.push({ more: hiddenSiblings, key: 'siblings', guides: siblingGuides, onExpand: () => setExpanded((current) => ({ ...current, siblings: true })) });
+  if (hiddenSiblings > 0) rows.push({ more: hiddenSiblings, key: 'siblings', guides: siblingGuides, onExpand: expand('siblings', siblings, shownSiblings) });
 
   const rootValue = getTokenData(ancestors[0] ?? token);
 
   return (
-    <div role="tree" aria-label={`Alias tree for ${token}`} style={{ overflowX: 'auto' }}>
+    <div ref={treeRef} role="tree" aria-label={`Alias tree for ${token}`} style={{ overflowX: 'auto' }}>
       {rows.map((row) => {
         if ('more' in row) {
           return (
@@ -148,7 +165,7 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
         if (!data) return null;
         const isRoot = row.token === (ancestors[0] ?? token) && row.branch === undefined;
         return (
-          <div key={row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
+          <div key={row.token} data-token={row.token} role="treeitem" aria-selected={row.token === token} style={{ display: 'flex', alignItems: 'center', height: TREE_ROW_HEIGHT }}>
             {row.guides.map((guide, index) => <TreeGuide key={index} kind={guide} />)}
             {row.branch && <TreeGuide kind={row.branch} />}
             <Token data={data} swatch selected={row.token === token} onSelect={() => onNavigate(row.token)} style={{ whiteSpace: 'nowrap', flexShrink: 0 }} />
@@ -166,7 +183,6 @@ function TokenAliasTree({ token, onNavigate }: { token: string; onNavigate: (tok
  * Dictionary derives from it. Shared by the drawer and the Tokens addon panel.
  */
 export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onNavigate: (token: string) => void }) {
-  const { sourceFiles } = useTokensData();
   // Printed exactly as the source file writes it: never re-cased or reformatted.
   const resolved = data.hex ?? data.value;
   const outputs = getTokenArtifacts(data.token);
@@ -194,15 +210,9 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
         <div style={SECTION_LABEL}>SOURCE</div>
         <div style={FIELD}>
           <code style={CODE}>{data.token}</code>
-          {sourceFiles.length > 0 && (
+          {data.source && (
             <div style={{ marginTop: 6, color: '#616e7c', fontSize: 12 }}>
-              Defined in{' '}
-              {sourceFiles.map((file, index) => (
-                <span key={file.path}>
-                  {index > 0 && ', '}
-                  <FieldValue value={file.path} href={file.url} />
-                </span>
-              ))}
+              Defined in <FieldValue value={data.source.path} href={data.source.url} />
             </div>
           )}
         </div>
@@ -317,21 +327,57 @@ export function ResizeHandle({ width, onResize, label }: { width: number; onResi
 }
 
 /** `TokenDetailsContent` in a right-hand drawer over the page, closed by the backdrop, the × button, or Escape. */
-export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () => void }) {
+export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onClose: () => void; trigger: HTMLElement | null }) {
   const [shown, setShown] = useState(data);
+  const dialogRef = useRef<HTMLElement>(null);
   const { width, setWidth } = useResizableWidth('az-token-drawer-width', Math.min(window.innerWidth * 0.65, 760), 320, () => window.innerWidth - 48);
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [onClose]);
+    const dialog = dialogRef.current;
+    const firstFocusable = dialog?.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    (firstFocusable ?? dialog)?.focus();
+    return () => trigger?.focus();
+  }, [trigger]);
+
+  // Navigating an alias remounts the keyed alias tree, so the focused pill can
+  // disappear and focus fall back to the body. Pull focus back into the drawer
+  // when the shown token changes if it has left, keeping Tab and Escape working.
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog || dialog.contains(document.activeElement)) return;
+    const firstFocusable = dialog.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    (firstFocusable ?? dialog).focus();
+  }, [shown.token]);
+
+  const handleDialogKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      onClose();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(
+      event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+    );
+    if (focusable.length === 0) {
+      event.preventDefault();
+      event.currentTarget.focus();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget || !event.currentTarget.contains(document.activeElement))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !event.currentTarget.contains(document.activeElement))) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   return (
     <>
-      <button type="button" aria-label="Close token details" onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 10, width: '100%', height: '100%', border: 0, background: 'rgba(28, 30, 34, 0.42)', cursor: 'default' }} />
-      <aside role="dialog" aria-modal="true" aria-label={`${shown.token} details`} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width, boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+      <div aria-hidden="true" onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 10, background: 'rgba(28, 30, 34, 0.42)', cursor: 'default' }} />
+      <aside ref={dialogRef} role="dialog" aria-modal="true" aria-label={`${shown.token} details`} tabIndex={-1} onKeyDown={handleDialogKeyDown} style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 11, width, boxSizing: 'border-box', overflowY: 'auto', padding: 28, borderLeft: '1px solid #dfe3ea', background: '#fff', boxShadow: '-12px 0 32px rgba(31, 36, 48, 0.18)', color: '#1f2430', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, paddingBottom: 14, marginBottom: 20, borderBottom: '1px solid #e3e6eb' }}>
           <div style={{ display: 'grid', gap: 6 }}>
             {shown.token !== data.token && (
@@ -344,10 +390,11 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
           <button type="button" onClick={onClose} aria-label="Close token details" style={{ width: 28, height: 28, border: '1px solid #d0d5dd', borderRadius: 5, background: '#fff', color: '#374151', cursor: 'pointer' }}>×</button>
         </div>
         <TokenDetailsContent data={shown} onNavigate={(token) => setShown(getTokenData(token) ?? shown)} />
+        {/* Inside the dialog so the Tab trap reaches it and its Escape bubbles to the handler; fixed position keeps it on the drawer's left edge. */}
+        <div style={{ position: 'fixed', top: 0, bottom: 0, right: width, zIndex: 12 }}>
+          <ResizeHandle width={width} onResize={setWidth} label="Resize token details" />
+        </div>
       </aside>
-      <div style={{ position: 'fixed', top: 0, bottom: 0, right: width, zIndex: 12 }}>
-        <ResizeHandle width={width} onResize={setWidth} label="Resize token details" />
-      </div>
     </>
   );
 }
@@ -372,17 +419,18 @@ export function Token({
   onSelect?: () => void;
 }) {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const isSelected = selected ?? open;
   ensurePillStyles();
 
   return (
     <>
-      <button type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
+      <button ref={triggerRef} type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>
       </button>
-      {!onSelect && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
+      {!onSelect && open && <TokenDetails data={data} trigger={triggerRef.current} onClose={() => setOpen(false)} />}
     </>
   );
 }
