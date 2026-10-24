@@ -3,14 +3,14 @@ export function renderQuickUse(): string {
     <article style="max-width:900px;margin:0 auto;padding:24px 0 48px;font-family:Inter, 'Segoe UI', sans-serif;color:#1f2a37;line-height:1.6;">
       <header style="margin-bottom:24px;">
         <p style="margin:0 0 8px;color:#0e7490;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Design Tokens</p>
-        <h1 style="margin:0;font-size:40px;line-height:1.1;color:#111827;">Using Tokens in Design Tools</h1>
+        <h1 style="margin:0;font-size:40px;line-height:1.1;color:#111827;">Using in Figma</h1>
         <p style="margin:12px 0 0;color:#374151;">Download Arizona Digital token artifacts for use in compatible design tools without configuring repository access or a sync plugin.</p>
       </header>
 
       <section style="margin-bottom:32px;">
         <h2 style="margin:0 0 12px;font-size:20px;color:#111827;">Figma: import into Variables</h2>
         <ol style="margin:0;padding-left:20px;color:#374151;">
-          <li>Open <a href="?path=/story/tokens--source-file" style="color:#0369a1;font-weight:700;">Tokens &gt; Downloads</a>.</li>
+          <li>Open <a href="?path=/docs/primary-tokens-overview--docs" style="color:#0369a1;font-weight:700;">Tokens &gt; Overview</a>.</li>
           <li>Select <strong>Download tokens.json</strong>.</li>
           <li>Open the <strong>Variables</strong> tab in your Figma file.</li>
           <li>Select <strong>Import</strong> and choose the downloaded <code>tokens.json</code> file.</li>
@@ -30,7 +30,7 @@ export function renderQuickUse(): string {
         </ul>
       </section>
 
-      <p style="margin:0;color:#374151;">Need to update the source tokens? Continue to <a href="?path=/story/tokens--contributing" style="color:#0369a1;font-weight:700;">Contributing</a>.</p>
+      <p style="margin:0;color:#374151;">Need to update the source tokens? Continue to <a href="?path=/docs/primary-tokens-contributing--docs" style="color:#0369a1;font-weight:700;">Contributing</a>.</p>
     </article>
   `;
 }
@@ -53,7 +53,7 @@ export function renderContributingWorkflow(): string {
         <ul style="margin:0;padding-left:20px;color:#374151;">
           <li><strong>Canonical file:</strong> <code>packages/tokens/tokens.json</code></li>
           <li><strong>Sync mode:</strong> single-file sync mode in Token Studio</li>
-          <li><strong>Generated output:</strong> <code>packages/tokens/dist/tokens.json</code> is generated and must not be edited in Figma</li>
+          <li><strong>Generated output:</strong> files in <code>packages/tokens/dist/</code> are generated and must not be edited directly</li>
         </ul>
       </section>
 

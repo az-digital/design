@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Primary/Foundations/Tokens/Contributing" />
+<Meta title="Primary/Tokens/Contributing" />
 
 # Contributing Token Changes
 
@@ -13,7 +13,7 @@ The currently supported contribution workflow uses Tokens Studio for Figma to pu
 - **Canonical file:** `packages/tokens/tokens.json`
 - **Sync mode:** single-file sync mode in Token Studio
 - **Format:** write `tokens.json` the way Tokens Studio reads it. References leave out the `az` token set (`{color.brand.red}`, not `{az.color.brand.red}`), sizes are strings (`"8px"`), and font families are one comma-separated string. Tokens Studio shows DTCG 2025.10 size objects and font lists as raw JSON, and can't resolve a reference that includes the set name.
-- **Generated output:** `packages/tokens/dist/tokens.json` is generated and must not be edited in Figma
+- **Generated output:** `packages/tokens/dist/` contains generated CSS, Sass, JavaScript, and TypeScript files. Never edit them directly; rebuild them from the source file.
 
 ## Branch policy
 
@@ -68,7 +68,7 @@ See Tokens Studio's <a href="https://docs.tokens.studio/token-storage/manage-syn
 ## Publish from Figma to repo
 
 1. Pull the latest tokens from `main` before editing.
-2. Update tokens in Figma and check their names against <a href="./?path=/docs/primary-foundations-tokens-naming--docs" target="_top">Naming</a> and their aliasing.
+2. Update tokens in Figma and check their names against <a href="./?path=/docs/primary-tokens-naming--docs" target="_top">Naming</a> and their aliasing.
 3. Create a new branch in Token Studio using the issue number and a short description, for example `issue-5-token-update`.
 4. Push changes from Token Studio to that issue branch.
 5. Open a pull request from the issue branch into `main`.
@@ -100,9 +100,16 @@ Themes are a Tokens Studio Pro feature, so what you get depends on your plan:
 - Apply tokens through Token Studio bindings so values stay tied to names instead of hardcoded hex values.
 - In a component, bind each part's colors and shared decisions to the tokens its contract lists (the Anatomy table on its docs page), and use the contract's values for its sizes and timings. Components don't have tokens of their own.
 
+## Referencing tokens in documentation
+
+- Use a clickable `Token` pill when referring to one specific token whose value, aliases, or platform outputs readers may want to inspect.
+- Use a code span for token path patterns such as `az.color.brand.*`, file paths, and literal code examples.
+- Place pills inline in prose or in table cells where they identify a specific token.
+- In component guidance, use the tokens the component's contract lists (its Anatomy table). Use brand tokens when explaining the palette or how other tokens are built from it.
+
 ## Governance
 
-Before merging changes, confirm the scope, review token impacts in Storybook, validate naming (see <a href="./?path=/docs/primary-foundations-tokens-naming--docs" target="_top">Naming</a>) and alias structure, and obtain approval from the appropriate reviewers.
+Before merging changes, confirm the scope, review token impacts in Storybook, validate naming (see <a href="./?path=/docs/primary-tokens-naming--docs" target="_top">Naming</a>) and alias structure, and obtain approval from the appropriate reviewers.
 
 Request review from the <a href="https://github.com/orgs/az-digital/teams/developers" target="_blank" rel="noreferrer">Arizona Digital developers team</a>. **Arizona Digital Admins must approve all token changes before merge.** A token change is not canonical until its pull request is approved and merged.
 
