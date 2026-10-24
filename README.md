@@ -90,6 +90,12 @@ npm run build:contracts
 
 4. Review the generated token catalog in Storybook.
 
+### Token naming
+
+Token names use dot-separated parts in this order: `[namespace].[category].[property].[component/context].[variant]-[state].[size]`. The namespace is always `az`; the category is required, and other parts are included only when they apply. Use lowercase words, joining words within a part with hyphens. See [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) for the full rules and examples.
+
+In `tokens.json`, the top-level `az` is the token set, so references omit it: `{color.brand.red}`, not `{az.color.brand.red}`.
+
 ### `dist/` Output
 
 `npm run build:tokens` runs Style Dictionary (`packages/tokens/style-dictionary.config.mjs`) against `tokens.json` and writes generated output to `packages/tokens/dist/`. The output is committed, so rebuild and commit it with every token change:
@@ -110,7 +116,7 @@ The published `@az-digital/tokens` package includes the source `tokens.json` alo
 
 A component's contract (`packages/contracts/contracts/<component>.contract.json`) records its anatomy, independent of any platform: the parts it's made of, and what sets each part's design properties at rest, in its states (hover, focus-visible…) and from its breakpoints: a token from `tokens.json`, or the component's own value.
 
-The contract points each part at the token it uses, named the way the Naming page (Foundations › Tokens › Naming) describes. What's specific to one component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract check renders the implementation and fails if it differs from its contract.
+The contract points each part at the token it uses, named according to the [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) guidance. What's specific to one component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract check renders the implementation and fails if it differs from its contract.
 
 `npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, or leaves one of its component's own tokens (`az.component.<component>.*`) unused. It also flags component tokens that only point at another token, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
 
