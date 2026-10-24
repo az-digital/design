@@ -57,7 +57,7 @@ const DOT_STYLE: CSSProperties = {
   border: '1px solid rgba(255, 255, 255, 0.35)',
 };
 
-const SECTION_LABEL: CSSProperties = { marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' };
+const SECTION_LABEL: CSSProperties = { marginBottom: 8, color: '#616e7c', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' };
 const FIELD: CSSProperties = { padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' };
 const CODE: CSSProperties = { fontSize: 13, overflowWrap: 'anywhere' };
 const LINK: CSSProperties = { color: '#1d65a6' };
@@ -201,7 +201,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
       )}
       <div>
         <div style={SECTION_LABEL}>ALIAS TREE</div>
-        <div style={{ marginBottom: 10, color: '#697786', fontSize: 12 }}>
+        <div style={{ marginBottom: 10, color: '#616e7c', fontSize: 12 }}>
           Where this token&rsquo;s value comes from, and what else uses it. Changing a token changes everything below it.
         </div>
         <TokenAliasTree key={data.token} token={data.token} onNavigate={onNavigate} />
@@ -211,7 +211,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
         <div style={FIELD}>
           <code style={CODE}>{data.token}</code>
           {data.source && (
-            <div style={{ marginTop: 6, color: '#697786', fontSize: 12 }}>
+            <div style={{ marginTop: 6, color: '#616e7c', fontSize: 12 }}>
               Defined in <FieldValue value={data.source.path} href={data.source.url} />
             </div>
           )}
@@ -219,11 +219,11 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
       </div>
       <div>
         <div style={SECTION_LABEL}>OUTPUTS</div>
-        <div style={{ marginBottom: 8, color: '#697786', fontSize: 12 }}>
+        <div style={{ marginBottom: 8, color: '#616e7c', fontSize: 12 }}>
           What your Style Dictionary config derives from the source token above, per output file: how to reference it there, and the value that file gets.
         </div>
         {outputs.length === 0 ? (
-          <div style={{ ...FIELD, color: '#697786' }}>No output file in your Style Dictionary config includes this token.</div>
+          <div style={{ ...FIELD, color: '#616e7c' }}>No output file in your Style Dictionary config includes this token.</div>
         ) : (
           <div style={{ display: 'grid', gap: 8 }}>
             {outputs.map((output) => (
@@ -234,7 +234,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
                 </div>
                 <code style={CODE}>{output.reference}</code>
                 {output.value !== undefined && output.value !== output.reference && (
-                  <span style={{ color: '#697786', fontSize: 12 }}>
+                  <span style={{ color: '#616e7c', fontSize: 12 }}>
                     {' '}
                     → <code style={{ ...CODE, fontSize: 12 }}>{output.value}</code>
                   </span>
