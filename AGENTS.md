@@ -50,3 +50,25 @@ server. `docs list`, `docs show`, and `stories find-by-component` run
 without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
+
+## Overview-page links
+
+When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
+
+## Component contracts
+
+When you add or change a component's design decisions, update its contract in
+`packages/contracts/contracts/` and run `npm run build:contracts` before
+finishing. Follow its refusals; don't work around them.
+
+- **Token names:** read the Naming page before adding or renaming a token:
+  `Primary/Foundations/Tokens/Naming` in Storybook
+  (`packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`).
+- **What a contract holds, and how implementations use it:** see
+  [packages/contracts/README.md](./packages/contracts/README.md).
+- **No platform output:** contracts generate nothing for a platform, so never add
+  CSS, Sass or other platform output to them.
+- **Implementations:** don't patch an implementation's styles in Storybook. Write
+  its update instructions in the pull request description instead. Once an
+  implementation has been updated, add a contract check story that runs
+  `checkContract`; `npm run test:storybook` must pass.

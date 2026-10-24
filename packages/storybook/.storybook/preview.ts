@@ -35,7 +35,7 @@ const preview: Preview = {
             'Components',
             ['Overview', '*'],
             'Tokens',
-            ['Overview', 'Using in Figma', 'Using in Code', 'Contributing', '*'],
+            ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
             '*',
           ],
           'Bear Down 100',
