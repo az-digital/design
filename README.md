@@ -92,9 +92,7 @@ npm run build:contracts
 
 ### Token naming
 
-Token names use dot-separated parts in this order: `[namespace].[category].[property].[component/context].[variant]-[state].[size]`. The namespace is always `az`; the category is required, and other parts are included only when they apply. Use lowercase words, joining words within a part with hyphens. See [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) for the full rules and examples.
-
-In `tokens.json`, the top-level `az` is the token set, so references omit it: `{color.brand.red}`, not `{az.color.brand.red}`.
+Name tokens the way [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) describes.
 
 ### `dist/` Output
 
@@ -128,9 +126,9 @@ It also includes small validation tests covering token grouping and metadata par
 
 The Brand/Color docs page includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/Primary/Brand/Color/ColorSwatchGrid.tsx`) that renders each brand color as a swatch painted with the token's resolved value, with its name, HEX, and RGB values. It can also show CMYK and Pantone (PMS) values from a token's `$extensions.cmyk` and `$extensions.pantone`, but no brand token has them yet, so the page shows HEX and RGB only.
 
-Use a clickable `Token` pill when referring to one specific token that readers may want to inspect. Use code spans for path patterns, file paths, and literal code examples. Prefer semantic tokens in usage guidance; use brand tokens to explain the palette and component tokens for component-specific guidance. See [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx) for the full convention.
+Use a clickable `Token` pill when referring to one specific token that readers may want to inspect. Use code spans for path patterns, file paths, and literal code examples. In component guidance, use the tokens its contract lists; use brand tokens to explain the palette. See [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx) for the full convention.
 
-The token UI (token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill and read `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
+The token UI (token tables, the token details drawer with its alias tree, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill and read `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
 
 ### Storybook MCP for AI Agents
 
