@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as TabsStories from './tabs.stories';
 
 {/* `of={TabsStories}` attaches this page to tabs.stories.tsx's own title
@@ -80,4 +80,4 @@ neutral/gray primitive tier in `tokens.json` to alias them to yet. Per
 `packages/tokens/AGENTS.md`, that's real work for the design/tokens team, not something
 to alias around here.
 
-<TokenTable filter="az.component.tabs.**" />
+<ComponentTokenIndex component="tabs" />

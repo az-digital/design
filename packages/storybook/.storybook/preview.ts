@@ -1,11 +1,13 @@
+/// <reference types="vite/client" />
+
 import type { Preview } from '@storybook/react-vite';
-import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { sourceForImplementation } from '../stories/implementations';
-import '../../tokens/dist/tokens.css';
+import '@tokens/dist/tokens.css';
+// Storybook-only: points Arizona Bootstrap's button variables at our tokens (see the file).
+import './arizona-bootstrap-shim.css';
 
 const preview: Preview = {
-  addons: [swatchbookAddon()],
   initialGlobals: {
     implementation: 'html',
   },
@@ -29,7 +31,37 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Tokens', 'Components'],
+        order: [
+          'Primary',
+          [
+            'Overview',
+            'Brand',
+            ['Overview', 'Color', '*'],
+            'Foundations',
+            [
+              'Overview',
+              'Layout',
+              ['Overview', 'Grids and Spacing', 'Breakpoints', '*'],
+              'Typography',
+              ['*'],
+              'Accessibility',
+              ['*'],
+              'Content Design',
+              ['*'],
+              'Interaction',
+              ['*'],
+              'Usability',
+              ['*'],
+              '*',
+            ],
+            'Tokens',
+            ['Overview', 'Using in Figma', 'Using in Code', 'Contributing', '*'],
+            'Components',
+            ['Overview', '*'],
+            '*',
+          ],
+          'Bear Down 100',
+        ],
       },
     },
     docs: {

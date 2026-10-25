@@ -1,8 +1,8 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
-import * as ButtonStories from './button.stories';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+import * as ButtonStories from './Button.stories';
 
-{/* `of={ButtonStories}` attaches this page to button.stories.tsx's own title ("Components/Button"),
+{/* `of={ButtonStories}` attaches this page to Button.stories.tsx's own title ("Primary/Components/Buttons"),
     so it replaces the autodocs page for that group instead of adding a separate nested entry. */}
 <Meta of={ButtonStories} />
 
@@ -40,17 +40,24 @@ The story above mirrors the approved Figma frame "Solid Button Red w/ White Back
 
 ## Backgrounds
 
-Button also has an approved Figma frame on a Cool Gray page background ("Solid Button Red w/ Cool Gray Background"). The button's own tokens don't change — see Tokens, below — but a non-white background needs its own container class, so the code example for it includes that class:
+Button also has an approved Figma frame on a Cloud page background ("Solid Button Red w/ Cool Gray Background"; Cool Gray is Cloud's old name, and Arizona Bootstrap's class for it is still `bg-cool-gray`). The button's own tokens don't change — see Tokens, below — but a non-white background needs its own container class, so the code example for it includes that class:
 
-<Source of={ButtonStories.SolidRedOnCoolGray} />
+<Source of={ButtonStories.SolidRedOnCloud} />
 
-See the "Solid Red On Cool Gray" story in the sidebar for a live, interactive version. A white background needs no class of its own — it's the implicit default — so the Code panel on the story above doesn't show one.
+See the "Solid Red On Cloud" story in the sidebar for a live, interactive version. A white background needs no class of its own — it's the implicit default — so the Code panel on the story above doesn't show one.
+
+For the approved button-on-background examples, see the corresponding Figma sections:
+
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-583&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on White, Cloud (Cool Gray), and Caliche (Warm Gray)</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-584&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on AZ Blue and Azurite</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-585&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on AZ Red</a>
+- <a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2807-586&amp;t=S9bt0SeKHst4A4W1-4" target="_blank" rel="noreferrer">Buttons on Oasis (Arroyo Blue)</a>
 
 ## Tokens
 
-Every one of Button's own design tokens — `az.component.button.*`. Colors alias through a semantic tier down to the brand palette; padding, font, and border each alias a primitive dimension/font-weight/opacity value directly, since nothing else in the system needs those specific values yet. If Button's props or variants ever change, this is the place to add or update the corresponding component token.
+Every one of Button's own design tokens — `az.component.button.*`. Structure (padding, label font, border, sizes, the focus-visible ring) is shared by every style; each style — `solid.*`, `outline.*` — adds only the colors it changes, named by the part they color (`container`, `border`, `label`) and grouped by state. Colors alias through a semantic tier down to the brand palette; padding, font, and border each alias a primitive dimension/font-weight/opacity value directly, since nothing else in the system needs those specific values yet. If Button's props or variants ever change, this is the place to add or update the corresponding component token.
 
-<TokenTable filter="az.component.button.**" />
+<ComponentTokenIndex component="button" />
 
 ## Do's and Don'ts
 

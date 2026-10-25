@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { TokenTable } from '@unpunnyfuns/swatchbook-addon';
+import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as ArizonaHeaderStories from './arizona-header.stories';
 
 {/* `of={ArizonaHeaderStories}` attaches this page to arizona-header.stories.tsx's own
@@ -57,4 +57,4 @@ from Arizona Bootstrap's actual compiled CSS. Unlike Accordion, Tabs, Nav, and C
 this component has **no missing-color-primitive gap**: both real variants (`bg-blue`,
 `bg-red`) already alias existing Arizona brand colors, not stock unbranded neutrals.
 
-<TokenTable filter="az.component.arizona-header.**" />
+<ComponentTokenIndex component="arizona-header" />
