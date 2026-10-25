@@ -2,8 +2,8 @@ import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
 import { createElement } from 'react';
 import { Accordion } from '@az-digital/components-react';
 import { renderAccordion } from '@az-digital/components-html';
-import type { Implementations } from './implementations';
-import { renderImplementation } from './implementations';
+import type { Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
 
 type AccordionArgs = Parameters<typeof renderAccordion>[0];
 
@@ -43,7 +43,7 @@ function AccordionArgsShape(_args: AccordionArgs) {
 }
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Primary/Components/Containers/Accordions',
   // Set only so react-docgen can attach Accordion's prop table to this story file's
   // documentation — see the equivalent comment in button.stories.tsx for why this
   // must stay a bare reference to the imported `Accordion`.

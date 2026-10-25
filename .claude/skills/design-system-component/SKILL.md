@@ -25,7 +25,7 @@ only needed in a Drupal theme doesn't need React. A single Storybook story
 still drives whichever implementations a component has from the same args,
 via a shared toolbar switcher and docs code panel.
 
-`packages/storybook/stories/Primary/Components/Buttons/Button.stories.tsx` (both implementations) and
+`packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx` (both implementations) and
 `packages/storybook/stories/implementations.tsx` (the shared machinery) are
 the reference — read them alongside this skill. Everything below explains
 the *why* behind their shape so you can extend the pattern to a new
@@ -57,7 +57,8 @@ For a component named `Card` that needs both implementations, you'd create:
 packages/components-react/src/components/Card/Card.tsx   # React implementation
 packages/components-react/src/components/Card/index.ts   # export * from './Card'
 packages/components-html/src/Card.ts                      # renderCard(props): string
-packages/storybook/stories/card.stories.tsx               # the story
+packages/storybook/stories/Primary/Components/Containers/Card.mdx           # its Docs page, replacing the placeholder
+packages/storybook/stories/Primary/Components/Containers/Card.stories.tsx   # the story
 packages/contracts/contracts/card.contract.json           # the card's design decisions — see below
 ```
 
@@ -114,9 +115,9 @@ Keep the prop type name and shape identical to the React version's props
 (minus anything React-only, like `children` vs. a plain `text` string) —
 that's what lets one story drive both.
 
-### `storybook/stories/<name>.stories.tsx`
+### `storybook/stories/Primary/Components/<Group>/<Name>.stories.tsx`
 
-This is the part with a real gotcha, so follow the Button story's structure
+This is the part with a real gotcha, so follow the Card story's structure
 closely rather than reinventing it. `packages/storybook/stories/implementations.tsx`
 holds the shared machinery — import from it rather than re-deriving this per
 story:
@@ -201,7 +202,7 @@ import { renderImplementation } from './implementations';
 type CardArgs = Parameters<typeof renderCard>[0];
 
 const asReactCode = (args: CardArgs) => {
-  /* build a minimal JSX string from non-default args, see Button.stories.tsx */
+  /* build a minimal JSX string from non-default args, see Card.stories.tsx */
   return `<Card />`;
 };
 
@@ -272,9 +273,9 @@ when the component genuinely needs both.
 ### When only one *variant* is missing an implementation
 
 Sometimes the component as a whole has both implementations, but one
-specific prop value doesn't — e.g. Button's `Success` story: `success` is
-Bootstrap's stock semantic color, not an Arizona brand color, so it exists
-in `components-html` but not (yet) in `components-react`. That story needs
+specific prop value doesn't — e.g. a `success` button: `success` is
+Bootstrap's stock semantic color, not an Arizona brand color, so it could
+exist in `components-html` but not (yet) in `components-react`. That story needs
 a *different* `implementations` map than the rest of the component's
 stories, not just an omitted key on the shared one.
 
@@ -297,8 +298,7 @@ React toggle, which kept rendering instead of showing the placeholder.
 
 **Use a distinct parameter name that only ever exists at the story level**,
 so there's nothing for Storybook to merge it with — `implementationsOverride`,
-already wired up in both `Button.stories.tsx`'s `render` function and
-`.storybook/preview.ts`'s `docs.source.transform`:
+already wired up in `.storybook/preview.ts`'s `docs.source.transform`:
 
 ```tsx
 const successOnlyImplementations: Implementations<ButtonArgs> = {
@@ -318,9 +318,9 @@ If you add this pattern to a new component's stories, wire the same
 
 ### `asReactCode`-style source functions
 
-`source` functions (like `asReactCode` in the Button story) should only emit
+`source` functions (like `asReactCode` in the Card story) should only emit
 props that differ from their defaults, so the snippet stays readable — see
-`Button.stories.tsx` for the pattern. `htmlSource` can usually just call your
+`Card.stories.tsx` for the pattern. `htmlSource` can usually just call your
 `render<Name>(args)` function directly, since that already returns the exact
 markup being shown.
 
@@ -358,7 +358,7 @@ as `packages/contracts/README.md` describes:
 - Show the contract on the component's Docs page:
 
   ```mdx
-  import { ContractAnatomy } from './Primary/Components/ContractAnatomy';
+  import { ContractAnatomy } from '../ContractAnatomy';
 
   <ContractAnatomy contract="card" />
   ```

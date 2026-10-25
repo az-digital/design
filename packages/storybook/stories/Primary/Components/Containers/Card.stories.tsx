@@ -3,8 +3,8 @@ import { createElement } from 'react';
 import { Card } from '@az-digital/components-react';
 import { renderCard } from '@az-digital/components-html';
 import type { CardProps } from '@az-digital/components-html';
-import type { Implementations } from './implementations';
-import { renderImplementation } from './implementations';
+import type { Implementations } from '../../../implementations';
+import { renderImplementation } from '../../../implementations';
 
 // Not `Parameters<typeof renderCard>[0]` (the pattern other stories use) — renderCard's
 // default parameter value (`= {}`) makes that resolve to `CardProps | undefined`, which
@@ -49,7 +49,7 @@ function CardArgsShape(_args: CardArgs) {
 }
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Primary/Components/Containers/Card',
   // Set only so react-docgen can attach Card's prop table to this story file's
   // documentation — see the equivalent comment in button.stories.tsx for why this
   // must stay a bare reference to the imported `Card`.
