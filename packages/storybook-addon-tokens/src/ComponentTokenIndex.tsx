@@ -167,7 +167,7 @@ const CHIP: CSSProperties = {
   fontSize: 12,
 };
 const CHIP_ACTIVE: CSSProperties = { ...CHIP, borderColor: '#1e5288', background: '#1e5288', color: '#fff' };
-const META: CSSProperties = { color: '#697786', fontSize: 12 };
+const META: CSSProperties = { color: '#616e7c', fontSize: 12 };
 const CONTROL_LABEL: CSSProperties = { color: '#374151', fontSize: 12, fontWeight: 700 };
 const SEGMENT: CSSProperties = { border: 0, padding: '4px 12px', background: '#fff', color: '#374151', cursor: 'pointer', fontSize: 12, fontFamily: 'inherit', lineHeight: 1.4 };
 const SEGMENT_ACTIVE: CSSProperties = { ...SEGMENT, background: '#1e5288', color: '#fff' };
@@ -262,7 +262,7 @@ function GroupModeToggle({ mode, onChange }: { mode: GroupMode; onChange: (mode:
 }
 
 /**
- * A component token index: one collapsed row per component (built
+ * The Tokens page's component section: one collapsed row per component (built
  * from tokens.json, so it never needs hand-maintaining), expanding into that
  * component's tokens grouped into Shared and one table per variant. Searching
  * (token path, type, alias, or value) or filtering by type switches to the

@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from './Primary/Components/ContractAnatomy';
 import * as CardStories from './card.stories';
 
 {/* `of={CardStories}` attaches this page to card.stories.tsx's own title
@@ -51,17 +51,8 @@ pass. Deliberately deferred, not silently dropped:
   deprecated `.card-clickable`/`.card-landing-grid` classes in
   `scss/deprecated/_card.scss`.
 
-## Tokens
+## Anatomy
 
-`az.component.card.*` covers this component's structural properties (body padding,
-title bottom-margin, border width/radius, header/footer padding) — every value sourced
-from Arizona Bootstrap's actual compiled CSS. As with Accordion, Tabs, and Nav, it
-deliberately has **no color tokens**: the header/footer background in the compiled CSS
-is Arizona Bootstrap's own override (`$gray-200`, `#e9ecef` — not Bootstrap's default
-translucent tint, but still a stock, un-themed neutral, not an Arizona brand color),
-and there's no neutral/gray primitive tier in `tokens.json` to alias it to yet. This is
-the **fourth** component in a row to hit this exact gap (Accordion, Tabs, Nav, now
-Card) — a real, recurring pattern worth raising with the design/tokens team rather
-than something to keep re-noting quietly.
+The card's contract (`card.contract.json`) records its border, the padding of its header, body and footer, and the space below its title. Every value comes from Arizona Bootstrap's compiled CSS. Its colors aren't in the contract yet: where Arizona Bootstrap uses its gray neutrals rather than brand colors, those are a design decision still to make. The header and footer fill is one of them.
 
-<ComponentTokenIndex component="card" />
+<ContractAnatomy contract="card" />

@@ -1,0 +1,75 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "arizona-header",
+  "name": "Arizona Header",
+  "description": "The University of Arizona bar at the top of every page, holding the university's line logo, which links to arizona.edu.",
+  "sources": [
+    "Arizona Bootstrap 5.2.0's compiled CSS, as az-digital/design#46 recorded it"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The bar.",
+      "tokens": {
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 50,
+            "unit": "px"
+          },
+          "$description": "The bar's height on small screens, below the sm breakpoint."
+        }
+      },
+      "parts": {
+        "logo": {
+          "description": "The university's line logo.",
+          "tokens": {
+            "margin.left": {
+              "$type": "dimension",
+              "$value": {
+                "value": 10,
+                "unit": "px"
+              },
+              "$description": "Space before the logo."
+            },
+            "width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 211,
+                "unit": "px"
+              },
+              "$description": "Logo width below the sm breakpoint."
+            },
+            "height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Logo height below the sm breakpoint."
+            }
+          },
+          "breakpoints": {
+            "sm": {
+              "width": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 266.41,
+                  "unit": "px"
+                },
+                "$description": "Logo width from the sm breakpoint up."
+              },
+              "height": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 19.8,
+                  "unit": "px"
+                },
+                "$description": "Logo height from the sm breakpoint up."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

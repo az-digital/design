@@ -4,8 +4,6 @@ import type { Preview } from '@storybook/react-vite';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { sourceForImplementation } from '../stories/implementations';
 import '@tokens/dist/tokens.css';
-// Storybook-only: points Arizona Bootstrap's button variables at our tokens (see the file).
-import './arizona-bootstrap-shim.css';
 
 const preview: Preview = {
   initialGlobals: {
@@ -42,8 +40,7 @@ const preview: Preview = {
               'Overview',
               'Layout',
               ['Overview', 'Grids and Spacing', 'Breakpoints', '*'],
-              'Typography',
-              ['*'],
+              'Terminology',
               'Accessibility',
               ['*'],
               'Content Design',
@@ -54,10 +51,10 @@ const preview: Preview = {
               ['*'],
               '*',
             ],
-            'Tokens',
-            ['Overview', 'Using in Figma', 'Using in Code', 'Contributing', '*'],
             'Components',
             ['Overview', '*'],
+            'Tokens',
+            ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
             '*',
           ],
           'Bear Down 100',

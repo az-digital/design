@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from './Primary/Components/ContractAnatomy';
 import * as AccordionStories from './accordion.stories';
 
 {/* `of={AccordionStories}` attaches this page to accordion.stories.tsx's own title
@@ -65,16 +65,8 @@ The two implementations get this behavior from different places:
   transition duration, since `react-bootstrap` doesn't expose an equivalent callback
   through `Accordion.Body`.
 
-## Tokens
+## Anatomy
 
-`az.component.accordion.*` covers this component's structural properties (button and
-body padding, border width/radius, button label font size) — every value sourced from
-Arizona Bootstrap's actual compiled CSS. It deliberately has **no color tokens yet**:
-the accordion's button/body background and border colors in Arizona Bootstrap's
-compiled CSS are Bootstrap's stock, un-themed neutrals (`#e9ecef`, `#dee2e6`, ...), not
-Arizona brand colors, and there's no neutral/gray primitive tier in `tokens.json` to
-alias them to. Per `packages/tokens/AGENTS.md`, that's real work (adding a base neutral
-tier) rather than something to alias around by inventing a token that points at a
-plausible-looking hex — flag it to the design/tokens team rather than adding one here.
+The accordion's contract (`accordion.contract.json`) records its border, its buttons' padding and title size, and its bodies' padding. Every value comes from Arizona Bootstrap's compiled CSS. Its colors aren't in the contract yet: where Arizona Bootstrap uses its gray neutrals rather than brand colors, those are a design decision still to make.
 
-<ComponentTokenIndex component="accordion" />
+<ContractAnatomy contract="accordion" />

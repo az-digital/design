@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from './Primary/Components/ContractAnatomy';
 import * as TabsStories from './tabs.stories';
 
 {/* `of={TabsStories}` attaches this page to tabs.stories.tsx's own title
@@ -67,17 +67,20 @@ See [`Nav`](?path=/docs/components-nav--docs) for those: plain Vertical, the
 Arizona-custom Vertical Pills (a nested, multi-level pills menu), and the
 Arizona-custom Utility Links.
 
-## Tokens
+## Anatomy
 
-`az.component.tabs.*` covers this component's label styling (padding, font weight,
-default/hover/active text color) plus a couple of per-variant properties (the "Tabs"
-variant's active-tab background, the "Underline" variant's gap and border width) —
-every value sourced from Arizona Bootstrap's actual compiled CSS. As with Accordion, it
-deliberately has **incomplete color coverage**: the "Tabs" variant's own border color
-and the "Pills" variant's active-tab background are both stock, un-themed Bootstrap
-neutrals (`#e9ecef`) in the compiled CSS, not Arizona brand colors, and there's no
-neutral/gray primitive tier in `tokens.json` to alias them to yet. Per
-`packages/tokens/AGENTS.md`, that's real work for the design/tokens team, not something
-to alias around here.
+The tabs' contract (`tabs.contract.json`) records each tab's padding and its label's weight and colors, at rest, on hover and when selected. Every value comes from Arizona Bootstrap's compiled CSS. Two of its colors aren't in the contract yet, the Tabs style's border and the Pills style's selected fill: Arizona Bootstrap uses its gray neutrals for them rather than brand colors, and those are a design decision still to make.
 
-<ComponentTokenIndex component="tabs" />
+<ContractAnatomy contract="tabs" />
+
+### Styles
+
+What each style changes.
+
+#### Tabs
+
+<ContractAnatomy contract="tabs" variant="style.tabs" />
+
+#### Underline
+
+<ContractAnatomy contract="tabs" variant="style.underline" />

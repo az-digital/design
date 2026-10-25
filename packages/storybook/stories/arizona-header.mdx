@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from './Primary/Components/ContractAnatomy';
 import * as ArizonaHeaderStories from './arizona-header.stories';
 
 {/* `of={ArizonaHeaderStories}` attaches this page to arizona-header.stories.tsx's own
@@ -48,13 +48,8 @@ plugin (`data-bs-toggle="offcanvas"`) and a `.btn-arizona-header` button style. 
 genuine interactive behavior this component doesn't cover yet — a future version
 wrapping `react-bootstrap`'s `Offcanvas`, most likely, once there's a real need for it.
 
-## Tokens
+## Anatomy
 
-`az.component.arizona-header.*` covers this component's real structural properties —
-the header's own fixed-mobile height, and the logo image's margin plus its
-width/height at both the mobile and `sm`-breakpoint-and-up sizes — every value sourced
-from Arizona Bootstrap's actual compiled CSS. Unlike Accordion, Tabs, Nav, and Card,
-this component has **no missing-color-primitive gap**: both real variants (`bg-blue`,
-`bg-red`) already alias existing Arizona brand colors, not stock unbranded neutrals.
+The header's contract (`arizona-header.contract.json`) records the bar's height on small screens and the logo's spacing and size, below and from the `sm` breakpoint. Every value comes from Arizona Bootstrap's compiled CSS. Its blue and red fills come from Arizona Bootstrap's `bg-blue` and `bg-red` classes.
 
-<ComponentTokenIndex component="arizona-header" />
+<ContractAnatomy contract="arizona-header" />

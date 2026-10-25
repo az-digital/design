@@ -1,0 +1,49 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "card",
+  "name": "Card",
+  "description": "A bordered container for one subject: an optional header, image and footer around a body with a title, text and links.",
+  "sources": [
+    "Arizona Bootstrap 5.2.0's compiled CSS, as az-digital/design#46 recorded it"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card: its border and rounded corners.",
+      "tokens": {
+        "border.width": "{az.border.width.sm}",
+        "border.radius": "{az.radius.2}"
+      },
+      "parts": {
+        "header": {
+          "description": "The optional strip above the body.",
+          "tokens": {
+            "padding.x": "{az.spacing.3}",
+            "padding.y": "{az.spacing.2}"
+          }
+        },
+        "body": {
+          "description": "The card's content.",
+          "tokens": {
+            "padding.x": "{az.spacing.3}",
+            "padding.y": "{az.spacing.3}"
+          },
+          "parts": {
+            "title": {
+              "description": "The card's heading.",
+              "tokens": {
+                "margin.bottom": "{az.spacing.2}"
+              }
+            }
+          }
+        },
+        "footer": {
+          "description": "The optional strip below the body.",
+          "tokens": {
+            "padding.x": "{az.spacing.3}",
+            "padding.y": "{az.spacing.2}"
+          }
+        }
+      }
+    }
+  }
+}

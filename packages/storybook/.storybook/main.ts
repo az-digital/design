@@ -25,6 +25,7 @@ const config: StorybookConfig = {
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
       },
     },
+    getAbsolutePath("@storybook/addon-vitest")
   ],
 
   framework: {
@@ -44,6 +45,8 @@ const config: StorybookConfig = {
         { find: '@az-digital/components-html', replacement: resolve(__dirname, '../../components-html/src/index.ts') },
         // Stable path to packages/tokens, independent of story folder depth.
         { find: '@tokens', replacement: resolve(__dirname, '../../tokens') },
+        // Stable path to packages/contracts, for docs pages that read a component's contract.
+        { find: '@contracts', replacement: resolve(__dirname, '../../contracts') },
       ],
     },
     build: {

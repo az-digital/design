@@ -1,0 +1,63 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "nav",
+  "name": "Nav",
+  "description": "A list of links for moving around a site: plain, as tabs, pills or underlined, or the smaller utility links at the top of a page.",
+  "sources": [
+    "Arizona Bootstrap 5.2.0's compiled CSS, as az-digital/design#46 recorded it"
+  ],
+  "variants": {
+    "style": {
+      "description": "The links' style. Only Utility changes anything listed here.",
+      "options": {
+        "utility": {
+          "description": "Utility links, such as the ones above a site's main navigation.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "margin.top": "{az.spacing.3}",
+                "margin.bottom": "{az.spacing.4}"
+              },
+              "parts": {
+                "item": {
+                  "tokens": {
+                    "padding.x": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 9.6,
+                        "unit": "px"
+                      },
+                      "$description": "Utility link left and right padding."
+                    }
+                  },
+                  "parts": {
+                    "label": {
+                      "tokens": {
+                        "font.weight": "{az.font-weight.medium}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The list of links.",
+      "parts": {
+        "item": {
+          "description": "One link.",
+          "parts": {
+            "label": {
+              "description": "The link's text."
+            }
+          }
+        }
+      }
+    }
+  }
+}
