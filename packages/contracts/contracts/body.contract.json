@@ -1,7 +1,7 @@
 {
   "$schema": "../contract.schema.json",
-  "id": "text",
-  "name": "Text",
+  "id": "body",
+  "name": "Body",
   "description": "Running copy: body copy, and its lead and small styles. Text colors come from the background the text is on, so they aren't part of it.",
   "sources": [
     "az-digital/arizona-bootstrap#2273: body copy is 18px",

@@ -1,6 +1,6 @@
 {
   "$schema": "../contract.schema.json",
-  "id": "sidebar-heading",
+  "id": "heading-sidebar",
   "name": "Sidebar heading",
   "description": "A heading in a sidebar, from h1 to h6. It's smaller than a heading in the main content, and always sans serif, even on pages with serif or mixed headings. Its spacing is the same as a heading's. Text colors come from the background, so they aren't part of it.",
   "sources": [
