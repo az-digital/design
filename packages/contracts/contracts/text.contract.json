@@ -1,0 +1,66 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "text",
+  "name": "Text",
+  "description": "Running copy: body copy, and its lead and small styles. Text colors come from the background the text is on, so they aren't part of it.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2273: body copy is 18px",
+    "az-digital/arizona-bootstrap#2286: body, lead and small copy, from the XD character styles",
+    "az-digital/design#88"
+  ],
+  "variants": {
+    "style": {
+      "description": "The copy's style. With none chosen, it's body copy.",
+      "options": {
+        "lead": {
+          "description": "Lead copy: an introductory paragraph a step larger than body copy. Arizona Bootstrap: .lead.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.lg}",
+                "font.weight": "{az.font-weight.medium}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 30,
+                    "unit": "px"
+                  },
+                  "$description": "Lead copy line height."
+                }
+              }
+            }
+          }
+        },
+        "small": {
+          "description": "Small copy, for captions, notes and fine print. Arizona Bootstrap: small and .small.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.sm}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 24,
+                    "unit": "px"
+                  },
+                  "$description": "Small copy line height."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "A paragraph of copy.",
+      "tokens": {
+        "font.family": "{az.body.font-family}",
+        "font.size": "{az.body.font-size}",
+        "font.weight": "{az.body.font-weight}",
+        "line-height": "{az.body.line-height}"
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { Token, TokenDisplay, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../Components/ContractAnatomy';
+
+<Meta title="Primary/Foundations/Typography" />
+
+{/* Unstyled keeps the docs page's own type styles off the examples. */}
+export const Example = ({ children, dark }) => (
+  <Unstyled>
+    <div
+      className={dark ? 'text-bg-blue' : undefined}
+      style={{ padding: '24px 32px', margin: '0 0 24px', border: dark ? 0 : '1px solid #e5e7eb' }}
+    >
+      {children}
+    </div>
+  </Unstyled>
+);
+
+# Typography
+
+Brand typefaces apply to body text, headings, and components. Shared decisions, such as the
+typefaces and body copy, are tokens. The rest is in three contracts: text, headings, and lists.
+Text colors aren't part of these styles. They come from the background the text is on.
+
+The examples on this page use the current release, so until its updates land they don't match
+every value here.
+
+## Typefaces
+
+- **Sans serif:** <Token data={getTokenData('az.font-family.sans-serif')} />, Proxima Nova. Body
+  copy and headings use it by default.
+- **Serif:** <Token data={getTokenData('az.font-family.serif')} />, Garamond Premier Pro, for
+  pages that use serif headings.
+
+## Copy
+
+- **Body:** 18px on a 28px line, Regular.
+- **Lead:** 20px on a 30px line, Medium, for an introductory paragraph.
+- **Small:** 16px on a 24px line, Regular, for captions and fine print.
+
+<Example>
+  <p className="lead">Lead copy introduces a page or section, a step larger than body copy.</p>
+  <p>Body copy is the text most people read most of the time. It's 18px on a 28px line, so long passages stay easy to read.</p>
+  <p><small>Small copy is for captions, notes and fine print.</small></p>
+</Example>
+
+Body copy is a shared decision, so it has its own tokens:
+
+<TokenDisplay items={getTokenDisplayItems('az.body.', { order: 'source' })} layout="table" />
+
+### Text contract
+
+<ContractAnatomy contract="text" />
+
+#### Lead
+
+<ContractAnatomy contract="text" variant="style.lead" />
+
+#### Small
+
+<ContractAnatomy contract="text" variant="style.small" />
+
+## Headings
+
+Every heading is Semibold, with no letter spacing. h1–h3 get larger from the lg breakpoint
+(992px) up. h4–h6 stay the same at every screen size.
+
+<table>
+  <thead>
+    <tr><th>Level</th><th>Size</th><th>From 992px</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>h1</td><td>48px on a 56px line</td><td>64px on a 74px line</td></tr>
+    <tr><td>h2</td><td>38px on a 46px line</td><td>52px on a 62px line</td></tr>
+    <tr><td>h3</td><td>30px on a 38px line</td><td>40px on a 50px line</td></tr>
+    <tr><td>h4</td><td>28px on a 36px line</td><td>—</td></tr>
+    <tr><td>h5</td><td>22px on a 30px line</td><td>—</td></tr>
+    <tr><td>h6</td><td>18px on a 26px line</td><td>—</td></tr>
+  </tbody>
+</table>
+
+Space around a heading scales with its size: 1.042 times its size above it, and 0.667 times
+below. h1 has 0.667 times its size above it too, so its spacing is even.
+
+<Example>
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+</Example>
+
+### Serif headings
+
+Headings are sans serif unless a page opts into a serif style:
+
+- **Serif:** every heading level is serif.
+- **Mixed:** h1–h3 are serif. h4–h6 stay sans serif.
+
+<Example>
+  <div className="az-headings-serif">
+    <h2>Serif: Heading 2</h2>
+    <h5>Serif: Heading 5</h5>
+  </div>
+  <div className="az-headings-mixed">
+    <h2>Mixed: Heading 2</h2>
+    <h5>Mixed: Heading 5</h5>
+  </div>
+</Example>
+
+### Heading contract
+
+<ContractAnatomy contract="heading" />
+
+#### Serif
+
+<ContractAnatomy contract="heading" variant="family.serif" />
+
+#### h1
+
+<ContractAnatomy contract="heading" variant="level.h1" />
+
+#### h2
+
+<ContractAnatomy contract="heading" variant="level.h2" />
+
+#### h3
+
+<ContractAnatomy contract="heading" variant="level.h3" />
+
+#### h4
+
+<ContractAnatomy contract="heading" variant="level.h4" />
+
+#### h5
+
+<ContractAnatomy contract="heading" variant="level.h5" />
+
+#### h6
+
+<ContractAnatomy contract="heading" variant="level.h6" />
+
+## Lists
+
+Two bulleted list styles for body copy. Each has a 20px marker centered on the item's first
+line, 16px before the text. Items are 24px apart. A nested list sits 14px below its item, with
+its own items 14px apart.
+
+- **Focus points:** a Bougainvillea disc with a four-pointed star cut into it, and a small Rain
+  star at its center. It's the same on every background.
+- **Checkmarks:** a disc with a check. It's Arroyo Blue on light backgrounds, and Rain on dark
+  backgrounds, where Arroyo Blue is too dark to read.
+
+The marker shapes are images that each implementation ships. The contract sets their size and
+colors.
+
+<Example>
+  <ul className="az-list-focus-points">
+    <li>A focus point marks a key idea.</li>
+    <li>Items are 24px apart.<ul><li>A nested item, 14px below its parent.</li><li>Another nested item.</li></ul></li>
+    <li>The last item keeps the list's usual space below it.</li>
+  </ul>
+</Example>
+
+<Example>
+  <ul className="az-list-checkmarks">
+    <li>A checkmark on a light background.</li>
+    <li>Arroyo Blue, 20px, centered on the first line.</li>
+  </ul>
+</Example>
+
+<Example dark>
+  <ul className="az-list-checkmarks">
+    <li>A checkmark on a dark background.</li>
+    <li>Rain, so it stays readable on Blue.</li>
+  </ul>
+</Example>
+
+### List contract
+
+<ContractAnatomy contract="list" />
+
+#### Focus points
+
+<ContractAnatomy contract="list" variant="marker.focus-point" />
+
+#### Checkmarks
+
+<ContractAnatomy contract="list" variant="marker.checkmark" />
+
+#### Checkmarks on dark backgrounds
+
+<ContractAnatomy contract="list" variant="marker.checkmark-rain" />

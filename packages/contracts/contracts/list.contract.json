@@ -1,0 +1,136 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "list",
+  "name": "List",
+  "description": "A bulleted list in body copy, with a focus point or checkmark marker. Each marker is centered on its item's first line. The marker shapes are images that each implementation ships; the contract sets their size and colors.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2266: focus point and checkmark list bullets",
+    "az-digital/design#88"
+  ],
+  "variants": {
+    "marker": {
+      "description": "The list's marker, for the backgrounds named in its description.",
+      "default": "focus-point",
+      "options": {
+        "focus-point": {
+          "description": "Focus points: a Bougainvillea disc with a four-pointed star cut into it, and a small Rain star at its center. The same on every background. Arizona Bootstrap: .az-list-focus-points.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "item": {
+                  "parts": {
+                    "marker": {
+                      "tokens": {
+                        "color": "{az.color.fg.bougainvillea}"
+                      },
+                      "parts": {
+                        "highlight": {
+                          "tokens": {
+                            "color": "{az.color.fg.rain}"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "checkmark": {
+          "description": "Checkmarks: an Arroyo Blue disc with a check, on White and other light backgrounds. Arizona Bootstrap: .az-list-checkmarks.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "item": {
+                  "parts": {
+                    "marker": {
+                      "tokens": {
+                        "color": "{az.color.fg.arroyo-blue}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "checkmark-rain": {
+          "description": "Checkmarks in Rain, on Blue and other dark backgrounds, where Arroyo Blue is too dark to read.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "item": {
+                  "parts": {
+                    "marker": {
+                      "tokens": {
+                        "color": "{az.color.fg.rain}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The list.",
+      "tokens": {
+        "gap": "{az.spacing.4}"
+      },
+      "parts": {
+        "item": {
+          "description": "A list item: its marker, then its text.",
+          "tokens": {
+            "gap": "{az.spacing.3}"
+          },
+          "parts": {
+            "marker": {
+              "description": "The item's marker.",
+              "tokens": {
+                "size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  },
+                  "$description": "Marker width and height."
+                }
+              },
+              "parts": {
+                "highlight": {
+                  "description": "The small star at the center of a focus point marker, drawn on top of it."
+                }
+              }
+            }
+          }
+        },
+        "nested": {
+          "description": "A list inside an item.",
+          "tokens": {
+            "gap": {
+              "$type": "dimension",
+              "$value": {
+                "value": 14,
+                "unit": "px"
+              },
+              "$description": "Space between items in a nested list."
+            },
+            "margin.top": {
+              "$type": "dimension",
+              "$value": {
+                "value": 14,
+                "unit": "px"
+              },
+              "$description": "Space above a nested list, below its item's text."
+            }
+          }
+        }
+      }
+    }
+  }
+}

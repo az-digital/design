@@ -54,6 +54,10 @@ Decisions every component that needs them shares, so they change in one place. E
 
 <TokenDisplay items={getTokenDisplayItems('az.focus-ring.', { order: 'source' })} layout="table" />
 
+Body copy's typeface, size, weight and line height. See <a href="./?path=/docs/primary-foundations-typography--docs" target="_top">Typography</a>.
+
+<TokenDisplay items={getTokenDisplayItems('az.body.', { order: 'source' })} layout="table" />
+
 ## Components
 
 Each component's contract (`packages/contracts`) sets each of its parts' design properties: colors point at color tokens for what they color and where (`az.color.bg.button.red`, `az.color.fg.white`), shared decisions at their shared token, and everything specific to the component, such as its sizes and timings, is a value in the contract itself, with a description of what it's for. Its docs page shows the contract as an Anatomy table.
