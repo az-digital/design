@@ -2,7 +2,7 @@
   "$schema": "../contract.schema.json",
   "id": "heading",
   "name": "Heading",
-  "description": "A heading, from h1 to h6. Every level is Semibold with no letter spacing; h1–h3 get larger from the lg breakpoint (992px) up. Headings are sans serif unless a page opts into serif headings. Headings in a sidebar follow the heading-sidebar contract instead. Text colors come from the background, so they aren't part of it.",
+  "description": "A heading, from h1 to h6. Every level is Semibold with no letter spacing; h1–h3 get larger from the lg breakpoint (992px) up. Its typeface is the page's heading typeface (az.heading.font-family), sans serif unless the page has serif headings. On a page with mixed headings, only h1–h3 use the serif; h4–h6 stay sans serif. Headings in a sidebar follow the heading-sidebar contract instead. Text colors come from the background, so they aren't part of it.",
   "sources": [
     "az-digital/arizona-bootstrap#2285: heading scale and serif headings",
     "az-digital/design#88"
@@ -185,28 +185,13 @@
           }
         }
       }
-    },
-    "family": {
-      "description": "The heading's typeface. With none chosen, it's sans serif. A page with serif headings uses serif at every level (Arizona Bootstrap: .az-headings-serif); a page with mixed headings uses it for h1–h3 only, and h4–h6 stay sans serif (.az-headings-mixed).",
-      "options": {
-        "serif": {
-          "description": "Serif: Garamond Premier Pro.",
-          "anatomy": {
-            "root": {
-              "tokens": {
-                "font.family": "{az.font-family.serif}"
-              }
-            }
-          }
-        }
-      }
     }
   },
   "anatomy": {
     "root": {
       "description": "The heading.",
       "tokens": {
-        "font.family": "{az.font-family.sans-serif}",
+        "font.family": "{az.heading.font-family}",
         "font.weight": "{az.font-weight.semibold}",
         "letter-spacing": {
           "$type": "dimension",

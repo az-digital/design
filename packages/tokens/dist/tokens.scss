@@ -95,3 +95,4 @@ $az-color-fg-bougainvillea: $az-color-brand-bougainvillea; // Bougainvillea text
 $az-color-fg-arroyo-blue: $az-color-brand-arroyo-blue; // Arroyo Blue text and icons, such as a checkmark list marker on a light background.
 $az-body-font-family: $az-font-family-sans-serif; // Body copy typeface. Bootstrap 6: --body-font-family.
 $az-body-font-weight: $az-font-weight-normal; // Body copy weight, Regular. Bootstrap 6: --body-font-weight.
+$az-heading-font-family: $az-font-family-sans-serif; // Heading typeface for the page: sans serif by default. A page or theme with serif headings points it at the serif. With mixed headings, only h1–h3 use the serif. Sidebar headings stay sans serif.

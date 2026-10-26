@@ -1239,7 +1239,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.family",
-    "token": "az.font-family.sans-serif"
+    "token": "az.heading.font-family"
   },
   {
     "contract": "heading",
@@ -1495,15 +1495,6 @@
     "type": "dimension",
     "value": "26px",
     "description": "h6 line height."
-  },
-  {
-    "contract": "heading",
-    "variant": "family.serif",
-    "part": "root",
-    "kind": "default",
-    "condition": null,
-    "property": "font.family",
-    "token": "az.font-family.serif"
   },
   {
     "contract": "list",

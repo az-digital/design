@@ -58,6 +58,10 @@ Body copy's typeface, size, weight and line height. See <a href="./?path=/docs/p
 
 <TokenDisplay items={getTokenDisplayItems('az.body.', { order: 'source' })} layout="table" />
 
+The page's heading typeface, which a page or theme with serif headings points at the serif.
+
+<TokenDisplay items={getTokenDisplayItems('az.heading.', { order: 'source' })} layout="table" />
+
 ## Components
 
 Each component's contract (`packages/contracts`) sets each of its parts' design properties: colors point at color tokens for what they color and where (`az.color.bg.button.red`, `az.color.fg.white`), shared decisions at their shared token, and everything specific to the component, such as its sizes and timings, is a value in the contract itself, with a description of what it's for. Its docs page shows the contract as an Anatomy table.

@@ -93,7 +93,8 @@ below. h1 has 0.667 times its size above it too, so its spacing is even.
 
 ### Serif headings
 
-Headings are sans serif unless a page opts into a serif style:
+The page's heading typeface is a token, <Token data={getTokenData('az.heading.font-family')} />.
+It's sans serif by default. A page or theme with serif headings points it at the serif:
 
 - **Serif:** every heading level is serif.
 - **Mixed:** h1–h3 are serif. h4–h6 stay sans serif.
@@ -112,10 +113,6 @@ Headings are sans serif unless a page opts into a serif style:
 ### Heading contract
 
 <ContractAnatomy contract="heading" />
-
-#### Serif
-
-<ContractAnatomy contract="heading" variant="family.serif" />
 
 #### h1
 
