@@ -2,7 +2,7 @@
   "$schema": "../contract.schema.json",
   "id": "heading",
   "name": "Heading",
-  "description": "A heading, from h1 to h6. Every level is Semibold with no letter spacing; h1–h3 get larger from the lg breakpoint (992px) up. Headings are sans serif unless a page opts into serif headings. Text colors come from the background, so they aren't part of it.",
+  "description": "A heading, from h1 to h6. Every level is Semibold with no letter spacing; h1–h3 get larger from the lg breakpoint (992px) up. Headings are sans serif unless a page opts into serif headings. Headings in a sidebar follow the sidebar heading contract instead. Text colors come from the background, so they aren't part of it.",
   "sources": [
     "az-digital/arizona-bootstrap#2285: heading scale and serif headings",
     "az-digital/design#88"

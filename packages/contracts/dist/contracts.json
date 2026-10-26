@@ -1410,6 +1410,105 @@
     "token": "az.color.fg.rain"
   },
   {
+    "contract": "sidebar-heading",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.font-family.sans-serif"
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.medium"
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": "az.line-height.medium"
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h1",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "40px",
+    "description": "Sidebar h1 text size from the xl breakpoint (1200px) up."
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h2",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "32px",
+    "description": "Sidebar h2 text size from the xl breakpoint (1200px) up."
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h3",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Sidebar h3 text size from the xl breakpoint (1200px) up."
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h4",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "24px",
+    "description": "Sidebar h4 text size from the xl breakpoint (1200px) up."
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h5",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "20px",
+    "description": "Sidebar h5 text size."
+  },
+  {
+    "contract": "sidebar-heading",
+    "variant": "level.h6",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "16px",
+    "description": "Sidebar h6 text size."
+  },
+  {
     "contract": "text",
     "variant": null,
     "part": "root",
