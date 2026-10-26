@@ -40,6 +40,17 @@ jobs:
       - name: Run lint checks
         run: npm run lint:storybook
 
+      # Fails when a contract references a missing token or breaks the schema, or
+      # when its committed dist/contracts.json is out of date.
+      - name: Check the component contracts
+        run: |
+          npm run build:contracts
+          git diff --exit-code -- packages/contracts/dist
+
+      # The stories run as tests in Chromium, including any contract checks.
+      - name: Install Playwright's Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Run Storybook tests
         run: npm run test:storybook
   review-site:
@@ -90,7 +101,7 @@ jobs:
 
       - name: Comment review site URL on PR
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const marker = '<!-- design-review-site -->';
