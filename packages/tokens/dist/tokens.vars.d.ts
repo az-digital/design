@@ -117,7 +117,10 @@ export const az: {
     "lineHeight": string
   },
   "heading": {
-    "fontFamily": string
+    "fontFamily": {
+      "lg": string,
+      "sm": string
+    }
   },
   "border": {
     "width": {

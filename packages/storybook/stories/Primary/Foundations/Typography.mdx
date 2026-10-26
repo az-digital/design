@@ -1,8 +1,9 @@
-import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta, Unstyled } from '@storybook/addon-docs/blocks';
 import { Token, TokenDisplay, getTokenData, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../Components/ContractAnatomy';
+import * as TypographyStories from './Typography.stories';
 
-<Meta title="Primary/Foundations/Typography" />
+<Meta of={TypographyStories} />
 
 {/* Unstyled keeps the docs page's own type styles off the examples. */}
 export const Example = ({ children, dark }) => (
@@ -82,33 +83,33 @@ Every heading is Semibold, with no letter spacing. h1–h3 get larger from the l
 Space around a heading scales with its size: 1.042 times its size above it, and 0.667 times
 below. h1 has 0.667 times its size above it too, so its spacing is even.
 
-<Example>
-  <h1>Heading 1</h1>
-  <h2>Heading 2</h2>
-  <h3>Heading 3</h3>
-  <h4>Heading 4</h4>
-  <h5>Heading 5</h5>
-  <h6>Heading 6</h6>
-</Example>
+### Heading modes
 
-### Serif headings
+A page's headings are in one of three modes. Sans serif is the default; serif and mixed are
+opt-in for a whole page. Sizes and spacing are the same in every mode. Only the typeface
+changes.
 
-The page's heading typeface is a token, <Token data={getTokenData('az.heading.font-family')} />.
-It's sans serif by default. A page or theme with serif headings points it at the serif:
+<table>
+  <thead>
+    <tr><th>Mode</th><th>h1–h3</th><th>h4–h6</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>sans-serif (default)</td><td>Sans serif</td><td>Sans serif</td></tr>
+    <tr><td>serif</td><td>Serif</td><td>Serif</td></tr>
+    <tr><td>mixed</td><td>Serif</td><td>Sans serif</td></tr>
+  </tbody>
+</table>
 
-- **Serif:** every heading level is serif.
-- **Mixed:** h1–h3 are serif. h4–h6 stay sans serif.
+Two tokens carry the mode: <Token data={getTokenData('az.heading.font-family.lg')} /> for h1–h3,
+and <Token data={getTokenData('az.heading.font-family.sm')} /> for h4–h6. In Figma, they're the
+Headings collection's variables, and a frame picks the mode. In code, a page points the tokens
+at the serif.
 
-<Example>
-  <div className="az-headings-serif">
-    <h2>Serif: Heading 2</h2>
-    <h5>Serif: Heading 5</h5>
-  </div>
-  <div className="az-headings-mixed">
-    <h2>Mixed: Heading 2</h2>
-    <h5>Mixed: Heading 5</h5>
-  </div>
-</Example>
+Switch the mode to see one at a time:
+
+<Canvas of={TypographyStories.Headings} sourceState="none" />
+
+<Controls of={TypographyStories.Headings} />
 
 ### Heading contract
 

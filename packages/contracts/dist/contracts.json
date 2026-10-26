@@ -1239,7 +1239,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.family",
-    "token": "az.heading.font-family"
+    "token": "az.heading.font-family.lg"
   },
   {
     "contract": "heading",
@@ -1456,6 +1456,15 @@
   },
   {
     "contract": "heading",
+    "variant": "level.h4",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.heading.font-family.sm"
+  },
+  {
+    "contract": "heading",
     "variant": "level.h5",
     "part": "root",
     "kind": "default",
@@ -1477,6 +1486,15 @@
   },
   {
     "contract": "heading",
+    "variant": "level.h5",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.heading.font-family.sm"
+  },
+  {
+    "contract": "heading",
     "variant": "level.h6",
     "part": "root",
     "kind": "default",
@@ -1495,6 +1513,15 @@
     "type": "dimension",
     "value": "26px",
     "description": "h6 line height."
+  },
+  {
+    "contract": "heading",
+    "variant": "level.h6",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.heading.font-family.sm"
   },
   {
     "contract": "list",
