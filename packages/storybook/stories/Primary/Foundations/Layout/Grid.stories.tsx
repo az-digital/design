@@ -35,6 +35,7 @@ function GridDiagram() {
   const widths = getTokenDisplayItems('az.container.max-width.', { order: 'source' });
   const [selected, setSelected] = useState(widths[widths.length - 1].token);
   const width = px(resolveValue(selected));
+  const widest = Math.max(...widths.map((item) => px(item.value)));
   const columns = Number(resolveValue('az.grid.columns'));
   const gutter = px(resolveValue('az.grid.gutter'));
   const columnWidth = width / columns;
@@ -67,7 +68,7 @@ function GridDiagram() {
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label={`A ${width}px container with ${columns} columns and ${gutter}px gutters`}
-        style={{ width: `min(100%, ${width}px)`, height: 'auto', display: 'block' }}
+        style={{ width: `${(width / widest) * 100}%`, height: 'auto', display: 'block' }}
       >
         <rect width={width} height={height} fill="var(--az-color-brand-gray-100)" stroke="var(--az-color-brand-blue)" strokeWidth={2} />
         {Array.from({ length: columns }, (_, index) => (
