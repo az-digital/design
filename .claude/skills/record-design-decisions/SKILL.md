@@ -1,6 +1,6 @@
 ---
 name: record-design-decisions
-description: Record a component's design decisions in a component contract in the design system, with tokens named the way the Naming page says, then write upgrade instructions for Arizona Bootstrap. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
+description: Record a component's design decisions in a component contract in the design system, with tokens named the way the Naming page says, then update Arizona Bootstrap to match with token values and a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
 ---
 
 # Record design decisions
@@ -9,16 +9,17 @@ Developers can't get Figma access, so the design system is how design decisions 
 every implementation. Work in this order, and don't skip ahead: values recorded before
 the source and shape are settled get recorded twice.
 
-The contract in the design system comes first; upgrade instructions for each
-implementation follow from it.
+The contract in the design system comes first; each implementation's changes follow
+from it.
 
 1. **Source of truth:** where each decision comes from
 2. **Contract and tokens:** which tokens each part uses, and the component's own values
 3. **Values:** what each one is set to, from its source
 4. **Document it:** the component's docs page in Storybook
-5. **Upgrade instructions:** what changes in Arizona Bootstrap to match the contract
+5. **Update Arizona Bootstrap:** token values and a patch to its Sass, so the demo
+   matches the contract and Arizona Bootstrap can take the same change
 
-Once Arizona Bootstrap ships the upgrade, a contract check holds it to the contract.
+A contract check holds the demo to the contract.
 
 Before editing, read on the current branch:
 
@@ -175,13 +176,16 @@ goes in `packages/tokens/assets/<kind>/`, published with the tokens package.
 
 ### A live example of the implementation
 
-Show the implementation as it ships, without patching it:
+The demo components are drawn by Arizona Bootstrap compiled from its Sass source with
+the design system's values (step 5), so the example shows what the contract asks for:
 
-- `.storybook/preview-head.html` loads Arizona Bootstrap's latest release from its CDN
-  (`https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css`)
-  and Proxima Nova. The CDN has `5.x` (built from `main`), `latest-5.x` and one folder
-  per release; release branches such as `5.3.x` have no CDN build, and their
-  committed `dist/` can lag their Sass.
+- `.storybook/arizona-bootstrap.scss` imports `tokens.scss`, sets Arizona Bootstrap's
+  variables from tokens, then imports Arizona Bootstrap from `node_modules`.
+  `.storybook/preview-head.html` loads Proxima Nova.
+- Arizona Bootstrap is a devDependency installed from GitHub by tag
+  (`github:az-digital/arizona-bootstrap#v5.2.2`). It has no npm release, and
+  release branches such as `5.3.x` have no tag or CDN build. When the work lands on
+  a release branch, patch the tagged version to match it.
 - One story (`<Name>.stories.tsx`) with controls copied from the Figma component's
   properties (the button's: Color, Size, Style, Label). Leave out what's a state
   (hover and focus come from the pointer and keyboard) or out of scope. Use the
@@ -190,30 +194,41 @@ Show the implementation as it ships, without patching it:
 - Tag it `['!dev']` and show it on the docs page with
   `<Canvas of={…} sourceState="none" />` and `<Controls of={…} />`, attached with
   `<Meta of={…} />`.
-- Where the release doesn't match the contract yet, say so in one plain sentence on
-  the page.
-- Don't write a Storybook shim that restyles the implementation to match the contract.
-  The upgrade instructions say what changes, and the implementation's own release
-  shows when it has.
+- Don't restyle the demo with CSS rules written after Arizona Bootstrap. Change it
+  the way step 5 says, so the same change can go to Arizona Bootstrap.
 
-## 5. Write upgrade instructions for Arizona Bootstrap
+## 5. Update Arizona Bootstrap
 
-With the contract settled, say what changes in Arizona Bootstrap to match it. Put the
-instructions in the PR description (docs pages don't name Bootstrap), against the
-branch the work is landing on (step 1):
+With the contract settled, change Arizona Bootstrap to match it in two ways (see
+"Patching Arizona Bootstrap" in the README):
 
-- First, list the PRs that already cover part of it (merged, or approved and open),
-  and what each covers.
-- Then only what's left: a table per Sass file of each variable or rule, what it is
-  now and what it becomes. Mark the rows that draw differently; the rest only switch a
-  hard-coded value to a token's Sass variable (`$az-color-bg-button-red-hover` from
-  `@az-digital/tokens/dist/tokens.scss`, which Arizona Bootstrap copies as
-  `scss/_design-tokens.scss`).
+- **A value with its own Sass variable** is set in `.storybook/arizona-bootstrap.scss`
+  from a token (`$bloom: $az-color-fg-bougainvillea;`), before Arizona Bootstrap is
+  imported.
+- **A value with no variable of its own**, such as a color passed straight into a
+  mixin, is changed in Arizona Bootstrap's source. Edit the file under
+  `node_modules/arizona-bootstrap/scss/`, then run `npx patch-package arizona-bootstrap`
+  from the repo root. That rewrites `patches/arizona-bootstrap+<version>.patch`, which
+  the root `postinstall` reapplies on every `npm install`. Write it the way Arizona
+  Bootstrap would: its own variables (`$gray-200`, not `$az-color-brand-gray-200`) and
+  its code style. Restart Storybook to see it.
+
+Commit the patch with the contract change it supports. Then, in the PR description,
+against the branch the work is landing on (step 1):
+
+- First, list the Arizona Bootstrap PRs that already cover part of it (merged, or
+  approved and open), and what each covers. Don't patch what they cover.
+- Then list the variables set from tokens, and link the patch. Its maintainers can
+  apply it to their repo with `git apply -p3 arizona-bootstrap+<version>.patch`.
 - Note what Arizona Bootstrap doesn't do at all yet (the button's 4px icon gap), and
   open questions that aren't the contract's (an unapproved variant).
 - Don't open or draft Arizona Bootstrap issues.
 
-## After the upgrade ships: a contract check
+When Arizona Bootstrap releases a version with the change, bump the tag, and delete
+from the patch what the release now includes. `npm install` fails if the patch no
+longer applies: redo what still matters on the new version and regenerate it.
+
+## A contract check
 
 `checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
 renders an implementation in Chromium and compares each property with the contract:
@@ -225,17 +240,17 @@ renders an implementation in Chromium and compares each property with the contra
   cubic-bezier, a font stack by its first face.
 - An option you leave out takes the contract's default.
 
-Once the implementation ships the upgrade, add a story tagged `['!dev', '!autodocs']`
+Run it while you work to list what still differs, and fix each with a token value or
+the patch (step 5). Once the demo matches, add a story tagged `['!dev', '!autodocs']`
 that renders every size and color and runs it in a `play` function;
-`npm run test:storybook` runs it in CI. Until then, don't add one that fails: run it
-once locally against the release to list what's left, then delete it.
+`npm run test:storybook` runs it in CI. Don't add one that fails.
 
 ## Verify
 
 - `npm run build:tokens`, `npm run build:contracts`, `npm run lint:storybook` and
   `npm run test:storybook` pass.
 - Storybook runs with `npm run dev:storybook` on port 6006; never another port. Reuse it
-  if it's running, and restart it after changing `main.ts` or `preview-head.html`.
+  if it's running, and restart it after changing `main.ts`, `preview-head.html` or the patch.
 - Open the docs page (`/iframe.html?id=<id>--docs&viewMode=docs`) and check what
   renders: `docs show` returns the source, not the rendered page.
 - `await document.fonts.ready` before measuring type, and wait out transitions before
