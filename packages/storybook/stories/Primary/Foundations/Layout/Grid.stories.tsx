@@ -1,52 +1,97 @@
+import { useState, type CSSProperties } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Token, getTokenData, getTokenDisplayItems, resolveValue, type TokenData } from '@az-digital/storybook-addon-tokens';
 
-const examples = [
-  { breakpoint: 'Below sm', viewportRange: '<576px', maxWidth: null },
-  { breakpoint: 'sm', viewportRange: '576–767px', maxWidth: 540 },
-  { breakpoint: 'md', viewportRange: '768–991px', maxWidth: 720 },
-  { breakpoint: 'lg', viewportRange: '992–1199px', maxWidth: 960 },
-  { breakpoint: 'xl', viewportRange: '1200–1399px', maxWidth: 1140 },
-  { breakpoint: 'xxl', viewportRange: '≥1400px', maxWidth: 1320 },
-];
+/**
+ * The container at one breakpoint's max width, with the grid's columns and
+ * gutters drawn inside it. Every number comes from the tokens.
+ */
 
-const maxContainerWidth = 1320;
+const px = (value: unknown) => Number.parseFloat(String(value));
 
-function ContainerWidthComparison() {
+/** A token the diagram needs; fails loudly if it's renamed or removed. */
+function token(path: string): TokenData {
+  const data = getTokenData(path);
+  if (!data) throw new Error(`Missing token ${path}`);
+  return data;
+}
+
+const BUTTON_STYLE: CSSProperties = {
+  padding: '4px 12px',
+  border: '1px solid var(--az-color-brand-blue)',
+  borderRadius: 4,
+  font: 'inherit',
+  cursor: 'pointer',
+};
+
+const LABEL_STYLE: CSSProperties = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  gap: 8,
+};
+
+function GridDiagram() {
+  const widths = getTokenDisplayItems('az.container.max-width.', { order: 'source' });
+  const [selected, setSelected] = useState(widths[widths.length - 1].token);
+  const width = px(resolveValue(selected));
+  const columns = Number(resolveValue('az.grid.columns'));
+  const gutter = px(resolveValue('az.grid.gutter'));
+  const columnWidth = width / columns;
+  const height = 120;
+
   return (
-    <div style={{ overflowX: 'auto' }}>
-      <table style={{ width: '100%', minWidth: 600, borderCollapse: 'collapse', color: '#252a30', fontSize: 14 }}>
-        <caption style={{ captionSide: 'bottom', paddingTop: 8, textAlign: 'left', color: '#616e7c' }}>
-          Bar lengths are proportional to 1320px; below sm, the container remains fluid.
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col" style={{ padding: '8px 12px', borderBottom: '1px solid #ced4da', textAlign: 'left' }}>Breakpoint</th>
-            <th scope="col" style={{ padding: '8px 12px', borderBottom: '1px solid #ced4da', textAlign: 'left' }}>Viewport range</th>
-            <th scope="col" style={{ padding: '8px 12px', borderBottom: '1px solid #ced4da', textAlign: 'left' }}>Container max width</th>
-            <th scope="col" style={{ width: '35%', padding: '8px 12px', borderBottom: '1px solid #ced4da', textAlign: 'left' }}>Relative width</th>
-          </tr>
-        </thead>
-        <tbody>
-          {examples.map(({ breakpoint, viewportRange, maxWidth }) => (
-            <tr key={breakpoint}>
-              <th scope="row" style={{ padding: '8px 12px', borderBottom: '1px solid #e8ebef', textAlign: 'left' }}>{breakpoint}</th>
-              <td style={{ padding: '8px 12px', borderBottom: '1px solid #e8ebef', whiteSpace: 'nowrap' }}>{viewportRange}</td>
-              <td style={{ padding: '8px 12px', borderBottom: '1px solid #e8ebef', whiteSpace: 'nowrap' }}>
-                {maxWidth === null ? 'Full width' : `${maxWidth}px`}
-              </td>
-              <td style={{ padding: '8px 12px', borderBottom: '1px solid #e8ebef' }}>
-                {maxWidth === null ? (
-                  <span style={{ color: '#616e7c' }}>Fluid</span>
-                ) : (
-                  <div aria-hidden="true" style={{ height: 16, background: 'var(--az-color-brand-caliche)' }}>
-                    <div style={{ width: `${(maxWidth / maxContainerWidth) * 100}%`, height: '100%', background: 'var(--az-color-brand-rain)' }} />
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div style={{ display: 'grid', gap: 16, fontSize: 14 }}>
+      <div role="group" aria-label="Breakpoint" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {widths.map((item) => {
+          const isSelected = item.token === selected;
+          return (
+            <button
+              key={item.token}
+              type="button"
+              aria-pressed={isSelected}
+              onClick={() => setSelected(item.token)}
+              style={{
+                ...BUTTON_STYLE,
+                background: isSelected ? 'var(--az-color-brand-blue)' : 'var(--az-color-brand-white)',
+                color: isSelected ? 'var(--az-color-brand-white)' : 'var(--az-color-brand-blue)',
+              }}
+            >
+              {item.name}
+            </button>
+          );
+        })}
+      </div>
+
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={`A ${width}px container with ${columns} columns and ${gutter}px gutters`}
+        style={{ width: `min(100%, ${width}px)`, height: 'auto', display: 'block' }}
+      >
+        <rect width={width} height={height} fill="var(--az-color-brand-gray-100)" stroke="var(--az-color-brand-blue)" strokeWidth={2} />
+        {Array.from({ length: columns }, (_, index) => (
+          <rect
+            key={index}
+            x={index * columnWidth + gutter / 2}
+            y={0}
+            width={columnWidth - gutter}
+            height={height}
+            fill="var(--az-color-brand-rain)"
+            opacity={0.6}
+          />
+        ))}
+      </svg>
+
+      <div style={LABEL_STYLE}>
+        Container max width <Token data={token(selected)} /> {width}px
+      </div>
+      <div style={LABEL_STYLE}>
+        Columns <Token data={token('az.grid.columns')} /> {columns}
+      </div>
+      <div style={LABEL_STYLE}>
+        Gutter <Token data={token('az.grid.gutter')} /> {gutter}px, with half a gutter ({gutter / 2}px) at each edge of the container
+      </div>
     </div>
   );
 }
@@ -55,12 +100,13 @@ const meta = {
   title: 'Primary/Foundations/Layout/Grids and Spacing',
   parameters: {
     tokens: ['az.grid.', 'az.container.', 'az.spacing.4'],
+    docs: { canvas: { sourceState: 'none' } },
   },
-  render: () => <ContainerWidthComparison />,
+  render: () => <GridDiagram />,
 } satisfies Meta;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ContainerWidths: Story = {};
+export const GridAndContainer: Story = {};
