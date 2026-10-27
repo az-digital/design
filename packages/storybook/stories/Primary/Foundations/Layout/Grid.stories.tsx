@@ -68,7 +68,7 @@ function GridDiagram() {
 }
 
 const meta = {
-  title: 'Primary/Foundations/Layout/Grids and Spacing',
+  title: 'Primary/Foundations/Layout/Grid',
   parameters: {
     tokens: ['az.grid.', 'az.container.', 'az.spacing.4'],
     docs: { canvas: { sourceState: 'none' } },
