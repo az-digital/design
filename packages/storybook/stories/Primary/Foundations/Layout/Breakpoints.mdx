@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { TokenDisplay, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
+import { BreakpointTable } from './BreakpointTable';
 
 <Meta title="Primary/Foundations/Layout/Breakpoints" />
 
@@ -9,6 +9,16 @@ Breakpoints are minimum viewport widths, and styles apply from each breakpoint u
 
 ## Breakpoint tokens
 
-<TokenDisplay items={getTokenDisplayItems('az.breakpoint.', { order: 'source' })} layout="table" />
+The device examples are typical, not rules: design for the width, not the device.
+
+<BreakpointTable
+  examples={{
+    sm: 'Phones in landscape, small tablets',
+    md: 'Tablets in portrait, such as iPads',
+    lg: 'Tablets in landscape, small laptops',
+    xl: 'Laptops, standard desktop monitors',
+    xxl: 'Large desktop monitors, widescreen displays',
+  }}
+/>
 
 The generated CSS custom properties and JavaScript `var(...)` references cannot be used in media query conditions. Use the Sass values when compiling Sass media queries, or the matching literal width in CSS and JavaScript.
