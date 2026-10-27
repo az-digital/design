@@ -69,6 +69,19 @@ export const az = {
     "min": "var(--az-spacing-min)",
     "card": "var(--az-spacing-card)"
   },
+  "container": {
+    "maxWidth": {
+      "sm": "var(--az-container-max-width-sm)",
+      "md": "var(--az-container-max-width-md)",
+      "lg": "var(--az-container-max-width-lg)",
+      "xl": "var(--az-container-max-width-xl)",
+      "xxl": "var(--az-container-max-width-xxl)"
+    }
+  },
+  "grid": {
+    "columns": "var(--az-grid-columns)",
+    "gutter": "var(--az-grid-gutter)"
+  },
   "radius": {
     "0": "var(--az-radius-0)",
     "1": "var(--az-radius-1)",

@@ -1,5 +1,41 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import { TokenDisplay } from '@az-digital/storybook-addon-tokens';
+import * as GridStories from './Grid.stories';
 
-<Meta title="Primary/Foundations/Layout/Grids and Spacing" />
+<Meta of={GridStories} />
 
 # Grids and Spacing
+
+## Grid and container
+
+Pages use a 12-column grid inside a centered container. The gutter is 24px between columns (12px on each side of a column), the same as `az.spacing.4`. Containers have 12px of padding on each side, half the gutter; that padding is derived from the gutter, so it has no separate token.
+
+The maximum container width changes at each breakpoint. Below `sm`, the container is full width.
+
+<table>
+  <thead>
+    <tr><th>From breakpoint</th><th>Container max width</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Below sm</td><td>Full width</td></tr>
+    <tr><td>sm</td><td>540px</td></tr>
+    <tr><td>md</td><td>720px</td></tr>
+    <tr><td>lg</td><td>960px</td></tr>
+    <tr><td>xl</td><td>1140px</td></tr>
+    <tr><td>xxl</td><td>1320px</td></tr>
+  </tbody>
+</table>
+
+The column count, gutter and container widths follow the current implementation (5.2.2). Figma's layout grids supply values the implementation doesn't set; no differing value is recorded for these decisions.
+
+### Grid at each breakpoint
+
+Each example shows the 12 columns, 24px gutters and 12px container padding at that viewport width.
+
+<Canvas of={GridStories.AtEachBreakpoint} />
+
+### Grid tokens
+
+<TokenDisplay prefix="az.grid." layout="table" />
+
+<TokenDisplay prefix="az.container." layout="table" />

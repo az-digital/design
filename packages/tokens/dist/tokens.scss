@@ -40,6 +40,12 @@ $az-spacing-20: 256px;
 $az-spacing-30: 384px;
 $az-spacing-min: 1px;
 $az-spacing-card: 20px;
+$az-container-max-width-sm: 540px; // Maximum container width from the sm breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-md: 720px; // Maximum container width from the md breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-lg: 960px; // Maximum container width from the lg breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-xl: 1140px; // Maximum container width from the xl breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-xxl: 1320px; // Maximum container width from the xxl breakpoint. Source: current implementation (5.2.2).
+$az-grid-columns: 12; // Number of columns in the shared page grid. Source: current implementation (5.2.2).
 $az-radius-0: 0px;
 $az-radius-1: 4px;
 $az-radius-2: 6px;
@@ -89,3 +95,4 @@ $az-color-fg-blue: $az-color-brand-blue;
 $az-color-fg-tinta: $az-color-brand-tinta;
 $az-color-fg-red: $az-color-brand-red;
 $az-color-fg-rain: $az-color-brand-rain;
+$az-grid-gutter: $az-spacing-4; // Space between grid columns, 12px on each side of a column. Source: current implementation (5.2.2).

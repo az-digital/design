@@ -69,6 +69,19 @@ export const az: {
     "min": string,
     "card": string
   },
+  "container": {
+    "maxWidth": {
+      "sm": string,
+      "md": string,
+      "lg": string,
+      "xl": string,
+      "xxl": string
+    }
+  },
+  "grid": {
+    "columns": string,
+    "gutter": string
+  },
   "radius": {
     "0": string,
     "1": string,
