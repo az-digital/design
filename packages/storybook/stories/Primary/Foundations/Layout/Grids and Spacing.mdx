@@ -3,3 +3,38 @@ import { Meta } from '@storybook/addon-docs/blocks';
 <Meta title="Primary/Foundations/Layout/Grids and Spacing" />
 
 # Grids and Spacing
+
+## Spacing scale
+
+Use the shared spacing scale instead of introducing one-off values. Smaller steps support compact gaps within components and related content; from 48px onward, the scale uses broader steps for page and section layout.
+
+The jump from 24px to 48px is intentional: the scale moves from component-level spacing to larger layout separation rather than adding every intermediate value.
+
+<table>
+  <thead>
+    <tr><th>Token</th><th>Value</th><th>Scale</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>az.spacing.0</code></td><td>0px</td><td><span aria-hidden="true" style="display: inline-block; width: 0px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.min</code></td><td>1px</td><td><span aria-hidden="true" style="display: inline-block; width: 1px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.1</code></td><td>4px</td><td><span aria-hidden="true" style="display: inline-block; width: 4px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.2</code></td><td>8px</td><td><span aria-hidden="true" style="display: inline-block; width: 8px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.3</code></td><td>16px</td><td><span aria-hidden="true" style="display: inline-block; width: 16px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.card</code></td><td>20px</td><td><span aria-hidden="true" style="display: inline-block; width: 20px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.4</code></td><td>24px</td><td><span aria-hidden="true" style="display: inline-block; width: 24px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.5</code></td><td>48px</td><td><span aria-hidden="true" style="display: inline-block; width: 48px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.6</code></td><td>64px</td><td><span aria-hidden="true" style="display: inline-block; width: 64px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.7</code></td><td>80px</td><td><span aria-hidden="true" style="display: inline-block; width: 80px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.8</code></td><td>96px</td><td><span aria-hidden="true" style="display: inline-block; width: 96px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.9</code></td><td>112px</td><td><span aria-hidden="true" style="display: inline-block; width: 112px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.10</code></td><td>128px</td><td><span aria-hidden="true" style="display: inline-block; width: 128px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.20</code></td><td>256px</td><td><span aria-hidden="true" style="display: inline-block; width: 256px; height: 12px; background-color: currentColor;"></span></td></tr>
+    <tr><td><code>az.spacing.30</code></td><td>384px</td><td><span aria-hidden="true" style="display: inline-block; width: 384px; height: 12px; background-color: currentColor;"></span></td></tr>
+  </tbody>
+</table>
+
+Choose the smallest step that gives the intended separation and keep similar relationships consistent. Use `min` only for a one-pixel optical adjustment or a nearly flush edge, not as a routine gap. Use `card` for the inset between a card's edge and its content; its 20px value is contextual rather than another numbered step.
+
+When a component contract describes ordinary spacing, reference the existing `az.spacing.*` step that matches the design. Use a contract-owned value only when the component genuinely needs a distinct value that the shared scale cannot express, and document why.
+
+For how spacing tokens are named, see <a href="./?path=/docs/primary-foundations-tokens-naming--docs" target="_top">Naming</a>.

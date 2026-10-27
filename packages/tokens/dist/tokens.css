@@ -26,21 +26,21 @@
   --az-color-bg-button-blue-active: #3d4f6f;
   --az-color-bg-button-rain-hover: #65c0db;
   --az-color-bg-button-rain-active: #9ad8ef;
-  --az-spacing-0: 0px;
-  --az-spacing-1: 4px;
-  --az-spacing-2: 8px;
-  --az-spacing-3: 16px;
-  --az-spacing-4: 24px;
-  --az-spacing-5: 48px;
-  --az-spacing-6: 64px;
-  --az-spacing-7: 80px;
-  --az-spacing-8: 96px;
-  --az-spacing-9: 112px;
-  --az-spacing-10: 128px;
-  --az-spacing-20: 256px;
-  --az-spacing-30: 384px;
-  --az-spacing-min: 1px;
-  --az-spacing-card: 20px;
+  --az-spacing-0: 0px; /** Use when two things should touch or a contract explicitly requires no spacing. */
+  --az-spacing-1: 4px; /** Use for the smallest regular gap between tightly related items, such as an icon and its label. */
+  --az-spacing-2: 8px; /** Use for compact gaps between related parts of the same control or group. */
+  --az-spacing-3: 16px; /** Use for the standard gap between related content within a group. */
+  --az-spacing-4: 24px; /** Use to separate related subgroups or provide roomier content spacing. */
+  --az-spacing-5: 48px; /** Use for separation between major content groups; this is the first broad layout step. */
+  --az-spacing-6: 64px; /** Use to separate distinct sections in a page or layout. */
+  --az-spacing-7: 80px; /** Use for generous separation between major sections in an open layout. */
+  --az-spacing-8: 96px; /** Use for large page-level separation when the layout needs more breathing room. */
+  --az-spacing-9: 112px; /** Use for very large gaps between page-level content blocks. */
+  --az-spacing-10: 128px; /** Use for the largest regular page-level gaps in a spacious layout. */
+  --az-spacing-20: 256px; /** Use only for exceptionally large structural space in a layout, not for component internals. */
+  --az-spacing-30: 384px; /** Use only for the largest structural separation when the page design explicitly calls for it. */
+  --az-spacing-min: 1px; /** Use for a one-pixel optical adjustment or near-touching edges; do not use as a regular layout gap. */
+  --az-spacing-card: 20px; /** Use for the inset between a card's edge and its content; this is a card-specific step, not a general scale step. */
   --az-radius-0: 0px;
   --az-radius-1: 4px;
   --az-radius-2: 6px;
