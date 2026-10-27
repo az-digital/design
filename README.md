@@ -158,9 +158,4 @@ This repo is intended to support both token authoring and visual review in one p
 
 ## Token Collaboration Docs
 
-Use the Storybook token pages to find assets, import tokens, or contribute changes:
-
-- Tokens > Overview
-- Tokens > Using in Figma
-- Tokens > Using in Code
-- Tokens > Contributing
+The token docs, including how to use tokens in Figma and in code and how to contribute changes, are in Storybook under **Tokens**.
