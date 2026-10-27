@@ -15,8 +15,8 @@ token for everything it uses, even a color that only points at another token
 designers have to manage in Figma.
 
 A contract does the wiring instead, and holds what's specific to the component itself.
-It points each part at tokens named the way the Naming page (Foundations › Tokens ›
-Naming) describes:
+It points each part at tokens named the way the Naming page (Tokens › Naming)
+describes:
 
 - **Color tokens** for what they color and where, such as `az.color.bg.button.red-hover`
   and `az.color.fg.white`, which alias the brand colors. A context such as `button`
