@@ -96,10 +96,9 @@ contracts likewise bind a component's parts to tokens.
     yet, and its description says so.
   - **`states`:** what changes in `hover`, `focus-visible`, `focus-within`, `active`,
     `open` or `disabled`. Only what changes.
-  - **`breakpoints`:** what changes from a breakpoint's minimum viewport width up.
-    Keys use the same names as the `az.breakpoint.<name>` tokens, so `breakpoints.lg`
-    means `az.breakpoint.lg`; `sm` is 576px, `md` 768px, `lg` 992px, `xl` 1200px
-    and `xxl` 1400px. Only what changes.
+  - **`breakpoints`:** what changes from the width in the corresponding
+    `az.breakpoint.<name>` token up. The key and token use the same name; only what
+    changes.
   - **`parts`:** the parts inside it.
 - **`variants`** (optional): ways the component varies, such as `size` or `color`. Each
   has a `description`, its `options`, and a `default` when the anatomy alone isn't
