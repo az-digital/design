@@ -83,8 +83,8 @@
   --az-color-bg-button-blue-hover: var(--az-color-brand-azurite);
   --az-color-bg-button-rain: var(--az-color-brand-rain);
   --az-color-bg-button-white: var(--az-color-brand-white);
-  --az-color-bg-button-white-hover: var(--az-color-brand-cloud);
-  --az-color-bg-button-white-active: var(--az-color-brand-cloud);
+  --az-color-bg-button-white-hover: var(--az-color-brand-gray-200);
+  --az-color-bg-button-white-active: var(--az-color-brand-gray-100);
   --az-color-fg-white: var(--az-color-brand-white);
   --az-color-fg-blue: var(--az-color-brand-blue);
   --az-color-fg-tinta: var(--az-color-brand-tinta);
