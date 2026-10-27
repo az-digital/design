@@ -43,6 +43,11 @@ function GridDiagram() {
 
   return (
     <div style={{ display: 'grid', gap: 16, fontSize: 14 }}>
+      <p style={{ margin: 0, maxWidth: '60ch' }}>
+        This story shows the grid with Storybook&apos;s built-in tools. Use the viewport switcher in the toolbar to see the
+        container&apos;s max width change at each breakpoint, the measure and outline tools to inspect the columns and
+        gutters, and the Tokens tab below to look up the tokens it uses.
+      </p>
       <div ref={container} className="container" style={{ outline: '2px solid var(--az-color-brand-blue)' }}>
         <div className="row">
           {Array.from({ length: columns }, (_, index) => (
