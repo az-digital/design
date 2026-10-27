@@ -1,5 +1,6 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { SELECT_EVENT } from './constants';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
 import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
@@ -353,7 +354,20 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
 }
 
 /**
- * A clickable token pill. By default it opens `TokenDetails` in a side drawer;
+ * In story view the preview iframe is sized to the chosen viewport, so a drawer
+ * fixed inside it can be cut off. There, a pill shows the token in the Tokens
+ * tab instead. Docs pages fill the pane, so they keep the drawer.
+ */
+const isStoryView = () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('viewMode') === 'story';
+
+function showInTokensTab(token: string) {
+  const channel = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: { emit: (event: string, ...args: unknown[]) => void } }).__STORYBOOK_ADDONS_CHANNEL__;
+  channel?.emit(SELECT_EVENT, token);
+}
+
+/**
+ * A clickable token pill. By default it opens `TokenDetails` in a side drawer
+ * (or, in story view, in the Tokens tab);
  * pass `onSelect` (and `selected`) to handle selection yourself instead, e.g. to
  * show details in a panel. `swatch` adds a small color dot for color tokens
  * shown without a larger swatch next to them.
@@ -374,15 +388,16 @@ export function Token({
   const [open, setOpen] = useState(false);
   const isSelected = selected ?? open;
   ensurePillStyles();
+  const select = onSelect ?? (isStoryView() ? () => showInTokensTab(data.token) : () => setOpen(true));
 
   return (
     <>
-      <button type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
+      <button type="button" className="az-token-pill" onClick={select} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>
       </button>
-      {!onSelect && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
+      {!onSelect && !isStoryView() && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
     </>
   );
 }

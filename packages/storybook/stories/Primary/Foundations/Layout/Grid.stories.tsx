@@ -1,10 +1,11 @@
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Token, getTokenData, getTokenDisplayItems, resolveValue, type TokenData } from '@az-digital/storybook-addon-tokens';
 
 /**
- * The container at one breakpoint's max width, with the grid's columns and
- * gutters drawn inside it. Every number comes from the tokens.
+ * A real container with one column per grid column, so it responds to the
+ * viewport (use Storybook's viewport switcher). The labels read the tokens and
+ * name the max width the container is at.
  */
 
 const px = (value: unknown) => Number.parseFloat(String(value));
@@ -16,14 +17,6 @@ function token(path: string): TokenData {
   return data;
 }
 
-const BUTTON_STYLE: CSSProperties = {
-  padding: '4px 12px',
-  border: '1px solid var(--az-color-brand-blue)',
-  borderRadius: 4,
-  font: 'inherit',
-  cursor: 'pointer',
-};
-
 const LABEL_STYLE: CSSProperties = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -33,59 +26,36 @@ const LABEL_STYLE: CSSProperties = {
 
 function GridDiagram() {
   const widths = getTokenDisplayItems('az.container.max-width.', { order: 'source' });
-  const [selected, setSelected] = useState(widths[widths.length - 1].token);
-  const width = px(resolveValue(selected));
-  const widest = Math.max(...widths.map((item) => px(item.value)));
   const columns = Number(resolveValue('az.grid.columns'));
   const gutter = px(resolveValue('az.grid.gutter'));
-  const columnWidth = width / columns;
-  const height = 120;
+  const container = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const element = container.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => setWidth(Math.round(element.getBoundingClientRect().width)));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  const current = widths.find((item) => px(item.value) === width);
 
   return (
     <div style={{ display: 'grid', gap: 16, fontSize: 14 }}>
-      <div role="group" aria-label="Breakpoint" style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {widths.map((item) => {
-          const isSelected = item.token === selected;
-          return (
-            <button
-              key={item.token}
-              type="button"
-              aria-pressed={isSelected}
-              onClick={() => setSelected(item.token)}
-              style={{
-                ...BUTTON_STYLE,
-                background: isSelected ? 'var(--az-color-brand-blue)' : 'var(--az-color-brand-white)',
-                color: isSelected ? 'var(--az-color-brand-white)' : 'var(--az-color-brand-blue)',
-              }}
-            >
-              {item.name}
-            </button>
-          );
-        })}
+      <div ref={container} className="container" style={{ outline: '2px solid var(--az-color-brand-blue)' }}>
+        <div className="row">
+          {Array.from({ length: columns }, (_, index) => (
+            <div key={index} className="col">
+              <div style={{ height: 120, background: 'var(--az-color-brand-rain)', opacity: 0.6 }} />
+            </div>
+          ))}
+        </div>
       </div>
 
-      <svg
-        viewBox={`0 0 ${width} ${height}`}
-        role="img"
-        aria-label={`A ${width}px container with ${columns} columns and ${gutter}px gutters`}
-        style={{ width: `${(width / widest) * 100}%`, height: 'auto', display: 'block' }}
-      >
-        <rect width={width} height={height} fill="var(--az-color-brand-gray-100)" stroke="var(--az-color-brand-blue)" strokeWidth={2} />
-        {Array.from({ length: columns }, (_, index) => (
-          <rect
-            key={index}
-            x={index * columnWidth + gutter / 2}
-            y={0}
-            width={columnWidth - gutter}
-            height={height}
-            fill="var(--az-color-brand-rain)"
-            opacity={0.6}
-          />
-        ))}
-      </svg>
-
       <div style={LABEL_STYLE}>
-        Container max width <Token data={token(selected)} /> {width}px
+        Container max width{' '}
+        {current ? <><Token data={current} /> {width}px</> : <>none: below <code>sm</code> the container is fluid ({width}px here)</>}
       </div>
       <div style={LABEL_STYLE}>
         Columns <Token data={token('az.grid.columns')} /> {columns}
