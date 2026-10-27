@@ -1,11 +1,10 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
-import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
 
-/** One viewport per breakpoint, at its minimum width, read from the az.breakpoint tokens. */
+/** One viewport per breakpoint, at its minimum width, read from the az.breakpoint tokens. Storybook's own device sizes are left out. */
 const breakpointViewports = Object.fromEntries(
   Object.entries(tokensDocument.az.breakpoint).map(([name, token]) => [
     `az-${name}`,
@@ -19,7 +18,7 @@ const preview: Preview = {
       expanded: true,
     },
     viewport: {
-      options: { ...breakpointViewports, ...MINIMAL_VIEWPORTS },
+      options: breakpointViewports,
     },
     options: {
       storySort: {
