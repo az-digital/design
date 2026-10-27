@@ -126,9 +126,9 @@ It also includes small validation tests covering token grouping and metadata par
 
 The Brand/Color docs page includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/Primary/Brand/Color/ColorSwatchGrid.tsx`) that renders each brand color as a swatch painted with the token's resolved value, with its name, HEX, and RGB values. It can also show CMYK and Pantone (PMS) values from a token's `$extensions.cmyk` and `$extensions.pantone`, but no brand token has them yet, so the page shows HEX and RGB only.
 
-Use a clickable `Token` pill when referring to one specific token that readers may want to inspect. Use code spans for path patterns, file paths, and literal code examples. In component guidance, use the tokens its contract lists; use brand tokens to explain the palette. See [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx) for the full convention.
+To refer to a token in docs, follow the convention in [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx).
 
-The token UI (token tables, the token details drawer with its alias tree, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill and read `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
+The token UI (token tables, the token details drawer with its alias tree, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill. The addon reads `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
 
 ### Storybook MCP for AI Agents
 

@@ -28,7 +28,7 @@ Import `dist/tokens.scss` and use the generated Sass variables:
 
 Aliases remain references to their source token in both CSS and Sass, so changing a source value updates its dependents.
 
-## JavaScript
+## JavaScript and TypeScript
 
 Import `az` from `dist/tokens.vars.js`. Its nested properties use camel-cased token names and contain CSS custom-property references:
 
@@ -38,15 +38,7 @@ import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 element.style.color = az.color.brand.red;
 ```
 
-## TypeScript
-
-The `dist/tokens.vars.d.ts` declarations describe the shape of the JavaScript export and provide typed token paths:
-
-```ts
-import { az } from '@az-digital/tokens/dist/tokens.vars.js';
-
-element.style.color = az.color.brand.red;
-```
+In TypeScript the same import is typed by `dist/tokens.vars.d.ts`, so a misspelled token path is a type error.
 
 ## Web components
 

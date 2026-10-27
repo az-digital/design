@@ -5,12 +5,16 @@ import tokensScssRaw from '@tokens/dist/tokens.scss?raw';
 import tokensVarsJsRaw from '@tokens/dist/tokens.vars.js?raw';
 import tokensVarsDtsRaw from '@tokens/dist/tokens.vars.d.ts?raw';
 import { countTokens, downloadJson, downloadText } from './tokenStats';
-import { TokenDisplay, getTokenDisplayItems, getTokensData } from '@az-digital/storybook-addon-tokens';
+import { TokenDisplay, getAllTokenItems, getTokenDisplayItems, getTokensData } from '@az-digital/storybook-addon-tokens';
 
 export const { sourceFiles, artifacts } = getTokensData();
 export const artifactUrl = (filename) => artifacts.find((artifact) => artifact.path.endsWith(`/${filename}`))?.url;
 export const githubUrl = sourceFiles[0]?.url;
 export const tokenCounts = countTokens(tokensDocument);
+
+{/* The groups with their own section below. A token in any other group is listed under "Other tokens", so the page still shows every token when a new group is added. */}
+export const listedPrefixes = ['az.color.brand.', 'az.color.bg.', 'az.color.fg.', 'az.spacing.', 'az.radius.', 'az.font-family.', 'az.font-weight.', 'az.font-size.', 'az.line-height.', 'az.border.', 'az.opacity.', 'az.focus-ring.'];
+export const otherTokenItems = () => getAllTokenItems({ order: 'source' }).filter((item) => !listedPrefixes.some((prefix) => item.token.startsWith(prefix)));
 
 <Meta title="Primary/Tokens/Overview" />
 
@@ -91,6 +95,13 @@ Colors for text and icons, by what they sit on.
 A shared decision: every focus ring uses these widths, so they change in one place.
 
 <TokenDisplay items={getTokenDisplayItems('az.focus-ring.', { order: 'source' })} layout="table" />
+
+{otherTokenItems().length > 0 && (
+  <>
+    <h3>Other tokens</h3>
+    <TokenDisplay items={otherTokenItems()} layout="table" />
+  </>
+)}
 
 ## Downloads and links
 

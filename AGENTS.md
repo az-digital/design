@@ -23,7 +23,7 @@ Connect to it (project name `az-digital-storybook`) and use it to:
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
-When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; in component guidance, use the tokens its contract lists. See `Primary/Tokens/Contributing` for the full convention.
+When referring to a token in docs, follow the convention in `Primary/Tokens/Contributing`.
 
 ### Storybook navigation
 

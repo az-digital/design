@@ -326,6 +326,9 @@ export function ResizeHandle({ width, onResize, label }: { width: number; onResi
   );
 }
 
+/** What the drawer can move focus to: its first stop when it opens, and the ends of its Tab trap. */
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 /** `TokenDetailsContent` in a right-hand drawer over the page, closed by the backdrop, the × button, or Escape. */
 export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onClose: () => void; trigger: HTMLElement | null }) {
   const [shown, setShown] = useState(data);
@@ -333,7 +336,7 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
   const { width, setWidth } = useResizableWidth('az-token-drawer-width', Math.min(window.innerWidth * 0.65, 760), 320, () => window.innerWidth - 48);
   useEffect(() => {
     const dialog = dialogRef.current;
-    const firstFocusable = dialog?.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    const firstFocusable = dialog?.querySelector<HTMLElement>(FOCUSABLE);
     (firstFocusable ?? dialog)?.focus();
     return () => trigger?.focus();
   }, [trigger]);
@@ -344,7 +347,7 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog || dialog.contains(document.activeElement)) return;
-    const firstFocusable = dialog.querySelector<HTMLElement>('button, a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    const firstFocusable = dialog.querySelector<HTMLElement>(FOCUSABLE);
     (firstFocusable ?? dialog).focus();
   }, [shown.token]);
 
@@ -356,7 +359,7 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
     }
     if (event.key !== 'Tab') return;
     const focusable = Array.from(
-      event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+      event.currentTarget.querySelectorAll<HTMLElement>(FOCUSABLE),
     );
     if (focusable.length === 0) {
       event.preventDefault();
