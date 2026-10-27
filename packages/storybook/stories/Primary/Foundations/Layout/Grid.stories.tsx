@@ -72,6 +72,10 @@ const meta = {
   parameters: {
     tokens: ['az.grid.', 'az.container.', 'az.spacing.4'],
     docs: { canvas: { sourceState: 'none' } },
+    // The story has no args, actions or play function; only the Tokens tab applies.
+    controls: { disable: true },
+    actions: { disable: true },
+    interactions: { disable: true },
   },
   render: () => <GridDiagram />,
 } satisfies Meta;
