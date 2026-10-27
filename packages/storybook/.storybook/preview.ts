@@ -1,12 +1,25 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
+import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
+import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
+
+/** One viewport per breakpoint, at its minimum width, read from the az.breakpoint tokens. */
+const breakpointViewports = Object.fromEntries(
+  Object.entries(tokensDocument.az.breakpoint).map(([name, token]) => [
+    `az-${name}`,
+    { name: `${name} (${token.$value})`, styles: { width: token.$value, height: '900px' }, type: 'desktop' as const },
+  ]),
+);
 
 const preview: Preview = {
   parameters: {
     controls: {
       expanded: true,
+    },
+    viewport: {
+      options: { ...breakpointViewports, ...MINIMAL_VIEWPORTS },
     },
     options: {
       storySort: {
