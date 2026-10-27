@@ -30,7 +30,6 @@ export function SpacingScale() {
             <th style={CELL_STYLE}>Token</th>
             <th style={CELL_STYLE}>Scale</th>
             <th style={CELL_STYLE}>Value</th>
-            <th style={CELL_STYLE}>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -41,7 +40,6 @@ export function SpacingScale() {
                 <td style={CELL_STYLE}><Token data={item} /></td>
                 <td style={CELL_STYLE}><span aria-hidden="true" style={{ ...BAR_STYLE, width: Number.isFinite(width) ? width : 0 }} /></td>
                 <td style={CELL_STYLE}>{item.value}</td>
-                <td style={CELL_STYLE}>{item.description}</td>
               </tr>
             );
           })}
