@@ -23,6 +23,7 @@
     "style-dictionary": "^5.6.0"
   },
   "scripts": {
-    "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs"
+    "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs",
+    "test": "node --test"
   }
 }

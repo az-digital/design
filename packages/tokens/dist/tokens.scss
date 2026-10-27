@@ -25,6 +25,11 @@ $az-color-brand-gray-900: #212529;
 $az-color-bg-button-blue-active: #3d4f6f;
 $az-color-bg-button-rain-hover: #65c0db;
 $az-color-bg-button-rain-active: #9ad8ef;
+$az-breakpoint-sm: 576px; // Small breakpoint minimum viewport width; source: Arizona Bootstrap 5.2.2.
+$az-breakpoint-md: 768px; // Medium breakpoint minimum viewport width; source: Arizona Bootstrap 5.2.2.
+$az-breakpoint-lg: 992px; // Large breakpoint minimum viewport width; source: Arizona Bootstrap 5.2.2.
+$az-breakpoint-xl: 1200px; // Extra large breakpoint minimum viewport width; source: Arizona Bootstrap 5.2.2.
+$az-breakpoint-xxl: 1400px; // Extra extra large breakpoint minimum viewport width; source: Arizona Bootstrap 5.2.2.
 $az-spacing-0: 0px;
 $az-spacing-1: 4px;
 $az-spacing-2: 8px;

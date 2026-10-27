@@ -1,5 +1,33 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenDisplay, getTokenDisplayItems } from '@az-digital/storybook-addon-tokens';
 
 <Meta title="Primary/Foundations/Layout/Breakpoints" />
 
 # Breakpoints
+
+Breakpoints are minimum viewport widths, and styles apply from each breakpoint up. This mobile-first approach uses the default styles below `sm`; `xs` is the 0px default and needs no media query.
+
+## Minimum viewport widths
+
+<table>
+  <thead>
+    <tr><th>Breakpoint</th><th>Minimum viewport width</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>xs</code></td><td>0</td></tr>
+    <tr><td><code>sm</code></td><td>576px</td></tr>
+    <tr><td><code>md</code></td><td>768px</td></tr>
+    <tr><td><code>lg</code></td><td>992px</td></tr>
+    <tr><td><code>xl</code></td><td>1200px</td></tr>
+    <tr><td><code>xxl</code></td><td>1400px</td></tr>
+  </tbody>
+</table>
+
+## Decisions that change at breakpoints
+
+- **lg (992px) and up:** h1–h3 headings increase in size. See the <a href="https://github.com/az-digital/design/issues/88" target="_blank" rel="noreferrer">typography design decisions</a>.
+- **xl (1200px) and up:** sidebar headings use fixed sizes: h1–h6 are 40px, 32px, 28px, 24px, 20px and 16px. Below `xl`, h1–h4 scale down with the viewport width while h5 and h6 stay the same. See <a href="./?path=/docs/primary-components-navigation-side-nav--docs" target="_top">Side Nav</a> and the <a href="https://github.com/az-digital/design/issues/88" target="_blank" rel="noreferrer">sidebar heading decision</a>.
+
+## Breakpoint tokens
+
+<TokenDisplay items={getTokenDisplayItems('az.breakpoint.', { order: 'source' })} layout="table" />
