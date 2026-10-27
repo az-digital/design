@@ -48,9 +48,9 @@ const meta = {
     const className = ['btn', color[args.Style] ?? color.Solid, sizes[args.Size] ?? ''].filter(Boolean).join(' ');
     return (
       <div style={{ backgroundColor: `var(--az-color-brand-${color.surface})`, padding: '2rem' }}>
-        <a className={className} href="#">
+        <button type="button" className={className}>
           {args.Label}
-        </a>
+        </button>
       </div>
     );
   },
