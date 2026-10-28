@@ -14,12 +14,13 @@ shape.
 
 <Controls of={ButtonStories.Default} />
 
-The button above is the current release, so until its updates land it doesn't match every value on this page: the default size is 10px padding on a 22px line, small buttons are 14px text on a 15px line, and Red's hover and focus ring are the old palette's colors.
+The button above is the current release, so until its updates land it doesn't match every value on this page: the default size is 10px padding on a 22px line, small buttons are 14px text on a 15px line, and Red's hover and focus ring are the old palette's colors. Its hover and pressed colors can also differ from the table below, which follows the Figma designs.
 
 ## Colors
 
 The button's contract (`button.contract.json`) has a solid and an outline button for each
-brand color, each for a background. Blue isn't in the designs yet.
+brand color, each for a background. Their colors follow the Figma Buttons component. Blue
+isn't in the original XD designs.
 
 <table>
   <thead>
@@ -30,6 +31,7 @@ brand color, each for a background. Blue isn't in the designs yet.
       <th>Text</th>
       <th>Hover fill</th>
       <th>Hover text</th>
+      <th>Pressed fill</th>
       <th>Focus ring</th>
     </tr>
   </thead>
@@ -41,6 +43,7 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>White</td>
       <td>Sonoran Red</td>
       <td>White</td>
+      <td>Red</td>
       <td>Bougainvillea</td>
     </tr>
     <tr>
@@ -48,8 +51,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>White, Cloud or Caliche</td>
       <td>None, Red border</td>
       <td>Red</td>
-      <td>Red</td>
+      <td>Sonoran Red</td>
       <td>White</td>
+      <td>Red</td>
       <td>Bougainvillea</td>
     </tr>
     <tr>
@@ -59,6 +63,7 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>White</td>
       <td>Azurite</td>
       <td>White</td>
+      <td><code>#3d4f6f</code></td>
       <td>Blue</td>
     </tr>
     <tr>
@@ -66,8 +71,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>White, Cloud or Caliche</td>
       <td>None, Blue border</td>
       <td>Blue</td>
-      <td>Blue</td>
+      <td>Azurite</td>
       <td>White</td>
+      <td><code>#3d4f6f</code></td>
       <td>Blue</td>
     </tr>
     <tr>
@@ -77,6 +83,7 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>Blue</td>
       <td><code>#65c0db</code>, a darker Rain</td>
       <td>Tinta</td>
+      <td><code>#9ad8ef</code>, a lighter Rain</td>
       <td>Rain</td>
     </tr>
     <tr>
@@ -84,8 +91,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>Blue or Azurite</td>
       <td>None, Rain border</td>
       <td>Rain</td>
-      <td>Rain</td>
+      <td><code>#65c0db</code>, a darker Rain</td>
       <td>Tinta</td>
+      <td><code>#9ad8ef</code>, a lighter Rain</td>
       <td>White</td>
     </tr>
     <tr>
@@ -93,8 +101,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>Red</td>
       <td>White</td>
       <td>Red</td>
-      <td>Cloud</td>
+      <td>Gray 200</td>
       <td>Red</td>
+      <td>Gray 100</td>
       <td>White</td>
     </tr>
     <tr>
@@ -102,8 +111,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>Red or Arroyo Blue</td>
       <td>None, White border</td>
       <td>White</td>
-      <td>White</td>
+      <td>Gray 200</td>
       <td>Gray 800</td>
+      <td>Gray 100</td>
       <td>White</td>
     </tr>
     <tr>
@@ -111,8 +121,9 @@ brand color, each for a background. Blue isn't in the designs yet.
       <td>Arroyo Blue</td>
       <td>White</td>
       <td>Blue</td>
-      <td>Cloud</td>
+      <td>Gray 200</td>
       <td>Blue</td>
+      <td>Gray 100</td>
       <td>White</td>
     </tr>
   </tbody>
@@ -123,6 +134,8 @@ brand color, each for a background. Blue isn't in the designs yet.
   The ring is <Token data={getTokenData('az.color.brand.bougainvillea')} /> on the Red
   buttons, White on outline Rain and the White buttons, and the button's own color on the
   others.
+- **Pressed:** while it's pressed, a button fills its pressed color and keeps its hover
+  text color.
 - **Colors that aren't brand colors,** such as Rain's hover fill, are recorded with a note
   saying why.
 

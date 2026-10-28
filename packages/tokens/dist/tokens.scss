@@ -25,6 +25,11 @@ $az-color-brand-gray-900: #212529;
 $az-color-bg-button-blue-active: #3d4f6f;
 $az-color-bg-button-rain-hover: #65c0db;
 $az-color-bg-button-rain-active: #9ad8ef;
+$az-breakpoint-sm: 576px; // Minimum viewport width for the small breakpoint.
+$az-breakpoint-md: 768px; // Minimum viewport width for the medium breakpoint.
+$az-breakpoint-lg: 992px; // Minimum viewport width for the large breakpoint.
+$az-breakpoint-xl: 1200px; // Minimum viewport width for the extra large breakpoint.
+$az-breakpoint-xxl: 1400px; // Minimum viewport width for the extra extra large breakpoint.
 $az-spacing-0: 0px;
 $az-spacing-1: 4px;
 $az-spacing-2: 8px;
@@ -82,8 +87,8 @@ $az-color-bg-button-blue: $az-color-brand-blue;
 $az-color-bg-button-blue-hover: $az-color-brand-azurite;
 $az-color-bg-button-rain: $az-color-brand-rain;
 $az-color-bg-button-white: $az-color-brand-white;
-$az-color-bg-button-white-hover: $az-color-brand-cloud;
-$az-color-bg-button-white-active: $az-color-brand-cloud;
+$az-color-bg-button-white-hover: $az-color-brand-gray-200;
+$az-color-bg-button-white-active: $az-color-brand-gray-100;
 $az-color-fg-white: $az-color-brand-white;
 $az-color-fg-blue: $az-color-brand-blue;
 $az-color-fg-tinta: $az-color-brand-tinta;

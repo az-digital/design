@@ -4,4 +4,103 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Designing
 
-This page is reserved for the accessible design practices that help teams create inclusive experiences for users across campus and community audiences.
+Accessibility is part of the design process, not a final check. Make inclusive decisions during discovery, design, prototyping, review, and handoff; changing a pattern before it is built is usually less costly than retrofitting it.
+
+Use **WCAG 2.1 Level AA as the minimum conformance target** identified by [University of Arizona Digital Accessibility](https://accessibility.arizona.edu/). Where practical, account for relevant WCAG 2.2 additions, including **Target Size (Minimum)** and **Focus Not Obscured (Minimum)**; they are Level AA criteria in WCAG 2.2, not part of the WCAG 2.1 baseline.
+
+## Structure and reading order
+
+Plan a clear content hierarchy that remains understandable when the layout changes.
+
+- Establish a logical heading outline; use headings to describe sections, not just to style text.
+- Arrange content in a meaningful reading and keyboard order, even when visual layout uses columns or cards.
+- Show how labels, instructions, controls, and supporting content relate to one another.
+- Check that rearranging or stacking content at narrow widths does not change its intended meaning.
+
+## Color and visual communication
+
+Choose combinations and states that remain perceivable without relying on color alone.
+
+- Meet WCAG contrast minimums: 4.5:1 for normal text, 3:1 for large text, and 3:1 for meaningful graphical objects and UI component boundaries or states.
+- Pair color with another cue, such as text, an icon, a shape, or a pattern, to communicate selected, error, warning, or success states.
+- Make interactive, selected, error, warning, and disabled states distinguishable; do not use color as the only difference.
+- Review important content and controls in high-contrast and reduced-color conditions, and check focus indicators against adjacent colors.
+- Start with documented Arizona Digital components and design tokens where available. A brand color token alone does not guarantee an accessible color pairing; verify the foreground and background together. See <a href="./?path=/docs/primary-tokens-using-in-figma--docs" target="_top">How to use Arizona Digital design tokens</a>.
+
+## Typography
+
+Use the design system's type scale to support comfortable reading at different sizes.
+
+- Choose readable type sizes and line spacing; avoid relying on very small text for essential information.
+- Prefer live, selectable text over text embedded in images.
+- Check longer passages and controls at enlarged text sizes to catch clipping, overlap, or lost content.
+- For link text, instructions, and editorial choices, follow <a href="./?path=/docs/primary-foundations-accessibility-writing-text--docs" target="_top">Writing &amp; Text guidance</a> and the <a href="./?path=/docs/primary-foundations-content-design-style-guide-for-writing--docs" target="_top">Style guide for writing</a>.
+
+## Interaction and keyboard behavior
+
+Describe the interaction, not just its appearance, so keyboard behavior can be implemented and reviewed.
+
+- Define a logical focus order and a visible focus treatment for each interactive control.
+- Keep focused items visible; consider sticky headers, banners, dialogs, and overlays that may cover them. WCAG 2.2 adds the AA criterion Focus Not Obscured (Minimum).
+- Specify expected keyboard interactions, including how users move through and activate controls.
+- For dialogs, menus, and other temporary interfaces, note where focus starts, how users leave or dismiss the interface, and where focus returns.
+- Provide alternatives to hover-only, dragging, or precise pointer interactions.
+
+## Forms, errors, and feedback
+
+Make it clear what information is needed, what went wrong, and what happens next.
+
+- Show persistent labels for fields; do not use placeholder text as the only label.
+- Place instructions before users need them, and make required fields clear in text as well as visually.
+- Identify errors specifically, associate them with the affected field, and explain how to correct them.
+- Define success, warning, loading, and status messages, including when and where they appear.
+- Use more than color to distinguish a state or message. Note in handoff when updates need to be announced to assistive technology.
+
+## Motion and media
+
+Design media and movement so they do not create unnecessary barriers or distraction.
+
+- Avoid unnecessary animation and provide a reduced-motion alternative when motion is not essential.
+- Give users control over moving, blinking, or automatically updating content when required by WCAG.
+- Plan for captions and transcripts for audio or video, and audio descriptions when important visual information is not conveyed in the soundtrack.
+- Link image decisions to <a href="./?path=/docs/primary-foundations-accessibility-alt-text-guidance--docs" target="_top">Alt text guidance</a> rather than putting essential text in an image.
+
+## Responsive design, zoom, and reflow
+
+Layouts should adapt to user settings and content, not only to a fixed set of device mockups.
+
+- Review narrow layouts at 320 CSS pixels and at 200% browser zoom; preserve content and functionality without unnecessary two-direction scrolling.
+- Allow text enlargement and longer labels, translated content, and user-generated content without clipping or overlap.
+- Keep controls usable when content reflows, and ensure the visual order still matches the meaningful reading order.
+- For WCAG 2.2 readiness, design touch targets at least 24 by 24 CSS pixels or provide the spacing required by Target Size (Minimum), subject to the criterion's exceptions.
+
+## Design annotations and developer handoff
+
+Design specifies intended meaning and behavior; implementation and testing confirm that the interface works with assistive technology and meets the target.
+
+Include the following in handoff when relevant:
+
+- Semantic intent, such as whether an element is a button or a link, and which regions are landmarks.
+- Heading structure, accessible names, descriptions, and relationships between controls and instructions.
+- Focus order, focus management, keyboard interactions, and behavior when a dialog or menu opens and closes.
+- Component states, required-field treatment, error recovery, and status feedback.
+- Content alternatives for images and media, including links to the relevant <a href="./?path=/docs/primary-foundations-accessibility-alt-text-guidance--docs" target="_top">Alt text guidance</a>.
+
+Developers are responsible for implementing semantic markup, keyboard and assistive-technology behavior, and programmatic status announcements. Designers should provide the intended content, states, and interaction behavior; teams should review the result together.
+
+## Design review checklist
+
+- Does the content have a logical hierarchy and reading order?
+- Do text, meaningful icons, controls, and focus indicators have sufficient contrast?
+- Is meaning communicated by more than color, and are all important states distinguishable?
+- Can users understand and operate each interaction with a keyboard?
+- Are form labels, instructions, errors, and feedback clear and complete?
+- Does the layout work with enlarged text, at narrow widths, and with long or translated content?
+- Are motion and media alternatives planned, and are accessibility expectations captured in handoff?
+
+## Further guidance
+
+- <a href="https://accessibility.arizona.edu/" target="_blank" rel="noreferrer">University of Arizona Digital Accessibility</a>
+- <a href="https://accessibility.arizona.edu/tools-checklists" target="_blank" rel="noreferrer">Accessibility at Arizona quick reference cards</a>
+- <a href="https://accessibility.arizona.edu/tools-checklists/dodont-library" target="_blank" rel="noreferrer">Accessibility Do/Don't Library</a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/" target="_blank" rel="noreferrer">Understanding WCAG 2.2</a>
