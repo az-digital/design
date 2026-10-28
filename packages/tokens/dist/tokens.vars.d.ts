@@ -54,6 +54,13 @@ export const az: {
       "arroyoBlue": string
     }
   },
+  "breakpoint": {
+    "sm": string,
+    "md": string,
+    "lg": string,
+    "xl": string,
+    "xxl": string
+  },
   "spacing": {
     "0": string,
     "1": string,

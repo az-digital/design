@@ -54,6 +54,13 @@ export const az = {
       "arroyoBlue": "var(--az-color-fg-arroyo-blue)"
     }
   },
+  "breakpoint": {
+    "sm": "var(--az-breakpoint-sm)",
+    "md": "var(--az-breakpoint-md)",
+    "lg": "var(--az-breakpoint-lg)",
+    "xl": "var(--az-breakpoint-xl)",
+    "xxl": "var(--az-breakpoint-xxl)"
+  },
   "spacing": {
     "0": "var(--az-spacing-0)",
     "1": "var(--az-spacing-1)",

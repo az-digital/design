@@ -26,6 +26,11 @@
   --az-color-bg-button-blue-active: #3d4f6f;
   --az-color-bg-button-rain-hover: #65c0db;
   --az-color-bg-button-rain-active: #9ad8ef;
+  --az-breakpoint-sm: 576px; /** Minimum viewport width for the small breakpoint. */
+  --az-breakpoint-md: 768px; /** Minimum viewport width for the medium breakpoint. */
+  --az-breakpoint-lg: 992px; /** Minimum viewport width for the large breakpoint. */
+  --az-breakpoint-xl: 1200px; /** Minimum viewport width for the extra large breakpoint. */
+  --az-breakpoint-xxl: 1400px; /** Minimum viewport width for the extra extra large breakpoint. */
   --az-spacing-0: 0px;
   --az-spacing-1: 4px;
   --az-spacing-2: 8px;
