@@ -24,8 +24,8 @@ export default create({
  
   // Toolbar default and active colors
   barTextColor: az.color.brand.blue.$value,
-  barSelectedColor: az.color.brand.azurite.$value,
-  barHoverColor: az.color.brand.azurite.$value,
+  barSelectedColor: az.color.brand['arroyo-blue'].$value,
+  barHoverColor: az.color.brand['arroyo-blue'].$value,
   barBg: az.color.brand.cloud.$value,
  
   // Form colors
