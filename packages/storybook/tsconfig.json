@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "vitest"
+      "vitest",
+      "vite/client"
     ],
     "baseUrl": ".",
     "paths": {
@@ -20,7 +21,6 @@
   },
   "include": [
     ".storybook",
-    "stories",
-    ".swatchbook/**/*.d.ts"
+    "stories"
   ]
 }

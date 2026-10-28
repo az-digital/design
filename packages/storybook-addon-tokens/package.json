@@ -1,0 +1,30 @@
+{
+  "name": "@az-digital/storybook-addon-tokens",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Storybook addon that treats your DTCG tokens.json as the source of truth and shows each Style Dictionary output as a derivation of it.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./preset": "./src/preset.js",
+    "./manager": "./src/manager.tsx",
+    "./preview": "./src/preview.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "keywords": [
+    "storybook-addon",
+    "design-tokens",
+    "style-dictionary",
+    "dtcg"
+  ],
+  "peerDependencies": {
+    "react": ">=18",
+    "storybook": "^10.0.0",
+    "style-dictionary": "^5.4.4"
+  }
+}

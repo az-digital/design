@@ -1,0 +1,63 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "accordion",
+  "name": "Accordion",
+  "description": "A stack of sections, each a button that shows or hides its body. Open sections can stay open together, and a flush accordion drops the outer border and radius.",
+  "sources": [
+    "Arizona Bootstrap 5.2.0's compiled CSS, as az-digital/design#46 recorded it"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The accordion: its border and rounded corners.",
+      "tokens": {
+        "border.width": "{az.border.width.sm}",
+        "border.radius": "{az.radius.2}"
+      },
+      "parts": {
+        "button": {
+          "description": "The button that opens and closes a section, holding its title.",
+          "tokens": {
+            "padding.x": {
+              "$type": "dimension",
+              "$value": {
+                "value": 20,
+                "unit": "px"
+              },
+              "$description": "Accordion button left and right padding."
+            },
+            "padding.y": "{az.spacing.3}"
+          },
+          "parts": {
+            "label": {
+              "description": "The section's title.",
+              "tokens": {
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 18,
+                    "unit": "px"
+                  },
+                  "$description": "Accordion section title text size."
+                }
+              }
+            }
+          }
+        },
+        "body": {
+          "description": "A section's content, shown while it's open.",
+          "tokens": {
+            "padding.x": {
+              "$type": "dimension",
+              "$value": {
+                "value": 20,
+                "unit": "px"
+              },
+              "$description": "Accordion body left and right padding, lined up with the button's."
+            },
+            "padding.y": "{az.spacing.3}"
+          }
+        }
+      }
+    }
+  }
+}

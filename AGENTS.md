@@ -19,16 +19,21 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 - Look up existing token names, groups, and generated CSS variable names
   before referencing or adding one.
-- Fetch the `Tokens/Contributing` and `Tokens/Design Tools` docs pages
+- Fetch the `Primary/Tokens/Contributing` and `Primary/Tokens/Using in Figma` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
-## Naming design tokens
+When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; in component guidance, use the tokens its contract lists. See `Primary/Tokens/Contributing` for the full convention.
 
-Before adding or renaming a token in `packages/tokens/tokens.json`, read
-[packages/tokens/AGENTS.md](./packages/tokens/AGENTS.md) — token layers,
-what each layer's names are allowed to describe, and which layer a token is
-allowed to alias.
+### Storybook navigation
+
+- When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position.
+- Verify the rendered sidebar order in Storybook.
+
+### MDX tables
+
+- Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
+- Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
 
 ## Writing stories and docs pages
 
@@ -53,3 +58,25 @@ server. `docs list`, `docs show`, and `stories find-by-component` run
 without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
+
+## Overview-page links
+
+When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
+
+## Component contracts
+
+When you add or change a component's design decisions, update its contract in
+`packages/contracts/contracts/` and run `npm run build:contracts` before
+finishing. Follow its refusals; don't work around them.
+
+- **Token names:** read the Naming page before adding or renaming a token:
+  `Primary/Tokens/Naming` in Storybook
+  (`packages/storybook/stories/Primary/Tokens/Naming.mdx`).
+- **What a contract holds, and how implementations use it:** see
+  [packages/contracts/README.md](./packages/contracts/README.md).
+- **No platform output:** contracts generate nothing for a platform, so never add
+  CSS, Sass or other platform output to them.
+- **Implementations:** don't patch an implementation's styles in Storybook. Write
+  its update instructions in the pull request description instead. Once an
+  implementation has been updated, add a contract check story that runs
+  `checkContract`; `npm run test:storybook` must pass.

@@ -1,234 +1,127 @@
 export const az: {
   "color": {
-    "arroyoBlue": string,
-    "azurite": string,
-    "bloom": string,
-    "blue": string,
-    "bougainvillea": string,
     "brand": {
-      "arroyoBlue": string,
-      "azurite": string,
-      "bloom": string,
-      "blue": string,
-      "bougainvillea": string,
-      "brick": string,
-      "caliche": string,
-      "chili": string,
-      "cloud": string,
-      "rain": string,
       "red": string,
+      "blue": string,
+      "tinta": string,
+      "azurite": string,
+      "arroyoBlue": string,
+      "rain": string,
+      "sonoranRed": string,
+      "bougainvillea": string,
       "saguaro": string,
       "shade": string,
-      "sonoranRed": string,
-      "tinta": string,
-      "white": string
-    },
-    "brick": string,
-    "caliche": string,
-    "chili": string,
-    "cloud": string,
-    "rain": string,
-    "red": string,
-    "saguaro": string,
-    "semantic": {
-      "action": {
-        "default": string,
-        "focusRing": string,
-        "hover": string
+      "brick": string,
+      "cloud": string,
+      "caliche": string,
+      "white": string,
+      "black": string,
+      "gray": {
+        "100": string,
+        "200": string,
+        "300": string,
+        "400": string,
+        "500": string,
+        "600": string,
+        "700": string,
+        "800": string,
+        "900": string
       }
     },
-    "shade": string,
-    "sonoranRed": string,
-    "tinta": string,
-    "white": string
-  },
-  "component": {
-    "accordion": {
-      "body": {
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "border": {
-        "radius": string,
-        "width": string
-      },
+    "bg": {
       "button": {
-        "label": {
-          "font": {
-            "size": string
-          }
-        },
-        "padding": {
-          "x": string,
-          "y": string
-        }
+        "red": string,
+        "redHover": string,
+        "redActive": string,
+        "blue": string,
+        "blueHover": string,
+        "blueActive": string,
+        "rain": string,
+        "rainHover": string,
+        "rainActive": string,
+        "white": string,
+        "whiteHover": string,
+        "whiteActive": string
       }
     },
-    "arizonaHeader": {
-      "height": string,
-      "logo": {
-        "height": string,
-        "marginLeft": string,
-        "sm": {
-          "height": string,
-          "width": string
-        },
-        "width": string
-      }
-    },
-    "button": {
-      "border": {
-        "radius": string,
-        "width": string
-      },
-      "color": string,
-      "disabled": {
-        "opacity": string
-      },
-      "focusVisible": {
-        "ring": string
-      },
-      "focus": {
-        "color": string
-      },
-      "hover": {
-        "color": string
-      },
-      "label": {
-        "color": string,
-        "font": {
-          "size": string,
-          "weight": string
-        }
-      },
-      "padding": {
-        "x": string,
-        "y": string
-      },
-      "size": {
-        "lg": {
-          "label": {
-            "font": {
-              "size": string
-            }
-          },
-          "padding": {
-            "x": string,
-            "y": string
-          }
-        },
-        "sm": {
-          "label": {
-            "font": {
-              "size": string
-            }
-          },
-          "padding": {
-            "x": string,
-            "y": string
-          }
-        }
-      }
-    },
-    "card": {
-      "body": {
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "border": {
-        "radius": string,
-        "width": string
-      },
-      "cap": {
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "title": {
-        "margin": {
-          "bottom": string
-        }
-      }
-    },
-    "nav": {
-      "utility": {
-        "item": {
-          "padding": {
-            "x": string
-          }
-        },
-        "label": {
-          "font": {
-            "weight": string
-          }
-        },
-        "margin": {
-          "bottom": string,
-          "top": string
-        }
-      }
-    },
-    "tabs": {
-      "label": {
-        "active": {
-          "color": string
-        },
-        "color": string,
-        "font": {
-          "weight": string
-        },
-        "hover": {
-          "color": string
-        },
-        "padding": {
-          "x": string,
-          "y": string
-        }
-      },
-      "variant": {
-        "tabs": {
-          "active": {
-            "background": string
-          }
-        },
-        "underline": {
-          "border": {
-            "width": string
-          },
-          "gap": string
-        }
-      }
+    "fg": {
+      "white": string,
+      "blue": string,
+      "tinta": string,
+      "red": string,
+      "rain": string
     }
   },
-  "dimension": {
+  "spacing": {
+    "0": string,
     "1": string,
     "2": string,
+    "3": string,
     "4": string,
+    "5": string,
     "6": string,
+    "7": string,
     "8": string,
+    "9": string,
     "10": string,
-    "14": string,
-    "16": string,
-    "18": string,
     "20": string,
-    "24": string,
-    "48": string,
-    "50": string,
-    "96": string,
-    "198": string,
-    "211": string,
-    "26641": string
+    "30": string,
+    "min": string,
+    "card": string
+  },
+  "radius": {
+    "0": string,
+    "1": string,
+    "2": string,
+    "3": string,
+    "4": string,
+    "5": string,
+    "pill": string
+  },
+  "fontFamily": {
+    "sansSerif": string,
+    "sansSerifCondensed": string,
+    "serif": string,
+    "monospace": string
   },
   "fontWeight": {
-    "500": string,
-    "700": string
+    "light": string,
+    "normal": string,
+    "medium": string,
+    "semibold": string,
+    "bold": string
+  },
+  "lineHeight": {
+    "base": string,
+    "sm": string,
+    "medium": string
+  },
+  "fontSize": {
+    "root": string,
+    "sm": string,
+    "lg": string,
+    "h6": string,
+    "h5": string,
+    "h4": string,
+    "h3": string,
+    "h2": string,
+    "h1": string,
+    "button": string
+  },
+  "border": {
+    "width": {
+      "sm": string,
+      "md": string
+    }
   },
   "opacity": {
-    "65": string
+    "buttonDisabled": string
+  },
+  "focusRing": {
+    "width": {
+      "sm": string,
+      "md": string,
+      "lg": string
+    }
   }
 };

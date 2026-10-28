@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Foundations/Accessibility/Alt text guidance" />
+
+# Alt text guidance
+
+## What is alt text?
+
+Alternative text (alt text) is a written description that helps make images understandable to people who cannot see them. Alt text serves as a text alternative for images and plays an important role in making websites accessible to everyone.
+
+Alt text serves a few important purposes:
+
+- **Screen readers:** Screen readers and other assistive technologies use alt text to communicate the meaning or purpose of images. [Listen to an example of screen readers reading images with and without alt text.](https://www.youtube.com/watch?v=NvqasTVoW98)
+- **Images that don't load:** Alt text can appear in place of an image if it fails to load, benefiting all users.
+- **Search engines:** Alt text helps search engines understand image content and can improve search results.
+
+## How to use this guide
+
+Not every image needs the same type of alt text. The appropriate approach depends on the image's purpose and context on the page.
+
+Learn how to write accurate and meaningful alt text for different types of images, including photos, logos, icons, SVGs, charts, diagrams, and images of text. This guidance focuses on still images and does not cover video or audio alternatives.
+
+## Start with the image’s purpose
+
+An image’s alternative communicates what the image contributes to the page, not everything that can be seen in it. The same image can need a different alternative in a different context.
+
+- **Informative images** convey information that is not available in nearby text. Describe the relevant information, not just the fact that an image is present.
+- **Decorative or redundant images** add no information beyond nearby text or are included only for visual appeal. Use an empty alt attribute (`alt=""`) so assistive technology can skip them. An empty alt attribute is intentional. Omitting the `alt` attribute entirely can cause screen readers to announce the image's file name instead, which can be confusing for users.
+- **Functional images** act as links or controls. Describe the action or destination when the image is the only label. When visible text already gives the link or control its accessible name, avoid repeating it in the image alternative.
+- **Complex images** (such as charts, maps, and diagrams) need:
+   - A concise alternative identifying their subject or takeaway.
+   - A nearby or linked text explanation of the essential details (such as a data table).
+
+Use real, selectable text instead of an image of text. If an image of text is necessary, make the same wording available as text and provide an alternative that conveys its purpose. There is no single character limit that works for every image; be concise, but include the essential information and context.
+
+## Examples
+
+<table>
+  <tbody>
+    <tr><th>Context</th><th>Appropriate alternative</th><th>Notes</th><th>Avoid</th></tr>
+    <tr><td>An article about campus architecture uses a photo of Old Main at sunset.</td><td>“Old Main’s sandstone facade at sunset.”</td><td></td><td>“Photo” or a long inventory of incidental details.</td></tr>
+    <tr><td>The same photo is used in a card whose visible link text is “Plan a campus visit.”</td><td><code>alt=""</code></td><td>The visible link text already names the destination.</td><td>Repeating “Plan a campus visit” in the alt text, or describing the sunset instead of the link’s purpose.</td></tr>
+    <tr><td>A chart shows enrollment increasing over five years.</td><td>“Enrollment increased each year from 2020 to 2024.”</td><td>Add a nearby data table with the values.</td><td>“Bar chart” with no explanation of the information.</td></tr>
+    <tr><td>A decorative flourish appears beside a heading that already states the same idea.</td><td><code>alt=""</code></td><td></td><td>A description that repeats the heading.</td></tr>
+  </tbody>
+</table>
+
+## Guidance for common components
+
+- **Cards:** If the image is decorative or the card’s visible title and link already convey its purpose, use `alt=""`. If it adds distinct information, describe that contribution without repeating the card title.
+- **Hero and banner images:** Use an alternative only for information the image adds beyond the page heading and nearby copy. Avoid generic phrases such as “hero image” or “banner.”
+- **Headshots and profile images:** When the person’s identity matters and is not already stated nearby, use their name. If a visible name already identifies the person, the portrait is often redundant and can use `alt=""`.
+- **Arizona logos:** Describe the logo’s purpose in context. For a logo that is the only content in a link to the University of Arizona home page, use an alternative such as “University of Arizona home.” If the link also includes the university’s name as visible text, the logo is redundant; use `alt=""` for it. Follow the approved brand name and avoid repeating nearby text.
+
+Assess redundancy for each image in its actual context; the same image may be informative in one place and decorative in another. When a single stored alt text is reused across pages, write it so it is accurate everywhere the image appears.
+
+## Icons, SVGs, and background images
+
+- A meaningful CSS background image cannot have an `alt` attribute. Put essential information in visible text or another text alternative in the page rather than making CSS the only way to access it.
+- Hide decorative icons from assistive technology (for example, with `aria-hidden="true"`). An icon is decorative when nearby text already says the same thing, such as a phone icon next to a link that shows the phone number. An icon-only button or link still needs an accessible name that describes its action or destination; do not rely on the icon’s appearance alone.
+- Give a meaningful inline SVG an accessible name and appropriate image semantics, such as a `<title>` referenced by `aria-labelledby` with `role="img"`. If the SVG is decorative, hide it from assistive technology instead. Ensure its text alternative is available to users of the supported implementation.
+
+## Responsibilities
+
+- **Designers:** In Figma handoffs, identify whether each image is informative, functional, or decorative and propose its description in context. Call out visible text that makes an image redundant, and flag complex images that need a longer explanation or data.
+- **Developers:** Preserve image descriptions through HTML, React, and web component implementations. Set the `alt` property on image elements; use `alt=""` for decorative images. Ensure component APIs pass that value through, and provide accessible names for icon-only controls. Do not put essential information only in CSS backgrounds.
+- **Content editors:** When adding media in Drupal or Arizona Quickstart, enter alt text in the media’s alternative-text field when the image conveys information. Leave it empty for decorative or redundant images when the editor supports an empty alternative. Review descriptions in the page where the media is used; do not use captions, filenames, or image titles as substitutes.
+- **Everyone:** The examples in this guide are starting points, not text to reuse without checking the image and its context. Any suggested or generated image descriptions must be reviewed for accuracy and purpose.
+
+For editorial language beyond image descriptions, see the [Style guide for writing](?path=/docs/primary-foundations-content-design-style-guide-for-writing--docs).
+
+## Further guidance
+
+For detailed University of Arizona recommendations, see the [Accessibility Do/Don’t Library](https://accessibility.arizona.edu/tools-checklists/dodont-library) and [Alt Text Quick Reference Card (PDF)](https://accessibility.arizona.edu/sites/default/files/2026-01/Quick-Reference-Cards-Accessibility-at-Arizona-Alt-Text.pdf). For extra help deciding whether an image needs alt text and what type to use, refer to the [W3C Alt Decision Tree](https://www.w3.org/WAI/tutorials/images/decision-tree/). For conformance criteria, see [WCAG 2.2 Success Criterion 1.1.1: Non-text Content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) and [1.4.5: Images of Text](https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html).

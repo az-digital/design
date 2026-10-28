@@ -1,11 +1,11 @@
+/// <reference types="vite/client" />
+
 import type { Preview } from '@storybook/react-vite';
-import swatchbookAddon from '@unpunnyfuns/swatchbook-addon';
 import type { ImplementationKey, Implementations } from '../stories/implementations';
 import { sourceForImplementation } from '../stories/implementations';
-import '../../tokens/dist/tokens.css';
+import '@tokens/dist/tokens.css';
 
 const preview: Preview = {
-  addons: [swatchbookAddon()],
   initialGlobals: {
     implementation: 'html',
   },
@@ -29,7 +29,36 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Tokens', 'Components'],
+        order: [
+          'Primary',
+          [
+            'Overview',
+            'Brand',
+            ['Overview', 'Color', '*'],
+            'Foundations',
+            [
+              'Overview',
+              'Layout',
+              ['Overview', 'Grids and Spacing', 'Breakpoints', '*'],
+              'Terminology',
+              'Accessibility',
+              ['*'],
+              'Content Design',
+              ['*'],
+              'Interaction',
+              ['*'],
+              'Usability',
+              ['*'],
+              '*',
+            ],
+            'Components',
+            ['Overview', '*'],
+            'Tokens',
+            ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
+            '*',
+          ],
+          'Bear Down 100',
+        ],
       },
     },
     docs: {
