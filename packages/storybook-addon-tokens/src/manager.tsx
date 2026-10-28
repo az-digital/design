@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { addons, types, useChannel, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
-import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT, SELECT_EVENT } from './constants';
+import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT, SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenData, getTokenDisplayItems } from './resolveToken';
 import { setTokensData, useTokensData, type TokensData } from './store';
 import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
@@ -85,11 +85,16 @@ function TokensPanelContent() {
 }
 
 addons.register(ADDON_ID, (api) => {
-  api.on(SELECT_EVENT, (token: string) => {
-    requestedToken = token;
-    api.setSelectedPanel(PANEL_ID);
-    api.togglePanel(true);
-    requestListeners.forEach((listener) => listener(token));
+  api.on(SELECT_EVENT, (request: { token: string; requestId: string }) => {
+    const parameter = api.getCurrentParameter('tokens');
+    const available = Boolean(parameter) && !isDisabled(parameter);
+    if (available) {
+      requestedToken = request.token;
+      api.setSelectedPanel(PANEL_ID);
+      api.togglePanel(true);
+      requestListeners.forEach((listener) => listener(request.token));
+    }
+    api.emit(SELECT_RESULT_EVENT, { requestId: request.requestId, available });
   });
 
   addons.add(PANEL_ID, {

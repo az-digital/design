@@ -1,6 +1,6 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
-import { SELECT_EVENT } from './constants';
+import { SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
 import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
@@ -360,9 +360,35 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
  */
 const isStoryView = () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('viewMode') === 'story';
 
-function showInTokensTab(token: string) {
-  const channel = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: { emit: (event: string, ...args: unknown[]) => void } }).__STORYBOOK_ADDONS_CHANNEL__;
-  channel?.emit(SELECT_EVENT, token);
+type StorybookChannel = {
+  emit: (event: string, ...args: unknown[]) => void;
+  on: (event: string, listener: (result: unknown) => void) => void;
+  off: (event: string, listener: (result: unknown) => void) => void;
+};
+
+let selectionRequestId = 0;
+
+function requestTokensTab(token: string, onUnavailable: () => void) {
+  const channel = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: StorybookChannel }).__STORYBOOK_ADDONS_CHANNEL__;
+  if (!channel || typeof window === 'undefined' || window.parent === window) {
+    onUnavailable();
+    return;
+  }
+
+  const requestId = `${Date.now()}-${++selectionRequestId}`;
+  const finish = (available: boolean) => {
+    window.clearTimeout(timeout);
+    channel.off(SELECT_RESULT_EVENT, onResult);
+    if (!available) onUnavailable();
+  };
+  const onResult = (result: unknown) => {
+    if (typeof result === 'object' && result !== null && 'requestId' in result && result.requestId === requestId) {
+      finish('available' in result && result.available === true);
+    }
+  };
+  const timeout = window.setTimeout(() => finish(false), 500);
+  channel.on(SELECT_RESULT_EVENT, onResult);
+  channel.emit(SELECT_EVENT, { token, requestId });
 }
 
 /**
@@ -372,23 +398,35 @@ function showInTokensTab(token: string) {
  * show details in a panel. `swatch` adds a small color dot for color tokens
  * shown without a larger swatch next to them.
  */
-export function Token({
-  data,
-  swatch = false,
-  style,
-  selected,
-  onSelect,
-}: {
+type TokenProps = {
   data: TokenData;
   swatch?: boolean;
   style?: CSSProperties;
   selected?: boolean;
   onSelect?: () => void;
-}) {
+};
+
+function StoryViewToken(props: TokenProps) {
+  return <TokenPill {...props} onRequestTab={(onUnavailable) => requestTokensTab(props.data.token, onUnavailable)} />;
+}
+
+export function Token(props: TokenProps) {
+  if (props.onSelect || !isStoryView()) return <TokenPill {...props} />;
+  return <StoryViewToken {...props} />;
+}
+
+function TokenPill({
+  data,
+  swatch = false,
+  style,
+  selected,
+  onSelect,
+  onRequestTab,
+}: TokenProps & { onRequestTab?: (onUnavailable: () => void) => void }) {
   const [open, setOpen] = useState(false);
   const isSelected = selected ?? open;
   ensurePillStyles();
-  const select = onSelect ?? (isStoryView() ? () => showInTokensTab(data.token) : () => setOpen(true));
+  const select = onSelect ?? (onRequestTab ? () => onRequestTab(() => setOpen(true)) : () => setOpen(true));
 
   return (
     <>
@@ -397,7 +435,7 @@ export function Token({
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>
       </button>
-      {!onSelect && !isStoryView() && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
+      {!onSelect && open && <TokenDetails data={data} onClose={() => setOpen(false)} />}
     </>
   );
 }

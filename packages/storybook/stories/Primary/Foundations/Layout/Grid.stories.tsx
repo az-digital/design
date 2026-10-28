@@ -30,16 +30,26 @@ function GridDiagram() {
   const gutter = px(resolveValue('az.grid.gutter'));
   const container = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
+  const [maxWidth, setMaxWidth] = useState('');
 
   useEffect(() => {
     const element = container.current;
     if (!element) return;
-    const observer = new ResizeObserver(() => setWidth(Math.round(element.getBoundingClientRect().width)));
+    const updateMeasurements = () => {
+      setWidth(Math.round(element.getBoundingClientRect().width));
+      setMaxWidth(getComputedStyle(element).maxWidth);
+    };
+    const observer = new ResizeObserver(updateMeasurements);
     observer.observe(element);
-    return () => observer.disconnect();
+    window.addEventListener('resize', updateMeasurements);
+    updateMeasurements();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateMeasurements);
+    };
   }, []);
 
-  const current = widths.find((item) => px(item.value) === width);
+  const current = widths.find((item) => px(item.value) === px(maxWidth));
 
   return (
     <div style={{ display: 'grid', gap: 16, fontSize: 14 }}>

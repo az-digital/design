@@ -6,3 +6,5 @@ export const DATA_EVENT = `${ADDON_ID}/data`;
 export const REQUEST_EVENT = `${ADDON_ID}/request`;
 /** Preview → manager: show this token's details in the Tokens tab (a `Token` pill clicked in story view). */
 export const SELECT_EVENT = `${ADDON_ID}/select`;
+/** Manager → preview: whether the requested token can be shown in the Tokens tab. */
+export const SELECT_RESULT_EVENT = `${ADDON_ID}/select-result`;
