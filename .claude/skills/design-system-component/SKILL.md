@@ -348,7 +348,7 @@ as `packages/contracts/README.md` describes:
 - Point each part's colors at the color tokens they use, and its sizes at the
   scales (`az.spacing.*`, `az.radius.*`, `az.border.width.*`,
   `az.font-weight.*`) when a value is on one. Name any new token the way
-  Tokens › Naming (`packages/storybook/stories/Primary/Tokens/Naming.mdx`)
+  Foundations › Tokens › Naming (`packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`)
   describes.
 - Write every other value as the component's own, like a DTCG token with a
   `$description`. Take it from Arizona Bootstrap's compiled CSS (`curl` the

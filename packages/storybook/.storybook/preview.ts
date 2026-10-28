@@ -41,36 +41,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: [
-          'Primary',
-          [
-            'Overview',
-            'Brand',
-            ['Overview', 'Color', '*'],
-            'Foundations',
-            [
-              'Overview',
-              'Layout',
-              ['Overview', 'Breakpoints', 'Grids and Spacing', '*'],
-              'Terminology',
-              'Accessibility',
-              ['*'],
-              'Content Design',
-              ['*'],
-              'Interaction',
-              ['*'],
-              'Usability',
-              ['*'],
-              '*',
-            ],
-            'Components',
-            ['Overview', '*'],
-            'Tokens',
-            ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
-            '*',
-          ],
-          'Bear Down 100',
-        ],
+        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
       },
     },
     docs: {

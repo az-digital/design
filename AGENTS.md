@@ -19,11 +19,9 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 
 - Look up existing token names, groups, and generated CSS variable names
   before referencing or adding one.
-- Fetch the `Primary/Tokens/Contributing` and `Primary/Tokens/Using in Figma` docs pages
+- Fetch the `Primary/Foundations/Tokens/Contributing` and `Primary/Foundations/Tokens/How to Use` docs pages
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
-
-When referring to one specific token in design guidance, use a clickable `Token` pill. Use code spans for path patterns, file paths, and literal code examples; in component guidance, use the tokens its contract lists. See `Primary/Tokens/Contributing` for the full convention.
 
 ### Storybook navigation
 
@@ -70,8 +68,8 @@ When you add or change a component's design decisions, update its contract in
 finishing. Follow its refusals; don't work around them.
 
 - **Token names:** read the Naming page before adding or renaming a token:
-  `Primary/Tokens/Naming` in Storybook
-  (`packages/storybook/stories/Primary/Tokens/Naming.mdx`).
+  `Primary/Foundations/Tokens/Naming` in Storybook
+  (`packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`).
 - **What a contract holds, and how implementations use it:** see
   [packages/contracts/README.md](./packages/contracts/README.md).
 - **No platform output:** contracts generate nothing for a platform, so never add

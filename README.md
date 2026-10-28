@@ -90,10 +90,6 @@ npm run build:contracts
 
 4. Review the generated token catalog in Storybook.
 
-### Token naming
-
-Name tokens the way [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) describes.
-
 ### `dist/` Output
 
 `npm run build:tokens` runs Style Dictionary (`packages/tokens/style-dictionary.config.mjs`) against `tokens.json` and writes generated output to `packages/tokens/dist/`. The output is committed, so rebuild and commit it with every token change:
@@ -114,7 +110,7 @@ The published `@az-digital/tokens` package includes the source `tokens.json` alo
 
 A component's contract (`packages/contracts/contracts/<component>.contract.json`) records its anatomy, independent of any platform: the parts it's made of, and what sets each part's design properties at rest, in its states (hover, focus-visible…) and from its breakpoints: a token from `tokens.json`, or the component's own value.
 
-The contract points each part at the token it uses, named according to the [Tokens > Naming](packages/storybook/stories/Primary/Tokens/Naming.mdx) guidance. What's specific to one component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract check renders the implementation and fails if it differs from its contract.
+The contract points each part at the token it uses, named the way the Naming page (Foundations › Tokens › Naming) describes. What's specific to one component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract check renders the implementation and fails if it differs from its contract.
 
 `npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, or leaves one of its component's own tokens (`az.component.<component>.*`) unused. It also flags component tokens that only point at another token, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
 
@@ -124,11 +120,7 @@ The Storybook package renders the design token catalog, groups nested token valu
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
 
-The Brand/Color docs page includes a custom `ColorSwatchGrid` component (`packages/storybook/stories/Primary/Brand/Color/ColorSwatchGrid.tsx`) that renders each brand color as a swatch painted with the token's resolved value, with its name, HEX, and RGB values. It can also show CMYK and Pantone (PMS) values from a token's `$extensions.cmyk` and `$extensions.pantone`, but no brand token has them yet, so the page shows HEX and RGB only.
-
-Use a clickable `Token` pill when referring to one specific token that readers may want to inspect. Use code spans for path patterns, file paths, and literal code examples. In component guidance, use the tokens its contract lists; use brand tokens to explain the palette. See [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx) for the full convention.
-
-The token UI (token tables, the token details drawer with its alias tree, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill and read `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
+The token UI (token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand color swatches on the Tokens page (`packages/storybook/stories/Primary/Foundations/Tokens/ColorSwatchGrid.tsx`) are this site's own, and embed the addon's token pill. It reads `packages/tokens/style-dictionary.config.mjs`, so the details for each token show exactly what each output file derives from it. See its [README](packages/storybook-addon-tokens/README.md).
 
 ### Storybook MCP for AI Agents
 
@@ -160,7 +152,6 @@ This repo is intended to support both token authoring and visual review in one p
 
 Use the Storybook token pages to find assets, import tokens, or contribute changes:
 
-- Tokens > Overview
-- Tokens > Using in Figma
-- Tokens > Using in Code
+- Tokens > Downloads
+- Tokens > How to Use
 - Tokens > Contributing
