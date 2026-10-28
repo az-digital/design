@@ -3,7 +3,7 @@ import { az } from '../../tokens/tokens.json';
 
 export default create({
   base: 'light',
-  fontBase: '"Proxima Nova", sans-serif',
+  fontBase: az['font-family']['sans-serif'].$value,
   fontCode: 'monospace',
   brandTitle: 'Arizona Digital Design System',
   brandUrl: 'https://www.arizona.edu/',
