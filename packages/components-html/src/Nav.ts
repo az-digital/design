@@ -56,7 +56,7 @@ function variantClass(variant: NavProps['variant']): string | false {
 
 function renderItem(item: NavItemProps, navClasses: string): string {
   const linkClasses = ['nav-link', item.active && 'active', item.disabled && 'disabled'].filter(Boolean).join(' ');
-  const hrefAttribute = item.disabled ? '' : ` href="${item.href ?? '#'}"`;
+  const hrefAttribute = item.disabled ? '' : ` href="${escapeHtml(item.href ?? '#')}"`;
   const stateAttribute = item.active ? ' aria-current="page"' : item.disabled ? ' aria-disabled="true"' : '';
   const nestedHtml =
     item.items && item.items.length > 0

@@ -47,7 +47,9 @@ export type AccordionProps = {
 
 /** Renders the Accordion as an HTML string using Arizona Bootstrap's real accordion markup/classes. */
 export function renderAccordion(props: AccordionProps): string {
-  const { id = 'accordion', items, flush = false, alwaysOpen = false, anchors = false } = props;
+  const { id: rawId = 'accordion', items, flush = false, alwaysOpen = false, anchors = false } = props;
+  // Every id below is derived from this one, so escaping it here covers them all.
+  const id = escapeHtml(rawId);
 
   const classes = ['accordion', flush && 'accordion-flush'].filter(Boolean).join(' ');
 

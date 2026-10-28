@@ -1,3 +1,11 @@
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 export type ArizonaHeaderProps = {
   /** Background color. `red` is deprecated in favor of `blue`. Defaults to `blue`. */
   variant?: 'blue' | 'red';
@@ -23,7 +31,7 @@ export function renderArizonaHeader(props: ArizonaHeaderProps = {}): string {
   const { variant = 'blue', fixedOnMobile = false, id = 'header_arizona' } = props;
   const classes = ['arizona-header', fixedOnMobile && 'az-fixed-header-on-mobile', variant === 'red' ? 'bg-red' : 'bg-blue'].filter(Boolean).join(' ');
 
-  return `<div class="${classes}" id="${id}">
+  return `<div class="${classes}" id="${escapeHtml(id)}">
   <div class="container">
     <div class="row">
       <a class="arizona-logo col-auto" href="https://www.arizona.edu" title="The University of Arizona homepage">

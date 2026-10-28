@@ -55,7 +55,9 @@ function resolveActiveIndex(items: TabItemProps[], defaultActiveIndex?: number):
 
 /** Renders the Tabs as an HTML string using Arizona Bootstrap's real nav/tab-content markup/classes. */
 export function renderTabs(props: TabsProps): string {
-  const { id = 'tabs', items, variant = 'tabs', vertical = false, fill = false, justify = false } = props;
+  const { id: rawId = 'tabs', items, variant = 'tabs', vertical = false, fill = false, justify = false } = props;
+  // Every id below is derived from this one, so escaping it here covers them all.
+  const id = escapeHtml(rawId);
   const activeIndex = resolveActiveIndex(items, props.defaultActiveIndex);
 
   // The real docs use data-bs-toggle="pill" for the Pills variant and "tab" for
