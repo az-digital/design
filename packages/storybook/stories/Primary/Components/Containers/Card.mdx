@@ -1,10 +1,13 @@
 import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
 import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../ContractAnatomy';
+import * as CardStories from './Card.stories';
 
-<Meta title="Primary/Components/Containers/Card" />
+<Meta of={CardStories} />
 
 export const photo = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="#868e96"/><circle cx="430" cy="170" r="70" fill="#adb5bd"/><path d="M0 600 L190 320 L330 470 L440 360 L600 540 L600 600 Z" fill="#6c757d"/></svg>')}`;
+
+export const widePhoto = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360"><rect width="600" height="360" fill="#868e96"/><circle cx="430" cy="110" r="50" fill="#adb5bd"/><path d="M0 360 L190 190 L330 280 L440 215 L600 325 L600 360 Z" fill="#6c757d"/></svg>')}`;
 
 export const row = { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(18rem, 1fr))', gap: '24px', alignItems: 'start', margin: '16px 0 40px' };
 
@@ -105,6 +108,11 @@ in the contracts.
 
 ## Examples
 
+The examples use Arizona Bootstrap's 5.3.x branch with az-digital/arizona-bootstrap#2365
+applied as a patch, so they show the cards before a release has them. Their markup
+follows that pull request's docs, and the contract check stories check the clickable cards against
+both contracts.
+
 Hover a clickable card or a title on image card, or press <kbd>Tab</kbd> to reach its
 title link. The icons are the outline style of each icon, at a light weight, to match
 arizona.edu.
@@ -132,10 +140,10 @@ arizona.edu.
   <div style={row}>
     <div className="card card-prominent-hover hover overflow-hidden">
       <div className="overflow-hidden">
-        <img className="card-img-top hover-img-zoom-in" src={photo} alt="" />
+        <img className="card-img-top img-fluid hover-img-zoom-in" src={widePhoto} alt="" />
       </div>
       <div className="card-body">
-        <h3 className="card-title h5">
+        <h3 className="card-title h5 fw-bold mb-2">
           <a href="#image-and-text" className="stretched-link text-reset text-decoration-none">Undergraduate Degrees</a>
         </h3>
         <p className="card-text">Our undergraduate programs give you the freedom to follow your interests.</p>
@@ -151,7 +159,7 @@ arizona.edu.
     <div className="card card-prominent-hover">
       <div className="card-body">
         <span className="card-icon material-symbols-rounded fw-light" style={{ fontVariationSettings: "'FILL' 0" }} aria-hidden="true">person_raised_hand</span>
-        <h3 className="card-title h5">
+        <h3 className="card-title h5 fw-bold mb-2">
           <a href="#icon" className="stretched-link text-reset text-decoration-none">Future Students</a>
         </h3>
         <p className="card-text">Become a Wildcat and embrace “Bear Down!” Explore information on applying, transferring, Arizona Online, and more.</p>
@@ -166,7 +174,7 @@ arizona.edu.
   <div style={row}>
     <div className="card card-prominent-hover">
       <div className="card-body">
-        <h3 className="card-title h5">
+        <h3 className="card-title h5 fw-bold mb-2">
           <a href="#text-only" className="stretched-link text-reset text-decoration-none">Distance Locations</a>
         </h3>
         <p className="card-text">Close-to-home flexibility with locations across the state of Arizona.</p>
@@ -181,7 +189,7 @@ arizona.edu.
   <div style={row}>
     <div className="card">
       <div className="card-body">
-        <h3 className="card-title h5">Academic Resources</h3>
+        <h3 className="card-title h5 fw-bold mb-2">Academic Resources</h3>
         <p className="card-text">Find the support and guidance you need to succeed in the classroom. Explore tutoring options, connect with academic advisors, access the course catalog, and plan your academic journey.</p>
         <ul className="list-unstyled">
           <li><a href="#link-list" className="card-link">Contact Your Advisor</a></li>
@@ -199,14 +207,14 @@ arizona.edu.
   <div style={row}>
     <div className="card">
       <div className="card-body">
-        <h3 className="card-title h5">Bear Down Rundown</h3>
+        <h3 className="card-title h5 fw-bold mb-2">Bear Down Rundown</h3>
         <p className="card-text">Your weekly update for all main campus undergraduates during the academic year.</p>
         <a href="#call-to-action" className="btn btn-red">Subscribe</a>
       </div>
     </div>
     <div className="card">
       <div className="card-body">
-        <h3 className="card-title h5">Follow Along</h3>
+        <h3 className="card-title h5 fw-bold mb-2">Follow Along</h3>
         <p className="card-text">Follow the university’s social media channels to stay up to date on events, campus highlights, and everything happening across Arizona.</p>
         <ul className="list-inline">
           <li className="list-inline-item"><a href="#call-to-action" aria-label="LinkedIn"><i className="az-icon-linkedin-circle" aria-hidden="true"></i></a></li>

@@ -46,6 +46,11 @@ const CSS: Record<string, string> = {
   'ring.color': 'outline-color',
   'ring.width': 'outline-width',
   'ring.offset': 'outline-offset',
+  'margin-top': 'margin-top',
+  'margin-bottom': 'margin-bottom',
+  // An icon's size is its drawn height, whether it's an icon font glyph or an SVG.
+  size: 'height',
+  scale: 'transform',
 };
 
 // A property drawn on several sides is checked on each of them, so uneven padding
@@ -83,15 +88,19 @@ export function contractRows(contract: string, options: string[]): Row[] {
 }
 
 // The CSS a row expects: its token's variable, or the contract's own value.
-const expression = (row: Row) => (row.token ? `var(--${row.token.replaceAll('.', '-')})` : (row.value ?? ''));
+function expression(row: Row) {
+  const value = row.token ? `var(--${row.token.replaceAll('.', '-')})` : (row.value ?? '');
+  return row.property === 'scale' ? `scale(${value})` : value;
+}
 
 // Resolves a CSS value the way the browser computes it, so values compare as
-// the browser draws them (#ab0520 and rgb(171, 5, 32) are the same color).
-function computed(cssProperty: string, value: string) {
+// the browser draws them (#ab0520 and rgb(171, 5, 32) are the same color). It's
+// resolved inside `within`, so a value can use that element's custom properties.
+function computed(cssProperty: string, value: string, within: Element = document.body) {
   const probe = document.createElement('div');
   probe.style.cssText = 'position:absolute;visibility:hidden;border-style:solid;outline-style:solid';
   probe.style.setProperty(cssProperty, value);
-  document.body.append(probe);
+  within.append(probe);
   const result = getComputedStyle(probe).getPropertyValue(cssProperty);
   probe.remove();
   return result;
@@ -127,28 +136,66 @@ function normalize(cssProperty: string, value: string) {
   return value;
 }
 
+// Two computed values match if they're equal, or lengths less than 0.01px apart: a
+// 28px line height drawn as 18px × 1.5556 computes to 28.0008px.
+function same(expected: string, drawn: string) {
+  const length = /^-?[\d.]+px$/;
+  return expected === drawn || (length.test(expected) && length.test(drawn) && Math.abs(parseFloat(expected) - parseFloat(drawn)) < 0.01);
+}
+
+// Reads a focus ring's outline property. A ring drawn as a box-shadow instead
+// (0 0 <blur> <width> <color>, as Arizona Bootstrap draws a link's) is read from
+// the shadow: its spread is the width, and it has no offset.
+function ring(style: CSSStyleDeclaration, cssProperty: string) {
+  if (style.outlineStyle !== 'none') return style.getPropertyValue(cssProperty);
+  const shadow = style.boxShadow.match(/^(rgba?\([^)]*\)) 0px 0px \S+ (\S+)$/);
+  if (cssProperty === 'outline-color') return shadow ? shadow[1] : style.getPropertyValue(cssProperty);
+  if (cssProperty === 'outline-width') return shadow ? shadow[2] : '0px';
+  return '0px';
+}
+
 /**
- * Compares a rendered element with what its contract says, and returns a line for
- * each property that differs. The default and focus-visible rows are read from the
- * element at rest and with keyboard focus. Hover can't be triggered from a script,
- * so hover rows are read from the hover colors the stylesheet gives the element
- * (--bs-btn-hover-*), which its :hover rule draws.
+ * The rendered component a check reads:
+ * - `parts`: the element for each part the check covers, by the contract's part
+ *   name, with `root` for the component itself. Rows for other parts aren't checked.
+ * - `focus`: the element that gets keyboard focus for the focus-visible rows, such
+ *   as a card's title link. The root by default.
+ * - `hover`: where hover rows are read, since hover can't be triggered from a
+ *   script. Either the CSS each `<part> <property>` row's hover value is drawn
+ *   from, resolved inside the root (`var(--bs-btn-hover-bg)`), or `'focus-visible'`
+ *   for an implementation that draws hover and keyboard focus with one rule.
  */
-export function checkContract(element: HTMLElement, contract: string, options: string[]): string[] {
+export type ContractTarget = {
+  parts: { root: HTMLElement } & Record<string, HTMLElement>;
+  focus?: HTMLElement;
+  hover?: Record<string, string> | 'focus-visible';
+};
+
+// A button's hover colors: the --bs-btn-hover-* variables its :hover rule draws.
+const BUTTON_HOVER: Record<string, string> = {
+  'root fill': 'var(--bs-btn-hover-bg)',
+  'root border.color': 'var(--bs-btn-hover-border-color)',
+  'root color': 'var(--bs-btn-hover-color)',
+};
+
+/**
+ * Compares a rendered component with what its contract says, and returns a line for
+ * each property that differs. Pass an element to check a one-part component such as
+ * a button, or a ContractTarget for one with parts. The default rows are read at
+ * rest, and the focus-visible rows with keyboard focus; a focus ring is read from the
+ * element with focus. Hover rows are read as ContractTarget's `hover` says.
+ */
+export function checkContract(target: HTMLElement | ContractTarget, contract: string, options: string[] = []): string[] {
+  const { parts, focus = parts.root, hover = BUTTON_HOVER } = target instanceof HTMLElement ? { parts: { root: target } } : target;
   const mismatches: string[] = [];
   const name = [contract, ...options].join(' › ');
-  const hoverVariable: Record<string, string> = {
-    fill: '--bs-btn-hover-bg',
-    'border.color': '--bs-btn-hover-border-color',
-    color: '--bs-btn-hover-color',
-  };
 
   // Compares a row with the value read for each CSS property it's drawn with.
   const compare = (row: Row, read: (cssProperty: string) => string, cssProperties = SIDES[row.property] ?? [CSS[row.property]]) => {
     for (const cssProperty of cssProperties) {
       const expected = normalize(cssProperty, computed(cssProperty, expression(row)));
       const drawn = normalize(cssProperty, computed(cssProperty, read(cssProperty)));
-      if (expected !== drawn) {
+      if (!same(expected, drawn)) {
         const where = [row.part, row.condition].filter(Boolean).join(' › ');
         const side = cssProperties.length > 1 ? ` (${cssProperty})` : '';
         mismatches.push(`${name} › ${where} › ${row.property}${side}: expected ${expected} (${row.token ?? row.value}), got ${drawn}`);
@@ -156,33 +203,62 @@ export function checkContract(element: HTMLElement, contract: string, options: s
     }
   };
 
-  const contractRowsFor = contractRows(contract, options).filter((row) => row.kind !== 'breakpoint');
-  const missing = contractRowsFor.filter((row) => !CSS[row.property]);
-  for (const row of missing) mismatches.push(`${name} › ${row.part} › ${row.property}: no CSS property to check it with`);
+  // A shape is checked as the ratio of the part's drawn width to its height.
+  const compareShape = (row: Row, element: HTMLElement) => {
+    const height = contractRowsFor.find((r) => r.part === row.part && r.condition === row.condition && r.property === 'aspect-ratio.height');
+    const expected = Number(row.value) / Number(height?.value);
+    const { width, height: drawnHeight } = element.getBoundingClientRect();
+    if (Math.abs(width / drawnHeight - expected) > 0.01) {
+      mismatches.push(`${name} › ${row.part} › aspect-ratio: expected ${row.value}:${height?.value}, got ${Math.round(width)}×${Math.round(drawnHeight)}`);
+    }
+  };
 
-  const atRest = getComputedStyle(element);
-  for (const row of contractRowsFor.filter((r) => r.kind === 'default' && CSS[r.property])) {
-    compare(row, (cssProperty) => atRest.getPropertyValue(cssProperty));
+  const contractRowsFor = contractRows(contract, options).filter((row) => row.kind !== 'breakpoint' && parts[row.part]);
+  const isShape = (row: Row) => row.property.startsWith('aspect-ratio.');
+  for (const row of contractRowsFor.filter((r) => !CSS[r.property] && !isShape(r))) {
+    mismatches.push(`${name} › ${row.part} › ${row.property}: no CSS property to check it with`);
+  }
+  const checkable = (row: Row) => CSS[row.property] && (row.condition !== 'focus-visible' || !row.property.startsWith('ring.') || parts[row.part].contains(focus));
+
+  for (const row of contractRowsFor.filter((r) => r.kind === 'default')) {
+    const element = parts[row.part];
+    // A margin is the space between a part and the one beside it, so it's checked
+    // only where there is one: a last paragraph's bottom margin is 0.
+    if (row.property === 'margin-bottom' && !element.nextElementSibling) continue;
+    if (row.property === 'margin-top' && !element.previousElementSibling) continue;
+    if (row.property === 'aspect-ratio.width') compareShape(row, element);
+    else if (CSS[row.property]) compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty));
   }
 
-  for (const row of contractRowsFor.filter((r) => r.condition === 'hover' && CSS[r.property])) {
-    // One hover color covers every side, so it's read once.
-    compare(row, () => atRest.getPropertyValue(hoverVariable[row.property] ?? CSS[row.property]), [CSS[row.property]]);
+  if (hover !== 'focus-visible') {
+    for (const row of contractRowsFor.filter((r) => r.condition === 'hover' && CSS[r.property])) {
+      // One hover color covers every side, so it's read once.
+      const drawnFrom = hover[`${row.part} ${row.property}`];
+      const read = (cssProperty: string) => (drawnFrom ? computed(cssProperty, drawnFrom, parts.root) : getComputedStyle(parts[row.part]).getPropertyValue(cssProperty));
+      compare(row, read, [CSS[row.property]]);
+    }
   }
 
-  const focusRows = contractRowsFor.filter((r) => r.condition === 'focus-visible' && CSS[r.property]);
+  const focusRows = contractRowsFor.filter(
+    (r) => (r.condition === 'focus-visible' || (r.condition === 'hover' && hover === 'focus-visible')) && checkable(r),
+  );
   if (focusRows.length) {
-    // Without the transition, the focus colors apply at once.
-    element.style.transition = 'none';
-    element.focus();
-    if (!element.matches(':focus-visible')) {
+    // Without transitions, the focus colors apply at once.
+    const faded = [parts.root, ...parts.root.querySelectorAll<HTMLElement>('*')];
+    for (const element of faded) element.style.transition = 'none';
+    focus.focus();
+    if (!focus.matches(':focus-visible')) {
       mismatches.push(`${name}: couldn't give it keyboard focus to check its focus-visible rows`);
     } else {
-      const focused = getComputedStyle(element);
-      for (const row of focusRows) compare(row, (cssProperty) => focused.getPropertyValue(cssProperty));
+      for (const row of focusRows) {
+        // A focus ring is drawn on the element with focus.
+        const isRing = row.property.startsWith('ring.');
+        const style = getComputedStyle(isRing ? focus : parts[row.part]);
+        compare(row, (cssProperty) => (isRing ? ring(style, cssProperty) : style.getPropertyValue(cssProperty)));
+      }
     }
-    element.blur();
-    element.style.transition = '';
+    focus.blur();
+    for (const element of faded) element.style.transition = '';
   }
 
   return mismatches;
