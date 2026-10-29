@@ -175,10 +175,10 @@
  * values (--az-component-card-*) and the brand colors it names, including the
  * card's fill and border. Arizona Bootstrap's default card is White with a
  * border, and a card changes that with classes: az-digital/arizona-bootstrap#2365's
- * .card-bold-hover gives it a Cloud fill and no border.
+ * .card-prominent-hover gives it a Cloud fill and no border.
  *
  * Storybook loads Arizona Bootstrap 5.2.2, and #2365 targets 5.3.x, so 5.2.2
- * doesn't have #2365's classes (.card-icon, .card-bold-hover) or its changes to
+ * doesn't have #2365's classes (.card-icon, .card-prominent-hover) or its changes to
  * the .hover utility's image zoom. The shim adds them below, for cards only,
  * reading every design value from the contracts. Rules that copy #2365's
  * behavior, rather than set a contract value, say so.
@@ -360,27 +360,27 @@
 }
 
 /*
- * Clickable card (clickable-card.contract.json): #2365's .card-bold-hover. Its
+ * Clickable card (clickable-card.contract.json): #2365's .card-prominent-hover. Its
  * hover colors show on hover and while keyboard focus is on a link inside the
  * card. The fill, text and title follow the card variables above; the icon and
  * other links are set directly.
  */
-:root .card-bold-hover:is(:hover, :has(:focus-visible)) {
+:root .card-prominent-hover:is(:hover, :has(:focus-visible)) {
   --bs-card-bg: var(--az-color-bg-card-cloud-hover);
   --bs-card-color: var(--az-color-brand-white);
   --bs-card-title-color: var(--az-color-brand-rain);
 }
 
-:root .card-bold-hover:is(:hover, :has(:focus-visible)) .card-icon {
+:root .card-prominent-hover:is(:hover, :has(:focus-visible)) .card-icon {
   color: var(--az-color-brand-rain);
 }
 
-:root .card-bold-hover:is(:hover, :has(:focus-visible)) a:not(.btn, .nav-link) {
+:root .card-prominent-hover:is(:hover, :has(:focus-visible)) a:not(.btn, .nav-link) {
   color: var(--az-color-brand-white);
 }
 
 /* #2365's behavior, not a contract value: the title is underlined. */
-:root .card-bold-hover:is(:hover, :has(:focus-visible)) .card-title {
+:root .card-prominent-hover:is(:hover, :has(:focus-visible)) .card-title {
   text-decoration: underline;
 }
 
@@ -389,17 +389,17 @@
  * out from the card's fill as much as its link's text does. Arizona
  * Bootstrap's default link ring is Red, which doesn't show on the Blue fill.
  */
-:root .card-bold-hover .card-title a:focus-visible {
+:root .card-prominent-hover .card-title a:focus-visible {
   box-shadow: 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-rain);
 }
 
-:root .card-bold-hover a:not(.btn, .nav-link, .card-title a):focus-visible {
+:root .card-prominent-hover a:not(.btn, .nav-link, .card-title a):focus-visible {
   box-shadow: 0 0 0 var(--az-focus-ring-width) var(--az-color-brand-white);
 }
 
 /* #2365's behavior: a device that can't hover, such as a phone, always underlines the title of a clickable card or a title on image card. */
 @media (hover: none) {
-  :root .card-bold-hover .card-title,
+  :root .card-prominent-hover .card-title,
   :root .card .hover-text-underline {
     text-decoration: underline;
   }
@@ -410,23 +410,23 @@
  * transition, and turns it off for reduced motion itself. Which properties fade
  * (the fill, and the text, title and icon colors) is #2365's behavior.
  */
-:root .card-bold-hover {
+:root .card-prominent-hover {
   transition-property: background-color;
 }
 
-:root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+:root .card-prominent-hover :is(.card-body, .card-title, .card-icon) {
   transition-property: color;
 }
 
-:root .card-bold-hover,
-:root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+:root .card-prominent-hover,
+:root .card-prominent-hover :is(.card-body, .card-title, .card-icon) {
   transition-duration: var(--az-component-clickable-card-transition-duration);
   transition-timing-function: var(--az-component-clickable-card-transition-easing);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root .card-bold-hover,
-  :root .card-bold-hover :is(.card-body, .card-title, .card-icon) {
+  :root .card-prominent-hover,
+  :root .card-prominent-hover :is(.card-body, .card-title, .card-icon) {
     transition: none;
   }
 }
