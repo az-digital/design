@@ -15,7 +15,7 @@
     "root": {
       "description": "The card.",
       "tokens": {
-        "fill": "{az.color.brand.cloud}",
+        "fill": "{az.color.bg.card.cloud}",
         "border.width": {
           "$type": "dimension",
           "$value": {

@@ -333,7 +333,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.card.cloud"
   },
   {
     "contract": "card",
@@ -753,7 +753,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.card.cloud-hover"
   },
   {
     "contract": "clickable-card",
@@ -761,7 +761,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.card.cloud-hover"
   },
   {
     "contract": "clickable-card",

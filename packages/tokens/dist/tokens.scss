@@ -13,3 +13,6 @@ $az-color-brand-cloud: #e5eff7;
 $az-color-brand-caliche: #f2efea;
 $az-color-brand-white: #ffffff;
 $az-focus-ring-width: 2px; // Width of the keyboard focus ring, everywhere one is drawn: links, buttons, and the header's logo and buttons.
+$az-color-bg-card-cloud: $az-color-brand-cloud; // Card fill.
+$az-color-bg-card-cloud-hover: $az-color-brand-blue; // Clickable card fill on hover and with keyboard focus.
+$az-color-bg-card-cloud-active: $az-color-brand-blue; // Clickable card fill while pressed.

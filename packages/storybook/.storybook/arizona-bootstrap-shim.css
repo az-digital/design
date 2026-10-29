@@ -184,7 +184,7 @@
  * behavior, rather than set a contract value, say so.
  */
 :root .card {
-  --bs-card-bg: var(--az-color-brand-cloud);
+  --bs-card-bg: var(--az-color-bg-card-cloud);
   --bs-card-color: var(--az-color-brand-tinta);
   --bs-card-title-color: var(--az-color-brand-azurite);
   --bs-card-border-width: var(--az-component-card-border-width);
@@ -366,7 +366,7 @@
  * other links are set directly.
  */
 :root .card-bold-hover:is(:hover, :has(:focus-visible)) {
-  --bs-card-bg: var(--az-color-brand-blue);
+  --bs-card-bg: var(--az-color-bg-card-cloud-hover);
   --bs-card-color: var(--az-color-brand-white);
   --bs-card-title-color: var(--az-color-brand-rain);
 }
