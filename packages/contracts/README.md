@@ -21,7 +21,7 @@ Naming) describes:
 - **Color tokens** for what they color and where, such as `az.color.bg.button.red-hover`
   and `az.color.fg.white`, which alias the brand colors. A context such as `button`
   covers anything that behaves like one, so components share it.
-- **Scales** of numbered or named steps (`az.spacing.2`, `az.radius.pill`). There are no
+- **Scales** of numbered or named steps (`az.spacing.100`, `az.radius.pill`). There are no
   tokens named after their values (`az.dimension.50`): a name that's its own value can
   never change, and it ties unrelated decisions together.
 - **Shared decisions**, such as the focus ring's width (`az.focus-ring.width.md`), named
