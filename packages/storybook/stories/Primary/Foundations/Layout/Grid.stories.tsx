@@ -85,7 +85,7 @@ function GridDiagram() {
 const meta = {
   title: 'Primary/Foundations/Layout/Grid',
   parameters: {
-    tokens: ['az.grid.', 'az.container.', 'az.spacing.4'],
+    tokens: ['az.grid.', 'az.container.', 'az.spacing.300'],
     docs: { canvas: { sourceState: 'none' } },
     // The story has no args, actions or play function; only the Tokens tab applies.
     controls: { disable: true },
