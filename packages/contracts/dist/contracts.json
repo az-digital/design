@@ -471,7 +471,7 @@
     "property": "size",
     "token": null,
     "type": "dimension",
-    "value": "64px",
+    "value": "60px",
     "description": "Icon size: an icon font's font size, or an SVG's width and height.",
     "variable": "az-component-card-icon-size"
   },
@@ -539,7 +539,7 @@
     "property": "margin-bottom",
     "token": null,
     "type": "dimension",
-    "value": "12px",
+    "value": "8px",
     "description": "Space between the title's line and the text below it.",
     "variable": "az-component-card-title-margin-bottom"
   },
@@ -595,7 +595,7 @@
     "property": "margin-bottom",
     "token": null,
     "type": "dimension",
-    "value": "12px",
+    "value": "16px",
     "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it.",
     "variable": "az-component-card-text-margin-bottom"
   },
@@ -663,7 +663,7 @@
     "property": "margin-top",
     "token": null,
     "type": "dimension",
-    "value": "20px",
+    "value": "16px",
     "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action.",
     "variable": "az-component-card-action-margin-top"
   },
