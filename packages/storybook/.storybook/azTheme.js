@@ -1,0 +1,36 @@
+import { create } from 'storybook/theming';
+import { az } from '../../tokens/tokens.json';
+
+export default create({
+  base: 'light',
+  fontBase: az['font-family']['sans-serif'].$value,
+  fontCode: 'monospace',
+  brandTitle: 'Arizona Digital Design System',
+  brandUrl: 'https://www.arizona.edu/',
+  brandImage: 'https://www.arizona.edu/sites/default/files/UA_horiz_rgb_webheader.png',
+  colorPrimary: az.color.brand.red.$value,
+  colorSecondary: az.color.brand.blue.$value,
+
+  // UI
+  appBg: az.color.brand.cloud.$value,
+  appContentBg: az.color.brand.white.$value,
+  appPreviewBg: az.color.brand.white.$value,
+  appBorderColor: az.color.brand['sonoran-red'].$value,
+  appBorderRadius: 4,
+ 
+  // Text colors
+  textColor: az.color.brand.tinta.$value,
+  textInverseColor: az.color.brand.white.$value,
+ 
+  // Toolbar default and active colors
+  barTextColor: az.color.brand.blue.$value,
+  barSelectedColor: az.color.brand['arroyo-blue'].$value,
+  barHoverColor: az.color.brand['arroyo-blue'].$value,
+  barBg: az.color.brand.cloud.$value,
+ 
+  // Form colors
+  inputBg: az.color.brand.white.$value,
+  inputBorder: az.color.brand.blue.$value,
+  inputTextColor: az.color.brand.blue.$value,
+  inputBorderRadius: 8,
+});

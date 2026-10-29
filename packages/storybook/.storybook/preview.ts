@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
+import azTheme from './azTheme';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
 
@@ -24,6 +25,9 @@ const preview: Preview = {
       storySort: {
         order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
       },
+    },
+    docs: {
+      theme: azTheme,
     },
   },
 };
