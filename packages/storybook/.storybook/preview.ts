@@ -20,9 +20,15 @@ const preview: Preview = {
     viewport: {
       options: breakpointViewports,
     },
+    // The Actions and Interactions panels are opt-in, so stories don't show
+    // empty panels. A story that logs actions or has a play function turns its
+    // panel back on with `actions: { disable: false }` or
+    // `interactions: { disable: false }`.
+    actions: { disable: true },
+    interactions: { disable: true },
     options: {
       storySort: {
-        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
+        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Interaction', ['Inputs', 'Selections', 'States'], 'Layout', ['Overview', 'Breakpoints', 'Grids and Spacing'], 'Typography', 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
       },
     },
   },

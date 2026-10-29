@@ -1,0 +1,138 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "heading-sidebar",
+  "name": "Sidebar heading",
+  "description": "A heading in a sidebar, from h1 to h6. It's smaller than a heading in the main content, and always sans serif, even on pages with serif or mixed headings. Its spacing is the same as a heading's. Text colors come from the background, so they aren't part of it.",
+  "sources": [
+    "az-digital/az_quickstart#6076: sidebar headings go back to their earlier sizes, and stay sans serif",
+    "az-digital/az_quickstart#6039",
+    "az-digital/design#88"
+  ],
+  "variants": {
+    "level": {
+      "description": "The heading's level. Every heading has one.",
+      "options": {
+        "h1": {
+          "description": "A level 1 sidebar heading. Below the xl breakpoint (1200px) its size scales down with the screen width.",
+          "anatomy": {
+            "root": {
+              "breakpoints": {
+                "xl": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 40,
+                      "unit": "px"
+                    },
+                    "$description": "Sidebar h1 text size from the xl breakpoint (1200px) up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h2": {
+          "description": "A level 2 sidebar heading. Below the xl breakpoint (1200px) its size scales down with the screen width.",
+          "anatomy": {
+            "root": {
+              "breakpoints": {
+                "xl": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 32,
+                      "unit": "px"
+                    },
+                    "$description": "Sidebar h2 text size from the xl breakpoint (1200px) up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h3": {
+          "description": "A level 3 sidebar heading. Below the xl breakpoint (1200px) its size scales down with the screen width.",
+          "anatomy": {
+            "root": {
+              "breakpoints": {
+                "xl": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 28,
+                      "unit": "px"
+                    },
+                    "$description": "Sidebar h3 text size from the xl breakpoint (1200px) up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h4": {
+          "description": "A level 4 sidebar heading. Below the xl breakpoint (1200px) its size scales down with the screen width.",
+          "anatomy": {
+            "root": {
+              "breakpoints": {
+                "xl": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 24,
+                      "unit": "px"
+                    },
+                    "$description": "Sidebar h4 text size from the xl breakpoint (1200px) up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h5": {
+          "description": "A level 5 sidebar heading. The same size at every screen width.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  },
+                  "$description": "Sidebar h5 text size."
+                }
+              }
+            }
+          }
+        },
+        "h6": {
+          "description": "A level 6 sidebar heading. The same size at every screen width.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "$description": "Sidebar h6 text size."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The sidebar heading.",
+      "tokens": {
+        "font.family": "{az.font-family.sans-serif}",
+        "font.weight": "{az.font-weight.medium}",
+        "line-height": "{az.line-height.medium}"
+      }
+    }
+  }
+}

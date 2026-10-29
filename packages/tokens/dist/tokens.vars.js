@@ -49,7 +49,9 @@ export const az = {
       "blue": "var(--az-color-fg-blue)",
       "tinta": "var(--az-color-fg-tinta)",
       "red": "var(--az-color-fg-red)",
-      "rain": "var(--az-color-fg-rain)"
+      "rain": "var(--az-color-fg-rain)",
+      "bougainvillea": "var(--az-color-fg-bougainvillea)",
+      "arroyoBlue": "var(--az-color-fg-arroyo-blue)"
     }
   },
   "breakpoint": {
@@ -113,6 +115,18 @@ export const az = {
     "h2": "var(--az-font-size-h2)",
     "h1": "var(--az-font-size-h1)",
     "button": "var(--az-font-size-button)"
+  },
+  "body": {
+    "fontFamily": "var(--az-body-font-family)",
+    "fontSize": "var(--az-body-font-size)",
+    "fontWeight": "var(--az-body-font-weight)",
+    "lineHeight": "var(--az-body-line-height)"
+  },
+  "heading": {
+    "fontFamily": {
+      "lg": "var(--az-heading-font-family-lg)",
+      "sm": "var(--az-heading-font-family-sm)"
+    }
   },
   "border": {
     "width": {

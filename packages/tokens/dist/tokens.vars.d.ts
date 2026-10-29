@@ -49,7 +49,9 @@ export const az: {
       "blue": string,
       "tinta": string,
       "red": string,
-      "rain": string
+      "rain": string,
+      "bougainvillea": string,
+      "arroyoBlue": string
     }
   },
   "breakpoint": {
@@ -113,6 +115,18 @@ export const az: {
     "h2": string,
     "h1": string,
     "button": string
+  },
+  "body": {
+    "fontFamily": string,
+    "fontSize": string,
+    "fontWeight": string,
+    "lineHeight": string
+  },
+  "heading": {
+    "fontFamily": {
+      "lg": string,
+      "sm": string
+    }
   },
   "border": {
     "width": {
