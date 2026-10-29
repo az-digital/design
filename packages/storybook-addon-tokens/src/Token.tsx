@@ -1,5 +1,6 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
 
@@ -403,32 +404,84 @@ export function TokenDetails({ data, onClose, trigger }: { data: TokenData; onCl
 }
 
 /**
- * A clickable token pill. By default it opens `TokenDetails` in a side drawer;
+ * In story view the preview iframe is sized to the chosen viewport, so a drawer
+ * fixed inside it can be cut off. There, a pill shows the token in the Tokens
+ * tab instead. Docs pages fill the pane, so they keep the drawer.
+ */
+const isStoryView = () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('viewMode') === 'story';
+
+type StorybookChannel = {
+  emit: (event: string, ...args: unknown[]) => void;
+  on: (event: string, listener: (result: unknown) => void) => void;
+  off: (event: string, listener: (result: unknown) => void) => void;
+};
+
+let selectionRequestId = 0;
+
+function requestTokensTab(token: string, onUnavailable: () => void) {
+  const channel = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: StorybookChannel }).__STORYBOOK_ADDONS_CHANNEL__;
+  if (!channel || typeof window === 'undefined' || window.parent === window) {
+    onUnavailable();
+    return;
+  }
+
+  const requestId = `${Date.now()}-${++selectionRequestId}`;
+  const finish = (available: boolean) => {
+    window.clearTimeout(timeout);
+    channel.off(SELECT_RESULT_EVENT, onResult);
+    if (!available) onUnavailable();
+  };
+  const onResult = (result: unknown) => {
+    if (typeof result === 'object' && result !== null && 'requestId' in result && result.requestId === requestId) {
+      finish('available' in result && result.available === true);
+    }
+  };
+  const timeout = window.setTimeout(() => finish(false), 500);
+  channel.on(SELECT_RESULT_EVENT, onResult);
+  channel.emit(SELECT_EVENT, { token, requestId });
+}
+
+/**
+ * A clickable token pill. By default it opens `TokenDetails` in a side drawer
+ * (or, in story view, in the Tokens tab);
  * pass `onSelect` (and `selected`) to handle selection yourself instead, e.g. to
  * show details in a panel. `swatch` adds a small color dot for color tokens
  * shown without a larger swatch next to them.
  */
-export function Token({
-  data,
-  swatch = false,
-  style,
-  selected,
-  onSelect,
-}: {
+type TokenProps = {
   data: TokenData;
   swatch?: boolean;
   style?: CSSProperties;
   selected?: boolean;
   onSelect?: () => void;
-}) {
+};
+
+function StoryViewToken(props: TokenProps) {
+  return <TokenPill {...props} onRequestTab={(onUnavailable) => requestTokensTab(props.data.token, onUnavailable)} />;
+}
+
+export function Token(props: TokenProps) {
+  if (props.onSelect || !isStoryView()) return <TokenPill {...props} />;
+  return <StoryViewToken {...props} />;
+}
+
+function TokenPill({
+  data,
+  swatch = false,
+  style,
+  selected,
+  onSelect,
+  onRequestTab,
+}: TokenProps & { onRequestTab?: (onUnavailable: () => void) => void }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const isSelected = selected ?? open;
   ensurePillStyles();
+  const select = onSelect ?? (onRequestTab ? () => onRequestTab(() => setOpen(true)) : () => setOpen(true));
 
   return (
     <>
-      <button ref={triggerRef} type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
+      <button ref={triggerRef} type="button" className="az-token-pill" onClick={select} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>

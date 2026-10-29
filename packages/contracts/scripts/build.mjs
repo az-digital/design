@@ -87,7 +87,14 @@ for (const file of files) {
     };
     add(part.tokens, null, 'default');
     for (const [state, group] of Object.entries(part.states ?? {})) add(group, state, 'state');
-    for (const [breakpoint, group] of Object.entries(part.breakpoints ?? {})) add(group, breakpoint, 'breakpoint');
+    for (const [breakpoint, group] of Object.entries(part.breakpoints ?? {})) {
+      const token = tokens.get(`az.breakpoint.${breakpoint}`);
+      if (!token || token.$type !== 'dimension') {
+        problems.push(`${file}: ${partPath.join(' › ') || 'root'} uses breakpoint "${breakpoint}", which has no az.breakpoint.${breakpoint} dimension token`);
+        continue;
+      }
+      add(group, breakpoint, 'breakpoint');
+    }
     for (const [name, child] of Object.entries(part.parts ?? {})) walk(child, [...partPath, name], variant, base.parts?.[name] ?? null);
   };
   walk(contract.anatomy.root, []);

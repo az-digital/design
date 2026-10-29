@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { addons, types, useChannel, useParameter } from 'storybook/manager-api';
 import { AddonPanel } from 'storybook/internal/components';
-import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT } from './constants';
+import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT, SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenData, getTokenDisplayItems } from './resolveToken';
 import { setTokensData, useTokensData, type TokensData } from './store';
 import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
@@ -20,6 +20,10 @@ import { TokenTable } from './TokenTable';
  */
 export type TokensParameter = string | string[] | { disable: true };
 
+/** The token a `Token` pill in story view asked the tab to show; kept here so it survives the tab mounting. */
+let requestedToken: string | null = null;
+const requestListeners = new Set<(token: string) => void>();
+
 const isDisabled = (parameter: unknown) => typeof parameter === 'object' && parameter !== null && !Array.isArray(parameter) && (parameter as { disable?: boolean }).disable === true;
 
 function TokensPanelContent() {
@@ -27,6 +31,16 @@ function TokensPanelContent() {
   const [selectedToken, setSelectedToken] = useState<string | null>(null);
   const { width, setWidth } = useResizableWidth('az-token-panel-details-width', 340, 240, () => window.innerWidth - 320);
   const data = useTokensData();
+
+  // A pill clicked in story view: show its token (see `Token`).
+  useEffect(() => {
+    if (requestedToken) setSelectedToken(requestedToken);
+    const listener = (token: string) => setSelectedToken(token);
+    requestListeners.add(listener);
+    return () => {
+      requestListeners.delete(listener);
+    };
+  }, []);
 
   // The token data lives in the preview; ask for it, and take every update it sends.
   const emit = useChannel({ [DATA_EVENT]: (next: TokensData) => setTokensData(next) });
@@ -80,7 +94,19 @@ function TokensPanelContent() {
   );
 }
 
-addons.register(ADDON_ID, () => {
+addons.register(ADDON_ID, (api) => {
+  api.on(SELECT_EVENT, (request: { token: string; requestId: string }) => {
+    const parameter = api.getCurrentParameter('tokens');
+    const available = Boolean(parameter) && !isDisabled(parameter);
+    if (available) {
+      requestedToken = request.token;
+      api.setSelectedPanel(PANEL_ID);
+      api.togglePanel(true);
+      requestListeners.forEach((listener) => listener(request.token));
+    }
+    api.emit(SELECT_RESULT_EVENT, { requestId: request.requestId, available });
+  });
+
   addons.add(PANEL_ID, {
     type: types.PANEL,
     title: 'Tokens',
