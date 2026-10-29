@@ -1,5 +1,149 @@
 [
   {
+    "contract": "accordion",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "20px",
+    "description": "Accordion button left and right padding."
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "button.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Accordion section title text size."
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "20px",
+    "description": "Accordion body left and right padding, lined up with the button's."
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "50px",
+    "description": "The bar's height on small screens, below the sm breakpoint."
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.left",
+    "token": null,
+    "type": "dimension",
+    "value": "10px",
+    "description": "Space before the logo."
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "width",
+    "token": null,
+    "type": "dimension",
+    "value": "211px",
+    "description": "Logo width below the sm breakpoint."
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "logo",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "16px",
+    "description": "Logo height below the sm breakpoint."
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "logo",
+    "kind": "breakpoint",
+    "condition": "sm",
+    "property": "width",
+    "token": null,
+    "type": "dimension",
+    "value": "266.41px",
+    "description": "Logo width from the sm breakpoint up."
+  },
+  {
+    "contract": "arizona-header",
+    "variant": null,
+    "part": "logo",
+    "kind": "breakpoint",
+    "condition": "sm",
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "19.8px",
+    "description": "Logo height from the sm breakpoint up."
+  },
+  {
     "contract": "button",
     "variant": null,
     "part": "root",
@@ -1288,5 +1432,206 @@
     "condition": "active",
     "property": "color",
     "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "header",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "header",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "body.title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "footer",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "footer",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.top",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "item",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "9.6px",
+    "description": "Utility link left and right padding."
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "item.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.medium"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "tabs",
+    "variant": "style.tabs",
+    "part": "tab",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "tabs",
+    "variant": "style.underline",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "tabs",
+    "variant": "style.underline",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.md"
   }
 ]

@@ -33,6 +33,14 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 - Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
 - Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
 
+## Writing stories and docs pages
+
+Before writing or restructuring a `.stories.tsx` or `.mdx` file in
+`packages/storybook`, read [packages/storybook/AGENTS.md](./packages/storybook/AGENTS.md)
+for page structure conventions, `play` function pitfalls, and how to keep
+"what tokens.json defines," "what the shipped CSS does," and "which token
+maps to which Figma state" as separate questions.
+
 ## Storybook agent CLI
 
 The same skills and tools are also available from the command line, which

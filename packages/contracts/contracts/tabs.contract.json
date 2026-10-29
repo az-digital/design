@@ -1,0 +1,81 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "tabs",
+  "name": "Tabs",
+  "description": "A row of tabs that switches between panels in the same view. The selected tab is marked by its style: a raised tab, a pill, or an underline.",
+  "sources": [
+    "Arizona Bootstrap 5.2.0's compiled CSS, as az-digital/design#46 recorded it"
+  ],
+  "variants": {
+    "style": {
+      "description": "How the selected tab is marked. Pills change nothing listed here.",
+      "default": "tabs",
+      "options": {
+        "tabs": {
+          "description": "Tabs: the selected tab is raised on a white fill.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "tab": {
+                  "states": {
+                    "active": {
+                      "fill": "{az.color.brand.white}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "underline": {
+          "description": "Underline: the selected tab is underlined, with space between the tabs.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "gap": "{az.spacing.3}"
+              },
+              "parts": {
+                "tab": {
+                  "tokens": {
+                    "border.width": "{az.border.width.md}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The row of tabs.",
+      "parts": {
+        "tab": {
+          "description": "One tab. Its active state is the selected tab (Arizona Bootstrap's .active).",
+          "tokens": {
+            "padding.x": "{az.spacing.3}",
+            "padding.y": "{az.spacing.2}"
+          },
+          "parts": {
+            "label": {
+              "description": "The tab's name.",
+              "tokens": {
+                "font.weight": "{az.font-weight.bold}",
+                "color": "{az.color.brand.azurite}"
+              },
+              "states": {
+                "hover": {
+                  "color": "{az.color.fg.tinta}"
+                },
+                "active": {
+                  "color": "{az.color.fg.tinta}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
