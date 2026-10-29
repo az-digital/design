@@ -6,6 +6,7 @@
   "type": "object",
   "required": [
     "id",
+    "category",
     "name",
     "description",
     "anatomy"
@@ -18,6 +19,19 @@
     "id": {
       "description": "The component's name. Its own tokens, if any, are az.component.<id>.*, and the contract must use every one of them.",
       "$ref": "#/$defs/name"
+    },
+    "category": {
+      "description": "The contract's section in Storybook.",
+      "enum": [
+        "typography",
+        "layout",
+        "buttons",
+        "containers",
+        "indicators",
+        "inputs",
+        "navigation",
+        "popups"
+      ]
     },
     "name": {
       "type": "string",
