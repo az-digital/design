@@ -75,6 +75,19 @@ export const az: {
     "050": string,
     "075": string
   },
+  "container": {
+    "maxWidth": {
+      "sm": string,
+      "md": string,
+      "lg": string,
+      "xl": string,
+      "xxl": string
+    }
+  },
+  "grid": {
+    "columns": string,
+    "gutter": string
+  },
   "radius": {
     "0": string,
     "1": string,
