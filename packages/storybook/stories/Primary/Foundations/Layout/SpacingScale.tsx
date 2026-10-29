@@ -20,7 +20,11 @@ const BAR_STYLE: CSSProperties = {
 };
 
 export function SpacingScale() {
-  const items = getTokenDisplayItems('az.spacing.', { order: 'source' });
+  // Sort by value: JavaScript lists number-only names such as `100` before
+  // ones with a leading zero such as `025`, so source order isn't size order.
+  const items = getTokenDisplayItems('az.spacing.').sort(
+    (a, b) => Number.parseFloat(a.value ?? '') - Number.parseFloat(b.value ?? ''),
+  );
 
   return (
     <div style={{ overflowX: 'auto' }}>
