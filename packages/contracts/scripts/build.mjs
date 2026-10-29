@@ -1,23 +1,18 @@
 // Checks the component contracts (contracts/*.contract.json) against the
-// tokens, writes dist/contracts.json for docs tables, and generates a CSS and a
-// Sass variable for each of a component's own values.
+// tokens, and writes dist/contracts.json for docs tables. It generates nothing
+// for any platform: each implementation writes a component's own values itself.
 //
 // A contract records one component's anatomy, independent of any platform: its
 // parts, and what sets each part's design properties in its resting look, its
 // states and its breakpoints. A property either references a token in
 // tokens.json (a brand color or a shared decision) or holds the component's own
-// value, written like a DTCG token. Own values become variables named after
-// where they sit: brand-header › logo › sm › width is
-// --az-component-brand-header-logo-sm-width. The component segment keeps them
-// apart from implementations' own --az-* variables, such as Arizona Bootstrap's
-// --az-search-padding-x.
+// value, written like a DTCG token.
 //
 // The build refuses, naming the problem, when a contract:
 // - doesn't match contract.schema.json,
 // - references a token that isn't in tokens.json,
 // - leaves one of its component's own tokens (az.component.<id>.*) unused, so
-//   the contract and the tokens can't drift apart, or
-// - generates a variable name that another value or a token already uses.
+//   the contract and the tokens can't drift apart.
 //
 // It also reports component tokens that only point at another token, which the
 // contract could reference directly: wiring belongs in the contract.
@@ -39,7 +34,7 @@ const collect = (node, path) => {
 };
 collect(read(new URL('../tokens/tokens.json', root)), []);
 
-// A value as CSS and Sass write it.
+// A component's own value, as contracts.json writes it.
 const format = ({ $type: type, $value: value }) => {
   if (type === 'dimension' || type === 'duration') return `${value.value}${value.unit}`;
   if (type === 'cubicBezier') return `cubic-bezier(${value.join(', ')})`;
@@ -50,8 +45,6 @@ const files = readdirSync(new URL('contracts/', root)).filter((file) => file.end
 const problems = [];
 const notes = [];
 const rows = [];
-const variables = new Map(); // generated name -> where it came from
-const tokenVariables = new Set([...tokens.keys()].map((path) => path.replaceAll('.', '-')));
 
 for (const file of files) {
   const contract = read(new URL(`contracts/${file}`, root));
@@ -71,13 +64,7 @@ for (const file of files) {
         const where = [...partPath, condition, property].filter(Boolean).join(' › ') || 'root';
         const row = { contract: contract.id, part: partPath.join('.') || 'root', kind, condition: condition ?? null, property };
         if (typeof value === 'object') {
-          const name = ['az', 'component', contract.id, ...partPath, condition, ...property.split('.')].filter(Boolean).join('-');
-          if (variables.has(name) || tokenVariables.has(name)) {
-            problems.push(`${file}: ${where} would generate --${name}, the same variable as ${variables.get(name) ?? 'a token in tokens.json'}`);
-            continue;
-          }
-          variables.set(name, `${file}: ${where}`);
-          rows.push({ ...row, token: null, type: value.$type, value: format(value), description: value.$description, variable: name });
+          rows.push({ ...row, token: null, type: value.$type, value: format(value), description: value.$description });
           continue;
         }
         const token = value.slice(1, -1);
@@ -118,8 +105,4 @@ const dist = new URL('dist/', root);
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist);
 writeFileSync(new URL('contracts.json', dist), `${JSON.stringify(rows, null, 2)}\n`);
-
-const own = rows.filter((row) => row.variable);
-writeFileSync(new URL('contracts.css', dist), `:root {\n${own.map((row) => `  --${row.variable}: ${row.value}; /** ${row.description} */`).join('\n')}\n}\n`);
-writeFileSync(new URL('contracts.scss', dist), `${own.map((row) => `$${row.variable}: ${row.value}; // ${row.description}`).join('\n')}\n`);
-console.log(`Checked ${files.length} contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves, ${own.length} values generated as variables.`);
+console.log(`Checked ${files.length} contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves.`);

@@ -3,8 +3,9 @@
 Component contracts for the Arizona Digital design system. A contract records one
 component's anatomy, independent of any platform: the parts it's made of, and what
 sets each part's design properties: a design token from `@az-digital/tokens`
-(`tokens.json`), or the component's own value. The check generates a CSS and a Sass
-variable for each of a component's own values.
+(`tokens.json`), or the component's own value. Contracts are data: they generate
+nothing for any platform. Each implementation writes the component's own values its
+own way.
 
 ## Why contracts
 
@@ -112,24 +113,20 @@ The check refuses a contract, naming the problem, when it:
   value with no `$description`,
 - references a token that isn't in `tokens.json`,
 - leaves one of its component's own tokens (`az.component.<id>.*`) unused, if it
-  has any, so the contract and the tokens can't drift apart, or
-- would generate a variable name that another value or a token already uses.
+  has any, so the contract and the tokens can't drift apart.
 
 It also notes component tokens that only point at another token, which the contract
 can reference directly. Those can be removed from `tokens.json`.
 
-When it passes, it writes:
+When it passes, it writes **`dist/contracts.json`**: every design property as a row
+(part, state or breakpoint, property, and the token or value). Component docs pages
+read it to show an Anatomy table.
 
-- **`dist/contracts.json`:** every design property as a row (part, state or
-  breakpoint, property, and the token or value). Component docs pages read it to show
-  an Anatomy table.
-- **`dist/contracts.css` and `dist/contracts.scss`:** a variable for each of a
-  component's own values, named after where it sits: `brand-header` › `logo` › `sm` ›
-  `width` is `--az-component-brand-header-logo-sm-width`
-  (`$az-component-brand-header-logo-sm-width`). The `component` segment keeps them apart
-  from an implementation's own `--az-*` variables, such as Arizona Bootstrap's
-  `--az-search-padding-x`.
-  Colors and shared decisions aren't repeated here; use their token's variable.
+A contract doesn't generate CSS, Sass or any other platform's code, so the component's
+own values live in one place. An implementation uses token outputs from
+`@az-digital/tokens` for tokens, and writes the component's own values as its platform
+needs them. A contract's pull request gives each implementation's maintainers update
+instructions: which of their variables and rules change, and to what.
 
 ## Adding a contract
 
@@ -138,7 +135,7 @@ When it passes, it writes:
    and writing everything else as the component's own values. Add a token to
    `tokens.json` only for a decision that's really shared or that a theme changes.
 2. Run `npm run build:contracts`, and remove any component token it flags.
-3. Load `@az-digital/contracts/dist/contracts.css` (or `contracts.scss`) in the
-   implementation, and use the generated variables.
+3. In the pull request, write update instructions for each implementation: which
+   variables and rules change, to which token or value.
 4. Show the anatomy on the component's docs page:
    `<ContractAnatomy contract="<component>" />`.

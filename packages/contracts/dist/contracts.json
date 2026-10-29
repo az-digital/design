@@ -16,8 +16,7 @@
     "token": null,
     "type": "dimension",
     "value": "50px",
-    "description": "Header height: its minimum height at every screen size, and its fixed height below 992px.",
-    "variable": "az-component-brand-header-height"
+    "description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
   },
   {
     "contract": "brand-header",
@@ -28,8 +27,7 @@
     "token": null,
     "type": "dimension",
     "value": "8px",
-    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them.",
-    "variable": "az-component-brand-header-fixed-on-mobile-scroll-gap"
+    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
   },
   {
     "contract": "brand-header",
@@ -48,8 +46,7 @@
     "token": null,
     "type": "dimension",
     "value": "211px",
-    "description": "Wordmark width below the sm breakpoint (576px).",
-    "variable": "az-component-brand-header-logo-width"
+    "description": "Wordmark width below the sm breakpoint (576px)."
   },
   {
     "contract": "brand-header",
@@ -60,8 +57,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Wordmark height below the sm breakpoint (576px).",
-    "variable": "az-component-brand-header-logo-height"
+    "description": "Wordmark height below the sm breakpoint (576px)."
   },
   {
     "contract": "brand-header",
@@ -72,8 +68,7 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Space before the wordmark, at the header's left edge.",
-    "variable": "az-component-brand-header-logo-margin-left"
+    "description": "Space before the wordmark, at the header's left edge."
   },
   {
     "contract": "brand-header",
@@ -100,8 +95,7 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.",
-    "variable": "az-component-brand-header-logo-focus-visible-border-radius"
+    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
   },
   {
     "contract": "brand-header",
@@ -112,8 +106,7 @@
     "token": null,
     "type": "dimension",
     "value": "266.41px",
-    "description": "Wordmark width from the sm breakpoint (576px) up.",
-    "variable": "az-component-brand-header-logo-sm-width"
+    "description": "Wordmark width from the sm breakpoint (576px) up."
   },
   {
     "contract": "brand-header",
@@ -124,8 +117,7 @@
     "token": null,
     "type": "dimension",
     "value": "19.8px",
-    "description": "Wordmark height from the sm breakpoint (576px) up.",
-    "variable": "az-component-brand-header-logo-sm-height"
+    "description": "Wordmark height from the sm breakpoint (576px) up."
   },
   {
     "contract": "brand-header",
@@ -136,8 +128,7 @@
     "token": null,
     "type": "dimension",
     "value": "60px",
-    "description": "Header button minimum width.",
-    "variable": "az-component-brand-header-button-min-width"
+    "description": "Header button minimum width."
   },
   {
     "contract": "brand-header",
@@ -148,8 +139,7 @@
     "token": null,
     "type": "dimension",
     "value": "50px",
-    "description": "Header button minimum height: as tall as the header.",
-    "variable": "az-component-brand-header-button-min-height"
+    "description": "Header button minimum height: as tall as the header."
   },
   {
     "contract": "brand-header",
@@ -160,8 +150,7 @@
     "token": null,
     "type": "dimension",
     "value": "4px",
-    "description": "Header button top and bottom padding.",
-    "variable": "az-component-brand-header-button-padding-y"
+    "description": "Header button top and bottom padding."
   },
   {
     "contract": "brand-header",
@@ -172,8 +161,7 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Space between a header button's icon and its label.",
-    "variable": "az-component-brand-header-button-gap"
+    "description": "Space between a header button's icon and its label."
   },
   {
     "contract": "brand-header",
@@ -184,8 +172,7 @@
     "token": null,
     "type": "duration",
     "value": "150ms",
-    "description": "How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-button-transition-duration"
+    "description": "How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
@@ -196,8 +183,7 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "description": "Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-button-transition-easing"
+    "description": "Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
@@ -224,8 +210,7 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.",
-    "variable": "az-component-brand-header-button-focus-visible-border-radius"
+    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
   },
   {
     "contract": "brand-header",
@@ -244,8 +229,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.",
-    "variable": "az-component-brand-header-button-icon-size"
+    "description": "Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph."
   },
   {
     "contract": "brand-header",
@@ -264,8 +248,7 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Header button label text size (\"Search\", \"Menu\").",
-    "variable": "az-component-brand-header-button-label-font-size"
+    "description": "Header button label text size (\"Search\", \"Menu\")."
   },
   {
     "contract": "brand-header",
@@ -276,8 +259,7 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Header button label line height.",
-    "variable": "az-component-brand-header-button-label-line-height"
+    "description": "Header button label line height."
   },
   {
     "contract": "brand-header",
@@ -288,8 +270,7 @@
     "token": null,
     "type": "duration",
     "value": "300ms",
-    "description": "How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-transition-duration"
+    "description": "How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
@@ -300,8 +281,7 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "description": "Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-transition-easing"
+    "description": "Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
@@ -312,8 +292,7 @@
     "token": null,
     "type": "duration",
     "value": "150ms",
-    "description": "How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-backdrop-transition-duration"
+    "description": "How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
@@ -324,8 +303,7 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0, 0, 1, 1)",
-    "description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-backdrop-transition-easing"
+    "description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "card",
@@ -344,8 +322,7 @@
     "token": null,
     "type": "dimension",
     "value": "0px",
-    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge.",
-    "variable": "az-component-card-border-width"
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
   },
   {
     "contract": "card",
@@ -356,8 +333,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms.",
-    "variable": "az-component-card-border-radius"
+    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
   },
   {
     "contract": "card",
@@ -368,8 +344,7 @@
     "token": null,
     "type": "number",
     "value": "5",
-    "description": "Image shape: its width, against aspect-ratio.height. The image is 5:3.",
-    "variable": "az-component-card-image-aspect-ratio-width"
+    "description": "Image shape: its width, against aspect-ratio.height. The image is 5:3."
   },
   {
     "contract": "card",
@@ -380,8 +355,7 @@
     "token": null,
     "type": "number",
     "value": "3",
-    "description": "Image shape: its height, against aspect-ratio.width. The image is 5:3.",
-    "variable": "az-component-card-image-aspect-ratio-height"
+    "description": "Image shape: its height, against aspect-ratio.width. The image is 5:3."
   },
   {
     "contract": "card",
@@ -392,8 +366,7 @@
     "token": null,
     "type": "duration",
     "value": "250ms",
-    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms.",
-    "variable": "az-component-card-image-transition-duration"
+    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
   },
   {
     "contract": "card",
@@ -404,8 +377,7 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
-    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-card-image-transition-easing"
+    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "card",
@@ -416,8 +388,7 @@
     "token": null,
     "type": "number",
     "value": "1.08",
-    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale().",
-    "variable": "az-component-card-image-hover-scale"
+    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
   },
   {
     "contract": "card",
@@ -428,8 +399,7 @@
     "token": null,
     "type": "number",
     "value": "1.08",
-    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover.",
-    "variable": "az-component-card-image-focus-visible-scale"
+    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
   },
   {
     "contract": "card",
@@ -440,8 +410,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Space between the card's left and right edges and its content.",
-    "variable": "az-component-card-body-padding-x"
+    "description": "Space between the card's left and right edges and its content."
   },
   {
     "contract": "card",
@@ -452,8 +421,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content.",
-    "variable": "az-component-card-body-padding-y"
+    "description": "Space between the card's top and bottom edges (or its image) and its content."
   },
   {
     "contract": "card",
@@ -472,8 +440,7 @@
     "token": null,
     "type": "dimension",
     "value": "60px",
-    "description": "Icon size: an icon font's font size, or an SVG's width and height.",
-    "variable": "az-component-card-icon-size"
+    "description": "Icon size: an icon font's font size, or an SVG's width and height."
   },
   {
     "contract": "card",
@@ -484,8 +451,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Space between the icon and the title's line.",
-    "variable": "az-component-card-icon-margin-bottom"
+    "description": "Space between the icon and the title's line."
   },
   {
     "contract": "card",
@@ -504,8 +470,7 @@
     "token": null,
     "type": "dimension",
     "value": "22px",
-    "description": "Card title text size.",
-    "variable": "az-component-card-title-font-size"
+    "description": "Card title text size."
   },
   {
     "contract": "card",
@@ -516,8 +481,7 @@
     "token": null,
     "type": "fontWeight",
     "value": "700",
-    "description": "Card title weight: Bold.",
-    "variable": "az-component-card-title-font-weight"
+    "description": "Card title weight: Bold."
   },
   {
     "contract": "card",
@@ -528,8 +492,7 @@
     "token": null,
     "type": "dimension",
     "value": "30px",
-    "description": "Card title line height. The space below the title is measured from this line.",
-    "variable": "az-component-card-title-line-height"
+    "description": "Card title line height. The space below the title is measured from this line."
   },
   {
     "contract": "card",
@@ -540,8 +503,7 @@
     "token": null,
     "type": "dimension",
     "value": "8px",
-    "description": "Space between the title's line and the text below it.",
-    "variable": "az-component-card-title-margin-bottom"
+    "description": "Space between the title's line and the text below it."
   },
   {
     "contract": "card",
@@ -560,8 +522,7 @@
     "token": null,
     "type": "dimension",
     "value": "18px",
-    "description": "Card text size: the same as body text.",
-    "variable": "az-component-card-text-font-size"
+    "description": "Card text size: the same as body text."
   },
   {
     "contract": "card",
@@ -572,8 +533,7 @@
     "token": null,
     "type": "fontWeight",
     "value": "400",
-    "description": "Card text weight: Regular.",
-    "variable": "az-component-card-text-font-weight"
+    "description": "Card text weight: Regular."
   },
   {
     "contract": "card",
@@ -584,8 +544,7 @@
     "token": null,
     "type": "dimension",
     "value": "28px",
-    "description": "Card text line height: the same as body text.",
-    "variable": "az-component-card-text-line-height"
+    "description": "Card text line height: the same as body text."
   },
   {
     "contract": "card",
@@ -596,8 +555,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it.",
-    "variable": "az-component-card-text-margin-bottom"
+    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
   },
   {
     "contract": "card",
@@ -616,8 +574,7 @@
     "token": null,
     "type": "dimension",
     "value": "18px",
-    "description": "Card link text size.",
-    "variable": "az-component-card-link-font-size"
+    "description": "Card link text size."
   },
   {
     "contract": "card",
@@ -628,8 +585,7 @@
     "token": null,
     "type": "fontWeight",
     "value": "600",
-    "description": "Card link weight: Semibold.",
-    "variable": "az-component-card-link-font-weight"
+    "description": "Card link weight: Semibold."
   },
   {
     "contract": "card",
@@ -640,8 +596,7 @@
     "token": null,
     "type": "dimension",
     "value": "28px",
-    "description": "Card link line height.",
-    "variable": "az-component-card-link-line-height"
+    "description": "Card link line height."
   },
   {
     "contract": "card",
@@ -652,8 +607,7 @@
     "token": null,
     "type": "dimension",
     "value": "12px",
-    "description": "Space between the links in a list.",
-    "variable": "az-component-card-link-gap"
+    "description": "Space between the links in a list."
   },
   {
     "contract": "card",
@@ -664,8 +618,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action.",
-    "variable": "az-component-card-action-margin-top"
+    "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action."
   },
   {
     "contract": "card",
@@ -684,8 +637,7 @@
     "token": null,
     "type": "dimension",
     "value": "45px",
-    "description": "Social icon size: an icon font's font size, or an SVG's width and height.",
-    "variable": "az-component-card-social-link-size"
+    "description": "Social icon size: an icon font's font size, or an SVG's width and height."
   },
   {
     "contract": "card",
@@ -696,8 +648,7 @@
     "token": null,
     "type": "dimension",
     "value": "8px",
-    "description": "Space between social icons in a row.",
-    "variable": "az-component-card-social-link-gap"
+    "description": "Space between social icons in a row."
   },
   {
     "contract": "card",
@@ -708,8 +659,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Space to the left and right of the header's and footer's content: the same as the body's, so their text lines up.",
-    "variable": "az-component-card-header-footer-padding-x"
+    "description": "Space to the left and right of the header's and footer's content: the same as the body's, so their text lines up."
   },
   {
     "contract": "card",
@@ -720,8 +670,7 @@
     "token": null,
     "type": "dimension",
     "value": "12px",
-    "description": "Space above and below the header's and footer's content: half the body's.",
-    "variable": "az-component-card-header-footer-padding-y"
+    "description": "Space above and below the header's and footer's content: half the body's."
   },
   {
     "contract": "clickable-card",
@@ -732,8 +681,7 @@
     "token": null,
     "type": "duration",
     "value": "300ms",
-    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change.",
-    "variable": "az-component-clickable-card-transition-duration"
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
   },
   {
     "contract": "clickable-card",
@@ -744,8 +692,7 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0, 0, 0.58, 1)",
-    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-clickable-card-transition-easing"
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "clickable-card",
@@ -868,8 +815,7 @@
     "token": null,
     "type": "number",
     "value": "1",
-    "description": "Photo shape: its width, against aspect-ratio.height. The photo is square.",
-    "variable": "az-component-title-on-image-card-image-aspect-ratio-width"
+    "description": "Photo shape: its width, against aspect-ratio.height. The photo is square."
   },
   {
     "contract": "title-on-image-card",
@@ -880,8 +826,7 @@
     "token": null,
     "type": "number",
     "value": "1",
-    "description": "Photo shape: its height, against aspect-ratio.width. The photo is square.",
-    "variable": "az-component-title-on-image-card-image-aspect-ratio-height"
+    "description": "Photo shape: its height, against aspect-ratio.width. The photo is square."
   },
   {
     "contract": "title-on-image-card",
@@ -908,8 +853,7 @@
     "token": null,
     "type": "number",
     "value": "50",
-    "description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%).",
-    "variable": "az-component-title-on-image-card-title-height"
+    "description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
   },
   {
     "contract": "title-on-image-card",
@@ -920,8 +864,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Space between the photo's left and right edges and the title: the same as a card's padding.",
-    "variable": "az-component-title-on-image-card-title-padding-x"
+    "description": "Space between the photo's left and right edges and the title: the same as a card's padding."
   },
   {
     "contract": "title-on-image-card",
@@ -932,8 +875,7 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Space between the photo's bottom edge and the title: the same as a card's padding.",
-    "variable": "az-component-title-on-image-card-title-padding-bottom"
+    "description": "Space between the photo's bottom edge and the title: the same as a card's padding."
   },
   {
     "contract": "title-on-image-card",

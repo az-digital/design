@@ -20,7 +20,7 @@ This is an npm workspaces monorepo with four packages:
 │   ├── contracts/              # @az-digital/contracts — component contracts and their check
 │   │   ├── contract.schema.json #  what a contract may say
 │   │   ├── contracts/          #   one <component>.contract.json per component
-│   │   ├── scripts/build.mjs   #   the check, which also writes dist/contracts.json for docs and contracts.css/.scss
+│   │   ├── scripts/build.mjs   #   the check, which also writes dist/contracts.json for docs
 │   │   └── README.md
 │   ├── storybook-addon-tokens/  # @az-digital/storybook-addon-tokens — token doc blocks and Tokens tab
 │   │   ├── src/                #   addon source (preset, Tokens tab, doc blocks)
@@ -68,7 +68,7 @@ All scripts can be run from the repo root:
 | `npm run dev:storybook` | Start the Storybook development server |
 | `npm run build:storybook` | Build Storybook for production output |
 | `npm run build:tokens` | Build token output using Style Dictionary |
-| `npm run build:contracts` | Check the component contracts against the tokens, and write their docs data and CSS and Sass variables |
+| `npm run build:contracts` | Check the component contracts against the tokens, and write their docs data |
 | `npm run test:storybook` | Run the Storybook package tests |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
 | `npm run build:all` | Build token output, check the contracts, and build Storybook |
@@ -108,7 +108,7 @@ The published `@az-digital/tokens` package includes the source `tokens.json` alo
 
 A component's contract (`packages/contracts/contracts/<component>.contract.json`) records its anatomy, independent of any platform: the parts it's made of, and what sets each part's design properties at rest, in its states (hover, focus-visible…) and from its breakpoints: a token from `tokens.json`, or the component's own value.
 
-The contract does the wiring that aliases used to do in `tokens.json`: it points each part straight at the token it uses, usually a brand color. So `tokens.json` holds values, not wiring. A component doesn't need its own token for a color, and a color doesn't need a semantic token just so one component has a name to point at. What's specific to a component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for, so components don't have tokens of their own and there are no primitives named after their values. The check generates a CSS and a Sass variable for each one, named after where it sits (`--az-component-brand-header-logo-sm-width`), in `@az-digital/contracts/dist/contracts.css` and `contracts.scss`. Shared decisions, such as the focus ring's width (`az.focus-ring.width`), get one token every component points at, named the way implementations already name the same decision. There are no other semantic tokens yet; add one only for a decision that's really shared or that a theme changes, never just to give one component a name to point at. That keeps the token set, and the variables designers work with, small: brand colors and shared decisions.
+The contract does the wiring that aliases used to do in `tokens.json`: it points each part straight at the token it uses, usually a brand color. So `tokens.json` holds values, not wiring. A component doesn't need its own token for a color, and a color doesn't need a semantic token just so one component has a name to point at. What's specific to a component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for, so components don't have tokens of their own and there are no primitives named after their values. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract's pull request tells each implementation what to change. Shared decisions, such as the focus ring's width (`az.focus-ring.width`), get one token every component points at, named the way implementations already name the same decision. There are no other semantic tokens yet; add one only for a decision that's really shared or that a theme changes, never just to give one component a name to point at. That keeps the token set, and the variables designers work with, small: brand colors and shared decisions.
 
 `npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, leaves one of its component's own tokens (`az.component.<component>.*`) unused, or would generate a variable another value or token already uses. It also flags component tokens that only point at another token, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
 

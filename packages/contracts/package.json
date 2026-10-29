@@ -1,7 +1,7 @@
 {
   "name": "@az-digital/contracts",
   "version": "0.0.1",
-  "description": "Component contracts for the Arizona Digital design system: each component's parts and the value of each property, generated into CSS and Sass variables.",
+  "description": "Component contracts for the Arizona Digital design system: each component's parts and the value of each property, as data that generates nothing for any platform.",
   "type": "module",
   "files": [
     "contracts",
