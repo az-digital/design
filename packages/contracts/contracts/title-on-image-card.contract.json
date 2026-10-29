@@ -55,7 +55,7 @@
           "states": {
             "focus-visible": {
               "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}"
+              "ring.width": "{az.focus-ring.width.md}"
             }
           }
         }

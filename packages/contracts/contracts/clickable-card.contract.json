@@ -59,7 +59,7 @@
             "focus-visible": {
               "color": "{az.color.brand.rain}",
               "ring.color": "{az.color.brand.rain}",
-              "ring.width": "{az.focus-ring.width}"
+              "ring.width": "{az.focus-ring.width.md}"
             }
           }
         },
@@ -83,7 +83,7 @@
             "focus-visible": {
               "color": "{az.color.brand.white}",
               "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}"
+              "ring.width": "{az.focus-ring.width.md}"
             }
           }
         }

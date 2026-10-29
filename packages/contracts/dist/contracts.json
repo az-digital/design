@@ -1,6 +1,7 @@
 [
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -9,6 +10,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -20,6 +22,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -31,6 +34,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -39,6 +43,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -50,6 +55,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -61,6 +67,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -72,6 +79,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
@@ -80,14 +88,16 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
@@ -99,6 +109,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "breakpoint",
     "condition": "sm",
@@ -110,6 +121,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "breakpoint",
     "condition": "sm",
@@ -121,6 +133,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -132,6 +145,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -143,6 +157,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -154,6 +169,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -165,6 +181,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -176,6 +193,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -187,6 +205,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
@@ -195,14 +214,16 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
@@ -214,6 +235,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.icon",
     "kind": "default",
     "condition": null,
@@ -222,6 +244,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.icon",
     "kind": "default",
     "condition": null,
@@ -233,6 +256,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -241,6 +265,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -252,6 +277,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -263,6 +289,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas",
     "kind": "default",
     "condition": null,
@@ -274,6 +301,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas",
     "kind": "default",
     "condition": null,
@@ -285,6 +313,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas.backdrop",
     "kind": "default",
     "condition": null,
@@ -296,6 +325,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas.backdrop",
     "kind": "default",
     "condition": null,
@@ -306,7 +336,1298 @@
     "description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "9px",
+    "description": "Button top and bottom padding, so with its 24px line and 2px border the button is 46px tall."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Button border width, on every color, so outline and solid buttons are the same size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": null,
+    "type": "dimension",
+    "value": "256px",
+    "description": "Button corner radius: fully rounded ends (a pill) at every size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "Space between the label and an icon."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long a button takes to change color on hover and focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for a button's color changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.offset",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Gap between the button and its keyboard focus ring."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": null,
+    "type": "fontFamily",
+    "value": "proxima-nova-condensed, \"Proxima Nova Condensed\", proxima-nova, calibri, sans-serif",
+    "description": "Button label typeface: Proxima Nova Condensed."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": null,
+    "type": "fontWeight",
+    "value": "700",
+    "description": "Button label weight (Bold)."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "24px",
+    "description": "Button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "letter-spacing",
+    "token": null,
+    "type": "dimension",
+    "value": "0.14px",
+    "description": "Button label letter spacing."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "3px",
+    "description": "Small button top and bottom padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "11px",
+    "description": "Small button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "16px",
+    "description": "Small button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "19px",
+    "description": "Small button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Large button top and bottom padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "34px",
+    "description": "Large button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Large button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "27px",
+    "description": "Large button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "letter-spacing",
+    "token": null,
+    "type": "dimension",
+    "value": "0.18px",
+    "description": "Large button label letter spacing."
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -315,6 +1636,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -326,6 +1648,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -337,6 +1660,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -348,6 +1672,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -359,6 +1684,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -370,6 +1696,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -381,6 +1708,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "state",
     "condition": "hover",
@@ -392,6 +1720,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "image",
     "kind": "state",
     "condition": "focus-visible",
@@ -403,6 +1732,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "body",
     "kind": "default",
     "condition": null,
@@ -414,6 +1744,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "body",
     "kind": "default",
     "condition": null,
@@ -425,6 +1756,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "icon",
     "kind": "default",
     "condition": null,
@@ -433,6 +1765,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "icon",
     "kind": "default",
     "condition": null,
@@ -444,6 +1777,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "icon",
     "kind": "default",
     "condition": null,
@@ -455,6 +1789,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -463,6 +1798,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -474,6 +1810,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -485,6 +1822,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -496,6 +1834,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -507,6 +1846,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -515,6 +1855,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -526,6 +1867,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -537,6 +1879,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -548,6 +1891,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -559,6 +1903,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "link",
     "kind": "default",
     "condition": null,
@@ -567,6 +1912,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "link",
     "kind": "default",
     "condition": null,
@@ -578,6 +1924,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "link",
     "kind": "default",
     "condition": null,
@@ -589,6 +1936,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "link",
     "kind": "default",
     "condition": null,
@@ -600,6 +1948,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "link",
     "kind": "default",
     "condition": null,
@@ -611,6 +1960,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "action",
     "kind": "default",
     "condition": null,
@@ -622,6 +1972,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "social-link",
     "kind": "default",
     "condition": null,
@@ -630,6 +1981,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "social-link",
     "kind": "default",
     "condition": null,
@@ -641,6 +1993,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "social-link",
     "kind": "default",
     "condition": null,
@@ -652,6 +2005,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "header-footer",
     "kind": "default",
     "condition": null,
@@ -663,6 +2017,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "header-footer",
     "kind": "default",
     "condition": null,
@@ -674,6 +2029,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -685,6 +2041,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -696,6 +2053,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "root",
     "kind": "state",
     "condition": "hover",
@@ -704,6 +2062,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "root",
     "kind": "state",
     "condition": "focus-visible",
@@ -712,6 +2071,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "icon",
     "kind": "state",
     "condition": "hover",
@@ -720,6 +2080,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "icon",
     "kind": "state",
     "condition": "focus-visible",
@@ -728,6 +2089,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "hover",
@@ -736,6 +2098,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -744,6 +2107,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -752,14 +2116,16 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "text",
     "kind": "state",
     "condition": "hover",
@@ -768,6 +2134,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "text",
     "kind": "state",
     "condition": "focus-visible",
@@ -776,6 +2143,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "link",
     "kind": "state",
     "condition": "hover",
@@ -784,6 +2152,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "link",
     "kind": "state",
     "condition": "focus-visible",
@@ -792,6 +2161,7 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "link",
     "kind": "state",
     "condition": "focus-visible",
@@ -800,14 +2170,16 @@
   },
   {
     "contract": "clickable-card",
+    "variant": null,
     "part": "link",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -819,6 +2191,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -830,6 +2203,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -838,6 +2212,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -846,6 +2221,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -857,6 +2233,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -868,6 +2245,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -879,6 +2257,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -887,10 +2266,11 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   }
 ]
