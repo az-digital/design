@@ -22,8 +22,9 @@ const buildCssVariableTree = (dictionary) => {
 /**
  * How each token is referenced from the JavaScript/TypeScript outputs:
  * `az.color.brand.red` for the `az` object those custom formats export. A part
- * that's only a number takes brackets (`az.spacing[2]`), and one that isn't a
- * valid name otherwise is quoted (`az.size["2xl"]`), so the reference is valid
+ * that's only a number takes brackets (`az.spacing[100]`), and one that isn't a
+ * valid name otherwise, including a number with a leading zero, is quoted
+ * (`az.size["2xl"]`, `az.spacing["025"]`), so the reference is valid
  * code. Read by @az-digital/storybook-addon-tokens to show each output's
  * reference; Style Dictionary itself ignores it.
  */
@@ -32,7 +33,7 @@ const jsReference = (token) =>
     .slice(1)
     .map(camelCase)
     .reduce((reference, part) => {
-      if (/^\d+$/.test(part)) return `${reference}[${part}]`;
+      if (/^(0|[1-9]\d*)$/.test(part)) return `${reference}[${part}]`;
       if (/^[A-Za-z_$][\w$]*$/.test(part)) return `${reference}.${part}`;
       return `${reference}[${JSON.stringify(part)}]`;
     }, 'az');
