@@ -3,11 +3,11 @@ import { Frame, checkLinkCard } from './cards';
 
 // A Link Card with an icon above the title. The icon is a Material Symbols glyph
 // in its outline style, at a light weight, to match arizona.edu. The controls are
-// the card's content; hover it, or press Tab, for its hover colors.
+// the card's props; hover it, or press Tab, for its hover colors.
 
 const icons = ['person_raised_hand', 'school', 'location_on', 'calendar_month', 'volunteer_activism'];
 
-type IconCardArgs = { Icon: string; Title: string; Text: string };
+type IconCardArgs = { Icon: string; Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Icon Card',
@@ -16,11 +16,13 @@ const meta = {
     Icon: 'person_raised_hand',
     Title: 'Future Students',
     Text: 'Become a Wildcat and embrace “Bear Down!” Explore information on applying, transferring, Arizona Online, and more.',
+    Link: '#icon-card',
   },
   argTypes: {
-    Icon: { control: 'select', options: icons },
-    Title: { control: 'text' },
-    Text: { control: 'text' },
+    Icon: { control: 'select', options: icons, description: "A Material Symbols icon for what the page is about. It's decorative: screen readers skip it.", type: { name: 'string', required: true } },
+    Title: { control: 'text', description: "The page's name, or what people will do there. It's the link's text.", type: { name: 'string', required: true } },
+    Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
+    Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
   render: (args) => (
     <Frame>
@@ -30,7 +32,7 @@ const meta = {
             {args.Icon}
           </span>
           <h3 className="card-title h5 fw-bold mb-2">
-            <a href="#icon-card" className="stretched-link text-reset text-decoration-none">{args.Title}</a>
+            <a href={args.Link} className="stretched-link text-reset text-decoration-none">{args.Title}</a>
           </h3>
           <p className="card-text">{args.Text}</p>
         </div>

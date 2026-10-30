@@ -3,7 +3,7 @@ import { Frame } from './cards';
 
 // The plain card: a title and rich text in its .card-body, which is its slot, and
 // an optional header and footer. It isn't a link. The controls are the card's
-// content: Body is the slot's HTML after the title, such as paragraphs or a list.
+// props: Body is the slot's HTML after the title, such as paragraphs or a list.
 // Leave the header or footer empty for none.
 
 const escape = (text: string) => text.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -20,10 +20,14 @@ const meta = {
     Footer: '',
   },
   argTypes: {
-    Title: { control: 'text' },
-    Body: { control: 'text' },
-    Header: { control: 'text' },
-    Footer: { control: 'text' },
+    Title: { control: 'text', description: "The card's heading.", type: { name: 'string', required: true } },
+    Body: {
+      control: 'text',
+      description: "The card's slot: rich text after the title, such as paragraphs, a list or a small table. Written as HTML here.",
+      type: { name: 'string', required: true },
+    },
+    Header: { control: 'text', description: 'A label above the content. Leave it empty for none.' },
+    Footer: { control: 'text', description: 'A note below the content. Leave it empty for none.' },
   },
   render: (args) => (
     <Frame>
