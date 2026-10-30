@@ -1,0 +1,56 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as LinkCardStories from './Link Card.stories';
+
+<Meta of={LinkCardStories} />
+
+# Link Card
+
+A title and text that go to one page. The whole card is the link.
+
+<Canvas of={LinkCardStories.Default} sourceState="none" />
+
+<Controls of={LinkCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Hover it, or press <kbd>Tab</kbd> to
+reach its title link, for its hover colors.
+
+## When to use it
+
+- **Use it** to send people to one page, with a sentence on what they'll find there.
+- **The title is the link,** so write it as the page's name or what people will do there.
+- **Don't put a button or other links in it:** the whole card is already one link.
+- **To show what the page is about,** use an
+  <a href="./?path=/docs/primary-components-containers-cards-icon-card--docs" target="_top">Icon Card</a>
+  or an
+  <a href="./?path=/docs/primary-components-containers-cards-image-card--docs" target="_top">Image Card</a>.
+
+## Design decisions
+
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />.
+- **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
+- **Hover:** the fill turns <Token data={getTokenData('az.color.bg.card.cloud-hover')} />,
+  the text turns <Token data={getTokenData('az.color.brand.white')} />, and the title turns
+  <Token data={getTokenData('az.color.brand.rain')} /> and is underlined.
+- **Keyboard focus:** when <kbd>Tab</kbd> reaches the title link, the card shows its hover
+  colors, and the link's ring is Rain, so it stands out from the fill as much as the title
+  does. Its width is the shared <Token data={getTokenData('az.focus-ring.width.md')} />
+  (2px).
+- **Touch screens:** on a device that can't hover, such as a phone, the title is always
+  underlined.
+- **Motion:** the colors fade over 300ms, ease-out. The fade turns off when someone asks
+  for reduced motion; the colors still change.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`link-card.contract.json`): the token it uses, or the card's own value and what it's for.
+
+<ContractAnatomy contract="link-card" />

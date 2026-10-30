@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Components/Containers/Cards" />
+
+# Cards
+
+A card holds one piece of content in a Cloud box. Pick a card by what the content is for:
+whether the whole card goes to one page, and what goes with the title and text.
+
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th>Use it for</th>
+      <th>Is the card a link?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-card--docs" target="_top">Card</a></td>
+      <td>A title and any content to read where it is, such as office hours. The only card with a slot for rich text, and with a header and footer.</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-link-card--docs" target="_top">Link Card</a></td>
+      <td>A title and text that go to one page.</td>
+      <td>Yes, the whole card</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-icon-card--docs" target="_top">Icon Card</a></td>
+      <td>A Link Card with an icon that says what the page is about.</td>
+      <td>Yes, the whole card</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-image-card--docs" target="_top">Image Card</a></td>
+      <td>A Link Card with a photo of what the page is about.</td>
+      <td>Yes, the whole card</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-title-on-image-card--docs" target="_top">Title on Image Card</a></td>
+      <td>A photo and a short title that go to one page, in a grid of them.</td>
+      <td>Yes, the whole card</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-quick-links-card--docs" target="_top">Quick Links Card</a></td>
+      <td>A few related links under one title.</td>
+      <td>No, each link</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-call-to-action-card--docs" target="_top">Call to Action Card</a></td>
+      <td>One action to take, such as subscribing, with a button.</td>
+      <td>No, the button</td>
+    </tr>
+    <tr>
+      <td><a href="./?path=/docs/primary-components-containers-cards-social-card--docs" target="_top">Social Card</a></td>
+      <td>Links to social media channels.</td>
+      <td>No, each link</td>
+    </tr>
+  </tbody>
+</table>
+
+Every card has the same Cloud fill, corners, padding and type, so cards of different
+kinds sit together in a row. Each card has its own contract in `packages/contracts`, and
+its page shows that contract's anatomy.

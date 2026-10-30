@@ -2,14 +2,12 @@
   "$schema": "../contract.schema.json",
   "id": "card",
   "name": "Card",
-  "description": "A container for one piece of content. Every card has a Cloud fill, no border, rounded corners, and the same padding and type. The approved kinds are clickable cards (text only, icon, and image and text), title on image cards, link list cards and call to action cards. Clickable cards add their hover colors in their own contract (clickable-card), and title on image cards their square image and title (title-on-image-card).",
+  "description": "A title and any content in a Cloud box, with no border and rounded corners. It isn't a link. Its body is a slot for rich text, such as paragraphs, a list or a small table. It's the only card with a slot, and with an optional header above the body and footer below it.",
   "sources": [
-    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 60px icon and the 16px space below it, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text, and the image's 8% zoom over 250ms",
-    "az-digital/arizona-bootstrap#2365's card designs: the six kinds of card, the link list and the call to action",
-    "The arizona.edu desktop XD mockup that az-digital/arizona-bootstrap#2365 implements: the image and text card's 5:3 photo",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text",
     "az-digital/arizona-bootstrap#2273 (closes #2271): 18px body text; az-digital/arizona-bootstrap#2286: its 28px line height",
-    "Arizona Bootstrap 5.2: the title's 30px line height (.h5), and the header and footer padding, which follows the card padding",
-    "The AZ Digital UX Design System Figma file's Card component (2026-10-28): 12px between links"
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5)",
+    "Arizona Bootstrap 5.2: the header and footer padding, which follows the card padding"
   ],
   "anatomy": {
     "root": {
@@ -34,57 +32,8 @@
         }
       },
       "parts": {
-        "image": {
-          "description": "A photo at the top of the card, in an image and text card. Only clickable cards have images, and the image zooms in on hover and with keyboard focus, inside the card's corners. The photo fills its shape, cropped if it has to be.",
-          "tokens": {
-            "aspect-ratio.width": {
-              "$type": "number",
-              "$value": 5,
-              "$description": "Image shape: its width, against aspect-ratio.height. The image is 5:3."
-            },
-            "aspect-ratio.height": {
-              "$type": "number",
-              "$value": 3,
-              "$description": "Image shape: its height, against aspect-ratio.width. The image is 5:3."
-            },
-            "transition.duration": {
-              "$type": "duration",
-              "$value": {
-                "value": 250,
-                "unit": "ms"
-              },
-              "$description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
-            },
-            "transition.easing": {
-              "$type": "cubicBezier",
-              "$value": [
-                0.25,
-                0.1,
-                0.25,
-                1
-              ],
-              "$description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
-            }
-          },
-          "states": {
-            "hover": {
-              "scale": {
-                "$type": "number",
-                "$value": 1.08,
-                "$description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
-              }
-            },
-            "focus-visible": {
-              "scale": {
-                "$type": "number",
-                "$value": 1.08,
-                "$description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
-              }
-            }
-          }
-        },
         "body": {
-          "description": "The card's content: its icon or title, text, and links or call to action.",
+          "description": "The card's body, which is its slot: the title, then any rich text, such as paragraphs, a list or a small table, all in the card's text type.",
           "tokens": {
             "padding.x": {
               "$type": "dimension",
@@ -101,33 +50,41 @@
                 "unit": "px"
               },
               "$description": "Space between the card's top and bottom edges (or its image) and its content."
-            }
-          }
-        },
-        "icon": {
-          "description": "The icon above the title, in an icon card: an icon font glyph, or an SVG that fills with currentColor. It's decorative, so hide it from screen readers.",
-          "tokens": {
-            "color": "{az.color.brand.azurite}",
-            "size": {
+            },
+            "color": "{az.color.brand.tinta}",
+            "font.size": {
               "$type": "dimension",
               "$value": {
-                "value": 60,
+                "value": 18,
                 "unit": "px"
               },
-              "$description": "Icon size: an icon font's font size, or an SVG's width and height."
+              "$description": "Card text size: the same as body text."
             },
-            "margin-bottom": {
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 400,
+              "$description": "Card text weight: Regular."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Card text line height: the same as body text."
+            },
+            "gap": {
               "$type": "dimension",
               "$value": {
                 "value": 16,
                 "unit": "px"
               },
-              "$description": "Space between the icon and the title's line."
+              "$description": "Space between blocks in the body, such as a paragraph and a list. The last block has no space below it."
             }
           }
         },
         "title": {
-          "description": "The card's heading. In a clickable card, it's a link that covers the whole card.",
+          "description": "The card's heading.",
           "tokens": {
             "color": "{az.color.brand.azurite}",
             "font.size": {
@@ -158,111 +115,6 @@
                 "unit": "px"
               },
               "$description": "Space between the title's line and the text below it."
-            }
-          }
-        },
-        "text": {
-          "description": "The card's text, below the title.",
-          "tokens": {
-            "color": "{az.color.brand.tinta}",
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 18,
-                "unit": "px"
-              },
-              "$description": "Card text size: the same as body text."
-            },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 400,
-              "$description": "Card text weight: Regular."
-            },
-            "line-height": {
-              "$type": "dimension",
-              "$value": {
-                "value": 28,
-                "unit": "px"
-              },
-              "$description": "Card text line height: the same as body text."
-            },
-            "margin-bottom": {
-              "$type": "dimension",
-              "$value": {
-                "value": 16,
-                "unit": "px"
-              },
-              "$description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
-            }
-          }
-        },
-        "link": {
-          "description": "A link in a list of links, in a link list card: one per line, underlined, in Proxima Nova Condensed (there's no font family value yet). The card isn't a link itself, so it has no hover colors.",
-          "tokens": {
-            "color": "{az.color.brand.azurite}",
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 18,
-                "unit": "px"
-              },
-              "$description": "Card link text size."
-            },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 600,
-              "$description": "Card link weight: Semibold."
-            },
-            "line-height": {
-              "$type": "dimension",
-              "$value": {
-                "value": 28,
-                "unit": "px"
-              },
-              "$description": "Card link line height."
-            },
-            "gap": {
-              "$type": "dimension",
-              "$value": {
-                "value": 12,
-                "unit": "px"
-              },
-              "$description": "Space between the links in a list."
-            }
-          }
-        },
-        "action": {
-          "description": "A call to action below the text, in a call to action card: a button (the default size, in Red) or a row of social links. The card isn't a link itself, so it has no hover colors.",
-          "tokens": {
-            "margin-top": {
-              "$type": "dimension",
-              "$value": {
-                "value": 16,
-                "unit": "px"
-              },
-              "$description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action."
-            }
-          }
-        },
-        "social-link": {
-          "description": "A social media link in a call to action: an icon in a row of icons. Each link names its site for screen readers.",
-          "tokens": {
-            "color": "{az.color.brand.red}",
-            "size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 45,
-                "unit": "px"
-              },
-              "$description": "Social icon size: an icon font's font size, or an SVG's width and height."
-            },
-            "gap": {
-              "$type": "dimension",
-              "$value": {
-                "value": 8,
-                "unit": "px"
-              },
-              "$description": "Space between social icons in a row."
             }
           }
         },

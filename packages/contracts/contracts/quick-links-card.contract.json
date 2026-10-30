@@ -1,0 +1,165 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "quick-links-card",
+  "name": "Quick Links Card",
+  "description": "A title, text and a list of links. The card isn't a link itself, so it has no hover colors: each link is its own.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text",
+    "az-digital/arizona-bootstrap#2365's card designs: the quick links and the call to action",
+    "The AZ Digital UX Design System Figma file's Card component (2026-10-28): 12px between links",
+    "az-digital/arizona-bootstrap#2273 (closes #2271): 18px body text; az-digital/arizona-bootstrap#2286: its 28px line height",
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5)"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card.",
+      "tokens": {
+        "fill": "{az.color.bg.card.cloud}",
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          },
+          "$description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+        },
+        "border.radius": {
+          "$type": "dimension",
+          "$value": {
+            "value": 16,
+            "unit": "px"
+          },
+          "$description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+        }
+      },
+      "parts": {
+        "body": {
+          "description": "The card's content.",
+          "tokens": {
+            "padding.x": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Space between the card's left and right edges and its content."
+            },
+            "padding.y": {
+              "$type": "dimension",
+              "$value": {
+                "value": 24,
+                "unit": "px"
+              },
+              "$description": "Space between the card's top and bottom edges (or its image) and its content."
+            }
+          }
+        },
+        "title": {
+          "description": "The card's heading.",
+          "tokens": {
+            "color": "{az.color.brand.azurite}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Card title text size."
+            },
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 700,
+              "$description": "Card title weight: Bold."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 30,
+                "unit": "px"
+              },
+              "$description": "Card title line height. The space below the title is measured from this line."
+            },
+            "margin-bottom": {
+              "$type": "dimension",
+              "$value": {
+                "value": 8,
+                "unit": "px"
+              },
+              "$description": "Space between the title's line and the text below it."
+            }
+          }
+        },
+        "text": {
+          "description": "The card's text, below the title and above the links.",
+          "tokens": {
+            "color": "{az.color.brand.tinta}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Card text size: the same as body text."
+            },
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 400,
+              "$description": "Card text weight: Regular."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Card text line height: the same as body text."
+            },
+            "margin-bottom": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+            }
+          }
+        },
+        "link": {
+          "description": "A link in the list: one per line, underlined, in Proxima Nova Condensed (there's no font family value yet).",
+          "tokens": {
+            "color": "{az.color.brand.azurite}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Card link text size."
+            },
+            "font.weight": {
+              "$type": "fontWeight",
+              "$value": 600,
+              "$description": "Card link weight: Semibold."
+            },
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Card link line height."
+            },
+            "gap": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Space between the links in a list."
+            }
+          }
+        }
+      }
+    }
+  }
+}

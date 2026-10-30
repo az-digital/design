@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as SocialCardStories from './Social Card.stories';
+
+<Meta of={SocialCardStories} />
+
+# Social Card
+
+A title, text and a row of social media links. The card isn't a link itself: each icon
+is.
+
+<Canvas of={SocialCardStories.Default} sourceState="none" />
+
+<Controls of={SocialCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Pick the sites under Sites.
+
+## When to use it
+
+- **Use it** to point people to the social media channels for a unit or the university.
+- **Link only to channels that are kept up.**
+- **Each link names its site** for screen readers, such as "Instagram", because the icon
+  has no text.
+
+## Design decisions
+
+- **Social links:** 45px icons in <Token data={getTokenData('az.color.brand.red')} />,
+  8px apart, 32px below the text.
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />.
+- **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
+- **No hover colors:** the card isn't a link, so only each icon reacts to hover and
+  focus.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`social-card.contract.json`): the token it uses, or the card's own value and what it's
+for.
+
+<ContractAnatomy contract="social-card" />

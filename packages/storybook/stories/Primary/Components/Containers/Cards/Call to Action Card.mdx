@@ -1,0 +1,49 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as CallToActionCardStories from './Call to Action Card.stories';
+
+<Meta of={CallToActionCardStories} />
+
+# Call to Action Card
+
+A title, text and one button, for one action. The card isn't a link itself: the button
+is.
+
+<Canvas of={CallToActionCardStories.Default} sourceState="none" />
+
+<Controls of={CallToActionCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch.
+
+## When to use it
+
+- **Use it** for one thing to do, such as subscribing to a newsletter or registering for
+  an event.
+- **Write the button as the action,** in a word or two: "Subscribe", "Register".
+- **One button per card.** For several links, use a
+  <a href="./?path=/docs/primary-components-containers-cards-quick-links-card--docs" target="_top">Quick Links Card</a>.
+
+## Design decisions
+
+- **Button:** a default size Red
+  <a href="./?path=/docs/primary-components-buttons-button--docs" target="_top">Button</a>,
+  32px below the text.
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />.
+- **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
+- **No hover colors:** the card isn't a link, so only the button reacts to hover and
+  focus.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`call-to-action-card.contract.json`): the token it uses, or the card's own value and what
+it's for. The button's own design is in its contract.
+
+<ContractAnatomy contract="call-to-action-card" />
