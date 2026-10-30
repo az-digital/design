@@ -21,6 +21,16 @@ const config: StorybookConfig = {
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
       },
     },
+    {
+      // The Library toolbar: switches which component library the stories render
+      // with. Libraries register themselves with an azDesign.library manifest in
+      // their package.json; these options are only this Storybook's choices.
+      name: getAbsolutePath("@az-digital/storybook-addon-libraries"),
+      options: {
+        order: ["html", "web"],
+        default: "html",
+      },
+    },
     getAbsolutePath("@storybook/addon-vitest")
   ],
 

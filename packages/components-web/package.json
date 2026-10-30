@@ -1,0 +1,42 @@
+{
+  "name": "@az-digital/components-web",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Custom elements for the Arizona Digital design system's components.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./storybook": "./storybook/adapter.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "storybook",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "web-components",
+    "custom-elements"
+  ],
+  "azDesign": {
+    "library": {
+      "key": "web",
+      "title": "Web Components",
+      "status": "preview",
+      "codeLanguage": "html",
+      "readme": "./README.md",
+      "stylesheets": [
+        "https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"
+      ],
+      "adapter": "./storybook"
+    }
+  },
+  "dependencies": {
+    "@az-digital/components-html": "*"
+  },
+  "devDependencies": {
+    "@az-digital/storybook-addon-libraries": "*"
+  }
+}

@@ -1,37 +1,29 @@
-import { Markdown, Meta } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ComponentCoverage, LibraryComponents, LibraryPicker, LibraryReadme } from '@az-digital/storybook-addon-libraries';
 
 <Meta title="Primary/Components/Overview" />
-
-export const implementationReadmes = import.meta.glob('../../../../components-*/README.md', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
-});
 
 # Components
 
 The Components section is the reusable library of interface patterns that teams can apply consistently across Arizona Digital products.
 
-## Choose an implementation
+Arizona's products are built in many different ways, so each component can come in more than one library. All of them follow the same Figma designs and the same component contracts. Pick the library that fits your product to read how it works. Your choice also switches every component page and story to that library, the same as the **Library** menu in the toolbar.
 
-Each implementation README is the source of truth for its use cases, setup, token use, contribution workflow, and verification steps. Open a library below to read its guide.
+<LibraryPicker />
 
-{Object.entries(implementationReadmes)
-  .sort(([left], [right]) => left.localeCompare(right))
-  .map(([path, readme]) => {
-    const title = readme.match(/^# (.+)$/m)?.[1] ?? path.split('/').at(-2);
+## Components in this library
 
-    return (
-      <details key={path}>
-        <summary>{title}</summary>
-        <Markdown>{readme}</Markdown>
-      </details>
-    );
-  })}
+<LibraryComponents />
+
+<LibraryReadme />
+
+## Every component and library
+
+<ComponentCoverage />
 
 ## Contribute a component
 
 - <a href="./?path=/docs/primary-components-buttons--docs" target="_top">Buttons</a>
 - <a href="./?path=/docs/primary-components-containers--docs" target="_top">Containers</a>
 
-See [Contributing components](./?path=/docs/primary-components-contributing--docs) for the shared component workflow and definition of done.
+See [Contributing components](./?path=/docs/primary-components-contributing--docs) for the shared component workflow and definition of done, and the [library addon's README](https://github.com/az-digital/design/blob/main/packages/storybook-addon-libraries/README.md) for what a new library provides.

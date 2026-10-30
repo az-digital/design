@@ -7,7 +7,7 @@ description: >-
 
 # Design system component workflow
 
-Human-facing component conventions and completion criteria live in [Components → Contributing](../../../packages/storybook/stories/Primary/Components/Contributing.mdx). Read the README for the target implementation before changing its code:
+Human-facing component conventions and completion criteria live in [Components → Contributing](../../../packages/storybook/stories/Primary/Components/Contributing.mdx). How a library registers with Storybook, and how a component's stories use `componentStories` and `lib:*` tags, is in the [library addon's README](../../../packages/storybook-addon-libraries/README.md). Read the README for the target implementation before changing its code:
 
 - [HTML](../../../packages/components-html/README.md)
 - [React](../../../packages/components-react/README.md)

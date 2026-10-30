@@ -1,52 +1,57 @@
 # Web Components
 
-Package: `@az-digital/components-web`.
+Package: `@az-digital/components-web`. Status: **preview**.
 
 ## What it is / Best for
 
-Lit-based custom elements for using Arizona Digital components without a React dependency or Arizona Bootstrap runtime. Use them in sites and applications that consume browser-native custom elements, including otherwise framework-agnostic pages.
+Custom elements for the design system's components, for pages that would rather write `<az-button>` than a component's classes. Use them on any page, with or without a framework, that loads Arizona Bootstrap's CSS.
+
+Today the elements draw Arizona Bootstrap's markup in the light DOM, so they look exactly like the Arizona Bootstrap library and need its stylesheet. They stay in preview until they're verified on a real site.
 
 ## Install / use
 
-Until a package release is documented, use the package from a checkout that includes it: run `npm install` from the repository root, then import the element's registration module. For example:
+Until a package release is documented, use the package from a checkout that includes it: run `npm install` from the repository root, then import the package once to register its elements:
 
 ```js
-import '@az-digital/components-web/az-button';
+import '@az-digital/components-web';
 ```
 
-Then use the corresponding custom element in markup:
+Then use the elements in markup:
 
 ```html
-<az-button href="/apply" variant="solid" color="red">Apply to Arizona</az-button>
+<az-button color="outline-red" size="large">Apply to Arizona</az-button>
 ```
 
-The package also builds a self-registering CDN bundle. Use a published package or CDN URL only after the release process is documented; see [issue #50](https://github.com/az-digital/design/issues/50).
+Attributes take the component contract's option names. The element's text is its label. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50).
 
 ## How it consumes tokens
 
-The package builds token references into its distributed styles, including resolved fallback values for pages that do not load `tokens.css`. Keep the generated output in sync with source tokens; author component-specific values as `az.component.<name>.*` in `packages/tokens/tokens.json`, not as duplicated constants.
+Through Arizona Bootstrap: the elements render Arizona Bootstrap's classes (from `@az-digital/components-html`), and its stylesheet draws them. Each component's design decisions are in its contract in `packages/contracts/contracts/`. An element that renders its own styles (for example in a shadow root) should read tokens through the contract rather than copying values.
 
 ## Contribute to it
 
 ### File layout and naming
 
-- Put each element in `src/<component>/az-<component>.ts` and its styles alongside it; export registrations through `src/index.ts`.
-- Name custom elements with the `az-` prefix and hyphenated element names, for example `<az-button>`.
-- Keep element property/attribute behavior documented. For `az-button`, use `variant` rather than `style` (an HTML global attribute), supply its label in the default slot, and use `href` to select a link instead of a button. Boolean HTML attributes such as `disabled` are represented by presence or absence, not the strings `"true"` and `"false"`.
-- Add stories that show custom-element markup in the **Code** panel.
+- Put each element in `src/az-<component>.ts`, exporting a `defineAz<Component>()` that registers it once, and call it from `defineAll()` in `src/index.ts`.
+- Declare the element's class inside its define function, so the module imports where `HTMLElement` doesn't exist (Node, tests).
+- Name elements with the `az-` prefix and attributes after the contract's variant axes and option names.
+- Add a markup function to `src/markup.ts` and the component to `storybook/adapter.ts`, keyed by its contract id, so the **Code** panel shows exactly what renders.
+
+### Storybook registration
+
+The `azDesign.library` field in `package.json` registers this package with the Library toolbar (key `web`, status `preview`). See the [library addon's README](../storybook-addon-libraries/README.md) for the manifest and adapter contract.
 
 ### Build and lint
 
-Run `npm run build -w @az-digital/components-web` and `npm run typecheck -w @az-digital/components-web`. This build includes generated token styles and outputs per-element modules plus the CDN bundle. Wire the build into the root `build:all` command when the package is integrated; add a lint script if the package introduces lintable source.
+This package is TypeScript source with no build step; Storybook reads it directly. A release will need a build that outputs JavaScript modules and a self-registering bundle, wired into the root `build:all`.
 
 ### Platform-specific limits
 
-Custom elements are registered in the browser and expose HTML attributes/properties, not React props. The custom-element API can differ from another implementation when HTML reserves a name or requires different semantics; for example, `az-button` uses `variant` instead of `style`, a text slot instead of a `text` attribute, and `href` to choose its rendered element. Document those differences and valid values. Pages that do not load the token package rely on the generated styles bundled with the element.
+Custom elements are registered in the browser and take HTML attributes, not framework props. `style` is a global HTML attribute, so an element can't use it for a variant. Boolean attributes work by presence, not by the strings `"true"` and `"false"`.
 
 ## Verification
 
-- [ ] Run the package build and typecheck.
-- [ ] Test the elements in a plain page without Arizona Bootstrap CSS.
-- [ ] Verify registration, supported attributes, boolean behavior, accessibility, and responsive rendering in a browser.
-- [ ] Check that the package and CDN outputs both include current token-derived styles.
+- [ ] Review each element in Storybook with the Library toolbar set to Web Components, including its **Code** panel.
+- [ ] Test the elements on a plain page with Arizona Bootstrap's CSS: registration, attribute changes after render, keyboard behavior and accessible names.
+- [ ] Before moving the package from `preview` to `supported`, verify it on a real site and record what was checked.
 - [ ] Follow the shared [component contribution and definition-of-done checklist](../storybook/stories/Primary/Components/Contributing.mdx).

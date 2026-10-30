@@ -28,7 +28,7 @@ Keep behavior and shared story args aligned across the implementations that are 
 
 ### 5. Add the Storybook story
 
-Add a story for each implementation that is in scope. Use shared args to compare implementations, and ensure the **Code** panel shows the actual source users need for the selected implementation (HTML, JSX, custom-element markup, or Twig). Link the story to the relevant Figma frame; use the design integration proposed in [issue #13](https://github.com/az-digital/design/issues/13) when available, or a direct Figma link until then.
+Add one story file for the component, spreading `componentStories` into its meta and tagging it with each library in scope (`lib:html`, `lib:web`). Use shared args to compare implementations, and ensure the **Code** panel shows the actual source users need for the selected implementation (HTML, JSX, custom-element markup, or Twig). Link the story to the relevant Figma frame; use the design integration proposed in [issue #13](https://github.com/az-digital/design/issues/13) when available, or a direct Figma link until then.
 
 ### 6. Review and verify
 
@@ -49,8 +49,8 @@ Open a pull request with the issue and Figma links. Run the relevant package che
 Before adding a library, agree on its audience and verification target. A package may appear in Storybook as a preview before its platform checks are complete, but label that status clearly; do not offer it as a supported implementation until the target-platform verification passes.
 
 - [ ] Add a package README with **What it is / Best for**, **Install / use**, **How it consumes tokens**, **Contribute to it**, and **Verification**.
-- [ ] Add the implementation to the shared `IMPLEMENTATIONS` list used by the Storybook toolbar and Components Overview.
-- [ ] Add stories with a working **Code** panel for that implementation.
+- [ ] Register the package with an `azDesign.library` manifest in its `package.json` and a `./storybook` adapter export, as the [library addon's README](https://github.com/az-digital/design/blob/main/packages/storybook-addon-libraries/README.md) describes. Storybook then lists it in the **Library** toolbar and the Components Overview; nothing else is registered by hand.
+- [ ] Add the component to the adapter and its `lib:<key>` tag to the component's story file, so the **Code** panel shows that library's real usage. `npm run test:storybook` checks that every tag has an adapter component.
 - [ ] Add package build and lint scripts and wire its build into the root `build:all` command.
 - [ ] Add or update its entry in `.github/CODEOWNERS` as described in [issue #12](https://github.com/az-digital/design/issues/12).
 - [ ] Agree on release and versioning before publishing; track the repository-wide approach in [issue #50](https://github.com/az-digital/design/issues/50).

@@ -22,13 +22,14 @@ describe('component package documentation', () => {
     }
   });
 
-  it('builds the Components Overview from package READMEs', () => {
+  it('builds the Components Overview from the registered libraries', () => {
     const overview = readFileSync(
       resolve(repositoryRoot, 'packages/storybook/stories/Primary/Components/Overview.mdx'),
       'utf8',
     );
 
-    expect(overview).toContain("import.meta.glob('../../../../components-*/README.md'");
-    expect(overview).toContain('<Markdown>{readme}</Markdown>');
+    expect(overview).toContain('<LibraryPicker />');
+    expect(overview).toContain('<LibraryReadme />');
+    expect(overview).toContain('<LibraryComponents />');
   });
 });
