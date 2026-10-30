@@ -15,6 +15,13 @@ export const az: {
       "cloud": string,
       "caliche": string,
       "white": string
+    },
+    "bg": {
+      "card": {
+        "cloud": string,
+        "cloudHover": string,
+        "cloudActive": string
+      }
     }
   },
   "focusRing": {

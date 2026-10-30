@@ -4,17 +4,18 @@
   "name": "Card",
   "description": "A container for one piece of content. Every card has a Cloud fill, no border, rounded corners, and the same padding and type. The approved kinds are clickable cards (text only, icon, and image and text), title on image cards, link list cards and call to action cards. Clickable cards add their hover colors in their own contract (clickable-card), and title on image cards their square image and title (title-on-image-card).",
   "sources": [
-    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the icon, the Cloud fill and Tinta text, and the image's 8% zoom over 250ms",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the icon, the Cloud fill and Tinta text, and the image's 8% zoom over 250ms",
     "az-digital/arizona-bootstrap#2365's card designs: the six kinds of card, the link list and the call to action",
     "The arizona.edu desktop XD mockup that az-digital/arizona-bootstrap#2365 implements: the image and text card's 5:3 photo",
     "az-digital/arizona-bootstrap#2273 (closes #2271): 18px body text; az-digital/arizona-bootstrap#2286: its 28px line height",
-    "Arizona Bootstrap 5.2: the title's 30px line height (.h5), the 16px space below a paragraph, and the header and footer padding, which follows the card padding"
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5), the 16px space below a paragraph, and the header and footer padding, which follows the card padding",
+    "The AZ Digital UX Design System Figma file's Card component (2026-10-28): 16px between the icon and the title, 12px below the title and below the text, and 12px between links"
   ],
   "anatomy": {
     "root": {
       "description": "The card.",
       "tokens": {
-        "fill": "{az.color.brand.cloud}",
+        "fill": "{az.color.bg.card.cloud}",
         "border.width": {
           "$type": "dimension",
           "$value": {
@@ -118,7 +119,7 @@
             "margin-bottom": {
               "$type": "dimension",
               "$value": {
-                "value": 18,
+                "value": 16,
                 "unit": "px"
               },
               "$description": "Space between the icon and the title's line."
@@ -153,7 +154,7 @@
             "margin-bottom": {
               "$type": "dimension",
               "$value": {
-                "value": 8,
+                "value": 12,
                 "unit": "px"
               },
               "$description": "Space between the title's line and the text below it."
@@ -188,7 +189,7 @@
             "margin-bottom": {
               "$type": "dimension",
               "$value": {
-                "value": 16,
+                "value": 12,
                 "unit": "px"
               },
               "$description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
@@ -223,7 +224,7 @@
             "gap": {
               "$type": "dimension",
               "$value": {
-                "value": 8,
+                "value": 12,
                 "unit": "px"
               },
               "$description": "Space between the links in a list."
@@ -236,7 +237,7 @@
             "margin-top": {
               "$type": "dimension",
               "$value": {
-                "value": 16,
+                "value": 20,
                 "unit": "px"
               },
               "$description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action."

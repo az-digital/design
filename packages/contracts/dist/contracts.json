@@ -333,7 +333,7 @@
     "kind": "default",
     "condition": null,
     "property": "fill",
-    "token": "az.color.brand.cloud"
+    "token": "az.color.bg.card.cloud"
   },
   {
     "contract": "card",
@@ -483,7 +483,7 @@
     "property": "margin-bottom",
     "token": null,
     "type": "dimension",
-    "value": "18px",
+    "value": "16px",
     "description": "Space between the icon and the title's line.",
     "variable": "az-component-card-icon-margin-bottom"
   },
@@ -539,7 +539,7 @@
     "property": "margin-bottom",
     "token": null,
     "type": "dimension",
-    "value": "8px",
+    "value": "12px",
     "description": "Space between the title's line and the text below it.",
     "variable": "az-component-card-title-margin-bottom"
   },
@@ -595,7 +595,7 @@
     "property": "margin-bottom",
     "token": null,
     "type": "dimension",
-    "value": "16px",
+    "value": "12px",
     "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it.",
     "variable": "az-component-card-text-margin-bottom"
   },
@@ -651,7 +651,7 @@
     "property": "gap",
     "token": null,
     "type": "dimension",
-    "value": "8px",
+    "value": "12px",
     "description": "Space between the links in a list.",
     "variable": "az-component-card-link-gap"
   },
@@ -663,7 +663,7 @@
     "property": "margin-top",
     "token": null,
     "type": "dimension",
-    "value": "16px",
+    "value": "20px",
     "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action.",
     "variable": "az-component-card-action-margin-top"
   },
@@ -753,7 +753,7 @@
     "kind": "state",
     "condition": "hover",
     "property": "fill",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.card.cloud-hover"
   },
   {
     "contract": "clickable-card",
@@ -761,7 +761,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "fill",
-    "token": "az.color.brand.blue"
+    "token": "az.color.bg.card.cloud-hover"
   },
   {
     "contract": "clickable-card",

@@ -32,10 +32,10 @@
       },
       "states": {
         "hover": {
-          "fill": "{az.color.brand.blue}"
+          "fill": "{az.color.bg.card.cloud-hover}"
         },
         "focus-visible": {
-          "fill": "{az.color.brand.blue}"
+          "fill": "{az.color.bg.card.cloud-hover}"
         }
       },
       "parts": {

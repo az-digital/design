@@ -15,6 +15,13 @@ export const az = {
       "cloud": "var(--az-color-brand-cloud)",
       "caliche": "var(--az-color-brand-caliche)",
       "white": "var(--az-color-brand-white)"
+    },
+    "bg": {
+      "card": {
+        "cloud": "var(--az-color-bg-card-cloud)",
+        "cloudHover": "var(--az-color-bg-card-cloud-hover)",
+        "cloudActive": "var(--az-color-bg-card-cloud-active)"
+      }
     }
   },
   "focusRing": {

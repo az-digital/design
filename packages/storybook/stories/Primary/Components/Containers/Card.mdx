@@ -33,13 +33,14 @@ Cards may also have a header above the body and a footer below it.
 Three contracts hold the card's design decisions. The card's contract
 (`card.contract.json`) sets what every card shares. The clickable card's contract
 (`clickable-card.contract.json`) adds the hover colors, and the title on image card's
-contract (`title-on-image-card.contract.json`) adds its square photo and title. Their
-colors are brand colors, and their sizes and timings are the cards' own values, written
-in the contracts. Cards have no tokens of their own.
+contract (`title-on-image-card.contract.json`) adds its square photo and title. The
+card's fill comes from the card background tokens (`az.color.bg.card.*`), its other
+colors are brand colors, and its sizes and timings are the cards' own values, written
+in the contracts.
 
 ### Every card
 
-- **Fill:** <Token data={getTokenData('az.color.brand.cloud')} />, with no border: the
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border: the
   fill sets the card apart from the page. In a forced colors (high contrast) mode, which
   removes fills, the card draws a 1px border instead.
 - **Shape:** 16px corners.
@@ -47,16 +48,16 @@ in the contracts. Cards have no tokens of their own.
   24px to the left and right, so their text lines up with the body's, and 12px above and
   below.
 - **Title:** 22px Bold, on a 30px line, in
-  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line,
+  <Token data={getTokenData('az.color.brand.azurite')} />. 12px below the title's line,
   before the text.
 - **Text:** 18px Regular, on a 28px line, in
   <Token data={getTokenData('az.color.brand.tinta')} />: the same size as body text.
-  16px below the text, before more text or a list of links.
+  12px below the text, before more text or a list of links.
 
 ### Clickable cards
 
 - **The whole card is one link:** the title is a link that covers the card.
-- **Hover:** the fill turns <Token data={getTokenData('az.color.brand.blue')} />, the text
+- **Hover:** the fill turns <Token data={getTokenData('az.color.bg.card.cloud-hover')} />, the text
   and other links turn <Token data={getTokenData('az.color.brand.white')} />, and the
   title and icon turn <Token data={getTokenData('az.color.brand.rain')} />. The title is
   underlined.
@@ -69,7 +70,7 @@ in the contracts. Cards have no tokens of their own.
   underlined.
 - **Motion:** the colors fade over 300ms, ease-out. The fade turns off when someone asks
   for reduced motion; the colors still change.
-- **Icon:** 64px, in <Token data={getTokenData('az.color.brand.azurite')} />, with 18px
+- **Icon:** 64px, in <Token data={getTokenData('az.color.brand.azurite')} />, with 16px
   between it and the title's line. Use an icon font glyph at that font size, or an SVG at
   that width and height with `fill="currentColor"`. The icon is decorative, so hide it
   from screen readers with `aria-hidden="true"`.
@@ -93,7 +94,7 @@ in the contracts. Cards have no tokens of their own.
 
 - **Links:** 18px Semibold, on a 28px line, in
   <Token data={getTokenData('az.color.brand.azurite')} />, underlined, in Proxima Nova
-  Condensed. One per line, 8px apart.
+  Condensed. One per line, 12px apart.
 
 ### Call to action
 
