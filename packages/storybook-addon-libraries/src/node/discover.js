@@ -44,11 +44,30 @@ function dependencyPackageDirs(projectDir) {
   });
 }
 
+// The export conditions Storybook's browser build resolves an adapter import with.
+const CONDITIONS = new Set(['import', 'module', 'browser', 'default']);
+
+/**
+ * The path an export target points at: the target itself, or, as Node does,
+ * the first matching condition in order (conditions can nest) or the first
+ * entry of an array that resolves.
+ */
+function exportTarget(target) {
+  if (typeof target === 'string') return target;
+  if (Array.isArray(target)) return target.map(exportTarget).find(Boolean);
+  if (target && typeof target === 'object') {
+    for (const [condition, value] of Object.entries(target)) {
+      const file = CONDITIONS.has(condition) ? exportTarget(value) : undefined;
+      if (file) return file;
+    }
+  }
+  return undefined;
+}
+
 /** The file a package's subpath export (e.g. `./storybook`) points at. */
 function resolveExport(packageDir, packageJson, subpath) {
-  const target = packageJson.exports?.[subpath];
-  const file = typeof target === 'string' ? target : (target?.import ?? target?.default);
-  if (!file) throw new Error(`${packageJson.name}: azDesign.library.adapter is "${subpath}", but package.json has no "exports" entry for it.`);
+  const file = exportTarget(packageJson.exports?.[subpath]);
+  if (!file) throw new Error(`${packageJson.name}: azDesign.library.adapter is "${subpath}", but package.json has no "exports" entry for it that Storybook can import.`);
   return resolve(packageDir, file);
 }
 
