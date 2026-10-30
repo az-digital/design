@@ -1,10 +1,10 @@
 # Arizona Bootstrap (HTML)
 
-Package: `@az-digital/components-html`.
-
 ## What it is / Best for
 
-Arizona Bootstrap's markup for each component, as HTML strings. Use it when a site already loads Arizona Bootstrap's CSS and JavaScript and can insert HTML: a Drupal theme, a static site, or server-rendered pages. It's also the markup reference the other libraries are compared against.
+Arizona Bootstrap's CSS and JavaScript, with the markup for each component shown here. Use it for any site that writes its own HTML: a Drupal theme, a static site, or server-rendered pages. Its markup is also the reference the other libraries are compared against.
+
+This Storybook demonstrates the markup with the `@az-digital/components-html` workspace package. That package isn't released: sites load Arizona Bootstrap and copy the markup from here.
 
 ## Install / use
 
@@ -54,24 +54,13 @@ The JavaScript bundle includes Popper. Buttons and cards only need the CSS. Inte
 
 Arizona Bootstrap's [getting started guide](https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.2/getting-started/introduction/) covers its other builds, installing its source with a package manager, and using it as a JavaScript module.
 
-### Render markup in JavaScript
-
-To generate the same markup in code, import this package's render functions. It isn't published to a registry yet ([issue #50](https://github.com/az-digital/design/issues/50) plans releases), so use it from a checkout of this repository after running `npm install` at its root:
-
-```ts
-import { renderButton } from '@az-digital/components-html';
-
-const markup = renderButton({ label: 'Apply to Arizona', color: 'outline-red', size: 'large' });
-// <button type="button" class="btn btn-outline-red btn-lg">Apply to Arizona</button>
-```
-
-Props use the component contract's names (`color: 'outline-red'`, `size: 'large'`). Each function returns an HTML string with every caller-supplied value escaped. Insert it with your platform's usual HTML mechanism, on a page that loads Arizona Bootstrap's CSS and JavaScript.
-
 ## How it consumes tokens
 
 It doesn't, directly: the markup uses Arizona Bootstrap's classes, and Arizona Bootstrap's stylesheet draws them. Each component's design decisions are in its contract in `packages/contracts/contracts/`, which points at tokens; where Arizona Bootstrap's styles differ from a contract, the fix belongs in Arizona Bootstrap, not in this package.
 
 ## Contribute to it
+
+This package only feeds Storybook: each component's render function draws it on the canvas and supplies the markup in the **Code** panel. It's private and is never released, so nothing outside this repository imports it.
 
 ### File layout and naming
 
@@ -86,15 +75,15 @@ The `azDesign.library` field in `package.json` registers this package with the L
 
 ### Build and lint
 
-This package is TypeScript source with no build step; Storybook reads it directly. If a future change adds generated output, provide a build script and wire it into the root `build:all`.
+This package is TypeScript source with no build step; Storybook reads it directly.
 
 ### Platform-specific limits
 
-The package returns HTML rather than a framework component. Callers own insertion into the DOM and loading Arizona Bootstrap's assets, including its JavaScript for interactive components. The markup targets Arizona Bootstrap's current release: Rain is still `.btn-sky` until az-digital/arizona-bootstrap#2369 renames it.
+The markup is plain HTML, so a site owns loading Arizona Bootstrap's CSS and JavaScript, including the JavaScript for interactive components. The markup targets Arizona Bootstrap's current release: Rain is still `.btn-sky` until az-digital/arizona-bootstrap#2369 renames it.
 
 ## Verification
 
 - [ ] Check renderer output and HTML escaping for text and attributes.
 - [ ] Review each in-scope component in Storybook with the Library toolbar set to Arizona Bootstrap, including its **Code** panel.
-- [ ] Verify the markup with the consuming site's Arizona Bootstrap CSS and JavaScript, including keyboard behavior for interactive patterns.
+- [ ] Verify the copied markup on a page that loads Arizona Bootstrap's CSS and JavaScript, including keyboard behavior for interactive patterns.
 - [ ] Follow the shared [component contribution and definition-of-done checklist](../storybook/stories/Primary/Components/Contributing.mdx).

@@ -2,7 +2,7 @@
   "name": "@az-digital/components-html",
   "version": "0.0.1",
   "private": true,
-  "description": "Arizona Bootstrap markup for the Arizona Digital design system's components, as HTML strings.",
+  "description": "Arizona Bootstrap markup for the Arizona Digital design system's components, shown in Storybook. Never released.",
   "type": "module",
   "license": "MIT",
   "exports": {
