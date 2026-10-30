@@ -4,8 +4,8 @@
   "name": "Clickable Card",
   "description": "A card that is one link: its title link covers the whole card. The approved kinds are text only, icon, and image and text cards. It's a card, so its fill, shape, padding, type, icon and image come from the Card contract; this holds only the colors the card changes to on hover and with keyboard focus, and how fast they change. Title on image cards are clickable too, but keep their own colors (title-on-image-card).",
   "sources": [
-    "az-digital/arizona-bootstrap#2365 (design-reviewed): .card-prominent-hover: the hover colors, and their 300ms ease-out fade",
-    "az-digital/arizona-bootstrap#2365's card designs: the text only, icon, and image and text cards all use .card-prominent-hover"
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): .card.bg-cloud.hover: the hover colors, and their 300ms ease-out fade",
+    "az-digital/arizona-bootstrap#2365's card designs: the text only, icon, and image and text cards all use .bg-cloud and .hover"
   ],
   "anatomy": {
     "root": {

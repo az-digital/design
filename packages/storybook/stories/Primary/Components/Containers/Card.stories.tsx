@@ -4,7 +4,7 @@ import { checkContract } from '../contractCheck';
 
 // Arizona Bootstrap's 5.3.x branch, compiled from its Sass with the patches in
 // the repo's patches/ folder (see .storybook/arizona-bootstrap.scss). The card
-// styles come from az-digital/arizona-bootstrap#2365's patch.
+// styles are az-digital/arizona-bootstrap#2365's, merged into 5.3.x.
 //
 // These stories are contract checks: each renders a clickable card with the
 // markup in #2365's docs, and its play function compares it with the card and
@@ -21,7 +21,7 @@ const meta = {
   tags: ['!dev'],
   render: ({ kind }) => (
     <div style={{ width: '18rem', padding: '2rem' }}>
-      <div className={['card', 'card-prominent-hover', kind === 'image' && 'hover overflow-hidden'].filter(Boolean).join(' ')}>
+      <div className={['card', 'bg-cloud', 'hover', kind === 'image' && 'overflow-hidden'].filter(Boolean).join(' ')}>
         {kind === 'image' && (
           <div className="overflow-hidden">
             <img className="card-img-top img-fluid hover-img-zoom-in" src={photo} alt="" />
@@ -62,9 +62,9 @@ const meta = {
     ) as { root: HTMLElement } & Record<string, HTMLElement>;
     // Wait for the icon font, so the icon is drawn at its size.
     await document.fonts.ready;
-    // The patch draws hover and keyboard focus with one rule,
-    // .card-prominent-hover:is(:hover, :has(:focus-visible)), so hover is read
-    // with keyboard focus on the title link.
+    // Arizona Bootstrap draws hover and keyboard focus with one rule,
+    // .card.bg-cloud.hover:is(:hover, :focus-visible, :has(:focus-visible)), so
+    // hover is read with keyboard focus on the title link.
     const target = { parts, focus: part('.stretched-link'), hover: 'focus-visible' as const };
     await expect([...checkContract(target, 'card'), ...checkContract(target, 'clickable-card')]).toEqual([]);
   },
