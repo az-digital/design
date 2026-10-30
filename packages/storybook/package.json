@@ -20,18 +20,21 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@vitest/browser-playwright": "^5.0.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "arizona-bootstrap": "github:az-digital/arizona-bootstrap#5.3.x",
+    "bootstrap": "^5.3.8",
     "eslint": "^9.20.0",
     "eslint-plugin-storybook": "^10.6.0",
     "globals": "^15.15.0",
+    "playwright": "^1.64.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "sass-embedded": "^1.107.0",
     "storybook": "^10.6.3",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.23.0",
     "vite": "^8.3.5",
-    "vitest": "^5.0.5",
-    "@vitest/browser-playwright": "^5.0.5",
-    "@vitest/coverage-v8": "^5.0.5",
-    "playwright": "^1.64.1"
+    "vitest": "^5.0.5"
   }
 }

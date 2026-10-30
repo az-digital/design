@@ -66,7 +66,10 @@ finishing. Follow its refusals; don't work around them.
   [packages/contracts/README.md](./packages/contracts/README.md).
 - **No platform output:** contracts generate nothing for a platform, so never add
   CSS, Sass or other platform output to them.
-- **Implementations:** don't patch an implementation's styles in Storybook. Write
-  its update instructions in the pull request description instead. Once an
-  implementation has been updated, add a contract check story that runs
-  `checkContract`; `npm run test:storybook` must pass.
+- **Implementations:** don't restyle an implementation with CSS rules or
+  overridden values in Storybook. When Arizona Bootstrap needs to change, make a
+  patch to its source that its maintainers can apply as a pull request, as the
+  README's "Patching Arizona Bootstrap" describes, and write its update
+  instructions in the pull request description. Once the component matches its
+  contract, add a contract check story that runs `checkContract`;
+  `npm run test:storybook` must pass.

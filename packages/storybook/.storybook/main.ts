@@ -45,6 +45,21 @@ const config: StorybookConfig = {
       ...viteConfig.build,
       assetsInlineLimit: 0,
     },
+    // Arizona Bootstrap compiled from its Sass source (arizona-bootstrap.scss).
+    css: {
+      ...viteConfig.css,
+      preprocessorOptions: {
+        scss: {
+          // Resolve Arizona Bootstrap's bare `bootstrap/scss/...` imports.
+          loadPaths: [fileURLToPath(new URL('../../../node_modules', import.meta.url))],
+          // Arizona Bootstrap's own deprecation warnings, such as @import.
+          // Its background images (url("img/...")) stay unresolved: the
+          // package ships them only beside its released CSS, not its Sass.
+          quietDeps: true,
+          silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
+        },
+      },
+    },
   })
 };
 
