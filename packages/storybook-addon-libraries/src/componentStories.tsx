@@ -34,8 +34,11 @@ export function LibraryCanvas({ component, props, library: key, tags }: LibraryC
     element.replaceChildren();
     const output = adapter.render(props, element);
     if (typeof output === 'string') element.innerHTML = output;
-    else if (output) element.append(output);
-    return () => element.replaceChildren();
+    else if (output instanceof Node) element.append(output);
+    return () => {
+      if (typeof output === 'function') output();
+      element.replaceChildren();
+    };
   }, [adapter, props]);
 
   if (!library) {
@@ -77,17 +80,25 @@ export function LibraryCanvas({ component, props, library: key, tags }: LibraryC
  * ```
  *
  * The meta stays an object literal so Storybook's indexer can read its
- * `title` and `tags`.
+ * `title` and `tags`. Pass any other parameters (say a Figma design link)
+ * through `parameters` here — the helper merges them with its own, including
+ * nested `docs` — because spreading meta-level `parameters` after the helper
+ * would replace them and hide the Code panel.
  */
-export function componentStories<Args, Props>(component: string, { props }: { props: (args: Args) => Props }) {
+export function componentStories<Args, Props>(
+  component: string,
+  { props, parameters = {} }: { props: (args: Args) => Props; parameters?: Record<string, unknown> },
+) {
   const parameter: LibrariesParameter<Args, Props> = { component, props };
+  const { docs, ...rest } = parameters as { docs?: Record<string, unknown> };
   return {
     render: (args: Args, context: { globals: Record<string, unknown>; tags: string[] }) => (
       <LibraryCanvas component={component} props={props(args)} library={context.globals[GLOBAL]} tags={context.tags} />
     ),
     parameters: {
+      ...rest,
       [PARAMETER]: parameter,
-      docs: { codePanel: true },
+      docs: { codePanel: true, ...docs },
     },
   };
 }

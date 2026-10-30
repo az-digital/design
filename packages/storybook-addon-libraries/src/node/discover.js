@@ -53,6 +53,19 @@ function resolveExport(packageDir, packageJson, subpath) {
 }
 
 /**
+ * The paths discovery derives from a manifest: `adapterFile` from the
+ * `adapter` export, and `readme` and local `stylesheets` resolved against the
+ * package directory. Absolute paths and `http(s)` URLs pass through.
+ */
+function resolveManifestPaths(manifest, packageDir, packageJson) {
+  return {
+    adapterFile: manifest.adapter ? resolveExport(packageDir, packageJson, manifest.adapter) : undefined,
+    readme: manifest.readme ? resolve(packageDir, manifest.readme) : undefined,
+    stylesheets: (manifest.stylesheets ?? []).map((sheet) => (/^https?:\/\//.test(sheet) ? sheet : resolve(packageDir, sheet))),
+  };
+}
+
+/**
  * Finds every component library: a workspace package or a dependency of the
  * Storybook project whose package.json has an `azDesign.library` manifest.
  * Invalid manifests throw, so a broken library stops Storybook with a clear
@@ -83,9 +96,7 @@ export function discoverLibraries(projectDir) {
       ...manifest,
       packageName: packageJson.name,
       packageDir,
-      adapterFile: manifest.adapter ? resolveExport(packageDir, packageJson, manifest.adapter) : undefined,
-      readme: manifest.readme ? resolve(packageDir, manifest.readme) : undefined,
-      stylesheets: (manifest.stylesheets ?? []).map((sheet) => (/^https?:\/\//.test(sheet) ? sheet : resolve(packageDir, sheet))),
+      ...resolveManifestPaths(manifest, packageDir, packageJson),
     });
   }
 
@@ -100,15 +111,22 @@ export function discoverLibraries(projectDir) {
 
 /**
  * Applies this Storybook's addon options to the discovered libraries:
- * `disable` (keys to leave out), `overrides` (manifest fields by key),
- * `order` (keys first, in this order; the rest follow by title) and
- * `default` (the initially selected key; the first library otherwise).
+ * `disable` (keys to leave out), `overrides` (manifest fields by key, with
+ * `adapter`, `readme` and `stylesheets` re-resolved like the manifest's own,
+ * relative to the library's package), `order` (keys first, in this order; the
+ * rest follow by title) and `default` (the initially selected key; the first
+ * library otherwise).
  */
 export function configureLibraries(discovered, { order = [], disable = [], overrides = {}, default: defaultKey } = {}) {
   const position = (key) => (order.includes(key) ? order.indexOf(key) : order.length);
   const libraries = discovered
     .filter((library) => !disable.includes(library.key))
-    .map((library) => ({ ...library, ...overrides[library.key] }))
+    .map((library) => {
+      const override = overrides[library.key];
+      if (!override) return library;
+      const merged = { ...library, ...override };
+      return { ...merged, ...resolveManifestPaths(merged, library.packageDir, readJson(join(library.packageDir, 'package.json'))) };
+    })
     .sort((a, b) => position(a.key) - position(b.key) || a.title.localeCompare(b.title));
 
   if (defaultKey && !libraries.some((library) => library.key === defaultKey)) {

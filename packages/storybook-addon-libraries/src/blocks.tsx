@@ -55,8 +55,10 @@ export function LibraryPicker() {
   return (
     <fieldset ref={fieldset} className="az-library-picker" style={{ border: 0, padding: 0, margin: '1.5rem 0' }}>
       <legend style={{ fontSize: 14, fontWeight: 700, marginBottom: '0.5rem', padding: 0 }}>Component library</legend>
-      {/* The radios are visually hidden inside their labels, so show keyboard focus on the label. */}
-      <style>{`.az-library-picker label:has(input:focus-visible) { outline: 2px solid #1e5288; outline-offset: -4px; }`}</style>
+      {/* The radios are visually hidden inside their labels, so show keyboard focus on the label.
+          The checked segment's dark fill hides the blue ring, so it gets a white one instead. */}
+      <style>{`.az-library-picker label:has(input:focus-visible) { outline: 2px solid #1e5288; outline-offset: -4px; }
+.az-library-picker label:has(input:focus-visible:checked) { outline-color: #fff; }`}</style>
       <div style={{ display: 'inline-flex', flexWrap: 'wrap', border: '1px solid #c9d1d9', borderRadius: 8, overflow: 'hidden' }}>
         {libraries.map(({ key, title, status }, index) => {
           const checked = selected === key;

@@ -19,18 +19,36 @@ export function defineAzButton() {
 
     #button: HTMLButtonElement | undefined;
 
+    #observer = new MutationObserver(() => this.#sync());
+
     connectedCallback() {
-      if (!this.#button) {
-        this.#button = document.createElement('button');
-        this.#button.type = 'button';
-        this.#button.append(...this.childNodes);
-        this.append(this.#button);
-      }
+      this.#sync();
+      this.#observer.observe(this, { childList: true });
       this.#update();
+    }
+
+    disconnectedCallback() {
+      this.#observer.disconnect();
     }
 
     attributeChangedCallback() {
       this.#update();
+    }
+
+    // Keeps the button as the element's only child and the caller's children
+    // inside it, following ordinary content updates: children added later move
+    // into the button, and when a content change (say `textContent = '…'`)
+    // removes the button, a fresh one takes the new content.
+    #sync() {
+      if (!this.#button || this.#button.parentNode !== this) {
+        this.#button = document.createElement('button');
+        this.#button.type = 'button';
+        this.prepend(this.#button);
+        this.#update();
+      }
+      for (const node of [...this.childNodes]) {
+        if (node !== this.#button) this.#button.append(node);
+      }
     }
 
     #update() {

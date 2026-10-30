@@ -77,7 +77,7 @@ export default {
 } satisfies LibraryAdapter;
 ```
 
-- `render(props, container)` returns an HTML string or a DOM node for the addon to insert, or mounts into `container` itself (for a framework with its own renderer, such as React) and returns nothing. Adapters return DOM, not React elements, so each library renders as itself.
+- `render(props, container)` returns an HTML string or a DOM node for the addon to insert, or mounts into `container` itself (for a framework with its own renderer, such as React) and returns a cleanup function that unmounts it; the addon calls it before clearing the container. Adapters return DOM, not React elements, so each library renders as itself.
 - `source(props)` returns the code a site would write for those props. Make it the same output `render` draws wherever the platform allows.
 - `props` are the component's **shared props**, the same for every library and named after its contract (`{ label, color: 'outline-red', size: 'large' }`). The adapter translates them into the library's own API, for example attributes for a custom element.
 
@@ -110,6 +110,7 @@ const meta = {
 - Controls can follow Figma's properties; the `props` function translates them into the contract's names once, for every library.
 - Decorators are fine (for example a background the component is designed for): the Code panel's source comes from the adapter, not from rendering the story.
 - `componentStories` turns on the **Code** panel. On an MDX page, `<Canvas sourceState="hidden">` gives reviewers a **Show code** button that follows the toolbar.
+- Pass any other parameters (say a Figma design link) through `componentStories`' `parameters` option — it merges them with its own, including nested `docs`. A meta-level `parameters` after the spread would replace the helper's and hide the Code panel.
 
 ## Configure
 
@@ -123,6 +124,7 @@ Add the addon to `.storybook/main.ts`. Every option is optional; they're only th
     default: 'html',         // selected when Storybook opens; the first library otherwise
     disable: [],             // discovered libraries to leave out of this Storybook
     overrides: {},           // manifest fields to replace here, by key: { web: { title: 'Custom elements' } }
+                             // adapter, readme and stylesheets resolve like the manifest's own, relative to the library's package
   },
 }
 ```

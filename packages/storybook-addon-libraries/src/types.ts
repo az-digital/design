@@ -7,9 +7,10 @@ export type ComponentAdapter<Props = any> = {
   /**
    * Draws the component into `container`. Return an HTML string or a DOM
    * node for the addon to insert, or mount into `container` yourself (for a
-   * framework with its own renderer) and return nothing.
+   * framework with its own renderer) and return a cleanup function that
+   * unmounts it; the addon calls it before clearing the container.
    */
-  render: (props: Props, container: HTMLElement) => string | Node | void;
+  render: (props: Props, container: HTMLElement) => string | Node | (() => void) | void;
   /** The code a site would write for these props, shown in the Code panel. */
   source: (props: Props) => string;
 };
