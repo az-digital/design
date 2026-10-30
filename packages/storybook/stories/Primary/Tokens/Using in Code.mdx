@@ -8,7 +8,7 @@ The Style Dictionary build generates platform-specific files from the canonical 
 
 ## CSS
 
-Import `dist/tokens.css` into your stylesheet, then reference custom properties:
+Import `@az-digital/tokens/dist/tokens.css` into your stylesheet, then reference custom properties:
 
 ```css
 .notice {
@@ -18,7 +18,7 @@ Import `dist/tokens.css` into your stylesheet, then reference custom properties:
 
 ## Sass
 
-Import `dist/tokens.scss` and use the generated Sass variables:
+Import `@az-digital/tokens/dist/tokens.scss` and use the generated Sass variables:
 
 ```scss
 .notice {
@@ -30,13 +30,15 @@ Aliases remain references to their source token in both CSS and Sass, so changin
 
 ## JavaScript and TypeScript
 
-Import `az` from `dist/tokens.vars.js`. Its nested properties use camel-cased token names and contain CSS custom-property references:
+Import `az` from `@az-digital/tokens/dist/tokens.vars.js`. Its nested properties use camel-cased token names and contain CSS custom-property references:
 
 ```js
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
 
 element.style.color = az.color.brand.red;
 ```
+
+Those references only resolve where `tokens.css` is loaded, so load it in the page too.
 
 In TypeScript the same import is typed by `dist/tokens.vars.d.ts`, so a misspelled token path is a type error.
 

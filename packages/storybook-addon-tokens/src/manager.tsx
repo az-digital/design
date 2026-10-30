@@ -32,10 +32,15 @@ function TokensPanelContent() {
   const { width, setWidth } = useResizableWidth('az-token-panel-details-width', 340, 240, () => window.innerWidth - 320);
   const data = useTokensData();
 
-  // A pill clicked in story view: show its token (see `Token`).
+  // A pill clicked in story view: show its token (see `Token`). Clear the request
+  // once it's shown, so a later remount on another story doesn't bring it back.
   useEffect(() => {
     if (requestedToken) setSelectedToken(requestedToken);
-    const listener = (token: string) => setSelectedToken(token);
+    requestedToken = null;
+    const listener = (token: string) => {
+      requestedToken = null;
+      setSelectedToken(token);
+    };
     requestListeners.add(listener);
     return () => {
       requestListeners.delete(listener);
