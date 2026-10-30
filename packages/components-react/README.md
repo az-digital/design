@@ -20,7 +20,7 @@ export function Example() {
 
 The package declares React and React DOM as peer dependencies. Load the Arizona Bootstrap styles and design-token CSS required by the components. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50) for release planning.
 
-## How it consumes tokens
+## How it consumes design tokens
 
 Use component tokens under `az.component.<name>.*` for component-specific styling and import the generated token CSS in the consuming application. Component implementations should refer to token variables, not copy resolved values. Keep implementation-specific token gaps documented rather than inventing a token.
 

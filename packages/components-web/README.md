@@ -12,7 +12,7 @@ They stay in preview until they're verified on a real site.
 
 The package isn't released yet ([issue #50](https://github.com/az-digital/design/issues/50) plans releases).
 
-1. Load the design tokens' CSS variables (`@az-digital/tokens`' `dist/tokens.css`) and Proxima Nova on the page. The elements take their colors and focus ring width from the tokens, so without `tokens.css` they're drawn without them.
+1. Load the design tokens' CSS variables (`@az-digital/tokens`' `dist/tokens.css`) and Proxima Nova on the page. The elements take their colors and focus ring width from design tokens, so without `tokens.css` they're drawn without them.
 2. Import the package once to register its elements:
 
    ```js
@@ -27,16 +27,16 @@ The package isn't released yet ([issue #50](https://github.com/az-digital/design
 
 Attributes take the component contract's option names. The element's content is its label. Copy an element's markup from its page here: choose **Web Components** in the **Library** menu, then open **Show code** or the **Code** panel.
 
-## How it consumes tokens
+## How it consumes design tokens
 
-Each element's styles follow its contract in `packages/contracts/contracts/`. Where the contract points at a token, the styles use that token's CSS variable from `@az-digital/tokens` (imported through `dist/tokens.vars.js`, so a misspelled token is a type error). Where the contract sets the component's own value, such as the button's 9px padding, the styles write that value. A contract check story compares each element with its contract, so the two can't drift apart.
+Each element's styles follow its contract in `packages/contracts/contracts/`. Where the contract points at a design token, the styles use that design token's CSS variable from `@az-digital/tokens` (imported through `dist/tokens.vars.js`, so a misspelled design token is a type error). Where the contract sets the component's own value, such as the button's 9px padding, the styles write that value. A contract check story compares each element with its contract, so the two can't drift apart.
 
 ## Contribute to it
 
 ### File layout and naming
 
 - Put each element in `src/az-<component>.ts`, exporting a `defineAz<Component>()` that registers it once, and call it from `defineAll()` in `src/index.ts`.
-- Put its shadow styles in `src/az-<component>.styles.ts`, following its contract: tokens from `tokens.vars.js`, the contract's own values as written.
+- Put its shadow styles in `src/az-<component>.styles.ts`, following its contract: design tokens from `tokens.vars.js`, the contract's own values as written.
 - Declare the element's class inside its define function, so the module imports where `HTMLElement` doesn't exist (Node, tests).
 - Name elements with the `az-` prefix and attributes after the contract's variant axes and option names. Put shared prop types in `src/types.ts`.
 - Add a markup function to `src/markup.ts` and the component to `storybook/adapter.ts`, keyed by its contract id, so the **Code** panel shows exactly what renders.

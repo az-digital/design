@@ -8,7 +8,7 @@ const componentPackages = ['components-html', 'components-react', 'components-we
 const requiredSections = [
   '## What it is / Best for',
   '## Install / use',
-  '## How it consumes tokens',
+  '## How it consumes design tokens',
   '## Contribute to it',
   '## Verification',
 ];

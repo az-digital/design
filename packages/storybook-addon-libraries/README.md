@@ -85,7 +85,7 @@ Keep the adapter importable in Node: register custom elements inside `render`, n
 
 ### 3. README
 
-Every library's README has the standard sections: **What it is / Best for**, **Install / use**, **How it consumes tokens**, **Contribute to it** and **Verification**. The Components Overview renders them.
+Every library's README has the standard sections: **What it is / Best for**, **Install / use**, **How it consumes design tokens**, **Contribute to it** and **Verification**. The Components Overview renders them.
 
 ## Write a component's stories
 

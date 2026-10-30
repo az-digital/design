@@ -19,7 +19,7 @@ Until a package release is documented, use the package from a checkout that incl
 
 Components may depend on the Arizona Bootstrap CSS library provided by `az_barrio`; check the component metadata before using one. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50) for release planning.
 
-## How it consumes tokens
+## How it consumes design tokens
 
 Author component styles from `token(...)` references and component tokens under `az.component.<name>.*`. The build script produces CSS with resolved `var()` chains and fallback values because Quickstart pages do not load the repository's `tokens.css`. Do not edit generated CSS in place; rebuild it from its source stylesheet.
 

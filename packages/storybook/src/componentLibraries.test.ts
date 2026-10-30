@@ -7,7 +7,7 @@ import type { LibraryAdapter } from '@az-digital/storybook-addon-libraries';
 
 const storybookDir = fileURLToPath(new URL('../', import.meta.url));
 const libraries = discoverLibraries(storybookDir);
-const requiredSections = ['## What it is / Best for', '## Install / use', '## How it consumes tokens', '## Contribute to it', '## Verification'];
+const requiredSections = ['## What it is / Best for', '## Install / use', '## How it consumes design tokens', '## Contribute to it', '## Verification'];
 
 const adapters = new Map<string, LibraryAdapter>(
   await Promise.all(
