@@ -38,7 +38,7 @@ const meta = {
         <div className="card-body">
           <h3 className="card-title h5 fw-bold mb-2 text-azurite">{args.Title}</h3>
           <p className="card-text text-tinta">{args.Text}</p>
-          <ul className="list-unstyled">
+          <ul className="list-unstyled mb-0">
             {(args.Links ?? []).map(({ label, link }, index) => (
               <li key={index}>
                 <a href={link} className="card-link text-azurite fw-semibold tk-proxima-nova-condensed">{label}</a>
