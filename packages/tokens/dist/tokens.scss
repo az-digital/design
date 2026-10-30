@@ -31,20 +31,25 @@ $az-breakpoint-lg: 992px; // Minimum viewport width for the large breakpoint.
 $az-breakpoint-xl: 1200px; // Minimum viewport width for the extra large breakpoint.
 $az-breakpoint-xxl: 1400px; // Minimum viewport width for the extra extra large breakpoint.
 $az-spacing-0: 0px;
-$az-spacing-1: 4px;
-$az-spacing-2: 8px;
-$az-spacing-3: 16px;
-$az-spacing-4: 24px;
-$az-spacing-5: 48px;
-$az-spacing-6: 64px;
-$az-spacing-7: 80px;
-$az-spacing-8: 96px;
-$az-spacing-9: 112px;
-$az-spacing-10: 128px;
-$az-spacing-20: 256px;
-$az-spacing-30: 384px;
-$az-spacing-min: 1px;
-$az-spacing-card: 20px;
+$az-spacing-100: 8px;
+$az-spacing-150: 12px;
+$az-spacing-200: 16px;
+$az-spacing-250: 20px;
+$az-spacing-300: 24px;
+$az-spacing-400: 32px;
+$az-spacing-500: 40px;
+$az-spacing-600: 48px;
+$az-spacing-800: 64px;
+$az-spacing-1000: 80px;
+$az-spacing-025: 2px;
+$az-spacing-050: 4px;
+$az-spacing-075: 6px;
+$az-container-max-width-sm: 540px; // Maximum container width from the sm breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-md: 720px; // Maximum container width from the md breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-lg: 960px; // Maximum container width from the lg breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-xl: 1140px; // Maximum container width from the xl breakpoint. Source: current implementation (5.2.2).
+$az-container-max-width-xxl: 1320px; // Maximum container width from the xxl breakpoint. Source: current implementation (5.2.2).
+$az-grid-columns: 12; // Number of columns in the shared page grid. Source: current implementation (5.2.2).
 $az-radius-0: 0px;
 $az-radius-1: 4px;
 $az-radius-2: 6px;
@@ -94,3 +99,4 @@ $az-color-fg-blue: $az-color-brand-blue;
 $az-color-fg-tinta: $az-color-brand-tinta;
 $az-color-fg-red: $az-color-brand-red;
 $az-color-fg-rain: $az-color-brand-rain;
+$az-grid-gutter: $az-spacing-300; // Space between grid columns, 12px on each side of a column. Source: current implementation (5.2.2).
