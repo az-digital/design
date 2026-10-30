@@ -15,9 +15,10 @@ export const widePhoto = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="h
 // A square placeholder photo, for the Title on Image Card.
 export const squarePhoto = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="#868e96"/><circle cx="430" cy="170" r="70" fill="#adb5bd"/><path d="M0 600 L190 320 L330 470 L440 360 L600 540 L600 600 Z" fill="#6c757d"/></svg>')}`;
 
-// One card, at a card's usual width in a row of cards.
+// One card, at the Figma Card component's width: 416px, three across the 1296px
+// container. A card has no width of its own; in a site, the grid column sets it.
 export function Frame({ children }: { children: ReactNode }) {
-  return <div style={{ width: '18rem', padding: '2rem' }}>{children}</div>;
+  return <div style={{ width: '416px', maxWidth: '100%', padding: '2rem 0' }}>{children}</div>;
 }
 
 // A contract check for a card whose title link covers it: compares the card with
