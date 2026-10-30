@@ -9,9 +9,8 @@ This is an npm workspaces monorepo with four packages:
 ```text
 ├── packages/
 │   ├── components-html/          # @az-digital/components-html — Arizona Bootstrap markup for Storybook (library `html`, not released)
-│   ├── components-react/         #   contributor guide for the React implementation
+│   ├── components-react-bootstrap/ # contributor guide for the React Bootstrap implementation
 │   ├── components-web/           # @az-digital/components-web — custom elements (library `web`, preview)
-│   ├── components-quickstart/    #   contributor guide for the Drupal implementation
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── style-dictionary.config.mjs
@@ -43,7 +42,7 @@ This is an npm workspaces monorepo with four packages:
 └── .gitignore
 ```
 
-`components-html` and `components-web` are component libraries: each registers itself with an `azDesign.library` manifest in its `package.json` (see the [library addon's README](packages/storybook-addon-libraries/README.md)). `components-react` and `components-quickstart` provide contributor documentation only; each one's source package is added with its implementation work.
+`components-html` and `components-web` are component libraries: each registers itself with an `azDesign.library` manifest in its `package.json` (see the [library addon's README](packages/storybook-addon-libraries/README.md)). `components-react-bootstrap` provides contributor documentation only; its source package is added with its implementation work.
 
 | Package | Path | Purpose |
 |---------|------|---------|
@@ -161,7 +160,7 @@ When updating tokens or Storybook behavior:
 
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
 
-When adding a component or implementation package, follow [Components → Contributing](packages/storybook/stories/Primary/Components/Contributing.mdx). Libraries register themselves with the [library addon](packages/storybook-addon-libraries/README.md), and the [Components Overview](packages/storybook/stories/Primary/Components/Overview.mdx) renders each registered library's README directly, so keep the relevant [HTML](packages/components-html/README.md), [React](packages/components-react/README.md), [Web Components](packages/components-web/README.md), or [Arizona Quickstart](packages/components-quickstart/README.md) guide current. Agent-specific workflow is in [design-system-component/SKILL.md](.claude/skills/design-system-component/SKILL.md).
+When adding a component or implementation package, follow [Components → Contributing](packages/storybook/stories/Primary/Components/Contributing.mdx). Libraries register themselves with the [library addon](packages/storybook-addon-libraries/README.md), and the [Components Overview](packages/storybook/stories/Primary/Components/Overview.mdx) renders each registered library's README directly, so keep the relevant [HTML](packages/components-html/README.md), [React Bootstrap](packages/components-react-bootstrap/README.md) or [Web Components](packages/components-web/README.md) guide current. Agent-specific workflow is in [design-system-component/SKILL.md](.claude/skills/design-system-component/SKILL.md).
 
 ## Token Collaboration Docs
 

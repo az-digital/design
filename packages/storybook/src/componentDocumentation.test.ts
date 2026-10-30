@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
 const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
-const componentPackages = ['components-html', 'components-react', 'components-web', 'components-quickstart'];
+const componentPackages = ['components-html', 'components-react-bootstrap', 'components-web'];
 const requiredSections = [
   '## What it is / Best for',
   '## Install / use',

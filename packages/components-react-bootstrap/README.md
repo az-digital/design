@@ -1,6 +1,6 @@
 # React Bootstrap
 
-Package: `@az-digital/components-react`.
+Package: `@az-digital/components-react-bootstrap`.
 
 ## What it is / Best for
 
@@ -11,7 +11,7 @@ React components implementing Arizona Digital patterns, with `react-bootstrap` u
 Until a package release is documented, use the package from a checkout that includes it: run `npm install` from the repository root, then import from the public component subpath. For example:
 
 ```tsx
-import { Button } from '@az-digital/components-react/Button';
+import { Button } from '@az-digital/components-react-bootstrap/Button';
 
 export function Example() {
   return <Button href="/apply">Apply to Arizona</Button>;
@@ -35,11 +35,11 @@ Use component tokens under `az.component.<name>.*` for component-specific stylin
 
 ### Build and lint
 
-Run `npm run build -w @az-digital/components-react`, `npm run lint -w @az-digital/components-react`, and `npm run typecheck -w @az-digital/components-react`. Wire the package build into the root `build:all` command when the package is integrated.
+Run `npm run build -w @az-digital/components-react-bootstrap`, `npm run lint -w @az-digital/components-react-bootstrap`, and `npm run typecheck -w @az-digital/components-react-bootstrap`. Wire the package build into the root `build:all` command when the package is integrated.
 
 ### Platform-specific limits
 
-React props should follow React conventions and may not map one-to-one to raw HTML attributes or Drupal's snake_case variables. Use `react-bootstrap` only where it supplies the needed behavior; keep Arizona-specific variants and limitations explicit. Components that do not have a React implementation should be documented as such rather than represented by a nonfunctional substitute.
+React props should follow React conventions and may not map one-to-one to raw HTML attributes. Use `react-bootstrap` only where it supplies the needed behavior; keep Arizona-specific variants and limitations explicit. Components that do not have a React implementation should be documented as such rather than represented by a nonfunctional substitute.
 
 ## Verification
 
