@@ -8,7 +8,55 @@ Arizona Bootstrap's markup for each component, as HTML strings. Use it when a si
 
 ## Install / use
 
-Until a package release is documented, use the package from a checkout that includes it: run `npm install` from the repository root, then import its render functions. For example:
+### Quick start
+
+Load Arizona Bootstrap's CSS and JavaScript from its CDN. There's nothing to install or build.
+
+1. Start from a page with the HTML5 doctype and the responsive viewport `<meta>` tag. Arizona Bootstrap is mobile first, and its styles are incomplete without either.
+2. Put the stylesheet `<link>` in the `<head>`, and the JavaScript bundle `<script>` just before `</body>`:
+
+   ```html
+   <!doctype html>
+   <html lang="en">
+     <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <title>Arizona Bootstrap page</title>
+       <link href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/css/arizona-bootstrap.min.css" rel="stylesheet" integrity="sha384-wI4ZFF+Q17zFOfJSPmczqtkEMnRkxoFPPtk3Kg4c37lozE3jYmmJ/N+EipHy1p6n" crossorigin="anonymous">
+     </head>
+     <body>
+       <button type="button" class="btn btn-red">Apply to Arizona</button>
+
+       <script src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/js/arizona-bootstrap.bundle.min.js" integrity="sha384-of2ioyNUQuqjMaNcSfjyJE7aEaNPzjs5SOHSUxMJ9JXI8KThHJvXmZm2r6LBFbdi" crossorigin="anonymous"></script>
+     </body>
+   </html>
+   ```
+
+3. Copy each component's markup from its page here: choose **Arizona Bootstrap** in the **Library** menu, then open **Show code** on the docs page or the **Code** panel on a story. Set the story's controls first, and the code follows them.
+
+### CDN links
+
+These pin Arizona Bootstrap 5.2.2, its current release:
+
+**CSS:**
+
+```text
+https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/css/arizona-bootstrap.min.css
+```
+
+**JavaScript:**
+
+```text
+https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/js/arizona-bootstrap.bundle.min.js
+```
+
+The JavaScript bundle includes Popper. Buttons and cards only need the CSS. Interactive components need the JavaScript too: accordions, collapse, dropdowns, modals, the navbar, offcanvas, tabs, toasts, tooltips and popovers.
+
+Arizona Bootstrap's [getting started guide](https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.2/getting-started/introduction/) covers its other builds, installing its source with a package manager, and using it as a JavaScript module.
+
+### Render markup in JavaScript
+
+To generate the same markup in code, import this package's render functions. It isn't published to a registry yet ([issue #50](https://github.com/az-digital/design/issues/50) plans releases), so use it from a checkout of this repository after running `npm install` at its root:
 
 ```ts
 import { renderButton } from '@az-digital/components-html';
@@ -17,7 +65,7 @@ const markup = renderButton({ label: 'Apply to Arizona', color: 'outline-red', s
 // <button type="button" class="btn btn-outline-red btn-lg">Apply to Arizona</button>
 ```
 
-Props use the component contract's names (`color: 'outline-red'`, `size: 'large'`). Each function returns an HTML string with every caller-supplied value escaped; insert it with your platform's normal HTML mechanism, on a page that loads Arizona Bootstrap's assets. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50) for release planning.
+Props use the component contract's names (`color: 'outline-red'`, `size: 'large'`). Each function returns an HTML string with every caller-supplied value escaped. Insert it with your platform's usual HTML mechanism, on a page that loads Arizona Bootstrap's CSS and JavaScript.
 
 ## How it consumes tokens
 
