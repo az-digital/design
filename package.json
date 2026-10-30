@@ -17,7 +17,7 @@
     "test:storybook": "npm run test -w @az-digital/storybook",
     "build:all": "npm run build:tokens && npm run build:contracts && npm run build:storybook",
     "build:contracts": "npm run build -w @az-digital/contracts",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package --error-on-fail"
   },
   "description": "Arizona Digital design system monorepo",
   "license": "MIT",
