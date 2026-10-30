@@ -13,6 +13,8 @@ type CardArgs = { Title: string; Body: string; Header: string; Footer: string };
 const meta = {
   title: 'Primary/Components/Containers/Cards/Card',
   tags: ['!dev'],
+  // Required props first, so the controls table reads as the card's prop list.
+  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Title: 'Office Hours',
     Body: '<p>Drop in, or book a time with an advisor.</p><ul><li>Monday to Thursday, 8 a.m. to 5 p.m.</li><li>Friday, 8 a.m. to noon</li></ul>',

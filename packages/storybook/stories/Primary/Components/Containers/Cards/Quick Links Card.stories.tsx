@@ -12,6 +12,8 @@ type QuickLinksCardArgs = { Title: string; Text: string; Links: QuickLink[] };
 const meta = {
   title: 'Primary/Components/Containers/Cards/Quick Links Card',
   tags: ['!dev'],
+  // Required props first, so the controls table reads as the card's prop list.
+  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Title: 'Academic Resources',
     Text: 'Find the support and guidance you need to succeed in the classroom.',

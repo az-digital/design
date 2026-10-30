@@ -9,6 +9,8 @@ type ImageCardArgs = { Image: string; 'Image description': string; Title: string
 const meta = {
   title: 'Primary/Components/Containers/Cards/Image Card',
   tags: ['!dev'],
+  // Required props first, so the controls table reads as the card's prop list.
+  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Image: '',
     'Image description': '',
