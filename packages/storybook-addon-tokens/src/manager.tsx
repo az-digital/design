@@ -58,8 +58,12 @@ function TokensPanelContent() {
   // Drop a leftover selection when the story's token scope changes, not on every
   // selection change — otherwise navigating to an out-of-scope token clears it.
   const scope = prefixes.join('\n');
+  const previousScope = React.useRef(scope);
   useEffect(() => {
-    setSelectedToken(null);
+    if (previousScope.current !== scope) {
+      previousScope.current = scope;
+      setSelectedToken(null);
+    }
   }, [scope]);
 
   if (data.tokens.length === 0) {
