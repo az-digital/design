@@ -4,7 +4,7 @@ Package: `@az-digital/components-web`. Status: **preview**.
 
 ## What it is / Best for
 
-Custom elements for the design system's components, such as `<az-button>`. Each element draws itself in its shadow root with its own styles, from the component's contract, so it works on any page, with or without a framework, and doesn't need Arizona Bootstrap. Use them where a page can't take on Arizona Bootstrap, or where writing `<az-button>` is simpler than writing a component's markup.
+Custom elements for the design system's components, such as `<az-button>`, built with [Lit](https://lit.dev/). Each element draws itself in its shadow root with its own styles, from the component's contract, so it works on any page, with or without a framework, and doesn't need Arizona Bootstrap. Use them where a page can't take on Arizona Bootstrap, or where writing `<az-button>` is simpler than writing a component's markup.
 
 They stay in preview until they're verified on a real site.
 
@@ -35,9 +35,9 @@ Each element's styles follow its contract in `packages/contracts/contracts/`. Wh
 
 ### File layout and naming
 
-- Put each element in `src/az-<component>.ts`, exporting a `defineAz<Component>()` that registers it once, and call it from `defineAll()` in `src/index.ts`.
+- Put each element in `src/az-<component>.ts`: a `LitElement` class, and a `defineAz<Component>()` that registers it once. Export both from `src/index.ts`, and call the define function from `defineAll()`.
+- Declare its attributes in `static properties`, with `reflect: true` when its styles select on them, and type the fields with `declare` so they don't hide Lit's accessors.
 - Put its shadow styles in `src/az-<component>.styles.ts`, following its contract: design tokens from `tokens.vars.js`, the contract's own values as written.
-- Declare the element's class inside its define function, so the module imports where `HTMLElement` doesn't exist (Node, tests).
 - Name elements with the `az-` prefix and attributes after the contract's variant axes and option names. Put shared prop types in `src/types.ts`.
 - Add a markup function to `src/markup.ts` and the component to `storybook/adapter.ts`, keyed by its contract id, so the **Code** panel shows exactly what renders.
 - Add a contract check story that renders the element in every variant and runs `checkContract` on the element inside its shadow root (see `WebButtonContract.stories.tsx`). Pass `checkContract` the custom properties that hold the element's hover colors, since a script can't hover it.

@@ -31,7 +31,8 @@
     }
   },
   "dependencies": {
-    "@az-digital/tokens": "*"
+    "@az-digital/tokens": "*",
+    "lit": "^3.3.3"
   },
   "devDependencies": {
     "@az-digital/storybook-addon-libraries": "*"

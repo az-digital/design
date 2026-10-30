@@ -1,8 +1,9 @@
 import { az } from '@az-digital/tokens/dist/tokens.vars.js';
+import { unsafeCSS } from 'lit';
 import type { ButtonColor } from './types';
 
 // `<az-button>`'s shadow styles, from the button contract
-// (`packages/contracts/contracts/button.contract.json`). Its tokens come from
+// (`packages/contracts/contracts/button.contract.json`). Its design tokens come from
 // @az-digital/tokens' CSS variables, so the page has to load tokens.css; its own
 // values are written here.
 
@@ -48,7 +49,9 @@ const declarations = (color: Colors) => `
     --active-label: ${color.activeLabel};
     --ring: ${color.ring};`;
 
-export const buttonStyles = `
+// Built as a string from design token variables and the colors above, which
+// Lit's `css` tag can't interpolate; nothing in it comes from a caller.
+export const buttonStyles = unsafeCSS(`
   :host {
     display: inline-block;
   }
@@ -118,4 +121,4 @@ ${Object.entries(colors)
       transition: none;
     }
   }
-`;
+`);

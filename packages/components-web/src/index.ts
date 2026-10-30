@@ -1,6 +1,6 @@
 import { defineAzButton } from './az-button';
 
-export { defineAzButton } from './az-button';
+export { AzButton, defineAzButton } from './az-button';
 export { renderAzButton } from './markup';
 export type { ButtonColor, ButtonProps, ButtonSize } from './types';
 
