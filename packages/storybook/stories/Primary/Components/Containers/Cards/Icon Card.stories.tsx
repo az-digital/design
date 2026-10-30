@@ -12,8 +12,6 @@ type IconCardArgs = { Icon: string; Title: string; Text: string; Link: string };
 const meta = {
   title: 'Primary/Components/Containers/Cards/Icon Card',
   tags: ['!dev'],
-  // Required props first, so the controls table reads as the card's prop list.
-  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Icon: 'person_raised_hand',
     Title: 'Future Students',

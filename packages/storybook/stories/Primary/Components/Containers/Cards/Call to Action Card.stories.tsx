@@ -9,8 +9,6 @@ type CallToActionCardArgs = { Title: string; Text: string; Button: string; 'Butt
 const meta = {
   title: 'Primary/Components/Containers/Cards/Call to Action Card',
   tags: ['!dev'],
-  // Required props first, so the controls table reads as the card's prop list.
-  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Title: 'Bear Down Rundown',
     Text: 'Your weekly update for all main campus undergraduates during the academic year.',

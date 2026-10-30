@@ -10,14 +10,13 @@ type TitleOnImageCardArgs = { Image: string; 'Image description': string; Title:
 const meta = {
   title: 'Primary/Components/Containers/Cards/Title on Image Card',
   tags: ['!dev'],
-  // Required props first, so the controls table reads as the card's prop list.
-  parameters: { controls: { sort: 'requiredFirst' } },
   args: { Image: '', 'Image description': '', Title: 'Undergraduate', Link: '#title-on-image-card' },
   argTypes: {
     Image: { control: 'text', description: "The photo's URL. It's cropped to a square. Leave it empty here for a placeholder.", type: { name: 'string', required: true } },
     'Image description': {
       control: 'text',
       description: "The photo's alt text. Leave it empty, so screen readers skip it: the title says where the card goes.",
+      type: { name: 'string', required: false },
     },
     Title: { control: 'text', description: "One to three words for where the card goes. It's the link's text.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },

@@ -10,8 +10,6 @@ type LinkCardArgs = { Title: string; Text: string; Link: string };
 const meta = {
   title: 'Primary/Components/Containers/Cards/Link Card',
   tags: ['!dev'],
-  // Required props first, so the controls table reads as the card's prop list.
-  parameters: { controls: { sort: 'requiredFirst' } },
   args: {
     Title: 'Distance Locations',
     Text: 'Close-to-home flexibility with locations across the state of Arizona.',
