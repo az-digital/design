@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { ComponentCoverage, LibraryComponents, LibraryPicker, LibraryReadme } from '@az-digital/storybook-addon-libraries';
 
 <Meta title="Primary/Components/Overview" />
 
@@ -6,9 +7,23 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The Components section is the reusable library of interface patterns that teams can apply consistently across Arizona Digital products.
 
-## Included groups
+Arizona's products are built in many different ways, so each component can come in more than one library. All of them follow the same Figma designs and the same component contracts. Pick the library that fits your product to read how it works. Your choice also switches every component page and story to that library, the same as the **Library** menu in the toolbar.
+
+<LibraryPicker />
+
+## Components in this library
+
+<LibraryComponents />
+
+<LibraryReadme />
+
+## Every component and library
+
+<ComponentCoverage />
+
+## Contribute a component
 
 - <a href="./?path=/docs/primary-components-buttons--docs" target="_top">Buttons</a>
 - <a href="./?path=/docs/primary-components-containers--docs" target="_top">Containers</a>
 
-This section is intentionally staged as a foundation for the initial system and can expand as new patterns are approved.
+See <a href="./?path=/docs/primary-components-contributing--docs" target="_top">Contributing components</a> for the shared component workflow and definition of done, and the [library addon's README](https://github.com/az-digital/design/blob/main/packages/storybook-addon-libraries/README.md) for what a new library provides.

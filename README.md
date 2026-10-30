@@ -1,6 +1,6 @@
 # Arizona Digital Design System
 
-A design token and Storybook workspace for the Arizona Digital design system. This repo contains the source token definitions, generated token output, and a Storybook environment for reviewing and validating visual tokens.
+A design token and Storybook workspace for the Arizona Digital design system. This repo contains the source token definitions, generated token output, component-package contributor guides, and a Storybook environment for reviewing and validating the system.
 
 ## Repository Structure
 
@@ -8,6 +8,9 @@ This is an npm workspaces monorepo with four packages:
 
 ```text
 ├── packages/
+│   ├── components-html/          # @az-digital/components-html — Arizona Bootstrap markup for Storybook (library `html`, not released)
+│   ├── components-react-bootstrap/ # contributor guide for the React Bootstrap implementation
+│   ├── components-web/           # @az-digital/components-web — custom elements (library `web`, preview)
 │   ├── tokens/                 # @az-digital/tokens — design token source and build output
 │   │   ├── tokens.json         #   source DTCG token definitions
 │   │   ├── style-dictionary.config.mjs
@@ -25,6 +28,10 @@ This is an npm workspaces monorepo with four packages:
 │   ├── storybook-addon-tokens/  # @az-digital/storybook-addon-tokens — token doc blocks and Tokens tab
 │   │   ├── src/                #   addon source (preset, Tokens tab, doc blocks)
 │   │   └── README.md
+│   ├── storybook-addon-libraries/ # @az-digital/storybook-addon-libraries — Library toolbar; the contract for component libraries
+│   │   ├── src/                #   addon source (preset, toolbar, story helper, doc blocks)
+│   │   ├── library.schema.json #   the azDesign.library manifest
+│   │   └── README.md
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
 │       ├── stories/           #   Storybook stories
@@ -35,11 +42,16 @@ This is an npm workspaces monorepo with four packages:
 └── .gitignore
 ```
 
+`components-html` and `components-web` are component libraries: each registers itself with an `azDesign.library` manifest in its `package.json` (see the [library addon's README](packages/storybook-addon-libraries/README.md)). `components-react-bootstrap` provides contributor documentation only; its source package is added with its implementation work.
+
 | Package | Path | Purpose |
 |---------|------|---------|
 | `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
 | `@az-digital/contracts` | `packages/contracts/` | Component contracts: each component's parts, and the token or value that sets each part's design properties ([README](packages/contracts/README.md)) |
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
+| `@az-digital/storybook-addon-libraries` | `packages/storybook-addon-libraries/` | Storybook addon: the Library toolbar, which switches component stories between registered libraries, and the contract a library meets to register ([README](packages/storybook-addon-libraries/README.md)) |
+| `@az-digital/components-html` | `packages/components-html/` | Arizona Bootstrap markup for each component, shown in Storybook; never released ([README](packages/components-html/README.md)) |
+| `@az-digital/components-web` | `packages/components-web/` | Custom elements for each component, in preview ([README](packages/components-web/README.md)) |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
 ## Prerequisites
@@ -147,6 +159,8 @@ When updating tokens or Storybook behavior:
 3. Run the relevant tests before shipping changes.
 
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
+
+When adding a component or implementation package, follow [Components → Contributing](packages/storybook/stories/Primary/Components/Contributing.mdx). Libraries register themselves with the [library addon](packages/storybook-addon-libraries/README.md), and the [Components Overview](packages/storybook/stories/Primary/Components/Overview.mdx) renders each registered library's README directly, so keep the relevant [HTML](packages/components-html/README.md), [React Bootstrap](packages/components-react-bootstrap/README.md) or [Web Components](packages/components-web/README.md) guide current. Agent-specific workflow is in [design-system-component/SKILL.md](.claude/skills/design-system-component/SKILL.md).
 
 ## Token Collaboration Docs
 
