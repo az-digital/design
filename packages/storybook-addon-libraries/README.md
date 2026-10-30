@@ -48,14 +48,14 @@ A library is any package, in this workspace or a dependency of the Storybook pro
     <tr><td><code>title</code></td><td>Yes</td><td>Name shown in the toolbar.</td></tr>
     <tr><td><code>status</code></td><td>Yes</td><td><code>preview</code> until the library is verified on its target platform, then <code>supported</code>.</td></tr>
     <tr><td><code>codeLanguage</code></td><td>Yes</td><td>Language of the code the adapter's <code>source</code> returns, such as <code>html</code>, <code>jsx</code> or <code>twig</code>.</td></tr>
-    <tr><td><code>readme</code></td><td>No</td><td>The library's README, relative to <code>package.json</code>.</td></tr>
+    <tr><td><code>readme</code></td><td>Yes</td><td>The library's README, relative to <code>package.json</code>, with the standard sections below. The Components Overview shows it.</td></tr>
     <tr><td><code>stylesheets</code></td><td>No</td><td>Stylesheets the library needs: absolute URLs, or paths relative to <code>package.json</code>. A stylesheet the page already loads isn't added twice.</td></tr>
     <tr><td><code>adapter</code></td><td>One of these</td><td>The subpath export of the library's Storybook adapter, such as <code>./storybook</code>.</td></tr>
     <tr><td><code>ref</code></td><td>One of these</td><td>The URL of a Storybook rendered by the library's own platform, for a library that can't render in this one. The toolbar still lists it, and its placeholder links there.</td></tr>
   </tbody>
 </table>
 
-[`library.schema.json`](./library.schema.json) is the JSON Schema for the manifest. Storybook refuses to start with an invalid manifest or two libraries sharing a key, and `npm run test:storybook` checks every manifest and adapter.
+[`library.schema.json`](./library.schema.json) is the JSON Schema for the manifest. Storybook refuses to start with an invalid manifest or two libraries sharing a key, including keys changed by `overrides`. A manifest saved with an error while Storybook runs is logged, and the last valid libraries stay until it's fixed. `npm run test:storybook` checks every manifest and adapter.
 
 The field is `azDesign`, not `storybook`, because Storybook Composition already uses `storybook` in `package.json`. The manifest doesn't list components: the adapter does.
 
@@ -65,12 +65,16 @@ The adapter is the library's `./storybook` export. For each component, keyed by 
 
 ```ts
 import type { LibraryAdapter } from '@az-digital/storybook-addon-libraries';
+import { defineAzButton } from '../src/az-button';
 import { renderAzButton } from '../src/markup';
 
 export default {
   components: {
     button: {
-      render: (props) => renderAzButton(props),
+      render: (props) => {
+        defineAzButton();
+        return renderAzButton(props);
+      },
       source: (props) => renderAzButton(props),
     },
   },

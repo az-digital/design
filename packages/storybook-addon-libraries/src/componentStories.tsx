@@ -26,8 +26,10 @@ export function LibraryCanvas({ component, props, library: key, tags }: LibraryC
   const library = getLibrary(key);
   const tagged = taggedLibraries(tags);
   const adapter = library?.adapter?.components[component];
-  const drawable = library && adapter && (!tagged || tagged.includes(library.key));
+  const drawable = Boolean(library && adapter && (!tagged || tagged.includes(library.key)));
 
+  // Runs again when `drawable` changes too: the container is swapped for a
+  // placeholder and back, so the adapter cleans up and draws again.
   useLayoutEffect(() => {
     const element = container.current;
     if (!element || !adapter) return undefined;
@@ -39,7 +41,7 @@ export function LibraryCanvas({ component, props, library: key, tags }: LibraryC
       if (typeof output === 'function') output();
       element.replaceChildren();
     };
-  }, [adapter, props]);
+  }, [adapter, props, drawable]);
 
   if (!library) {
     return <LibraryPlaceholder>No component library is registered as “{String(key)}”.</LibraryPlaceholder>;

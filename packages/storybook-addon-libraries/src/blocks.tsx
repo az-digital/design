@@ -106,19 +106,27 @@ export function ForLibrary({ value, children }: { value: string; children: React
 
 type IndexEntry = { id: string; type: 'story' | 'docs'; title: string; tags?: string[] };
 
-/** Each component in the story index with its `lib:*` tags: its title, docs page id and libraries. */
+type Component = { title: string; path: string; libraries: string[] };
+
+/**
+ * Each component in the story index with its `lib:*` tags: its title, the
+ * page to link to (its docs page, or its first story when it has none) and
+ * its libraries.
+ */
 function useComponents() {
-  const [components, setComponents] = useState<{ title: string; docsId: string; libraries: string[] }[]>();
+  const [components, setComponents] = useState<Component[]>();
   useEffect(() => {
     let cancelled = false;
     fetch('./index.json')
       .then((response) => response.json())
       .then(({ entries }: { entries: Record<string, IndexEntry> }) => {
-        const byTitle = new Map<string, { title: string; docsId: string; libraries: string[] }>();
+        const byTitle = new Map<string, Component>();
         for (const entry of Object.values(entries)) {
           const tagged = taggedLibraries(entry.tags);
-          if (!tagged || byTitle.has(entry.title)) continue;
-          byTitle.set(entry.title, { title: entry.title, docsId: `${entry.id.split('--')[0]}--docs`, libraries: tagged });
+          if (!tagged) continue;
+          const known = byTitle.get(entry.title);
+          if (known && (known.path.startsWith('/docs/') || entry.type !== 'docs')) continue;
+          byTitle.set(entry.title, { title: entry.title, path: `/${entry.type}/${entry.id}`, libraries: tagged });
         }
         if (!cancelled) setComponents([...byTitle.values()].sort((a, b) => a.title.localeCompare(b.title)));
       })
@@ -146,9 +154,9 @@ export function LibraryComponents() {
   if (own.length === 0) return <p>{library.title} doesn’t have any components yet.</p>;
   return (
     <ul>
-      {own.map(({ title, docsId }) => (
+      {own.map(({ title, path }) => (
         <li key={title}>
-          <a href={`./?path=/docs/${docsId}&globals=${GLOBAL}:${library.key}`} target="_top">
+          <a href={`./?path=${path}&globals=${GLOBAL}:${library.key}`} target="_top">
             {componentName(title)}
           </a>
         </li>
@@ -172,10 +180,10 @@ export function ComponentCoverage() {
         </tr>
       </thead>
       <tbody>
-        {components.map(({ title, docsId, libraries: own }) => (
+        {components.map(({ title, path, libraries: own }) => (
           <tr key={title}>
             <td>
-              <a href={`./?path=/docs/${docsId}`} target="_top">
+              <a href={`./?path=${path}`} target="_top">
                 {componentName(title)}
               </a>
             </td>

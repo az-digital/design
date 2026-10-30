@@ -4,7 +4,7 @@
   "title": "Component library manifest",
   "description": "The `azDesign.library` field of a component library's package.json. Storybook registers every package that has one.",
   "type": "object",
-  "required": ["key", "title", "status", "codeLanguage"],
+  "required": ["key", "title", "status", "codeLanguage", "readme"],
   "additionalProperties": false,
   "properties": {
     "key": {

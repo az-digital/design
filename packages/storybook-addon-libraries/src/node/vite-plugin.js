@@ -22,6 +22,8 @@ const publicFields = ({ key, title, status, codeLanguage, packageName, ref, read
  * each library's public manifest fields, its adapter module and its stylesheet
  * URLs. Re-discovers them (then reloads the preview) when a library's
  * package.json or README changes. A newly added library package needs a restart.
+ * An invalid manifest stops Storybook from starting; one saved while it runs
+ * is logged, and the last valid libraries stay until it's fixed.
  */
 export function librariesPlugin({ projectDir, options }) {
   let configured;
@@ -58,7 +60,12 @@ export function librariesPlugin({ projectDir, options }) {
       server.watcher.add(manifests());
       server.watcher.on('change', (file) => {
         if (!manifests().includes(file)) return;
-        discover();
+        try {
+          discover();
+        } catch (error) {
+          server.config.logger.error(`[az-design-libraries] ${error.message}`, { timestamp: true });
+          return;
+        }
         const module = server.moduleGraph.getModuleById(RESOLVED_ID);
         if (module) server.moduleGraph.invalidateModule(module);
         server.ws.send({ type: 'full-reload' });

@@ -100,7 +100,11 @@ export function discoverLibraries(projectDir) {
     });
   }
 
-  const libraries = [...byName.values()];
+  return assertUniqueKeys([...byName.values()]);
+}
+
+/** Throws when two libraries share a key, since the toolbar could only reach one of them. */
+function assertUniqueKeys(libraries) {
   const keys = new Set();
   for (const library of libraries) {
     if (keys.has(library.key)) throw new Error(`Two component libraries use the key "${library.key}".`);
@@ -128,6 +132,8 @@ export function configureLibraries(discovered, { order = [], disable = [], overr
       return { ...merged, ...resolveManifestPaths(merged, library.packageDir, readJson(join(library.packageDir, 'package.json'))) };
     })
     .sort((a, b) => position(a.key) - position(b.key) || a.title.localeCompare(b.title));
+  // An override can change a key, so check them again.
+  assertUniqueKeys(libraries);
 
   if (defaultKey && !libraries.some((library) => library.key === defaultKey)) {
     throw new Error(`@az-digital/storybook-addon-libraries: the default library "${defaultKey}" isn't registered (registered: ${libraries.map((library) => library.key).join(', ') || 'none'}).`);
