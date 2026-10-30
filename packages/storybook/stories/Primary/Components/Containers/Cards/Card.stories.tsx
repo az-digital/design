@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Frame } from './cards';
+import { Frame, checkCard } from './cards';
 
 // The plain card: a title and rich text in its .card-body, which is its slot, and
 // an optional header and footer. It isn't a link. The controls are the card's
 // props: Body is the slot's HTML after the title, such as paragraphs or a list.
-// Leave the header or footer empty for none.
+// Leave the header or footer empty for none. Arizona Bootstrap gives a Cloud card
+// its title and text colors only with .hover, so .text-azurite and .text-tinta set
+// them here.
 
 const escape = (text: string) => text.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -35,8 +37,8 @@ const meta = {
         {args.Header && <div className="card-header">{args.Header}</div>}
         {/* The slot: the title, then the control's HTML, as an editor's rich text would be. */}
         <div
-          className="card-body"
-          dangerouslySetInnerHTML={{ __html: `<h3 class="card-title h5 fw-bold mb-2">${escape(args.Title)}</h3>${args.Body}` }}
+          className="card-body text-tinta"
+          dangerouslySetInnerHTML={{ __html: `<h3 class="card-title h5 fw-bold mb-2 text-azurite">${escape(args.Title)}</h3>${args.Body}` }}
         />
         {args.Footer && <div className="card-footer">{args.Footer}</div>}
       </div>
@@ -48,5 +50,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Card docs page, not as its own page in the sidebar.
-export const Default: Story = {};
+// Shown on the Card docs page. Its play function is the card's contract check.
+export const Default: Story = { play: checkCard('card') };

@@ -23,14 +23,7 @@
           },
           "$description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
         },
-        "border.radius": {
-          "$type": "dimension",
-          "$value": {
-            "value": 16,
-            "unit": "px"
-          },
-          "$description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
-        },
+        "border.radius": "{az.radius.4}",
         "transition.duration": {
           "$type": "duration",
           "$value": {
@@ -62,22 +55,8 @@
         "body": {
           "description": "The card's content.",
           "tokens": {
-            "padding.x": {
-              "$type": "dimension",
-              "$value": {
-                "value": 24,
-                "unit": "px"
-              },
-              "$description": "Space between the card's left and right edges and its content."
-            },
-            "padding.y": {
-              "$type": "dimension",
-              "$value": {
-                "value": 24,
-                "unit": "px"
-              },
-              "$description": "Space between the card's top and bottom edges (or its image) and its content."
-            }
+            "padding.x": "{az.spacing.4}",
+            "padding.y": "{az.spacing.4}"
           }
         },
         "title": {
@@ -92,11 +71,7 @@
               },
               "$description": "Card title text size."
             },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 700,
-              "$description": "Card title weight: Bold."
-            },
+            "font.weight": "{az.font-weight.bold}",
             "line-height": {
               "$type": "dimension",
               "$value": {
@@ -105,14 +80,7 @@
               },
               "$description": "Card title line height. The space below the title is measured from this line."
             },
-            "margin-bottom": {
-              "$type": "dimension",
-              "$value": {
-                "value": 8,
-                "unit": "px"
-              },
-              "$description": "Space between the title's line and the text below it."
-            }
+            "margin-bottom": "{az.spacing.2}"
           },
           "states": {
             "hover": {
@@ -137,11 +105,7 @@
               },
               "$description": "Card text size: the same as body text."
             },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 400,
-              "$description": "Card text weight: Regular."
-            },
+            "font.weight": "{az.font-weight.normal}",
             "line-height": {
               "$type": "dimension",
               "$value": {
@@ -150,14 +114,7 @@
               },
               "$description": "Card text line height: the same as body text."
             },
-            "margin-bottom": {
-              "$type": "dimension",
-              "$value": {
-                "value": 16,
-                "unit": "px"
-              },
-              "$description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
-            }
+            "margin-bottom": "{az.spacing.3}"
           },
           "states": {
             "hover": {
@@ -165,19 +122,6 @@
             },
             "focus-visible": {
               "color": "{az.color.brand.white}"
-            }
-          }
-        },
-        "link": {
-          "description": "A link in the card's text, if it has one. With keyboard focus, its ring is drawn in its own color, so it stands out from the fill as much as its text does.",
-          "states": {
-            "hover": {
-              "color": "{az.color.brand.white}"
-            },
-            "focus-visible": {
-              "color": "{az.color.brand.white}",
-              "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width.md}"
             }
           }
         }

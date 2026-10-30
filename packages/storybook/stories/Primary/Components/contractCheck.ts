@@ -34,7 +34,13 @@ const CSS: Record<string, string> = {
   'border.radius': 'border-top-left-radius',
   'padding.y': 'padding-top',
   'padding.x': 'padding-left',
-  gap: 'column-gap',
+  'padding.bottom': 'padding-bottom',
+  // Read by gapOf: the space between items, along whichever axis they're laid out on.
+  gap: 'row-gap',
+  // A gradient's color is its last color stop, read by lastColor.
+  'gradient.color': 'color',
+  // A height that's a share of the image, read by compareShare.
+  height: 'height',
   'transition.duration': 'transition-duration',
   'transition.easing': 'transition-timing-function',
   color: 'color',
@@ -143,6 +149,29 @@ function same(expected: string, drawn: string) {
   return expected === drawn || (length.test(expected) && length.test(drawn) && Math.abs(parseFloat(expected) - parseFloat(drawn)) < 0.01);
 }
 
+// The space between items. On a flex or grid container, its gap along the main
+// axis; on one item of a list, such as a link in a list of links, the space drawn
+// between it (or the list item it's in) and the next one. Null when there's no next
+// item to measure against.
+function gapOf(element: HTMLElement, root: HTMLElement): string | null {
+  const style = getComputedStyle(element);
+  if (/flex|grid/.test(style.display)) return style.flexDirection.startsWith('column') ? style.rowGap : style.columnGap;
+  let item: Element = element;
+  while (!item.nextElementSibling && item !== root && item.parentElement) item = item.parentElement;
+  const next = item.nextElementSibling;
+  if (!next || item === root) return null;
+  const drawn = item.getBoundingClientRect();
+  const after = next.getBoundingClientRect();
+  return `${after.top >= drawn.bottom ? after.top - drawn.bottom : after.left - drawn.right}px`;
+}
+
+// A gradient's last color stop, as drawn: linear-gradient(…, rgb(12, 35, 75)) gives
+// rgb(12, 35, 75).
+function lastColor(backgroundImage: string) {
+  const colors = backgroundImage.match(/rgba?\([^)]*\)/g);
+  return colors ? colors[colors.length - 1] : 'none';
+}
+
 // Reads a focus ring's outline property. A ring drawn as a box-shadow instead
 // (0 0 <blur> <width> <color>, as Arizona Bootstrap draws a link's) is read from
 // the shadow: its spread is the width, and it has no offset.
@@ -213,6 +242,16 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
     }
   };
 
+  // A height given as a share of the image (or of the component, if it has none),
+  // such as a title gradient over the bottom half of a photo.
+  const compareShare = (row: Row, element: HTMLElement) => {
+    const whole = (parts.image ?? parts.root).getBoundingClientRect().height;
+    const share = (element.getBoundingClientRect().height / whole) * 100;
+    if (Math.abs(share - Number(row.value)) > 0.5) {
+      mismatches.push(`${name} › ${row.part} › height: expected ${row.value}% of the image, got ${share.toFixed(1)}%`);
+    }
+  };
+
   const contractRowsFor = contractRows(contract, options).filter((row) => row.kind !== 'breakpoint' && parts[row.part]);
   const isShape = (row: Row) => row.property.startsWith('aspect-ratio.');
   for (const row of contractRowsFor.filter((r) => !CSS[r.property] && !isShape(r))) {
@@ -227,7 +266,12 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
     if (row.property === 'margin-bottom' && !element.nextElementSibling) continue;
     if (row.property === 'margin-top' && !element.previousElementSibling) continue;
     if (row.property === 'aspect-ratio.width') compareShape(row, element);
-    else if (CSS[row.property]) compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty));
+    else if (row.property === 'height') compareShare(row, element);
+    else if (row.property === 'gradient.color') compare(row, () => lastColor(getComputedStyle(element).backgroundImage), ['color']);
+    else if (row.property === 'gap') {
+      const space = gapOf(element, parts.root);
+      if (space !== null) compare(row, () => space, ['row-gap']);
+    } else if (CSS[row.property]) compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty));
   }
 
   if (hover !== 'focus-visible') {

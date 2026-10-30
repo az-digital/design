@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Frame } from './cards';
+import { Frame, checkCard } from './cards';
 
 // A title, text and one button. The card isn't a link itself. The controls are
-// the card's props.
+// the card's props. Arizona Bootstrap gives a Cloud card its title and text
+// colors only with .hover, so .text-azurite and .text-tinta set them here, and .mt-3
+// puts the button 32px below the text.
 
 type CallToActionCardArgs = { Title: string; Text: string; Button: string; 'Button link': string };
 
@@ -25,9 +27,9 @@ const meta = {
     <Frame>
       <div className="card bg-cloud border-0">
         <div className="card-body">
-          <h3 className="card-title h5 fw-bold mb-2">{args.Title}</h3>
-          <p className="card-text">{args.Text}</p>
-          <a href={args['Button link']} className="btn btn-red">{args.Button}</a>
+          <h3 className="card-title h5 fw-bold mb-2 text-azurite">{args.Title}</h3>
+          <p className="card-text text-tinta">{args.Text}</p>
+          <a href={args['Button link']} className="btn btn-red mt-3">{args.Button}</a>
         </div>
       </div>
     </Frame>
@@ -38,5 +40,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Call to Action Card docs page, not as its own page in the sidebar.
-export const Default: Story = {};
+// Shown on the Call to Action Card docs page. Its play function is the card's
+// contract check.
+export const Default: Story = { play: checkCard('call-to-action-card') };

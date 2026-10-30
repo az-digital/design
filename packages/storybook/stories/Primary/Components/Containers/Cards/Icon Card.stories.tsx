@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Frame, checkLinkCard } from './cards';
+import { Frame, checkCard } from './cards';
 
 // A Link Card with an icon above the title. The icon is a Material Symbols glyph
 // in its outline style, at a light weight, to match arizona.edu. The controls are
@@ -46,4 +46,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Shown on the Icon Card docs page. Its play function is the card's contract check.
-export const Default: Story = { play: checkLinkCard('icon-card') };
+export const Default: Story = { play: checkCard('icon-card') };

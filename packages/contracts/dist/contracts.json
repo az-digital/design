@@ -1653,10 +1653,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "call-to-action-card",
@@ -1665,10 +1662,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "call-to-action-card",
@@ -1677,10 +1671,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "call-to-action-card",
@@ -1710,10 +1701,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "call-to-action-card",
@@ -1734,10 +1722,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "token": "az.spacing.2"
   },
   {
     "contract": "call-to-action-card",
@@ -1767,10 +1752,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "call-to-action-card",
@@ -1791,10 +1773,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+    "token": "az.spacing.3"
   },
   {
     "contract": "call-to-action-card",
@@ -1803,10 +1782,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-top",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action."
+    "token": "az.spacing.3"
   },
   {
     "contract": "card",
@@ -1836,10 +1812,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "card",
@@ -1848,10 +1821,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
@@ -1860,67 +1830,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
-  },
-  {
-    "contract": "card",
-    "variant": null,
-    "part": "body",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.brand.tinta"
-  },
-  {
-    "contract": "card",
-    "variant": null,
-    "part": "body",
-    "kind": "default",
-    "condition": null,
-    "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Card text size: the same as body text."
-  },
-  {
-    "contract": "card",
-    "variant": null,
-    "part": "body",
-    "kind": "default",
-    "condition": null,
-    "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
-  },
-  {
-    "contract": "card",
-    "variant": null,
-    "part": "body",
-    "kind": "default",
-    "condition": null,
-    "property": "line-height",
-    "token": null,
-    "type": "dimension",
-    "value": "28px",
-    "description": "Card text line height: the same as body text."
-  },
-  {
-    "contract": "card",
-    "variant": null,
-    "part": "body",
-    "kind": "default",
-    "condition": null,
-    "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space between blocks in the body, such as a paragraph and a list. The last block has no space below it."
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
@@ -1950,10 +1860,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "card",
@@ -1974,10 +1881,58 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
     "token": null,
     "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
   },
   {
     "contract": "card",
@@ -1986,10 +1941,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space to the left and right of the header's and footer's content: the same as the body's, so their text lines up."
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
@@ -2031,10 +1983,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "icon-card",
@@ -2106,10 +2055,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space between the icon and the title's line."
+    "token": "az.spacing.3"
   },
   {
     "contract": "icon-card",
@@ -2136,10 +2082,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "icon-card",
@@ -2148,10 +2091,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "icon-card",
@@ -2181,10 +2121,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "icon-card",
@@ -2205,10 +2142,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "token": "az.spacing.2"
   },
   {
     "contract": "icon-card",
@@ -2274,10 +2208,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "icon-card",
@@ -2298,10 +2229,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+    "token": "az.spacing.3"
   },
   {
     "contract": "icon-card",
@@ -2320,42 +2248,6 @@
     "condition": "focus-visible",
     "property": "color",
     "token": "az.color.brand.white"
-  },
-  {
-    "contract": "icon-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "hover",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "icon-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "icon-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "icon-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.width",
-    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "image-card",
@@ -2385,10 +2277,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "image-card",
@@ -2511,10 +2400,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "image-card",
@@ -2523,10 +2409,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "image-card",
@@ -2556,10 +2439,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "image-card",
@@ -2580,10 +2460,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "token": "az.spacing.2"
   },
   {
     "contract": "image-card",
@@ -2649,10 +2526,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "image-card",
@@ -2673,10 +2547,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+    "token": "az.spacing.3"
   },
   {
     "contract": "image-card",
@@ -2695,42 +2566,6 @@
     "condition": "focus-visible",
     "property": "color",
     "token": "az.color.brand.white"
-  },
-  {
-    "contract": "image-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "hover",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "image-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "image-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "image-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.width",
-    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "link-card",
@@ -2760,10 +2595,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "link-card",
@@ -2814,10 +2646,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "link-card",
@@ -2826,10 +2655,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "link-card",
@@ -2859,10 +2685,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "link-card",
@@ -2883,10 +2706,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "token": "az.spacing.2"
   },
   {
     "contract": "link-card",
@@ -2952,10 +2772,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "link-card",
@@ -2976,10 +2793,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+    "token": "az.spacing.3"
   },
   {
     "contract": "link-card",
@@ -2998,42 +2812,6 @@
     "condition": "focus-visible",
     "property": "color",
     "token": "az.color.brand.white"
-  },
-  {
-    "contract": "link-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "hover",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "link-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "link-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.color",
-    "token": "az.color.brand.white"
-  },
-  {
-    "contract": "link-card",
-    "variant": null,
-    "part": "link",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "ring.width",
-    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "quick-links-card",
@@ -3063,10 +2841,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "quick-links-card",
@@ -3075,10 +2850,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "quick-links-card",
@@ -3087,10 +2859,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content."
+    "token": "az.spacing.4"
   },
   {
     "contract": "quick-links-card",
@@ -3120,10 +2889,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "quick-links-card",
@@ -3144,10 +2910,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between the title's line and the text below it."
+    "token": "az.spacing.2"
   },
   {
     "contract": "quick-links-card",
@@ -3177,10 +2940,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular."
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "quick-links-card",
@@ -3201,10 +2961,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it."
+    "token": "az.spacing.3"
   },
   {
     "contract": "quick-links-card",
@@ -3234,10 +2991,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "600",
-    "description": "Card link weight: Semibold."
+    "token": "az.font-weight.semibold"
   },
   {
     "contract": "quick-links-card",
@@ -3273,7 +3027,7 @@
     "token": null,
     "type": "dimension",
     "value": "0px",
-    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+    "description": "Card border width: none, since the photo fills the card."
   },
   {
     "contract": "title-on-image-card",
@@ -3282,10 +3036,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
+    "token": "az.radius.4"
   },
   {
     "contract": "title-on-image-card",
@@ -3387,10 +3138,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold."
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "title-on-image-card",
@@ -3432,10 +3180,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the photo's left and right edges and the title: the same as a card's padding."
+    "token": "az.spacing.4"
   },
   {
     "contract": "title-on-image-card",
@@ -3444,10 +3189,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the photo's bottom edge and the title: the same as a card's padding."
+    "token": "az.spacing.4"
   },
   {
     "contract": "title-on-image-card",

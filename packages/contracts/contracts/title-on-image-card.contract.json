@@ -18,16 +18,9 @@
             "value": 0,
             "unit": "px"
           },
-          "$description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+          "$description": "Card border width: none, since the photo fills the card."
         },
-        "border.radius": {
-          "$type": "dimension",
-          "$value": {
-            "value": 16,
-            "unit": "px"
-          },
-          "$description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms."
-        }
+        "border.radius": "{az.radius.4}"
       },
       "parts": {
         "image": {
@@ -91,11 +84,7 @@
               },
               "$description": "Card title text size."
             },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 700,
-              "$description": "Card title weight: Bold."
-            },
+            "font.weight": "{az.font-weight.bold}",
             "line-height": {
               "$type": "dimension",
               "$value": {
@@ -110,22 +99,8 @@
               "$value": 50,
               "$description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
             },
-            "padding.x": {
-              "$type": "dimension",
-              "$value": {
-                "value": 24,
-                "unit": "px"
-              },
-              "$description": "Space between the photo's left and right edges and the title: the same as a card's padding."
-            },
-            "padding.bottom": {
-              "$type": "dimension",
-              "$value": {
-                "value": 24,
-                "unit": "px"
-              },
-              "$description": "Space between the photo's bottom edge and the title: the same as a card's padding."
-            }
+            "padding.x": "{az.spacing.4}",
+            "padding.bottom": "{az.spacing.4}"
           },
           "states": {
             "focus-visible": {

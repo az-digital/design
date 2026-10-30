@@ -21,9 +21,11 @@ export function Frame({ children }: { children: ReactNode }) {
   return <div style={{ width: '416px', maxWidth: '100%', padding: '2rem 0' }}>{children}</div>;
 }
 
-// A contract check for a card whose title link covers it: compares the card with
-// its contract, at rest and with keyboard focus on the title link.
-export const checkLinkCard =
+// A card's contract check: compares the card with its contract, at rest, and with
+// keyboard focus on its title link if the whole card is a link. Each part is found
+// by its Arizona Bootstrap class; the plain Card's text is the first block in its
+// slot, after the title.
+export const checkCard =
   (contract: string) =>
   async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const root = canvasElement.querySelector<HTMLElement>('.card')!;
@@ -35,14 +37,16 @@ export const checkLinkCard =
         body: part('.card-body'),
         icon: part('.card-icon'),
         title: part('.card-title'),
-        text: part('.card-text'),
+        text: part('.card-text') ?? part('.card-body > .card-title + *'),
+        action: part('.card-body > .btn'),
+        'header-footer': part('.card-header, .card-footer'),
       }).filter(([, element]) => element),
     ) as { root: HTMLElement } & Record<string, HTMLElement>;
     // Wait for the icon font, so the icon is drawn at its size.
     await document.fonts.ready;
-    // Arizona Bootstrap draws hover and keyboard focus with one rule,
+    // Arizona Bootstrap draws hover and keyboard focus with one rule, such as
     // .card.bg-cloud.hover:is(:hover, :focus-visible, :has(:focus-visible)), so
     // hover is read with keyboard focus on the title link.
-    const target = { parts, focus: part('.stretched-link'), hover: 'focus-visible' as const };
+    const target = { parts, focus: part('.stretched-link') ?? root, hover: 'focus-visible' as const };
     await expect(checkContract(target, contract)).toEqual([]);
   };

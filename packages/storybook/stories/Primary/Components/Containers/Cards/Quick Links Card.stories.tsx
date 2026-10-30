@@ -3,7 +3,9 @@ import { Frame } from './cards';
 
 // A title, text and a list of links. The card isn't a link itself. The controls
 // are the card's props: Links is a list of links, each a label and the page it
-// goes to.
+// goes to. Arizona Bootstrap gives a Cloud card its title and text colors only
+// with .hover, so utility classes set them here, and the links' color, weight and
+// font. There's no utility for the 12px between links.
 
 type QuickLink = { label: string; link: string };
 
@@ -34,12 +36,12 @@ const meta = {
     <Frame>
       <div className="card bg-cloud border-0">
         <div className="card-body">
-          <h3 className="card-title h5 fw-bold mb-2">{args.Title}</h3>
-          <p className="card-text">{args.Text}</p>
+          <h3 className="card-title h5 fw-bold mb-2 text-azurite">{args.Title}</h3>
+          <p className="card-text text-tinta">{args.Text}</p>
           <ul className="list-unstyled">
-            {(args.Links ?? []).map(({ label, link }) => (
-              <li key={`${label} ${link}`}>
-                <a href={link} className="card-link">{label}</a>
+            {(args.Links ?? []).map(({ label, link }, index) => (
+              <li key={index}>
+                <a href={link} className="card-link text-azurite fw-semibold tk-proxima-nova-condensed">{label}</a>
               </li>
             ))}
           </ul>

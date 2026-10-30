@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Frame, checkLinkCard } from './cards';
+import { Frame, checkCard } from './cards';
 
 // A title and text that go to one page: the title link covers the whole card, and
 // .bg-cloud with .hover gives it the hover colors. The controls are the card's
@@ -39,4 +39,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Shown on the Link Card docs page. Its play function is the card's contract check.
-export const Default: Story = { play: checkLinkCard('link-card') };
+export const Default: Story = { play: checkCard('link-card') };
