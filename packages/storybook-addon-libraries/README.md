@@ -20,16 +20,16 @@ A library is any package, in this workspace or a dependency of the Storybook pro
 
 ```json
 {
-  "name": "@az-digital/components-web",
+  "name": "@az-digital/components-html",
   "exports": {
     ".": "./src/index.ts",
     "./storybook": "./storybook/adapter.ts"
   },
   "azDesign": {
     "library": {
-      "key": "web",
-      "title": "Web Components",
-      "status": "preview",
+      "key": "html",
+      "title": "Arizona Bootstrap",
+      "status": "supported",
       "codeLanguage": "html",
       "readme": "./README.md",
       "stylesheets": ["https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"],

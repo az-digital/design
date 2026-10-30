@@ -1,4 +1,5 @@
-import { escapeHtml, type ButtonProps } from '@az-digital/components-html';
+import { escapeHtml } from './escapeHtml';
+import type { ButtonProps } from './types';
 
 /** The `<az-button>` markup for the button's shared props. */
 export function renderAzButton({ label, color, size }: ButtonProps) {

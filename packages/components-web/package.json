@@ -27,14 +27,11 @@
       "status": "preview",
       "codeLanguage": "html",
       "readme": "./README.md",
-      "stylesheets": [
-        "https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"
-      ],
       "adapter": "./storybook"
     }
   },
   "dependencies": {
-    "@az-digital/components-html": "*"
+    "@az-digital/tokens": "*"
   },
   "devDependencies": {
     "@az-digital/storybook-addon-libraries": "*"
