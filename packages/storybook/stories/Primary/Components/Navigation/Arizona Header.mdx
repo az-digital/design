@@ -1,0 +1,65 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as ArizonaHeaderStories from './Arizona Header.stories';
+
+<Meta of={ArizonaHeaderStories} />
+
+# Arizona Header
+
+The university's header bar, on every arizona.edu site: the wordmark, which links to the
+home page, with optional header buttons, such as Search and Menu, for small screens.
+
+<Canvas of={ArizonaHeaderStories.Default} sourceState="none" />
+
+<Controls of={ArizonaHeaderStories.Default} />
+
+The header above is the current release. It matches this page except for keyboard focus on
+the header buttons: they draw the ring every button gets, 2px outside the button, instead
+of the header's ring inside their edges. On a site, header buttons only show below 992px.
+
+## Colors
+
+- **Blue** (default): the current, recommended header color.
+- **Red**: the original header color. It's being retired, so don't use it for new sites.
+
+## Design decisions
+
+The header's contract (`brand-header.contract.json`) sets each of its parts' design
+properties: its colors are brand colors, its focus ring width is the shared one, and its
+sizes and timings are the header's own values, written in the contract. The header has
+no design tokens of its own.
+
+- **Fill:** <Token data={getTokenData('az.color.brand.blue')} />. The original red header
+  isn't a separate set of design tokens: its contract points the fill at Red, and keeps every
+  other color White. The red header is only needed until it's retired.
+- **Size:** the header is at least 50px tall, and exactly 50px below 992px. The wordmark
+  is 211 × 16px below 576px and 266.41 × 19.8px from 576px up, 10px from the header's
+  left edge.
+- **Keyboard focus:** the logo and header buttons draw a ring inside their edges, with
+  2px corners, in <Token data={getTokenData('az.color.fg.white')} />. Its width is the
+  shared focus ring width, <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **Header buttons** (for adding search and menu toggles on mobile): at least 60px
+  wide and as tall as the header, with 4px of padding above and below.
+  - **Label:** text in <Token data={getTokenData('az.color.fg.white')} />, 10px with a
+    10px line height, 2px below the icon.
+  - **Icon:** 24px square, the same color as the label. Use an SVG (inline or from a
+    sprite) with `fill="currentColor"` so it picks up that color.
+- **Logo:** the wordmark is <Token data={getTokenData('az.color.fg.white')} />. It's a
+  single color, so its color can change with the fill behind it. The contract wires it
+  separately from the labels, so changing the text color doesn't recolor the logo.
+- **Motion:** the off-canvas panel the header buttons open slides in over 300ms,
+  ease-in-out, and the backdrop behind it fades in over 150ms. Header buttons change
+  color and show their focus ring over 150ms. They haven't been
+  reviewed by design yet, and all of them turn off when someone asks for reduced
+  motion.
+- **Fixed on mobile:** when the header is pinned to the top of the screen below 992px,
+  linked sections stop 8px below the header when scrolled to (58px from the top), so
+  the header doesn't cover them.
+
+## Anatomy
+
+Each part of the header and each of its design properties, from the header's contract:
+the design token it uses, or the header's own value and what it's for.
+
+<ContractAnatomy contract="brand-header" />

@@ -53,6 +53,23 @@ packages/storybook`).
 
 When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
 
+When you add or fill in a docs page, link it from every overview above it, so it can be found without the sidebar:
+
+- **Its group's overview:** the `Docs.mdx` in its folder, such as `Primary/Components/Buttons`. If the group has none, add one the way Buttons and Containers do, listing every page in the group.
+- **Its section's overview,** such as `Primary/Components/Overview`, which lists the groups.
+- **The Primary overview** (`Primary/Overview`), which lists each group and its pages.
+
+## Component docs pages
+
+Lay out a component's docs page the way the Button page is (`Primary/Components/Buttons/Button.mdx` and `Button.stories.tsx`):
+
+1. A one-sentence description, then `<Canvas of={…Stories.Default} sourceState="none" />` and `<Controls />` for a story that renders the implementation's markup as its latest release ships it. Tag the story `'!dev'` so it shows on the docs page, not as its own sidebar entry. Its controls follow the Figma component's properties where there is one.
+2. A short note on where that release differs from the page, if it does. Check computed styles in the browser rather than guessing.
+3. The design decisions, by topic (colors, size, keyboard focus, motion), with design token pills.
+4. `<ContractAnatomy contract="…" />`, and one per variant option the contract has.
+
+Load anything the markup needs, such as an icon font, in `.storybook/preview-head.html`. Don't restyle it there or in the story.
+
 ## Component contracts
 
 When you add or change a component's design decisions, update its contract in
