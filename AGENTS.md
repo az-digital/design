@@ -23,6 +23,16 @@ Connect to it (project name `az-digital-storybook`) and use it to:
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
+### Storybook navigation
+
+- When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position.
+- Verify the rendered sidebar order in Storybook.
+
+### MDX tables
+
+- Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
+- Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
+
 ## Storybook agent CLI
 
 The same skills and tools are also available from the command line, which
@@ -39,23 +49,27 @@ without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
 
+## Overview-page links
+
+When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
+
 ## Component contracts
 
-When you add or change a component's tokens, update its contract in
+When you add or change a component's design decisions, update its contract in
 `packages/contracts/contracts/` and run `npm run build:contracts` before
-finishing. Follow its refusals; don't work around them. A contract does the
-wiring that aliases used to do in `tokens.json`. Point a part's colors straight
-at the token they use, usually a brand color. Write what's specific to the
-component, such as its sizes and timings, as values in the contract (a `$type`,
-`$value` and `$description`), not as tokens: no component tokens, and no
-primitive named after its value (`az.dimension.50`). Don't add a semantic token
-just so one component has a name to point at; semantic tokens are for decisions
-that are really shared or that a theme changes. Remove any component token the
-check flags as redundant.
+finishing. Follow its refusals; don't work around them.
 
-For a decision several components share (a link color, the focus ring, a
-border, form-control sizing, body type), add one token named after Bootstrap 6's
-name for it (`az.focus-ring.width` for `--focus-ring-width`), with Arizona's value,
-and point every contract at it. Don't adopt Bootstrap 6's role names (`primary`,
-`accent`) yet. See
-[packages/contracts/README.md](./packages/contracts/README.md).
+- **Token names:** read the Naming page before adding or renaming a token:
+  `Primary/Foundations/Tokens/Naming` in Storybook
+  (`packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`).
+- **What a contract holds, and how implementations use it:** see
+  [packages/contracts/README.md](./packages/contracts/README.md).
+- **No platform output:** contracts generate nothing for a platform, so never add
+  CSS, Sass or other platform output to them.
+- **Implementations:** don't restyle an implementation with CSS rules or
+  overridden values in Storybook. When Arizona Bootstrap needs to change, make a
+  patch to its source that its maintainers can apply as a pull request, as the
+  README's "Patching Arizona Bootstrap" describes, and write its update
+  instructions in the pull request description. Once the component matches its
+  contract, add a contract check story that runs `checkContract`;
+  `npm run test:storybook` must pass.

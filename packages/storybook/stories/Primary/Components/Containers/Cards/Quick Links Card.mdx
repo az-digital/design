@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as QuickLinksCardStories from './Quick Links Card.stories';
+
+<Meta of={QuickLinksCardStories} />
+
+# Quick Links Card
+
+A title, text and a list of related links. The card isn't a link itself: each link is
+its own.
+
+<Canvas of={QuickLinksCardStories.Default} sourceState="none" />
+
+<Controls of={QuickLinksCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Edit Links to change the list: each link is a label and the page it goes to.
+
+Arizona Bootstrap gives a Cloud card its title and text colors only when the whole card is a link, so this card sets them with `.text-azurite` on its title and `.text-tinta` on its text, and `.text-azurite`, `.fw-semibold` and `.tk-proxima-nova-condensed` on its links. Arizona Bootstrap has no utility for the 12px between links, so until its update lands, the links above sit closer together than this page says.
+
+## When to use it
+
+- **Use it** for a few links that belong together, such as the offices a student needs
+  for one task.
+- **Keep the list short:** three to five links. For more, link to a page that lists them.
+- **Write each link as where it goes,** such as "Registrar & Transcripts", not "Click
+  here".
+- **If the card should go to one page,** use a
+  <a href="./?path=/docs/primary-components-containers-cards-link-card--docs" target="_top">Link Card</a>
+  instead.
+
+## Design decisions
+
+- **Links:** 18px Semibold, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />, underlined, in Proxima Nova
+  Condensed. One per line, 12px apart.
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />. 16px below the text, before the
+  links.
+- **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
+- **No hover colors:** the card isn't a link, so only each link reacts to hover and focus.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`quick-links-card.contract.json`): the token it uses, or the card's own value and what
+it's for.
+
+<ContractAnatomy contract="quick-links-card" />

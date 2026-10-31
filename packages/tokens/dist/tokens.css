@@ -13,5 +13,89 @@
   --az-color-brand-cloud: #e5eff7;
   --az-color-brand-caliche: #f2efea;
   --az-color-brand-white: #ffffff;
-  --az-focus-ring-width: 2px; /** Width of the keyboard focus ring, everywhere one is drawn: links, buttons, and the header's logo and buttons. */
+  --az-color-brand-black: #000000;
+  --az-color-brand-gray-100: #f8f9fa;
+  --az-color-brand-gray-200: #e9ecef;
+  --az-color-brand-gray-300: #dee2e6;
+  --az-color-brand-gray-400: #ced4da;
+  --az-color-brand-gray-500: #adb5bd;
+  --az-color-brand-gray-600: #6c757d;
+  --az-color-brand-gray-700: #495057;
+  --az-color-brand-gray-800: #343a40;
+  --az-color-brand-gray-900: #212529;
+  --az-color-bg-button-blue-active: #3d4f6f;
+  --az-color-bg-button-rain-hover: #65c0db;
+  --az-color-bg-button-rain-active: #9ad8ef;
+  --az-focus-ring-width-sm: 1px;
+  --az-focus-ring-width-md: 2px; /** Width of the keyboard focus ring, everywhere one is drawn, such as links and buttons. */
+  --az-focus-ring-width-lg: 4px;
+  --az-breakpoint-sm: 576px; /** Minimum viewport width for the small breakpoint. */
+  --az-breakpoint-md: 768px; /** Minimum viewport width for the medium breakpoint. */
+  --az-breakpoint-lg: 992px; /** Minimum viewport width for the large breakpoint. */
+  --az-breakpoint-xl: 1200px; /** Minimum viewport width for the extra large breakpoint. */
+  --az-breakpoint-xxl: 1400px; /** Minimum viewport width for the extra extra large breakpoint. */
+  --az-spacing-0: 0px;
+  --az-spacing-1: 4px;
+  --az-spacing-2: 8px;
+  --az-spacing-3: 16px;
+  --az-spacing-4: 24px;
+  --az-spacing-5: 48px;
+  --az-spacing-6: 64px;
+  --az-spacing-7: 80px;
+  --az-spacing-8: 96px;
+  --az-spacing-9: 112px;
+  --az-spacing-10: 128px;
+  --az-spacing-20: 256px;
+  --az-spacing-30: 384px;
+  --az-spacing-min: 1px;
+  --az-spacing-card: 20px;
+  --az-radius-0: 0px;
+  --az-radius-1: 4px;
+  --az-radius-2: 6px;
+  --az-radius-3: 8px;
+  --az-radius-4: 16px;
+  --az-radius-5: 32px;
+  --az-radius-pill: 800px;
+  --az-font-family-sans-serif: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --az-font-family-sans-serif-condensed: proxima-nova-extra-condensed, sans-serif;
+  --az-font-family-serif: "MiloSerifWeb", Georgia, Cambria, "Times New Roman", Times, serif;
+  --az-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --az-font-weight-light: 300;
+  --az-font-weight-normal: 400;
+  --az-font-weight-medium: 500;
+  --az-font-weight-semibold: 600;
+  --az-font-weight-bold: 700;
+  --az-line-height-base: 1.5;
+  --az-line-height-sm: 1.25;
+  --az-line-height-medium: 1.2;
+  --az-font-size-root: 16px;
+  --az-font-size-sm: 14px;
+  --az-font-size-lg: 20px;
+  --az-font-size-h6: 16px;
+  --az-font-size-h5: 20px;
+  --az-font-size-h4: 24px;
+  --az-font-size-h3: 28px;
+  --az-font-size-h2: 32px;
+  --az-font-size-h1: 40px;
+  --az-font-size-button: 18px;
+  --az-border-width-sm: 1px;
+  --az-border-width-md: 2px;
+  --az-opacity-button-disabled: 0.65;
+  --az-color-bg-card-cloud: var(--az-color-brand-cloud); /** Card fill. */
+  --az-color-bg-card-cloud-hover: var(--az-color-brand-blue); /** Clickable card fill on hover and with keyboard focus. */
+  --az-color-bg-card-cloud-active: var(--az-color-brand-blue); /** Clickable card fill while pressed. */
+  --az-color-bg-button-red: var(--az-color-brand-red);
+  --az-color-bg-button-red-hover: var(--az-color-brand-sonoran-red);
+  --az-color-bg-button-red-active: var(--az-color-brand-red);
+  --az-color-bg-button-blue: var(--az-color-brand-blue);
+  --az-color-bg-button-blue-hover: var(--az-color-brand-azurite);
+  --az-color-bg-button-rain: var(--az-color-brand-rain);
+  --az-color-bg-button-white: var(--az-color-brand-white);
+  --az-color-bg-button-white-hover: var(--az-color-brand-gray-200);
+  --az-color-bg-button-white-active: var(--az-color-brand-gray-100);
+  --az-color-fg-white: var(--az-color-brand-white);
+  --az-color-fg-blue: var(--az-color-brand-blue);
+  --az-color-fg-tinta: var(--az-color-brand-tinta);
+  --az-color-fg-red: var(--az-color-brand-red);
+  --az-color-fg-rain: var(--az-color-brand-rain);
 }

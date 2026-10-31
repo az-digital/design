@@ -1,0 +1,100 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "card",
+  "name": "Card",
+  "description": "A title and any content in a Cloud box, with no border and rounded corners. It isn't a link. Its body is a slot for rich text, such as paragraphs, a list or a small table. It's the only card with a slot, and with an optional header above the body and footer below it.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text",
+    "az-digital/arizona-bootstrap#2273 (closes #2271): 18px body text; az-digital/arizona-bootstrap#2286: its 28px line height",
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5)",
+    "Arizona Bootstrap 5.2: the header and footer padding, which follows the card padding"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card.",
+      "tokens": {
+        "fill": "{az.color.bg.card.cloud}",
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          },
+          "$description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+        },
+        "border.radius": "{az.radius.4}"
+      },
+      "parts": {
+        "body": {
+          "description": "The card's body, which is its slot: the title, then any rich text, such as paragraphs, a list or a small table, in the card's text type.",
+          "tokens": {
+            "padding.x": "{az.spacing.4}",
+            "padding.y": "{az.spacing.4}"
+          }
+        },
+        "title": {
+          "description": "The card's heading.",
+          "tokens": {
+            "color": "{az.color.brand.azurite}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Card title text size."
+            },
+            "font.weight": "{az.font-weight.bold}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 30,
+                "unit": "px"
+              },
+              "$description": "Card title line height. The space below the title is measured from this line."
+            },
+            "margin-bottom": "{az.spacing.2}"
+          }
+        },
+        "text": {
+          "description": "Each block of rich text in the slot, such as a paragraph or a list.",
+          "tokens": {
+            "color": "{az.color.brand.tinta}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Card text size: the same as body text."
+            },
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Card text line height: the same as body text."
+            },
+            "margin-bottom": "{az.spacing.3}"
+          }
+        },
+        "header-footer": {
+          "description": "The optional header above the body and footer below it. Both have the same padding.",
+          "tokens": {
+            "padding.x": "{az.spacing.4}",
+            "padding.y": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Space above and below the header's and footer's content: half the body's."
+            }
+          }
+        }
+      }
+    }
+  }
+}

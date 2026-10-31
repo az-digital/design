@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as TitleOnImageCardStories from './Title on Image Card.stories';
+
+<Meta of={TitleOnImageCardStories} />
+
+# Title on Image Card
+
+A square photo with only a title on it. The whole card is the link, and the photo zooms in
+on hover.
+
+<Canvas of={TitleOnImageCardStories.Default} sourceState="none" />
+
+<Controls of={TitleOnImageCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch, with the markup in its Title on Image
+docs. Hover it, or press <kbd>Tab</kbd> to reach its title link, for its zoom and
+underline.
+
+## When to use it
+
+- **Use it** in a grid of choices that a photo and a word or two can explain, such as
+  Undergraduate, Graduate and Online.
+- **Keep the title short:** one to three words. There's no text, so the title has to say
+  where the card goes.
+- **Use any photo:** it's cropped to a square, and the gradient keeps the title readable.
+  Keep what matters in the top half, above the title.
+- **The photo is decorative,** so leave its `alt` empty: the title says where the card
+  goes.
+
+## Design decisions
+
+- **Photo:** square, cropped to fill it. On hover and with keyboard focus, it zooms in 8%
+  over 250ms, ease, and zooms back out the same way, inside the card's 16px corners. The
+  zoom still happens when someone asks for reduced motion, without the animation.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.white')} />, at the bottom of the photo, 24px
+  from its left, right and bottom edges. Behind it, a gradient covers the bottom half of
+  the photo, from transparent to <Token data={getTokenData('az.color.brand.blue')} /> at
+  the bottom, so the title stays readable on any photo.
+- **Hover and keyboard focus:** the photo zooms and the title is underlined. Its colors
+  don't change: the photo covers the card. The title link's focus ring is White, so it
+  shows on the gradient. Its width is the shared
+  <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **No fill or border:** the photo covers the whole card.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`title-on-image-card.contract.json`): the token it uses, or the card's own value and what
+it's for.
+
+<ContractAnatomy contract="title-on-image-card" />

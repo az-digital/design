@@ -1,0 +1,155 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "icon-card",
+  "name": "Icon Card",
+  "description": "A Link Card with an icon above the title. The whole card is one link: its title link covers it. On hover, and while keyboard focus is on a link inside it, the card shows its hover colors. Don't put a button in it.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): the 60px icon and the 16px space below it",
+    "az-digital/arizona-bootstrap#2273 (closes #2271): 18px body text; az-digital/arizona-bootstrap#2286: its 28px line height",
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5)",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): .card.bg-cloud.hover: the hover colors, and their 300ms ease-out fade",
+    "The AZ Digital UX Design System Figma file's Card component (2026-10-29): Style Cloud, with Default and Hover states"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card. It shows its hover colors on hover, and while keyboard focus is on its title link or another link inside it (focus-visible), so keyboard users see the same change.",
+      "tokens": {
+        "fill": "{az.color.bg.card.cloud}",
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          },
+          "$description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+        },
+        "border.radius": "{az.radius.4}",
+        "transition.duration": {
+          "$type": "duration",
+          "$value": {
+            "value": 300,
+            "unit": "ms"
+          },
+          "$description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+        },
+        "transition.easing": {
+          "$type": "cubicBezier",
+          "$value": [
+            0,
+            0,
+            0.58,
+            1
+          ],
+          "$description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+        }
+      },
+      "states": {
+        "hover": {
+          "fill": "{az.color.bg.card.cloud-hover}"
+        },
+        "focus-visible": {
+          "fill": "{az.color.bg.card.cloud-hover}"
+        }
+      },
+      "parts": {
+        "icon": {
+          "description": "The icon above the title: an icon font glyph, or an SVG that fills with currentColor. It's decorative, so hide it from screen readers.",
+          "tokens": {
+            "color": "{az.color.brand.azurite}",
+            "size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 60,
+                "unit": "px"
+              },
+              "$description": "Icon size: an icon font's font size, or an SVG's width and height."
+            },
+            "margin-bottom": "{az.spacing.3}"
+          },
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.rain}"
+            }
+          }
+        },
+        "body": {
+          "description": "The card's content.",
+          "tokens": {
+            "padding.x": "{az.spacing.4}",
+            "padding.y": "{az.spacing.4}"
+          }
+        },
+        "title": {
+          "description": "The card's heading: a link that covers the whole card. With keyboard focus, its ring is drawn in its own color, so it stands out from the fill as much as its text does.",
+          "tokens": {
+            "color": "{az.color.brand.azurite}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Card title text size."
+            },
+            "font.weight": "{az.font-weight.bold}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 30,
+                "unit": "px"
+              },
+              "$description": "Card title line height. The space below the title is measured from this line."
+            },
+            "margin-bottom": "{az.spacing.2}"
+          },
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.rain}",
+              "ring.color": "{az.color.brand.rain}",
+              "ring.width": "{az.focus-ring.width.md}"
+            }
+          }
+        },
+        "text": {
+          "description": "The card's text, below the title.",
+          "tokens": {
+            "color": "{az.color.brand.tinta}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Card text size: the same as body text."
+            },
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 28,
+                "unit": "px"
+              },
+              "$description": "Card text line height: the same as body text."
+            },
+            "margin-bottom": "{az.spacing.3}"
+          },
+          "states": {
+            "hover": {
+              "color": "{az.color.brand.white}"
+            },
+            "focus-visible": {
+              "color": "{az.color.brand.white}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

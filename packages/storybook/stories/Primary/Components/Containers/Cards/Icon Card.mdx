@@ -1,0 +1,61 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as IconCardStories from './Icon Card.stories';
+
+<Meta of={IconCardStories} />
+
+# Icon Card
+
+A Link Card with an icon above the title, which says what the page is about. The whole
+card is the link.
+
+<Canvas of={IconCardStories.Default} sourceState="none" />
+
+<Controls of={IconCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Hover it, or press <kbd>Tab</kbd> to
+reach its title link, for its hover colors. The icons are the outline style of each icon,
+at a light weight, to match arizona.edu.
+
+## When to use it
+
+- **Use it** in a row of cards that each go to a part of the site, such as Future
+  Students, Current Students and Alumni, where an icon helps people find theirs.
+- **Pick an icon for the page, not for decoration.** Screen readers skip it, so the title
+  has to say everything on its own.
+- **Use icon cards together:** in a row, give every card an icon, or none.
+- **Don't put a button or other links in it:** the whole card is already one link.
+
+## Design decisions
+
+- **Icon:** 60px, in <Token data={getTokenData('az.color.brand.azurite')} />, with 16px
+  between it and the title's line. Use an icon font glyph at that font size, or an SVG at
+  that width and height with `fill="currentColor"`. The icon is decorative, so hide it
+  from screen readers with `aria-hidden="true"`.
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />.
+- **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
+- **Hover:** the fill turns <Token data={getTokenData('az.color.bg.card.cloud-hover')} />,
+  the text turns <Token data={getTokenData('az.color.brand.white')} />, and the icon and
+  title turn <Token data={getTokenData('az.color.brand.rain')} />. The title is
+  underlined.
+- **Keyboard focus:** when <kbd>Tab</kbd> reaches the title link, the card shows its hover
+  colors, and the link's ring is Rain. Its width is the shared
+  <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **Touch screens:** on a device that can't hover, such as a phone, the title is always
+  underlined.
+- **Motion:** the colors fade over 300ms, ease-out. The fade turns off when someone asks
+  for reduced motion; the colors still change.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`icon-card.contract.json`): the token it uses, or the card's own value and what it's for.
+
+<ContractAnatomy contract="icon-card" />

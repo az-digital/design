@@ -1,0 +1,115 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "title-on-image-card",
+  "name": "Title on Image Card",
+  "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. Its colors don't change on hover, because the photo covers the card: the photo zooms, and the title is underlined.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): the square image, the title's blue gradient over its bottom half, and the title's 24px padding",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): the image's 8% zoom over 250ms",
+    "Arizona Bootstrap 5.2: the title's 30px line height (.h5)"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The card: a photo, with the title on it. It has no fill of its own, because the photo covers it.",
+      "tokens": {
+        "border.width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          },
+          "$description": "Card border width: none, since the photo fills the card."
+        },
+        "border.radius": "{az.radius.4}"
+      },
+      "parts": {
+        "image": {
+          "description": "The photo, which fills the whole card, cropped to a square if it has to be. It zooms in on hover and with keyboard focus, inside the card's corners.",
+          "tokens": {
+            "aspect-ratio.width": {
+              "$type": "number",
+              "$value": 1,
+              "$description": "Photo shape: its width, against aspect-ratio.height. The photo is square."
+            },
+            "aspect-ratio.height": {
+              "$type": "number",
+              "$value": 1,
+              "$description": "Photo shape: its height, against aspect-ratio.width. The photo is square."
+            },
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 250,
+                "unit": "ms"
+              },
+              "$description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.25,
+                0.1,
+                0.25,
+                1
+              ],
+              "$description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
+            }
+          },
+          "states": {
+            "hover": {
+              "scale": {
+                "$type": "number",
+                "$value": 1.08,
+                "$description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
+              }
+            },
+            "focus-visible": {
+              "scale": {
+                "$type": "number",
+                "$value": 1.08,
+                "$description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
+              }
+            }
+          }
+        },
+        "title": {
+          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo.",
+          "tokens": {
+            "color": "{az.color.brand.white}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Card title text size."
+            },
+            "font.weight": "{az.font-weight.bold}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 30,
+                "unit": "px"
+              },
+              "$description": "Card title line height. The space below the title is measured from this line."
+            },
+            "gradient.color": "{az.color.brand.blue}",
+            "height": {
+              "$type": "number",
+              "$value": 50,
+              "$description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
+            },
+            "padding.x": "{az.spacing.4}",
+            "padding.bottom": "{az.spacing.4}"
+          },
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.brand.white}",
+              "ring.width": "{az.focus-ring.width.md}"
+            }
+          }
+        }
+      }
+    }
+  }
+}
