@@ -1,6 +1,7 @@
 [
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -9,6 +10,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -16,11 +18,11 @@
     "token": null,
     "type": "dimension",
     "value": "50px",
-    "description": "Header height: its minimum height at every screen size, and its fixed height below 992px.",
-    "variable": "az-component-brand-header-height"
+    "description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -28,11 +30,11 @@
     "token": null,
     "type": "dimension",
     "value": "8px",
-    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them.",
-    "variable": "az-component-brand-header-fixed-on-mobile-scroll-gap"
+    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -41,6 +43,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -48,11 +51,11 @@
     "token": null,
     "type": "dimension",
     "value": "211px",
-    "description": "Wordmark width below the sm breakpoint (576px).",
-    "variable": "az-component-brand-header-logo-width"
+    "description": "Wordmark width below the sm breakpoint (576px)."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -60,11 +63,11 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Wordmark height below the sm breakpoint (576px).",
-    "variable": "az-component-brand-header-logo-height"
+    "description": "Wordmark height below the sm breakpoint (576px)."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "default",
     "condition": null,
@@ -72,11 +75,11 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Space before the wordmark, at the header's left edge.",
-    "variable": "az-component-brand-header-logo-margin-left"
+    "description": "Space before the wordmark, at the header's left edge."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
@@ -85,14 +88,16 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "state",
     "condition": "focus-visible",
@@ -100,11 +105,11 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.",
-    "variable": "az-component-brand-header-logo-focus-visible-border-radius"
+    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "breakpoint",
     "condition": "sm",
@@ -112,11 +117,11 @@
     "token": null,
     "type": "dimension",
     "value": "266.41px",
-    "description": "Wordmark width from the sm breakpoint (576px) up.",
-    "variable": "az-component-brand-header-logo-sm-width"
+    "description": "Wordmark width from the sm breakpoint (576px) up."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "logo",
     "kind": "breakpoint",
     "condition": "sm",
@@ -124,11 +129,11 @@
     "token": null,
     "type": "dimension",
     "value": "19.8px",
-    "description": "Wordmark height from the sm breakpoint (576px) up.",
-    "variable": "az-component-brand-header-logo-sm-height"
+    "description": "Wordmark height from the sm breakpoint (576px) up."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -136,11 +141,11 @@
     "token": null,
     "type": "dimension",
     "value": "60px",
-    "description": "Header button minimum width.",
-    "variable": "az-component-brand-header-button-min-width"
+    "description": "Header button minimum width."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -148,11 +153,11 @@
     "token": null,
     "type": "dimension",
     "value": "50px",
-    "description": "Header button minimum height: as tall as the header.",
-    "variable": "az-component-brand-header-button-min-height"
+    "description": "Header button minimum height: as tall as the header."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -160,11 +165,11 @@
     "token": null,
     "type": "dimension",
     "value": "4px",
-    "description": "Header button top and bottom padding.",
-    "variable": "az-component-brand-header-button-padding-y"
+    "description": "Header button top and bottom padding."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -172,11 +177,11 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Space between a header button's icon and its label.",
-    "variable": "az-component-brand-header-button-gap"
+    "description": "Space between a header button's icon and its label."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -184,11 +189,11 @@
     "token": null,
     "type": "duration",
     "value": "150ms",
-    "description": "How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-button-transition-duration"
+    "description": "How long a header button's colors and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "default",
     "condition": null,
@@ -196,11 +201,11 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "description": "Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-button-transition-easing"
+    "description": "Easing for a header button's color and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
@@ -209,14 +214,16 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button",
     "kind": "state",
     "condition": "focus-visible",
@@ -224,11 +231,11 @@
     "token": null,
     "type": "dimension",
     "value": "2px",
-    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners.",
-    "variable": "az-component-brand-header-button-focus-visible-border-radius"
+    "description": "Corner radius of the logo and header buttons while they have keyboard focus, so the ring has rounded corners."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.icon",
     "kind": "default",
     "condition": null,
@@ -237,6 +244,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.icon",
     "kind": "default",
     "condition": null,
@@ -244,11 +252,11 @@
     "token": null,
     "type": "dimension",
     "value": "24px",
-    "description": "Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph.",
-    "variable": "az-component-brand-header-button-icon-size"
+    "description": "Header button icon width and height: the icon is 24px square, whether it's an SVG, a sprite or a font glyph."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -257,6 +265,7 @@
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -264,11 +273,11 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Header button label text size (\"Search\", \"Menu\").",
-    "variable": "az-component-brand-header-button-label-font-size"
+    "description": "Header button label text size (\"Search\", \"Menu\")."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "button.label",
     "kind": "default",
     "condition": null,
@@ -276,11 +285,11 @@
     "token": null,
     "type": "dimension",
     "value": "10px",
-    "description": "Header button label line height.",
-    "variable": "az-component-brand-header-button-label-line-height"
+    "description": "Header button label line height."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas",
     "kind": "default",
     "condition": null,
@@ -288,11 +297,11 @@
     "token": null,
     "type": "duration",
     "value": "300ms",
-    "description": "How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-transition-duration"
+    "description": "How long the off-canvas panel (opened by the header buttons) takes to slide in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas",
     "kind": "default",
     "condition": null,
@@ -300,11 +309,11 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "description": "Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-transition-easing"
+    "description": "Easing for the off-canvas panel's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas.backdrop",
     "kind": "default",
     "condition": null,
@@ -312,11 +321,11 @@
     "token": null,
     "type": "duration",
     "value": "150ms",
-    "description": "How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-backdrop-transition-duration"
+    "description": "How long the backdrop behind the off-canvas panel takes to fade in or out. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "brand-header",
+    "variant": null,
     "part": "offcanvas.backdrop",
     "kind": "default",
     "condition": null,
@@ -324,11 +333,1460 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0, 0, 1, 1)",
-    "description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-brand-header-offcanvas-backdrop-transition-easing"
+    "description": "Easing for the off-canvas backdrop's fade. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "9px",
+    "description": "Button top and bottom padding, so with its 24px line and 2px border the button is 46px tall."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Button border width, on every color, so outline and solid buttons are the same size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": null,
+    "type": "dimension",
+    "value": "256px",
+    "description": "Button corner radius: fully rounded ends (a pill) at every size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "Space between the label and an icon."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long a button takes to change color on hover and focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for a button's color changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.offset",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Gap between the button and its keyboard focus ring."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": null,
+    "type": "fontFamily",
+    "value": "proxima-nova-condensed, \"Proxima Nova Condensed\", proxima-nova, calibri, sans-serif",
+    "description": "Button label typeface: Proxima Nova Condensed."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": null,
+    "type": "fontWeight",
+    "value": "700",
+    "description": "Button label weight (Bold)."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "24px",
+    "description": "Button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "letter-spacing",
+    "token": null,
+    "type": "dimension",
+    "value": "0.14px",
+    "description": "Button label letter spacing."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "3px",
+    "description": "Small button top and bottom padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "11px",
+    "description": "Small button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "16px",
+    "description": "Small button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": "size.small",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "19px",
+    "description": "Small button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Large button top and bottom padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "34px",
+    "description": "Large button left and right padding."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Large button label text size."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "27px",
+    "description": "Large button label line height."
+  },
+  {
+    "contract": "button",
+    "variant": "size.large",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "letter-spacing",
+    "token": null,
+    "type": "dimension",
+    "value": "0.18px",
+    "description": "Large button label letter spacing."
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.red-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.blue-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.rain-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.rain"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-rain",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.tinta"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-red",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.red"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.bg.button.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.white-text-blue",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-hover"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "fill",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "root",
+    "kind": "state",
+    "condition": "active",
+    "property": "border.color",
+    "token": "az.color.bg.button.white-active"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "button",
+    "variant": "color.outline-white",
+    "part": "label",
+    "kind": "state",
+    "condition": "active",
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "action",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-top",
+    "token": "az.spacing.3"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -337,6 +1795,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -344,151 +1803,38 @@
     "token": null,
     "type": "dimension",
     "value": "0px",
-    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge.",
-    "variable": "az-component-card-border-width"
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
     "property": "border.radius",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Card corner radius. An image takes the card's top corners, and stays inside them when it zooms.",
-    "variable": "az-component-card-border-radius"
+    "token": "az.radius.4"
   },
   {
     "contract": "card",
-    "part": "image",
-    "kind": "default",
-    "condition": null,
-    "property": "aspect-ratio.width",
-    "token": null,
-    "type": "number",
-    "value": "5",
-    "description": "Image shape: its width, against aspect-ratio.height. The image is 5:3.",
-    "variable": "az-component-card-image-aspect-ratio-width"
-  },
-  {
-    "contract": "card",
-    "part": "image",
-    "kind": "default",
-    "condition": null,
-    "property": "aspect-ratio.height",
-    "token": null,
-    "type": "number",
-    "value": "3",
-    "description": "Image shape: its height, against aspect-ratio.width. The image is 5:3.",
-    "variable": "az-component-card-image-aspect-ratio-height"
-  },
-  {
-    "contract": "card",
-    "part": "image",
-    "kind": "default",
-    "condition": null,
-    "property": "transition.duration",
-    "token": null,
-    "type": "duration",
-    "value": "250ms",
-    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms.",
-    "variable": "az-component-card-image-transition-duration"
-  },
-  {
-    "contract": "card",
-    "part": "image",
-    "kind": "default",
-    "condition": null,
-    "property": "transition.easing",
-    "token": null,
-    "type": "cubicBezier",
-    "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
-    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-card-image-transition-easing"
-  },
-  {
-    "contract": "card",
-    "part": "image",
-    "kind": "state",
-    "condition": "hover",
-    "property": "scale",
-    "token": null,
-    "type": "number",
-    "value": "1.08",
-    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale().",
-    "variable": "az-component-card-image-hover-scale"
-  },
-  {
-    "contract": "card",
-    "part": "image",
-    "kind": "state",
-    "condition": "focus-visible",
-    "property": "scale",
-    "token": null,
-    "type": "number",
-    "value": "1.08",
-    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover.",
-    "variable": "az-component-card-image-focus-visible-scale"
-  },
-  {
-    "contract": "card",
+    "variant": null,
     "part": "body",
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's left and right edges and its content.",
-    "variable": "az-component-card-body-padding-x"
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "body",
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the card's top and bottom edges (or its image) and its content.",
-    "variable": "az-component-card-body-padding-y"
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
-    "part": "icon",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.brand.azurite"
-  },
-  {
-    "contract": "card",
-    "part": "icon",
-    "kind": "default",
-    "condition": null,
-    "property": "size",
-    "token": null,
-    "type": "dimension",
-    "value": "64px",
-    "description": "Icon size: an icon font's font size, or an SVG's width and height.",
-    "variable": "az-component-card-icon-size"
-  },
-  {
-    "contract": "card",
-    "part": "icon",
-    "kind": "default",
-    "condition": null,
-    "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "16px",
-    "description": "Space between the icon and the title's line.",
-    "variable": "az-component-card-icon-margin-bottom"
-  },
-  {
-    "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -497,6 +1843,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -504,23 +1851,20 @@
     "token": null,
     "type": "dimension",
     "value": "22px",
-    "description": "Card title text size.",
-    "variable": "az-component-card-title-font-size"
+    "description": "Card title text size."
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "700",
-    "description": "Card title weight: Bold.",
-    "variable": "az-component-card-title-font-weight"
+    "token": "az.font-weight.bold"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -528,23 +1872,20 @@
     "token": null,
     "type": "dimension",
     "value": "30px",
-    "description": "Card title line height. The space below the title is measured from this line.",
-    "variable": "az-component-card-title-line-height"
+    "description": "Card title line height. The space below the title is measured from this line."
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "12px",
-    "description": "Space between the title's line and the text below it.",
-    "variable": "az-component-card-title-margin-bottom"
+    "token": "az.spacing.2"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -553,6 +1894,7 @@
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -560,23 +1902,20 @@
     "token": null,
     "type": "dimension",
     "value": "18px",
-    "description": "Card text size: the same as body text.",
-    "variable": "az-component-card-text-font-size"
+    "description": "Card text size: the same as body text."
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
     "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "400",
-    "description": "Card text weight: Regular.",
-    "variable": "az-component-card-text-font-weight"
+    "token": "az.font-weight.normal"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
@@ -584,135 +1923,29 @@
     "token": null,
     "type": "dimension",
     "value": "28px",
-    "description": "Card text line height: the same as body text.",
-    "variable": "az-component-card-text-line-height"
+    "description": "Card text line height: the same as body text."
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "text",
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "12px",
-    "description": "Space below the text, before more text, a list of links or a call to action. The last thing in a card has no space below it.",
-    "variable": "az-component-card-text-margin-bottom"
+    "token": "az.spacing.3"
   },
   {
     "contract": "card",
-    "part": "link",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.brand.azurite"
-  },
-  {
-    "contract": "card",
-    "part": "link",
-    "kind": "default",
-    "condition": null,
-    "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Card link text size.",
-    "variable": "az-component-card-link-font-size"
-  },
-  {
-    "contract": "card",
-    "part": "link",
-    "kind": "default",
-    "condition": null,
-    "property": "font.weight",
-    "token": null,
-    "type": "fontWeight",
-    "value": "600",
-    "description": "Card link weight: Semibold.",
-    "variable": "az-component-card-link-font-weight"
-  },
-  {
-    "contract": "card",
-    "part": "link",
-    "kind": "default",
-    "condition": null,
-    "property": "line-height",
-    "token": null,
-    "type": "dimension",
-    "value": "28px",
-    "description": "Card link line height.",
-    "variable": "az-component-card-link-line-height"
-  },
-  {
-    "contract": "card",
-    "part": "link",
-    "kind": "default",
-    "condition": null,
-    "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "12px",
-    "description": "Space between the links in a list.",
-    "variable": "az-component-card-link-gap"
-  },
-  {
-    "contract": "card",
-    "part": "action",
-    "kind": "default",
-    "condition": null,
-    "property": "margin-top",
-    "token": null,
-    "type": "dimension",
-    "value": "20px",
-    "description": "Space above a call to action, added to the space below the text: 32px between the text and the call to action.",
-    "variable": "az-component-card-action-margin-top"
-  },
-  {
-    "contract": "card",
-    "part": "social-link",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.brand.red"
-  },
-  {
-    "contract": "card",
-    "part": "social-link",
-    "kind": "default",
-    "condition": null,
-    "property": "size",
-    "token": null,
-    "type": "dimension",
-    "value": "45px",
-    "description": "Social icon size: an icon font's font size, or an SVG's width and height.",
-    "variable": "az-component-card-social-link-size"
-  },
-  {
-    "contract": "card",
-    "part": "social-link",
-    "kind": "default",
-    "condition": null,
-    "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "Space between social icons in a row.",
-    "variable": "az-component-card-social-link-gap"
-  },
-  {
-    "contract": "card",
+    "variant": null,
     "part": "header-footer",
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space to the left and right of the header's and footer's content: the same as the body's, so their text lines up.",
-    "variable": "az-component-card-header-footer-padding-x"
+    "token": "az.spacing.4"
   },
   {
     "contract": "card",
+    "variant": null,
     "part": "header-footer",
     "kind": "default",
     "condition": null,
@@ -720,11 +1953,41 @@
     "token": null,
     "type": "dimension",
     "value": "12px",
-    "description": "Space above and below the header's and footer's content: half the body's.",
-    "variable": "az-component-card-header-footer-padding-y"
+    "description": "Space above and below the header's and footer's content: half the body's."
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -732,11 +1995,11 @@
     "token": null,
     "type": "duration",
     "value": "300ms",
-    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change.",
-    "variable": "az-component-clickable-card-transition-duration"
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "root",
     "kind": "default",
     "condition": null,
@@ -744,11 +2007,11 @@
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0, 0, 0.58, 1)",
-    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion.",
-    "variable": "az-component-clickable-card-transition-easing"
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "root",
     "kind": "state",
     "condition": "hover",
@@ -756,7 +2019,8 @@
     "token": "az.color.bg.card.cloud-hover"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "root",
     "kind": "state",
     "condition": "focus-visible",
@@ -764,7 +2028,38 @@
     "token": "az.color.bg.card.cloud-hover"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "60px",
+    "description": "Icon size: an icon font's font size, or an SVG's width and height."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
     "part": "icon",
     "kind": "state",
     "condition": "hover",
@@ -772,7 +2067,8 @@
     "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "icon",
     "kind": "state",
     "condition": "focus-visible",
@@ -780,7 +2076,77 @@
     "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "hover",
@@ -788,7 +2154,8 @@
     "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -796,7 +2163,8 @@
     "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -804,15 +2172,68 @@
     "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
     "part": "text",
     "kind": "state",
     "condition": "hover",
@@ -820,7 +2241,8 @@
     "token": "az.color.brand.white"
   },
   {
-    "contract": "clickable-card",
+    "contract": "icon-card",
+    "variant": null,
     "part": "text",
     "kind": "state",
     "condition": "focus-visible",
@@ -828,39 +2250,797 @@
     "token": "az.color.brand.white"
   },
   {
-    "contract": "clickable-card",
-    "part": "link",
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.width",
+    "token": null,
+    "type": "number",
+    "value": "5",
+    "description": "Image shape: its width, against aspect-ratio.height. The image is 5:3."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.height",
+    "token": null,
+    "type": "number",
+    "value": "3",
+    "description": "Image shape: its height, against aspect-ratio.width. The image is 5:3."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "250ms",
+    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "hover",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
     "kind": "state",
     "condition": "hover",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
-    "part": "link",
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
-    "part": "link",
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.brand.rain"
   },
   {
-    "contract": "clickable-card",
-    "part": "link",
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.4"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.2"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.3"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card link text size."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.semibold"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card link line height."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Space between the links in a list."
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the photo fills the card."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -868,11 +3048,11 @@
     "token": null,
     "type": "number",
     "value": "1",
-    "description": "Photo shape: its width, against aspect-ratio.height. The photo is square.",
-    "variable": "az-component-title-on-image-card-image-aspect-ratio-width"
+    "description": "Photo shape: its width, against aspect-ratio.height. The photo is square."
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "image",
     "kind": "default",
     "condition": null,
@@ -880,11 +3060,59 @@
     "token": null,
     "type": "number",
     "value": "1",
-    "description": "Photo shape: its height, against aspect-ratio.width. The photo is square.",
-    "variable": "az-component-title-on-image-card-image-aspect-ratio-height"
+    "description": "Photo shape: its height, against aspect-ratio.width. The photo is square."
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "250ms",
+    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "hover",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -893,6 +3121,40 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -901,6 +3163,7 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
@@ -908,35 +3171,29 @@
     "token": null,
     "type": "number",
     "value": "50",
-    "description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%).",
-    "variable": "az-component-title-on-image-card-title-height"
+    "description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the photo's left and right edges and the title: the same as a card's padding.",
-    "variable": "az-component-title-on-image-card-title-padding-x"
+    "token": "az.spacing.4"
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "default",
     "condition": null,
     "property": "padding.bottom",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "Space between the photo's bottom edge and the title: the same as a card's padding.",
-    "variable": "az-component-title-on-image-card-title-padding-bottom"
+    "token": "az.spacing.4"
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
@@ -945,10 +3202,11 @@
   },
   {
     "contract": "title-on-image-card",
+    "variant": null,
     "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.width",
-    "token": "az.focus-ring.width"
+    "token": "az.focus-ring.width.md"
   }
 ]

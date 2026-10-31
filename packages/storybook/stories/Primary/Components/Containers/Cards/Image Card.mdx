@@ -1,0 +1,61 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as ImageCardStories from './Image Card.stories';
+
+<Meta of={ImageCardStories} />
+
+# Image Card
+
+A Link Card with a photo above the title. The whole card is the link, and the photo
+zooms in on hover.
+
+<Canvas of={ImageCardStories.Default} sourceState="none" />
+
+<Controls of={ImageCardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Hover it, or press <kbd>Tab</kbd> to
+reach its title link, for its hover colors and zoom.
+
+## When to use it
+
+- **Use it** when a photo shows what the page is about, such as a program or a place.
+- **Crop the photo to 5:3,** and keep what matters away from the edges: it zooms in on
+  hover.
+- **The photo is decorative** when the title and text say what it shows, so leave its
+  `alt` empty. Describe it only when it adds something the text doesn't.
+- **Don't put a button or other links in it:** the whole card is already one link.
+
+## Design decisions
+
+- **Photo:** 5:3, cropped to fill that shape, in the card's top corners. On hover and with
+  keyboard focus, it zooms in 8% over 250ms, ease, and zooms back out the same way. It
+  stays inside the card's corners. The zoom still happens when someone asks for reduced
+  motion, without the animation.
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
+  forced colors (high contrast) mode, which removes fills, the card draws a 1px border
+  instead.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Text:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />.
+- **Shape and padding:** 16px corners, and 24px between the photo or the card's edges and
+  its content.
+- **Hover:** the fill turns <Token data={getTokenData('az.color.bg.card.cloud-hover')} />,
+  the text turns <Token data={getTokenData('az.color.brand.white')} />, and the title turns
+  <Token data={getTokenData('az.color.brand.rain')} /> and is underlined.
+- **Keyboard focus:** when <kbd>Tab</kbd> reaches the title link, the card shows its hover
+  colors and zoom, and the link's ring is Rain. Its width is the shared
+  <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **Touch screens:** on a device that can't hover, such as a phone, the title is always
+  underlined.
+- **Motion:** the colors fade over 300ms, ease-out. The fade turns off when someone asks
+  for reduced motion; the colors still change.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`image-card.contract.json`): the token it uses, or the card's own value and what it's
+for.
+
+<ContractAnatomy contract="image-card" />

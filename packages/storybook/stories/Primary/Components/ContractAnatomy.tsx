@@ -4,6 +4,8 @@ import rows from '@contracts/dist/contracts.json';
 // token is set when the property references a token; value and description when it's the component's own value.
 type Row = {
   contract: string;
+  // axis.option for an option's changes, such as size.large; null for the anatomy itself.
+  variant: string | null;
   part: string;
   kind: 'default' | 'state' | 'breakpoint';
   condition: string | null;
@@ -22,9 +24,10 @@ const CELL = { padding: '6px 12px', borderBottom: '1px solid #eef1f4', textAlign
 /**
  * A component's anatomy, from its contract (packages/contracts): each part's
  * design properties, and the token or the component's own value that sets each one.
+ * With a variant (such as "size.large"), only what that option changes.
  */
-export function ContractAnatomy({ contract }: { contract: string }) {
-  const items = (rows as Row[]).filter((row) => row.contract === contract);
+export function ContractAnatomy({ contract, variant = null }: { contract: string; variant?: string | null }) {
+  const items = (rows as Row[]).filter((row) => row.contract === contract && (row.variant ?? null) === variant);
   return (
     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
       <thead>

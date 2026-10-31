@@ -173,7 +173,7 @@ const CHIP: CSSProperties = {
   fontSize: 12,
 };
 const CHIP_ACTIVE: CSSProperties = { ...CHIP, borderColor: '#1e5288', background: '#1e5288', color: '#fff' };
-const META: CSSProperties = { color: '#697786', fontSize: 12 };
+const META: CSSProperties = { color: '#616e7c', fontSize: 12 };
 const CONTROL_LABEL: CSSProperties = { color: '#374151', fontSize: 12, fontWeight: 700 };
 const SEGMENT: CSSProperties = { border: 0, padding: '4px 12px', background: '#fff', color: '#374151', cursor: 'pointer', fontSize: 12, fontFamily: 'inherit', lineHeight: 1.4 };
 const SEGMENT_ACTIVE: CSSProperties = { ...SEGMENT, background: '#1e5288', color: '#fff' };

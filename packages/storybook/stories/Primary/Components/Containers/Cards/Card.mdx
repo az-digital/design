@@ -1,0 +1,58 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../../ContractAnatomy';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+A title and any content in a Cloud box, to read where it is. It isn't a link.
+
+<Canvas of={CardStories.Default} sourceState="none" />
+
+<Controls of={CardStories.Default} />
+
+The card above is Arizona Bootstrap's 5.3.x branch. Its `.card-body` is the slot: the
+title, then Body, written as HTML here and as the editor's rich text in a site. Type a
+header or footer to add one.
+
+Arizona Bootstrap gives a Cloud card its title and text colors only when the whole card is a link, so this card sets them with `.text-azurite` on its title and `.text-tinta` on its body.
+
+## When to use it
+
+- **Use it** for content that's complete on the card, such as office hours or a short
+  notice.
+- **Its body is a slot:** paragraphs, a list or a small table, all in the card's text
+  type. It's the only card with one. Keep it short; for a whole section, use the page.
+- **Don't put links or buttons in the body to make a different card:** use a
+  <a href="./?path=/docs/primary-components-containers-cards-quick-links-card--docs" target="_top">Quick Links Card</a>
+  or a
+  <a href="./?path=/docs/primary-components-containers-cards-call-to-action-card--docs" target="_top">Call to Action Card</a>.
+- **It's the only card with a header and footer,** for a label above the content or a
+  note below it.
+- **If the card should go to a page,** use a
+  <a href="./?path=/docs/primary-components-containers-cards-link-card--docs" target="_top">Link Card</a>
+  instead.
+
+## Design decisions
+
+- **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border: the
+  fill sets the card apart from the page. In a forced colors (high contrast) mode, which
+  removes fills, the card draws a 1px border instead.
+- **Shape:** 16px corners.
+- **Padding:** 24px between the card's edges and its content. The header and footer have
+  24px to the left and right, so their text lines up with the body's, and 12px above and
+  below.
+- **Title:** 22px Bold, on a 30px line, in
+  <Token data={getTokenData('az.color.brand.azurite')} />. 8px below the title's line.
+- **Body:** 18px Regular, on a 28px line, in
+  <Token data={getTokenData('az.color.brand.tinta')} />: the same size as body text, for
+  everything in the slot. 16px between blocks, such as a paragraph and a list.
+
+## Anatomy
+
+Each part of the card and each of its design properties, from its contract
+(`card.contract.json`): the token it uses, or the card's own value and what it's for.
+
+<ContractAnatomy contract="card" />
