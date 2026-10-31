@@ -1,10 +1,22 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../ContractAnatomy';
+import * as ArizonaHeaderStories from './Arizona Header.stories';
 
-<Meta title="Primary/Components/Navigation/Arizona Header" />
+<Meta of={ArizonaHeaderStories} />
 
 # Arizona Header
+
+The university's header bar, on every arizona.edu site: the wordmark, which links to the
+home page, with optional header buttons, such as Search and Menu, for small screens.
+
+<Canvas of={ArizonaHeaderStories.Default} sourceState="none" />
+
+<Controls of={ArizonaHeaderStories.Default} />
+
+The header above is the current release. It matches this page except for keyboard focus on
+the header buttons: they draw the ring every button gets, 2px outside the button, instead
+of the header's ring inside their edges. On a site, header buttons only show below 992px.
 
 ## Colors
 
