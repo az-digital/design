@@ -34,7 +34,7 @@
         "logo": {
           "description": "The wordmark, which links to the home page.",
           "tokens": {
-            "color": "{az.color.brand.white}",
+            "color": "{az.color.fg.white}",
             "width": {
               "$type": "dimension",
               "$value": {
@@ -82,8 +82,8 @@
           },
           "states": {
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}",
+              "ring.color": "{az.color.fg.white}",
+              "ring.width": "{az.focus-ring.width.md}",
               "border.radius": {
                 "$type": "dimension",
                 "$value": {
@@ -151,8 +151,8 @@
           },
           "states": {
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}",
+              "ring.color": "{az.color.fg.white}",
+              "ring.width": "{az.focus-ring.width.md}",
               "border.radius": {
                 "$type": "dimension",
                 "$value": {
@@ -167,7 +167,7 @@
             "icon": {
               "description": "The button's icon, the same color as its label.",
               "tokens": {
-                "color": "{az.color.brand.white}",
+                "color": "{az.color.fg.white}",
                 "size": {
                   "$type": "dimension",
                   "$value": {
@@ -181,7 +181,7 @@
             "label": {
               "description": "The button's label, such as \"Search\" or \"Menu\".",
               "tokens": {
-                "color": "{az.color.brand.white}",
+                "color": "{az.color.fg.white}",
                 "font.size": {
                   "$type": "dimension",
                   "$value": {

@@ -21,6 +21,7 @@ const config: StorybookConfig = {
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
       },
     },
+    getAbsolutePath("@storybook/addon-vitest")
   ],
 
   framework: {

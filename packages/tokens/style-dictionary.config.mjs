@@ -21,11 +21,22 @@ const buildCssVariableTree = (dictionary) => {
 
 /**
  * How each token is referenced from the JavaScript/TypeScript outputs:
- * `az.color.brand.red` for the `az` object those custom formats export. Read by
- * @az-digital/storybook-addon-tokens to show each output's reference; Style
- * Dictionary itself ignores it.
+ * `az.color.brand.red` for the `az` object those custom formats export. A part
+ * that's only a number takes brackets (`az.spacing[100]`), and one that isn't a
+ * valid name otherwise, including a number with a leading zero, is quoted
+ * (`az.size["2xl"]`, `az.spacing["025"]`), so the reference is valid
+ * code. Read by @az-digital/storybook-addon-tokens to show each output's
+ * reference; Style Dictionary itself ignores it.
  */
-const jsReference = (token) => ['az', ...token.path.slice(1).map(camelCase)].join('.');
+const jsReference = (token) =>
+  token.path
+    .slice(1)
+    .map(camelCase)
+    .reduce((reference, part) => {
+      if (/^(0|[1-9]\d*)$/.test(part)) return `${reference}[${part}]`;
+      if (/^[A-Za-z_$][\w$]*$/.test(part)) return `${reference}.${part}`;
+      return `${reference}[${JSON.stringify(part)}]`;
+    }, 'az');
 
 const renderType = (value, indent = 0) => {
   const spacing = ' '.repeat(indent);
@@ -36,9 +47,27 @@ ${entries.map(([key, child]) => `${childSpacing}${JSON.stringify(key)}: ${typeof
 ${spacing}}`;
 };
 
+/**
+ * tokens.json is Tokens Studio's sync file, where the top-level `az` is a token set and
+ * references leave it out (`{color.brand.red}`). Style Dictionary keeps the set as the
+ * first part of every path (`az.color.brand.red`), so this adds the set name back to each
+ * reference before they're resolved.
+ */
+const withSetName = (node, set) => {
+  if (typeof node === 'string') return node.replace(new RegExp(`\\{(?!${set}\\.)([^}]+)\\}`, 'g'), `{${set}.$1}`);
+  if (Array.isArray(node)) return node.map((child) => withSetName(child, set));
+  if (node && typeof node === 'object') return Object.fromEntries(Object.entries(node).map(([key, child]) => [key, withSetName(child, set)]));
+  return node;
+};
+
 export default {
   source: ['tokens.json'],
+  preprocessors: ['tokens-studio-set-references'],
   hooks: {
+    preprocessors: {
+      'tokens-studio-set-references': (dictionary) =>
+        Object.fromEntries(Object.entries(dictionary).map(([key, value]) => [key, key.startsWith('$') ? value : withSetName(value, key)])),
+    },
     formats: {
       'javascript/variables': ({ dictionary }) => `export const az = ${JSON.stringify(buildCssVariableTree(dictionary), null, 2)};\n`,
       'typescript/declarations': ({ dictionary }) => `export const az: ${renderType(buildCssVariableTree(dictionary))};\n`,
