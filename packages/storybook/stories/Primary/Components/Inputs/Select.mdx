@@ -18,14 +18,14 @@ The select above is the current release. It matches this page. Valid and invalid
 ## Colors
 
 - **Text:** <Token data={getTokenData('az.color.brand.gray.900')} />, on <Token data={getTokenData('az.color.brand.white')} />, with a <Token data={getTokenData('az.color.brand.gray.600')} /> border.
-- **Keyboard focus:** the border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at 70% opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. It fades in over 150ms, ease-in-out, which hasn't been reviewed by design yet and turns off when someone asks for reduced motion.
+- **Keyboard focus:** the border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at <Token data={getTokenData('az.focus-ring.opacity')} /> (70%) opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. It fades in over 150ms, ease-in-out, which hasn't been reviewed by design yet and turns off when someone asks for reduced motion.
 - **Disabled:** the select fills <Token data={getTokenData('az.color.brand.gray.200')} />, with a <Token data={getTokenData('az.color.brand.gray.400')} /> border.
 - **Arrow:** <Token data={getTokenData('az.color.brand.gray.800')} />, 16 × 12px, <Token data={getTokenData('az.spacing.150')} /> (12px) from the right edge.
 
 ## Size
 
 - **Padding:** <Token data={getTokenData('az.spacing.075')} /> (6px) above and below the text, and <Token data={getTokenData('az.spacing.150')} /> (12px) to each side (36px on the right, to leave room for the arrow).
-- **Type:** 18px <Token data={getTokenData('az.font-weight.normal')} /> (Regular) on a 28px line.
+- **Type:** <Token data={getTokenData('az.font-size.base')} /> (18px) <Token data={getTokenData('az.font-weight.normal')} /> (Regular) on a 28px line.
 - **Border:** <Token data={getTokenData('az.border.width.sm')} /> (1px), with <Token data={getTokenData('az.radius.2')} /> (6px) corners.
 
 <table>
@@ -34,7 +34,7 @@ The select above is the current release. It matches this page. Valid and invalid
   </thead>
   <tbody>
     <tr><td>Padding</td><td><Token data={getTokenData('az.spacing.050')} /> (4px) above and below, <Token data={getTokenData('az.spacing.100')} /> (8px) to each side</td><td>6px above and below, 12px to each side</td><td><Token data={getTokenData('az.spacing.100')} /> (8px) above and below, <Token data={getTokenData('az.spacing.200')} /> (16px) to each side</td></tr>
-    <tr><td>Text</td><td>15.75px</td><td>18px</td><td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td></tr>
+    <tr><td>Text</td><td>15.75px</td><td><Token data={getTokenData('az.font-size.base')} /> (18px)</td><td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td></tr>
     <tr><td>Corners</td><td><Token data={getTokenData('az.radius.1')} /> (4px)</td><td><Token data={getTokenData('az.radius.2')} /> (6px)</td><td><Token data={getTokenData('az.radius.3')} /> (8px)</td></tr>
   </tbody>
 </table>

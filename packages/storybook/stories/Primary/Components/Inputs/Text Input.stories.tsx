@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
+import { checkContract } from '../contractCheck';
 
 // Arizona Bootstrap's latest release, loaded in preview-head.html, drawing its
 // text input with the markup from its Forms docs. The controls choose its size,
@@ -14,6 +16,10 @@ type TextInputArgs = {
   'Help text': string;
   Disabled: boolean;
 };
+
+// The contract options for each size. A large field's text grows with the screen
+// width up to 1200px, so it isn't checked at the large size.
+const sizeOptions = (size: string) => ({ Small: ['size.small'], Large: ['size.large'] })[size] ?? [];
 
 const meta = {
   title: 'Primary/Components/Inputs/Text Input',
@@ -45,11 +51,21 @@ const meta = {
       )}
     </div>
   ),
+  // The contract check, for whichever size the controls choose.
+  play: async ({ canvasElement, args }) => {
+    const field = canvasElement.querySelector<HTMLInputElement>('.form-control')!;
+    const part = (selector: string) => canvasElement.querySelector<HTMLElement>(selector) ?? undefined;
+    const parts = { root: field.parentElement!, field, label: part('.form-label'), help: part('.form-text') };
+    const options = sizeOptions(args.Size);
+    const skip = options.includes('size.large') ? ['field font.size'] : [];
+    await expect(checkContract({ parts: parts as typeof parts & { root: HTMLElement }, focus: field, control: field, skip }, 'text-input', options)).toEqual([]);
+  },
 } satisfies Meta<TextInputArgs>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Text Input docs page, not as its own page in the sidebar.
+// Shown on the Text Input docs page, not as its own page in the sidebar. Its play
+// function is the Text Input's contract check.
 export const Default: Story = { tags: ['!dev'] };

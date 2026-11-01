@@ -1746,10 +1746,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the box's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "checkbox",
@@ -1836,10 +1833,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Label text size: 18px, the body text size."
+    "token": "az.font-size.base"
   },
   {
     "contract": "checkbox",
@@ -1899,10 +1893,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Text size in the field and add-ons: 18px, the body text size on a site."
+    "token": "az.font-size.base"
   },
   {
     "contract": "input-group",
@@ -2049,10 +2040,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the field's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "input-group",
@@ -2097,10 +2085,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Text size in the field and add-ons: 18px, the body text size on a site."
+    "token": "az.font-size.base"
   },
   {
     "contract": "input-group",
@@ -2601,10 +2586,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the circle's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "radio",
@@ -2676,10 +2658,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Label text size: 18px, the body text size."
+    "token": "az.font-size.base"
   },
   {
     "contract": "radio",
@@ -3011,7 +2990,7 @@
     "part": "root",
     "kind": "default",
     "condition": null,
-    "property": "padding.x",
+    "property": "padding.left",
     "token": "az.spacing.150"
   },
   {
@@ -3033,10 +3012,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Select text size: 18px, the body text size on a site."
+    "token": "az.font-size.base"
   },
   {
     "contract": "select",
@@ -3162,10 +3138,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the select's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "select",
@@ -3480,10 +3453,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the track's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "switch",
@@ -3502,6 +3472,18 @@
     "condition": "checked",
     "property": "border.color",
     "token": "az.color.brand.red"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "active",
+    "property": "brightness",
+    "token": null,
+    "type": "number",
+    "value": "0.9",
+    "description": "The track darkens to 90% brightness while it's pressed."
   },
   {
     "contract": "switch",
@@ -3585,10 +3567,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Label text size: 18px, the body text size."
+    "token": "az.font-size.base"
   },
   {
     "contract": "switch",
@@ -3630,10 +3609,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Label text size: 18px, the body text size."
+    "token": "az.font-size.base"
   },
   {
     "contract": "text-input",
@@ -3699,10 +3675,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Field text size: 18px, the body text size on a site."
+    "token": "az.font-size.base"
   },
   {
     "contract": "text-input",
@@ -3849,10 +3822,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the field's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "text-input",
@@ -3908,11 +3878,11 @@
     "part": "help",
     "kind": "default",
     "condition": null,
-    "property": "opacity",
+    "property": "color.opacity",
     "token": null,
     "type": "number",
     "value": "0.75",
-    "description": "Help text opacity, so it reads as secondary to the label and field."
+    "description": "Opacity of the help text's color, so it reads as secondary to the label and field. It's the text color's opacity, not the whole help text's: a link or icon in it keeps its own color."
   },
   {
     "contract": "text-input",
@@ -4038,10 +4008,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.size",
-    "token": null,
-    "type": "dimension",
-    "value": "18px",
-    "description": "Text area text size: 18px, the body text size on a site."
+    "token": "az.font-size.base"
   },
   {
     "contract": "textarea",
@@ -4188,10 +4155,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.opacity",
-    "token": null,
-    "type": "number",
-    "value": "0.7",
-    "description": "Opacity of the text area's focus ring, so the page shows through it."
+    "token": "az.focus-ring.opacity"
   },
   {
     "contract": "textarea",

@@ -19,14 +19,15 @@ The switch above is the current release. It matches this page.
 
 - **Off:** a <Token data={getTokenData('az.color.brand.white')} /> track with a <Token data={getTokenData('az.color.brand.gray.600')} /> border, and a <Token data={getTokenData('az.color.brand.gray.600')} /> knob at its left.
 - **On:** a <Token data={getTokenData('az.color.brand.red')} /> track, and a <Token data={getTokenData('az.color.fg.white')} /> knob at its right. The knob slides over 150ms, ease-in-out, which hasn't been reviewed by design yet and turns off when someone asks for reduced motion.
-- **Keyboard focus:** the track's border and the knob turn <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around the track in the same color at 70% opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide.
+- **Keyboard focus:** the track's border and the knob turn <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around the track in the same color at <Token data={getTokenData('az.focus-ring.opacity')} /> (70%) opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. When the switch is on, its track keeps its Red border and its knob stays White with focus; only the ring shows it.
+- **Pressed:** the track darkens to 90% brightness.
 - **Disabled:** the switch and its label are at 50% opacity.
 
 ## Size and spacing
 
 - **Track:** 36 × 18px, fully round (<Token data={getTokenData('az.radius.pill')} />), with a <Token data={getTokenData('az.border.width.sm')} /> (1px) border, 5px down from the top so it lines up with the first line of the label.
 - **Knob:** 13.5px, three quarters of the track's height.
-- **Label:** 18px on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />, starting 45px from the track's left edge: the 36px track and 9px after it.
+- **Label:** <Token data={getTokenData('az.font-size.base')} /> (18px) on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />, starting 45px from the track's left edge: the 36px track and 9px after it.
 - **Spacing:** each switch is at least 28px tall, with <Token data={getTokenData('az.spacing.025')} /> (2px) below it.
 
 ## Anatomy

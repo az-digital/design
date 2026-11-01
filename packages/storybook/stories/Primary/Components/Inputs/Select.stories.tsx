@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
+import { checkContract } from '../contractCheck';
 
 // Arizona Bootstrap's latest release, loaded in preview-head.html, drawing its
 // select with the markup from its Forms docs. The controls choose its size and
@@ -11,6 +13,10 @@ type SelectArgs = {
   Label: string;
   Disabled: boolean;
 };
+
+// The contract options for each size. A large field's text grows with the screen
+// width up to 1200px, so it isn't checked at the large size.
+const sizeOptions = (size: string) => ({ Small: ['size.small'], Large: ['size.large'] })[size] ?? [];
 
 const meta = {
   title: 'Primary/Components/Inputs/Select',
@@ -40,11 +46,19 @@ const meta = {
       </select>
     </div>
   ),
+  // The contract check, for whichever size the controls choose.
+  play: async ({ canvasElement, args }) => {
+    const field = canvasElement.querySelector<HTMLSelectElement>('.form-select')!;
+    const options = sizeOptions(args.Size);
+    const skip = options.includes('size.large') ? ['root font.size'] : [];
+    await expect(checkContract({ parts: { root: field }, focus: field, control: field, skip }, 'select', options)).toEqual([]);
+  },
 } satisfies Meta<SelectArgs>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Select docs page, not as its own page in the sidebar.
+// Shown on the Select docs page, not as its own page in the sidebar. Its play
+// function is the Select's contract check.
 export const Default: Story = { tags: ['!dev'] };

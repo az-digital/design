@@ -11,7 +11,7 @@
       "description": "The input group's size. With none chosen, it's the default size: 6 / 12px padding, 18px text and 6px corners, about 42px tall.",
       "options": {
         "small": {
-          "description": "A small input group, about 34.5px tall: .input-group-sm, or .form-control-sm on a field on its own. The field, add-ons and button all change.",
+          "description": "A small input group, about 34.5px tall. The field, add-ons and button all change.",
           "anatomy": {
             "root": {
               "parts": {
@@ -65,7 +65,7 @@
           }
         },
         "large": {
-          "description": "A large input group, about 49px to 53px tall: .input-group-lg, or .form-control-lg on a field on its own. The field, add-ons and button all change.",
+          "description": "A large input group, about 49px to 53px tall. The field, add-ons and button all change.",
           "anatomy": {
             "root": {
               "parts": {
@@ -166,14 +166,7 @@
           "tokens": {
             "padding.y": "{az.spacing.075}",
             "padding.x": "{az.spacing.150}",
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 18,
-                "unit": "px"
-              },
-              "$description": "Text size in the field and add-ons: 18px, the body text size on a site."
-            },
+            "font.size": "{az.font-size.base}",
             "font.weight": "{az.font-weight.normal}",
             "line-height": {
               "$type": "number",
@@ -215,11 +208,7 @@
               "border.color": "{az.color.brand.bougainvillea}",
               "ring.color": "{az.color.brand.bougainvillea}",
               "ring.width": "{az.focus-ring.width.lg}",
-              "ring.opacity": {
-                "$type": "number",
-                "$value": 0.7,
-                "$description": "Opacity of the field's focus ring, so the page shows through it."
-              }
+              "ring.opacity": "{az.focus-ring.opacity}"
             },
             "disabled": {
               "fill": "{az.color.brand.gray.200}",
@@ -232,14 +221,7 @@
           "tokens": {
             "padding.y": "{az.spacing.075}",
             "padding.x": "{az.spacing.150}",
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 18,
-                "unit": "px"
-              },
-              "$description": "Text size in the field and add-ons: 18px, the body text size on a site."
-            },
+            "font.size": "{az.font-size.base}",
             "font.weight": "{az.font-weight.normal}",
             "line-height": {
               "$type": "number",

@@ -11,7 +11,7 @@
       "description": "The select's size. With none chosen, it's the default size: 6 / 12px padding, 18px text and 6px corners.",
       "options": {
         "small": {
-          "description": "A small select: form-select-sm.",
+          "description": "A small select: 4 / 8px padding, 15.75px text and 4px corners.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -31,7 +31,7 @@
           }
         },
         "large": {
-          "description": "A large select: form-select-lg.",
+          "description": "A large select: 8 / 16px padding, text from 20.25px up to 22.5px, and 8px corners.",
           "anatomy": {
             "root": {
               "tokens": {
@@ -70,7 +70,7 @@
       "description": "The select.",
       "tokens": {
         "padding.y": "{az.spacing.075}",
-        "padding.x": "{az.spacing.150}",
+        "padding.left": "{az.spacing.150}",
         "padding.right": {
           "$type": "dimension",
           "$value": {
@@ -79,14 +79,7 @@
           },
           "$description": "Space at the select's right end, for its arrow: the arrow's 16px plus 12px on its right and 8px on its left."
         },
-        "font.size": {
-          "$type": "dimension",
-          "$value": {
-            "value": 18,
-            "unit": "px"
-          },
-          "$description": "Select text size: 18px, the body text size on a site."
-        },
+        "font.size": "{az.font-size.base}",
         "font.weight": "{az.font-weight.normal}",
         "line-height": {
           "$type": "number",
@@ -122,11 +115,7 @@
           "border.color": "{az.color.brand.bougainvillea}",
           "ring.color": "{az.color.brand.bougainvillea}",
           "ring.width": "{az.focus-ring.width.lg}",
-          "ring.opacity": {
-            "$type": "number",
-            "$value": 0.7,
-            "$description": "Opacity of the select's focus ring, so the page shows through it."
-          }
+          "ring.opacity": "{az.focus-ring.opacity}"
         },
         "disabled": {
           "fill": "{az.color.brand.gray.200}",

@@ -71,6 +71,7 @@
   --az-line-height-sm: 1.25;
   --az-line-height-medium: 1.2;
   --az-font-size-root: 16px;
+  --az-font-size-base: 18px; /** Body text size on a site, and the text size in form fields, their labels and checkbox, radio and switch labels. */
   --az-font-size-sm: 14px;
   --az-font-size-lg: 20px;
   --az-font-size-h6: 16px;
@@ -86,6 +87,7 @@
   --az-focus-ring-width-sm: 1px;
   --az-focus-ring-width-md: 2px; /** Width of the keyboard focus ring, everywhere one is drawn, such as links and buttons. */
   --az-focus-ring-width-lg: 4px;
+  --az-focus-ring-opacity: 0.7; /** Opacity of the keyboard focus ring's color where the ring is drawn around a form field, checkbox, radio or switch, so the page shows through it. */
   --az-color-bg-button-red: var(--az-color-brand-red);
   --az-color-bg-button-red-hover: var(--az-color-brand-sonoran-red);
   --az-color-bg-button-red-active: var(--az-color-brand-red);

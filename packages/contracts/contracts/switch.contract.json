@@ -30,7 +30,7 @@
       },
       "parts": {
         "input": {
-          "description": "The track.",
+          "description": "The track. When it's checked and has keyboard focus, its checked colors stay and only the focus ring shows focus: a checked track keeps its Red border. The knob stays White.",
           "tokens": {
             "width": {
               "$type": "dimension",
@@ -84,15 +84,18 @@
               "border.color": "{az.color.brand.bougainvillea}",
               "ring.color": "{az.color.brand.bougainvillea}",
               "ring.width": "{az.focus-ring.width.lg}",
-              "ring.opacity": {
-                "$type": "number",
-                "$value": 0.7,
-                "$description": "Opacity of the track's focus ring, so the page shows through it."
-              }
+              "ring.opacity": "{az.focus-ring.opacity}"
             },
             "checked": {
               "fill": "{az.color.brand.red}",
               "border.color": "{az.color.brand.red}"
+            },
+            "active": {
+              "brightness": {
+                "$type": "number",
+                "$value": 0.9,
+                "$description": "The track darkens to 90% brightness while it's pressed."
+              }
             },
             "disabled": {
               "opacity": {
@@ -146,14 +149,7 @@
         "label": {
           "description": "The switch's label, to its right.",
           "tokens": {
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 18,
-                "unit": "px"
-              },
-              "$description": "Label text size: 18px, the body text size."
-            },
+            "font.size": "{az.font-size.base}",
             "line-height": {
               "$type": "number",
               "$value": 1.5556,

@@ -148,8 +148,10 @@ A contract check keeps them in step once an implementation has been updated.
 `checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
 renders an implementation in a real browser and compares each property's computed
 style with the contract's token or value, at rest, with keyboard focus and on hover,
-and lists every property that differs. A component's check is a story with a `play`
-function that renders the implementation's markup and runs it;
+and lists every property that differs. For a component with parts, it reads each
+part from its own element; for a form control, it also reads the checked,
+indeterminate and disabled rows by setting that state. A component's check is a
+story with a `play` function that renders the implementation's markup and runs it;
 `npm run test:storybook` runs it in CI.
 
 ## Adding a contract

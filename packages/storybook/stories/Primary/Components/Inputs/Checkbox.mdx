@@ -20,14 +20,14 @@ The checkbox above is the current release. It matches this page. Valid and inval
 - **Unchecked:** <Token data={getTokenData('az.color.brand.white')} />, with a <Token data={getTokenData('az.color.brand.gray.600')} /> border.
 - **Checked:** <Token data={getTokenData('az.color.brand.red')} />, with a <Token data={getTokenData('az.color.fg.white')} /> check.
 - **Indeterminate** (some of a group's options chosen): <Token data={getTokenData('az.color.brand.red')} />, with a <Token data={getTokenData('az.color.fg.white')} /> dash.
-- **Keyboard focus:** the box's border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at 70% opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide.
+- **Keyboard focus:** the box's border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at <Token data={getTokenData('az.focus-ring.opacity')} /> (70%) opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. A checked box keeps its Red border with focus; only the ring shows it.
 - **Pressed:** the box darkens to 90% brightness.
 - **Disabled:** the box and its label are at 50% opacity.
 
 ## Size and spacing
 
 - **Box:** 18px square with 4.5px corners, with a <Token data={getTokenData('az.border.width.sm')} /> (1px) border, 5px down from the top so it lines up with the first line of the label.
-- **Label:** 18px on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />.
+- **Label:** <Token data={getTokenData('az.font-size.base')} /> (18px) on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />.
 - **Spacing:** each option is at least 28px tall, with <Token data={getTokenData('az.spacing.025')} /> (2px) below it.
 - **Label offset:** the label starts 27px from the box's left edge: the 18px box and 9px after it.
 
