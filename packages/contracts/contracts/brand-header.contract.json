@@ -33,7 +33,7 @@
       },
       "parts": {
         "logo": {
-          "description": "The university's white wordmark, which links to the home page. It's a registered mark: use the official file unaltered, without recoloring, stretching or cropping it. It keeps its proportions inside its width and height.",
+          "description": "The university's white wordmark, which links to the university's homepage, arizona.edu. It's a registered mark: use the official file unaltered, without recoloring, stretching or cropping it. It keeps its proportions inside its width and height.",
           "tokens": {
             "color": "{az.color.fg.white}",
             "width": {
