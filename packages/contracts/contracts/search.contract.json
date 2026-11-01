@@ -40,15 +40,8 @@
           "description": "The button that shows the search form on small screens.",
           "states": {
             "focus-visible": {
-              "ring.color": "{az.color.brand.rain}",
-              "ring.width": {
-                "$type": "dimension",
-                "$value": {
-                  "value": 1,
-                  "unit": "px"
-                },
-                "$description": "Width of that button's keyboard focus ring."
-              }
+              "ring.color": "{az.color.fg.rain}",
+              "ring.width": "{az.focus-ring.width.sm}"
             }
           }
         }

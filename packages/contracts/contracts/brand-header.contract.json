@@ -6,7 +6,8 @@
   "sources": [
     "Arizona Bootstrap 5.2: .arizona-header, .arizona-line-logo and .btn-arizona-header",
     "az-digital/arizona-bootstrap#2299: the blue header is the default",
-    "Motion: Bootstrap's default transitions, not yet reviewed by design"
+    "Motion: Bootstrap's default transitions, not yet reviewed by design",
+    "University Marketing & Communications logo guidelines (marcom.arizona.edu/brand-guidelines/logos): the wordmark is used unaltered"
   ],
   "anatomy": {
     "root": {
@@ -21,27 +22,20 @@
           },
           "$description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
         },
-        "fixed-on-mobile.scroll-gap": {
-          "$type": "dimension",
-          "$value": {
-            "value": 8,
-            "unit": "px"
-          },
-          "$description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
-        }
+        "fixed-on-mobile.scroll-gap": "{az.spacing.100}"
       },
       "parts": {
         "logo": {
-          "description": "The wordmark, which links to the home page.",
+          "description": "The university's white wordmark, which links to the university's homepage, arizona.edu. It's a registered mark: use the official file unaltered, without recoloring, stretching or cropping it. It keeps its proportions inside its width and height.",
           "tokens": {
-            "color": "{az.color.brand.white}",
+            "color": "{az.color.fg.white}",
             "width": {
               "$type": "dimension",
               "$value": {
                 "value": 211,
                 "unit": "px"
               },
-              "$description": "Wordmark width below the sm breakpoint (576px)."
+              "$description": "Width of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it fills this width."
             },
             "height": {
               "$type": "dimension",
@@ -49,7 +43,7 @@
                 "value": 16,
                 "unit": "px"
               },
-              "$description": "Wordmark height below the sm breakpoint (576px)."
+              "$description": "Height of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it's a little shorter."
             },
             "margin-left": {
               "$type": "dimension",
@@ -68,7 +62,7 @@
                   "value": 266.41,
                   "unit": "px"
                 },
-                "$description": "Wordmark width from the sm breakpoint (576px) up."
+                "$description": "Width of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it fills this width."
               },
               "height": {
                 "$type": "dimension",
@@ -76,14 +70,14 @@
                   "value": 19.8,
                   "unit": "px"
                 },
-                "$description": "Wordmark height from the sm breakpoint (576px) up."
+                "$description": "Height of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it's a little shorter."
               }
             }
           },
           "states": {
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}",
+              "ring.color": "{az.color.fg.white}",
+              "ring.width": "{az.focus-ring.width.md}",
               "border.radius": {
                 "$type": "dimension",
                 "$value": {
@@ -114,22 +108,8 @@
               },
               "$description": "Header button minimum height: as tall as the header."
             },
-            "padding.y": {
-              "$type": "dimension",
-              "$value": {
-                "value": 4,
-                "unit": "px"
-              },
-              "$description": "Header button top and bottom padding."
-            },
-            "gap": {
-              "$type": "dimension",
-              "$value": {
-                "value": 2,
-                "unit": "px"
-              },
-              "$description": "Space between a header button's icon and its label."
-            },
+            "padding.y": "{az.spacing.050}",
+            "gap": "{az.spacing.025}",
             "transition.duration": {
               "$type": "duration",
               "$value": {
@@ -151,8 +131,8 @@
           },
           "states": {
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
-              "ring.width": "{az.focus-ring.width}",
+              "ring.color": "{az.color.fg.white}",
+              "ring.width": "{az.focus-ring.width.md}",
               "border.radius": {
                 "$type": "dimension",
                 "$value": {
@@ -167,7 +147,7 @@
             "icon": {
               "description": "The button's icon, the same color as its label.",
               "tokens": {
-                "color": "{az.color.brand.white}",
+                "color": "{az.color.fg.white}",
                 "size": {
                   "$type": "dimension",
                   "$value": {
@@ -181,7 +161,7 @@
             "label": {
               "description": "The button's label, such as \"Search\" or \"Menu\".",
               "tokens": {
-                "color": "{az.color.brand.white}",
+                "color": "{az.color.fg.white}",
                 "font.size": {
                   "$type": "dimension",
                   "$value": {

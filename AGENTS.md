@@ -23,6 +23,16 @@ Connect to it (project name `az-digital-storybook`) and use it to:
   instead of inferring conventions from code.
 - Preview any story you add or change before finishing the task.
 
+### Storybook navigation
+
+- When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position.
+- Verify the rendered sidebar order in Storybook.
+
+### MDX tables
+
+- Do not use pipe-delimited Markdown tables in MDX documentation; Storybook renders them as plain text. Use HTML table markup instead.
+- Verify MDX content in the rendered Storybook page. The MCP `docs-show` tool returns source content and does not confirm how it renders.
+
 ## Storybook agent CLI
 
 The same skills and tools are also available from the command line, which
@@ -39,23 +49,55 @@ without a dev server; `stories preview` needs `npm run dev:storybook`
 running. Run these from `packages/storybook` (or pass `--cwd
 packages/storybook`).
 
+## Overview-page links
+
+When an overview introduces or lists a topic with its own Storybook documentation page, link the topic directly using `./?path=/docs/{story-id}` with `target="_top"`. Use descriptive link text and verify destination IDs with `npx storybook tools docs list --withStoryIds`.
+
+When you add or fill in a docs page, link it from every overview above it, so it can be found without the sidebar:
+
+- **Its group's overview:** the `Docs.mdx` in its folder, such as `Primary/Components/Buttons`. If the group has none, add one the way Buttons and Containers do, listing every page in the group.
+- **Its section's overview,** such as `Primary/Components/Overview`, which lists the groups.
+- **The Primary overview** (`Primary/Overview`), which lists each group and its pages.
+
+## Component docs pages
+
+Lay out a component's docs page the way the Button page is (`Primary/Components/Buttons/Button.mdx` and `Button.stories.tsx`):
+
+1. A one-sentence description, then `<Canvas of={…Stories.Default} sourceState="none" />` and `<Controls />` for a story that renders the implementation's markup as its latest release ships it. Tag the story `'!dev'` so it shows on the docs page, not as its own sidebar entry. Its controls follow the Figma component's properties where there is one.
+2. A short note on where that release differs from the page, if it does. Check computed styles in the browser rather than guessing.
+3. The design decisions, by topic (colors, size, keyboard focus, motion), with design token pills.
+4. `<ContractAnatomy contract="…" />`, and one per variant option the contract has.
+
+Load anything the markup needs, such as an icon font, in `.storybook/preview-head.html`. Don't restyle it there or in the story.
+
+### Logos and other university marks
+
+Logos, wordmarks and the Block "A" are registered university marks, and the
+[university's logo guidelines](https://marcom.arizona.edu/brand-guidelines/logos)
+govern them. Check a page's claims about a mark against those guidelines.
+
+- Describe a mark as an official file used unaltered: never suggest recoloring it
+  (with `currentColor`, a mask or a filter), stretching, cropping or redrawing it, or
+  adding effects.
+- A mark's color in a contract records which official version is used, such as the white
+  wordmark on a dark fill. It isn't a themeable color.
+- A mark keeps its proportions. When a width and a height are given, describe them as the
+  box it fits in.
+
 ## Component contracts
 
-When you add or change a component's tokens, update its contract in
+When you add or change a component's design decisions, update its contract in
 `packages/contracts/contracts/` and run `npm run build:contracts` before
-finishing. Follow its refusals; don't work around them. A contract does the
-wiring that aliases used to do in `tokens.json`. Point a part's colors straight
-at the token they use, usually a brand color. Write what's specific to the
-component, such as its sizes and timings, as values in the contract (a `$type`,
-`$value` and `$description`), not as tokens: no component tokens, and no
-primitive named after its value (`az.dimension.50`). Don't add a semantic token
-just so one component has a name to point at; semantic tokens are for decisions
-that are really shared or that a theme changes. Remove any component token the
-check flags as redundant.
+finishing. Follow its refusals; don't work around them.
 
-For a decision several components share (a link color, the focus ring, a
-border, form-control sizing, body type), add one token named after Bootstrap 6's
-name for it (`az.focus-ring.width` for `--focus-ring-width`), with Arizona's value,
-and point every contract at it. Don't adopt Bootstrap 6's role names (`primary`,
-`accent`) yet. See
-[packages/contracts/README.md](./packages/contracts/README.md).
+- **Token names:** read the Naming page before adding or renaming a token:
+  `Primary/Foundations/Tokens/Naming` in Storybook
+  (`packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`).
+- **What a contract holds, and how implementations use it:** see
+  [packages/contracts/README.md](./packages/contracts/README.md).
+- **No platform output:** contracts generate nothing for a platform, so never add
+  CSS, Sass or other platform output to them.
+- **Implementations:** don't patch an implementation's styles in Storybook. Write
+  its update instructions in the pull request description instead. Once an
+  implementation has been updated, add a contract check story that runs
+  `checkContract`; `npm run test:storybook` must pass.

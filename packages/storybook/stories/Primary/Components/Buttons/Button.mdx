@@ -1,0 +1,213 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+An action in a form, a dialog or a page: a label, and an optional icon, in a fully rounded
+shape.
+
+<Canvas of={ButtonStories.Default} sourceState="none" />
+
+<Controls of={ButtonStories.Default} />
+
+The button above is the current release, so until its updates land it doesn't match every value on this page: the default size is 10px padding on a 22px line, small buttons are 14px text on a 15px line, and Red's hover and focus ring are the old palette's colors. Its hover and pressed colors can also differ from the table below, which follows the Figma designs.
+
+## Colors
+
+The button's contract (`button.contract.json`) has a solid and an outline button for each
+brand color, each for a background. Their colors follow the Figma Buttons component. Blue
+isn't in the original XD designs.
+
+<table>
+  <thead>
+    <tr>
+      <th>Button</th>
+      <th>On</th>
+      <th>Fill</th>
+      <th>Text</th>
+      <th>Hover fill</th>
+      <th>Hover text</th>
+      <th>Pressed fill</th>
+      <th>Focus ring</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Red</strong></td>
+      <td>White, Cloud or Caliche</td>
+      <td>Red</td>
+      <td>White</td>
+      <td>Sonoran Red</td>
+      <td>White</td>
+      <td>Red</td>
+      <td>Bougainvillea</td>
+    </tr>
+    <tr>
+      <td><strong>Outline Red</strong></td>
+      <td>White, Cloud or Caliche</td>
+      <td>None, Red border</td>
+      <td>Red</td>
+      <td>Sonoran Red</td>
+      <td>White</td>
+      <td>Red</td>
+      <td>Bougainvillea</td>
+    </tr>
+    <tr>
+      <td><strong>Blue</strong></td>
+      <td>White, Cloud or Caliche</td>
+      <td>Blue</td>
+      <td>White</td>
+      <td>Azurite</td>
+      <td>White</td>
+      <td><code>#3d4f6f</code></td>
+      <td>Blue</td>
+    </tr>
+    <tr>
+      <td><strong>Outline Blue</strong></td>
+      <td>White, Cloud or Caliche</td>
+      <td>None, Blue border</td>
+      <td>Blue</td>
+      <td>Azurite</td>
+      <td>White</td>
+      <td><code>#3d4f6f</code></td>
+      <td>Blue</td>
+    </tr>
+    <tr>
+      <td><strong>Rain</strong></td>
+      <td>Blue or Azurite</td>
+      <td>Rain</td>
+      <td>Blue</td>
+      <td><code>#65c0db</code>, a darker Rain</td>
+      <td>Tinta</td>
+      <td><code>#9ad8ef</code>, a lighter Rain</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <td><strong>Outline Rain</strong></td>
+      <td>Blue or Azurite</td>
+      <td>None, Rain border</td>
+      <td>Rain</td>
+      <td><code>#65c0db</code>, a darker Rain</td>
+      <td>Tinta</td>
+      <td><code>#9ad8ef</code>, a lighter Rain</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <td><strong>White, Red text</strong></td>
+      <td>Red</td>
+      <td>White</td>
+      <td>Red</td>
+      <td>Gray 200</td>
+      <td>Red</td>
+      <td>Gray 100</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <td><strong>Outline White</strong></td>
+      <td>Red or Arroyo Blue</td>
+      <td>None, White border</td>
+      <td>White</td>
+      <td>Gray 200</td>
+      <td>Gray 800</td>
+      <td>Gray 100</td>
+      <td>White</td>
+    </tr>
+    <tr>
+      <td><strong>White, Blue text</strong></td>
+      <td>Arroyo Blue</td>
+      <td>White</td>
+      <td>Blue</td>
+      <td>Gray 200</td>
+      <td>Blue</td>
+      <td>Gray 100</td>
+      <td>White</td>
+    </tr>
+  </tbody>
+</table>
+
+- **Keyboard focus:** a focused button looks the way it does on hover, with a ring 2px
+  outside it. Its width is the shared <Token data={getTokenData('az.focus-ring.width.md')} />.
+  The ring is <Token data={getTokenData('az.color.brand.bougainvillea')} /> on the Red
+  buttons, White on outline Rain and the White buttons, and the button's own color on the
+  others.
+- **Pressed:** while it's pressed, a button fills its pressed color and keeps its hover
+  text color.
+- **Colors that aren't brand colors,** such as Rain's hover fill, are recorded with a note
+  saying why.
+
+## Size
+
+- **Default:** 46px tall: 18px text on a 24px line, with 9px of padding above and below
+  and 28px to each side.
+- **Small:** 29px tall: 16px text on a 19px line, with 3px above and below and 11px to
+  each side.
+- **Large:** 55px tall: 22px text on a 27px line, with 12px above and below and 34px to
+  each side, and 0.18px letter spacing instead of 0.14px.
+
+Every size has a 2px border, so outline and solid buttons line up, and fully rounded ends.
+The label is Proxima Nova Condensed Bold. An icon sits 4px from the label and doesn't
+change the button's height. Colors change over 150ms, ease-in-out, which hasn't been
+reviewed by design yet and turns off when someone asks for reduced motion.
+
+## Anatomy
+
+The button with no size or color chosen: its shape and type. Its colors come from a color
+variant, Red when none is chosen.
+
+<ContractAnatomy contract="button" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="button" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="button" variant="size.large" />
+
+### Colors
+
+Each color sets every color the button needs.
+
+#### Red
+
+<ContractAnatomy contract="button" variant="color.red" />
+
+#### Outline Red
+
+<ContractAnatomy contract="button" variant="color.outline-red" />
+
+#### Blue
+
+<ContractAnatomy contract="button" variant="color.blue" />
+
+#### Outline Blue
+
+<ContractAnatomy contract="button" variant="color.outline-blue" />
+
+#### Rain
+
+<ContractAnatomy contract="button" variant="color.rain" />
+
+#### Outline Rain
+
+<ContractAnatomy contract="button" variant="color.outline-rain" />
+
+#### White, Red text
+
+<ContractAnatomy contract="button" variant="color.white-text-red" />
+
+#### White, Blue text
+
+<ContractAnatomy contract="button" variant="color.white-text-blue" />
+
+#### Outline White
+
+<ContractAnatomy contract="button" variant="color.outline-white" />

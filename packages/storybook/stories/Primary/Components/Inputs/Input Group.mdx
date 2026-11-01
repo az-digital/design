@@ -1,40 +1,59 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
 import { ContractAnatomy } from '../ContractAnatomy';
+import * as InputGroupStories from './Input Group.stories';
 
-<Meta title="Primary/Components/Inputs/Input Group" />
+<Meta of={InputGroupStories} />
 
 # Input Group
 
 A text field with an attached button, such as a search form, a newsletter signup or an
 email field. The search form in a site's navigation is the first one designed.
 
+<Canvas of={InputGroupStories.Default} sourceState="none" />
+
+<Controls of={InputGroupStories.Default} />
+
+The search form above is the current release, on the Blue it's designed for. It matches
+this page.
+
 ## Colors
 
 These colors come from the search form on a Blue navbar, the only design so far. The
-input group's contract (`input-group.contract.json`) points each one straight at a brand
-color:
+input group's contract (`input-group.contract.json`) points each one at a color design
+token:
 
-- **Text and icon:** <Token data={getTokenData('az.color.brand.white')} />
-- **Border, and the divider between field and button:** <Token data={getTokenData('az.color.brand.white')} />
-- **Placeholder:** <Token data={getTokenData('az.color.brand.white')} />
-- **Hover and focus:** <Token data={getTokenData('az.color.brand.rain')} />. The
-  icon turns Rain on hover; the border and divider turn Rain while the field or button
-  has focus, fading over 150ms.
+- **Text, placeholder and icon:** <Token data={getTokenData('az.color.fg.white')} />
+- **Border, and the divider between field and button:** <Token data={getTokenData('az.color.fg.white')} />
+- **Hover and focus:** <Token data={getTokenData('az.color.fg.rain')} />. The icon turns
+  Rain on hover; the border and divider turn Rain while the field or button has focus,
+  fading over 150ms, ease-in-out. That timing hasn't been reviewed by design yet, and it
+  turns off when someone asks for reduced motion.
 
 When a design puts the input group on another background, such as a White page, a
 variant for it holds only the colors that change.
 
-## Shape is the same everywhere
+## Size
 
-- **Size:** 43px tall. The field has 6px of padding above and below its text, and 12px
-  to the left and right.
-- **Border:** 2px, around the field and button together, with 8px corners and a 2px
-  divider between them.
-- **Type:** 16px Regular, with a 22px line height.
+- **Height:** 35px below 992px, and 43px from 992px up.
+- **Corners:** <Token data={getTokenData('az.radius.1')} /> (4px) below 992px, and
+  <Token data={getTokenData('az.radius.3')} /> (8px) from 992px up.
+- **Border:** <Token data={getTokenData('az.border.width.md')} /> (2px), around the field
+  and button together, with a divider of the same width between them.
+- **Field:** <Token data={getTokenData('az.spacing.075')} /> (6px) of padding above and
+  below its text, and <Token data={getTokenData('az.spacing.150')} /> (12px) to the left and
+  right.
+- **Type:** <Token data={getTokenData('az.font-size.root')} /> (16px)
+  <Token data={getTokenData('az.font-weight.normal')} /> (Regular), with a 22px line
+  height.
 - **Button:** a 24px icon with 9px of padding around it.
 
-The input group has no tokens of its own: these values are in its contract.
+The input group has no design tokens of its own: values without one are in its contract.
+
+## Anatomy
+
+Each part of the input group and each of its design properties, from its contract: the
+design token it uses, or its own value and what it's for.
 
 <ContractAnatomy contract="input-group" />
 
@@ -42,7 +61,9 @@ The input group has no tokens of its own: these values are in its contract.
 
 The search form is an input group, so it adds only what's specific to search: it's up
 to 265px wide, with 5px above and below it and 15px to each side. On small screens, the
-button that shows it has a 1px keyboard focus ring in Rain. These values are in the
+button that shows it has a keyboard focus ring in
+<Token data={getTokenData('az.color.fg.rain')} />,
+<Token data={getTokenData('az.focus-ring.width.sm')} /> (1px) wide. These values are in the
 search contract (`search.contract.json`).
 
 <ContractAnatomy contract="search" />

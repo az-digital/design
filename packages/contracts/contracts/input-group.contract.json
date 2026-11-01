@@ -4,7 +4,8 @@
   "name": "Input Group",
   "description": "A text field with an attached button, such as a search form, a newsletter signup or an email field. Its colors come from the search form on a Blue navbar, the only design so far: White text, border, divider and icon, turning Rain on hover and focus. When a design puts it on another background, such as a White page, that variant changes only its colors.",
   "sources": [
-    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277"
+    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277",
+    "Arizona Bootstrap's latest 5.x release: below 992px, .az-search is 35px tall with 4px corners (set with the fullscreen navbar's styles)"
   ],
   "anatomy": {
     "root": {
@@ -13,67 +14,41 @@
         "height": {
           "$type": "dimension",
           "$value": {
-            "value": 43,
+            "value": 35,
             "unit": "px"
           },
-          "$description": "Height of a text field with an attached button."
+          "$description": "Height of a text field with an attached button below the lg breakpoint (992px)."
         },
-        "border.width": {
-          "$type": "dimension",
-          "$value": {
-            "value": 2,
-            "unit": "px"
-          },
-          "$description": "Border width around the field and button together."
-        },
-        "border.radius": {
-          "$type": "dimension",
-          "$value": {
-            "value": 8,
-            "unit": "px"
-          },
-          "$description": "Corner radius of the field and button together."
-        },
-        "border.color": "{az.color.brand.white}"
+        "border.width": "{az.border.width.md}",
+        "border.radius": "{az.radius.1}",
+        "border.color": "{az.color.fg.white}"
       },
       "states": {
         "focus-within": {
-          "border.color": "{az.color.brand.rain}"
+          "border.color": "{az.color.fg.rain}"
+        }
+      },
+      "breakpoints": {
+        "lg": {
+          "height": {
+            "$type": "dimension",
+            "$value": {
+              "value": 43,
+              "unit": "px"
+            },
+            "$description": "Height of a text field with an attached button from the lg breakpoint (992px) up."
+          },
+          "border.radius": "{az.radius.3}"
         }
       },
       "parts": {
         "field": {
           "description": "The text field.",
           "tokens": {
-            "padding.x": {
-              "$type": "dimension",
-              "$value": {
-                "value": 12,
-                "unit": "px"
-              },
-              "$description": "Space between the field's left and right edges and its text."
-            },
-            "padding.y": {
-              "$type": "dimension",
-              "$value": {
-                "value": 6,
-                "unit": "px"
-              },
-              "$description": "Space above and below the field's text."
-            },
-            "font.size": {
-              "$type": "dimension",
-              "$value": {
-                "value": 16,
-                "unit": "px"
-              },
-              "$description": "Field text size."
-            },
-            "font.weight": {
-              "$type": "fontWeight",
-              "$value": 400,
-              "$description": "Field text weight (Regular)."
-            },
+            "padding.x": "{az.spacing.150}",
+            "padding.y": "{az.spacing.075}",
+            "font.size": "{az.font-size.root}",
+            "font.weight": "{az.font-weight.normal}",
             "line-height": {
               "$type": "dimension",
               "$value": {
@@ -82,22 +57,15 @@
               },
               "$description": "Field text line height."
             },
-            "color": "{az.color.brand.white}",
-            "placeholder.color": "{az.color.brand.white}"
+            "color": "{az.color.fg.white}",
+            "placeholder.color": "{az.color.fg.white}"
           }
         },
         "divider": {
           "description": "The line between the field and the button.",
           "tokens": {
-            "width": {
-              "$type": "dimension",
-              "$value": {
-                "value": 2,
-                "unit": "px"
-              },
-              "$description": "Width of the line between the field and the button: the same as the border."
-            },
-            "color": "{az.color.brand.white}",
+            "width": "{az.border.width.md}",
+            "color": "{az.color.fg.white}",
             "transition.duration": {
               "$type": "duration",
               "$value": {
@@ -119,7 +87,7 @@
           },
           "states": {
             "focus-within": {
-              "color": "{az.color.brand.rain}"
+              "color": "{az.color.fg.rain}"
             }
           }
         },
@@ -147,11 +115,11 @@
                   },
                   "$description": "The attached button's icon width and height."
                 },
-                "color": "{az.color.brand.white}"
+                "color": "{az.color.fg.white}"
               },
               "states": {
                 "hover": {
-                  "color": "{az.color.brand.rain}"
+                  "color": "{az.color.fg.rain}"
                 }
               }
             }

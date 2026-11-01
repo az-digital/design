@@ -76,8 +76,8 @@ function ColorSwatchCard({ color }: { color: Color }) {
   const rgb = hexToRgb(color.hex);
   const cmyk = color.extensions?.cmyk as Cmyk | undefined;
   const pantone = color.extensions?.pantone as string | undefined;
-  // Arizona's convention: a red pin on the darkest blues, a blue pin on everything else.
-  const pinColor = ['blue', 'tinta'].includes((color.name ?? '').toLowerCase()) ? 'var(--az-color-brand-red)' : 'var(--az-color-brand-blue)';
+  // Arizona's convention: a red pin on the darkest blues and black, a blue pin on everything else.
+  const pinColor = ['blue', 'tinta', 'black'].includes((color.name ?? '').toLowerCase()) ? 'var(--az-color-brand-red)' : 'var(--az-color-brand-blue)';
   const rgbPairs: Array<[string, string]> = [['R', String(rgb.r)], ['G', String(rgb.g)], ['B', String(rgb.b)]];
   const cmykPairs: Array<[string, string]> | undefined = cmyk && [['C', String(cmyk.c)], ['M', String(cmyk.m)], ['Y', String(cmyk.y)], ['K', String(cmyk.k)]];
 

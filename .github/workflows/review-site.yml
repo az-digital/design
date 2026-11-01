@@ -6,6 +6,15 @@ on:
     branches:
       - main
 
+# One run at a time per review site. Each deploy runs `aws s3 sync --delete`
+# into the same folder, so two deploys running at once can finish in the wrong
+# order: the older one deletes the newer build's assets and leaves its
+# iframe.html pointing at files that are gone (seen on PR 79). Let the active
+# run finish so a failed replacement cannot leave a partially synced site.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 env:
   AZ_SITE_HOST: ${{ vars.AZ_SITE_HOST }}
 
@@ -30,6 +39,17 @@ jobs:
 
       - name: Run lint checks
         run: npm run lint:storybook
+
+      # Fails when a contract references a missing token or breaks the schema, or
+      # when its committed dist/contracts.json is out of date.
+      - name: Check the component contracts
+        run: |
+          npm run build:contracts
+          git diff --exit-code -- packages/contracts/dist
+
+      # The stories run as tests in Chromium, including any contract checks.
+      - name: Install Playwright's Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Run Storybook tests
         run: npm run test:storybook
@@ -81,7 +101,7 @@ jobs:
 
       - name: Comment review site URL on PR
         if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const marker = '<!-- design-review-site -->';

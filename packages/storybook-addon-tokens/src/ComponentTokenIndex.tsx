@@ -127,10 +127,6 @@ const normalize = (text: string) => text.toLowerCase().replace(/[^a-z0-9]/g, '')
  * page wherever the site files it, and only when it has one. When two pages
  * share a name, a page attached to stories (the component's own docs) wins over
  * a standalone MDX page such as a placeholder.
- *
- * A page whose title isn't its tokens' name claims them with a
- * `tokens:<component>` tag (`tags={['tokens:brand-header']}` on its Meta), and
- * that wins over a title match.
  */
 function useDocsPages(): Map<string, string> {
   const [pages, setPages] = useState<Map<string, string>>(new Map());
@@ -141,16 +137,14 @@ function useDocsPages(): Map<string, string> {
       .then((index: { entries?: Record<string, { id: string; type?: string; title?: string; tags?: string[] }> }) => {
         if (cancelled) return;
         const found = new Map<string, { id: string; attached: boolean }>();
-        const claimed = new Map<string, string>();
         for (const entry of Object.values(index.entries ?? {})) {
           if (entry.type !== 'docs' || !entry.title) continue;
-          for (const tag of entry.tags ?? []) if (tag.startsWith('tokens:')) claimed.set(normalize(tag.slice('tokens:'.length)), entry.id);
           const key = normalize(entry.title.split('/').at(-1) ?? '');
           const attached = !entry.tags?.includes('unattached-mdx');
           const existing = found.get(key);
           if (!existing || (attached && !existing.attached)) found.set(key, { id: entry.id, attached });
         }
-        setPages(new Map([...[...found].map(([key, { id }]) => [key, id] as const), ...claimed]));
+        setPages(new Map([...found].map(([key, { id }]) => [key, id])));
       })
       .catch(() => {});
     return () => {
@@ -173,7 +167,7 @@ const CHIP: CSSProperties = {
   fontSize: 12,
 };
 const CHIP_ACTIVE: CSSProperties = { ...CHIP, borderColor: '#1e5288', background: '#1e5288', color: '#fff' };
-const META: CSSProperties = { color: '#697786', fontSize: 12 };
+const META: CSSProperties = { color: '#616e7c', fontSize: 12 };
 const CONTROL_LABEL: CSSProperties = { color: '#374151', fontSize: 12, fontWeight: 700 };
 const SEGMENT: CSSProperties = { border: 0, padding: '4px 12px', background: '#fff', color: '#374151', cursor: 'pointer', fontSize: 12, fontFamily: 'inherit', lineHeight: 1.4 };
 const SEGMENT_ACTIVE: CSSProperties = { ...SEGMENT, background: '#1e5288', color: '#fff' };

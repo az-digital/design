@@ -24,6 +24,11 @@ export const tokenCounts = countTokens(tokensDocument);
 
 # Design Tokens
 
+## Guidance
+
+- <a href="./?path=/docs/primary-foundations-tokens-how-to-use--docs" target="_top">How to use design tokens</a>
+- <a href="./?path=/docs/primary-foundations-tokens-contributing--docs" target="_top">Contribute token changes</a>
+
 ## Downloads and useful links
 
 - **Tokens:** {tokenCounts.total} &middot; **Colors:** {tokenCounts.color} &middot; **Format:** JSON
@@ -45,10 +50,10 @@ Arizona's brand palette (`az.color.brand.*`), the raw color values every other c
 
 ## Shared decisions
 
-Decisions every component that needs them shares, so they change in one place. Each is named the way implementations already name the same decision: `az.focus-ring.width` is the focus ring's width wherever one is drawn.
+Decisions every component that needs them shares, so they change in one place. Each is named the way implementations already name the same decision: `az.focus-ring.width.md` is the focus ring's width wherever one is drawn.
 
 <TokenDisplay items={getTokenDisplayItems('az.focus-ring.', { order: 'source' })} layout="table" />
 
 ## Components
 
-Components don't have tokens of their own. Each component's contract (`packages/contracts`) sets each of its parts' design properties: colors point at brand colors, shared decisions at their shared token, and everything specific to the component, such as its sizes and timings, is a value in the contract itself, with a description of what it's for. Its docs page shows the contract as an Anatomy table.
+Each component's contract (`packages/contracts`) sets each of its parts' design properties: colors point at color tokens for what they color and where (`az.color.bg.button.red`, `az.color.fg.white`), shared decisions at their shared token, and everything specific to the component, such as its sizes and timings, is a value in the contract itself, with a description of what it's for. Its docs page shows the contract as an Anatomy table.
