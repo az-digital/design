@@ -27,10 +27,7 @@
     "kind": "default",
     "condition": null,
     "property": "fixed-on-mobile.scroll-gap",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
+    "token": "az.spacing.100"
   },
   {
     "contract": "brand-header",
@@ -162,10 +159,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "4px",
-    "description": "Header button top and bottom padding."
+    "token": "az.spacing.050"
   },
   {
     "contract": "brand-header",
@@ -174,10 +168,7 @@
     "kind": "default",
     "condition": null,
     "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "2px",
-    "description": "Space between a header button's icon and its label."
+    "token": "az.spacing.025"
   },
   {
     "contract": "brand-header",

@@ -22,14 +22,7 @@
           },
           "$description": "Header height: its minimum height at every screen size, and its fixed height below 992px."
         },
-        "fixed-on-mobile.scroll-gap": {
-          "$type": "dimension",
-          "$value": {
-            "value": 8,
-            "unit": "px"
-          },
-          "$description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
-        }
+        "fixed-on-mobile.scroll-gap": "{az.spacing.100}"
       },
       "parts": {
         "logo": {
@@ -115,22 +108,8 @@
               },
               "$description": "Header button minimum height: as tall as the header."
             },
-            "padding.y": {
-              "$type": "dimension",
-              "$value": {
-                "value": 4,
-                "unit": "px"
-              },
-              "$description": "Header button top and bottom padding."
-            },
-            "gap": {
-              "$type": "dimension",
-              "$value": {
-                "value": 2,
-                "unit": "px"
-              },
-              "$description": "Space between a header button's icon and its label."
-            },
+            "padding.y": "{az.spacing.050}",
+            "gap": "{az.spacing.025}",
             "transition.duration": {
               "$type": "duration",
               "$value": {
