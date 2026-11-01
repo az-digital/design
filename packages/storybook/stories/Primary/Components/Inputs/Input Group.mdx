@@ -113,29 +113,4 @@ What each size changes.
 ## Search
 
 The search form in a site's navigation is built like an input group, but its look is its
-own, so it has its own contract (`search.contract.json`).
-
-<Canvas of={InputGroupStories.Search} sourceState="none" />
-
-The search form above is the current release. It matches this section.
-
-- **Colors:** text, placeholder, border, divider and icon are
-  <Token data={getTokenData('az.color.fg.white')} />, on the Blue it's designed for. The
-  icon turns <Token data={getTokenData('az.color.fg.rain')} /> on hover, and the border and
-  divider turn Rain while the field or button has focus, fading over 150ms, ease-in-out.
-- **Height and corners:** 35px tall with <Token data={getTokenData('az.radius.1')} /> (4px)
-  corners below 992px, and 43px with <Token data={getTokenData('az.radius.3')} /> (8px)
-  from 992px up.
-- **Border:** <Token data={getTokenData('az.border.width.md')} /> (2px), around the field
-  and button together, with a divider of the same width between them.
-- **Field:** <Token data={getTokenData('az.spacing.075')} /> (6px) of padding above and
-  below its text and <Token data={getTokenData('az.spacing.150')} /> (12px) to each side;
-  <Token data={getTokenData('az.font-size.root')} /> (16px)
-  <Token data={getTokenData('az.font-weight.normal')} /> (Regular) type on a 22px line.
-- **Button:** an icon only, 24px, with 9px of padding around it.
-- **Form:** up to 265px wide, with 5px above and below it and 15px to each side.
-- **Small screens:** the button that shows the search form has a keyboard focus ring in
-  <Token data={getTokenData('az.color.fg.rain')} />,
-  <Token data={getTokenData('az.focus-ring.width.sm')} /> (1px) wide.
-
-<ContractAnatomy contract="search" />
+own. See <a href="./?path=/docs/primary-components-navigation-search--docs" target="_top">Search</a>.

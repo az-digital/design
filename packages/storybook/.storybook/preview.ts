@@ -22,7 +22,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
+        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', '*'], 'Indicators', 'Inputs', ['Docs', 'Checkbox', 'Input Group', 'Radio', 'Select', 'Switch', 'Text Input', 'TextArea'], 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Search', 'Side Nav', 'Slide Panel', 'Top nav'], 'Popups', '*'], '*'], 'Bear Down 100'],
       },
     },
   },
