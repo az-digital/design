@@ -1617,6 +1617,264 @@
     "token": "az.color.brand.gray.800"
   },
   {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.left",
+    "token": null,
+    "type": "dimension",
+    "value": "27px",
+    "description": "Space from the checkbox's left edge to its label: the 18px box and 9px after it."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "min-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "At least one line of label text tall: 28px."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.025"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Checkbox width and height: 18px, the size of the label text."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": null,
+    "type": "dimension",
+    "value": "4.5px",
+    "description": "Checkbox corner radius: a quarter of the 18px box."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.top",
+    "token": null,
+    "type": "dimension",
+    "value": "5px",
+    "description": "Space above the box, so it lines up with the first line of its label."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the box's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "fill",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "border.color",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "indeterminate",
+    "property": "fill",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "indeterminate",
+    "property": "border.color",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "active",
+    "property": "brightness",
+    "token": null,
+    "type": "number",
+    "value": "0.9",
+    "description": "The box darkens to 90% brightness while it's pressed."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled box and its label are at 50% opacity."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input.mark",
+    "kind": "state",
+    "condition": "checked",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "input.mark",
+    "kind": "state",
+    "condition": "indeterminate",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Label text size: 18px, the body text size."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Label line height: 28px on 18px text."
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "checkbox",
+    "variant": null,
+    "part": "label",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled control's label is at 50% opacity."
+  },
+  {
     "contract": "input-group",
     "variant": null,
     "part": "field",
@@ -2217,6 +2475,246 @@
     "description": "Large input group text size from the xl breakpoint (1200px) up: 22.5px, one and a quarter times the 18px body text."
   },
   {
+    "contract": "radio",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.left",
+    "token": null,
+    "type": "dimension",
+    "value": "27px",
+    "description": "Space from the radio's left edge to its label: the 18px circle and 9px after it."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "min-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "At least one line of label text tall: 28px."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.025"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Radio width and height: 18px, the size of the label text."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.pill"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.top",
+    "token": null,
+    "type": "dimension",
+    "value": "5px",
+    "description": "Space above the circle, so it lines up with the first line of its label."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the circle's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "fill",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "border.color",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "active",
+    "property": "brightness",
+    "token": null,
+    "type": "number",
+    "value": "0.9",
+    "description": "The circle darkens to 90% brightness while it's pressed."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled circle and its label are at 50% opacity."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input.dot",
+    "kind": "state",
+    "condition": "checked",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "input.dot",
+    "kind": "state",
+    "condition": "checked",
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "9px",
+    "description": "Dot width and height: half the 18px circle."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Label text size: 18px, the body text size."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Label line height: 28px on 18px text."
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "radio",
+    "variant": null,
+    "part": "label",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled control's label is at 50% opacity."
+  },
+  {
     "contract": "search",
     "variant": null,
     "part": "root",
@@ -2497,5 +2995,1310 @@
     "condition": "focus-visible",
     "property": "ring.width",
     "token": "az.focus-ring.width.sm"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.075"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.right",
+    "token": null,
+    "type": "dimension",
+    "value": "36px",
+    "description": "Space at the select's right end, for its arrow: the arrow's 16px plus 12px on its right and 8px on its left."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Select text size: 18px, the body text size on a site."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Select text line height: 28px on 18px text."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long the select's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for the select's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the select's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "fill",
+    "token": "az.color.brand.gray.200"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "arrow",
+    "kind": "default",
+    "condition": null,
+    "property": "width",
+    "token": null,
+    "type": "dimension",
+    "value": "16px",
+    "description": "Arrow width."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "arrow",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Arrow height."
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "arrow",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.800"
+  },
+  {
+    "contract": "select",
+    "variant": null,
+    "part": "arrow",
+    "kind": "default",
+    "condition": null,
+    "property": "inset.right",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "select",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.050"
+  },
+  {
+    "contract": "select",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.left",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "select",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.1"
+  },
+  {
+    "contract": "select",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "15.75px",
+    "description": "Small select text size: 15.75px, seven eighths of the 18px body text."
+  },
+  {
+    "contract": "select",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "select",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.left",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "select",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.3"
+  },
+  {
+    "contract": "select",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "20.25px",
+    "description": "Large select text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+  },
+  {
+    "contract": "select",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22.5px",
+    "description": "Large select text size from the xl breakpoint (1200px) up: 22.5px."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.left",
+    "token": null,
+    "type": "dimension",
+    "value": "45px",
+    "description": "Space from the switch's left edge to its label: the 36px track and 9px after it."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "min-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "At least one line of label text tall: 28px."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.025"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "width",
+    "token": null,
+    "type": "dimension",
+    "value": "36px",
+    "description": "Track width: twice its height."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Track height: 18px, the size of the label text."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.pill"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.top",
+    "token": null,
+    "type": "dimension",
+    "value": "5px",
+    "description": "Space above the track, so it lines up with the first line of its label."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long the knob takes to slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for the knob's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the track's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "fill",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "checked",
+    "property": "border.color",
+    "token": "az.color.brand.red"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled track and its label are at 50% opacity."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "13.5px",
+    "description": "Knob width and height: three quarters of the 18px track height."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "default",
+    "condition": null,
+    "property": "position",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "The knob sits at the track's left end when the switch is off."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "state",
+    "condition": "checked",
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "input.knob",
+    "kind": "state",
+    "condition": "checked",
+    "property": "position",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "The knob slides 18px, to the track's right end, when the switch is on."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Label text size: 18px, the body text size."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Label line height: 28px on 18px text."
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "switch",
+    "variant": null,
+    "part": "label",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.5",
+    "description": "A disabled control's label is at 50% opacity."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Label text size: 18px, the body text size."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Label line height: 28px on 18px text."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "label",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.075"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Field text size: 18px, the body text size on a site."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Field text line height: 28px on 18px text."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long the field's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for the field's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "placeholder.color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "placeholder.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.75",
+    "description": "Field placeholder opacity, so it reads as lighter than typed text."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the field's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "fill",
+    "token": "az.color.brand.gray.200"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "help",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": "az.font-size.root"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "help",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Help text line height: about 25px on 16px text."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "help",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "help",
+    "kind": "default",
+    "condition": null,
+    "property": "opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.75",
+    "description": "Help text opacity, so it reads as secondary to the label and field."
+  },
+  {
+    "contract": "text-input",
+    "variant": null,
+    "part": "help",
+    "kind": "default",
+    "condition": null,
+    "property": "margin.top",
+    "token": "az.spacing.050"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.small",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.050"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.small",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.small",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.1"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.small",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "15.75px",
+    "description": "Small text input text size: 15.75px, seven eighths of the 18px body text."
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.large",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.large",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.large",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.3"
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.large",
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "20.25px",
+    "description": "Large text input text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+  },
+  {
+    "contract": "text-input",
+    "variant": "size.large",
+    "part": "field",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22.5px",
+    "description": "Large text input text size from the xl breakpoint (1200px) up: 22.5px."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.075"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Text area text size: 18px, the body text size on a site."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Text area text line height: 28px on 18px text."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long the text area's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for the text area's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "placeholder.color",
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "placeholder.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.75",
+    "description": "Text area placeholder opacity, so it reads as lighter than typed text."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the text area's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "fill",
+    "token": "az.color.brand.gray.200"
+  },
+  {
+    "contract": "textarea",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.050"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.1"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.small",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "15.75px",
+    "description": "Small text area text size: 15.75px, seven eighths of the 18px body text."
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.3"
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "20.25px",
+    "description": "Large text area text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+  },
+  {
+    "contract": "textarea",
+    "variant": "size.large",
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "xl",
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22.5px",
+    "description": "Large text area text size from the xl breakpoint (1200px) up: 22.5px."
   }
 ]

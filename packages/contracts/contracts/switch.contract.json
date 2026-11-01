@@ -1,0 +1,177 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "switch",
+  "name": "Switch",
+  "description": "A switch to turn a setting on or off, beside its label. A 36 × 18px White track with a Gray 600 border and a Gray 600 knob at its left; when it's on, the track fills Red and a White knob slides to the right.",
+  "sources": [
+    "Arizona Bootstrap's latest 5.x release: .form-switch"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The switch and its label, side by side.",
+      "tokens": {
+        "padding.left": {
+          "$type": "dimension",
+          "$value": {
+            "value": 45,
+            "unit": "px"
+          },
+          "$description": "Space from the switch's left edge to its label: the 36px track and 9px after it."
+        },
+        "min-height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          },
+          "$description": "At least one line of label text tall: 28px."
+        },
+        "margin.bottom": "{az.spacing.025}"
+      },
+      "parts": {
+        "input": {
+          "description": "The track.",
+          "tokens": {
+            "width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 36,
+                "unit": "px"
+              },
+              "$description": "Track width: twice its height."
+            },
+            "height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Track height: 18px, the size of the label text."
+            },
+            "fill": "{az.color.brand.white}",
+            "border.width": "{az.border.width.sm}",
+            "border.color": "{az.color.brand.gray.600}",
+            "border.radius": "{az.radius.pill}",
+            "margin.top": {
+              "$type": "dimension",
+              "$value": {
+                "value": 5,
+                "unit": "px"
+              },
+              "$description": "Space above the track, so it lines up with the first line of its label."
+            },
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 150,
+                "unit": "ms"
+              },
+              "$description": "How long the knob takes to slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the knob's slide. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "border.color": "{az.color.brand.bougainvillea}",
+              "ring.color": "{az.color.brand.bougainvillea}",
+              "ring.width": "{az.focus-ring.width.lg}",
+              "ring.opacity": {
+                "$type": "number",
+                "$value": 0.7,
+                "$description": "Opacity of the track's focus ring, so the page shows through it."
+              }
+            },
+            "checked": {
+              "fill": "{az.color.brand.red}",
+              "border.color": "{az.color.brand.red}"
+            },
+            "disabled": {
+              "opacity": {
+                "$type": "number",
+                "$value": 0.5,
+                "$description": "A disabled track and its label are at 50% opacity."
+              }
+            }
+          },
+          "parts": {
+            "knob": {
+              "description": "The round knob, at the track's left when it's off and its right when it's on.",
+              "tokens": {
+                "size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 13.5,
+                    "unit": "px"
+                  },
+                  "$description": "Knob width and height: three quarters of the 18px track height."
+                },
+                "color": "{az.color.brand.gray.600}",
+                "position": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "$description": "The knob sits at the track's left end when the switch is off."
+                }
+              },
+              "states": {
+                "focus-visible": {
+                  "color": "{az.color.brand.bougainvillea}"
+                },
+                "checked": {
+                  "color": "{az.color.fg.white}",
+                  "position": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 18,
+                      "unit": "px"
+                    },
+                    "$description": "The knob slides 18px, to the track's right end, when the switch is on."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "label": {
+          "description": "The switch's label, to its right.",
+          "tokens": {
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Label text size: 18px, the body text size."
+            },
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Label line height: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}"
+          },
+          "states": {
+            "disabled": {
+              "opacity": {
+                "$type": "number",
+                "$value": 0.5,
+                "$description": "A disabled control's label is at 50% opacity."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

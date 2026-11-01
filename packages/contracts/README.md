@@ -95,7 +95,8 @@ contracts likewise bind a component's parts to tokens.
     `$description`. A `color` value is only for a color that isn't in the brand palette
     yet, and its description says so.
   - **`states`:** what changes in `hover`, `focus-visible`, `focus-within`, `active`,
-    `open` or `disabled`. Only what changes.
+    `checked`, `indeterminate`, `open` or `disabled`. Only what changes. `checked` and
+    `indeterminate` are a checkbox's, radio's or switch's value.
   - **`breakpoints`:** what changes from the width in the corresponding
     `az.breakpoint.<name>` token up. The key and token use the same name; only what
     changes.

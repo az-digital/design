@@ -80,7 +80,7 @@
           "$ref": "#/$defs/tokens"
         },
         "states": {
-          "description": "What changes in an interaction state. Only what changes. focus-within is while the part, or anything inside it, has focus.",
+          "description": "What changes in an interaction state. Only what changes. focus-within is while the part, or anything inside it, has focus. checked and indeterminate are a checkbox's, radio's or switch's value.",
           "type": "object",
           "propertyNames": {
             "enum": [
@@ -88,6 +88,8 @@
               "focus-visible",
               "focus-within",
               "active",
+              "checked",
+              "indeterminate",
               "open",
               "disabled"
             ]
@@ -358,7 +360,7 @@
           "$ref": "#/$defs/tokens"
         },
         "states": {
-          "description": "What changes in an interaction state. Only what changes. focus-within is while the part, or anything inside it, has focus.",
+          "description": "What changes in an interaction state. Only what changes. focus-within is while the part, or anything inside it, has focus. checked and indeterminate are a checkbox's, radio's or switch's value.",
           "type": "object",
           "propertyNames": {
             "enum": [
@@ -366,6 +368,8 @@
               "focus-visible",
               "focus-within",
               "active",
+              "checked",
+              "indeterminate",
               "open",
               "disabled"
             ]

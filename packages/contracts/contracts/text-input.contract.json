@@ -1,0 +1,188 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "text-input",
+  "name": "Text Input",
+  "description": "A single-line text field, with a label above it and optional help text below. Gray 900 text on White with a Gray 600 border and 6px corners, and a Bougainvillea focus ring. The same field is the input group's field.",
+  "sources": [
+    "Arizona Bootstrap's latest 5.x release: .form-label, .form-control and .form-text"
+  ],
+  "variants": {
+    "size": {
+      "description": "The text input's size. With none chosen, it's the default size: 6 / 12px padding, 18px text and 6px corners.",
+      "options": {
+        "small": {
+          "description": "A small text input: form-control-sm.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "field": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.050}",
+                    "padding.x": "{az.spacing.100}",
+                    "border.radius": "{az.radius.1}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 15.75,
+                        "unit": "px"
+                      },
+                      "$description": "Small text input text size: 15.75px, seven eighths of the 18px body text."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "large": {
+          "description": "A large text input: form-control-lg.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "field": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.100}",
+                    "padding.x": "{az.spacing.200}",
+                    "border.radius": "{az.radius.3}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 20.25,
+                        "unit": "px"
+                      },
+                      "$description": "Large text input text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+                    }
+                  },
+                  "breakpoints": {
+                    "xl": {
+                      "font.size": {
+                        "$type": "dimension",
+                        "$value": {
+                          "value": 22.5,
+                          "unit": "px"
+                        },
+                        "$description": "Large text input text size from the xl breakpoint (1200px) up: 22.5px."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "A label, the field and optional help text.",
+      "parts": {
+        "label": {
+          "description": "The field's label, above it.",
+          "tokens": {
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Label text size: 18px, the body text size."
+            },
+            "font.weight": "{az.font-weight.bold}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Label line height: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}",
+            "margin.bottom": "{az.spacing.100}"
+          }
+        },
+        "field": {
+          "description": "The text field, at least one line tall.",
+          "tokens": {
+            "padding.y": "{az.spacing.075}",
+            "padding.x": "{az.spacing.150}",
+            "font.size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Field text size: 18px, the body text size on a site."
+            },
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Field text line height: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}",
+            "fill": "{az.color.brand.white}",
+            "border.width": "{az.border.width.sm}",
+            "border.color": "{az.color.brand.gray.600}",
+            "border.radius": "{az.radius.2}",
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 150,
+                "unit": "ms"
+              },
+              "$description": "How long the field's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the field's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "placeholder.color": "{az.color.brand.gray.900}",
+            "placeholder.opacity": {
+              "$type": "number",
+              "$value": 0.75,
+              "$description": "Field placeholder opacity, so it reads as lighter than typed text."
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "border.color": "{az.color.brand.bougainvillea}",
+              "ring.color": "{az.color.brand.bougainvillea}",
+              "ring.width": "{az.focus-ring.width.lg}",
+              "ring.opacity": {
+                "$type": "number",
+                "$value": 0.7,
+                "$description": "Opacity of the field's focus ring, so the page shows through it."
+              }
+            },
+            "disabled": {
+              "fill": "{az.color.brand.gray.200}",
+              "border.color": "{az.color.brand.gray.400}"
+            }
+          }
+        },
+        "help": {
+          "description": "Optional help text below the field, such as a format hint.",
+          "tokens": {
+            "font.size": "{az.font-size.root}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Help text line height: about 25px on 16px text."
+            },
+            "color": "{az.color.brand.gray.900}",
+            "opacity": {
+              "$type": "number",
+              "$value": 0.75,
+              "$description": "Help text opacity, so it reads as secondary to the label and field."
+            },
+            "margin.top": "{az.spacing.050}"
+          }
+        }
+      }
+    }
+  }
+}

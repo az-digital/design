@@ -1,5 +1,66 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as TextInputStories from './Text Input.stories';
 
-<Meta title="Primary/Components/Inputs/Text Input" />
+<Meta of={TextInputStories} />
 
 # Text Input
+
+A single-line text field, with a label above it and optional help text below it.
+
+<Canvas of={TextInputStories.Default} sourceState="none" />
+
+<Controls of={TextInputStories.Default} />
+
+The text input above is the current release. It matches this page. Valid and invalid states aren't recorded yet: their colors need marketing's approval.
+
+## Colors
+
+- **Text:** <Token data={getTokenData('az.color.brand.gray.900')} />, on <Token data={getTokenData('az.color.brand.white')} />, with a <Token data={getTokenData('az.color.brand.gray.600')} /> border.
+- **Keyboard focus:** the border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at 70% opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. It fades in over 150ms, ease-in-out, which hasn't been reviewed by design yet and turns off when someone asks for reduced motion.
+- **Disabled:** the field fills <Token data={getTokenData('az.color.brand.gray.200')} />, with a <Token data={getTokenData('az.color.brand.gray.400')} /> border.
+- **Placeholder:** <Token data={getTokenData('az.color.brand.gray.900')} /> at 75% opacity, so it reads as lighter than typed text.
+
+## Label and help text
+
+- **Label:** 18px <Token data={getTokenData('az.font-weight.bold')} /> (Bold) on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />, <Token data={getTokenData('az.spacing.100')} /> (8px) above the field.
+- **Help text:** <Token data={getTokenData('az.font-size.root')} /> (16px) on a 25px line, <Token data={getTokenData('az.color.brand.gray.900')} /> at 75% opacity, <Token data={getTokenData('az.spacing.050')} /> (4px) below the field.
+
+## Size
+
+- **Padding:** <Token data={getTokenData('az.spacing.075')} /> (6px) above and below the text, and <Token data={getTokenData('az.spacing.150')} /> (12px) to each side.
+- **Type:** 18px <Token data={getTokenData('az.font-weight.normal')} /> (Regular) on a 28px line.
+- **Border:** <Token data={getTokenData('az.border.width.sm')} /> (1px), with <Token data={getTokenData('az.radius.2')} /> (6px) corners.
+
+<table>
+  <thead>
+    <tr><th></th><th>Small</th><th>Default</th><th>Large</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Padding</td><td><Token data={getTokenData('az.spacing.050')} /> (4px) above and below, <Token data={getTokenData('az.spacing.100')} /> (8px) to each side</td><td>6px above and below, 12px to each side</td><td><Token data={getTokenData('az.spacing.100')} /> (8px) above and below, <Token data={getTokenData('az.spacing.200')} /> (16px) to each side</td></tr>
+    <tr><td>Text</td><td>15.75px</td><td>18px</td><td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td></tr>
+    <tr><td>Corners</td><td><Token data={getTokenData('az.radius.1')} /> (4px)</td><td><Token data={getTokenData('az.radius.2')} /> (6px)</td><td><Token data={getTokenData('az.radius.3')} /> (8px)</td></tr>
+  </tbody>
+</table>
+
+The same field is the <a href="./?path=/docs/primary-components-inputs-input-group--docs" target="_top">input group's</a> field.
+
+## Anatomy
+
+Each part of the text input and each of its design properties, from its contract
+(`text-input.contract.json`): the design token it uses, or its own value and what it's for.
+
+<ContractAnatomy contract="text-input" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="text-input" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="text-input" variant="size.large" />
