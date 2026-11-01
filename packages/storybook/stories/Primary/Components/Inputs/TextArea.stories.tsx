@@ -23,6 +23,8 @@ const sizeOptions = (size: string) => ({ Small: ['size.small'], Large: ['size.la
 
 const meta = {
   title: 'Primary/Components/Inputs/TextArea',
+  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
+  tags: ['new'],
   args: { Size: 'Default', Label: 'Message', Placeholder: 'What would you like to ask?', Rows: 3, Disabled: false },
   argTypes: {
     Size: { control: 'inline-radio', options: Object.keys(sizes) },

@@ -6,6 +6,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Primary/Components/Navigation/Search',
+  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
+  tags: ['new'],
   render: () => (
     <div style={{ backgroundColor: 'var(--az-color-brand-blue)', padding: '2rem' }}>
       <form className="az-search" role="search" onSubmit={(event) => event.preventDefault()}>

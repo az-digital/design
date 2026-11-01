@@ -14,6 +14,8 @@ type SwitchArgs = {
 
 const meta = {
   title: 'Primary/Components/Inputs/Switch',
+  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
+  tags: ['new'],
   args: { Label: 'Show captions', On: true, Disabled: false },
   argTypes: {
     Label: { control: 'text' },

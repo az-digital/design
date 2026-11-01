@@ -16,6 +16,8 @@ type CheckboxArgs = {
 
 const meta = {
   title: 'Primary/Components/Inputs/Checkbox',
+  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
+  tags: ['new'],
   args: { Label: 'Email me about events', Value: 'Checked', Disabled: false },
   argTypes: {
     Label: { control: 'text' },

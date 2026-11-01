@@ -20,6 +20,8 @@ const sizeOptions = (size: string) => ({ Small: ['size.small'], Large: ['size.la
 
 const meta = {
   title: 'Primary/Components/Inputs/Select',
+  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
+  tags: ['new'],
   args: { Size: 'Default', Label: 'College', Disabled: false },
   argTypes: {
     Size: { control: 'inline-radio', options: Object.keys(sizes) },
