@@ -2,77 +2,51 @@
   "$schema": "../contract.schema.json",
   "id": "input-group",
   "name": "Input Group",
-  "description": "A text field with an attached button, such as a search form, a newsletter signup or an email field. Its colors come from the search form on a Blue navbar, the only design so far: White text, border, divider and icon, turning Rain on hover and focus. When a design puts it on another background, such as a White page, that variant changes only its colors.",
+  "description": "A text field with something attached: a text add-on such as @ or a currency sign, a button such as Subscribe, or both. The field, add-ons and buttons share one height and border, and where two touch their corners are square, so they read as one control. Gray 900 text on White with a Gray 600 border, and a Bougainvillea focus ring.",
   "sources": [
-    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277",
-    "Arizona Bootstrap's latest 5.x release: below 992px, .az-search is 35px tall with 4px corners (set with the fullscreen navbar's styles)"
+    "Arizona Bootstrap's latest 5.x release: .form-control, .input-group-text and .input-group .btn"
   ],
   "anatomy": {
     "root": {
-      "description": "The field and button together, inside one border.",
-      "tokens": {
-        "height": {
-          "$type": "dimension",
-          "$value": {
-            "value": 35,
-            "unit": "px"
-          },
-          "$description": "Height of a text field with an attached button below the lg breakpoint (992px)."
-        },
-        "border.width": "{az.border.width.md}",
-        "border.radius": "{az.radius.1}",
-        "border.color": "{az.color.fg.white}"
-      },
-      "states": {
-        "focus-within": {
-          "border.color": "{az.color.fg.rain}"
-        }
-      },
-      "breakpoints": {
-        "lg": {
-          "height": {
-            "$type": "dimension",
-            "$value": {
-              "value": 43,
-              "unit": "px"
-            },
-            "$description": "Height of a text field with an attached button from the lg breakpoint (992px) up."
-          },
-          "border.radius": "{az.radius.3}"
-        }
-      },
+      "description": "The field and whatever is attached to it, side by side.",
       "parts": {
         "field": {
           "description": "The text field.",
           "tokens": {
-            "padding.x": "{az.spacing.150}",
             "padding.y": "{az.spacing.075}",
-            "font.size": "{az.font-size.root}",
-            "font.weight": "{az.font-weight.normal}",
-            "line-height": {
+            "padding.x": "{az.spacing.150}",
+            "font.size": {
               "$type": "dimension",
               "$value": {
-                "value": 22,
+                "value": 18,
                 "unit": "px"
               },
-              "$description": "Field text line height."
+              "$description": "Text size in the field and add-ons: 18px, the body text size on a site."
             },
-            "color": "{az.color.fg.white}",
-            "placeholder.color": "{az.color.fg.white}"
-          }
-        },
-        "divider": {
-          "description": "The line between the field and the button.",
-          "tokens": {
-            "width": "{az.border.width.md}",
-            "color": "{az.color.fg.white}",
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Line height of the field's and add-ons' text: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}",
+            "border.width": "{az.border.width.sm}",
+            "border.color": "{az.color.brand.gray.600}",
+            "border.radius": "{az.radius.2}",
+            "fill": "{az.color.brand.white}",
+            "placeholder.color": "{az.color.brand.gray.900}",
+            "placeholder.opacity": {
+              "$type": "number",
+              "$value": 0.75,
+              "$description": "Placeholder text opacity, so it reads as lighter than typed text."
+            },
             "transition.duration": {
               "$type": "duration",
               "$value": {
                 "value": 150,
                 "unit": "ms"
               },
-              "$description": "How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+              "$description": "How long the field's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
             },
             "transition.easing": {
               "$type": "cubicBezier",
@@ -82,47 +56,59 @@
                 0.58,
                 1
               ],
-              "$description": "Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+              "$description": "Easing for the field's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
             }
           },
           "states": {
-            "focus-within": {
-              "color": "{az.color.fg.rain}"
+            "focus-visible": {
+              "border.color": "{az.color.brand.bougainvillea}",
+              "ring.color": "{az.color.brand.bougainvillea}",
+              "ring.width": "{az.focus-ring.width.lg}",
+              "ring.opacity": {
+                "$type": "number",
+                "$value": 0.7,
+                "$description": "Opacity of the field's focus ring, so the page shows through it."
+              }
+            },
+            "disabled": {
+              "fill": "{az.color.brand.gray.200}",
+              "border.color": "{az.color.brand.gray.400}"
             }
           }
         },
-        "button": {
-          "description": "The attached button, such as Search or Subscribe.",
+        "addon": {
+          "description": "Optional text or an icon beside the field, such as @ or a currency sign.",
           "tokens": {
-            "padding": {
+            "padding.y": "{az.spacing.075}",
+            "padding.x": "{az.spacing.150}",
+            "font.size": {
               "$type": "dimension",
               "$value": {
-                "value": 9,
+                "value": 18,
                 "unit": "px"
               },
-              "$description": "Space around the attached button's icon."
-            }
-          },
-          "parts": {
-            "icon": {
-              "description": "The button's icon.",
-              "tokens": {
-                "size": {
-                  "$type": "dimension",
-                  "$value": {
-                    "value": 24,
-                    "unit": "px"
-                  },
-                  "$description": "The attached button's icon width and height."
-                },
-                "color": "{az.color.fg.white}"
-              },
-              "states": {
-                "hover": {
-                  "color": "{az.color.fg.rain}"
-                }
-              }
-            }
+              "$description": "Text size in the field and add-ons: 18px, the body text size on a site."
+            },
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Line height of the field's and add-ons' text: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}",
+            "border.width": "{az.border.width.sm}",
+            "border.color": "{az.color.brand.gray.600}",
+            "border.radius": "{az.radius.2}",
+            "fill": "{az.color.brand.gray.100}"
+          }
+        },
+        "button": {
+          "description": "An attached Button, in any of the Button's colors. Its colors and type come from the Button contract; the input group sets its padding, border and corners to match the field.",
+          "tokens": {
+            "padding.y": "{az.spacing.075}",
+            "padding.x": "{az.spacing.150}",
+            "border.width": "{az.border.width.sm}",
+            "border.radius": "{az.radius.2}"
           }
         }
       }

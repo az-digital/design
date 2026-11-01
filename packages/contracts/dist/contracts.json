@@ -1619,71 +1619,11 @@
   {
     "contract": "input-group",
     "variant": null,
-    "part": "root",
+    "part": "field",
     "kind": "default",
     "condition": null,
-    "property": "height",
-    "token": null,
-    "type": "dimension",
-    "value": "35px",
-    "description": "Height of a text field with an attached button below the lg breakpoint (992px)."
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "default",
-    "condition": null,
-    "property": "border.width",
-    "token": "az.border.width.md"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "default",
-    "condition": null,
-    "property": "border.radius",
-    "token": "az.radius.1"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "default",
-    "condition": null,
-    "property": "border.color",
-    "token": "az.color.fg.white"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "state",
-    "condition": "focus-within",
-    "property": "border.color",
-    "token": "az.color.fg.rain"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "breakpoint",
-    "condition": "lg",
-    "property": "height",
-    "token": null,
-    "type": "dimension",
-    "value": "43px",
-    "description": "Height of a text field with an attached button from the lg breakpoint (992px) up."
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "root",
-    "kind": "breakpoint",
-    "condition": "lg",
-    "property": "border.radius",
-    "token": "az.radius.3"
+    "property": "padding.y",
+    "token": "az.spacing.075"
   },
   {
     "contract": "input-group",
@@ -1700,17 +1640,11 @@
     "part": "field",
     "kind": "default",
     "condition": null,
-    "property": "padding.y",
-    "token": "az.spacing.075"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "field",
-    "kind": "default",
-    "condition": null,
     "property": "font.size",
-    "token": "az.font-size.root"
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Text size in the field and add-ons: 18px, the body text size on a site."
   },
   {
     "contract": "input-group",
@@ -1729,9 +1663,9 @@
     "condition": null,
     "property": "line-height",
     "token": null,
-    "type": "dimension",
-    "value": "22px",
-    "description": "Field text line height."
+    "type": "number",
+    "value": "1.5556",
+    "description": "Line height of the field's and add-ons' text: 28px on 18px text."
   },
   {
     "contract": "input-group",
@@ -1740,7 +1674,43 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.fg.white"
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.white"
   },
   {
     "contract": "input-group",
@@ -1749,58 +1719,196 @@
     "kind": "default",
     "condition": null,
     "property": "placeholder.color",
-    "token": "az.color.fg.white"
+    "token": "az.color.brand.gray.900"
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "divider",
+    "part": "field",
     "kind": "default",
     "condition": null,
-    "property": "width",
-    "token": "az.border.width.md"
+    "property": "placeholder.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.75",
+    "description": "Placeholder text opacity, so it reads as lighter than typed text."
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "divider",
-    "kind": "default",
-    "condition": null,
-    "property": "color",
-    "token": "az.color.fg.white"
-  },
-  {
-    "contract": "input-group",
-    "variant": null,
-    "part": "divider",
+    "part": "field",
     "kind": "default",
     "condition": null,
     "property": "transition.duration",
     "token": null,
     "type": "duration",
     "value": "150ms",
-    "description": "How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+    "description": "How long the field's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "divider",
+    "part": "field",
     "kind": "default",
     "condition": null,
     "property": "transition.easing",
     "token": null,
     "type": "cubicBezier",
     "value": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "description": "Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+    "description": "Easing for the field's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "divider",
+    "part": "field",
     "kind": "state",
-    "condition": "focus-within",
+    "condition": "focus-visible",
+    "property": "border.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.lg"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.opacity",
+    "token": null,
+    "type": "number",
+    "value": "0.7",
+    "description": "Opacity of the field's focus ring, so the page shows through it."
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "fill",
+    "token": "az.color.brand.gray.200"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "field",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.075"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Text size in the field and add-ons: 18px, the body text size on a site."
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.5556",
+    "description": "Line height of the field's and add-ons' text: 28px on 18px text."
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
     "property": "color",
-    "token": "az.color.fg.rain"
+    "token": "az.color.brand.gray.900"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.sm"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
+  },
+  {
+    "contract": "input-group",
+    "variant": null,
+    "part": "addon",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.brand.gray.100"
   },
   {
     "contract": "input-group",
@@ -1808,41 +1916,35 @@
     "part": "button",
     "kind": "default",
     "condition": null,
-    "property": "padding",
-    "token": null,
-    "type": "dimension",
-    "value": "9px",
-    "description": "Space around the attached button's icon."
+    "property": "padding.y",
+    "token": "az.spacing.075"
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "button.icon",
+    "part": "button",
     "kind": "default",
     "condition": null,
-    "property": "size",
-    "token": null,
-    "type": "dimension",
-    "value": "24px",
-    "description": "The attached button's icon width and height."
+    "property": "padding.x",
+    "token": "az.spacing.150"
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "button.icon",
+    "part": "button",
     "kind": "default",
     "condition": null,
-    "property": "color",
-    "token": "az.color.fg.white"
+    "property": "border.width",
+    "token": "az.border.width.sm"
   },
   {
     "contract": "input-group",
     "variant": null,
-    "part": "button.icon",
-    "kind": "state",
-    "condition": "hover",
-    "property": "color",
-    "token": "az.color.fg.rain"
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.2"
   },
   {
     "contract": "search",
@@ -1879,6 +1981,234 @@
     "type": "dimension",
     "value": "5px",
     "description": "Space above and below the search form."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "35px",
+    "description": "Height of a text field with an attached button below the lg breakpoint (992px)."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": "az.border.width.md"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.1"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-within",
+    "property": "border.color",
+    "token": "az.color.fg.rain"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "lg",
+    "property": "height",
+    "token": null,
+    "type": "dimension",
+    "value": "43px",
+    "description": "Height of a text field with an attached button from the lg breakpoint (992px) up."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "root",
+    "kind": "breakpoint",
+    "condition": "lg",
+    "property": "border.radius",
+    "token": "az.radius.3"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.075"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": "az.font-size.root"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Field text line height."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "field",
+    "kind": "default",
+    "condition": null,
+    "property": "placeholder.color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "width",
+    "token": "az.border.width.md"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "150ms",
+    "description": "How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "divider",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "description": "Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "divider",
+    "kind": "state",
+    "condition": "focus-within",
+    "property": "color",
+    "token": "az.color.fg.rain"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "button",
+    "kind": "default",
+    "condition": null,
+    "property": "padding",
+    "token": null,
+    "type": "dimension",
+    "value": "9px",
+    "description": "Space around the attached button's icon."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "button.icon",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "24px",
+    "description": "The attached button's icon width and height."
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "button.icon",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.white"
+  },
+  {
+    "contract": "search",
+    "variant": null,
+    "part": "button.icon",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.fg.rain"
   },
   {
     "contract": "search",
