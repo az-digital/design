@@ -70,6 +70,20 @@ Lay out a component's docs page the way the Button page is (`Primary/Components/
 
 Load anything the markup needs, such as an icon font, in `.storybook/preview-head.html`. Don't restyle it there or in the story.
 
+### Logos and other university marks
+
+Logos, wordmarks and the Block "A" are registered university marks, and the
+[university's logo guidelines](https://marcom.arizona.edu/brand-guidelines/logos)
+govern them. Check a page's claims about a mark against those guidelines.
+
+- Describe a mark as an official file used unaltered: never suggest recoloring it
+  (with `currentColor`, a mask or a filter), stretching, cropping or redrawing it, or
+  adding effects.
+- A mark's color in a contract records which official version is used, such as the white
+  wordmark on a dark fill. It isn't a themeable color.
+- A mark keeps its proportions. When a width and a height are given, describe them as the
+  box it fits in.
+
 ## Component contracts
 
 When you add or change a component's design decisions, update its contract in

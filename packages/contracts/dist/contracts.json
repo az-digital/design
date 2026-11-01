@@ -51,7 +51,7 @@
     "token": null,
     "type": "dimension",
     "value": "211px",
-    "description": "Wordmark width below the sm breakpoint (576px)."
+    "description": "Width of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it fills this width."
   },
   {
     "contract": "brand-header",
@@ -63,7 +63,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Wordmark height below the sm breakpoint (576px)."
+    "description": "Height of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it's a little shorter."
   },
   {
     "contract": "brand-header",
@@ -117,7 +117,7 @@
     "token": null,
     "type": "dimension",
     "value": "266.41px",
-    "description": "Wordmark width from the sm breakpoint (576px) up."
+    "description": "Width of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it fills this width."
   },
   {
     "contract": "brand-header",
@@ -129,7 +129,7 @@
     "token": null,
     "type": "dimension",
     "value": "19.8px",
-    "description": "Wordmark height from the sm breakpoint (576px) up."
+    "description": "Height of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it's a little shorter."
   },
   {
     "contract": "brand-header",

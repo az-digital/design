@@ -34,8 +34,9 @@ no design tokens of its own.
   isn't a separate set of design tokens: its contract points the fill at Red, and keeps every
   other color White. The red header is only needed until it's retired.
 - **Size:** the header is at least 50px tall, and exactly 50px below 992px. The wordmark
-  is 211 × 16px below 576px and 266.41 × 19.8px from 576px up, 10px from the header's
-  left edge.
+  fits a 211 × 16px box below 576px and a 266.41 × 19.8px box from 576px up, 10px from
+  the header's left edge. It keeps its own proportions inside that box, so it's 211px
+  and 266.41px wide and a little shorter than the box.
 - **Keyboard focus:** the logo and header buttons draw a ring inside their edges, with
   2px corners, in <Token data={getTokenData('az.color.fg.white')} />. Its width is the
   shared focus ring width, <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
@@ -45,9 +46,13 @@ no design tokens of its own.
     10px line height, 2px below the icon.
   - **Icon:** 24px square, the same color as the label. Use an SVG (inline or from a
     sprite) with `fill="currentColor"` so it picks up that color.
-- **Logo:** the wordmark is <Token data={getTokenData('az.color.fg.white')} />. It's a
-  single color, so its color can change with the fill behind it. The contract wires it
-  separately from the labels, so changing the text color doesn't recolor the logo.
+- **Logo:** the university's white wordmark,
+  <Token data={getTokenData('az.color.fg.white')} />, on both the Blue and the Red header.
+  It's a registered university mark, so use the official file as it is: don't recolor,
+  stretch, crop or redraw it, or add effects such as shadows. Use the wordmark header
+  only on a page that also shows a Block "A" logo, usually in the site's branding just
+  below the header. The <a href="https://marcom.arizona.edu/brand-guidelines/logos" target="_blank" rel="noopener noreferrer">university's logo guidelines</a>
+  cover the rest.
 - **Motion:** the off-canvas panel the header buttons open slides in over 300ms,
   ease-in-out, and the backdrop behind it fades in over 150ms. Header buttons change
   color and show their focus ring over 150ms. They haven't been
