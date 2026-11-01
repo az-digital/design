@@ -14,7 +14,10 @@ such as Subscribe, or both, so they read as one control.
 
 <Controls of={InputGroupStories.Default} />
 
-The input group above is the current release. It matches this page.
+The input group above is the current release. It matches this page except at the small
+and large sizes, where an attached button keeps the default size's padding and corners
+and only its text changes size. A small input group with a button is 38px tall instead
+of about 34.5px.
 
 ## Colors
 
@@ -49,6 +52,43 @@ corners are square.
 - **Border:** <Token data={getTokenData('az.border.width.sm')} /> (1px), with
   <Token data={getTokenData('az.radius.2')} /> (6px) corners on the outside ends.
 
+### Sizes
+
+Small and large change the field, add-ons and button together, so they stay one height.
+A button in an input group takes the group's size, not one of the Button's own sizes.
+
+<table>
+  <thead>
+    <tr><th></th><th>Small</th><th>Default</th><th>Large</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Height</td>
+      <td>About 34.5px</td>
+      <td>About 42px</td>
+      <td>About 49px to 53px</td>
+    </tr>
+    <tr>
+      <td>Padding</td>
+      <td><Token data={getTokenData('az.spacing.050')} /> (4px) above and below, <Token data={getTokenData('az.spacing.100')} /> (8px) to each side</td>
+      <td><Token data={getTokenData('az.spacing.075')} /> (6px) above and below, <Token data={getTokenData('az.spacing.150')} /> (12px) to each side</td>
+      <td><Token data={getTokenData('az.spacing.100')} /> (8px) above and below, <Token data={getTokenData('az.spacing.200')} /> (16px) to each side</td>
+    </tr>
+    <tr>
+      <td>Text</td>
+      <td>15.75px</td>
+      <td>18px</td>
+      <td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td>
+    </tr>
+    <tr>
+      <td>Corners</td>
+      <td><Token data={getTokenData('az.radius.1')} /> (4px)</td>
+      <td><Token data={getTokenData('az.radius.2')} /> (6px)</td>
+      <td><Token data={getTokenData('az.radius.3')} /> (8px)</td>
+    </tr>
+  </tbody>
+</table>
+
 The input group has no design tokens of its own: values without one are in its contract.
 
 ## Anatomy
@@ -57,6 +97,18 @@ Each part of the input group and each of its design properties, from its contrac
 design token it uses, or its own value and what it's for.
 
 <ContractAnatomy contract="input-group" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="input-group" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="input-group" variant="size.large" />
 
 ## Search
 

@@ -6,6 +6,157 @@
   "sources": [
     "Arizona Bootstrap's latest 5.x release: .form-control, .input-group-text and .input-group .btn"
   ],
+  "variants": {
+    "size": {
+      "description": "The input group's size. With none chosen, it's the default size: 6 / 12px padding, 18px text and 6px corners, about 42px tall.",
+      "options": {
+        "small": {
+          "description": "A small input group, about 34.5px tall: .input-group-sm, or .form-control-sm on a field on its own. The field, add-ons and button all change.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "field": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.050}",
+                    "padding.x": "{az.spacing.100}",
+                    "border.radius": "{az.radius.1}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 15.75,
+                        "unit": "px"
+                      },
+                      "$description": "Small input group text size: 15.75px, seven eighths of the 18px body text."
+                    }
+                  }
+                },
+                "addon": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.050}",
+                    "padding.x": "{az.spacing.100}",
+                    "border.radius": "{az.radius.1}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 15.75,
+                        "unit": "px"
+                      },
+                      "$description": "Small input group text size: 15.75px, seven eighths of the 18px body text."
+                    }
+                  }
+                },
+                "button": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.050}",
+                    "padding.x": "{az.spacing.100}",
+                    "border.radius": "{az.radius.1}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 15.75,
+                        "unit": "px"
+                      },
+                      "$description": "Small input group text size: 15.75px, seven eighths of the 18px body text."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "large": {
+          "description": "A large input group, about 49px to 53px tall: .input-group-lg, or .form-control-lg on a field on its own. The field, add-ons and button all change.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "field": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.100}",
+                    "padding.x": "{az.spacing.200}",
+                    "border.radius": "{az.radius.3}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 20.25,
+                        "unit": "px"
+                      },
+                      "$description": "Large input group text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+                    }
+                  },
+                  "breakpoints": {
+                    "xl": {
+                      "font.size": {
+                        "$type": "dimension",
+                        "$value": {
+                          "value": 22.5,
+                          "unit": "px"
+                        },
+                        "$description": "Large input group text size from the xl breakpoint (1200px) up: 22.5px, one and a quarter times the 18px body text."
+                      }
+                    }
+                  }
+                },
+                "addon": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.100}",
+                    "padding.x": "{az.spacing.200}",
+                    "border.radius": "{az.radius.3}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 20.25,
+                        "unit": "px"
+                      },
+                      "$description": "Large input group text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+                    }
+                  },
+                  "breakpoints": {
+                    "xl": {
+                      "font.size": {
+                        "$type": "dimension",
+                        "$value": {
+                          "value": 22.5,
+                          "unit": "px"
+                        },
+                        "$description": "Large input group text size from the xl breakpoint (1200px) up: 22.5px, one and a quarter times the 18px body text."
+                      }
+                    }
+                  }
+                },
+                "button": {
+                  "tokens": {
+                    "padding.y": "{az.spacing.100}",
+                    "padding.x": "{az.spacing.200}",
+                    "border.radius": "{az.radius.3}",
+                    "font.size": {
+                      "$type": "dimension",
+                      "$value": {
+                        "value": 20.25,
+                        "unit": "px"
+                      },
+                      "$description": "Large input group text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+                    }
+                  },
+                  "breakpoints": {
+                    "xl": {
+                      "font.size": {
+                        "$type": "dimension",
+                        "$value": {
+                          "value": 22.5,
+                          "unit": "px"
+                        },
+                        "$description": "Large input group text size from the xl breakpoint (1200px) up: 22.5px, one and a quarter times the 18px body text."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "anatomy": {
     "root": {
       "description": "The field and whatever is attached to it, side by side.",
