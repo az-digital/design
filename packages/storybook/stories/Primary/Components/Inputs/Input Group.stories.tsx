@@ -18,8 +18,6 @@ type InputGroupArgs = {
 
 const meta = {
   title: 'Primary/Components/Inputs/Input Group',
-  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
-  tags: ['new'],
   args: {
     Size: 'Default',
     'Add-on': '@',

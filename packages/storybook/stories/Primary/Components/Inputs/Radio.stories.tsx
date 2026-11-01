@@ -14,8 +14,6 @@ type RadioArgs = {
 
 const meta = {
   title: 'Primary/Components/Inputs/Radio',
-  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
-  tags: ['new'],
   args: { 'First label': 'In person', 'Second label': 'Online', Disabled: false },
   argTypes: {
     'First label': { control: 'text' },

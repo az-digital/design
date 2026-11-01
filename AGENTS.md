@@ -70,8 +70,6 @@ Lay out a component's docs page the way the Button page is (`Primary/Components/
 
 Load anything the markup needs, such as an icon font, in `.storybook/preview-head.html`. Don't restyle it there or in the story.
 
-Tag a component that's new to the design system with `tags: ['new']` on its stories file's meta. `.storybook/manager.ts` marks every docs page with that tag New in the sidebar, using the same marker as Storybook's change detection, so it shows on the review site too. Change detection's own marker only shows uncommitted files on a local dev server, so it isn't a reliable sign that a component is new. Remove the tag once the component is no longer new.
-
 ### Logos and other university marks
 
 Logos, wordmarks and the Block "A" are registered university marks, and the

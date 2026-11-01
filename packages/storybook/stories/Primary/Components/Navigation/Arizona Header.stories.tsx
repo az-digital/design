@@ -24,8 +24,6 @@ const headerButton = (icon: string, label: string) => (
 
 const meta = {
   title: 'Primary/Components/Navigation/Arizona Header',
-  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
-  tags: ['new'],
   args: {
     Color: 'Blue',
     'Header buttons': true,

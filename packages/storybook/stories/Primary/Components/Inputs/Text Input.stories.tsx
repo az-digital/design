@@ -23,8 +23,6 @@ const sizeOptions = (size: string) => ({ Small: ['size.small'], Large: ['size.la
 
 const meta = {
   title: 'Primary/Components/Inputs/Text Input',
-  // New to the design system: marked New in the sidebar (.storybook/manager.ts).
-  tags: ['new'],
   args: { Size: 'Default', Label: 'Email address', Placeholder: 'name@example.com', 'Help text': 'We’ll never share your email.', Disabled: false },
   argTypes: {
     Size: { control: 'inline-radio', options: Object.keys(sizes) },
