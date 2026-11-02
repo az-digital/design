@@ -2,7 +2,7 @@
   "$schema": "../contract.schema.json",
   "id": "call-to-action-card",
   "name": "Call to Action Card",
-  "description": "A title, text and one button, for one action, such as subscribing. The card isn't a link itself, so it has no hover colors.",
+  "description": "A title, text and one button, for one action, such as subscribing. The whole card is clickable: the button's link covers it, so pressing anywhere on the card does what the button does. The card has no hover colors of its own; the button shows its hover and focus.",
   "sources": [
     "az-digital/arizona-bootstrap#2365 (design-reviewed): 16px corners, 24px card padding, the 8px space below the title, the 16px space below the text, the Cloud fill and Tinta text",
     "az-digital/arizona-bootstrap#2365's card designs: the quick links and the call to action",
@@ -81,7 +81,7 @@
           }
         },
         "action": {
-          "description": "The button below the text: the default size, in Red.",
+          "description": "The button below the text: the default size, in Red. Its link covers the whole card, so the card is clickable anywhere, and it is the only link in the card. Keyboard focus lands on the button.",
           "tokens": {
             "margin-top": "{az.spacing.200}"
           }

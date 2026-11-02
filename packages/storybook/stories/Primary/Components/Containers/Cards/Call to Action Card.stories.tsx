@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Frame, checkCard } from './cards';
 
-// A title, text and one button. The card isn't a link itself. The controls are
-// the card's props. Arizona Bootstrap gives a Cloud card its title and text
-// colors only with .hover, so .text-azurite and .text-tinta set them here, and .mt-3
-// puts the button 32px below the text.
+// A title, text and one button. The whole card is clickable: .stretched-link on
+// the button makes its link cover the card. The controls are the card's props.
+// Arizona Bootstrap gives a Cloud card its title and text colors only with .hover,
+// so .text-azurite and .text-tinta set them here, and .mt-3 puts the button 32px
+// below the text.
 
 type CallToActionCardArgs = { Title: string; Text: string; Button: string; 'Button link': string };
 
@@ -29,7 +30,7 @@ const meta = {
         <div className="card-body">
           <h3 className="card-title h5 fw-bold mb-2 text-azurite">{args.Title}</h3>
           <p className="card-text text-tinta">{args.Text}</p>
-          <a href={args['Button link']} className="btn btn-red mt-3">{args.Button}</a>
+          <a href={args['Button link']} className="btn btn-red stretched-link mt-3">{args.Button}</a>
         </div>
       </div>
     </Frame>

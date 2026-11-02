@@ -7,8 +7,8 @@ import * as CallToActionCardStories from './Call to Action Card.stories';
 
 # Call to Action Card
 
-A title, text and one button, for one action. The card isn't a link itself: the button
-is.
+A title, text and one button, for one action. The whole card is clickable: the button's
+link covers it, so pressing anywhere on the card does what the button does.
 
 <Canvas of={CallToActionCardStories.Default} sourceState="none" />
 
@@ -16,7 +16,7 @@ is.
 
 The card above is Arizona Bootstrap v5.3.0.
 
-Arizona Bootstrap gives a Cloud card its title and text colors only when the whole card is a link, so this card sets them with `.text-azurite` on its title and `.text-tinta` on its text, and `.mt-3` puts the button 32px below the text.
+The button has Arizona Bootstrap's `.stretched-link` class, which stretches its link over the whole card. Arizona Bootstrap gives a Cloud card its title and text colors only with `.hover`, which this card doesn't use, so it sets them with `.text-azurite` on its title and `.text-tinta` on its text, and `.mt-3` puts the button 32px below the text.
 
 ## When to use it
 
@@ -31,6 +31,9 @@ Arizona Bootstrap gives a Cloud card its title and text colors only when the who
 - **Button:** a default size Red
   <a href="./?path=/docs/primary-components-buttons-button--docs" target="_top">Button</a>,
   32px below the text.
+- **The whole card is clickable:** the button's link covers the card, so a click or tap
+  anywhere on it does what the button does. The button is the card's only link, and keyboard
+  focus lands on it.
 - **Fill:** <Token data={getTokenData('az.color.bg.card.cloud')} />, with no border. In a
   forced colors (high contrast) mode, which removes fills, the card draws a 1px border
   instead.
@@ -39,8 +42,8 @@ Arizona Bootstrap gives a Cloud card its title and text colors only when the who
 - **Text:** 18px Regular, on a 28px line, in
   <Token data={getTokenData('az.color.brand.tinta')} />.
 - **Shape and padding:** 16px corners, and 24px between the card's edges and its content.
-- **No hover colors:** the card isn't a link, so only the button reacts to hover and
-  focus.
+- **No hover colors on the card:** the card keeps its fill. The button reacts to hover
+  anywhere on the card, and to keyboard focus.
 
 ## Anatomy
 
