@@ -50,8 +50,7 @@ const config: StorybookConfig = {
       ...viteConfig.css,
       preprocessorOptions: {
         scss: {
-          // The top node_modules, for `arizona-bootstrap/scss/...`, and for
-          // `bootstrap/scss/...`, as Arizona Bootstrap imports Bootstrap.
+          // Resolve Arizona Bootstrap's bare `bootstrap/scss/...` imports.
           loadPaths: [fileURLToPath(new URL('../../../node_modules', import.meta.url))],
           // Arizona Bootstrap's own deprecation warnings, such as @import.
           // Its background images (url("img/...")) stay unresolved: the
