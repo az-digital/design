@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 import { expect } from 'storybook/test';
 import { checkContract } from '../../contractCheck';
 
-// What the card stories share. Every card is drawn with Arizona Bootstrap's
-// 5.3.x branch, compiled from its Sass with the patches in the repo's patches/
-// folder (see .storybook/arizona-bootstrap.scss). The card styles are
-// az-digital/arizona-bootstrap#2365's, merged into 5.3.x, and the markup follows
+// What the card stories share. Every card is drawn with Arizona Bootstrap
+// v5.3.0, compiled from its Sass with the patches in the repo's patches/ folder
+// (see .storybook/arizona-bootstrap.scss). The card styles are
+// az-digital/arizona-bootstrap#2365's, released in v5.3.0, and the markup follows
 // its docs.
 
 // A 5:3 placeholder photo, the Image Card's shape. Arizona Bootstrap draws the

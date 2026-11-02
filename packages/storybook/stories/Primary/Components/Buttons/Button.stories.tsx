@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-// Arizona Bootstrap's 5.3.x branch, compiled from its Sass with the patches in
-// the repo's patches/ folder (see .storybook/arizona-bootstrap.scss). The controls copy the Figma Buttons component's
+// Arizona Bootstrap v5.3.0, compiled from its Sass with the patches in the
+// repo's patches/ folder (see .storybook/arizona-bootstrap.scss). The controls
+// copy the Figma Buttons component's
 // properties: Color, Size, Style and Label. Hover and focus come from the
 // pointer and keyboard.
 

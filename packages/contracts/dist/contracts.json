@@ -27,10 +27,7 @@
     "kind": "default",
     "condition": null,
     "property": "fixed-on-mobile.scroll-gap",
-    "token": null,
-    "type": "dimension",
-    "value": "8px",
-    "description": "When the header is fixed on mobile (below 992px): the space between the bottom of the header and a linked section scrolled to it. Sections stop the header's height plus this gap below the top of the screen, so the header doesn't cover them."
+    "token": "az.spacing.100"
   },
   {
     "contract": "brand-header",
@@ -39,7 +36,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "brand-header",
@@ -51,7 +48,7 @@
     "token": null,
     "type": "dimension",
     "value": "211px",
-    "description": "Wordmark width below the sm breakpoint (576px)."
+    "description": "Width of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it fills this width."
   },
   {
     "contract": "brand-header",
@@ -63,7 +60,7 @@
     "token": null,
     "type": "dimension",
     "value": "16px",
-    "description": "Wordmark height below the sm breakpoint (576px)."
+    "description": "Height of the wordmark's box below the sm breakpoint (576px). The wordmark keeps its proportions, so it's a little shorter."
   },
   {
     "contract": "brand-header",
@@ -84,7 +81,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "brand-header",
@@ -117,7 +114,7 @@
     "token": null,
     "type": "dimension",
     "value": "266.41px",
-    "description": "Wordmark width from the sm breakpoint (576px) up."
+    "description": "Width of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it fills this width."
   },
   {
     "contract": "brand-header",
@@ -129,7 +126,7 @@
     "token": null,
     "type": "dimension",
     "value": "19.8px",
-    "description": "Wordmark height from the sm breakpoint (576px) up."
+    "description": "Height of the wordmark's box from the sm breakpoint (576px) up. The wordmark keeps its proportions, so it's a little shorter."
   },
   {
     "contract": "brand-header",
@@ -162,10 +159,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "4px",
-    "description": "Header button top and bottom padding."
+    "token": "az.spacing.050"
   },
   {
     "contract": "brand-header",
@@ -174,10 +168,7 @@
     "kind": "default",
     "condition": null,
     "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "2px",
-    "description": "Space between a header button's icon and its label."
+    "token": "az.spacing.025"
   },
   {
     "contract": "brand-header",
@@ -210,7 +201,7 @@
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "brand-header",
@@ -240,7 +231,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "brand-header",
@@ -261,7 +252,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.brand.white"
+    "token": "az.color.fg.white"
   },
   {
     "contract": "brand-header",
@@ -1662,7 +1653,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "call-to-action-card",
@@ -1671,7 +1662,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "call-to-action-card",
@@ -1722,7 +1713,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "call-to-action-card",
@@ -1773,7 +1764,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "call-to-action-card",
@@ -1782,7 +1773,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-top",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "card",
@@ -1821,7 +1812,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "card",
@@ -1830,7 +1821,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "card",
@@ -1881,7 +1872,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "card",
@@ -1932,7 +1923,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "card",
@@ -1941,7 +1932,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "card",
@@ -1950,10 +1941,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": null,
-    "type": "dimension",
-    "value": "12px",
-    "description": "Space above and below the header's and footer's content: half the body's."
+    "token": "az.spacing.150"
   },
   {
     "contract": "icon-card",
@@ -2055,7 +2043,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "icon-card",
@@ -2082,7 +2070,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "icon-card",
@@ -2091,7 +2079,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "icon-card",
@@ -2142,7 +2130,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "icon-card",
@@ -2229,7 +2217,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "icon-card",
@@ -2400,7 +2388,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "image-card",
@@ -2409,7 +2397,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "image-card",
@@ -2460,7 +2448,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "image-card",
@@ -2547,7 +2535,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "image-card",
@@ -2646,7 +2634,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "link-card",
@@ -2655,7 +2643,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "link-card",
@@ -2706,7 +2694,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "link-card",
@@ -2793,7 +2781,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "link-card",
@@ -2850,7 +2838,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "quick-links-card",
@@ -2859,7 +2847,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.y",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "quick-links-card",
@@ -2910,7 +2898,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.2"
+    "token": "az.spacing.100"
   },
   {
     "contract": "quick-links-card",
@@ -2961,7 +2949,7 @@
     "kind": "default",
     "condition": null,
     "property": "margin-bottom",
-    "token": "az.spacing.3"
+    "token": "az.spacing.200"
   },
   {
     "contract": "quick-links-card",
@@ -3012,10 +3000,7 @@
     "kind": "default",
     "condition": null,
     "property": "gap",
-    "token": null,
-    "type": "dimension",
-    "value": "12px",
-    "description": "Space between the links in a list."
+    "token": "az.spacing.150"
   },
   {
     "contract": "title-on-image-card",
@@ -3180,7 +3165,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.x",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "title-on-image-card",
@@ -3189,7 +3174,7 @@
     "kind": "default",
     "condition": null,
     "property": "padding.bottom",
-    "token": "az.spacing.4"
+    "token": "az.spacing.300"
   },
   {
     "contract": "title-on-image-card",
