@@ -1,0 +1,51 @@
+diff --git a/node_modules/arizona-bootstrap/scss/custom/_buttons.scss b/node_modules/arizona-bootstrap/scss/custom/_buttons.scss
+index d818826..c4e230e 100644
+--- a/node_modules/arizona-bootstrap/scss/custom/_buttons.scss
++++ b/node_modules/arizona-bootstrap/scss/custom/_buttons.scss
+@@ -21,11 +21,11 @@
+     $background: $white,
+     $border: $white,
+     $color: $blue,
+-    $hover-background: $cloud,
+-    $hover-border: $cloud,
++    $hover-background: $gray-200,
++    $hover-border: $gray-200,
+     $hover-color: $blue,
+-    $active-background: $cloud,
+-    $active-border: $cloud,
++    $active-background: $gray-100,
++    $active-border: $gray-100,
+     $active-color: $blue
+   );
+   --az-btn-focus-outline-color: #{$white};
+@@ -36,11 +36,11 @@
+     $background: $white,
+     $border: $white,
+     $color: $red,
+-    $hover-background: $cloud,
+-    $hover-border: $cloud,
++    $hover-background: $gray-200,
++    $hover-border: $gray-200,
+     $hover-color: $red,
+-    $active-background: $cloud,
+-    $active-border: $cloud,
++    $active-background: $gray-100,
++    $active-border: $gray-100,
+     $active-color: $red
+   );
+   --az-btn-focus-outline-color: #{$white};
+@@ -64,8 +64,13 @@
+   @include button-outline-variant(
+     $color: $white,
+     $color-hover: $gray-800,
+-    $active-background: $white,
++    $active-background: $gray-200,
++    $active-border: $gray-200,
++    $active-color: $gray-800,
+   );
++  // button-outline-variant() uses one fill for hover and pressed.
++  --bs-btn-active-bg: #{$gray-100};
++  --bs-btn-active-border-color: #{$gray-100};
+   --az-btn-focus-outline-color: #{$white};
+ }
+ 
