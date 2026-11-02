@@ -29,8 +29,8 @@
         "body": {
           "description": "The card's content.",
           "tokens": {
-            "padding.x": "{az.spacing.4}",
-            "padding.y": "{az.spacing.4}"
+            "padding.x": "{az.spacing.300}",
+            "padding.y": "{az.spacing.300}"
           }
         },
         "title": {
@@ -54,7 +54,7 @@
               },
               "$description": "Card title line height. The space below the title is measured from this line."
             },
-            "margin-bottom": "{az.spacing.2}"
+            "margin-bottom": "{az.spacing.100}"
           }
         },
         "text": {
@@ -78,7 +78,7 @@
               },
               "$description": "Card text line height: the same as body text."
             },
-            "margin-bottom": "{az.spacing.3}"
+            "margin-bottom": "{az.spacing.200}"
           }
         },
         "link": {
@@ -102,14 +102,7 @@
               },
               "$description": "Card link line height."
             },
-            "gap": {
-              "$type": "dimension",
-              "$value": {
-                "value": 12,
-                "unit": "px"
-              },
-              "$description": "Space between the links in a list."
-            }
+            "gap": "{az.spacing.150}"
           }
         }
       }

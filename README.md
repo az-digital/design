@@ -139,7 +139,7 @@ To make a patch:
 Each patch is a diff of Arizona Bootstrap's own files, so a maintainer applies it to a branch from `5.3.x` with:
 
 ```bash
-git apply -p3 arizona-bootstrap+5.2.2+001+white-buttons-hover-and-active.patch
+git apply -p3 arizona-bootstrap+5.3.0+001+white-buttons-hover-and-active.patch
 ```
 
 Once Arizona Bootstrap includes a change, update it (`npm update arizona-bootstrap`) and delete that patch. `npm install` fails if a patch no longer applies to a newer `5.3.x`: redo the change on the new source and make the patch again.

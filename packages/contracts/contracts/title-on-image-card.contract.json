@@ -99,8 +99,8 @@
               "$value": 50,
               "$description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
             },
-            "padding.x": "{az.spacing.4}",
-            "padding.bottom": "{az.spacing.4}"
+            "padding.x": "{az.spacing.300}",
+            "padding.bottom": "{az.spacing.300}"
           },
           "states": {
             "focus-visible": {
