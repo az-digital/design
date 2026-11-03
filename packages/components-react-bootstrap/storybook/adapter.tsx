@@ -5,8 +5,8 @@ import { createElement } from 'react';
 import type { ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { ComponentAdapter, LibraryAdapter } from '@az-digital/storybook-addon-libraries';
-import { Accordion, Card, Nav, Tabs } from '../src';
-import type { AccordionProps, CardProps, NavProps, TabsProps } from '../src';
+import { Accordion, ArizonaHeader, Card, Nav, Tabs } from '../src';
+import type { AccordionProps, ArizonaHeaderProps, CardProps, NavProps, TabsProps } from '../src';
 
 /** Mounts `component` into the container and unmounts it when the addon clears the container. */
 const mount =
@@ -33,6 +33,19 @@ const accordion: ComponentAdapter<AccordionProps> = {
       ),
       props.items,
     ),
+};
+
+const brandHeader: ComponentAdapter<ArizonaHeaderProps> = {
+  render: mount(ArizonaHeader),
+  source: (props) => {
+    const flags = [
+      props.variant && props.variant !== 'blue' && `variant="${props.variant}"`,
+      props.fixedOnMobile && 'fixedOnMobile',
+      props.id && props.id !== 'header_arizona' && `id="${props.id}"`,
+      props.headerButtons && 'headerButtons',
+    ].filter((flag): flag is string => Boolean(flag));
+    return `<ArizonaHeader${flags.length > 0 ? ` ${flags.join(' ')}` : ''} />`;
+  },
 };
 
 const card: ComponentAdapter<CardProps> = {
@@ -80,4 +93,4 @@ const tabs: ComponentAdapter<TabsProps> = {
     ),
 };
 
-export default { components: { accordion, card, nav, tabs } } satisfies LibraryAdapter;
+export default { components: { accordion, 'brand-header': brandHeader, card, nav, tabs } } satisfies LibraryAdapter;

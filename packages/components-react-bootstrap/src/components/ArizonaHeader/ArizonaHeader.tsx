@@ -14,8 +14,19 @@ export type ArizonaHeaderProps = {
   fixedOnMobile?: boolean;
   /** Base `id` for the header element. Defaults to `header_arizona`. */
   id?: string;
+  /** Adds the Search and Menu header buttons. Off by default. */
+  headerButtons?: boolean;
   className?: string;
 };
+
+const HeaderButton = ({ icon, label }: { icon: string; label: string }) => (
+  <button type="button" className="btn btn-arizona-header">
+    <span aria-hidden="true" className="icon material-symbols-rounded">
+      {icon}
+    </span>
+    <span className="icon-text">{label}</span>
+  </button>
+);
 
 /**
  * Arizona Digital University of Arizona header. Purely presentational — no
@@ -25,7 +36,7 @@ export type ArizonaHeaderProps = {
  * configurable — every real, documented example uses the exact same ones.
  */
 export const ArizonaHeader = forwardRef<HTMLDivElement, ArizonaHeaderProps>(function ArizonaHeader(props, ref) {
-  const { variant = 'blue', fixedOnMobile = false, id = 'header_arizona', className } = props;
+  const { variant = 'blue', fixedOnMobile = false, id = 'header_arizona', headerButtons = false, className } = props;
 
   return (
     <div ref={ref} className={classNames('arizona-header', fixedOnMobile && 'az-fixed-header-on-mobile', variant === 'red' ? 'bg-red' : 'bg-blue', className)} id={id}>
@@ -39,6 +50,12 @@ export const ArizonaHeader = forwardRef<HTMLDivElement, ArizonaHeaderProps>(func
               fetchPriority="high"
             />
           </a>
+          {headerButtons && (
+            <div className="d-flex col-auto px-0">
+              <HeaderButton icon="search" label="Search" />
+              <HeaderButton icon="menu" label="Menu" />
+            </div>
+          )}
         </div>
       </div>
     </div>

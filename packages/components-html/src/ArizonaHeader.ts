@@ -11,7 +11,14 @@ export type ArizonaHeaderProps = {
   fixedOnMobile?: boolean;
   /** Base `id` for the header element. Defaults to `header_arizona`. */
   id?: string;
+  /** Adds the Search and Menu header buttons. Off by default. */
+  headerButtons?: boolean;
 };
+
+const headerButton = (icon: string, label: string) => `<button type="button" class="btn btn-arizona-header">
+          <span aria-hidden="true" class="icon material-symbols-rounded">${icon}</span>
+          <span class="icon-text">${label}</span>
+        </button>`;
 
 /**
  * Renders the University of Arizona wordmark header as an HTML string using
@@ -20,7 +27,7 @@ export type ArizonaHeaderProps = {
  * documented example uses the exact same ones.
  */
 export function renderArizonaHeader(props: ArizonaHeaderProps = {}): string {
-  const { variant = 'blue', fixedOnMobile = false, id = 'header_arizona' } = props;
+  const { variant = 'blue', fixedOnMobile = false, id = 'header_arizona', headerButtons = false } = props;
   const classes = ['arizona-header', fixedOnMobile && 'az-fixed-header-on-mobile', variant === 'red' ? 'bg-red' : 'bg-blue'].filter(Boolean).join(' ');
 
   return `<div class="${classes}" id="${id}">
@@ -28,7 +35,15 @@ export function renderArizonaHeader(props: ArizonaHeaderProps = {}): string {
     <div class="row">
       <a class="arizona-logo col-auto" href="https://www.arizona.edu" title="The University of Arizona homepage">
         <img class="arizona-line-logo" alt="The University of Arizona Wordmark Line Logo White" src="https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg" fetchpriority="high">
-      </a>
+      </a>${
+        headerButtons
+          ? `
+      <div class="d-flex col-auto px-0">
+        ${headerButton('search', 'Search')}
+        ${headerButton('menu', 'Menu')}
+      </div>`
+          : ''
+      }
     </div>
   </div>
 </div>`;
