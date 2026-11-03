@@ -1,6 +1,6 @@
 ---
 name: record-design-decisions
-description: Record a component's design decisions in a component contract in the design system, with tokens named the way the Naming page says, then update Arizona Bootstrap to match with token values and a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
+description: Record a component's design decisions in a component contract in the design system, with tokens named the way the Naming page says, then update Arizona Bootstrap to match with a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
 ---
 
 # Record design decisions
@@ -16,8 +16,8 @@ from it.
 2. **Contract and tokens:** which tokens each part uses, and the component's own values
 3. **Values:** what each one is set to, from its source
 4. **Document it:** the component's docs page in Storybook
-5. **Update Arizona Bootstrap:** token values and a patch to its Sass, so the demo
-   matches the contract and Arizona Bootstrap can take the same change
+5. **Update Arizona Bootstrap:** a patch to its Sass, so the demo matches the contract
+   and Arizona Bootstrap can take the same change
 
 A contract check holds the demo to the contract.
 
@@ -38,9 +38,11 @@ recording values.
 Places to look:
 
 - **Arizona Bootstrap PRs** (`az-digital/arizona-bootstrap`): body, review comments
-  and diff (`gh pr view N -R az-digital/arizona-bootstrap --json body,comments,baseRefName,state,reviewDecision`,
-  `gh pr diff`). A PR that went through design or Marketing review is a design
-  decision. Search both issues and PRs (`gh search issues` doesn't return PRs; use
+  and diff (`gh pr view N -R az-digital/arizona-bootstrap --json body,comments,reviews,baseRefName,state,reviewDecision`,
+  `gh pr diff`). `comments` is only the conversation; `reviews` shows who approved and
+  their text, and inline review comments need
+  `gh api repos/az-digital/arizona-bootstrap/pulls/N/comments`. A PR that went through
+  design or Marketing review is a design decision. Search both issues and PRs (`gh search issues` doesn't return PRs; use
   `gh search prs` too).
 - **XD mockups**, usually linked from issues and PRs. Often the original design, and
   sometimes older than what shipped.
@@ -60,10 +62,14 @@ already ahead of `main` and `5.2.x`. Diff the component's Sass between branches
 
 How to decide:
 
-- A decision a designer or Marketing reviewed outranks one nobody reviewed. An approved
-  Arizona Bootstrap PR outranks Figma; Figma outranks an unreviewed release value.
-  Example: the outline White button's hover text is Gray 800, from the
-  Marketing-approved #2281, not Figma's Red or Blue.
+- An agreement already recorded for the component comes before the general order below.
+  Read the contract's `sources` and the issue first. Example: the button contract
+  (az-digital/design#89) says where the sources differ Arizona Bootstrap wins, except
+  for colors, which follow Figma, and later corrections (#124) are in the contract.
+  Don't reopen that with the general order.
+- Otherwise, a decision a designer or Marketing reviewed outranks one nobody reviewed.
+  An approved Arizona Bootstrap PR outranks Figma; Figma outranks an unreviewed release
+  value.
 - What shipped outranks an issue's summary of it. Read the merged diff, not just a PR's
   description: #2111's description said the text backdrop applied to Monsoon Sky, but
   the merged code only applied it to Trilines.
@@ -138,7 +144,9 @@ Each component gets a contract, `packages/contracts/contracts/<name>.contract.js
 ### Assets
 
 Artwork the design system owns (background patterns, not the university wordmark)
-goes in `packages/tokens/assets/<kind>/`, published with the tokens package.
+goes in `packages/tokens/assets/<kind>/`. The tokens package publishes only `dist` and
+`tokens.json` (its `files` and `exports`), so the first asset has to add `assets` to
+`files` and an `./assets/*` export to `packages/tokens/package.json`.
 
 - **Single-color art is a mask:** black shapes with any opacity built in. A color token
   paints it, so one file works on every surface.
@@ -176,16 +184,15 @@ goes in `packages/tokens/assets/<kind>/`, published with the tokens package.
 
 ### A live example of the implementation
 
-The demo components are drawn by Arizona Bootstrap compiled from its Sass source with
-the design system's values (step 5), so the example shows what the contract asks for:
+The demo components are drawn by Arizona Bootstrap compiled from its Sass source, plus
+the patches in `patches/` (step 5), so the example shows what the contract asks for:
 
-- `.storybook/arizona-bootstrap.scss` imports `tokens.scss`, sets Arizona Bootstrap's
-  variables from tokens, then imports Arizona Bootstrap from `node_modules`.
-  `.storybook/preview-head.html` loads Proxima Nova.
-- Arizona Bootstrap is a devDependency installed from GitHub by tag
-  (`github:az-digital/arizona-bootstrap#v5.2.2`). It has no npm release, and
-  release branches such as `5.3.x` have no tag or CDN build. When the work lands on
-  a release branch, patch the tagged version to match it.
+- `.storybook/arizona-bootstrap.scss` imports Arizona Bootstrap from `node_modules` and
+  overrides nothing. `.storybook/preview-head.html` loads Proxima Nova.
+- Arizona Bootstrap is a devDependency installed from GitHub by tag; the installed tag
+  is in `packages/storybook/package.json`. It has no npm release. Compare against that
+  tag, not another. When the work lands on a branch that has no tag yet, patch the
+  installed tag to match it.
 - One story (`<Name>.stories.tsx`) with controls copied from the Figma component's
   properties (the button's: Color, Size, Style, Label). Leave out what's a state
   (hover and focus come from the pointer and keyboard) or out of scope. Use the
@@ -194,39 +201,44 @@ the design system's values (step 5), so the example shows what the contract asks
 - Tag it `['!dev']` and show it on the docs page with
   `<Canvas of={…} sourceState="none" />` and `<Controls of={…} />`, attached with
   `<Meta of={…} />`.
-- Don't restyle the demo with CSS rules written after Arizona Bootstrap. Change it
-  the way step 5 says, so the same change can go to Arizona Bootstrap.
+- Don't restyle the demo with CSS rules, or override Arizona Bootstrap's Sass variable
+  values, in Storybook. Change it the way step 5 says, so the same change can go to
+  Arizona Bootstrap.
 
 ## 5. Update Arizona Bootstrap
 
-With the contract settled, change Arizona Bootstrap to match it in two ways (see
-"Patching Arizona Bootstrap" in the README):
+With the contract settled, change Arizona Bootstrap's source to match it, Sass variable
+values included, as a patch (see "Patching Arizona Bootstrap" in the README). Nothing in
+Storybook overrides its values.
 
-- **A value with its own Sass variable** is set in `.storybook/arizona-bootstrap.scss`
-  from a token (`$bloom: $az-color-fg-bougainvillea;`), before Arizona Bootstrap is
-  imported.
-- **A value with no variable of its own**, such as a color passed straight into a
-  mixin, is changed in Arizona Bootstrap's source. Edit the file under
-  `node_modules/arizona-bootstrap/scss/`, then run `npx patch-package arizona-bootstrap`
-  from the repo root. That rewrites `patches/arizona-bootstrap+<version>.patch`, which
-  the root `postinstall` reapplies on every `npm install`. Write it the way Arizona
-  Bootstrap would: its own variables (`$gray-200`, not `$az-color-brand-gray-200`) and
-  its code style. Restart Storybook to see it.
+1. Edit the file under `node_modules/arizona-bootstrap/scss/`. Write it the way Arizona
+   Bootstrap would: its own variables (`$gray-200`, not `$az-color-brand-gray-200`) and
+   its code style.
+2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`.
+   Patches are sequenced in `patches/` (`arizona-bootstrap+<version>+<number>+<name>.patch`),
+   and the bare command would amend the newest one, folding this component's edits into
+   another's. Use the bare command only to change the newest patch on purpose. The
+   root `postinstall` reapplies them in order on every `npm install`.
+3. Restart Storybook to see it.
 
 Commit the patch with the contract change it supports. Then, in the PR description,
 against the branch the work is landing on (step 1):
 
 - First, list the Arizona Bootstrap PRs that already cover part of it (merged, or
-  approved and open), and what each covers. Don't patch what they cover.
-- Then list the variables set from tokens, and link the patch. Its maintainers can
-  apply it to their repo with `git apply -p3 arizona-bootstrap+<version>.patch`.
+  approved and open), and what each covers. An approved or merged PR isn't necessarily
+  in the installed tag. Where the installed Sass still differs from the contract
+  (the small button's 19px line height from #2378, say), keep a local patch until a
+  release includes it. Patch only what the installed tag lacks, and don't ask upstream
+  again for what a PR already covers.
+- Then link the patches. Its maintainers can apply each to their repo with
+  `git apply -p3 arizona-bootstrap+<version>+<number>+<name>.patch`.
 - Note what Arizona Bootstrap doesn't do at all yet (the button's 4px icon gap), and
   open questions that aren't the contract's (an unapproved variant).
 - Don't open or draft Arizona Bootstrap issues.
 
-When Arizona Bootstrap releases a version with the change, bump the tag, and delete
-from the patch what the release now includes. `npm install` fails if the patch no
-longer applies: redo what still matters on the new version and regenerate it.
+When Arizona Bootstrap releases a version with a change, bump the tag and delete that
+change's patch, each one separately. `npm install` fails if a patch no longer applies:
+redo what still matters on the new version and regenerate it.
 
 ## A contract check
 
@@ -240,9 +252,21 @@ renders an implementation in Chromium and compares each property with the contra
   cubic-bezier, a font stack by its first face.
 - An option you leave out takes the contract's default.
 
-Run it while you work to list what still differs, and fix each with a token value or
-the patch (step 5). Once the demo matches, add a story tagged `['!dev', '!autodocs']`
-that renders every size and color and runs it in a `play` function;
+It returns an array of mismatches and doesn't throw. It has limits, so a pass doesn't
+verify the whole contract:
+
+- It skips breakpoint rows, and states other than hover and focus-visible.
+- It reads every part's properties from the one element you give it, so nested parts
+  aren't checked on their own.
+
+For a state, breakpoint or part it doesn't cover, extend the helper or add a
+component-specific check, and say in the PR what the check leaves out.
+
+Run it while you work to list what still differs, and fix each with a patch (step 5).
+Once the demo matches, add a story tagged `['!dev', '!autodocs']` that renders every
+size and color and runs it in a `play` function. The `play` function must assert that
+every returned array is empty (`expect(mismatches).toEqual([])`), or throw on any
+mismatch; calling `checkContract` alone passes even when the demo differs.
 `npm run test:storybook` runs it in CI. Don't add one that fails.
 
 ## Verify
