@@ -1,0 +1,6 @@
+// Arizona Bootstrap, compiled from its own Sass source so Storybook can show
+// changes that a contract asks for before Arizona Bootstrap releases them.
+// Nothing here overrides its values: every change is a patch to its source in
+// the repo's `patches/` folder, which its maintainers can apply as a pull
+// request. See "Patching Arizona Bootstrap" in the README.
+@import "arizona-bootstrap/scss/arizona-bootstrap";
