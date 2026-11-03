@@ -1,6 +1,6 @@
 ---
 name: record-design-decisions
-description: Record a component's design decisions in a component contract in the design system, with tokens named the way the Naming page says, then update Arizona Bootstrap to match with a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
+description: Record a component's design decisions in a component contract in the design system, with design tokens named the way the Naming page says, then update Arizona Bootstrap to match with a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
 ---
 
 # Record design decisions
@@ -13,7 +13,7 @@ The contract in the design system comes first; each implementation's changes fol
 from it.
 
 1. **Source of truth:** where each decision comes from
-2. **Contract and tokens:** which tokens each part uses, and the component's own values
+2. **Contract and design tokens:** which design tokens each part uses, and the component's own values
 3. **Values:** what each one is set to, from its source
 4. **Document it:** the component's docs page in Storybook
 5. **Update Arizona Bootstrap:** a patch to its Sass, so the demo matches the contract
@@ -27,7 +27,7 @@ Before editing, read on the current branch:
 - `packages/contracts/README.md`
 - The Naming page, `packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`
   (`npx storybook tools docs show --input '{"id":"primary-foundations-tokens-naming--docs"}'`
-  from `packages/storybook`). It's where token naming lives; don't restate it elsewhere.
+  from `packages/storybook`). It's where design token naming lives; don't restate it elsewhere.
 
 ## 1. Settle the source of truth
 
@@ -55,9 +55,10 @@ Places to look:
 Find the branch the work is landing on before comparing anything. Arizona Bootstrap's
 README says version 5 is developed on `main` and version 2 on `2.x` (Bootstrap 4, a
 different codebase), but release branches such as `5.2.x` and `5.3.x` aren't in the
-README. Look at the base branch of the component's recent and open PRs: in October
-2026 the button work (#2339, #2378, #2369) targeted `5.3.x`, whose button Sass was
-already ahead of `main` and `5.2.x`. Diff the component's Sass between branches
+README. Look at the base branch of the component's recent and open PRs: for example, the 2026 button
+work (#2339, #2378, #2369) targeted `5.3.x`, whose button Sass was already ahead of
+`main` and `5.2.x`. Check the base branches again each time; that was true then, not
+necessarily now. Diff the component's Sass between branches
 (`gh api "repos/az-digital/arizona-bootstrap/contents/<path>?ref=<branch>"`).
 
 How to decide:
@@ -94,7 +95,7 @@ description (decision, what's recorded, why), or the issue's "Where values come 
 section. If the issue doesn't list a source yet, draft that section as a local file for
 the user to review before posting.
 
-## 2. Write the contract and its tokens
+## 2. Write the contract and its design tokens
 
 ### Contracts
 
@@ -104,10 +105,10 @@ Each component gets a contract, `packages/contracts/contracts/<name>.contract.js
 - **Parts, states, breakpoints.** `anatomy.root` is the component; `parts` nest inside
   it. `states` (`hover`, `focus-visible`, `active`, `open`, `disabled`, the schema's
   list) and `breakpoints` (`sm`…`xxl`) hold only what changes.
-- **Properties** are named the way tokens are (`color`, `fill`, `padding.x`,
+- **Properties** are named the way design tokens are (`color`, `fill`, `padding.x`,
   `font.size`, `ring.color`), not after a platform (no `padding-inline`).
-- **Each property points at a token or holds the component's own value.** Colors and
-  shared decisions point at tokens. What's specific to the component, such as its
+- **Each property points at a design token or holds the component's own value.** Colors and
+  shared decisions point at design tokens. What's specific to the component, such as its
   sizes and timings, is a value written like a DTCG token: a `$type`, a `$value` and a
   `$description` of what it's for.
 - **Variants** (`size`, `color`) hold only what each option changes, with a `default`
@@ -124,14 +125,14 @@ Each component gets a contract, `packages/contracts/contracts/<name>.contract.js
   `packages/contracts/dist` is out of date. It refuses a contract that doesn't match
   the schema or references a missing token.
 
-### Tokens
+### Design tokens
 
 - **Name them the way the Naming page says.** Don't restate its rules here or in other
   docs; point to it.
-- **Check what exists first.** Reuse a token that means the same thing; look at sibling
+- **Check what exists first.** Reuse a design token that means the same thing; look at sibling
   components for the pattern.
-- **One component's own values stay in its contract**, not as `az.component.*` tokens.
-  Never name a token after its value (`az.dimension.50`).
+- **One component's own values stay in its contract**, not as `az.component.*` design tokens.
+  Never name a design token after its value (`az.dimension.50`).
 - **Red is primary color 1 and Blue is primary color 2;** never call Blue "secondary".
 - **Tokenize decisions, not drawing details.** Leave how a part is drawn (the length of
   an icon's lines) in the implementation. A design-reviewed alignment is a decision.
@@ -144,13 +145,13 @@ Each component gets a contract, `packages/contracts/contracts/<name>.contract.js
 ### Assets
 
 Artwork the design system owns (background patterns, not the university wordmark)
-goes in `packages/tokens/assets/<kind>/`. The tokens package publishes only `dist` and
+goes in `packages/tokens/assets/<kind>/`. The design tokens package publishes only `dist` and
 `tokens.json` (its `files` and `exports`), so the first asset has to add `assets` to
 `files` and an `./assets/*` export to `packages/tokens/package.json`.
 
-- **Single-color art is a mask:** black shapes with any opacity built in. A color token
+- **Single-color art is a mask:** black shapes with any opacity built in. A color design token
   paints it, so one file works on every surface.
-- **Assets aren't tokens.** DTCG has no type for files, so there's no asset token and
+- **Assets aren't tokens.** DTCG has no type for files, so there's no asset design token and
   no workaround. Implementations point at the file directly. Palette renames apply to
   asset names too (Monsoon Sky → Monsoon Rain).
 
@@ -188,7 +189,7 @@ The demo components are drawn by Arizona Bootstrap compiled from its Sass source
 the patches in `patches/` (step 5), so the example shows what the contract asks for:
 
 - `.storybook/arizona-bootstrap.scss` imports Arizona Bootstrap from `node_modules` and
-  overrides nothing; the tokens reach it through the patch (step 5). `.storybook/preview-head.html` loads Proxima Nova.
+  overrides nothing; the design tokens reach it through the patch (step 5). `.storybook/preview-head.html` loads Proxima Nova.
 - Arizona Bootstrap is a devDependency installed from GitHub by tag; the installed tag
   is in `packages/storybook/package.json`. It has no npm release. Compare against that
   tag, not another. When the work lands on a branch that has no tag yet, patch the
@@ -215,10 +216,11 @@ Storybook overrides its values.
    `node_modules/arizona-bootstrap/scss/` (Sass can't read `tokens.json`). Arizona
    Bootstrap is adopting the design tokens, so the patch is the start of that: it
    carries the generated file, and the component's Sass imports it and uses the
-   variables for the tokens this PR adds or changes (`$az-color-bg-button-white-hover`,
+   variables for the design tokens this PR adds or changes (`$az-color-bg-button-white-hover`,
    not `$gray-200`). Use Arizona Bootstrap's own variable only for a value that has no
    token, such as a component's own value that stays in the contract. Otherwise write
-   it in its code style. Copy the file again whenever the tokens change.
+   it in its code style. Copy the file again whenever the design tokens change. Point its `Source:` link at a
+   commit on `main`, since a branch's commits can disappear when the PR is squash-merged.
 2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`.
    Patches are sequenced in `patches/` (`arizona-bootstrap+<version>+<number>+<name>.patch`),
    and the bare command would amend the newest one, folding this component's edits into
@@ -293,7 +295,7 @@ mismatch; calling `checkContract` alone passes even when the demo differs.
   shared tooling from one, bring that in without the other component.
 - Keep work local until the user asks to push. Don't keep offering to push.
 - The commit message names the issue and the source of each value.
-- The PR description has the decisions table, the contract, the tokens, the Arizona
+- The PR description has the decisions table, the contract, the design tokens, the Arizona
   Bootstrap upgrade instructions, the Storybook changes and a test plan. Push before
   editing it, so it describes what's on the branch.
 - `gh pr edit` and `gh issue edit` can fail on this repo; use
