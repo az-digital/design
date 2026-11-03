@@ -30,6 +30,7 @@ This is an npm workspaces monorepo with four packages:
 │       ├── stories/           #   Storybook stories
 │       ├── .storybook/       #   Storybook config
 │       └── package.json
+├── patches/                   # changes to Arizona Bootstrap's source, one per pull request for it
 ├── package.json               # workspace root
 ├── README.md                  # this file
 └── .gitignore
@@ -129,6 +130,29 @@ The Brand/Color docs page includes a custom `ColorSwatchGrid` component (`packag
 To refer to a token in docs, follow the convention in [Tokens > Contributing](packages/storybook/stories/Primary/Tokens/Contributing.mdx).
 
 The token UI (token tables, the token details drawer with its alias tree, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand swatches embed the addon's token pill. The addon reads `packages/tokens/style-dictionary.config.mjs`, so token details show what each output file derives from the source. See the addon's [README](packages/storybook-addon-tokens/README.md).
+
+### Patching Arizona Bootstrap
+
+Storybook styles its components with Arizona Bootstrap compiled from its own Sass source, installed from GitHub at a release's tag, now `v5.3.0` (`packages/storybook/.storybook/arizona-bootstrap.scss`). Nothing in this repo overrides Arizona Bootstrap's values or adds CSS rules to it. When a contract needs Arizona Bootstrap to change, the change is a patch to its source that its maintainers can apply as a pull request.
+
+[patch-package](https://github.com/ds300/patch-package) keeps each patch in `patches/arizona-bootstrap+<version>+<number>+<name>.patch`, one per change, and the root `postinstall` script applies them in order on every `npm install`. `<version>` is the version in Arizona Bootstrap's `package.json`: the release the patch was made against.
+
+To make a patch:
+
+1. Edit the file under `node_modules/arizona-bootstrap/scss/`. Write the change the way Arizona Bootstrap would, with its own variables (`$gray-200`, not `$az-color-brand-gray-200`), so it can be applied as it is.
+2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`, where `<name>` says what the change is, such as `white-buttons-hover-and-active`. To change the newest patch instead, run `npx patch-package arizona-bootstrap` without `--append`.
+3. Restart Storybook and check the component.
+4. Commit the patch with the contract change it supports. In the pull request, say which Arizona Bootstrap issue or pull request it's for.
+
+Each patch is a diff of Arizona Bootstrap's own files, so a maintainer applies it to a branch from that release with:
+
+```bash
+git apply -p3 arizona-bootstrap+5.3.0+001+white-buttons-hover-and-active.patch
+```
+
+Once an Arizona Bootstrap release includes a change, point `packages/storybook/package.json` at that release's tag, run `npm install`, and delete the patch. `npm install` fails if a patch no longer applies to the new release: redo the change on the new source and make the patch again, with the new version in its name.
+
+The background images that Arizona Bootstrap's Sass refers to (`url("img/...")`) don't load in Storybook: the package ships them only beside its released CSS, not its Sass.
 
 ### Storybook MCP for AI Agents
 
