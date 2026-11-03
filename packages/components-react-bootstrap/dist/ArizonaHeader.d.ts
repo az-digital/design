@@ -8,11 +8,13 @@ type ArizonaHeaderProps = {
      * Only turn this on if the header also has off-canvas content (search/menu) added below
      * it — without that, this just hard-caps the header's height on mobile for no benefit.
      * The off-canvas "Extending the header" pattern itself isn't covered by this component yet
-     * — see arizona-header.mdx.
+     * — see Primary/Components/Navigation/Arizona Header.mdx.
      */
     fixedOnMobile?: boolean;
     /** Base `id` for the header element. Defaults to `header_arizona`. */
     id?: string;
+    /** Adds the Search and Menu header buttons. Off by default. */
+    headerButtons?: boolean;
     className?: string;
 };
 /**

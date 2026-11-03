@@ -5,8 +5,8 @@ import { createElement } from 'react';
 import type { ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import type { ComponentAdapter, LibraryAdapter } from '@az-digital/storybook-addon-libraries';
-import { Accordion, ArizonaHeader, Card, Nav, Tabs } from '../src';
-import type { AccordionProps, ArizonaHeaderProps, CardProps, NavProps, TabsProps } from '../src';
+import { Accordion, ArizonaHeader, Nav, Tabs } from '../src';
+import type { AccordionProps, ArizonaHeaderProps, NavProps, TabsProps } from '../src';
 
 /** Mounts `component` into the container and unmounts it when the addon clears the container. */
 const mount =
@@ -48,22 +48,6 @@ const brandHeader: ComponentAdapter<ArizonaHeaderProps> = {
   },
 };
 
-const card: ComponentAdapter<CardProps> = {
-  render: mount(Card),
-  source: (props) => {
-    const flags = [
-      props.header && `header="${props.header}"`,
-      props.image && `image={{ src: "${props.image.src}", alt: "${props.image.alt}" }}`,
-      props.title && `title="${props.title}"`,
-      props.subtitle && `subtitle="${props.subtitle}"`,
-      props.text && `text="${props.text}"`,
-      props.links && `links={${JSON.stringify(props.links)}}`,
-      props.footer && `footer="${props.footer}"`,
-    ].filter((flag): flag is string => Boolean(flag));
-    return `<Card${flags.length > 0 ? `\n  ${flags.join('\n  ')}\n` : ' '}/>`;
-  },
-};
-
 const nav: ComponentAdapter<NavProps> = {
   render: mount(Nav),
   source: (props) =>
@@ -93,4 +77,4 @@ const tabs: ComponentAdapter<TabsProps> = {
     ),
 };
 
-export default { components: { accordion, 'brand-header': brandHeader, card, nav, tabs } } satisfies LibraryAdapter;
+export default { components: { accordion, 'brand-header': brandHeader, nav, tabs } } satisfies LibraryAdapter;

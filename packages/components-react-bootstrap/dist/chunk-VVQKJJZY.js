@@ -36,4 +36,4 @@ function Tabs(props) {
 export {
   Tabs
 };
-//# sourceMappingURL=chunk-4MY6FGC2.js.map
+//# sourceMappingURL=chunk-VVQKJJZY.js.map

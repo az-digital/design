@@ -34,17 +34,27 @@ function classNames(...values) {
 
 // src/components/ArizonaHeader/ArizonaHeader.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
+var HeaderButton = ({ icon, label }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { type: "button", className: "btn btn-arizona-header", children: [
+  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { "aria-hidden": "true", className: "icon material-symbols-rounded", children: icon }),
+  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "icon-text", children: label })
+] });
 var ArizonaHeader = (0, import_react.forwardRef)(function ArizonaHeader2(props, ref) {
-  const { variant = "blue", fixedOnMobile = false, id = "header_arizona", className } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { ref, className: classNames("arizona-header", fixedOnMobile && "az-fixed-header-on-mobile", variant === "red" ? "bg-red" : "bg-blue", className), id, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "container", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "row", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { className: "arizona-logo col-auto", href: "https://www.arizona.edu", title: "The University of Arizona homepage", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    "img",
-    {
-      className: "arizona-line-logo",
-      alt: "The University of Arizona Wordmark Line Logo White",
-      src: "https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg",
-      fetchPriority: "high"
-    }
-  ) }) }) }) });
+  const { variant = "blue", fixedOnMobile = false, id = "header_arizona", headerButtons = false, className } = props;
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { ref, className: classNames("arizona-header", fixedOnMobile && "az-fixed-header-on-mobile", variant === "red" ? "bg-red" : "bg-blue", className), id, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "container", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "row", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { className: "arizona-logo col-auto", href: "https://www.arizona.edu", title: "The University of Arizona homepage", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "img",
+      {
+        className: "arizona-line-logo",
+        alt: "The University of Arizona Wordmark Line Logo White",
+        src: "https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg",
+        fetchPriority: "high"
+      }
+    ) }),
+    headerButtons && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "d-flex col-auto px-0", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeaderButton, { icon: "search", label: "Search" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeaderButton, { icon: "menu", label: "Menu" })
+    ] })
+  ] }) }) });
 });
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

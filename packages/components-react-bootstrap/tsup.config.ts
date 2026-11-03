@@ -19,7 +19,6 @@ export default defineConfig({
     Accordion: 'src/components/Accordion/index.ts',
     Tabs: 'src/components/Tabs/index.ts',
     Nav: 'src/components/Nav/index.ts',
-    Card: 'src/components/Card/index.ts',
   },
   format: ['esm', 'cjs'],
   dts: true,

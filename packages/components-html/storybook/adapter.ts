@@ -1,8 +1,8 @@
 // Storybook adapter: how @az-digital/storybook-addon-libraries draws this
 // library's components. The markup it shows is exactly what each render function returns.
 import type { LibraryAdapter } from '@az-digital/storybook-addon-libraries';
-import { renderAccordion, renderArizonaHeader, renderButton, renderCard, renderNav, renderTabs } from '../src';
-import type { AccordionProps, ArizonaHeaderProps, ButtonProps, CardProps, NavProps, TabsProps } from '../src';
+import { renderAccordion, renderArizonaHeader, renderButton, renderNav, renderTabs } from '../src';
+import type { AccordionProps, ArizonaHeaderProps, ButtonProps, NavProps, TabsProps } from '../src';
 
 export default {
   components: {
@@ -17,10 +17,6 @@ export default {
     button: {
       render: (props: ButtonProps) => renderButton(props),
       source: (props: ButtonProps) => renderButton(props),
-    },
-    card: {
-      render: (props: CardProps) => renderCard(props),
-      source: (props: CardProps) => renderCard(props),
     },
     nav: {
       render: (props: NavProps) => renderNav(props),
