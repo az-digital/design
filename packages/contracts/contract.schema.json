@@ -96,16 +96,10 @@
           }
         },
         "breakpoints": {
-          "description": "What changes from a breakpoint's width up (sm 576px, md 768px, lg 992px, xl 1200px, xxl 1400px). Only what changes.",
+          "description": "What changes from the corresponding az.breakpoint.<name> token's width up. Only what changes.",
           "type": "object",
           "propertyNames": {
-            "enum": [
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl"
-            ]
+            "$ref": "#/$defs/name"
           },
           "additionalProperties": {
             "$ref": "#/$defs/tokens"
@@ -379,16 +373,10 @@
           }
         },
         "breakpoints": {
-          "description": "What changes from a breakpoint's width up (sm 576px, md 768px, lg 992px, xl 1200px, xxl 1400px). Only what changes.",
+          "description": "What changes from the corresponding az.breakpoint.<name> token's width up. Only what changes.",
           "type": "object",
           "propertyNames": {
-            "enum": [
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl"
-            ]
+            "$ref": "#/$defs/name"
           },
           "additionalProperties": {
             "$ref": "#/$defs/tokens"
