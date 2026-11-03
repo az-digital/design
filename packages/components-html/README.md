@@ -22,12 +22,12 @@ Load Arizona Bootstrap's CSS and JavaScript from its CDN. There's nothing to ins
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <title>Arizona Bootstrap page</title>
-       <link href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/css/arizona-bootstrap.min.css" rel="stylesheet" integrity="sha384-wI4ZFF+Q17zFOfJSPmczqtkEMnRkxoFPPtk3Kg4c37lozE3jYmmJ/N+EipHy1p6n" crossorigin="anonymous">
+       <link href="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.3.0/css/arizona-bootstrap.min.css" rel="stylesheet" integrity="sha384-3a/0mSJKLzVJ6s85vKWp6N/Y27OXYl+yYndDPxDNjieM9tqNfXDxGsNV+YQChTjO" crossorigin="anonymous">
      </head>
      <body>
        <button type="button" class="btn btn-red">Apply to Arizona</button>
 
-       <script src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/js/arizona-bootstrap.bundle.min.js" integrity="sha384-of2ioyNUQuqjMaNcSfjyJE7aEaNPzjs5SOHSUxMJ9JXI8KThHJvXmZm2r6LBFbdi" crossorigin="anonymous"></script>
+       <script src="https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.3.0/js/arizona-bootstrap.bundle.min.js" integrity="sha384-5PUbfpkJJdMfgwsZwvIHCn71U0L6GF89cbs3FIag+PZ+dRz60ODDHuToK1hUGvih" crossorigin="anonymous"></script>
      </body>
    </html>
    ```
@@ -36,23 +36,23 @@ Load Arizona Bootstrap's CSS and JavaScript from its CDN. There's nothing to ins
 
 ### CDN links
 
-These pin Arizona Bootstrap 5.2.2, its current release:
+These pin Arizona Bootstrap 5.3.0, the release shown in this Storybook:
 
 **CSS:**
 
 ```text
-https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/css/arizona-bootstrap.min.css
+https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.3.0/css/arizona-bootstrap.min.css
 ```
 
 **JavaScript:**
 
 ```text
-https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.2.2/js/arizona-bootstrap.bundle.min.js
+https://cdn.digital.arizona.edu/lib/arizona-bootstrap/5.3.0/js/arizona-bootstrap.bundle.min.js
 ```
 
 The JavaScript bundle includes Popper. Buttons and cards only need the CSS. Interactive components need the JavaScript too: accordions, collapse, dropdowns, modals, the navbar, offcanvas, tabs, toasts, tooltips and popovers.
 
-Arizona Bootstrap's [getting started guide](https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.2/getting-started/introduction/) covers its other builds, installing its source with a package manager, and using it as a JavaScript module.
+Arizona Bootstrap's [getting started guide](https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/getting-started/introduction/) covers its other builds, installing its source with a package manager, and using it as a JavaScript module.
 
 ## How it consumes design tokens
 
