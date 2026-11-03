@@ -1,5 +1,24 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { BreakpointTable } from './BreakpointTable';
 
 <Meta title="Primary/Foundations/Layout/Breakpoints" />
 
 # Breakpoints
+
+Breakpoints are minimum viewport widths, and styles apply from each breakpoint up (mobile-first). `xs` is the 0px default and has no token; the token table lists the widths for the other breakpoints. In contracts, `breakpoints.<name>` uses the same name as `az.breakpoint.<name>` and applies from that token's width up.
+
+## Breakpoint tokens
+
+The device examples are typical, not rules: design for the width, not the device.
+
+<BreakpointTable
+  examples={{
+    sm: 'Phones in landscape, small tablets',
+    md: 'Tablets in portrait, such as iPads',
+    lg: 'Tablets in landscape, small laptops',
+    xl: 'Laptops, standard desktop monitors',
+    xxl: 'Large desktop monitors, widescreen displays',
+  }}
+/>
+
+The generated CSS custom properties and JavaScript `var(...)` references cannot be used in media query conditions. Use the Sass values when compiling Sass media queries, or the matching literal width in CSS and JavaScript.

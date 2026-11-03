@@ -1,0 +1,25 @@
+{
+  "name": "@az-digital/contracts",
+  "version": "0.0.1",
+  "description": "Component contracts for the Arizona Digital design system: each component's parts and the token or value of each property, as data for docs and contract checks.",
+  "type": "module",
+  "files": [
+    "contracts",
+    "contract.schema.json",
+    "dist"
+  ],
+  "exports": {
+    "./contracts/*": "./contracts/*",
+    "./contract.schema.json": "./contract.schema.json",
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "author": "Arizona Digital",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/build.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0"
+  }
+}

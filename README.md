@@ -4,7 +4,7 @@ A design token and Storybook workspace for the Arizona Digital design system. Th
 
 ## Repository Structure
 
-This is an npm workspaces monorepo with three packages:
+This is an npm workspaces monorepo with four packages:
 
 ```text
 ├── packages/
@@ -17,6 +17,11 @@ This is an npm workspaces monorepo with three packages:
 │   │   │   ├── tokens.vars.js  #     JS module of var(--…) references
 │   │   │   └── tokens.vars.d.ts #    types for tokens.vars.js
 │   │   └── package.json
+│   ├── contracts/              # @az-digital/contracts — component contracts and their check
+│   │   ├── contract.schema.json #  what a contract may say
+│   │   ├── contracts/          #   one <component>.contract.json per component
+│   │   ├── scripts/build.mjs   #   the check, which also writes dist/contracts.json for docs and contract checks
+│   │   └── README.md
 │   ├── storybook-addon-tokens/  # @az-digital/storybook-addon-tokens — token doc blocks and Tokens tab
 │   │   ├── src/                #   addon source (preset, Tokens tab, doc blocks)
 │   │   └── README.md
@@ -25,6 +30,7 @@ This is an npm workspaces monorepo with three packages:
 │       ├── stories/           #   Storybook stories
 │       ├── .storybook/       #   Storybook config
 │       └── package.json
+├── patches/                   # changes to Arizona Bootstrap's source, one per pull request for it
 ├── package.json               # workspace root
 ├── README.md                  # this file
 └── .gitignore
@@ -33,6 +39,7 @@ This is an npm workspaces monorepo with three packages:
 | Package | Path | Purpose |
 |---------|------|---------|
 | `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/contracts` | `packages/contracts/` | Component contracts: each component's parts, and the token or value that sets each part's design properties ([README](packages/contracts/README.md)) |
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
@@ -62,9 +69,10 @@ All scripts can be run from the repo root:
 | `npm run dev:storybook` | Start the Storybook development server |
 | `npm run build:storybook` | Build Storybook for production output |
 | `npm run build:tokens` | Build token output using Style Dictionary |
-| `npm run test:storybook` | Run the Storybook package tests |
+| `npm run build:contracts` | Check the component contracts against the tokens, and write their data for docs and contract checks |
+| `npm run test:storybook` | Run the Storybook package tests, including every story in Chromium and any contract checks |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
-| `npm run build:all` | Build token output and Storybook assets |
+| `npm run build:all` | Build token output, check the contracts, and build Storybook |
 
 ## Token Workflow
 
@@ -75,7 +83,13 @@ All scripts can be run from the repo root:
 npm run build:tokens
 ```
 
-3. Review the generated token catalog in Storybook.
+3. If a component's tokens changed, update its contract in `packages/contracts/contracts/` and check it:
+
+```bash
+npm run build:contracts
+```
+
+4. Review the generated token catalog in Storybook.
 
 ### `dist/` Output
 
@@ -85,11 +99,21 @@ npm run build:tokens
 - `tokens.scss` — Sass variables (e.g. `$az-color-brand-blue: #0c234b;`) for Sass-based builds.
 - `tokens.vars.js` / `tokens.vars.d.ts` — a JS/TS module exporting the same tokens as `var(...)` reference strings (e.g. `az.color.brand.blue` → `"var(--az-color-brand-blue)"`), so code can reference the generated CSS variable names instead of reconstructing them.
 
-In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{az.color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
+In `tokens.css` and `tokens.scss`, a token that aliases another is written as a reference to it (`outputReferences`), not a copied value: a token whose `$value` is `{color.brand.red}` comes out as `var(--az-color-brand-red)` (or `$az-color-brand-red`). The alias chain from `tokens.json` survives into the output, and overriding one variable updates everything built on it.
+
+`tokens.json` is written the way Tokens Studio reads it, since it's also Tokens Studio's sync file. The top-level `az` is its token set, so references leave it out (`{color.brand.red}`); the Style Dictionary config adds it back before resolving them, so every token keeps its `az.` name in the build, the contracts and Storybook. Sizes are strings (`"8px"`) and font families are one comma-separated string: Tokens Studio doesn't read DTCG 2025.10's `{ "value": 8, "unit": "px" }` objects or font lists yet.
 
 Never edit files in `dist/` directly — they're regenerated on every token build.
 
 The published `@az-digital/tokens` package includes the source `tokens.json` alongside `dist/`, for tools that consume DTCG tokens directly (Figma / Tokens Studio, or another team's own Style Dictionary build): `@az-digital/tokens/tokens.json`. Generated files are imported by path, e.g. `@az-digital/tokens/dist/tokens.css`.
+
+## Component Contracts
+
+A component's contract (`packages/contracts/contracts/<component>.contract.json`) records its anatomy, independent of any platform: the parts it's made of, and what sets each part's design properties at rest, in its states (hover, focus-visible…) and from its breakpoints: a token from `tokens.json`, or the component's own value.
+
+The contract points each part at the token it uses, named the way the Naming page (Foundations › Tokens › Naming) describes. What's specific to one component, such as its sizes and timings, is a value in its contract, written like a DTCG token with a description of what it's for. Contracts generate nothing for any platform: each implementation writes those values its own way, and a contract check renders the implementation and fails if it differs from its contract.
+
+`npm run build:contracts` refuses a contract, naming the problem, when it doesn't match `contract.schema.json`, references a token that doesn't exist, or leaves one of its component's own tokens (`az.component.<component>.*`) unused. It also flags component tokens that only point at another token, so they can be removed. Component docs pages show the contract as an Anatomy table. See the [contracts README](packages/contracts/README.md).
 
 ## Storybook Notes
 
@@ -98,6 +122,29 @@ The Storybook package renders the design token catalog, groups nested token valu
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
 
 The token UI (token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand color swatches on the Tokens page (`packages/storybook/stories/Primary/Foundations/Tokens/ColorSwatchGrid.tsx`) are this site's own, and embed the addon's token pill. It reads `packages/tokens/style-dictionary.config.mjs`, so the details for each token show exactly what each output file derives from it. See its [README](packages/storybook-addon-tokens/README.md).
+
+### Patching Arizona Bootstrap
+
+Storybook styles its components with Arizona Bootstrap compiled from its own Sass source, installed from GitHub at a release's tag, now `v5.3.0` (`packages/storybook/.storybook/arizona-bootstrap.scss`). Nothing in this repo overrides Arizona Bootstrap's values or adds CSS rules to it. When a contract needs Arizona Bootstrap to change, the change is a patch to its source that its maintainers can apply as a pull request.
+
+[patch-package](https://github.com/ds300/patch-package) keeps each patch in `patches/arizona-bootstrap+<version>+<number>+<name>.patch`, one per change, and the root `postinstall` script applies them in order on every `npm install`. `<version>` is the version in Arizona Bootstrap's `package.json`: the release the patch was made against.
+
+To make a patch:
+
+1. Edit the file under `node_modules/arizona-bootstrap/scss/`. Write the change the way Arizona Bootstrap would, with its own variables (`$gray-200`, not `$az-color-brand-gray-200`), so it can be applied as it is.
+2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`, where `<name>` says what the change is, such as `white-buttons-hover-and-active`. To change the newest patch instead, run `npx patch-package arizona-bootstrap` without `--append`.
+3. Restart Storybook and check the component.
+4. Commit the patch with the contract change it supports. In the pull request, say which Arizona Bootstrap issue or pull request it's for.
+
+Each patch is a diff of Arizona Bootstrap's own files, so a maintainer applies it to a branch from that release with:
+
+```bash
+git apply -p3 arizona-bootstrap+5.3.0+001+white-buttons-hover-and-active.patch
+```
+
+Once an Arizona Bootstrap release includes a change, point `packages/storybook/package.json` at that release's tag, run `npm install`, and delete the patch. `npm install` fails if a patch no longer applies to the new release: redo the change on the new source and make the patch again, with the new version in its name.
+
+The background images that Arizona Bootstrap's Sass refers to (`url("img/...")`) don't load in Storybook: the package ships them only beside its released CSS, not its Sass.
 
 ### Storybook MCP for AI Agents
 
@@ -111,6 +158,7 @@ This project follows the broader design token ecosystem and aligns with the [Des
 
 - Tokens are authored in a structured JSON format and stored in `packages/tokens/tokens.json`.
 - The token package builds output through Style Dictionary.
+- Component contracts say which token or value sets each part of a component, and a check keeps them in step with the tokens.
 - Storybook reads the token source and renders grouped token cards for review.
 - The package test suite verifies that nested token paths are flattened and grouped correctly.
 

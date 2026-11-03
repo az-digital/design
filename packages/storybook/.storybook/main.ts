@@ -1,8 +1,6 @@
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/react-vite';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Link token files at the branch this Storybook is built from: the PR's branch
 // for review-site builds of a pull request, the pushed branch for other CI
@@ -15,8 +13,6 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
-    // Design tab: each story shows its Figma frames (parameters.design).
-    getAbsolutePath("@storybook/addon-designs"),
     {
       // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
       name: getAbsolutePath("@az-digital/storybook-addon-tokens"),
@@ -25,6 +21,7 @@ const config: StorybookConfig = {
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
       },
     },
+    getAbsolutePath("@storybook/addon-vitest")
   ],
 
   framework: {
@@ -36,19 +33,32 @@ const config: StorybookConfig = {
     ...viteConfig,
     resolve: {
       ...viteConfig.resolve,
-      // Consume components-react and components-html from source so Storybook
-      // always reflects the latest components without requiring a package build.
-      alias: [
-        ...(Array.isArray(viteConfig.resolve?.alias) ? viteConfig.resolve.alias : []),
-        { find: '@az-digital/components-react', replacement: resolve(__dirname, '../../components-react/src/index.ts') },
-        { find: '@az-digital/components-html', replacement: resolve(__dirname, '../../components-html/src/index.ts') },
-        // Stable path to packages/tokens, independent of story folder depth.
-        { find: '@tokens', replacement: resolve(__dirname, '../../tokens') },
-      ],
+      alias: {
+        ...viteConfig.resolve?.alias,
+        // stable path to packages/tokens, independent of story folder depth
+        '@tokens': fileURLToPath(new URL('../../tokens', import.meta.url)),
+        // stable path to packages/contracts, for docs pages that read a component's contract
+        '@contracts': fileURLToPath(new URL('../../contracts', import.meta.url)),
+      },
     },
     build: {
       ...viteConfig.build,
       assetsInlineLimit: 0,
+    },
+    // Arizona Bootstrap compiled from its Sass source (arizona-bootstrap.scss).
+    css: {
+      ...viteConfig.css,
+      preprocessorOptions: {
+        scss: {
+          // Resolve Arizona Bootstrap's bare `bootstrap/scss/...` imports.
+          loadPaths: [fileURLToPath(new URL('../../../node_modules', import.meta.url))],
+          // Arizona Bootstrap's own deprecation warnings, such as @import.
+          // Its background images (url("img/...")) stay unresolved: the
+          // package ships them only beside its released CSS, not its Sass.
+          quietDeps: true,
+          silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
+        },
+      },
     },
   })
 };

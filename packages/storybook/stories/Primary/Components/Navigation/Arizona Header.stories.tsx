@@ -1,78 +1,67 @@
-import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
-import { createElement } from 'react';
-import { ArizonaHeader } from '@az-digital/components-react';
-import { renderArizonaHeader } from '@az-digital/components-html';
-import type { ArizonaHeaderProps } from '@az-digital/components-html';
-import type { Implementations } from '../../../implementations';
-import { renderImplementation } from '../../../implementations';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-// Not `Parameters<typeof renderArizonaHeader>[0]` (the pattern most stories use) —
-// renderArizonaHeader's default parameter value (`= {}`) makes that resolve to
-// `ArizonaHeaderProps | undefined`, which Storybook's own story-args types reject
-// outright (same issue as Card's story — see the comment there).
-type ArizonaHeaderArgs = ArizonaHeaderProps;
+// Arizona Bootstrap's latest release, loaded in preview-head.html, drawing the
+// header as it ships today, with the markup from its Arizona Header docs. The
+// controls choose the header's color and whether it has header buttons. Focus
+// comes from the keyboard.
 
-/** JSX shown in the docs code panel when Implementation is set to React. */
-const asReactCode = (args: ArizonaHeaderArgs) => {
-  const props: string[] = [];
+// Each color's class. Red is the original header, being retired.
+const colors = { Blue: 'bg-blue', Red: 'bg-red' } as const;
 
-  if (args.variant && args.variant !== 'blue') props.push(`variant="${args.variant}"`);
-  if (args.fixedOnMobile) props.push('fixedOnMobile');
-  if (args.id && args.id !== 'header_arizona') props.push(`id="${args.id}"`);
-
-  const propsString = props.length > 0 ? ` ${props.join(' ')}` : '';
-
-  return `<ArizonaHeader${propsString} />`;
+type ArizonaHeaderArgs = {
+  Color: keyof typeof colors;
+  'Header buttons': boolean;
 };
 
-const implementations: Implementations<ArizonaHeaderArgs> = {
-  html: {
-    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderArizonaHeader(args) }} />,
-    source: (args) => renderArizonaHeader(args),
-  },
-  react: {
-    render: (args) => createElement(ArizonaHeader, args),
-    source: asReactCode,
-  },
-};
-
-function ArizonaHeaderStory(args: ArizonaHeaderArgs, context: StoryContext) {
-  return renderImplementation('ArizonaHeader', implementations, args, context);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- args-only stand-in for Meta<T>'s generic; ArizonaHeaderStory itself also takes a `context` param, which Meta<T> doesn't expect
-function ArizonaHeaderArgsShape(_args: ArizonaHeaderArgs) {
-  return null;
-}
+const headerButton = (icon: string, label: string) => (
+  <button type="button" className="btn btn-arizona-header">
+    <span aria-hidden="true" className="icon material-symbols-rounded">
+      {icon}
+    </span>
+    <span className="icon-text">{label}</span>
+  </button>
+);
 
 const meta = {
   title: 'Primary/Components/Navigation/Arizona Header',
-  // Set only so react-docgen can attach ArizonaHeader's prop table to this story file's
-  // documentation — see the equivalent comment in button.stories.tsx for why this
-  // must stay a bare reference to the imported `ArizonaHeader`.
-  component: ArizonaHeader,
-  render: ArizonaHeaderStory,
+  args: {
+    Color: 'Blue',
+    'Header buttons': true,
+  },
   argTypes: {
-    variant: { control: 'radio', options: ['blue', 'red'] },
-    fixedOnMobile: { control: 'boolean' },
+    Color: { control: 'inline-radio', options: Object.keys(colors) },
+    'Header buttons': { control: 'boolean' },
   },
-  parameters: {
-    implementations,
-    // Every story here relies on the meta-level custom `render`, so Storybook's
-    // default ('auto') Code-panel behavior would fall back to static story source
-    // instead of running `docs.source.transform` — see the equivalent comment in
-    // button.stories.tsx. 'dynamic' forces the Code panel through the transform.
-    docs: { source: { type: 'dynamic' } },
-  },
-} satisfies Omit<Meta<typeof ArizonaHeaderArgsShape>, 'component'> & { component?: typeof ArizonaHeader };
+  render: (args) => (
+    // Without az-fixed-header-on-mobile, so the header stays in the docs page instead of
+    // pinning itself to the top of the screen.
+    <div className={`arizona-header ${colors[args.Color] ?? colors.Blue}`}>
+      <div className="container">
+        <div className="row">
+          <a className="arizona-logo col-auto" href="https://www.arizona.edu" title="The University of Arizona homepage">
+            <img
+              className="arizona-line-logo"
+              alt="The University of Arizona Wordmark Line Logo White"
+              src="https://cdn.digital.arizona.edu/logos/v1.0.0/ua_wordmark_line_logo_white_rgb.min.svg"
+            />
+          </a>
+          {args['Header buttons'] && (
+            // Arizona Bootstrap's markup adds d-lg-none here, so the buttons only show below
+            // 992px. Leaving it out shows them at any width.
+            <div className="d-flex col-auto px-0">
+              {headerButton('search', 'Search')}
+              {headerButton('menu', 'Menu')}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  ),
+} satisfies Meta<ArizonaHeaderArgs>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
-/** Mirrors Arizona Bootstrap's own "University header with wordmark logo" example — the current, recommended variant. */
-export const Default: Story = {};
-
-/** The original red header. Still real and demonstrated in the docs, but marked there for future deprecation. */
-export const OriginalRedHeader: Story = {
-  args: { variant: 'red', id: 'header_arizona_2' },
-};
+// Shown on the Arizona Header docs page, not as its own page in the sidebar.
+export const Default: Story = { tags: ['!dev'] };

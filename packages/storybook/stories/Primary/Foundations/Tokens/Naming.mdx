@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Foundations/Tokens/Naming" />
+
+# Naming Design Tokens
+
+Every token name is built from the same set of parts, so you can tell what a token is for by reading its name, and guess a token's name before you look it up. The same name is used in Figma, in `tokens.json`, and in the CSS, Sass and JavaScript outputs.
+
+## Structure
+
+<code>[namespace].[category].[property].[component/context].[variant]-[state].[size]</code>
+
+Only the namespace and category are required. Leave out any part that doesn't apply, but keep the rest in this order.
+
+<table>
+  <tbody>
+    <tr><th>Part</th><th>What it is</th><th>Examples</th></tr>
+    <tr><td>namespace</td><td>Always <code>az</code>.</td><td><code>az</code></td></tr>
+    <tr><td>category</td><td>The kind of value.</td><td><code>color</code>, <code>spacing</code>, <code>radius</code>, <code>border</code>, <code>opacity</code>, <code>font-size</code>, <code>breakpoint</code></td></tr>
+    <tr><td>property</td><td>Which part of the category, when it has more than one.</td><td><code>bg</code>, <code>fg</code>, <code>width</code></td></tr>
+    <tr><td>component/context</td><td>Where the token is meant to be used. A component name such as <code>button</code> also covers anything that behaves like one: icon buttons, pagination, list items, navigation. Semantic names go here too.</td><td><code>brand</code>, <code>button</code>, <code>card</code></td></tr>
+    <tr><td>variant</td><td>Which version of it.</td><td><code>red</code>, <code>blue</code></td></tr>
+    <tr><td>state</td><td>The interaction state, joined to the part before it with a hyphen. The resting value has no state.</td><td><code>red-hover</code>, <code>red-active</code>, <code>button-disabled</code></td></tr>
+    <tr><td>size</td><td>A step on a scale, as a word or a number.</td><td><code>sm</code>, <code>md</code>, <code>lg</code>, <code>2</code></td></tr>
+  </tbody>
+</table>
+
+## Rules
+
+- **Don't repeat a word.** If a part already says it, the next part doesn't say it again: `az.spacing.100`, not `az.spacing.spacing-100`; `az.color.bg.button.red`, not `az.color.bg.bg-button-red`.
+- **Join a state to the part before it.** A state is written after a hyphen, not as its own part, and the resting value has none: `az.color.bg.button.red`, `az.color.bg.button.red-hover`, `az.opacity.button-disabled`. That keeps `red` a single token; it couldn't also be the start of `red.hover`.
+- **Use lowercase words or numbers.** Join words inside one part with a hyphen: `arroyo-blue`.
+- **Shared decisions take Bootstrap 6's name.** A decision many components share, such as the focus ring or a border, is named the way Bootstrap 6 names it, with Arizona's value and a size step: `az.focus-ring.width.md` for `--focus-ring-width`, `az.border.width.sm` and `.md` for `--border-width`.
+- **No role names yet.** Don't name tokens after roles such as `primary` or `accent`. Red and Blue are both primary colors, and which role each one plays hasn't been decided.
+- **Prefer a component or context name over a one-off.** A token named for `button` can be used by anything button-like, so you don't need a new token for each component.
+
+## From Figma to code
+
+In Figma, the **AZ** variable collection stands for the `az` namespace, so a variable's path is the token name without `az`. Each output writes the same name its own way.
+
+<table>
+  <tbody>
+    <tr><th>Where</th><th>How it's written</th><th>Example</th></tr>
+    <tr><td>Figma variable</td><td>Parts joined with <code>/</code>, no namespace</td><td><code>border/width/sm</code></td></tr>
+    <tr><td><code>tokens.json</code></td><td>Parts joined with <code>.</code></td><td><code>az.border.width.sm</code></td></tr>
+    <tr><td>CSS (<code>tokens.css</code>)</td><td>Custom property, parts joined with <code>-</code></td><td><code>var(--az-border-width-sm)</code></td></tr>
+    <tr><td>Sass (<code>tokens.scss</code>)</td><td>Variable, parts joined with <code>-</code></td><td><code>$az-border-width-sm</code></td></tr>
+    <tr><td>JavaScript (<code>tokens.vars.js</code>)</td><td>Object path; hyphenated words become camelCase</td><td><code>az.border.width.sm</code></td></tr>
+  </tbody>
+</table>
+
+**Numbers in JavaScript:** a part that is only a number can't follow a dot in JavaScript, so use brackets for it: `az.spacing[100]` for `az.spacing.100`, and quotes when it starts with a zero: `az.spacing["025"]`. CSS and Sass names aren't affected: `--az-spacing-100`, `$az-spacing-100`.
+
+## Examples
+
+<table>
+  <tbody>
+    <tr><th>Token</th><th>Parts used</th><th>CSS</th></tr>
+    <tr><td><code>az.color.brand.red</code></td><td>category, context, variant</td><td><code>--az-color-brand-red</code></td></tr>
+    <tr><td><code>az.color.bg.button.red-hover</code></td><td>category, property, component, variant, state</td><td><code>--az-color-bg-button-red-hover</code></td></tr>
+    <tr><td><code>az.spacing.100</code></td><td>category, size</td><td><code>--az-spacing-100</code></td></tr>
+    <tr><td><code>az.radius.pill</code></td><td>category, variant</td><td><code>--az-radius-pill</code></td></tr>
+    <tr><td><code>az.breakpoint.lg</code></td><td>category, size</td><td><code>--az-breakpoint-lg</code></td></tr>
+    <tr><td><code>az.border.width.sm</code></td><td>category, property, size</td><td><code>--az-border-width-sm</code></td></tr>
+    <tr><td><code>az.opacity.button-disabled</code></td><td>category, component, state</td><td><code>--az-opacity-button-disabled</code></td></tr>
+  </tbody>
+</table>
+
+Adding or renaming a token? See <a href="./?path=/docs/primary-foundations-tokens-contributing--docs" target="_top">Contributing</a>.

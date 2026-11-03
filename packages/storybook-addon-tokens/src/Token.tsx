@@ -1,5 +1,6 @@
 // Default React import: this file is also bundled into the manager (the Tokens addon panel), which uses the classic JSX runtime.
 import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenArtifacts, type TokenData } from './resolveToken';
 import { useTokensData } from './store';
 import { getAncestors, getTokenData, getTokenNode } from './tokenGraph';
@@ -58,7 +59,7 @@ const DOT_STYLE: CSSProperties = {
   border: '1px solid rgba(255, 255, 255, 0.35)',
 };
 
-const SECTION_LABEL: CSSProperties = { marginBottom: 8, color: '#697786', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' };
+const SECTION_LABEL: CSSProperties = { marginBottom: 8, color: '#616e7c', fontSize: 10, fontWeight: 700, letterSpacing: '0.1em' };
 const FIELD: CSSProperties = { padding: '10px 12px', borderRadius: 6, background: '#f1f4f7' };
 const CODE: CSSProperties = { fontSize: 13, overflowWrap: 'anywhere' };
 const LINK: CSSProperties = { color: '#1d65a6' };
@@ -185,7 +186,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
       )}
       <div>
         <div style={SECTION_LABEL}>ALIAS TREE</div>
-        <div style={{ marginBottom: 10, color: '#697786', fontSize: 12 }}>
+        <div style={{ marginBottom: 10, color: '#616e7c', fontSize: 12 }}>
           Where this token&rsquo;s value comes from, and what else uses it. Changing a token changes everything below it.
         </div>
         <TokenAliasTree key={data.token} token={data.token} onNavigate={onNavigate} />
@@ -195,7 +196,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
         <div style={FIELD}>
           <code style={CODE}>{data.token}</code>
           {sourceFiles.length > 0 && (
-            <div style={{ marginTop: 6, color: '#697786', fontSize: 12 }}>
+            <div style={{ marginTop: 6, color: '#616e7c', fontSize: 12 }}>
               Defined in{' '}
               {sourceFiles.map((file, index) => (
                 <span key={file.path}>
@@ -209,11 +210,11 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
       </div>
       <div>
         <div style={SECTION_LABEL}>OUTPUTS</div>
-        <div style={{ marginBottom: 8, color: '#697786', fontSize: 12 }}>
+        <div style={{ marginBottom: 8, color: '#616e7c', fontSize: 12 }}>
           What your Style Dictionary config derives from the source token above, per output file: how to reference it there, and the value that file gets.
         </div>
         {outputs.length === 0 ? (
-          <div style={{ ...FIELD, color: '#697786' }}>No output file in your Style Dictionary config includes this token.</div>
+          <div style={{ ...FIELD, color: '#616e7c' }}>No output file in your Style Dictionary config includes this token.</div>
         ) : (
           <div style={{ display: 'grid', gap: 8 }}>
             {outputs.map((output) => (
@@ -224,7 +225,7 @@ export function TokenDetailsContent({ data, onNavigate }: { data: TokenData; onN
                 </div>
                 <code style={CODE}>{output.reference}</code>
                 {output.value !== undefined && output.value !== output.reference && (
-                  <span style={{ color: '#697786', fontSize: 12 }}>
+                  <span style={{ color: '#616e7c', fontSize: 12 }}>
                     {' '}
                     → <code style={{ ...CODE, fontSize: 12 }}>{output.value}</code>
                   </span>
@@ -353,31 +354,83 @@ export function TokenDetails({ data, onClose }: { data: TokenData; onClose: () =
 }
 
 /**
- * A clickable token pill. By default it opens `TokenDetails` in a side drawer;
+ * In story view the preview iframe is sized to the chosen viewport, so a drawer
+ * fixed inside it can be cut off. There, a pill shows the token in the Tokens
+ * tab instead. Docs pages fill the pane, so they keep the drawer.
+ */
+const isStoryView = () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('viewMode') === 'story';
+
+type StorybookChannel = {
+  emit: (event: string, ...args: unknown[]) => void;
+  on: (event: string, listener: (result: unknown) => void) => void;
+  off: (event: string, listener: (result: unknown) => void) => void;
+};
+
+let selectionRequestId = 0;
+
+function requestTokensTab(token: string, onUnavailable: () => void) {
+  const channel = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: StorybookChannel }).__STORYBOOK_ADDONS_CHANNEL__;
+  if (!channel || typeof window === 'undefined' || window.parent === window) {
+    onUnavailable();
+    return;
+  }
+
+  const requestId = `${Date.now()}-${++selectionRequestId}`;
+  const finish = (available: boolean) => {
+    window.clearTimeout(timeout);
+    channel.off(SELECT_RESULT_EVENT, onResult);
+    if (!available) onUnavailable();
+  };
+  const onResult = (result: unknown) => {
+    if (typeof result === 'object' && result !== null && 'requestId' in result && result.requestId === requestId) {
+      finish('available' in result && result.available === true);
+    }
+  };
+  const timeout = window.setTimeout(() => finish(false), 500);
+  channel.on(SELECT_RESULT_EVENT, onResult);
+  channel.emit(SELECT_EVENT, { token, requestId });
+}
+
+/**
+ * A clickable token pill. By default it opens `TokenDetails` in a side drawer
+ * (or, in story view, in the Tokens tab);
  * pass `onSelect` (and `selected`) to handle selection yourself instead, e.g. to
  * show details in a panel. `swatch` adds a small color dot for color tokens
  * shown without a larger swatch next to them.
  */
-export function Token({
-  data,
-  swatch = false,
-  style,
-  selected,
-  onSelect,
-}: {
+type TokenProps = {
   data: TokenData;
   swatch?: boolean;
   style?: CSSProperties;
   selected?: boolean;
   onSelect?: () => void;
-}) {
+};
+
+function StoryViewToken(props: TokenProps) {
+  return <TokenPill {...props} onRequestTab={(onUnavailable) => requestTokensTab(props.data.token, onUnavailable)} />;
+}
+
+export function Token(props: TokenProps) {
+  if (props.onSelect || !isStoryView()) return <TokenPill {...props} />;
+  return <StoryViewToken {...props} />;
+}
+
+function TokenPill({
+  data,
+  swatch = false,
+  style,
+  selected,
+  onSelect,
+  onRequestTab,
+}: TokenProps & { onRequestTab?: (onUnavailable: () => void) => void }) {
   const [open, setOpen] = useState(false);
   const isSelected = selected ?? open;
   ensurePillStyles();
+  const select = onSelect ?? (onRequestTab ? () => onRequestTab(() => setOpen(true)) : () => setOpen(true));
 
   return (
     <>
-      <button type="button" className="az-token-pill" onClick={onSelect ?? (() => setOpen(true))} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
+      <button type="button" className="az-token-pill" onClick={select} aria-label={`Inspect ${data.token}`} aria-pressed={isSelected} title={`Inspect ${data.token}`} style={{ ...PILL_STYLE, ...style }}>
         {swatch && data.hex && <span aria-hidden="true" style={{ ...DOT_STYLE, background: data.hex }} />}
         <span style={{ overflowWrap: 'anywhere' }}>{data.token}</span>
         <span aria-hidden="true" className="az-token-pill__chevron" style={{ flex: '0 0 auto', marginLeft: 4, fontSize: 16, fontWeight: 700, lineHeight: 1 }}>›</span>

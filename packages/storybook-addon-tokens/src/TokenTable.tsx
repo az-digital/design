@@ -6,7 +6,7 @@ import { getTokenNode } from './tokenGraph';
 const HEADER_CELL: CSSProperties = {
   padding: '8px 12px',
   borderBottom: '1px solid #dfe3ea',
-  color: '#697786',
+  color: '#616e7c',
   fontSize: 10,
   fontWeight: 700,
   letterSpacing: '0.1em',
@@ -100,7 +100,7 @@ export function TokenTable({
                   {...(onSelect && { selected: selectedToken === item.token, onSelect: () => onSelect(item.token) })}
                 />
               </td>
-              <td style={{ ...CELL, color: '#697786', fontSize: 12, whiteSpace: 'nowrap' }}>{item.type}</td>
+              <td style={{ ...CELL, color: '#616e7c', fontSize: 12, whiteSpace: 'nowrap' }}>{item.type}</td>
               <td style={CELL}><AliasCell token={item.token} onSelect={onSelect} /></td>
               <td style={CELL}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
