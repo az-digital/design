@@ -101,6 +101,11 @@ jobs:
       - name: Run Storybook tests
         run: npm run test:storybook
 
+      # Fails on high or critical advisories. Low and moderate ones still show
+      # in the log and are triaged through Dependabot alerts instead.
+      - name: Check dependencies for high severity vulnerabilities
+        run: npm audit --audit-level=high
+
   # Deploys the build only after the build and checks both pass. It doesn't
   # check out or install anything, so the AWS credentials and the token that
   # can comment on PRs never share a job with dependency or project code.
