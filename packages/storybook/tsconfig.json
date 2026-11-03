@@ -8,6 +8,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@contracts/*": ["../contracts/*"]
+    },
     "types": [
       "node",
       "vitest",

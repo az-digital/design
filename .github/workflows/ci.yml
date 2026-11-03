@@ -1,4 +1,4 @@
-name: Build & deploy review site
+name: CI
 
 on:
   pull_request:
@@ -6,21 +6,12 @@ on:
     branches:
       - main
 
-# One run at a time per review site. Each deploy runs `aws s3 sync --delete`
-# into the same folder, so two deploys running at once can finish in the wrong
-# order: the older one deletes the newer build's assets and leaves its
-# iframe.html pointing at files that are gone (seen on PR 79). Let the active
-# run finish so a failed replacement cannot leave a partially synced site.
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
-
 env:
   AZ_SITE_HOST: ${{ vars.AZ_SITE_HOST }}
 
 jobs:
-  lint-code:
-    name: Check code for linting errors
+  checks:
+    name: Code quality checks
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 24
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -39,6 +30,25 @@ jobs:
 
       - name: Run lint checks
         run: npm run lint:storybook
+
+      - name: Type-check the Storybook package
+        run: npm run typecheck:storybook
+
+      # Storybook renders pipe-delimited Markdown tables in MDX as plain text,
+      # so docs pages must use HTML table markup instead.
+      - name: Check MDX docs for Markdown tables
+        run: |
+          if grep -rnE '^\s*\|.*\|\s*$' --include='*.mdx' packages; then
+            echo "::error::Use HTML table markup in MDX; Storybook renders Markdown tables as plain text."
+            exit 1
+          fi
+
+      # Fails when the committed token output in dist/ is out of date with
+      # tokens.json or the Style Dictionary config.
+      - name: Check the built tokens are up to date
+        run: |
+          npm run build:tokens
+          git diff --exit-code -- packages/tokens/dist
 
       # Fails when a contract references a missing token or breaks the schema, or
       # when its committed dist/contracts.json is out of date.
@@ -53,9 +63,19 @@ jobs:
 
       - name: Run Storybook tests
         run: npm run test:storybook
+
   review-site:
     name: Build & deploy review site
-    needs: lint-code
+    needs: checks
+    # One deploy at a time per review site. Each deploy runs `aws s3 sync
+    # --delete` into the same folder, so two deploys running at once can finish
+    # in the wrong order: the older one deletes the newer build's assets and
+    # leaves its iframe.html pointing at files that are gone (seen on PR 79).
+    # Let the active run finish so a failed replacement cannot leave a
+    # partially synced site, or two runs both post a PR comment.
+    concurrency:
+      group: ${{ github.workflow }}-review-site-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -67,7 +87,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 24
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -100,7 +120,8 @@ jobs:
           aws cloudfront create-invalidation --distribution-id "${{ secrets.REVIEW_CDN }}" --paths "${AZ_REVIEW_BASEURL}/*"
 
       - name: Comment review site URL on PR
-        if: ${{ github.event_name == 'pull_request' }}
+        # Fork PRs only get a read-only token, which can't comment.
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
@@ -115,23 +136,24 @@ jobs:
               per_page: 100,
             });
 
-            const existing = comments.find((comment) =>
+            const previous = comments.filter((comment) =>
               comment.user?.type === 'Bot' && comment.body?.includes(marker)
             );
 
-            if (existing) {
-              await github.rest.issues.updateComment({
+            // Post a fresh comment so the link shows up near the latest
+            // activity, then remove the old ones.
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+            for (const comment of previous) {
+              await github.rest.issues.deleteComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: existing.id,
-                body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body,
+                comment_id: comment.id,
               });
             }
 

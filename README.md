@@ -72,6 +72,8 @@ All scripts can be run from the repo root:
 | `npm run build:contracts` | Check the component contracts against the tokens, and write their data for docs and contract checks |
 | `npm run test:storybook` | Run the Storybook package tests, including every story in Chromium and any contract checks |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
+| `npm run typecheck:storybook` | Type-check the Storybook package with TypeScript |
+| `npm run typecheck:storybook` | Type-check the Storybook package with TypeScript |
 | `npm run build:all` | Build token output, check the contracts, and build Storybook |
 
 ## Token Workflow
