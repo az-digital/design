@@ -29,6 +29,11 @@ export const az = {
       }
     },
     "bg": {
+      "card": {
+        "cloud": "var(--az-color-bg-card-cloud)",
+        "cloudHover": "var(--az-color-bg-card-cloud-hover)",
+        "cloudActive": "var(--az-color-bg-card-cloud-active)"
+      },
       "button": {
         "red": "var(--az-color-bg-button-red)",
         "redHover": "var(--az-color-bg-button-red-hover)",
