@@ -75,7 +75,7 @@ jobs:
         run: npm ci
 
       - name: Run lint checks
-        run: npm run lint:storybook
+        run: npm run lint
 
       # Runs from the repo root so errors print repo-relative paths, which the
       # tsc problem matcher from setup-node turns into annotations on the diff.
