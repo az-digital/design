@@ -14,7 +14,7 @@
     "build:storybook": "npm run build -w @az-digital/storybook",
     "dev:storybook": "npm run dev -w @az-digital/storybook",
     "lint:storybook": "npm run lint -w @az-digital/storybook",
-    "typecheck:storybook": "npm run typecheck -w @az-digital/storybook",
+    "typecheck:storybook": "tsc --noEmit -p packages/storybook",
     "test:storybook": "npm run test -w @az-digital/storybook",
     "build:all": "npm run build:tokens && npm run build:contracts && npm run build:storybook",
     "build:contracts": "npm run build -w @az-digital/contracts",

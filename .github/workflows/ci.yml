@@ -31,6 +31,8 @@ jobs:
       - name: Run lint checks
         run: npm run lint:storybook
 
+      # Runs from the repo root so errors print repo-relative paths, which the
+      # tsc problem matcher from setup-node turns into annotations on the diff.
       - name: Type-check the Storybook package
         run: npm run typecheck:storybook
 
@@ -38,8 +40,11 @@ jobs:
       # so docs pages must use HTML table markup instead.
       - name: Check MDX docs for Markdown tables
         run: |
-          if grep -rnE '^\s*\|.*\|\s*$' --include='*.mdx' packages; then
-            echo "::error::Use HTML table markup in MDX; Storybook renders Markdown tables as plain text."
+          matches=$(grep -rnE '^\s*\|.*\|\s*$' --include='*.mdx' packages || true)
+          if [ -n "$matches" ]; then
+            while IFS=: read -r file line _; do
+              echo "::error file=${file},line=${line}::Use HTML table markup in MDX. Storybook renders Markdown tables as plain text."
+            done <<< "$matches"
             exit 1
           fi
 

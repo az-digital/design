@@ -8,7 +8,6 @@
     "storybook": "storybook dev -p 6006",
     "build": "storybook build",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "devDependencies": {
