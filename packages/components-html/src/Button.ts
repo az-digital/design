@@ -1,54 +1,48 @@
-export type ButtonStyle = 'solid' | 'outline' | 'link';
-/** `success` is Bootstrap's stock semantic color, not an Arizona brand color — HTML-only for now, no React implementation. */
-export type ButtonColor = 'red' | 'success' | 'rain';
-export type ButtonSize = 'sm' | 'lg';
-export type ButtonHtmlTag = 'button' | 'a';
+import { escapeHtml } from './escapeHtml';
 
-/**
- * Plain HTML/CSS reference implementation of the Arizona Digital Button.
- * Props otherwise mirror `@az-digital/components-react`'s `Button` so the two
- * implementations can be shown side by side from the same story args, except
- * where noted (see `ButtonColor`).
- */
+/** The button contract's colors (`packages/contracts/contracts/button.contract.json`). */
+export type ButtonColor =
+  | 'red'
+  | 'outline-red'
+  | 'blue'
+  | 'outline-blue'
+  | 'rain'
+  | 'outline-rain'
+  | 'white-text-red'
+  | 'white-text-blue'
+  | 'outline-white';
+
+/** The button contract's sizes. With none, it's the default size. */
+export type ButtonSize = 'small' | 'large';
+
 export type ButtonProps = {
-  htmlTag?: ButtonHtmlTag;
-  href?: string;
-  style?: ButtonStyle;
+  label: string;
   color?: ButtonColor;
   size?: ButtonSize;
-  disabled?: boolean;
-  active?: boolean;
-  text?: string;
 };
 
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+// Arizona Bootstrap's class for each contract color, in its current release.
+// Rain is still .btn-sky until az-digital/arizona-bootstrap#2369 renames it.
+const colorClasses: Record<ButtonColor, string> = {
+  red: 'btn-red',
+  'outline-red': 'btn-outline-red',
+  blue: 'btn-blue',
+  'outline-blue': 'btn-outline-blue',
+  rain: 'btn-sky',
+  'outline-rain': 'btn-outline-sky',
+  'white-text-red': 'btn-white-text-red',
+  'white-text-blue': 'btn-white-text-blue',
+  'outline-white': 'btn-outline-white',
+};
+
+const sizeClasses: Record<ButtonSize, string> = { small: 'btn-sm', large: 'btn-lg' };
+
+/** Arizona Bootstrap's classes for a button, e.g. `btn btn-red btn-lg`. */
+export function buttonClasses({ color = 'red', size }: Omit<ButtonProps, 'label'>) {
+  return ['btn', colorClasses[color] ?? colorClasses.red, size && sizeClasses[size]].filter(Boolean).join(' ');
 }
 
-/** Renders the Button as an HTML string using Arizona Bootstrap-style button classes. */
-export function renderButton(props: ButtonProps = {}): string {
-  const { htmlTag = 'a', href = '#', style = 'solid', color = 'red', size, disabled = false, active = false, text = 'Learn More' } = props;
-
-  const classes = [
-    'btn',
-    style === 'link' ? 'btn-link' : style === 'outline' ? `btn-outline-${color}` : `btn-${color}`,
-    size && `btn-${size}`,
-    disabled && htmlTag === 'a' && 'disabled',
-    active && 'active',
-  ]
-    .filter(Boolean)
-    .join(' ');
-  const safeClasses = escapeHtml(classes);
-
-  const label = escapeHtml(text);
-
-  if (htmlTag === 'button') {
-    return `<button type="button" class="${safeClasses}"${disabled ? ' disabled' : ''}>${label}</button>`;
-  }
-
-  return `<a href="${escapeHtml(href)}" role="button" class="${safeClasses}"${disabled ? ' aria-disabled="true" tabindex="-1"' : ''}>${label}</a>`;
+/** The button as Arizona Bootstrap markup. */
+export function renderButton(props: ButtonProps) {
+  return `<button type="button" class="${buttonClasses(props)}">${escapeHtml(props.label)}</button>`;
 }

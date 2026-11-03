@@ -127,21 +127,29 @@ function normalize(cssProperty: string, value: string) {
   return value;
 }
 
+// Where Arizona Bootstrap keeps a button's hover colors.
+const BOOTSTRAP_HOVER: Record<string, string> = {
+  fill: '--bs-btn-hover-bg',
+  'border.color': '--bs-btn-hover-border-color',
+  color: '--bs-btn-hover-color',
+};
+
 /**
  * Compares a rendered element with what its contract says, and returns a line for
  * each property that differs. The default and focus-visible rows are read from the
  * element at rest and with keyboard focus. Hover can't be triggered from a script,
- * so hover rows are read from the hover colors the stylesheet gives the element
- * (--bs-btn-hover-*), which its :hover rule draws.
+ * so hover rows are read from the custom properties that hold the element's hover
+ * colors, which its :hover rule draws: Arizona Bootstrap's (--bs-btn-hover-*)
+ * unless `hover` names the implementation's own, by contract property.
  */
-export function checkContract(element: HTMLElement, contract: string, options: string[]): string[] {
+export function checkContract(
+  element: HTMLElement,
+  contract: string,
+  options: string[],
+  { hover: hoverVariable = BOOTSTRAP_HOVER }: { hover?: Record<string, string> } = {},
+): string[] {
   const mismatches: string[] = [];
   const name = [contract, ...options].join(' › ');
-  const hoverVariable: Record<string, string> = {
-    fill: '--bs-btn-hover-bg',
-    'border.color': '--bs-btn-hover-border-color',
-    color: '--bs-btn-hover-color',
-  };
 
   // Compares a row with the value read for each CSS property it's drawn with.
   const compare = (row: Row, read: (cssProperty: string) => string, cssProperties = SIDES[row.property] ?? [CSS[row.property]]) => {
