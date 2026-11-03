@@ -80,13 +80,13 @@
     "root": {
       "description": "The list.",
       "tokens": {
-        "gap": "{az.spacing.4}"
+        "gap": "{az.spacing.200}"
       },
       "parts": {
         "item": {
           "description": "A list item: its marker, then its text.",
           "tokens": {
-            "gap": "{az.spacing.3}"
+            "gap": "{az.spacing.100}"
           },
           "parts": {
             "marker": {
