@@ -72,7 +72,7 @@ Declare which token groups a story uses, by dot-path prefix. The tab only appear
 ```ts
 const meta = {
   parameters: {
-    tokens: ['az.component.button.', 'az.color.semantic.action.'],
+    tokens: ['az.color.bg.button.', 'az.focus-ring.'],
   },
 } satisfies Meta;
 ```
@@ -84,7 +84,7 @@ Set it on a story file's meta to cover every story in it, or on a single story t
 ```mdx
 import { ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
 
-<TokenDisplay prefix="az.color.semantic." layout="table" />
+<TokenDisplay prefix="az.color.bg.button." layout="table" />
 
 <ComponentTokenIndex />
 <ComponentTokenIndex component="button" />

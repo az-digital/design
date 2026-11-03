@@ -10,10 +10,9 @@ capable of rendering. Keep that distinction in front of every decision here:
   equivalent design sign-off). Don't build generic pickers/playgrounds that
   let a viewer freely combine props into something nobody actually approved
   — see "Only add a story for a prop combination with an approved Figma
-  frame" under Stories, and the "NO PAIRS" reasoning behind
-  `argTypes.color.options` in `Button.stories.tsx` (background-paired colors
-  are excluded from the untethered playground because picking one there
-  produces a combination nothing approved).
+  frame" under Stories. Background-paired colors stay out of the untethered
+  Color control for the same reason: picking one there produces a combination
+  nothing approved.
 - Never invent a prop value, CSS class, or a mapping between them to make a
   component *look* supported when it isn't. A real incident from this
   project: `color: 'rain'` was briefly implemented by silently mapping it to
@@ -23,10 +22,8 @@ capable of rendering. Keep that distinction in front of every decision here:
   classes naively from the real prop value (`btn-${color}`) even when the
   CSS for it doesn't exist yet.
 - If something genuinely isn't implemented yet (no CSS, no token), document
-  that plainly — a "not yet implemented" doc comment, an explicit
-  placeholder in the story (see `ColorNotImplementedPlaceholder` in
-  `Button.stories.tsx`) — rather than papering over the gap so it looks
-  finished.
+  that plainly — a "not yet implemented" doc comment, or a placeholder in the
+  story — rather than papering over the gap so it looks finished.
 - If there's no design token for a color (or other value), don't mention it
   in the docs prose at all. Documenting something with no token behind it
   misrepresents the design system's actual state.
@@ -76,27 +73,24 @@ session alone; verify in an actual browser, or ask the user to.
   component's stories, with its Docs page last. Buttons has no landing
   page or other patterns, so Button is that whole entry,
   `Primary/Components/Buttons` (`Buttons/Button.mdx` and
-  `Buttons/Button.stories.tsx`): its Docs page, then its stories. Shared story
-  helpers (`implementations.tsx`, `TokenStatePreview.tsx`) stay at the root
-  of `stories/`.
+  `Buttons/Button.stories.tsx`): its Docs page, then its stories. A component's
+  docs page follows the layout in the root `AGENTS.md` ("Component docs
+  pages").
 - One combined Docs page per component, not a nested "Guidelines" page.
   Attach the MDX doc to the component's own title with `<Meta of={ButtonStories} />`
   (import `* as ButtonStories from './Button.stories'`) — not `<Meta title="Primary/Components/Buttons/Guidelines" />`.
   `of={}` makes the MDX page replace the autodocs entry for that exact title,
   so it appears as the top-level "Docs" entry alongside the component's
   stories in the sidebar, not as a separate child page.
-- A full, general component token catalog lives on that same main Docs page
-  (e.g. `<TokenDisplay items={getTokenDisplayItems('az.component.button.')} />`) — the one broad
-  reference for the whole component. Don't split it out to a sub-page by
-  default.
-- A per-story state comparison (Default/Hover/Focus-visible, etc.) does not
-  live on the main Docs page — it lives on that story's own individual page,
-  via `TokenStatePreview` (see "Comparing interaction states" below). The
-  Docs page only gets the one general, full token catalog plus a `<Source
-  of={...}/>` code-only block for any story whose approved frame needs a
-  non-default detail (e.g. a non-white background) called out — not a
-  second live `<Canvas>` (see the Canvas limitation further down) and not a
-  repeat of the state comparison.
+- A component's design decisions live in its contract
+  (`packages/contracts/contracts/`) and show on its Docs page through
+  `<ContractAnatomy contract="…" />`; shared decisions show as design token
+  pills (`<Token data={getTokenData('az.color.bg.button.red')} />`). Don't
+  list a design token the contract doesn't use, and don't split the reference
+  out to a sub-page by default.
+- Show a code-only `<Source of={...}/>` block for a story whose approved frame
+  needs a non-default detail (such as a non-white background) called out, not
+  a second live `<Canvas>` (see the Canvas limitation further down).
 - Reserve a nested sub-page (`Primary/Components/Buttons/Something`, mirroring
   `Primary/Foundations/Tokens/Contributing`) for content that's genuinely separate — a
   contribution workflow, tooling instructions — not for splitting the main
@@ -125,46 +119,31 @@ session alone; verify in an actual browser, or ask the user to.
   `outline`/`blue`/`disabled` etc. with zero example stories for them —
   describe them in prose on the Docs page and point at the props table,
   rather than inventing a story for an unreviewed combination.
-- Every story needs a `parameters.implementations` (or, if the meta already
-  sets one, `parameters.implementationsOverride`) entry, or its own
-  individual-story "Code" panel tab falls back to dumping the raw literal
-  story source (the actual `render: () => ...` function body, `TokenStatePreview`
-  and all) instead of a clean, copyable snippet — confirmed directly: a
-  story rendering plain markup with no `implementations` set showed the raw
-  source verbatim. Use `parameters.implementationsOverride`, not
-  `parameters.implementations`, on any story under a meta that already sets
-  `parameters.implementations` — Storybook deep-merges `parameters`, so
-  setting `implementations` again at the story level merges into the meta's
-  map instead of replacing it (see the comment on `docs.source.transform` in
-  `preview.ts`). A story with no shared meta-level `implementations` to
-  collide with (i.e. it doesn't use `renderImplementation`/args at all) can
-  use plain `parameters.implementations` — see `contextButtonImplementations`
-  in `Button.stories.tsx` for the pattern.
+- A component that more than one library implements spreads
+  `componentStories('<contract id>', { props })` into its meta and lists its
+  libraries as tags (`tags: ['lib:html', 'lib:react']`). The toolbar's Library
+  menu then picks which library every story renders with, and the Code panel
+  and docs **Show code** follow it. Don't branch on the library inside a
+  story, and don't write a per-story `render` or `docs.source.transform` for
+  it. Each library's adapter (its `./storybook` export) says how the component
+  draws and what code a site would write; see
+  `packages/storybook-addon-libraries/README.md`. Pass other parameters (such
+  as a Figma design link) through `componentStories`' `parameters` option,
+  because spreading meta-level `parameters` after it would replace its own and
+  hide the Code panel.
+- A story that doesn't use a library component (plain markup) sets
+  `parameters.docs.source.code` so its Code panel shows a clean snippet
+  instead of the story's `render` function body.
 
 ## Comparing interaction states
 
-To show what a component looks like in more than one state (Default, Hover,
-Focus-visible, ...), render it once per state side by side via
-`TokenStatePreview` (`stories/TokenStatePreview.tsx`) rather than one live
-instance that changes as a viewer actually hovers/tabs to it. Two reasons:
-
-- Real `:hover` and `:focus-visible` can't all be true at once across
-  separate side-by-side instances — there's no way to make one instance
-  "stay hovered" while showing another as focused, since both depend on
-  actual pointer position / input history, not a settable flag. Showing all
-  states at once necessarily means recreating each look from its resolved
-  token value (via a small scoped `<style>` block), not a live pseudo-class
-  test — this documents design intent, same as a "Tokens by state" table
-  does, not live CSS behavior (see "Design tokens vs. CSS vs. Figma" below).
-- It sidesteps needing a hand-built, per-state token list at all. The
-  story's tokens are listed in the in-repository Tokens addon panel (set
-  `parameters.tokens` on the meta; `{ disable: true }` on a story with no
-  tokens of its own), not rendered in the canvas under the state row.
-
-A real, functional interaction check (does focus actually land, does an
-`onClick` fire) still belongs in a `play` function — that's a different
-question (does it work) from what `TokenStatePreview` answers (what does
-each state look like).
+Hover and keyboard focus come from the pointer and keyboard on the live
+component. Real `:hover` and `:focus-visible` can't all be true at once across
+separate side-by-side instances, so a page that needs to show several states
+at once describes each state in its prose or contract, with the design token
+or value that sets it, and doesn't recreate the look with a scoped `<style>`
+block. A real, functional interaction check (does focus land, does an
+`onClick` fire) belongs in a `play` function.
 
 ## `play` functions / Interactions panel
 
@@ -195,9 +174,8 @@ each state look like).
   keyboard `Tab` press (real hardware/automation input, not a dispatched
   `KeyboardEvent`) is the only reliable way to reproduce `:focus-visible`.
   Don't write a play function that asserts `:focus-visible`-gated styling —
-  assert plain focus reachability only (see `SolidRedOnWhite`'s play
-  function in `Button.stories.tsx`), and use `TokenStatePreview` (below) if
-  you need to actually show what focus-visible looks like.
+  assert plain focus reachability only, and check what focus-visible looks
+  like in a real browser with a real <kbd>Tab</kbd> press.
 
 ## Design tokens vs. CSS vs. Figma
 
@@ -230,29 +208,22 @@ finding about design tokens.
 
 ## Figma designs
 
-Every story sets `parameters.design` so the **Design** tab
-(`@storybook/addon-designs`) shows its Figma frames. Link to the variants in
+A story with a Figma frame links it so a reviewer can compare. Where `@storybook/addon-designs` is
+registered, set `parameters.design` to show the frames in the **Design** tab. Link to the variants in
 the master **Buttons** component set (node `2017:6282`, under "Master
 Components - DO NOT EDIT" in the AZ Digital UX Design System file), not to
 copies placed on design pages, which get moved or deleted. Give each story one
-design per state it previews (Default, Hover, Focus), named after the state; see
-`BUTTON_DESIGNS` in `Button.stories.tsx`. Viewers need to be logged in to Figma
+design per state it previews (Default, Hover, Focus), named after the state. Viewers need to be logged in to Figma
 to see the embed.
 
-## Arizona Bootstrap shim
+## Arizona Bootstrap in stories
 
-Stories render real Arizona Bootstrap from the CDN, which doesn't match our
-design tokens everywhere yet. `.storybook/arizona-bootstrap-shim.css` (loaded
-after it, Storybook only) closes those gaps by pointing Bootstrap's own
-variables (`--bs-btn-*`, `--az-btn-focus-outline-color`) at our tokens, so a
-story renders what `tokens.json` says. Rules for it:
-
-- Only `var(--az-…)` references, never literal values.
-- One rule per gap, with a comment naming it (e.g. Bootstrap gives
-  `:focus-visible` the hover look; a focused solid button keeps its resting
-  fill). When Arizona Bootstrap adopts the tokens, delete that rule.
-- It styles the stories only; it isn't a fix to Arizona Bootstrap and never
-  ships.
+Stories render Arizona Bootstrap compiled from its own Sass source
+(`.storybook/arizona-bootstrap.scss`), installed from GitHub at a release's
+tag. Where it doesn't match a contract yet, the fix is a patch to its Sass in
+`patches/`, which its maintainers can apply as a pull request; see "Patching
+Arizona Bootstrap" in the root `README.md`. Don't restyle a component with CSS
+rules or overridden values in Storybook.
 
 ## Token references
 
@@ -261,10 +232,10 @@ All token UI comes from `@az-digital/storybook-addon-tokens`
 package, never from `./stories`:
 
 ```mdx
-import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/storybook-addon-tokens';
+import { Token, TokenDisplay, getTokenData } from '@az-digital/storybook-addon-tokens';
 
-<TokenDisplay prefix="az.color.semantic." layout="table" />
-<ComponentTokenIndex component="button" />
+<Token data={getTokenData('az.color.bg.button.red')} />
+<TokenDisplay prefix="az.color.bg.button." layout="table" />
 ```
 
 - Use the package's `Token` pill (and its details drawer) for any single token
@@ -272,17 +243,15 @@ import { ColorSwatchGrid, ComponentTokenIndex, TokenDisplay } from '@az-digital/
 - Token rows show the token path, `$type`, "Alias of", and the resolved value.
   Platform names (CSS variables, Sass variables, ...) belong in the details
   view's Outputs, which come from the Style Dictionary config, not in a row.
-- `ComponentTokenIndex` groups tokens by reading their paths, so it depends on
-  the `<variant>.<state>.<part>` structure in `packages/tokens/AGENTS.md`.
 - The **Tokens** tab is opt-in, like Controls: it appears only on stories that
   set `parameters.tokens`, usually once on the story file's meta:
 
   ```ts
-  parameters: { tokens: ['az.component.button.padding.', 'az.component.button.solid.'] } // prefix string, string[], or { disable: true }
+  parameters: { tokens: ['az.color.bg.button.', 'az.focus-ring.'] } // prefix string, string[], or { disable: true }
   ```
 
-- Values in stories (e.g. state previews) come from the package's
-  `resolveValue(path)`, which reads the same data as the doc blocks.
+- Values in stories come from the package's `resolveValue(path)`, which
+  reads the same data as the doc blocks.
 - The addon reloads when `tokens.json` or the Style Dictionary config changes.
   Changes to the addon's own `manager.tsx` (or the `Token` / `TokenTable` files
   it imports) still need a Storybook restart, and files the manager imports
