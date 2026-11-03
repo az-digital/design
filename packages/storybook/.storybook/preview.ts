@@ -3,6 +3,8 @@
 import type { Preview } from '@storybook/react-vite';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
+// Arizona Bootstrap compiled from its Sass source, with the patches in patches/.
+import './arizona-bootstrap.scss';
 
 /** One viewport per breakpoint, at its minimum width, read from the az.breakpoint tokens. Storybook's own device sizes are left out. */
 const breakpointViewports = Object.fromEntries(
