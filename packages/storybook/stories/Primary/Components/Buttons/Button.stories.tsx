@@ -3,10 +3,11 @@ import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { ButtonColor, ButtonProps, ButtonSize } from '@az-digital/components-html';
 
 // The button in whichever component library the toolbar selects, drawn with
-// Arizona Bootstrap's latest release. The controls copy the Figma Buttons
-// component's properties: Color, Size, Style and Label. Hover and focus come
-// from the pointer and keyboard.
-
+// Arizona Bootstrap v5.3.0, compiled from its Sass with the patches in the
+// repo's patches/ folder (see .storybook/arizona-bootstrap.scss). The controls
+// copy the Figma Buttons component's
+// properties: Color, Size, Style and Label. Hover and focus come from the
+// pointer and keyboard.
 // Each Figma color, the background it's for, and the contract color for each style.
 const colors: Record<string, { surface: string; Solid: ButtonColor; Outline: ButtonColor }> = {
   Red: { surface: 'white', Solid: 'red', Outline: 'outline-red' },
