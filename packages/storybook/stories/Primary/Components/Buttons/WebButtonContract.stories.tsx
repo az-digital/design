@@ -25,7 +25,11 @@ const markup = colors
   .join(' ');
 
 // Where <az-button> keeps its hover colors (src/az-button.styles.ts).
-const hover = { fill: '--hover-fill', 'border.color': '--hover-fill', color: '--hover-label' };
+const hover = {
+  'root fill': 'var(--hover-fill)',
+  'root border.color': 'var(--hover-fill)',
+  'root color': 'var(--hover-label)',
+};
 
 const meta = {
   title: 'Primary/Components/Buttons/Web Components contract check',
@@ -48,7 +52,7 @@ export const AzButton: Story = {
       const options = ['color', 'size'].flatMap((axis) =>
         element.hasAttribute(axis) ? [`${axis}.${element.getAttribute(axis)}`] : [],
       );
-      return checkContract(button, 'button', options, { hover });
+      return checkContract({ parts: { root: button }, hover }, 'button', options);
     });
     await expect(mismatches).toEqual([]);
   },

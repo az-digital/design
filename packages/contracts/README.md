@@ -147,9 +147,11 @@ A contract check keeps them in step once an implementation has been updated.
 `checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
 renders an implementation in a real browser and compares each property's computed
 style with the contract's token or value, at rest, with keyboard focus and on hover,
-and lists every property that differs. A component's check is a story with a `play`
-function that renders the implementation's markup and runs it;
-`npm run test:storybook` runs it in CI.
+and lists every property that differs. For a component with parts, such as a card,
+the story names each part's element. Hover can't be triggered from a script, so hover
+rows are read from the hover values the stylesheet sets, or with keyboard focus where
+one rule draws both. A component's check is a story with a `play` function that
+renders the implementation's markup and runs it; `npm run test:storybook` runs it in CI.
 
 ## Adding a contract
 
