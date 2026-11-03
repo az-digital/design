@@ -7,7 +7,7 @@ function escapeHtml(value: string) {
 }
 
 /**
- * Props otherwise mirror `@az-digital/components-react`'s `Tabs` so the two
+ * Props otherwise mirror `@az-digital/components-react-bootstrap`'s `Tabs` so the two
  * implementations can be shown side by side from the same story args.
  */
 export type TabItemProps = {

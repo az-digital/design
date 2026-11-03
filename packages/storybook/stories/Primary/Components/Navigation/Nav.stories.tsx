@@ -1,54 +1,11 @@
-import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
-import { createElement } from 'react';
-import { Nav } from '@az-digital/components-react';
-import { renderNav } from '@az-digital/components-html';
-import type { Implementations } from '../../../implementations';
-import { renderImplementation } from '../../../implementations';
-
-type NavArgs = Parameters<typeof renderNav>[0];
-
-/** JSX shown in the docs code panel when Implementation is set to React. */
-const asReactCode = (args: NavArgs) => {
-  const props: string[] = [];
-
-  if (args.variant) props.push(`variant="${args.variant}"`);
-  if (args.vertical) props.push('vertical');
-  if (args.fill) props.push('fill');
-  if (args.justify) props.push('justify');
-
-  const propsString = props.length > 0 ? ` ${props.join(' ')}` : '';
-  const itemsString = JSON.stringify(args.items, null, 2);
-
-  return `<Nav${propsString} items={${itemsString}} />`;
-};
-
-const implementations: Implementations<NavArgs> = {
-  html: {
-    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderNav(args) }} />,
-    source: (args) => renderNav(args),
-  },
-  react: {
-    render: (args) => createElement(Nav, args),
-    source: asReactCode,
-  },
-};
-
-function NavStory(args: NavArgs, context: StoryContext) {
-  return renderImplementation('Nav', implementations, args, context);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- args-only stand-in for Meta<T>'s generic; NavStory itself also takes a `context` param, which Meta<T> doesn't expect
-function NavArgsShape(_args: NavArgs) {
-  return null;
-}
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { NavProps } from '@az-digital/components-html';
 
 const meta = {
   title: 'Primary/Components/Navigation/Nav',
-  // Set only so react-docgen can attach Nav's prop table to this story file's
-  // documentation — see the equivalent comment in button.stories.tsx for why this
-  // must stay a bare reference to the imported `Nav`.
-  component: Nav,
-  render: NavStory,
+  tags: ['lib:html', 'lib:react'],
+  ...componentStories('nav', { props: (args: NavProps): NavProps => args }),
   argTypes: {
     items: { control: 'object' },
     variant: { control: 'radio', options: [undefined, 'tabs', 'pills', 'underline', 'utility'] },
@@ -64,15 +21,7 @@ const meta = {
       { label: 'Disabled', disabled: true },
     ],
   },
-  parameters: {
-    implementations,
-    // Every story here relies on the meta-level custom `render`, so Storybook's
-    // default ('auto') Code-panel behavior would fall back to static story source
-    // instead of running `docs.source.transform` — see the equivalent comment in
-    // button.stories.tsx. 'dynamic' forces the Code panel through the transform.
-    docs: { source: { type: 'dynamic' } },
-  },
-} satisfies Omit<Meta<typeof NavArgsShape>, 'component'> & { component?: typeof Nav };
+} satisfies Meta<NavProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

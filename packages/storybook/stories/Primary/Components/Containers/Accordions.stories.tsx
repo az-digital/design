@@ -1,54 +1,11 @@
-import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
-import { createElement } from 'react';
-import { Accordion } from '@az-digital/components-react';
-import { renderAccordion } from '@az-digital/components-html';
-import type { Implementations } from '../../../implementations';
-import { renderImplementation } from '../../../implementations';
-
-type AccordionArgs = Parameters<typeof renderAccordion>[0];
-
-/** JSX shown in the docs code panel when Implementation is set to React. */
-const asReactCode = (args: AccordionArgs) => {
-  const props: string[] = [];
-
-  if (args.id && args.id !== 'accordion') props.push(`id="${args.id}"`);
-  if (args.flush) props.push('flush');
-  if (args.alwaysOpen) props.push('alwaysOpen');
-  if (args.anchors) props.push('anchors');
-
-  const propsString = props.length > 0 ? ` ${props.join(' ')}` : '';
-  const itemsString = JSON.stringify(args.items, null, 2);
-
-  return `<Accordion${propsString} items={${itemsString}} />`;
-};
-
-const implementations: Implementations<AccordionArgs> = {
-  html: {
-    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderAccordion(args) }} />,
-    source: (args) => renderAccordion(args),
-  },
-  react: {
-    render: (args) => createElement(Accordion, args),
-    source: asReactCode,
-  },
-};
-
-function AccordionStory(args: AccordionArgs, context: StoryContext) {
-  return renderImplementation('Accordion', implementations, args, context);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- args-only stand-in for Meta<T>'s generic; AccordionStory itself also takes a `context` param, which Meta<T> doesn't expect
-function AccordionArgsShape(_args: AccordionArgs) {
-  return null;
-}
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { AccordionProps } from '@az-digital/components-html';
 
 const meta = {
   title: 'Primary/Components/Containers/Accordions',
-  // Set only so react-docgen can attach Accordion's prop table to this story file's
-  // documentation — see the equivalent comment in button.stories.tsx for why this
-  // must stay a bare reference to the imported `Accordion`.
-  component: Accordion,
-  render: AccordionStory,
+  tags: ['lib:html', 'lib:react'],
+  ...componentStories('accordion', { props: (args: AccordionProps): AccordionProps => args }),
   argTypes: {
     items: { control: 'object' },
     flush: { control: 'boolean' },
@@ -65,15 +22,7 @@ const meta = {
     flush: false,
     alwaysOpen: false,
   },
-  parameters: {
-    implementations,
-    // Every story here relies on the meta-level custom `render`, so Storybook's
-    // default ('auto') Code-panel behavior would fall back to static story source
-    // instead of running `docs.source.transform` — see the equivalent comment in
-    // button.stories.tsx. 'dynamic' forces the Code panel through the transform.
-    docs: { source: { type: 'dynamic' } },
-  },
-} satisfies Omit<Meta<typeof AccordionArgsShape>, 'component'> & { component?: typeof Accordion };
+} satisfies Meta<AccordionProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

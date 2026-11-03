@@ -7,7 +7,7 @@ function escapeHtml(value: string) {
 }
 
 /**
- * Props otherwise mirror `@az-digital/components-react`'s `Accordion` so the
+ * Props otherwise mirror `@az-digital/components-react-bootstrap`'s `Accordion` so the
  * two implementations can be shown side by side from the same story args.
  */
 export type AccordionItemProps = {

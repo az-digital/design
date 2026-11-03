@@ -1,5 +1,4 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as AccordionStories from './Accordions.stories';
 
 {/* `of={AccordionStories}` attaches this page to Accordions.stories.tsx's own title
@@ -45,9 +44,9 @@ view — on load and on every subsequent hash change. Pair it with `alwaysOpen`,
 the story above: with `data-bs-parent` grouping, opening a linked item also collapses
 its sibling, which can read as a stutter on a fresh page load.
 
-The two implementations get this behavior from different places:
+The libraries get this behavior from different places:
 
-- **`components-html`** renders Arizona Bootstrap's real `.az-accordion-anchor` markup;
+- **Arizona Bootstrap** (`components-html`) renders Arizona Bootstrap's real `.az-accordion-anchor` markup;
   the actual copy/open/scroll behavior comes from `accordion-anchors.js`, part of
   `arizona-bootstrap`'s own JS bundle — not from this package. The "Copied!" tooltip
   additionally depends on Bootstrap's Tooltip plugin being initialized per-element
@@ -55,7 +54,7 @@ The two implementations get this behavior from different places:
   `.storybook/preview-head.html` so the story works, but that's a real integration step
   any other consumer of `components-html` needs to do too, the same way Arizona
   Bootstrap's own docs site does in `site/assets/js/partials/snippets.js`.
-- **`components-react`** reimplements the same behavior in React (local state driving
+- **React Bootstrap** (`components-react-bootstrap`) reimplements the same behavior in React (local state driving
   a `react-bootstrap` `Overlay`/`Tooltip`, plus a `hashchange` listener) rather than
   reusing `accordion-anchors.js` — that script is wired directly against Bootstrap's
   own Collapse/Tooltip instances and `*.bs.*` events, which `react-bootstrap` doesn't
@@ -64,17 +63,3 @@ The two implementations get this behavior from different places:
   the React version approximates that with a fixed delay matching Bootstrap's default
   transition duration, since `react-bootstrap` doesn't expose an equivalent callback
   through `Accordion.Body`.
-
-## Tokens
-
-`az.component.accordion.*` covers this component's structural properties (button and
-body padding, border width/radius, button label font size) — every value sourced from
-Arizona Bootstrap's actual compiled CSS. It deliberately has **no color tokens yet**:
-the accordion's button/body background and border colors in Arizona Bootstrap's
-compiled CSS are Bootstrap's stock, un-themed neutrals (`#e9ecef`, `#dee2e6`, ...), not
-Arizona brand colors, and there's no neutral/gray primitive tier in `tokens.json` to
-alias them to. Per `packages/tokens/AGENTS.md`, that's real work (adding a base neutral
-tier) rather than something to alias around by inventing a token that points at a
-plausible-looking hex — flag it to the design/tokens team rather than adding one here.
-
-<ComponentTokenIndex component="accordion" />

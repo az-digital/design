@@ -1,56 +1,11 @@
-import type { Meta, StoryContext, StoryObj } from '@storybook/react-vite';
-import { createElement } from 'react';
-import { Tabs } from '@az-digital/components-react';
-import { renderTabs } from '@az-digital/components-html';
-import type { Implementations } from '../../../implementations';
-import { renderImplementation } from '../../../implementations';
-
-type TabsArgs = Parameters<typeof renderTabs>[0];
-
-/** JSX shown in the docs code panel when Implementation is set to React. */
-const asReactCode = (args: TabsArgs) => {
-  const props: string[] = [];
-
-  if (args.id && args.id !== 'tabs') props.push(`id="${args.id}"`);
-  if (args.variant && args.variant !== 'tabs') props.push(`variant="${args.variant}"`);
-  if (args.defaultActiveIndex) props.push(`defaultActiveIndex={${args.defaultActiveIndex}}`);
-  if (args.vertical) props.push('vertical');
-  if (args.fill) props.push('fill');
-  if (args.justify) props.push('justify');
-
-  const propsString = props.length > 0 ? ` ${props.join(' ')}` : '';
-  const itemsString = JSON.stringify(args.items, null, 2);
-
-  return `<Tabs${propsString} items={${itemsString}} />`;
-};
-
-const implementations: Implementations<TabsArgs> = {
-  html: {
-    render: (args) => <div dangerouslySetInnerHTML={{ __html: renderTabs(args) }} />,
-    source: (args) => renderTabs(args),
-  },
-  react: {
-    render: (args) => createElement(Tabs, args),
-    source: asReactCode,
-  },
-};
-
-function TabsStory(args: TabsArgs, context: StoryContext) {
-  return renderImplementation('Tabs', implementations, args, context);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- args-only stand-in for Meta<T>'s generic; TabsStory itself also takes a `context` param, which Meta<T> doesn't expect
-function TabsArgsShape(_args: TabsArgs) {
-  return null;
-}
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { TabsProps } from '@az-digital/components-html';
 
 const meta = {
   title: 'Primary/Components/Containers/Tabs',
-  // Set only so react-docgen can attach Tabs's prop table to this story file's
-  // documentation — see the equivalent comment in button.stories.tsx for why this
-  // must stay a bare reference to the imported `Tabs`.
-  component: Tabs,
-  render: TabsStory,
+  tags: ['lib:html', 'lib:react'],
+  ...componentStories('tabs', { props: (args: TabsProps): TabsProps => args }),
   argTypes: {
     items: { control: 'object' },
     variant: { control: 'radio', options: ['tabs', 'pills', 'underline'] },
@@ -67,15 +22,7 @@ const meta = {
       { title: 'Disabled', content: 'This is the Disabled tab’s content.', disabled: true },
     ],
   },
-  parameters: {
-    implementations,
-    // Every story here relies on the meta-level custom `render`, so Storybook's
-    // default ('auto') Code-panel behavior would fall back to static story source
-    // instead of running `docs.source.transform` — see the equivalent comment in
-    // button.stories.tsx. 'dynamic' forces the Code panel through the transform.
-    docs: { source: { type: 'dynamic' } },
-  },
-} satisfies Omit<Meta<typeof TabsArgsShape>, 'component'> & { component?: typeof Tabs };
+} satisfies Meta<TabsProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

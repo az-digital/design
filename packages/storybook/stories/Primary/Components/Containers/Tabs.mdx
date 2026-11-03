@@ -1,5 +1,4 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
-import { ComponentTokenIndex } from '@az-digital/storybook-addon-tokens';
 import * as TabsStories from './Tabs.stories';
 
 {/* `of={TabsStories}` attaches this page to Tabs.stories.tsx's own title
@@ -37,11 +36,11 @@ internally.
 <Source of={TabsStories.Fill} />
 <Source of={TabsStories.Justified} />
 
-The two implementations get their interactivity from different places, same as
-Accordion: `components-html` renders Arizona Bootstrap's real
+The libraries get their interactivity from different places, same as
+Accordion: Arizona Bootstrap (`components-html`) renders Arizona Bootstrap's real
 `data-bs-toggle="tab"`/`"pill"` markup, and the actual tab-switching behavior comes
 from Bootstrap's own Tab plugin (part of the JS bundle loaded into this Storybook,
-same as Accordion's collapse behavior); `components-react` wraps `react-bootstrap`'s
+same as Accordion's collapse behavior); React Bootstrap (`components-react-bootstrap`) wraps `react-bootstrap`'s
 own `Nav`/`Tab.Container`/`Tab.Content`/`Tab.Pane`, which manages switching, focus, and
 ARIA (`aria-selected`, `role="tab"`/`"tabpanel"`) itself, no Bootstrap JS involved.
 
@@ -66,18 +65,3 @@ tab-panel-switching interface above (no `data-bs-toggle`, no `tab-content`/`tab-
 See [`Nav`](?path=/docs/primary-components-navigation-nav--docs) for those: plain Vertical, the
 Arizona-custom Vertical Pills (a nested, multi-level pills menu), and the
 Arizona-custom Utility Links.
-
-## Tokens
-
-`az.component.tabs.*` covers this component's label styling (padding, font weight,
-default/hover/active text color) plus a couple of per-variant properties (the "Tabs"
-variant's active-tab background, the "Underline" variant's gap and border width) —
-every value sourced from Arizona Bootstrap's actual compiled CSS. As with Accordion, it
-deliberately has **incomplete color coverage**: the "Tabs" variant's own border color
-and the "Pills" variant's active-tab background are both stock, un-themed Bootstrap
-neutrals (`#e9ecef`) in the compiled CSS, not Arizona brand colors, and there's no
-neutral/gray primitive tier in `tokens.json` to alias them to yet. Per
-`packages/tokens/AGENTS.md`, that's real work for the design/tokens team, not something
-to alias around here.
-
-<ComponentTokenIndex component="tabs" />

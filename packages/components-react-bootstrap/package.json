@@ -1,7 +1,7 @@
 {
-  "name": "@az-digital/components-react",
+  "name": "@az-digital/components-react-bootstrap",
   "version": "0.0.1",
-  "description": "React components implementing the Arizona Digital design system.",
+  "description": "React components implementing the Arizona Digital design system, with React Bootstrap where it supplies the behavior.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -12,6 +12,8 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./storybook": "./storybook/adapter.tsx",
+    "./package.json": "./package.json",
     "./ArizonaHeader": {
       "types": "./dist/ArizonaHeader.d.ts",
       "import": "./dist/ArizonaHeader.js",
@@ -45,6 +47,8 @@
   },
   "files": [
     "dist",
+    "storybook",
+    "README.md",
     "!dist/**/*.map"
   ],
   "keywords": [
@@ -55,6 +59,19 @@
   ],
   "author": "Arizona Digital",
   "license": "MIT",
+  "azDesign": {
+    "library": {
+      "key": "react",
+      "title": "React Bootstrap",
+      "status": "preview",
+      "codeLanguage": "jsx",
+      "readme": "./README.md",
+      "stylesheets": [
+        "https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"
+      ],
+      "adapter": "./storybook"
+    }
+  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
@@ -69,6 +86,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@az-digital/storybook-addon-libraries": "*",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "react": "^19.2.8",

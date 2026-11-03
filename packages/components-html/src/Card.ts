@@ -7,7 +7,7 @@ function escapeHtml(value: string) {
 }
 
 /**
- * Props otherwise mirror `@az-digital/components-react`'s `Card` so the two
+ * Props otherwise mirror `@az-digital/components-react-bootstrap`'s `Card` so the two
  * implementations can be shown side by side from the same story args, except
  * `header`/`text`/`footer`, which accept plain strings here instead of
  * `ReactNode`.
