@@ -1,9 +1,10 @@
 import js from '@eslint/js';
 import globals from 'globals';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import storybook from 'eslint-plugin-storybook';
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: ['storybook-static', 'dist'],
   },
