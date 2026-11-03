@@ -188,7 +188,7 @@ The demo components are drawn by Arizona Bootstrap compiled from its Sass source
 the patches in `patches/` (step 5), so the example shows what the contract asks for:
 
 - `.storybook/arizona-bootstrap.scss` imports Arizona Bootstrap from `node_modules` and
-  overrides nothing. `.storybook/preview-head.html` loads Proxima Nova.
+  overrides nothing; the tokens reach it through the patch (step 5). `.storybook/preview-head.html` loads Proxima Nova.
 - Arizona Bootstrap is a devDependency installed from GitHub by tag; the installed tag
   is in `packages/storybook/package.json`. It has no npm release. Compare against that
   tag, not another. When the work lands on a branch that has no tag yet, patch the
@@ -211,9 +211,14 @@ With the contract settled, change Arizona Bootstrap's source to match it, Sass v
 values included, as a patch (see "Patching Arizona Bootstrap" in the README). Nothing in
 Storybook overrides its values.
 
-1. Edit the file under `node_modules/arizona-bootstrap/scss/`. Write it the way Arizona
-   Bootstrap would: its own variables (`$gray-200`, not `$az-color-brand-gray-200`) and
-   its code style.
+1. Run `npm run build:tokens`, then copy `packages/tokens/dist/tokens.scss` into
+   `node_modules/arizona-bootstrap/scss/` (Sass can't read `tokens.json`). Arizona
+   Bootstrap is adopting the design tokens, so the patch is the start of that: it
+   carries the generated file, and the component's Sass imports it and uses the
+   variables for the tokens this PR adds or changes (`$az-color-bg-button-white-hover`,
+   not `$gray-200`). Use Arizona Bootstrap's own variable only for a value that has no
+   token, such as a component's own value that stays in the contract. Otherwise write
+   it in its code style. Copy the file again whenever the tokens change.
 2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`.
    Patches are sequenced in `patches/` (`arizona-bootstrap+<version>+<number>+<name>.patch`),
    and the bare command would amend the newest one, folding this component's edits into
@@ -230,7 +235,8 @@ against the branch the work is landing on (step 1):
   (the small button's 19px line height from #2378, say), keep a local patch until a
   release includes it. Patch only what the installed tag lacks, and don't ask upstream
   again for what a PR already covers.
-- Then link the patches. Its maintainers can apply each to their repo with
+- Then link the patches, and name the design tokens each one now uses. Its maintainers
+  can apply each to their repo with
   `git apply -p3 arizona-bootstrap+<version>+<number>+<name>.patch`.
 - Note what Arizona Bootstrap doesn't do at all yet (the button's 4px icon gap), and
   open questions that aren't the contract's (an unapproved variant).
