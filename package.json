@@ -16,13 +16,15 @@
     "lint:storybook": "npm run lint -w @az-digital/storybook",
     "test:storybook": "npm run test -w @az-digital/storybook",
     "build:all": "npm run build:tokens && npm run build:contracts && npm run build:storybook",
-    "build:contracts": "npm run build -w @az-digital/contracts"
+    "build:contracts": "npm run build -w @az-digital/contracts",
+    "postinstall": "patch-package --error-on-fail"
   },
   "description": "Arizona Digital design system monorepo",
   "license": "MIT",
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/react-vite": "^10.6.0",
+    "patch-package": "^8.0.1",
     "storybook": "^10.6.3"
   }
 }

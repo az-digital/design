@@ -61,20 +61,32 @@ export const az = {
   },
   "spacing": {
     "0": "var(--az-spacing-0)",
-    "1": "var(--az-spacing-1)",
-    "2": "var(--az-spacing-2)",
-    "3": "var(--az-spacing-3)",
-    "4": "var(--az-spacing-4)",
-    "5": "var(--az-spacing-5)",
-    "6": "var(--az-spacing-6)",
-    "7": "var(--az-spacing-7)",
-    "8": "var(--az-spacing-8)",
-    "9": "var(--az-spacing-9)",
-    "10": "var(--az-spacing-10)",
-    "20": "var(--az-spacing-20)",
-    "30": "var(--az-spacing-30)",
-    "min": "var(--az-spacing-min)",
-    "card": "var(--az-spacing-card)"
+    "100": "var(--az-spacing-100)",
+    "150": "var(--az-spacing-150)",
+    "200": "var(--az-spacing-200)",
+    "250": "var(--az-spacing-250)",
+    "300": "var(--az-spacing-300)",
+    "400": "var(--az-spacing-400)",
+    "500": "var(--az-spacing-500)",
+    "600": "var(--az-spacing-600)",
+    "800": "var(--az-spacing-800)",
+    "1000": "var(--az-spacing-1000)",
+    "025": "var(--az-spacing-025)",
+    "050": "var(--az-spacing-050)",
+    "075": "var(--az-spacing-075)"
+  },
+  "container": {
+    "maxWidth": {
+      "sm": "var(--az-container-max-width-sm)",
+      "md": "var(--az-container-max-width-md)",
+      "lg": "var(--az-container-max-width-lg)",
+      "xl": "var(--az-container-max-width-xl)",
+      "xxl": "var(--az-container-max-width-xxl)"
+    }
+  },
+  "grid": {
+    "columns": "var(--az-grid-columns)",
+    "gutter": "var(--az-grid-gutter)"
   },
   "radius": {
     "0": "var(--az-radius-0)",

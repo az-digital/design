@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TokenDisplay } from '@az-digital/storybook-addon-tokens';
+import * as GridStories from './Grid.stories';
+
+<Meta of={GridStories} name="Docs" />
+
+# Grid
+
+Pages use a 12-column grid inside a centered container. The gutter is 24px between columns (12px on each side of a column), the same as `az.spacing.300`. Containers have 12px of padding on each side, half the gutter; that padding is derived from the gutter, so it has no separate token.
+
+The maximum container width changes at each breakpoint. Below `sm`, it stays fluid; from `sm` up, each breakpoint sets a maximum width.
+
+The column count, gutter and container widths follow the current implementation (5.2.2).
+
+## See the grid at each breakpoint
+
+Open the <a href="./?path=/story/primary-foundations-layout-grid--grid-and-container" target="_top">Grid And Container story</a> to see the container with its columns and gutters, and use Storybook's viewport switcher to see its max width change at each breakpoint.
+
+## Grid tokens
+
+<TokenDisplay prefix="az.grid." layout="table" />
+
+<TokenDisplay prefix="az.container." layout="table" />
