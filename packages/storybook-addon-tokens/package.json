@@ -16,6 +16,9 @@
     "src",
     "README.md"
   ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [
     "storybook-addon",
     "design-tokens",

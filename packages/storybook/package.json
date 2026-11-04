@@ -8,6 +8,7 @@
     "storybook": "storybook dev -p 6006",
     "build": "storybook build",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "devDependencies": {
@@ -15,7 +16,6 @@
     "@az-digital/components-web": "*",
     "@az-digital/storybook-addon-libraries": "*",
     "@az-digital/storybook-addon-tokens": "*",
-    "@eslint/js": "^9.20.0",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/addon-mcp": "^10.6.5",
     "@storybook/addon-vitest": "^10.6.3",
@@ -27,16 +27,12 @@
     "@vitest/coverage-v8": "^5.0.5",
     "arizona-bootstrap": "github:az-digital/arizona-bootstrap#v5.3.0",
     "bootstrap": "^5.3.8",
-    "eslint": "^9.20.0",
-    "eslint-plugin-storybook": "^10.6.0",
-    "globals": "^15.15.0",
     "playwright": "^1.64.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "sass-embedded": "^1.107.1",
     "storybook": "^10.6.3",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.72.1",
+    "typescript": "^6.0.3",
     "vite": "^8.3.5",
     "vitest": "^5.0.5"
   }
