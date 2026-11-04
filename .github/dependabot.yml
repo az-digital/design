@@ -18,6 +18,18 @@ updates:
       semver-patch-days: 3
     labels:
       - "dependencies"
+    ignore:
+      # A Storybook major needs `npx storybook upgrade` to run its codemods
+      # against .storybook/main.ts, addon registration and story syntax.
+      # Dependabot can only move version ranges, so a grouped major bump lands
+      # without the migration and fails `npm run test:storybook`. Majors are
+      # done by hand; the storybook group below still batches minor and patch.
+      - dependency-name: "storybook"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@storybook/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint-plugin-storybook"
+        update-types: ["version-update:semver-major"]
     groups:
       # Storybook packages must stay on matching versions.
       storybook:
