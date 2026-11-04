@@ -12,7 +12,7 @@ const requiredSections = ['## What it is / Best for', '## Install / use', '## Ho
 const adapters = new Map<string, LibraryAdapter>(
   await Promise.all(
     libraries
-      .filter((library) => library.adapterFile)
+      .filter((library): library is (typeof libraries)[number] & { adapterFile: string } => Boolean(library.adapterFile))
       .map(async (library) => [library.key, (await import(pathToFileURL(library.adapterFile).href)).default] as const),
   ),
 );

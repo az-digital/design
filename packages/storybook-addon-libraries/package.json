@@ -10,7 +10,10 @@
     "./preset": "./src/preset.js",
     "./manager": "./src/manager.tsx",
     "./preview": "./src/preview.ts",
-    "./node": "./src/node/discover.js",
+    "./node": {
+      "types": "./src/node/discover.d.ts",
+      "import": "./src/node/discover.js"
+    },
     "./library.schema.json": "./library.schema.json",
     "./package.json": "./package.json"
   },
