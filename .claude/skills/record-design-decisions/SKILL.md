@@ -39,8 +39,8 @@ Places to look:
 
 - **Arizona Bootstrap PRs** (`az-digital/arizona-bootstrap`): body, review comments
   and diff (`gh pr view N -R az-digital/arizona-bootstrap --json body,comments,reviews,baseRefName,state,reviewDecision`,
-  `gh pr diff`). `comments` is only the conversation; `reviews` shows who approved and
-  their text, and inline review comments need
+  `gh pr diff N -R az-digital/arizona-bootstrap`). `comments` is only the conversation;
+  `reviews` shows who approved and their text, and inline review comments need
   `gh api repos/az-digital/arizona-bootstrap/pulls/N/comments`. A PR that went through
   design or Marketing review is a design decision. Search both issues and PRs (`gh search issues` doesn't return PRs; use
   `gh search prs` too).
@@ -160,8 +160,9 @@ goes in `packages/tokens/assets/<kind>/`. The design tokens package publishes on
 - Take each value from the source settled in step 1.
 - A value from font metrics rather than CSS (how far an underline sits below the
   baseline) is still a decision if a source measured it and design approved it.
-- **Descriptions** say what a value is for, in plain language. Never mention Bootstrap
-  or Arizona Bootstrap in `tokens.json` or docs pages; sources go in contract
+- **Descriptions** say what a value is for, in plain language. Keep Bootstrap and
+  Arizona Bootstrap out of token descriptions and design-decision copy; the required
+  release-difference note may name the implementation. Sources go in contract
   `sources`, commit messages and PR descriptions.
 - Run `npm run build:tokens` and `npm run build:contracts`, and commit the regenerated
   `dist/` files.
@@ -177,11 +178,12 @@ goes in `packages/tokens/assets/<kind>/`. The design tokens package publishes on
   fill, text, hover fill, hover text and focus ring. Then
   `<ContractAnatomy contract="<name>" />` for the anatomy and
   `<ContractAnatomy contract="<name>" variant="<axis>.<option>" />` for each option.
-- Never name Bootstrap in docs copy. Describe the change instead ("the old palette's
-  colors").
-- Link a new page from the overviews that list its siblings (Primary overview, the
-  group's page), and add it to `storySort.order` in `.storybook/preview.ts` if its
-  position matters. Check the rendered sidebar.
+- Keep Bootstrap and Arizona Bootstrap out of design-decision copy. The required
+  release-difference note may name the implementation and describe where it differs
+  from the page.
+- Link every added or filled-in page from each overview above it: the group's overview
+  (create one if missing), its section's overview and the Primary overview. Add it to
+  `storySort.order` in `.storybook/preview.ts`, and check the rendered sidebar.
 
 ### A live example of the implementation
 
@@ -212,15 +214,17 @@ With the contract settled, change Arizona Bootstrap's source to match it, Sass v
 values included, as a patch (see "Patching Arizona Bootstrap" in the README). Nothing in
 Storybook overrides its values.
 
-1. Run `npm run build:tokens`, then copy `packages/tokens/dist/tokens.scss` into
-   `node_modules/arizona-bootstrap/scss/` (Sass can't read `tokens.json`). Arizona
-   Bootstrap is adopting the design tokens, so the patch is the start of that: it
-   carries the generated file, and the component's Sass imports it and uses the
-   variables for the design tokens this PR adds or changes (`$az-color-bg-button-white-hover`,
-   not `$gray-200`). Use Arizona Bootstrap's own variable only for a value that has no
-   token, such as a component's own value that stays in the contract. Otherwise write
-   it in its code style. Copy the file again whenever the design tokens change. Point its `Source:` link at a
-   commit on `main`, since a branch's commits can disappear when the PR is squash-merged.
+1. Run `npm run build:tokens`, then refresh the declarations in
+   `node_modules/arizona-bootstrap/scss/_design-tokens.scss` from
+   `packages/tokens/dist/tokens.scss` (Sass can't read `tokens.json`). Preserve the
+   file's header and `// fusv-disable`/`// fusv-enable` guards, and point its `Source:`
+   link at a commit on `main`, since a branch's commits can disappear when the PR is
+   squash-merged. The installed v5.3.0 entrypoint already imports this file before its
+   variables; don't add a component-level import. Use its variables for the design
+   tokens this PR adds or changes (`$az-color-bg-button-white-hover`, not `$gray-200`).
+   Use Arizona Bootstrap's own variable only for a value that has no token, such as a
+   component's own value that stays in the contract. Otherwise write it in its code
+   style.
 2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`.
    Patches are sequenced in `patches/` (`arizona-bootstrap+<version>+<number>+<name>.patch`),
    and the bare command would amend the newest one, folding this component's edits into
@@ -266,9 +270,12 @@ verify the whole contract:
 - It skips breakpoint rows, and states other than hover and focus-visible.
 - It reads every part's properties from the one element you give it, so nested parts
   aren't checked on their own.
+- Button hover colors are read from `--bs-btn-hover-*`; other hover properties are read
+  at rest. Properties with no CSS mapping are reported as mismatches, not checked.
 
-For a state, breakpoint or part it doesn't cover, extend the helper or add a
-component-specific check, and say in the PR what the check leaves out.
+Before treating a mismatch as an implementation defect, check whether it reflects one
+of these limits. For a state, breakpoint or part it doesn't cover, extend the helper or
+add a component-specific check, and say in the PR what the check leaves out.
 
 Run it while you work to list what still differs, and fix each with a patch (step 5).
 Once the demo matches, add a story tagged `['!dev', '!autodocs']` that renders every
