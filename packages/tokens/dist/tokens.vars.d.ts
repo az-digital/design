@@ -29,6 +29,11 @@ export const az: {
       }
     },
     "bg": {
+      "card": {
+        "cloud": string,
+        "cloudHover": string,
+        "cloudActive": string
+      },
       "button": {
         "red": string,
         "redHover": string,
