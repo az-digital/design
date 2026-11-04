@@ -5,19 +5,18 @@ import { escapeHtml } from './escapeHtml';
 // a card that goes to one page is a link card, with the title link covering the card.
 
 export type CardProps = {
-  title: string;
-  /** The card's slot: rich text after the title, as HTML. It is not escaped. */
-  body: string;
-  /** A label above the content. */
-  header?: string;
-  /** A note below the content. */
-  footer?: string;
+  /** The card's slot: rich text, as HTML. It is not escaped. Empty for an empty card. */
+  slot?: string;
 };
 
-/** The plain card: a title and rich text. Arizona Bootstrap sets a Cloud card's title and text colors only with `.hover`, so utility classes set them here. */
-export function renderCard({ title, body, header, footer }: CardProps): string {
-  return `<div class="card bg-cloud border-0">${header ? `\n  <div class="card-header">${escapeHtml(header)}</div>` : ''}
-  <div class="card-body text-tinta"><h3 class="card-title h5 fw-bold mb-2 text-azurite">${escapeHtml(title)}</h3>${body}</div>${footer ? `\n  <div class="card-footer">${escapeHtml(footer)}</div>` : ''}
+/**
+ * The plain card: a Cloud box with a slot, `.card-body`, for rich text. It isn't a link.
+ * Arizona Bootstrap sets a Cloud card's title and text colors only with `.hover`, so
+ * `.text-tinta` sets the slot's text color here.
+ */
+export function renderCard({ slot = '' }: CardProps = {}): string {
+  return `<div class="card bg-cloud border-0">
+  <div class="card-body text-tinta">${slot}</div>
 </div>`;
 }
 
