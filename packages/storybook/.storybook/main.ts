@@ -29,6 +29,7 @@ const config: StorybookConfig = {
       options: {
         order: ["html", "web"],
         default: "html",
+        overrides: { html: { stylesheets: [] } },
       },
     },
     getAbsolutePath("@storybook/addon-vitest")
