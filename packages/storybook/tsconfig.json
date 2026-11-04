@@ -8,6 +8,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@contracts/*": ["../contracts/*"]
+    },
     "types": [
       "node",
       "vitest",
@@ -16,6 +19,9 @@
   },
   "include": [
     ".storybook",
-    "stories"
+    "stories",
+    "src",
+    "vitest.config.ts",
+    "vitest.shims.d.ts"
   ]
 }

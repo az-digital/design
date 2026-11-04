@@ -1,0 +1,200 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  AZ_SITE_HOST: ${{ vars.AZ_SITE_HOST }}
+  # Review site folder: /design/pr-<number> for pull requests, or
+  # /design/<branch> for pushes.
+  AZ_REVIEW_BASEURL: /design/${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.ref_name }}
+
+jobs:
+  build:
+    name: Build tokens, contracts & Storybook
+    # A newer push cancels this job's older run, so that run's deploy never
+    # starts and can't replace the review site with an older build.
+    concurrency:
+      group: ${{ github.workflow }}-build-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository to workspace
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Fails when the committed token output in dist/ is out of date with
+      # tokens.json or the Style Dictionary config. `git add --intent-to-add`
+      # makes the diff include output files that were never committed.
+      - name: Check the built tokens are up to date
+        run: |
+          npm run build:tokens
+          git add --intent-to-add -- packages/tokens/dist
+          git diff --exit-code -- packages/tokens/dist
+
+      # Fails when a contract references a missing token or breaks the schema, or
+      # when its committed dist/contracts.json is out of date.
+      - name: Check the component contracts
+        run: |
+          npm run build:contracts
+          git add --intent-to-add -- packages/contracts/dist
+          git diff --exit-code -- packages/contracts/dist
+
+      - name: Build Storybook
+        run: npm run build:storybook
+
+      - name: Save the Storybook build for deployment
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: storybook-static
+          path: packages/storybook/storybook-static/
+          if-no-files-found: error
+          retention-days: 1
+
+  checks:
+    name: Code quality checks
+    # A newer push cancels this job's older run, so that run's deploy never
+    # starts and can't replace the review site with an older build.
+    concurrency:
+      group: ${{ github.workflow }}-checks-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository to workspace
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint checks
+        run: npm run lint
+
+      # Runs tsc from the repo root so errors print repo-relative paths, which the
+      # tsc problem matcher from setup-node turns into annotations on the diff.
+      - name: Type-check every package
+        run: npm run typecheck
+
+      # Storybook renders pipe-delimited Markdown tables in MDX as plain text,
+      # so docs pages must use HTML table markup instead. Matches rows with
+      # outer pipes, and delimiter rows (--- | ---) for tables without them.
+      - name: Check MDX docs for Markdown tables
+        run: |
+          matches=$(grep -rnE -e '^\s*\|.*\|\s*$' -e '^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$' --include='*.mdx' packages || true)
+          if [ -n "$matches" ]; then
+            while IFS=: read -r file line _; do
+              echo "::error file=${file},line=${line}::Use HTML table markup in MDX. Storybook renders Markdown tables as plain text."
+            done <<< "$matches"
+            exit 1
+          fi
+
+      # The stories run as tests in Chromium, including any contract checks.
+      - name: Install Playwright's Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Storybook tests
+        run: npm run test:storybook
+
+      # Fails on high or critical advisories. Low and moderate ones still show
+      # in the log and are triaged through Dependabot alerts instead.
+      - name: Check dependencies for high severity vulnerabilities
+        run: npm audit --audit-level=high
+
+  # Deploys the build only after the build and checks both pass. It doesn't
+  # check out or install anything, so the AWS credentials and the token that
+  # can comment on PRs never share a job with dependency or project code.
+  deploy:
+    name: Deploy review site
+    needs: [build, checks]
+    # One deploy at a time per review site. Each deploy runs `aws s3 sync
+    # --delete` into the same folder, so two deploys running at once can finish
+    # in the wrong order: the older one deletes the newer build's assets and
+    # leaves its iframe.html pointing at files that are gone (seen on PR 79).
+    # Let the active run finish so a failed replacement cannot leave a
+    # partially synced site, or two runs both post a PR comment.
+    concurrency:
+      group: ${{ github.workflow }}-review-site-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download the Storybook build
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: storybook-static
+          path: storybook-static
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy review site artifact to S3 + CloudFront
+        run: |
+          aws s3 sync --delete storybook-static/ "s3://${{ secrets.REVIEW_BUCKET }}${AZ_REVIEW_BASEURL}/"
+          aws cloudfront create-invalidation --distribution-id "${{ secrets.REVIEW_CDN }}" --paths "${AZ_REVIEW_BASEURL}/*"
+
+      - name: Comment review site URL on PR
+        # Fork PRs only get a read-only token, which can't comment.
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const marker = '<!-- design-review-site -->';
+            const body = `${marker}
+            Review site: ${process.env.AZ_SITE_HOST}${process.env.AZ_REVIEW_BASEURL}/`;
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+
+            const previous = comments.filter((comment) =>
+              comment.user?.type === 'Bot' && comment.body?.includes(marker)
+            );
+
+            // Post a fresh comment so the link shows up near the latest
+            // activity, then remove the old ones.
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+            for (const comment of previous) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: comment.id,
+              });
+            }
+
+      - name: Display review site URL
+        run: |
+          echo "Review site deployed to ${AZ_SITE_HOST}${AZ_REVIEW_BASEURL}/"
