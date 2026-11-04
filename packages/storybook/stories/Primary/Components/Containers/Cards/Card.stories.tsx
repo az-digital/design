@@ -4,9 +4,9 @@ import type { CardProps } from '@az-digital/components-html';
 import { Frame, checkCard } from './cards';
 
 // The plain card: a Cloud box whose .card-body is its slot, for rich text. It isn't
-// a link. The Default story is the empty card; Office Hours fills the slot with a
-// title and a list. Arizona Bootstrap gives a Cloud card its title and text colors
-// only with .hover, so .text-azurite and .text-tinta set them here.
+// a link. The Default story has one line of text in the slot; Office Hours fills it
+// with a title and a list. Arizona Bootstrap gives a Cloud card its title and text
+// colors only with .hover, so .text-azurite and .text-tinta set them here.
 
 type CardArgs = { Slot: string };
 
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 
 // Shown on the Card docs page, not as its own page in the sidebar. Its play function
 // is the card's contract check.
-export const Default: Story = { tags: ['!dev'], play: checkCard('card') };
+export const Default: Story = { tags: ['!dev'], args: { Slot: '<p>Some basic text in the card.</p>' }, play: checkCard('card') };
 
 // A title and rich text in the slot: a paragraph and a list. It has its own page in the
 // sidebar and isn't on the docs page.
