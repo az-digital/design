@@ -49,7 +49,7 @@ const preview: Preview = {
               '*',
             ],
             'Components', 
-            ['Overview', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], '*'], '*'],
+            ['Overview', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], '*'],
             'Tokens',
             ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
             '*',
