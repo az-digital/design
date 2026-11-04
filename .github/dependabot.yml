@@ -13,7 +13,7 @@ updates:
     # have time to be caught and pulled from the registry.
     cooldown:
       default-days: 7
-      semver-major-days: 30
+      semver-major-days: 14
       semver-minor-days: 7
       semver-patch-days: 3
     labels:
