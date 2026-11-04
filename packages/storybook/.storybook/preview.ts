@@ -57,7 +57,6 @@ const preview: Preview = {
           'Bear Down 100',
         ],
 
-        ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 
       },
     },
   },
