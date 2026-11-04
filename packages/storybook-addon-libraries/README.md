@@ -32,7 +32,7 @@ A library is any package, in this workspace or a dependency of the Storybook pro
       "status": "supported",
       "codeLanguage": "html",
       "readme": "./README.md",
-      "stylesheets": ["https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"],
+      "stylesheets": [],
       "adapter": "./storybook"
     }
   }
