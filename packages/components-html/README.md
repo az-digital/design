@@ -66,7 +66,7 @@ This package only feeds Storybook: each component's render function draws it on 
 
 - Put each component in `src/<Component>.ts`, exporting `render<Component>` and its props type, and export it from `src/index.ts`.
 - Name props after the component's contract: its variant axes and option names, for example `color: 'white-text-red'`.
-- Escape every caller-supplied value with `escapeHtml`.
+- Escape caller-supplied text and attribute values with `escapeHtml`. The Card's documented rich-text `body` slot is HTML; sites must provide sanitized content for it.
 - Add the component to `storybook/adapter.ts`, keyed by its contract id, with the same function as `render` and `source`, so the **Code** panel shows exactly what renders.
 
 ### Storybook registration

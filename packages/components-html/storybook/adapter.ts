@@ -1,5 +1,5 @@
 // Storybook adapter: how @az-digital/storybook-addon-libraries draws this
-// library's components. The markup it shows is exactly what renderButton returns.
+// library's components. The markup it shows is exactly what each render function returns.
 import type { LibraryAdapter } from '@az-digital/storybook-addon-libraries';
 import {
   renderArizonaHeader,
