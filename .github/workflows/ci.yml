@@ -15,6 +15,11 @@ env:
 jobs:
   build:
     name: Build tokens, contracts & Storybook
+    # A newer push cancels this job's older run, so that run's deploy never
+    # starts and can't replace the review site with an older build.
+    concurrency:
+      group: ${{ github.workflow }}-build-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,10 +37,12 @@ jobs:
         run: npm ci
 
       # Fails when the committed token output in dist/ is out of date with
-      # tokens.json or the Style Dictionary config.
+      # tokens.json or the Style Dictionary config. `git add --intent-to-add`
+      # makes the diff include output files that were never committed.
       - name: Check the built tokens are up to date
         run: |
           npm run build:tokens
+          git add --intent-to-add -- packages/tokens/dist
           git diff --exit-code -- packages/tokens/dist
 
       # Fails when a contract references a missing token or breaks the schema, or
@@ -43,6 +50,7 @@ jobs:
       - name: Check the component contracts
         run: |
           npm run build:contracts
+          git add --intent-to-add -- packages/contracts/dist
           git diff --exit-code -- packages/contracts/dist
 
       - name: Build Storybook
@@ -58,6 +66,11 @@ jobs:
 
   checks:
     name: Code quality checks
+    # A newer push cancels this job's older run, so that run's deploy never
+    # starts and can't replace the review site with an older build.
+    concurrency:
+      group: ${{ github.workflow }}-checks-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -77,16 +90,17 @@ jobs:
       - name: Run lint checks
         run: npm run lint
 
-      # Runs from the repo root so errors print repo-relative paths, which the
+      # Runs tsc from the repo root so errors print repo-relative paths, which the
       # tsc problem matcher from setup-node turns into annotations on the diff.
-      - name: Type-check the Storybook package
-        run: npm run typecheck:storybook
+      - name: Type-check every package
+        run: npm run typecheck
 
       # Storybook renders pipe-delimited Markdown tables in MDX as plain text,
-      # so docs pages must use HTML table markup instead.
+      # so docs pages must use HTML table markup instead. Matches rows with
+      # outer pipes, and delimiter rows (--- | ---) for tables without them.
       - name: Check MDX docs for Markdown tables
         run: |
-          matches=$(grep -rnE '^\s*\|.*\|\s*$' --include='*.mdx' packages || true)
+          matches=$(grep -rnE -e '^\s*\|.*\|\s*$' -e '^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$' --include='*.mdx' packages || true)
           if [ -n "$matches" ]; then
             while IFS=: read -r file line _; do
               echo "::error file=${file},line=${line}::Use HTML table markup in MDX. Storybook renders Markdown tables as plain text."
