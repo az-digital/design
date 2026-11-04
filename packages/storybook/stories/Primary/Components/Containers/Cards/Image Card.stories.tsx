@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { ImageCardProps } from '@az-digital/components-html';
 import { Frame, checkCard, widePhoto } from './cards';
 
 // A Link Card with a photo above the title, which zooms in on hover. The controls
@@ -8,7 +10,6 @@ type ImageCardArgs = { Image: string; 'Image description': string; Title: string
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Image Card',
-  tags: ['!dev'],
   args: {
     Image: '',
     'Image description': '',
@@ -27,21 +28,9 @@ const meta = {
     Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  render: (args) => (
-    <Frame>
-      <div className="card bg-cloud hover overflow-hidden">
-        <div className="overflow-hidden">
-          <img className="card-img-top img-fluid hover-img-zoom-in" src={args.Image || widePhoto} alt={args['Image description']} />
-        </div>
-        <div className="card-body">
-          <h3 className="card-title h5 fw-bold mb-2">
-            <a href={args.Link} className="stretched-link text-reset text-decoration-none">{args.Title}</a>
-          </h3>
-          <p className="card-text">{args.Text}</p>
-        </div>
-      </div>
-    </Frame>
-  ),
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('image-card', { props: (args: ImageCardArgs): ImageCardProps => ({ image: args.Image || widePhoto, imageDescription: args['Image description'], title: args.Title, text: args.Text, link: args.Link }) }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
 } satisfies Meta<ImageCardArgs>;
 
 export default meta;

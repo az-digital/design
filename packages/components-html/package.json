@@ -1,0 +1,39 @@
+{
+  "name": "@az-digital/components-html",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Arizona Bootstrap markup for the Arizona Digital design system's components, shown in Storybook. Never released.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./storybook": "./storybook/adapter.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "storybook",
+    "README.md"
+  ],
+  "keywords": [
+    "design-system",
+    "html",
+    "arizona-bootstrap"
+  ],
+  "azDesign": {
+    "library": {
+      "key": "html",
+      "title": "Arizona Bootstrap",
+      "status": "supported",
+      "codeLanguage": "html",
+      "readme": "./README.md",
+      "stylesheets": [
+        "https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"
+      ],
+      "adapter": "./storybook"
+    }
+  },
+  "devDependencies": {
+    "@az-digital/storybook-addon-libraries": "*"
+  }
+}

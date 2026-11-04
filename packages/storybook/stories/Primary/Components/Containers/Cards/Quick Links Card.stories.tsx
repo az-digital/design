@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { QuickLinksCardProps } from '@az-digital/components-html';
 import { Frame } from './cards';
 
 // A title, text and a list of links. The card isn't a link itself. The controls
@@ -13,7 +15,6 @@ type QuickLinksCardArgs = { Title: string; Text: string; Links: QuickLink[] };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Quick Links Card',
-  tags: ['!dev'],
   args: {
     Title: 'Academic Resources',
     Text: 'Find the support and guidance you need to succeed in the classroom.',
@@ -32,23 +33,9 @@ const meta = {
       type: { name: 'array', value: { name: 'object', value: { label: { name: 'string' }, link: { name: 'string' } } }, required: true },
     },
   },
-  render: (args) => (
-    <Frame>
-      <div className="card bg-cloud border-0">
-        <div className="card-body">
-          <h3 className="card-title h5 fw-bold mb-2 text-azurite">{args.Title}</h3>
-          <p className="card-text text-tinta">{args.Text}</p>
-          <ul className="list-unstyled mb-0">
-            {(args.Links ?? []).map(({ label, link }, index) => (
-              <li key={index}>
-                <a href={link} className="card-link text-azurite fw-semibold tk-proxima-nova-condensed">{label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </Frame>
-  ),
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('quick-links-card', { props: (args: QuickLinksCardArgs): QuickLinksCardProps => ({ title: args.Title, text: args.Text, links: args.Links ?? [] }) }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
 } satisfies Meta<QuickLinksCardArgs>;
 
 export default meta;
