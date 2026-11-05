@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { IconCardProps } from '@az-digital/components-html';
 import { Frame, checkCard } from './cards';
 
 // A Link Card with an icon above the title. The icon is a Material Symbols glyph
@@ -11,7 +13,16 @@ type IconCardArgs = { Icon: string; Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Icon Card',
-  tags: ['!dev'],
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('icon-card', {
+    props: (args: IconCardArgs): IconCardProps => ({
+      icon: args.Icon,
+      title: args.Title,
+      text: args.Text,
+      link: args.Link,
+    }),
+  }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
   args: {
     Icon: 'person_raised_hand',
     Title: 'Future Students',
@@ -24,21 +35,6 @@ const meta = {
     Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  render: (args) => (
-    <Frame>
-      <div className="card bg-cloud hover">
-        <div className="card-body">
-          <span className="card-icon material-symbols-rounded fw-light" style={{ fontVariationSettings: "'FILL' 0" }} aria-hidden="true">
-            {args.Icon}
-          </span>
-          <h3 className="card-title h5 fw-bold mb-2">
-            <a href={args.Link} className="stretched-link text-reset text-decoration-none">{args.Title}</a>
-          </h3>
-          <p className="card-text">{args.Text}</p>
-        </div>
-      </div>
-    </Frame>
-  ),
 } satisfies Meta<IconCardArgs>;
 
 export default meta;
