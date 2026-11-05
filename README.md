@@ -117,6 +117,8 @@ The contract points each part at the token it uses, named the way the Naming pag
 
 ## Storybook Notes
 
+The manager and Docs use Storybook's built-in light/dark palettes, with Arizona branding and typography layered on top using the generated token CSS and JS variable references. Storybook serves the tokens' `dist/` directory at `./tokens/` so the manager can load `tokens.css`; the preview imports that same stylesheet. Both listen for operating system light/dark preference changes and update without reloading. The manager uses the official reverse horizontal SVG in dark mode. Keep search, icons, and other controls on the built-in palette. Component previews keep their implementation's own styles.
+
 The Storybook package renders the design token catalog, groups nested token values, and provides a review surface for design decisions and naming conventions.
 
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.

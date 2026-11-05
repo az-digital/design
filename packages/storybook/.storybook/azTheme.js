@@ -1,36 +1,18 @@
-import { create } from 'storybook/theming';
-import { az } from '../../tokens/tokens.json';
+import { create, themes } from 'storybook/theming';
+import { az } from '../../tokens/dist/tokens.vars.js';
 
-export default create({
-  base: 'light',
-  fontBase: az['font-family']['sans-serif'].$value,
-  fontCode: 'monospace',
-  brandTitle: 'Arizona Digital Design System',
-  brandUrl: 'https://www.arizona.edu/',
-  brandImage: 'https://www.arizona.edu/sites/default/files/UA_horiz_rgb_webheader.png',
-  colorPrimary: az.color.brand.red.$value,
-  colorSecondary: az.color.brand.blue.$value,
+export const colorSchemeQuery = '(prefers-color-scheme: dark)';
 
-  // UI
-  appBg: az.color.brand.cloud.$value,
-  appContentBg: az.color.brand.white.$value,
-  appPreviewBg: az.color.brand.white.$value,
-  appBorderColor: az.color.brand['sonoran-red'].$value,
-  appBorderRadius: 4,
- 
-  // Text colors
-  textColor: az.color.brand.tinta.$value,
-  textInverseColor: az.color.brand.white.$value,
- 
-  // Toolbar default and active colors
-  barTextColor: az.color.brand.blue.$value,
-  barSelectedColor: az.color.brand['arroyo-blue'].$value,
-  barHoverColor: az.color.brand['arroyo-blue'].$value,
-  barBg: az.color.brand.cloud.$value,
- 
-  // Form colors
-  inputBg: az.color.brand.white.$value,
-  inputBorder: az.color.brand.blue.$value,
-  inputTextColor: az.color.brand.blue.$value,
-  inputBorderRadius: 8,
-});
+export function getAzTheme() {
+  const base = globalThis.matchMedia?.(colorSchemeQuery).matches ? 'dark' : 'light';
+  return create({
+    ...themes[base],
+    fontBase: az.fontFamily.sansSerif,
+    fontCode: az.fontFamily.monospace,
+    brandTitle: 'Arizona Digital Design System',
+    brandUrl: 'https://www.arizona.edu/',
+    brandImage: base === 'dark'
+      ? 'https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/assets/brand/arizona-bootstrap-logo-webheader-white.svg'
+      : 'https://www.arizona.edu/sites/default/files/UA_horiz_rgb_webheader.png',
+  });
+}
