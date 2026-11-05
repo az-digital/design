@@ -152,7 +152,7 @@ The workflow:
 
 1. Checks the version's format and that tag `v<version>` doesn't exist yet.
 2. Sets the version in every `package.json` in the runner with `npm version`, without committing it, and checks that each non-private workspace is in the `@az-digital` scope (`scripts/validate-release.mjs`).
-3. Builds the publishable packages and checks their packed artifacts with a consumer smoke test (`npm run check:package-artifacts`).
+3. Builds the publishable packages and checks that each tarball contains what its package declares (`npm run check:package-artifacts`): something for each `files` entry, each `exports`, `main` and `types` target, and each output in its Style Dictionary config if it has one. The checks come from the packages themselves, so a new package or output needs no change to the script.
 4. Publishes every non-private `@az-digital` workspace to GitHub Packages, with the npm `next` dist-tag for prereleases and `latest` otherwise. npm versions can't be republished, so if a later step fails, finish it by hand rather than rerunning the workflow.
 5. Creates the tag and GitHub release on the commit it ran from, marking prereleases as such.
 6. Sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`. This step uses `REPO_DISPATCH_TOKEN`; the rest of the workflow uses the workflow's own `GITHUB_TOKEN`.
