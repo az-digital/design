@@ -1,0 +1,111 @@
+name: Release
+run-name: Release v${{ inputs.version }}
+
+# The git tag is the only record of a release's version: package.json files on
+# main have no "version". This workflow sets it in the runner, publishes the
+# packages, then creates the tag and GitHub release, so nothing is committed
+# and no pull request is needed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release, such as 1.2.0 or 1.3.0-beta.1 (no leading v)
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Publish packages and create release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create the tag and GitHub release
+      packages: write # publish to GitHub Packages
+    env:
+      VERSION: ${{ inputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check workflow is running from main
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Run this workflow from the main branch"
+            exit 1
+          fi
+
+      - name: Check version and tag
+        id: check
+        run: |
+          if ! [[ "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Version must look like 1.2.3 or 1.2.3-beta.1, without a leading v"
+            exit 1
+          fi
+          if gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/v${VERSION}" --silent 2>/dev/null; then
+            echo "::error::Tag v${VERSION} already exists"
+            exit 1
+          fi
+          if [[ "$VERSION" == *-* ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://npm.pkg.github.com
+          scope: '@az-digital'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set package versions
+        run: |
+          npm version "$VERSION" --workspaces --include-workspace-root \
+            --no-git-tag-version --no-workspaces-update --ignore-scripts
+          RELEASE_VERSION="$VERSION" node scripts/validate-release.mjs
+
+      - name: Build publishable packages
+        run: npm run build:tokens && npm run build:contracts
+
+      - name: Check packed packages and consumer imports
+        run: npm run check:package-artifacts
+
+      # npm versions can't be republished, but tags and releases can be
+      # deleted, so publish before creating the tag.
+      - name: Publish public workspaces
+        run: npm publish --workspaces --tag "$NPM_DIST_TAG" --registry=https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+          NPM_DIST_TAG: ${{ steps.check.outputs.prerelease == 'true' && 'next' || 'latest' }}
+
+      - name: Create tag and GitHub release
+        env:
+          PRERELEASE: ${{ steps.check.outputs.prerelease }}
+        run: |
+          args=(--target "$GITHUB_SHA" --title "v${VERSION}" --generate-notes)
+          if [ "$PRERELEASE" = "true" ]; then
+            args+=(--prerelease --latest=false)
+          fi
+          gh release create "v${VERSION}" "${args[@]}"
+
+      # Releases created with GITHUB_TOKEN don't trigger other workflows, so
+      # the docs site deploy is sent from here rather than on the release event.
+      - name: Trigger digital.arizona.edu/design deploy
+        uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: az-digital/digital.arizona.edu
+          event-type: az_design_release
+          client-payload: '{"sha": "${{ github.sha }}", "tag": "v${{ inputs.version }}", "version": "${{ inputs.version }}", "prerelease": ${{ steps.check.outputs.prerelease }}}'
