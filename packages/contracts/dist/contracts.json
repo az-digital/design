@@ -1704,6 +1704,333 @@
     "token": "az.color.brand.gray.800"
   },
   {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "call-to-action-card",
+    "variant": null,
+    "part": "action",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-top",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "header-footer",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "card",
+    "variant": null,
+    "part": "header-footer",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.150"
+  },
+  {
     "contract": "heading-sidebar",
     "variant": null,
     "part": "root",
@@ -2094,6 +2421,864 @@
     "token": "az.heading.font-family.sm"
   },
   {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "size",
+    "token": null,
+    "type": "dimension",
+    "value": "60px",
+    "description": "Icon size: an icon font's font size, or an SVG's width and height."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "icon",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "icon-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.width",
+    "token": null,
+    "type": "number",
+    "value": "5",
+    "description": "Image shape: its width, against aspect-ratio.height. The image is 5:3."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.height",
+    "token": null,
+    "type": "number",
+    "value": "3",
+    "description": "Image shape: its height, against aspect-ratio.width. The image is 5:3."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "250ms",
+    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "hover",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "image-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the card's fill and text colors take to change on hover and with keyboard focus. Turned off when someone asks for reduced motion; the colors still change."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the card's color changes: ease-out. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "hover",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "root",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "fill",
+    "token": "az.color.bg.card.cloud-hover"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "link-card",
+    "variant": null,
+    "part": "text",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
     "contract": "list",
     "variant": null,
     "part": "root",
@@ -2182,5 +3367,398 @@
     "condition": null,
     "property": "color",
     "token": "az.color.fg.rain"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "fill",
+    "token": "az.color.bg.card.cloud"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the fill sets the card apart from the page. In a forced colors (high contrast) mode, which removes fills, draw a 1px border instead so the card keeps its edge."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.tinta"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card text size: the same as body text."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card text line height: the same as body text."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "text",
+    "kind": "default",
+    "condition": null,
+    "property": "margin-bottom",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "18px",
+    "description": "Card link text size."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.semibold"
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Card link line height."
+  },
+  {
+    "contract": "quick-links-card",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": "az.spacing.150"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "Card border width: none, since the photo fills the card."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius",
+    "token": "az.radius.4"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.width",
+    "token": null,
+    "type": "number",
+    "value": "1",
+    "description": "Photo shape: its width, against aspect-ratio.height. The photo is square."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "aspect-ratio.height",
+    "token": null,
+    "type": "number",
+    "value": "1",
+    "description": "Photo shape: its height, against aspect-ratio.width. The photo is square."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "250ms",
+    "description": "How long the image takes to zoom in, and back out. Turned off when someone asks for reduced motion; the image still zooms."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "description": "Easing for the image zoom: ease. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "hover",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows on hover: 8% larger. Implementations use it as transform: scale()."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "image",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "scale",
+    "token": null,
+    "type": "number",
+    "value": "1.08",
+    "description": "How much the image grows while keyboard focus is on the card's link: the same as on hover."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "22px",
+    "description": "Card title text size."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "dimension",
+    "value": "30px",
+    "description": "Card title line height. The space below the title is measured from this line."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "gradient.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "height",
+    "token": null,
+    "type": "number",
+    "value": "50",
+    "description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.bottom",
+    "token": "az.spacing.300"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.white"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
   }
 ]

@@ -29,9 +29,9 @@ const preview: Preview = {
     actions: { disable: true },
     interactions: { disable: true },
     options: {
-      storySort: {
-        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Interaction', ['Inputs', 'Selections', 'States'], 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Typography', 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', '*'], '*'], 'Bear Down 100'],
-      },
+    storySort: {
+      order: ['Primary', ['Overview', 'Brand', ['Overview', 'Typography', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], '*'], '*'], 'Bear Down 100'],
+    },
     },
   },
 };

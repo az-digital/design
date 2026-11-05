@@ -12,7 +12,7 @@ const modes = {
 type HeadingsArgs = { Mode: keyof typeof modes };
 
 const meta = {
-  title: 'Primary/Foundations/Typography',
+  title: 'Primary/Brand/Typography',
   args: { Mode: 'sans-serif' },
   argTypes: {
     Mode: { control: 'inline-radio', options: Object.keys(modes) },
