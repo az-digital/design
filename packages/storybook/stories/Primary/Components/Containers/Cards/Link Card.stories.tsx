@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { LinkCardProps } from '@az-digital/components-html';
 import { Frame, checkCard } from './cards';
 
 // A title and text that go to one page: the title link covers the whole card, and
@@ -9,7 +11,11 @@ type LinkCardArgs = { Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Link Card',
-  tags: ['!dev'],
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('link-card', {
+    props: (args: LinkCardArgs): LinkCardProps => ({ title: args.Title, text: args.Text, link: args.Link }),
+  }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
   args: {
     Title: 'Distance Locations',
     Text: 'Close-to-home flexibility with locations across the state of Arizona.',
@@ -20,18 +26,6 @@ const meta = {
     Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  render: (args) => (
-    <Frame>
-      <div className="card bg-cloud hover">
-        <div className="card-body">
-          <h3 className="card-title h5 fw-bold mb-2">
-            <a href={args.Link} className="stretched-link text-reset text-decoration-none">{args.Title}</a>
-          </h3>
-          <p className="card-text">{args.Text}</p>
-        </div>
-      </div>
-    </Frame>
-  ),
 } satisfies Meta<LinkCardArgs>;
 
 export default meta;

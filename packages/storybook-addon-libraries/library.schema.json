@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/az-digital/design/packages/storybook-addon-libraries/library.schema.json",
+  "title": "Component library manifest",
+  "description": "The `azDesign.library` field of a component library's package.json. Storybook registers every package that has one.",
+  "type": "object",
+  "required": ["key", "title", "status", "codeLanguage", "readme"],
+  "additionalProperties": false,
+  "properties": {
+    "key": {
+      "description": "Short id used in the toolbar global (`?globals=library:<key>`) and in story tags (`lib:<key>`).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "title": {
+      "description": "Name shown in the toolbar and docs.",
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "description": "`preview` until the library is verified on its target platform, then `supported`. Preview libraries are labeled in the toolbar.",
+      "enum": ["preview", "supported"]
+    },
+    "codeLanguage": {
+      "description": "Language of the code the adapter's `source` returns, for syntax highlighting.",
+      "type": "string",
+      "examples": ["html", "jsx", "twig"]
+    },
+    "readme": {
+      "description": "Path to the library's README, relative to its package.json.",
+      "type": "string"
+    },
+    "stylesheets": {
+      "description": "Stylesheets the library needs on the page: absolute URLs, or paths relative to its package.json. Storybook loads them while the library is selected.",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "adapter": {
+      "description": "Subpath export of the module that renders the library's components in Storybook, e.g. `./storybook`.",
+      "type": "string",
+      "pattern": "^\\./"
+    },
+    "ref": {
+      "description": "URL of a Storybook rendered by the library's own platform, for a library that can't render in this one.",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "oneOf": [
+    { "required": ["adapter"], "not": { "required": ["ref"] } },
+    { "required": ["ref"], "not": { "required": ["adapter"] } }
+  ]
+}
