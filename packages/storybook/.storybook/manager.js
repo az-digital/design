@@ -1,6 +1,7 @@
 import { addons } from 'storybook/manager-api';
-import azTheme from './azTheme';
+import { colorSchemeQuery, getAzTheme } from './azTheme';
 
-addons.setConfig({
-  theme: azTheme,
-});
+const updateTheme = () => addons.setConfig({ theme: getAzTheme() });
+
+updateTheme();
+globalThis.matchMedia(colorSchemeQuery).addEventListener('change', updateTheme);
