@@ -12,6 +12,9 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@az-digital/components-html": "*",
+    "@az-digital/components-web": "*",
+    "@az-digital/storybook-addon-libraries": "*",
     "@az-digital/storybook-addon-tokens": "*",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/addon-mcp": "^10.6.5",
