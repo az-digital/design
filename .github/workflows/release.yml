@@ -75,7 +75,6 @@ jobs:
         run: |
           npm version "$VERSION" --workspaces --include-workspace-root \
             --no-git-tag-version --no-workspaces-update --ignore-scripts
-          RELEASE_VERSION="$VERSION" node scripts/validate-release.mjs
 
       - name: Build publishable packages
         run: npm run build:tokens && npm run build:contracts

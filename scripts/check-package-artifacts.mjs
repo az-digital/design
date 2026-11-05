@@ -3,7 +3,8 @@
 // tarball npm would publish contains what its package declares. Nothing is
 // listed here: every check comes from the packages themselves.
 //
-// For each non-private workspace, `npm pack --dry-run` must include:
+// There must be at least one non-private workspace, and each must be in the
+// @az-digital scope. For each one, `npm pack --dry-run` must include:
 // - something for each entry in package.json `files`
 // - each `exports`, `main` and `types` target (a wildcard export must match
 //   at least one file)
@@ -22,6 +23,13 @@ const workspaces = globSync(root.workspaces)
 
 if (workspaces.length === 0) {
   throw new Error('No publishable workspaces were found');
+}
+
+// GitHub Packages only accepts packages in the owner's scope. Catch others
+// here, or `npm publish --workspaces` would publish some packages and then fail.
+const unscoped = workspaces.filter(({ manifest }) => !manifest.name?.startsWith('@az-digital/'));
+if (unscoped.length > 0) {
+  throw new Error(`Non-private workspaces must use the @az-digital scope: ${unscoped.map(({ dir }) => dir).join(', ')}`);
 }
 
 // A glob or export pattern as a regular expression over packed paths.
