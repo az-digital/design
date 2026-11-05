@@ -144,7 +144,7 @@ Each published release is hosted on digital.arizona.edu by version:
 - `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
 - [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
 
-To publish, bump `version` in `package.json` (keep the workspace packages in sync), merge to `main`, then publish a GitHub release tagged `v<version>` (e.g. `v0.0.1`). `.github/workflows/publish-docs-site.yml` checks that the tag matches `package.json` and sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`.
+To publish, bump `version` in `package.json` and each publishable workspace package, merge to `main`, then publish a GitHub release tagged `v<version>` (e.g. `v0.0.1`). `.github/workflows/publish-packages.yml` checks that the tag and publishable package versions match, then publishes every non-private `@az-digital` workspace to GitHub Packages. `.github/workflows/publish-docs-site.yml` checks that the tag matches `package.json` and sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`.
 
 Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
 

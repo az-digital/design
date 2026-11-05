@@ -12,6 +12,7 @@
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
+  "repository": "https://github.com/az-digital/design.git",
   "keywords": [
     "design-tokens",
     "design-system",

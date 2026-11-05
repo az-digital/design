@@ -1,0 +1,59 @@
+name: Publish npm packages
+run-name: Publish npm packages for ${{ github.event.release.tag_name }}
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish-packages:
+    name: Publish packages to GitHub Packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository to workspace
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://npm.pkg.github.com
+          scope: '@az-digital'
+
+      - name: Check release tag matches publishable package versions
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { existsSync, readFileSync, readdirSync } from 'node:fs';
+
+          const root = JSON.parse(readFileSync('package.json', 'utf8'));
+          if (process.env.TAG_NAME !== `v${root.version}`) {
+            throw new Error(`Release tag ${process.env.TAG_NAME} must be v${root.version} to match package.json`);
+          }
+
+          const packages = readdirSync('packages', { withFileTypes: true })
+            .filter((entry) => entry.isDirectory())
+            .filter((entry) => existsSync(`packages/${entry.name}/package.json`))
+            .map((entry) => JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8')))
+            .filter((pkg) => pkg.name?.startsWith('@az-digital/') && !pkg.private);
+
+          if (packages.length === 0) {
+            throw new Error('No publishable @az-digital packages were found');
+          }
+
+          for (const pkg of packages) {
+            if (pkg.version !== root.version) {
+              throw new Error(`${pkg.name} version ${pkg.version} must match root package.json version ${root.version}`);
+            }
+          }
+          NODE
+
+      - name: Publish all public workspaces
+        run: npm publish --workspaces --registry=https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

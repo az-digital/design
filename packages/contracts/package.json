@@ -14,6 +14,7 @@
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
+  "repository": "https://github.com/az-digital/design.git",
   "author": "Arizona Digital",
   "license": "MIT",
   "scripts": {
