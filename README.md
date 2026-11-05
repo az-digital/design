@@ -144,7 +144,18 @@ Each published release is hosted on digital.arizona.edu by version:
 - `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
 - [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
 
-To publish, run the **Create release** workflow from `main` with action **prepare** and the target version. Package manifests start at `0.0.0` as an unpublished baseline. The workflow uses `npm version` to update the root and all workspaces on a `release/v<version>` branch, opens a pull request, and enables auto-merge; GitHub merges it when the repository's branch-protection requirements pass. Then run the workflow again from `main` with action **publish** and the same version; it verifies the versions match and creates a GitHub release tagged `v<version>` (e.g. `v0.0.1`). Set the prerelease option for a prerelease, and set “Make this the latest release” to false for prereleases. The workflow uses `REPO_DISPATCH_TOKEN` to push the release branch, open and auto-merge the PR, and create the release so the release event triggers downstream workflows. Auto-merge must be enabled in repository settings, and required human approvals must be satisfied. `.github/workflows/publish-packages.yml` validates the release version, builds each publishable package, checks its packed artifacts with a consumer smoke test, and publishes every non-private `@az-digital` workspace to GitHub Packages. GitHub prereleases use the npm `next` dist-tag; stable releases use `latest`. `.github/workflows/publish-docs-site.yml` sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`.
+To publish, run the **Release** workflow (`.github/workflows/release.yml`) from `main` with the version, such as `1.2.0` or `1.3.0-beta.1`. A version with a suffix is a prerelease.
+
+The git tag is the only record of a release's version: `package.json` files on `main` have no `version`, so nothing is committed for a release and no pull request is needed. Look up versions in the repository's tags and releases, or in GitHub Packages. Because the manifests have no version, `npm pack` and `npm publish` fail outside the workflow, which keeps anyone from publishing from their own machine.
+
+The workflow:
+
+1. Checks the version's format and that tag `v<version>` doesn't exist yet.
+2. Sets the version in every `package.json` in the runner with `npm version`, without committing it, and checks that each non-private workspace is in the `@az-digital` scope (`scripts/validate-release.mjs`).
+3. Builds the publishable packages and checks their packed artifacts with a consumer smoke test (`npm run check:package-artifacts`).
+4. Publishes every non-private `@az-digital` workspace to GitHub Packages, with the npm `next` dist-tag for prereleases and `latest` otherwise. npm versions can't be republished, so if a later step fails, finish it by hand rather than rerunning the workflow.
+5. Creates the tag and GitHub release on the commit it ran from, marking prereleases as such.
+6. Sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`. This step uses `REPO_DISPATCH_TOKEN`; the rest of the workflow uses the workflow's own `GITHUB_TOKEN`.
 
 Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
 
