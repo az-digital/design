@@ -24,36 +24,23 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@az-digital'
 
-      - name: Check release tag matches publishable package versions
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate release version
         env:
-          TAG_NAME: ${{ github.event.release.tag_name }}
-        run: |
-          node --input-type=module <<'NODE'
-          import { existsSync, readFileSync, readdirSync } from 'node:fs';
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_PRERELEASE: ${{ github.event.release.prerelease }}
+        run: node scripts/validate-release.mjs
 
-          const root = JSON.parse(readFileSync('package.json', 'utf8'));
-          if (process.env.TAG_NAME !== `v${root.version}`) {
-            throw new Error(`Release tag ${process.env.TAG_NAME} must be v${root.version} to match package.json`);
-          }
+      - name: Build publishable packages
+        run: npm run build:tokens && npm run build:contracts
 
-          const packages = readdirSync('packages', { withFileTypes: true })
-            .filter((entry) => entry.isDirectory())
-            .filter((entry) => existsSync(`packages/${entry.name}/package.json`))
-            .map((entry) => JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8')))
-            .filter((pkg) => pkg.name?.startsWith('@az-digital/') && !pkg.private);
-
-          if (packages.length === 0) {
-            throw new Error('No publishable @az-digital packages were found');
-          }
-
-          for (const pkg of packages) {
-            if (pkg.version !== root.version) {
-              throw new Error(`${pkg.name} version ${pkg.version} must match root package.json version ${root.version}`);
-            }
-          }
-          NODE
+      - name: Check packed packages and consumer imports
+        run: npm run check:package-artifacts
 
       - name: Publish all public workspaces
-        run: npm publish --workspaces --registry=https://npm.pkg.github.com
+        run: npm publish --workspaces --tag "$NPM_DIST_TAG" --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_DIST_TAG: ${{ github.event.release.prerelease && 'next' || 'latest' }}
