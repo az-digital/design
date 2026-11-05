@@ -1,20 +1,28 @@
 name: Create release
-run-name: Create v${{ inputs.version }} release
+run-name: ${{ inputs.action == 'prepare' && 'Prepare' || 'Publish' }} v${{ inputs.version }}
 
 on:
   workflow_dispatch:
     inputs:
+      action:
+        description: Prepare a version-bump PR or publish the merged version
+        required: true
+        default: prepare
+        type: choice
+        options:
+          - prepare
+          - publish
       version:
-        description: Version to release (must match the package manifests)
+        description: Version to prepare or publish
         required: true
         type: string
       prerelease:
-        description: Create a prerelease
+        description: Create a prerelease (publish action only)
         required: false
         default: false
         type: boolean
       make_latest:
-        description: Make this the latest release (set false for prereleases)
+        description: Make this the latest release (publish action only; false for prereleases)
         required: false
         default: "true"
         type: choice
@@ -27,23 +35,103 @@ permissions:
 
 jobs:
   create-release:
-    name: Create GitHub release
+    name: Prepare or publish release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Validate release inputs
-        env:
-          VERSION: ${{ inputs.version }}
-          PRERELEASE: ${{ inputs.prerelease }}
-          MAKE_LATEST: ${{ inputs.make_latest }}
+      - name: Check workflow is running from main
         run: |
           if [ "$GITHUB_REF" != "refs/heads/main" ]; then
             echo "::error::Run this workflow from the main branch"
             exit 1
           fi
 
+      - name: Set up Node.js
+        if: ${{ inputs.action == 'prepare' }}
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        if: ${{ inputs.action == 'prepare' }}
+        run: npm ci
+
+      - name: Prepare version-bump branch
+        if: ${{ inputs.action == 'prepare' }}
+        env:
+          VERSION: ${{ inputs.version }}
+          GH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+        run: |
+          branch="release/v${VERSION}"
+
+          if git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null; then
+            echo "::error::Release branch ${branch} already exists"
+            exit 1
+          fi
+          if git ls-remote --exit-code origin "refs/tags/v${VERSION}" >/dev/null; then
+            echo "::error::Release tag v${VERSION} already exists"
+            exit 1
+          fi
+
+          git switch --create "$branch"
+          npm version "$VERSION" --no-git-tag-version --workspaces --include-workspace-root
+
+          node --input-type=module <<'NODE'
+          import { existsSync, readFileSync, readdirSync } from 'node:fs';
+
+          const root = JSON.parse(readFileSync('package.json', 'utf8'));
+          if (root.version !== process.env.VERSION) {
+            throw new Error(`Root package version ${root.version} does not match ${process.env.VERSION}`);
+          }
+
+          const packages = readdirSync('packages', { withFileTypes: true })
+            .filter((entry) => entry.isDirectory())
+            .filter((entry) => existsSync(`packages/${entry.name}/package.json`))
+            .map((entry) => JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8')));
+
+          for (const pkg of packages) {
+            if (pkg.version !== root.version) {
+              throw new Error(`${pkg.name} version ${pkg.version} does not match ${root.version}`);
+            }
+          }
+          NODE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json packages/*/package.json
+          git commit -m "chore: prepare release v${VERSION}"
+          auth_header="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          GIT_CONFIG_COUNT=1 \
+            GIT_CONFIG_KEY_0="http.https://github.com/.extraheader" \
+            GIT_CONFIG_VALUE_0="$auth_header" \
+            git push origin "$branch"
+
+      - name: Open version-bump pull request
+        if: ${{ inputs.action == 'prepare' }}
+        env:
+          GH_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "release/v${VERSION}" \
+            --title "chore: prepare release v${VERSION}" \
+            --body "Updates the root and workspace package versions to ${VERSION}. This PR is set to auto-merge when branch-protection requirements pass. After it merges, run the Create release workflow with action=publish."
+          gh pr merge "release/v${VERSION}" --auto --merge --delete-branch
+
+      - name: Validate release inputs
+        if: ${{ inputs.action == 'publish' }}
+        env:
+          VERSION: ${{ inputs.version }}
+          PRERELEASE: ${{ inputs.prerelease }}
+          MAKE_LATEST: ${{ inputs.make_latest }}
+        run: |
           node --input-type=module <<'NODE'
           import { existsSync, readFileSync, readdirSync } from 'node:fs';
 
@@ -73,6 +161,7 @@ jobs:
           NODE
 
       - name: Check release tag does not already exist
+        if: ${{ inputs.action == 'publish' }}
         env:
           VERSION: ${{ inputs.version }}
         run: |
@@ -83,6 +172,7 @@ jobs:
           fi
 
       - name: Create GitHub release
+        if: ${{ inputs.action == 'publish' }}
         uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           token: ${{ secrets.REPO_DISPATCH_TOKEN }}
