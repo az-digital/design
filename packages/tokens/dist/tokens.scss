@@ -87,6 +87,9 @@ $az-focus-ring-width-sm: 1px;
 $az-focus-ring-width-md: 2px; // Width of the keyboard focus ring, everywhere one is drawn, such as links and buttons.
 $az-focus-ring-width-lg: 4px;
 $az-focus-ring-opacity: 0.7; // Opacity of the keyboard focus ring's color where the ring is drawn around a form field, checkbox, radio or switch, so the page shows through it.
+$az-color-bg-card-cloud: $az-color-brand-cloud; // Card fill.
+$az-color-bg-card-cloud-hover: $az-color-brand-blue; // Clickable card fill on hover and with keyboard focus.
+$az-color-bg-card-cloud-active: $az-color-brand-blue; // Clickable card fill while pressed.
 $az-color-bg-button-red: $az-color-brand-red;
 $az-color-bg-button-red-hover: $az-color-brand-sonoran-red;
 $az-color-bg-button-red-active: $az-color-brand-red;

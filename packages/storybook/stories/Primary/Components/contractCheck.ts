@@ -221,6 +221,7 @@ function ring(style: CSSStyleDeclaration, cssProperty: string) {
  *   script. Either the CSS each `<part> <property>` row's hover value is drawn
  *   from, resolved inside the root (`var(--bs-btn-hover-bg)`), or `'focus-visible'`
  *   for an implementation that draws hover and keyboard focus with one rule.
+ * - `sizeAsFontSize`: parts whose `size` is their font size, such as a font icon.
  * - `control`: the form control whose checked, indeterminate and disabled states
  *   are set to check those rows, such as a checkbox's input. The focus element by
  *   default.
@@ -232,6 +233,7 @@ export type ContractTarget = {
   parts: { root: HTMLElement } & Record<string, HTMLElement>;
   focus?: HTMLElement;
   hover?: Record<string, string> | 'focus-visible';
+  sizeAsFontSize?: string[];
   control?: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
   skip?: string[];
 };
@@ -251,16 +253,19 @@ const BUTTON_HOVER: Record<string, string> = {
  * element with focus. Hover rows are read as ContractTarget's `hover` says.
  */
 export function checkContract(target: HTMLElement | ContractTarget, contract: string, options: string[] = []): string[] {
-  const { parts, focus = parts.root, hover = BUTTON_HOVER, control, skip = [] } = target instanceof HTMLElement ? { parts: { root: target } } : target;
+  const { parts, focus = parts.root, hover = BUTTON_HOVER, sizeAsFontSize = [], control, skip = [] } = target instanceof HTMLElement ? { parts: { root: target } } : target;
   const mismatches: string[] = [];
   const name = [contract, ...options].join(' › ');
 
   // Compares a row with the value read for each CSS property it's drawn with.
-  const compare = (row: Row, read: (cssProperty: string) => string, cssProperties = SIDES[row.property] ?? [CSS[row.property]]) => {
+  const compare = (row: Row, read: (cssProperty: string) => string, cssProperties?: string[]) => {
     const element = parts[row.part];
     const fontSize = element ? getComputedStyle(element).fontSize : undefined;
     const opacity = contractRowsFor.find((r) => r.part === row.part && r.condition === row.condition && r.property === OPACITY_OF[row.property]);
-    for (const cssProperty of cssProperties) {
+    const properties = cssProperties ?? (row.property === 'size'
+      ? sizeAsFontSize.includes(row.part) ? ['font-size'] : ['width', 'height']
+      : SIDES[row.property] ?? [CSS[row.property]]);
+    for (const cssProperty of properties) {
       let expected = normalize(cssProperty, computed(cssProperty, expression(row), document.body, fontSize));
       if (opacity) expected = withAlpha(expected, Number(computed('opacity', expression(opacity))));
       const drawn = normalize(cssProperty, computed(cssProperty, read(cssProperty), document.body, fontSize));
@@ -272,7 +277,7 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
       }
       if (!same(expected, drawn)) {
         const where = [row.part, row.condition].filter(Boolean).join(' › ');
-        const side = cssProperties.length > 1 ? ` (${cssProperty})` : '';
+        const side = properties.length > 1 ? ` (${cssProperty})` : '';
         mismatches.push(`${name} › ${where} › ${row.property}${side}: expected ${expected} (${row.token ?? row.value}), got ${drawn}`);
       }
     }
