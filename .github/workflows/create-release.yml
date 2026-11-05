@@ -1,0 +1,94 @@
+name: Create release
+run-name: Create v${{ inputs.version }} release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release (must match the package manifests)
+        required: true
+        type: string
+      prerelease:
+        description: Create a prerelease
+        required: false
+        default: false
+        type: boolean
+      make_latest:
+        description: Make this the latest release (set false for prereleases)
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: read
+
+jobs:
+  create-release:
+    name: Create GitHub release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Validate release inputs
+        env:
+          VERSION: ${{ inputs.version }}
+          PRERELEASE: ${{ inputs.prerelease }}
+          MAKE_LATEST: ${{ inputs.make_latest }}
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Run this workflow from the main branch"
+            exit 1
+          fi
+
+          node --input-type=module <<'NODE'
+          import { existsSync, readFileSync, readdirSync } from 'node:fs';
+
+          const root = JSON.parse(readFileSync('package.json', 'utf8'));
+          if (process.env.VERSION !== root.version) {
+            throw new Error(`Requested version ${process.env.VERSION} must match root package.json version ${root.version}`);
+          }
+          if (process.env.PRERELEASE === 'true' && process.env.MAKE_LATEST === 'true') {
+            throw new Error('A prerelease cannot be marked as the latest release');
+          }
+
+          const packages = readdirSync('packages', { withFileTypes: true })
+            .filter((entry) => entry.isDirectory())
+            .filter((entry) => existsSync(`packages/${entry.name}/package.json`))
+            .map((entry) => JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8')))
+            .filter((pkg) => pkg.name?.startsWith('@az-digital/') && !pkg.private);
+
+          if (packages.length === 0) {
+            throw new Error('No publishable @az-digital packages were found');
+          }
+
+          for (const pkg of packages) {
+            if (pkg.version !== root.version) {
+              throw new Error(`${pkg.name} version ${pkg.version} must match root package.json version ${root.version}`);
+            }
+          }
+          NODE
+
+      - name: Check release tag does not already exist
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          tag_refs=$(git ls-remote origin "refs/tags/v${VERSION}")
+          if [ -n "$tag_refs" ]; then
+            echo "::error::Release tag v${VERSION} already exists"
+            exit 1
+          fi
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          tag_name: v${{ inputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: v${{ inputs.version }}
+          draft: false
+          prerelease: ${{ inputs.prerelease }}
+          make_latest: ${{ inputs.make_latest }}
