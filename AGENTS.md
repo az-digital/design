@@ -26,6 +26,7 @@ Connect to it (project name `az-digital-storybook`) and use it to:
 ### Storybook navigation
 
 - When adding or moving a docs page, update `storySort.order` in `packages/storybook/.storybook/preview.ts` to match its intended position in the relevant overview. Unlisted pages use Storybook's default sort and may appear in an unintended position: a page with stories (`<Meta of={…} />`) sorts after the MDX-only pages around it, and a group's overview (`Docs`) can sort last. List the group's `Docs` first and every page in it, by its exact title.
+- Format nested `storySort.order` arrays across multiple lines, with one string entry per line, so page order changes are easy to review.
 - Verify the rendered sidebar order in Storybook.
 
 ### MDX tables
