@@ -143,6 +143,7 @@ Each published release is hosted on digital.arizona.edu by version:
 
 - `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
 - [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
+- [`https://digital.arizona.edu/design/next/`](https://digital.arizona.edu/design/next/) — the highest release of any kind, prereleases included, so it shows a prerelease such as `2.0.0-beta.1` until a stable release passes it, and is never older than latest
 
 To publish, run the **Release** workflow (`.github/workflows/release.yml`) from `main` with the version, such as `1.2.0` or `1.3.0-beta.1`. A version with a suffix is a prerelease.
 
@@ -155,7 +156,7 @@ The workflow:
 3. Builds the publishable packages and checks their packed artifacts with a consumer smoke test (`npm run check:package-artifacts`).
 4. Publishes every non-private `@az-digital` workspace to GitHub Packages, with the npm `next` dist-tag for prereleases and `latest` otherwise. npm versions can't be republished, so if a later step fails, finish it by hand rather than rerunning the workflow.
 5. Creates the tag and GitHub release on the commit it ran from, marking prereleases as such.
-6. Sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`. This step uses `REPO_DISPATCH_TOKEN`; the rest of the workflow uses the workflow's own `GITHUB_TOKEN`.
+6. Sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`, then refreshes `docs/design/latest/` and `docs/design/next/`. This step uses `REPO_DISPATCH_TOKEN`; the rest of the workflow uses the workflow's own `GITHUB_TOKEN`.
 
 Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
 
