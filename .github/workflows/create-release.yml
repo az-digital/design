@@ -51,17 +51,6 @@ jobs:
             exit 1
           fi
 
-      - name: Set up Node.js
-        if: ${{ inputs.action == 'prepare' }}
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-
-      - name: Install dependencies
-        if: ${{ inputs.action == 'prepare' }}
-        run: npm ci
-
       - name: Prepare version-bump branch
         if: ${{ inputs.action == 'prepare' }}
         env:
@@ -80,26 +69,38 @@ jobs:
           fi
 
           git switch --create "$branch"
-          npm version "$VERSION" --no-git-tag-version --workspaces --include-workspace-root
+          npm pkg set "version=${VERSION}" --workspaces --include-workspace-root
 
           node --input-type=module <<'NODE'
-          import { existsSync, readFileSync, readdirSync } from 'node:fs';
+          import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 
           const root = JSON.parse(readFileSync('package.json', 'utf8'));
           if (root.version !== process.env.VERSION) {
             throw new Error(`Root package version ${root.version} does not match ${process.env.VERSION}`);
           }
+          const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+          lock.version = root.version;
+          lock.packages[''].version = root.version;
 
           const packages = readdirSync('packages', { withFileTypes: true })
             .filter((entry) => entry.isDirectory())
             .filter((entry) => existsSync(`packages/${entry.name}/package.json`))
-            .map((entry) => JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8')));
+            .map((entry) => {
+              const pkg = JSON.parse(readFileSync(`packages/${entry.name}/package.json`, 'utf8'));
+              const lockEntry = lock.packages[`packages/${entry.name}`];
+              if (pkg.version !== root.version || !lockEntry) {
+                throw new Error(`${pkg.name} version or package-lock entry does not match ${root.version}`);
+              }
+              lockEntry.version = pkg.version;
+              return pkg;
+            });
 
           for (const pkg of packages) {
             if (pkg.version !== root.version) {
               throw new Error(`${pkg.name} version ${pkg.version} does not match ${root.version}`);
             }
           }
+          writeFileSync('package-lock.json', `${JSON.stringify(lock, null, 2)}\n`);
           NODE
 
           git config user.name "github-actions[bot]"
