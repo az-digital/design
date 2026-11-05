@@ -4,26 +4,39 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Using in Figma
 
-Start with Arizona Digital's UI Kit in Figma to build designs with shared components and styles, rather than importing design tokens into each file.
+Use Arizona Digital's UI Kit to build designs with shared components and styles. You don't need repository access, a Tokens Studio connection, or a separate token import to get started.
 
 ## Start with the UI Kit
 
-<a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw/AZ-Digital-UX-Design-System?node-id=2017-20" target="_blank" rel="noreferrer">Open the Arizona Digital UI Kit in Figma (working copy)</a>.
+<a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw" target="_blank" rel="noreferrer">Open the Arizona Digital UI Kit in Figma →</a>
 
-This is the team's working copy, not a finalized release. Its contents may change as the design system develops.
+1. **Sign in to Figma and open the UI Kit.** If you can't open it, request access through Figma.
+2. **Enable the UI Kit library in your project.** In your project's Figma file, open **Assets → Libraries**, find the Arizona Digital UI Kit, and add it. Library availability depends on your team's access and Figma plan.
+3. **Build with published components.** Insert components from the Assets panel. Keep your project work in your own file rather than editing the shared UI Kit.
+4. **Check Storybook for guidance.** Refer to each component's documentation for its anatomy, supported states, and usage.
 
-1. Sign in to Figma and open the UI Kit. If you can't open it, request access through Figma.
-2. Use the kit's available components and styles as the starting point for your designs.
-3. Check the component's Storybook documentation for its anatomy, states and usage guidance.
+If the library isn't available in your project, contact the Arizona Digital team for access or an alternative way to use the kit.
 
-You don't need repository access or a Tokens Studio sync connection just to use the UI Kit.
+## Keeping up to date
+
+The UI Kit is updated as Arizona Digital's design system evolves. Review and accept library updates in Figma to keep your designs aligned with the latest published components.
 
 ## Applying tokens in your designs
 
-- Color text, surfaces, borders and states with the tokens for what they color and where (`az.color.bg.*`, `az.color.fg.*`).
-- Use brand tokens (`az.color.brand.*`) to explain the palette, not in place of those tokens in production UI.
-- Preserve component instances and their variable or style bindings where available instead of replacing them with hard-coded values.
+Use the kit's available variables and styles to keep your designs consistent with the system.
+
+- **Choose tokens by purpose.** Use semantic color tokens that describe what the color does, such as `az.color.bg.*` for backgrounds and `az.color.fg.*` for foreground content. Choose the appropriate role and state for text, surfaces, borders, and interactive elements.
+- **Use brand tokens as palette references.** The `az.color.brand.*` tokens define the underlying brand palette. Prefer semantic tokens when applying colors to UI elements.
+- **Preserve existing bindings.** Keep component instances and their variable or style bindings where available, rather than detaching instances or replacing bound values with hard-coded colors.
+
+## Reviewing upcoming changes
+
+To review upcoming design-system changes, open the Figma branch with the same name as the corresponding GitHub branch in the design repository. This keeps your review aligned with the changes being developed.
+
+Use the published UI Kit library for project work; branches are for previewing changes before they're released.
 
 ## Advanced: working directly with tokens
 
-Importing or syncing tokens is a separate workflow for people maintaining token bindings or contributing design-system changes, not a prerequisite for using the UI Kit. See <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">Contributing</a> for Tokens Studio setup, pulling repository updates, and exporting tokens to Figma variables.
+Importing or syncing tokens is a separate workflow for people maintaining token bindings or contributing design-system changes. It is not a prerequisite for using the UI Kit.
+
+See <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">Contributing</a> for Tokens Studio setup, pulling repository updates, and exporting tokens to Figma variables.
