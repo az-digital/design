@@ -1,117 +1,104 @@
+// Run by the Release workflow after it sets versions and builds, before it
+// publishes. npm versions can't be republished, so this checks that each
+// tarball npm would publish contains what its package declares. Nothing is
+// listed here: every check comes from the packages themselves.
+//
+// There must be at least one non-private workspace, and each must be in the
+// @az-digital scope. For each one, `npm pack --dry-run` must include:
+// - something for each entry in package.json `files`
+// - each `exports`, `main` and `types` target (a wildcard export must match
+//   at least one file)
+// - each output in a Style Dictionary config, for a package that has one,
+//   since its wildcard exports can't say which outputs should exist
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { existsSync, globSync, readFileSync } from 'node:fs';
+import { join, posix } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-const packages = [
-  {
-    name: '@az-digital/tokens',
-    files: [
-      'package.json',
-      'tokens.json',
-      'dist/tokens.css',
-      'dist/tokens.scss',
-      'dist/tokens.vars.js',
-      'dist/tokens.vars.d.ts',
-    ],
-    smokeTest: `
-      for (const specifier of [
-        '@az-digital/tokens/package.json',
-        '@az-digital/tokens/tokens.json',
-        '@az-digital/tokens/dist/tokens.css',
-        '@az-digital/tokens/dist/tokens.scss',
-        '@az-digital/tokens/dist/tokens.vars.js',
-        '@az-digital/tokens/dist/tokens.vars.d.ts',
-      ]) {
-        await readFile(new URL(import.meta.resolve(specifier)));
-      }
-      const tokens = JSON.parse(await readFile(new URL(import.meta.resolve('@az-digital/tokens/tokens.json'))));
-      const css = await readFile(new URL(import.meta.resolve('@az-digital/tokens/dist/tokens.css')), 'utf8');
-      const scss = await readFile(new URL(import.meta.resolve('@az-digital/tokens/dist/tokens.scss')), 'utf8');
-      const vars = await import('@az-digital/tokens/dist/tokens.vars.js');
-      if (!tokens.az || !css.includes('--az-') || !scss.includes('$az-') || !vars.az.color.brand.red) {
-        throw new Error('Token package exports or generated files are incomplete');
-      }
-    `,
-  },
-  {
-    name: '@az-digital/contracts',
-    files: [
-      'package.json',
-      'contract.schema.json',
-      'contracts/button.contract.json',
-      'dist/contracts.json',
-    ],
-    smokeTest: `
-      for (const specifier of [
-        '@az-digital/contracts/package.json',
-        '@az-digital/contracts/contract.schema.json',
-        '@az-digital/contracts/contracts/button.contract.json',
-        '@az-digital/contracts/dist/contracts.json',
-      ]) {
-        await readFile(new URL(import.meta.resolve(specifier)));
-      }
-      const schema = JSON.parse(await readFile(new URL(import.meta.resolve('@az-digital/contracts/contract.schema.json'))));
-      const button = JSON.parse(await readFile(new URL(import.meta.resolve('@az-digital/contracts/contracts/button.contract.json'))));
-      const contracts = JSON.parse(await readFile(new URL(import.meta.resolve('@az-digital/contracts/dist/contracts.json'))));
-      if (!schema.$schema || button.id !== 'button' || !contracts.some((entry) => entry.contract === 'button')) {
-        throw new Error('Contracts package exports or generated files are incomplete');
-      }
-    `,
-  },
-];
+const root = JSON.parse(readFileSync('package.json', 'utf8'));
+const workspaces = globSync(root.workspaces)
+  .filter((dir) => existsSync(join(dir, 'package.json')))
+  .map((dir) => ({ dir, manifest: JSON.parse(readFileSync(join(dir, 'package.json'), 'utf8')) }))
+  .filter(({ manifest }) => !manifest.private);
 
-const temporaryDirectory = mkdtempSync(join(tmpdir(), 'az-design-package-check-'));
+if (workspaces.length === 0) {
+  throw new Error('No publishable workspaces were found');
+}
 
-try {
-  const tarballs = [];
-  for (const pkg of packages) {
-    const dryRun = JSON.parse(execFileSync(
-      'npm',
-      ['pack', `--workspace=${pkg.name}`, '--dry-run', '--json'],
-      { encoding: 'utf8' },
-    ))[0];
-    const packedFiles = new Set(dryRun.files.map((file) => file.path));
-    for (const file of pkg.files) {
-      if (!packedFiles.has(file)) {
-        throw new Error(`${pkg.name} tarball is missing ${file}`);
-      }
+// GitHub Packages only accepts packages in the owner's scope. Catch others
+// here, or `npm publish --workspaces` would publish some packages and then fail.
+const unscoped = workspaces.filter(({ manifest }) => !manifest.name?.startsWith('@az-digital/'));
+if (unscoped.length > 0) {
+  throw new Error(`Non-private workspaces must use the @az-digital scope: ${unscoped.map(({ dir }) => dir).join(', ')}`);
+}
+
+// A glob or export pattern as a regular expression over packed paths.
+const pattern = (glob) => new RegExp(`^${glob
+  .replace(/^\.\//, '')
+  .split('**')
+  .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '[^/]*'))
+  .join('.*')}$`);
+
+// Every string target in an `exports` value, through conditions and arrays.
+const exportTargets = (value) => {
+  if (typeof value === 'string') return [value];
+  if (Array.isArray(value)) return value.flatMap(exportTargets);
+  if (value && typeof value === 'object') return Object.values(value).flatMap(exportTargets);
+  return [];
+};
+
+// Wildcard exports map `*` onto any path, so they match across folders.
+const exportPattern = (target) => new RegExp(`^${target
+  .replace(/^\.\//, '')
+  .replace(/[.+?^${}()|[\]\\]/g, '\\$&')
+  .replace(/\*/g, '.+')}$`);
+
+const styleDictionaryOutputs = async (dir) => {
+  const configPath = join(dir, 'style-dictionary.config.mjs');
+  if (!existsSync(configPath)) return [];
+  const { default: config } = await import(pathToFileURL(configPath).href);
+  return Object.values(config.platforms ?? {}).flatMap((platform) =>
+    (platform.files ?? []).map((file) => posix.normalize(posix.join(platform.buildPath ?? '', file.destination))));
+};
+
+const problems = [];
+
+for (const { dir, manifest } of workspaces) {
+  const [packed] = JSON.parse(execFileSync(
+    'npm',
+    ['pack', `--workspace=${manifest.name}`, '--dry-run', '--json'],
+    { encoding: 'utf8' },
+  ));
+  const paths = packed.files.map((file) => file.path);
+  const has = (regex) => paths.some((path) => regex.test(path));
+  const missing = (what) => problems.push(`${manifest.name}: ${what}`);
+
+  for (const entry of manifest.files ?? []) {
+    const glob = entry.replace(/\/$/, '');
+    if (!has(pattern(glob)) && !has(pattern(`${glob}/**`))) {
+      missing(`nothing packed for "files" entry ${entry}`);
     }
-
-    const packed = JSON.parse(execFileSync(
-      'npm',
-      ['pack', `--workspace=${pkg.name}`, '--json', `--pack-destination=${temporaryDirectory}`],
-      { encoding: 'utf8' },
-    ))[0];
-    tarballs.push(join(temporaryDirectory, packed.filename));
-    console.log(`Validated packed files for ${pkg.name}`);
   }
 
-  const consumerDirectory = join(temporaryDirectory, 'consumer');
-  mkdirSync(consumerDirectory);
-  writeFileSync(join(consumerDirectory, 'package.json'), JSON.stringify({
-    name: 'az-design-package-consumer-check',
-    private: true,
-    type: 'module',
-  }));
-  execFileSync('npm', [
-    'install',
-    '--prefix', consumerDirectory,
-    '--ignore-scripts',
-    '--no-audit',
-    '--no-fund',
-    ...tarballs,
-  ], { stdio: 'inherit' });
+  const targets = [
+    ...exportTargets(manifest.exports),
+    ...[manifest.main, manifest.types].filter(Boolean),
+  ];
+  for (const target of targets) {
+    if (!has(exportPattern(target))) {
+      missing(`nothing packed for export target ${target}`);
+    }
+  }
 
-  const smokeTest = `
-    import { readFile } from 'node:fs/promises';
-    ${packages.map((pkg) => pkg.smokeTest).join('\n')}
-    console.log('Packed packages resolve and load their expected exports');
-  `;
-  execFileSync(process.execPath, ['--input-type=module', '--eval', smokeTest], {
-    cwd: consumerDirectory,
-    stdio: 'inherit',
-  });
-} finally {
-  rmSync(temporaryDirectory, { recursive: true, force: true });
+  for (const output of await styleDictionaryOutputs(dir)) {
+    if (!paths.includes(output)) {
+      missing(`Style Dictionary output ${output} is not packed`);
+    }
+  }
+
+  console.log(`Checked ${paths.length} packed files for ${manifest.name}`);
+}
+
+if (problems.length > 0) {
+  throw new Error(`Packed packages are incomplete:\n- ${problems.join('\n- ')}`);
 }
