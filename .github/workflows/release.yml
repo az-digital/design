@@ -1,5 +1,5 @@
 name: Release
-run-name: Release v${{ inputs.version }}
+run-name: Release `v${{ inputs.version }}` from `${{ github.ref_name }}` branch
 
 # The git tag is the only record of a release's version: package.json files on
 # main have no "version". This workflow sets it in the runner, publishes the
