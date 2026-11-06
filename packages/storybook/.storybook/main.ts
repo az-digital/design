@@ -5,7 +5,11 @@ import type { StorybookConfig } from '@storybook/react-vite';
 // Link token files at the branch this Storybook is built from: the PR's branch
 // for review-site builds of a pull request, the pushed branch for other CI
 // builds, and main locally (a local branch may not exist on GitHub).
-const gitRef = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || "main";
+const gitRef =
+  process.env.STORYBOOK_GIT_REF ||
+  process.env.GITHUB_HEAD_REF ||
+  process.env.GITHUB_REF_NAME ||
+  "main";
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
@@ -20,6 +24,17 @@ const config: StorybookConfig = {
       options: {
         styleDictionary: "../../tokens/style-dictionary.config.mjs",
         repositoryUrl: `https://github.com/az-digital/design/blob/${gitRef}/`,
+      },
+    },
+    {
+      // The Library toolbar: switches which component library the stories render
+      // with. Libraries register themselves with an azDesign.library manifest in
+      // their package.json; these options are only this Storybook's choices.
+      name: getAbsolutePath("@az-digital/storybook-addon-libraries"),
+      options: {
+        order: ["html", "web"],
+        default: "html",
+        overrides: { html: { stylesheets: [] } },
       },
     },
     getAbsolutePath("@storybook/addon-vitest")

@@ -1,7 +1,6 @@
 {
   "name": "az-digital-design",
   "private": true,
-  "version": "0.0.1",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -13,18 +12,26 @@
     "build:tokens": "npm run build -w @az-digital/tokens",
     "build:storybook": "npm run build -w @az-digital/storybook",
     "dev:storybook": "npm run dev -w @az-digital/storybook",
+    "lint": "eslint .",
     "lint:storybook": "npm run lint -w @az-digital/storybook",
+    "typecheck": "tsc --noEmit -p packages/storybook && tsc --noEmit -p packages/storybook-addon-tokens",
     "test:storybook": "npm run test -w @az-digital/storybook",
     "build:all": "npm run build:tokens && npm run build:contracts && npm run build:storybook",
     "build:contracts": "npm run build -w @az-digital/contracts",
+    "check:package-artifacts": "node scripts/check-package-artifacts.mjs",
     "postinstall": "patch-package --error-on-fail"
   },
   "description": "Arizona Digital design system monorepo",
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/react-vite": "^10.6.5",
+    "eslint": "^10.14.0",
+    "eslint-plugin-storybook": "^10.6.5",
+    "globals": "^17.13.0",
     "patch-package": "^8.0.1",
-    "storybook": "^10.6.3"
+    "storybook": "^10.6.3",
+    "typescript-eslint": "^8.72.1"
   }
 }
