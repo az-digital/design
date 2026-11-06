@@ -5,12 +5,16 @@
     :root {
         --sidebar-bg: var(--az-color-brand-cloud);
         --sidebar-text: var(--az-color-brand-tinta);
+        --sidebar-hover-bg: var(--az-color-brand-arroyo-blue);
+        --sidebar-hover-text: var(--az-color-fg-white);
     }
 
     @media (prefers-color-scheme: dark) {
         :root {
             --sidebar-bg: var(--az-color-brand-tinta);
             --sidebar-text: var(--az-color-brand-cloud);
+            --sidebar-hover-bg: var(--az-color-brand-azurite);
+            --sidebar-hover-text: var(--az-color-fg-white);
         }
     }
 
@@ -24,6 +28,29 @@
         color: var(--sidebar-text);
     }
 
+    .sidebar-item:not([data-selected="true"]):hover,
+    .sidebar-item:not([data-selected="true"]):focus-within {
+        background-color: var(--sidebar-hover-bg) !important;
+    }
+
+    .sidebar-item:not([data-selected="true"]):hover>a,
+    .sidebar-item:not([data-selected="true"]):hover>button,
+    .sidebar-item:not([data-selected="true"]):focus-within>a,
+    .sidebar-item:not([data-selected="true"]):focus-within>button {
+        color: var(--sidebar-hover-text) !important;
+    }
+
+    .sidebar-item:not([data-selected="true"]):hover svg[type],
+    .sidebar-item:not([data-selected="true"]):focus-within svg[type] {
+        color: var(--sidebar-hover-text) !important;
+    }
+
+    /* Hide the 3-dots context menu button on sidebar links */
+    .sidebar-item [data-testid="context-menu"],
+    .sidebar-item [aria-label*="context menu" i] {
+        display: none !important;
+    }
+    
     /* Sidebar Search Box Styling */
     .search-field {
         border: var(--az-border-width-md) solid currentColor !important;
@@ -72,8 +99,8 @@
         background: var(--az-color-brand-arroyo-blue);
         padding: 3px var(--az-spacing-100);
         border-radius: 10px;
-        border: var(--az-border-width-md) solid var(--az-color-brand-cloud);
         line-height: var(--az-line-height-medium);
+        margin-top: 5px;
     }
 
 </style>
