@@ -122,6 +122,7 @@ export const az = {
   },
   "fontSize": {
     "root": "var(--az-font-size-root)",
+    "base": "var(--az-font-size-base)",
     "sm": "var(--az-font-size-sm)",
     "lg": "var(--az-font-size-lg)",
     "h6": "var(--az-font-size-h6)",
@@ -146,6 +147,7 @@ export const az = {
       "sm": "var(--az-focus-ring-width-sm)",
       "md": "var(--az-focus-ring-width-md)",
       "lg": "var(--az-focus-ring-width-lg)"
-    }
+    },
+    "opacity": "var(--az-focus-ring-opacity)"
   }
 };

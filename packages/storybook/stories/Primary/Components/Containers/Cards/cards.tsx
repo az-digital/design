@@ -47,6 +47,6 @@ export const checkCard =
     // Arizona Bootstrap draws hover and keyboard focus with one rule, such as
     // .card.bg-cloud.hover:is(:hover, :focus-visible, :has(:focus-visible)), so
     // hover is read with keyboard focus on the title link.
-    const target = { parts, focus: part('.stretched-link') ?? root, hover: 'focus-visible' as const };
+    const target = { parts, focus: part('.stretched-link') ?? root, hover: 'focus-visible' as const, sizeAsFontSize: ['icon'] };
     await expect(checkContract(target, contract)).toEqual([]);
   };

@@ -1,0 +1,125 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "radio",
+  "name": "Radio",
+  "description": "A circle to pick one option from a group, beside its label. An 18px White circle with a Gray 600 border, filled Red with a White dot when it's chosen.",
+  "sources": [
+    "Arizona Bootstrap's latest 5.x release: .form-check and .form-check-input[type=radio]"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The radio and its label, side by side.",
+      "tokens": {
+        "padding.left": {
+          "$type": "dimension",
+          "$value": {
+            "value": 27,
+            "unit": "px"
+          },
+          "$description": "Space from the radio's left edge to its label: the 18px circle and 9px after it."
+        },
+        "min-height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 28,
+            "unit": "px"
+          },
+          "$description": "At least one line of label text tall: 28px."
+        },
+        "margin.bottom": "{az.spacing.025}"
+      },
+      "parts": {
+        "input": {
+          "description": "The circle. When it's checked and has keyboard focus, its checked colors stay and only the focus ring shows focus: a checked circle keeps its Red border.",
+          "tokens": {
+            "size": {
+              "$type": "dimension",
+              "$value": {
+                "value": 18,
+                "unit": "px"
+              },
+              "$description": "Radio width and height: 18px, the size of the label text."
+            },
+            "fill": "{az.color.brand.white}",
+            "border.width": "{az.border.width.sm}",
+            "border.color": "{az.color.brand.gray.600}",
+            "border.radius": "{az.radius.pill}",
+            "margin.top": {
+              "$type": "dimension",
+              "$value": {
+                "value": 5,
+                "unit": "px"
+              },
+              "$description": "Space above the circle, so it lines up with the first line of its label."
+            }
+          },
+          "states": {
+            "focus-visible": {
+              "border.color": "{az.color.brand.bougainvillea}",
+              "ring.color": "{az.color.brand.bougainvillea}",
+              "ring.width": "{az.focus-ring.width.lg}",
+              "ring.opacity": "{az.focus-ring.opacity}"
+            },
+            "checked": {
+              "fill": "{az.color.brand.red}",
+              "border.color": "{az.color.brand.red}"
+            },
+            "active": {
+              "brightness": {
+                "$type": "number",
+                "$value": 0.9,
+                "$description": "The circle darkens to 90% brightness while it's pressed."
+              }
+            },
+            "disabled": {
+              "opacity": {
+                "$type": "number",
+                "$value": 0.5,
+                "$description": "A disabled circle and its label are at 50% opacity."
+              }
+            }
+          },
+          "parts": {
+            "dot": {
+              "description": "The dot in a chosen radio.",
+              "states": {
+                "checked": {
+                  "color": "{az.color.fg.white}",
+                  "size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 9,
+                      "unit": "px"
+                    },
+                    "$description": "Dot width and height: half the 18px circle."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "label": {
+          "description": "The radio's label, to its right.",
+          "tokens": {
+            "font.size": "{az.font-size.base}",
+            "line-height": {
+              "$type": "number",
+              "$value": 1.5556,
+              "$description": "Label line height: 28px on 18px text."
+            },
+            "color": "{az.color.brand.gray.900}"
+          },
+          "states": {
+            "disabled": {
+              "opacity": {
+                "$type": "number",
+                "$value": 0.5,
+                "$description": "A disabled control's label is at 50% opacity."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
