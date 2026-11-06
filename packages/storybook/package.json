@@ -1,6 +1,5 @@
 {
   "name": "@az-digital/storybook",
-  "version": "0.0.1",
   "private": true,
   "type": "module",
   "scripts": {
