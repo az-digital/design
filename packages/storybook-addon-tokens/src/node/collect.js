@@ -30,25 +30,32 @@ const WRITES_VALUE = new Set(['css/variables', 'scss/variables', 'scss/map-flat'
 /** A platform with no transforms: Style Dictionary resolves aliases but leaves values as the source file writes them. */
 const SOURCE_PLATFORM = 'storybook-addon-tokens/source';
 
+export function getAliasPath(value, references) {
+  if (typeof value !== 'string' || references.length !== 1 || !Array.isArray(references[0].ref)) return undefined;
+  const path = references[0].ref.join('.');
+  return value.trim() === `{${path}}` ? path : undefined;
+}
+
 /**
  * Every token, in source order, as Style Dictionary reads it: its value as the
  * source file writes it, the value Style Dictionary resolves it to (before any
  * platform transform), and the token it aliases, if its whole value is one
  * reference. Style Dictionary also rejects broken and circular references here.
  */
-async function readTokens(sd) {
+async function readTokens(sd, sourceForPath) {
   const prop = (token, name) => (sd.usesDtcg ? token[`$${name}`] : token[name === 'description' ? 'comment' : name]);
   const source = await sd.extend({ platforms: { [SOURCE_PLATFORM]: {} } });
   const { allTokens, tokens } = await source.getPlatformTokens(SOURCE_PLATFORM);
   return allTokens.map((token) => {
     const value = prop(token.original, 'value');
     const references = getReferences(value, tokens, { usesDtcg: sd.usesDtcg, unfilteredTokens: tokens });
-    const aliasOf = references.length === 1 && value === references[0].key ? references[0].path.join('.') : undefined;
+    const aliasOf = getAliasPath(value, references);
     return {
       path: token.path.join('.'),
       type: prop(token, 'type'),
       description: prop(token, 'description'),
       extensions: token.$extensions,
+      source: sourceForPath(token.filePath),
       value,
       resolvedValue: prop(token, 'value'),
       aliasOf,
@@ -96,7 +103,12 @@ export async function collectTokens(configPath, { repositoryUrl } = {}) {
   const repoPath = (absolutePath) => toPosix(relative(repoRoot, absolutePath));
   const link = (path) => (repositoryUrl ? `${repositoryUrl.replace(/\/?$/, '/')}${path}` : undefined);
 
-  const tokens = await readTokens(sd);
+  const sourceForPath = (filePath) => {
+    if (!filePath) return undefined;
+    const path = repoPath(isAbsolute(filePath) ? filePath : resolve(configDir, filePath));
+    return { path, url: link(path) };
+  };
+  const tokens = await readTokens(sd, sourceForPath);
   const aliasOf = new Map(tokens.map((token) => [token.path, token.aliasOf]));
 
   const artifacts = [];
