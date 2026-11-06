@@ -29,34 +29,108 @@ const preview: Preview = {
           [
             'Overview',
             'Brand',
-            ['Overview', 'Color', '*'],
+            [
+              'Overview',
+              'Color',
+              '*'
+            ],
             'Foundations',
             [
               'Overview',
               'Terminology',
               '*',
               'Layout',
-              ['Overview', 'Breakpoints', 'Grid', 'Spacing', '*'],
+              [
+                'Overview',
+                'Breakpoints',
+                'Grid',
+                'Spacing',
+                '*'
+              ],
               'Terminology',
               'Accessibility',
-              ['*'],
+              [
+                '*'
+              ],
               'Content Design',
-              ['*'],
+              [
+                '*'
+              ],
               'Interaction',
-              ['*'],
+              [
+                '*'
+              ],
               'Usability',
-              ['*'],
+              [
+                '*'
+              ],
               '*',
             ],
-            'Components', 
-            ['Overview', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], '*'],
-            'Tokens',
-            ['Overview', 'Using in Figma', 'Using in Code', 'Naming', 'Contributing', '*'],
-            '*',
-          ],
-          'Bear Down 100',
-        ],
+            'Components',
+            [
+              'Overview',
+              'Buttons',
+              [
+                'Docs',
+                'Button',
+                'Icon buttons',
+                'Segmented Control'
+              ], 'Containers', [
+                'Docs',
+                'Accordions',
+                'Cards',
+                [
+                  'Docs',
+                  'Card',
+                  'Link Card',
+                  'Icon Card',
+                  'Image Card',
+                  'Title on Image Card',
+                  'Quick Links Card',
+                  'Call to Action Card'
+                ],
+                'Table',
+                'Tabs',
+                'Inputs',
+                [
+                  '*'
+                ],
 
+                'Indicators',
+                [
+                  '*'
+                ],
+
+
+              ],
+              'Navigation',
+              [
+                'Docs',
+                'Arizona Header',
+                'Breadcrumbs',
+                'Link',
+                'Pagination',
+                'Side Nav',
+                'Slide Panel',
+                'Top nav'
+              ],
+              'Popups',
+              [
+                '*'
+              ],
+              'Tokens',
+              [
+                'Overview',
+                'Using in Figma',
+                'Using in Code',
+                'Naming',
+                'Contributing',
+                '*'
+              ],
+              '*',
+            ],
+            'Bear Down 100',
+          ],
       },
     },
   },

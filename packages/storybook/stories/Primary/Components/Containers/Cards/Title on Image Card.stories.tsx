@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { componentStories } from '@az-digital/storybook-addon-libraries';
+import type { TitleOnImageCardProps } from '@az-digital/components-html';
 import { Frame, checkCard, squarePhoto } from './cards';
 
 // A square photo with only a title on it, with the markup in Arizona Bootstrap's
@@ -9,7 +11,16 @@ type TitleOnImageCardArgs = { Image: string; 'Image description': string; Title:
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Title on Image Card',
-  tags: ['!dev'],
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('title-on-image-card', {
+    props: (args: TitleOnImageCardArgs): TitleOnImageCardProps => ({
+      image: args.Image || squarePhoto,
+      imageDescription: args['Image description'],
+      title: args.Title,
+      link: args.Link,
+    }),
+  }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
   args: { Image: '', 'Image description': '', Title: 'Undergraduate', Link: '#title-on-image-card' },
   argTypes: {
     Image: { control: 'text', description: "The photo's URL. It's cropped to a square. Leave it empty here for a placeholder.", type: { name: 'string', required: true } },
@@ -21,20 +32,6 @@ const meta = {
     Title: { control: 'text', description: "One to three words for where the card goes. It's the link's text.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  render: (args) => (
-    <Frame>
-      <div className="card border-0 hover overflow-hidden">
-        <div className="ratio ratio-1x1 overflow-hidden">
-          <img className="card-img-top object-fit-cover hover-img-zoom-in" src={args.Image || squarePhoto} alt={args['Image description']} />
-          <div className="card-img-overlay p-0 d-flex flex-column">
-            <h3 className="card-title text-bg-gradient-blue fw-bold h-50 mt-auto mb-0 p-4 d-flex align-items-end h5 hover-text-underline">
-              <a href={args.Link} className="stretched-link text-reset text-decoration-none">{args.Title}</a>
-            </h3>
-          </div>
-        </div>
-      </div>
-    </Frame>
-  ),
 } satisfies Meta<TitleOnImageCardArgs>;
 
 export default meta;
