@@ -168,7 +168,7 @@ Storybook styles its components with Arizona Bootstrap compiled from its own Sas
 
 To make a patch:
 
-1. Edit the file under `node_modules/arizona-bootstrap/scss/`. Write the change the way Arizona Bootstrap would, with its own variables (`$gray-200`, not `$az-color-brand-gray-200`), so it can be applied as it is.
+1. Run `npm run build:tokens`, then refresh the declarations in `node_modules/arizona-bootstrap/scss/_design-tokens.scss` from `packages/tokens/dist/tokens.scss`. Preserve the file's header and `// fusv-disable`/`// fusv-enable` guards, and point its `Source:` link at a commit on `main`. The installed v5.3.0 entrypoint already imports this file before its variables, so don't add a component-level import. Use its variables for the design tokens the pull request adds or changes (`$az-color-bg-button-white-hover`, not `$gray-200`), and Arizona Bootstrap's own variable only for a value that has no token.
 2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`, where `<name>` says what the change is, such as `white-buttons-hover-and-active`. To change the newest patch instead, run `npx patch-package arizona-bootstrap` without `--append`.
 3. Restart Storybook and check the component.
 4. Commit the patch with the contract change it supports. In the pull request, say which Arizona Bootstrap issue or pull request it's for.
