@@ -131,6 +131,7 @@ const preview: Preview = {
             ],
             'Bear Down 100',
           ],
+        ],
       },
     },
   },
