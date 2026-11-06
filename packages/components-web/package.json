@@ -4,7 +4,11 @@
   "description": "Custom elements for the Arizona Digital design system's components.",
   "type": "module",
   "license": "MIT",
-  "repository": "https://github.com/az-digital/design.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/az-digital/design.git",
+    "directory": "packages/components-web"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./storybook": "./storybook/adapter.ts",

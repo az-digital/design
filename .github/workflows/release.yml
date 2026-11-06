@@ -79,7 +79,7 @@ jobs:
       - name: Build publishable packages
         run: npm run build:tokens && npm run build:contracts
 
-      - name: Check packed packages and consumer imports
+      - name: Check packed packages
         run: npm run check:package-artifacts
 
       # npm versions can't be republished, but tags and releases can be
