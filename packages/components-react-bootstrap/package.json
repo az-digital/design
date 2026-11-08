@@ -38,6 +38,46 @@
       "types": "./dist/Nav.d.ts",
       "import": "./dist/Nav.js",
       "require": "./dist/Nav.cjs"
+    },
+    "./Cards": {
+      "types": "./dist/Cards.d.ts",
+      "import": "./dist/Cards.js",
+      "require": "./dist/Cards.cjs"
+    },
+    "./Card": {
+      "types": "./dist/Card.d.ts",
+      "import": "./dist/Card.js",
+      "require": "./dist/Card.cjs"
+    },
+    "./LinkCard": {
+      "types": "./dist/LinkCard.d.ts",
+      "import": "./dist/LinkCard.js",
+      "require": "./dist/LinkCard.cjs"
+    },
+    "./IconCard": {
+      "types": "./dist/IconCard.d.ts",
+      "import": "./dist/IconCard.js",
+      "require": "./dist/IconCard.cjs"
+    },
+    "./ImageCard": {
+      "types": "./dist/ImageCard.d.ts",
+      "import": "./dist/ImageCard.js",
+      "require": "./dist/ImageCard.cjs"
+    },
+    "./TitleOnImageCard": {
+      "types": "./dist/TitleOnImageCard.d.ts",
+      "import": "./dist/TitleOnImageCard.js",
+      "require": "./dist/TitleOnImageCard.cjs"
+    },
+    "./QuickLinksCard": {
+      "types": "./dist/QuickLinksCard.d.ts",
+      "import": "./dist/QuickLinksCard.js",
+      "require": "./dist/QuickLinksCard.cjs"
+    },
+    "./CallToActionCard": {
+      "types": "./dist/CallToActionCard.d.ts",
+      "import": "./dist/CallToActionCard.js",
+      "require": "./dist/CallToActionCard.cjs"
     }
   },
   "files": [

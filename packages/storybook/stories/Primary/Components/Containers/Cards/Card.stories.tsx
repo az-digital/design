@@ -12,7 +12,7 @@ type CardArgs = { Title: string; Body: string; Header: string; Footer: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('card', {
     props: (args: CardArgs): CardProps => ({
       title: args.Title,

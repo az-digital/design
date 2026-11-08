@@ -7,9 +7,10 @@ import { forwardRef } from "react";
 import { jsx } from "react/jsx-runtime";
 var Button = forwardRef(function Button2(props, ref) {
   const { htmlTag = "a", href = "#", style = "solid", color = "red", size, disabled = false, active = false, className, children } = props;
+  const bootstrapColor = color === "rain" ? "sky" : color;
   const classes = classNames(
     "btn",
-    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${color}` : `btn-${color}`,
+    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${bootstrapColor}` : `btn-${bootstrapColor}`,
     size && `btn-${size}`,
     disabled && htmlTag === "a" && "disabled",
     active && "active",
@@ -35,4 +36,4 @@ var Button = forwardRef(function Button2(props, ref) {
 export {
   Button
 };
-//# sourceMappingURL=chunk-ZG3M5ZO5.js.map
+//# sourceMappingURL=chunk-4UWR763E.js.map

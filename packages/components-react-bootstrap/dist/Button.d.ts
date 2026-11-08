@@ -2,15 +2,12 @@ import * as react from 'react';
 import { ReactNode } from 'react';
 
 type ButtonStyle = 'solid' | 'outline' | 'link';
-type ButtonColor = 'red' | 'rain';
+type ButtonColor = 'red' | 'blue' | 'rain' | 'white' | 'white-text-red' | 'white-text-blue';
 type ButtonSize = 'sm' | 'lg';
 type ButtonHtmlTag = 'button' | 'a';
 /**
- * Props otherwise mirror `@az-digital/components-html`'s `renderButton` so
- * the HTML and React implementations render equivalent markup from the same
- * args, except `color`: components-html additionally supports `success`
- * (Bootstrap's stock semantic color, not an Arizona brand color) — no React
- * implementation yet.
+ * The Storybook adapter translates the shared contract color and size into
+ * this component's separate style, color, and size props.
  */
 type ButtonProps = {
     /** HTML element to render. Defaults to `a`. */
@@ -19,7 +16,7 @@ type ButtonProps = {
     href?: string;
     /** Button style variant. Defaults to `solid`. */
     style?: ButtonStyle;
-    /** Button color. Defaults to `red`. */
+    /** Button color. Defaults to `red`. Rain uses Arizona Bootstrap's `sky` class. */
     color?: ButtonColor;
     /** Button size modifier. */
     size?: ButtonSize;

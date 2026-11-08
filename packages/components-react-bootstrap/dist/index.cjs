@@ -23,8 +23,15 @@ __export(src_exports, {
   Accordion: () => Accordion,
   ArizonaHeader: () => ArizonaHeader,
   Button: () => Button,
+  CallToActionCard: () => CallToActionCard,
+  Card: () => Card,
+  IconCard: () => IconCard,
+  ImageCard: () => ImageCard,
+  LinkCard: () => LinkCard,
   Nav: () => Nav,
-  Tabs: () => Tabs
+  QuickLinksCard: () => QuickLinksCard,
+  Tabs: () => Tabs,
+  TitleOnImageCard: () => TitleOnImageCard
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -142,9 +149,10 @@ var import_react3 = require("react");
 var import_jsx_runtime3 = require("react/jsx-runtime");
 var Button = (0, import_react3.forwardRef)(function Button2(props, ref) {
   const { htmlTag = "a", href = "#", style = "solid", color = "red", size, disabled = false, active = false, className, children } = props;
+  const bootstrapColor = color === "rain" ? "sky" : color;
   const classes = classNames(
     "btn",
-    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${color}` : `btn-${color}`,
+    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${bootstrapColor}` : `btn-${bootstrapColor}`,
     size && `btn-${size}`,
     disabled && htmlTag === "a" && "disabled",
     active && "active",
@@ -167,9 +175,67 @@ var Button = (0, import_react3.forwardRef)(function Button2(props, ref) {
   );
 });
 
+// src/components/Cards/Cards.tsx
+var import_jsx_runtime4 = require("react/jsx-runtime");
+function Card({ title, body, header = "", footer = "" }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card bg-cloud border-0", children: [
+    header && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card-header", children: header }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body text-tinta", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "card-title h5 fw-bold mb-2 text-azurite", children: title }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { dangerouslySetInnerHTML: { __html: body } })
+    ] }),
+    footer && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card-footer", children: footer })
+  ] });
+}
+function LinkedTitle({ title, link }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "card-title h5 fw-bold mb-2", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("a", { href: link, className: "stretched-link text-reset text-decoration-none", children: title }) });
+}
+function LinkCard({ title, text, link }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card bg-cloud hover", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(LinkedTitle, { title, link }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "card-text", children: text })
+  ] }) });
+}
+function IconCard({ icon, title, text, link }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card bg-cloud hover", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("span", { className: "card-icon material-symbols-rounded fw-light text-nowrap", style: { fontVariationSettings: "'FILL' 0" }, "aria-hidden": "true", children: icon }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(LinkedTitle, { title, link }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "card-text", children: text })
+  ] }) });
+}
+function ImageCard({ image, imageDescription = "", title, text, link }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card bg-cloud hover overflow-hidden", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("img", { className: "card-img-top img-fluid hover-img-zoom-in", src: image, alt: imageDescription }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(LinkedTitle, { title, link }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "card-text", children: text })
+    ] })
+  ] });
+}
+function TitleOnImageCard({ image, imageDescription = "", title, link }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card border-0 hover overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "ratio ratio-1x1 overflow-hidden", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("img", { className: "card-img-top object-fit-cover hover-img-zoom-in", src: image, alt: imageDescription }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card-img-overlay p-0 d-flex flex-column", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "card-title text-bg-gradient-blue fw-bold h-50 mt-auto mb-0 p-4 d-flex align-items-end h5 hover-text-underline", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("a", { href: link, className: "stretched-link text-reset text-decoration-none", children: title }) }) })
+  ] }) });
+}
+function QuickLinksCard({ title, text, links }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card bg-cloud border-0", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "card-title h5 fw-bold mb-2 text-azurite", children: title }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "card-text text-tinta", children: text }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("ul", { className: "list-unstyled mb-0", children: (links ?? []).map(({ label, link }, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("a", { href: link, className: "card-link text-azurite fw-semibold tk-proxima-nova-condensed", children: label }) }, `${link}-${index}`)) })
+  ] }) });
+}
+function CallToActionCard({ title, text, button, buttonLink }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "card bg-cloud border-0", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "card-body", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "card-title h5 fw-bold mb-2 text-azurite", children: title }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "card-text text-tinta", children: text }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("a", { href: buttonLink, className: "btn btn-red stretched-link mt-3", children: button })
+  ] }) });
+}
+
 // src/components/Nav/Nav.tsx
 var import_react4 = require("react");
-var import_jsx_runtime4 = require("react/jsx-runtime");
+var import_jsx_runtime5 = require("react/jsx-runtime");
 function variantClass(variant) {
   switch (variant) {
     case "tabs":
@@ -185,8 +251,8 @@ function variantClass(variant) {
   }
 }
 function NavItems({ items, navClasses }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_jsx_runtime4.Fragment, { children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("li", { className: "nav-item", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_jsx_runtime5.Fragment, { children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("li", { className: "nav-item", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
       "a",
       {
         className: classNames("nav-link", item.active && "active", item.disabled && "disabled"),
@@ -196,18 +262,18 @@ function NavItems({ items, navClasses }) {
         children: item.label
       }
     ),
-    item.items && item.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("ul", { className: navClasses, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(NavItems, { items: item.items, navClasses }) })
+    item.items && item.items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("ul", { className: navClasses, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(NavItems, { items: item.items, navClasses }) })
   ] }, index)) });
 }
 var Nav = (0, import_react4.forwardRef)(function Nav2(props, ref) {
   const { items, variant, vertical = false, fill = false, justify = false, className } = props;
   const navClasses = classNames("nav", variantClass(variant), vertical && "flex-column", fill && "nav-fill", justify && "nav-justified");
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("ul", { ref, className: classNames(navClasses, className), children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(NavItems, { items, navClasses }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("ul", { ref, className: classNames(navClasses, className), children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(NavItems, { items, navClasses }) });
 });
 
 // src/components/Tabs/Tabs.tsx
 var import_react_bootstrap2 = require("react-bootstrap");
-var import_jsx_runtime5 = require("react/jsx-runtime");
+var import_jsx_runtime6 = require("react/jsx-runtime");
 function resolveActiveIndex(items, defaultActiveIndex) {
   if (defaultActiveIndex !== void 0) {
     return defaultActiveIndex;
@@ -218,7 +284,7 @@ function resolveActiveIndex(items, defaultActiveIndex) {
 function Tabs(props) {
   const { id = "tabs", items, variant = "tabs", vertical = false, fill = false, justify = false, className } = props;
   const activeIndex = resolveActiveIndex(items, props.defaultActiveIndex);
-  const nav = /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+  const nav = /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
     import_react_bootstrap2.Nav,
     {
       variant,
@@ -227,14 +293,14 @@ function Tabs(props) {
       role: "tablist",
       className: [vertical && "flex-column", vertical && "me-3", className].filter(Boolean).join(" ") || void 0,
       "aria-orientation": vertical ? "vertical" : void 0,
-      children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_bootstrap2.Nav.Link, { as: "button", type: "button", eventKey: String(index), disabled: item.disabled, children: item.title }, index))
+      children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react_bootstrap2.Nav.Link, { as: "button", type: "button", eventKey: String(index), disabled: item.disabled, children: item.title }, index))
     }
   );
-  const panes = /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_bootstrap2.Tab.Content, { children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_bootstrap2.Tab.Pane, { eventKey: String(index), children: item.content }, index)) });
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(import_react_bootstrap2.Tab.Container, { id, defaultActiveKey: String(activeIndex), children: vertical ? /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: "d-flex align-items-start", children: [
+  const panes = /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react_bootstrap2.Tab.Content, { children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react_bootstrap2.Tab.Pane, { eventKey: String(index), children: item.content }, index)) });
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react_bootstrap2.Tab.Container, { id, defaultActiveKey: String(activeIndex), children: vertical ? /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "d-flex align-items-start", children: [
     nav,
     panes
-  ] }) : /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(import_jsx_runtime5.Fragment, { children: [
+  ] }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
     nav,
     panes
   ] }) });
@@ -244,7 +310,14 @@ function Tabs(props) {
   Accordion,
   ArizonaHeader,
   Button,
+  CallToActionCard,
+  Card,
+  IconCard,
+  ImageCard,
+  LinkCard,
   Nav,
-  Tabs
+  QuickLinksCard,
+  Tabs,
+  TitleOnImageCard
 });
 //# sourceMappingURL=index.cjs.map
