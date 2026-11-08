@@ -1,6 +1,7 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
+import { renderButton } from '../../components-html/src/Button';
 import { ArizonaHeader, Button } from '../../components-react-bootstrap/src';
 import adapter from '../../components-react-bootstrap/storybook/adapter';
 
@@ -10,8 +11,8 @@ describe('React Button', () => {
     ['red', 'outline', 'btn-outline-red'],
     ['blue', 'solid', 'btn-blue'],
     ['blue', 'outline', 'btn-outline-blue'],
-    ['rain', 'solid', 'btn-sky'],
-    ['rain', 'outline', 'btn-outline-sky'],
+    ['rain', 'solid', 'btn-rain'],
+    ['rain', 'outline', 'btn-outline-rain'],
     ['white-text-red', 'solid', 'btn-white-text-red'],
     ['white-text-blue', 'solid', 'btn-white-text-blue'],
     ['white', 'outline', 'btn-outline-white'],
@@ -35,6 +36,15 @@ describe('React Button', () => {
       size: 'small',
     });
     expect(source).toBe('<Button htmlTag="button" color="rain" style="outline" size="sm">{"Apply <now> \\"today\\""}</Button>');
+  });
+});
+
+describe('HTML Button', () => {
+  it.each([
+    ['rain', 'btn-rain'],
+    ['outline-rain', 'btn-outline-rain'],
+  ] as const)('renders %s with %s', (color, expected) => {
+    expect(renderButton({ label: 'Apply', color })).toBe(`<button type="button" class="btn ${expected}">Apply</button>`);
   });
 });
 

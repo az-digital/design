@@ -18,7 +18,7 @@ export type ButtonProps = {
   href?: string;
   /** Button style variant. Defaults to `solid`. */
   style?: ButtonStyle;
-  /** Button color. Defaults to `red`. Rain uses Arizona Bootstrap's `sky` class. */
+  /** Button color. Defaults to `red`. */
   color?: ButtonColor;
   /** Button size modifier. */
   size?: ButtonSize;
@@ -34,10 +34,9 @@ export type ButtonProps = {
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(function Button(props, ref) {
   const { htmlTag = 'a', href = '#', style = 'solid', color = 'red', size, disabled = false, active = false, className, children } = props;
 
-  const bootstrapColor = color === 'rain' ? 'sky' : color;
   const classes = classNames(
     'btn',
-    style === 'link' ? 'btn-link' : style === 'outline' ? `btn-outline-${bootstrapColor}` : `btn-${bootstrapColor}`,
+    style === 'link' ? 'btn-link' : style === 'outline' ? `btn-outline-${color}` : `btn-${color}`,
     size && `btn-${size}`,
     disabled && htmlTag === 'a' && 'disabled',
     active && 'active',

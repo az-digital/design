@@ -149,10 +149,9 @@ var import_react3 = require("react");
 var import_jsx_runtime3 = require("react/jsx-runtime");
 var Button = (0, import_react3.forwardRef)(function Button2(props, ref) {
   const { htmlTag = "a", href = "#", style = "solid", color = "red", size, disabled = false, active = false, className, children } = props;
-  const bootstrapColor = color === "rain" ? "sky" : color;
   const classes = classNames(
     "btn",
-    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${bootstrapColor}` : `btn-${bootstrapColor}`,
+    style === "link" ? "btn-link" : style === "outline" ? `btn-outline-${color}` : `btn-${color}`,
     size && `btn-${size}`,
     disabled && htmlTag === "a" && "disabled",
     active && "active",

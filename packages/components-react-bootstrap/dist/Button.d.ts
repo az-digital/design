@@ -16,7 +16,7 @@ type ButtonProps = {
     href?: string;
     /** Button style variant. Defaults to `solid`. */
     style?: ButtonStyle;
-    /** Button color. Defaults to `red`. Rain uses Arizona Bootstrap's `sky` class. */
+    /** Button color. Defaults to `red`. */
     color?: ButtonColor;
     /** Button size modifier. */
     size?: ButtonSize;
