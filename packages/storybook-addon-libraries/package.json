@@ -1,6 +1,5 @@
 {
   "name": "@az-digital/storybook-addon-libraries",
-  "version": "0.0.1",
   "private": true,
   "description": "Storybook addon that registers component libraries from their package.json manifests and switches which one the stories render with.",
   "type": "module",

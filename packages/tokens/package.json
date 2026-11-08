@@ -1,6 +1,5 @@
 {
   "name": "@az-digital/tokens",
-  "version": "0.0.1",
   "description": "Design tokens for Arizona Digital design system.",
   "type": "module",
   "files": [
@@ -11,6 +10,11 @@
     "./tokens.json": "./tokens.json",
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/az-digital/design.git",
+    "directory": "packages/tokens"
   },
   "keywords": [
     "design-tokens",
