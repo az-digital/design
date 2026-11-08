@@ -3,7 +3,6 @@ export * from './Button';
 export * from './ArizonaHeader';
 export * from './CallToActionCard';
 export * from './Card';
-export * from './Cards';
 export { escapeHtml } from './escapeHtml';
 export * from './IconCard';
 export * from './ImageCard';

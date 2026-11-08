@@ -153,7 +153,6 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Acc
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
     return () => window.removeEventListener('hashchange', openFromHash);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run for a real hash navigation, not every render
   }, [anchors]);
 
   return (

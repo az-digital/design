@@ -46,13 +46,13 @@ type Story = StoryObj<typeof meta>;
 
 // Shown on the Card docs page, not as its own page in the sidebar. Its play function
 // is the card's contract check.
-export const Default: Story = { tags: ['!dev'], args: { Slot: '<p>Some basic text in the card.</p>' }, play: checkCard('card') };
+export const Default: Story = { tags: ['!dev'], args: { Body: '<p>Some basic text in the card.</p>' }, play: checkCard('card') };
 
 // A title and rich text in the slot: a paragraph and a list. It has its own page in the
 // sidebar and isn't on the docs page.
 export const OfficeHours: Story = {
   args: {
-    Slot: '<h3 class="card-title h5 fw-bold mb-2 text-azurite">Office Hours</h3><p>Drop in, or book a time with an advisor.</p><ul><li>Monday to Thursday, 8 a.m. to 5 p.m.</li><li>Friday, 8 a.m. to noon</li></ul>',
+    Body: '<p>Drop in, or book a time with an advisor.</p><ul><li>Monday to Thursday, 8 a.m. to 5 p.m.</li><li>Friday, 8 a.m. to noon</li></ul>',
   },
   play: checkCard('card'),
 };

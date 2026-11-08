@@ -28,18 +28,6 @@ import type {
   QuickLinksCardProps,
   TabsProps,
   TitleOnImageCardProps,
-  renderQuickLinksCard,
-  renderTitleOnImageCard,
-  type AccordionProps,
-  type ArizonaHeaderProps,
-  type ButtonProps,
-  type CallToActionCardProps,
-  type CardProps,
-  type IconCardProps,
-  type ImageCardProps,
-  type LinkCardProps,
-  type QuickLinksCardProps,
-  type TitleOnImageCardProps,
 } from '../src';
 
 export default {
