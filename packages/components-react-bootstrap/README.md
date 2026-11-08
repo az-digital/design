@@ -22,7 +22,7 @@ The package declares React and React DOM as peer dependencies. Load the Arizona 
 
 ## How it consumes design tokens
 
-Style from the design tokens the component's contract points at (`--az-color-bg-button-red`, for example) and import the generated token CSS in the consuming application. Values specific to the component are in its contract (`packages/contracts/contracts/`). Component implementations should refer to design token variables, not copy resolved values. Keep implementation-specific gaps documented rather than inventing a design token.
+Use the design tokens referenced by a component's contract for shared decisions, and import the generated token CSS in the consuming application. Keep component-specific values, such as sizes and timings, in the contract rather than creating `az.component.*` tokens. Implementations should refer to token variables, not copy resolved values.
 
 ## Contribute to it
 

@@ -10,6 +10,17 @@ type ImageCardArgs = { Image: string; 'Image description': string; Title: string
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Image Card',
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('image-card', {
+    props: (args: ImageCardArgs): ImageCardProps => ({
+      image: args.Image || widePhoto,
+      imageDescription: args['Image description'],
+      title: args.Title,
+      text: args.Text,
+      link: args.Link,
+    }),
+  }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
   args: {
     Image: '',
     'Image description': '',
@@ -28,9 +39,6 @@ const meta = {
     Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  tags: ['!dev', 'lib:html'],
-  ...componentStories('image-card', { props: (args: ImageCardArgs): ImageCardProps => ({ image: args.Image || widePhoto, imageDescription: args['Image description'], title: args.Title, text: args.Text, link: args.Link }) }),
-  decorators: [(Story) => <Frame><Story /></Frame>],
 } satisfies Meta<ImageCardArgs>;
 
 export default meta;

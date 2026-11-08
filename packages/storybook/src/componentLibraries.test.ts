@@ -12,16 +12,16 @@ const requiredSections = ['## What it is / Best for', '## Install / use', '## Ho
 const adapters = new Map<string, LibraryAdapter>(
   await Promise.all(
     libraries
-      .filter((library) => library.adapterFile)
+      .filter((library): library is (typeof libraries)[number] & { adapterFile: string } => Boolean(library.adapterFile))
       .map(async (library) => [library.key, (await import(pathToFileURL(library.adapterFile).href)).default] as const),
   ),
 );
 
 // Each story file that uses componentStories: its component id and its lib:* tags.
 const storyFiles = Object.entries(
-  import.meta.glob('../stories/**/*.stories.tsx', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>,
+  import.meta.glob('../stories/**/*.stories.{ts,tsx,js,jsx,mjs}', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>,
 ).flatMap(([path, source]) => {
-  const component = source.match(/componentStories\(\s*'([^']+)'/)?.[1];
+  const component = source.match(/componentStories\(\s*(['"])([^'"]+)\1/)?.[2];
   if (!component) return [];
   const tags = [...(source.match(/^ {2}tags: \[([^\]]*)\]/m)?.[1] ?? '').matchAll(/'lib:([^']+)'/g)].map((match) => match[1]);
   return [{ path: relative(storybookDir, resolve(storybookDir, 'src', path)), component, tags }];

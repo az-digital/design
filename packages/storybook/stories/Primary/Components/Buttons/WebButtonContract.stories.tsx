@@ -52,7 +52,11 @@ export const AzButton: Story = {
       const options = ['color', 'size'].flatMap((axis) =>
         element.hasAttribute(axis) ? [`${axis}.${element.getAttribute(axis)}`] : [],
       );
-      return checkContract({ parts: { root: button }, hover }, 'button', options);
+      return checkContract(
+        { parts: { root: button, label: button }, hover: { ...hover, 'label color': 'var(--hover-label)' } },
+        'button',
+        options,
+      );
     });
     await expect(mismatches).toEqual([]);
   },

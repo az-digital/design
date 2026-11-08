@@ -52,7 +52,7 @@ This is an npm workspaces monorepo with four packages:
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook-addon-libraries` | `packages/storybook-addon-libraries/` | Storybook addon: the Library toolbar, which switches component stories between registered libraries, and the contract a library meets to register ([README](packages/storybook-addon-libraries/README.md)) |
 | `@az-digital/components-html` | `packages/components-html/` | Arizona Bootstrap markup for each component, shown in Storybook; never released ([README](packages/components-html/README.md)) |
-| `@az-digital/components-web` | `packages/components-web/` | Custom elements for each component, in preview ([README](packages/components-web/README.md)) |
+| `@az-digital/components-web` | `packages/components-web/` | Custom elements for each component, in preview and not published until a JavaScript release build is available ([README](packages/components-web/README.md)) |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |
 
 ## Prerequisites
@@ -83,7 +83,9 @@ All scripts can be run from the repo root:
 | `npm run build:tokens` | Build token output using Style Dictionary |
 | `npm run build:contracts` | Check the component contracts against the tokens, and write their data for docs and contract checks |
 | `npm run test:storybook` | Run the Storybook package tests, including every story in Chromium and any contract checks |
+| `npm run lint` | Run ESLint for every package |
 | `npm run lint:storybook` | Run ESLint for the Storybook package |
+| `npm run typecheck` | Type-check every package with TypeScript |
 | `npm run build:all` | Build token output, check the contracts, and build Storybook |
 
 ## Token Workflow
@@ -134,6 +136,29 @@ The Storybook package renders the design token catalog, groups nested token valu
 It also includes small validation tests covering token grouping and metadata parsing so token structure changes are caught early.
 
 The token UI (token tables, the token details drawer with its alias tree, the component token index, and the Tokens tab) comes from `@az-digital/storybook-addon-tokens`. The brand color swatches on the Tokens page (`packages/storybook/stories/Primary/Foundations/Tokens/ColorSwatchGrid.tsx`) are this site's own, and embed the addon's token pill. It reads `packages/tokens/style-dictionary.config.mjs`, so the details for each token show exactly what each output file derives from it. See its [README](packages/storybook-addon-tokens/README.md).
+
+### Published Storybook
+
+Each published release is hosted on digital.arizona.edu by version:
+
+- `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
+- [`https://digital.arizona.edu/design/latest/`](https://digital.arizona.edu/design/latest/) — the highest stable release (prereleases such as `1.0.0-rc.1` never become latest); `/design/` redirects here
+- [`https://digital.arizona.edu/design/next/`](https://digital.arizona.edu/design/next/) — the highest release of any kind, prereleases included, so it shows a prerelease such as `2.0.0-beta.1` until a stable release passes it, and is never older than latest
+
+To publish, run the **Release** workflow (`.github/workflows/release.yml`) from `main` with the version, such as `1.2.0` or `1.3.0-beta.1`. A version with a suffix is a prerelease.
+
+The git tag is the only record of a release's version: `package.json` files on `main` have no `version`, so nothing is committed for a release and no pull request is needed. Look up versions in the repository's tags and releases, or in GitHub Packages. Because the manifests have no version, `npm pack` and `npm publish` fail outside the workflow, which keeps anyone from publishing from their own machine.
+
+The workflow:
+
+1. Checks the version's format and that tag `v<version>` doesn't exist yet.
+2. Sets the version in every `package.json` in the runner with `npm version`, without committing it.
+3. Builds the publishable packages and checks them before publishing (`npm run check:package-artifacts`). Each non-private workspace must be in the `@az-digital` scope, and each tarball must contain what its package declares: something for each `files` entry, each `exports`, `main` and `types` target, and each output in its Style Dictionary config if it has one. The checks come from the packages themselves, so a new package or output needs no change to the script.
+4. Publishes every non-private `@az-digital` workspace to GitHub Packages, with the npm `next` dist-tag for prereleases and `latest` otherwise. npm versions can't be republished, so if a later step fails, finish it by hand rather than rerunning the workflow.
+5. Creates the tag and GitHub release on the commit it ran from, marking prereleases as such.
+6. Sends an `az_design_release` event to [`az-digital/digital.arizona.edu`](https://github.com/az-digital/digital.arizona.edu), which verifies the tag, builds that commit (`npm run build:all`), and commits the output to `docs/design/<version>/`, then refreshes `docs/design/latest/` and `docs/design/next/`. This step uses `REPO_DISPATCH_TOKEN`; the rest of the workflow uses the workflow's own `GITHUB_TOKEN`.
+
+Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
 
 ### Patching Arizona Bootstrap
 

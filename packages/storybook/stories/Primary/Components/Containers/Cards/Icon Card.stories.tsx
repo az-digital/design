@@ -13,6 +13,16 @@ type IconCardArgs = { Icon: string; Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Icon Card',
+  tags: ['!dev', 'lib:html'],
+  ...componentStories('icon-card', {
+    props: (args: IconCardArgs): IconCardProps => ({
+      icon: args.Icon,
+      title: args.Title,
+      text: args.Text,
+      link: args.Link,
+    }),
+  }),
+  decorators: [(Story) => <Frame><Story /></Frame>],
   args: {
     Icon: 'person_raised_hand',
     Title: 'Future Students',
@@ -25,9 +35,6 @@ const meta = {
     Text: { control: 'text', description: "A sentence on what's on the page.", type: { name: 'string', required: true } },
     Link: { control: 'text', description: 'The page the card goes to.', type: { name: 'string', required: true } },
   },
-  tags: ['!dev', 'lib:html'],
-  ...componentStories('icon-card', { props: (args: IconCardArgs): IconCardProps => ({ icon: args.Icon, title: args.Title, text: args.Text, link: args.Link }) }),
-  decorators: [(Story) => <Frame><Story /></Frame>],
 } satisfies Meta<IconCardArgs>;
 
 export default meta;

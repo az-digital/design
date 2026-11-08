@@ -1,6 +1,5 @@
 {
   "name": "@az-digital/components-html",
-  "version": "0.0.1",
   "private": true,
   "description": "Arizona Bootstrap markup for the Arizona Digital design system's components, shown in Storybook. Never released.",
   "type": "module",
@@ -27,9 +26,7 @@
       "status": "supported",
       "codeLanguage": "html",
       "readme": "./README.md",
-      "stylesheets": [
-        "https://cdn.digital.arizona.edu/lib/arizona-bootstrap/latest-5.x/css/arizona-bootstrap.css"
-      ],
+      "stylesheets": [],
       "adapter": "./storybook"
     }
   },

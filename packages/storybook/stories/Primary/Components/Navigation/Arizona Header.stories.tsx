@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { ArizonaHeaderProps } from '@az-digital/components-html';
 
-// The header in whichever component library the toolbar selects, drawn with
-// Arizona Bootstrap's latest release, loaded in preview-head.html. The controls
-// choose the header's color and whether it has header buttons. Focus comes from
-// the keyboard.
+// The header in whichever library the toolbar selects, drawn with Arizona
+// Bootstrap's current release. The controls choose the header's color and
+// whether it has header buttons. Focus comes from the keyboard.
 
-// Each color's variant. Red is the original header, being retired.
+// Each displayed color's contract variant. Red is the original header, being retired.
 const colors: Record<string, NonNullable<ArizonaHeaderProps['variant']>> = { Blue: 'blue', Red: 'red' };
 
 type ArizonaHeaderArgs = {
@@ -17,10 +16,8 @@ type ArizonaHeaderArgs = {
 
 const meta = {
   title: 'Primary/Components/Navigation/Arizona Header',
-  tags: ['lib:html', 'lib:react'],
+  tags: ['!dev', 'lib:html'],
   ...componentStories('brand-header', {
-    // Without fixedOnMobile, so the header stays in the docs page instead of pinning
-    // itself to the top of the screen.
     props: (args: ArizonaHeaderArgs): ArizonaHeaderProps => ({
       variant: colors[args.Color] ?? colors.Blue,
       headerButtons: args['Header buttons'],

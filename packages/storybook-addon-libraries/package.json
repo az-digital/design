@@ -1,6 +1,5 @@
 {
   "name": "@az-digital/storybook-addon-libraries",
-  "version": "0.0.1",
   "private": true,
   "description": "Storybook addon that registers component libraries from their package.json manifests and switches which one the stories render with.",
   "type": "module",
@@ -10,7 +9,10 @@
     "./preset": "./src/preset.js",
     "./manager": "./src/manager.tsx",
     "./preview": "./src/preview.ts",
-    "./node": "./src/node/discover.js",
+    "./node": {
+      "types": "./src/node/discover.d.ts",
+      "import": "./src/node/discover.js"
+    },
     "./library.schema.json": "./library.schema.json",
     "./package.json": "./package.json"
   },
