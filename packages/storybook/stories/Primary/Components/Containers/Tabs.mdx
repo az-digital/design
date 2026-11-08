@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { ContractAnatomy } from '../ContractAnatomy';
 import * as TabsStories from './Tabs.stories';
 
 {/* `of={TabsStories}` attaches this page to Tabs.stories.tsx's own title
@@ -11,6 +12,8 @@ import * as TabsStories from './Tabs.stories';
 Tabs switch between related panels of content within the same view, one panel visible
 at a time, without navigating to a new page. It uses Bootstrap's Tab behavior
 internally.
+
+The initial contract uses <a href="https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/navs-tabs/" target="_top">Arizona Bootstrap 5.3.0</a> as its source. It records tab spacing; visual states and other design decisions still need review.
 
 <Canvas>
   <Story of={TabsStories.Default} />
@@ -48,7 +51,7 @@ ARIA (`aria-selected`, `role="tab"`/`"tabpanel"`) itself, no Bootstrap JS involv
 each tab in `<li role="presentation">` internally, with no prop to configure it away.
 Arizona Bootstrap has a custom override rule scoped to a *different* component's
 markup, `.nav.nav-pills.flex-column > li` (in `scss/override/_nav.scss`, meant for
-[`Nav`](?path=/docs/primary-components-navigation-nav--docs)'s "Vertical Pills" nested-menu variant, which
+<a href="./?path=/docs/primary-components-navigation-nav--docs" target="_top">Nav</a>'s "Vertical Pills" nested-menu variant, which
 really does use `<li>`) — that selector doesn't know the difference, and matched this
 component's `<li>` wrappers too whenever `variant="pills"` and `vertical` were both
 set, adding borders and negative margins that were never meant for a tabbed interface.
@@ -62,6 +65,14 @@ Arizona Bootstrap's navs-and-tabs docs page also has a few other `.nav`-based pa
 that this component deliberately doesn't cover, because they're a different,
 non-interactive building block — a plain, static link list, not the dynamic
 tab-panel-switching interface above (no `data-bs-toggle`, no `tab-content`/`tab-pane`).
-See [`Nav`](?path=/docs/primary-components-navigation-nav--docs) for those: plain Vertical, the
+See <a href="./?path=/docs/primary-components-navigation-nav--docs" target="_top">Nav</a> for those: plain Vertical, the
 Arizona-custom Vertical Pills (a nested, multi-level pills menu), and the
 Arizona-custom Utility Links.
+
+## Anatomy
+
+<ContractAnatomy contract="tabs" />
+
+### Underline
+
+<ContractAnatomy contract="tabs" variant="style.underline" />

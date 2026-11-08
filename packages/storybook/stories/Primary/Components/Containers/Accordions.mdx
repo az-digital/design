@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { ContractAnatomy } from '../ContractAnatomy';
 import * as AccordionStories from './Accordions.stories';
 
 {/* `of={AccordionStories}` attaches this page to Accordions.stories.tsx's own title
@@ -11,6 +12,8 @@ import * as AccordionStories from './Accordions.stories';
 Accordion shows and hides sections of related content, one heading per section, so a
 page can present more content than fits comfortably at once without a separate page.
 It uses Bootstrap's Collapse behavior internally.
+
+The initial contract uses <a href="https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/accordion/" target="_top">Arizona Bootstrap 5.3.0</a> as its source. It records spacing; visual states and other design decisions still need review.
 
 <Canvas>
   <Story of={AccordionStories.Default} />
@@ -33,15 +36,15 @@ It uses Bootstrap's Collapse behavior internally.
 
 ## Anchored
 
-<Canvas>
-  <Story of={AccordionStories.Anchored} />
-</Canvas>
+<a href="./?path=/story/primary-components-containers-accordions--anchored" target="_top">Try the anchored accordion</a>.
+
+<Source of={AccordionStories.Anchored} />
 
 Set `anchors` to add a "Copy link" control to each item, matching Arizona Bootstrap's
 own accordion docs. Clicking it copies a deep link to that item's heading to the
 clipboard; loading a page with a matching URL hash opens that item and scrolls it into
 view — on load and on every subsequent hash change. Pair it with `alwaysOpen`, same as
-the story above: with `data-bs-parent` grouping, opening a linked item also collapses
+the linked story: with `data-bs-parent` grouping, opening a linked item also collapses
 its sibling, which can read as a stutter on a fresh page load.
 
 The libraries get this behavior from different places:
@@ -63,3 +66,7 @@ The libraries get this behavior from different places:
   the React version approximates that with a fixed delay matching Bootstrap's default
   transition duration, since `react-bootstrap` doesn't expose an equivalent callback
   through `Accordion.Body`.
+
+## Anatomy
+
+<ContractAnatomy contract="accordion" />

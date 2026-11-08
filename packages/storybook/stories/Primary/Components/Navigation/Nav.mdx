@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { ContractAnatomy } from '../ContractAnatomy';
 import * as NavStories from './Nav.stories';
 
 {/* `of={NavStories}` attaches this page to Nav.stories.tsx's own title
@@ -9,9 +10,11 @@ import * as NavStories from './Nav.stories';
 # Nav
 
 Nav renders a list of links sharing a single style — a plain static link list, not a
-dynamic tab-panel switcher (see [Tabs](?path=/docs/primary-components-containers-tabs--docs) for that).
+dynamic tab-panel switcher (see <a href="./?path=/docs/primary-components-containers-tabs--docs" target="_top">Tabs</a> for that).
 Purely presentational: no real interactive behavior, so unlike Accordion/Tabs, this
 component is hand-rolled rather than wrapping `react-bootstrap`.
+
+The initial contract uses <a href="https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/navs-tabs/" target="_top">Arizona Bootstrap 5.3.0</a> as its source. It records link spacing; visual states and other design decisions still need review.
 
 <Canvas>
   <Story of={NavStories.Default} />
@@ -45,6 +48,18 @@ component is hand-rolled rather than wrapping `react-bootstrap`.
 Both components share the same underlying `.nav`/`.nav-link` markup and styling, but
 solve different problems: `Nav` is a static list of real links (each `href` navigates
 somewhere, or is just a placeholder `#`), while
-[`Tabs`](?path=/docs/primary-components-containers-tabs--docs) is a dynamic ARIA `tablist`/`tabpanel`
+<a href="./?path=/docs/primary-components-containers-tabs--docs" target="_top">Tabs</a> is a dynamic ARIA `tablist`/`tabpanel`
 interface that swaps visible content in place without navigating. If you need
 `data-bs-toggle`, `role="tab"`, or a `tab-content` panel, that's `Tabs`, not `Nav`.
+
+## Anatomy
+
+<ContractAnatomy contract="nav" />
+
+### Underline
+
+<ContractAnatomy contract="nav" variant="style.underline" />
+
+### Utility Links
+
+<ContractAnatomy contract="nav" variant="style.utility" />

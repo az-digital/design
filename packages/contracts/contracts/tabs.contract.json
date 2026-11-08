@@ -1,0 +1,47 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "tabs",
+  "name": "Tabs",
+  "description": "A tablist that switches between related content panels. This initial contract records Arizona Bootstrap 5.3.0 link spacing; additional states and visual decisions still need review.",
+  "sources": [
+    "Arizona Bootstrap 5.3.0 navs and tabs: https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/navs-tabs/"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The tablist and its content panels.",
+      "parts": {
+        "tab": {
+          "description": "A control that selects a panel.",
+          "tokens": {
+            "padding.x": "{az.spacing.200}",
+            "padding.y": "{az.spacing.100}"
+          }
+        },
+        "panel": {
+          "description": "The content associated with a tab."
+        }
+      }
+    }
+  },
+  "variants": {
+    "style": {
+      "description": "The visual style of the tab controls.",
+      "options": {
+        "underline": {
+          "description": "Underline tabs have no horizontal padding.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "tab": {
+                  "tokens": {
+                    "padding.x": "{az.spacing.0}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

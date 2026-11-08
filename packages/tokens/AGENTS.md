@@ -13,10 +13,11 @@ change `tokens.json`, and the mistakes this repo has already made.
   values: `$value` is always a literal hex, never an alias. Names describe the
   color itself (`red`, `sonoran-red`, `arroyo-blue`). Gray steps are
   `az.color.brand.gray.100` to `.900`.
-- **Color by use (`az.color.bg.*`, `az.color.fg.*`).** Aliases onto the brand
-  palette, named for where the color is used, with the state joined by a
+- **Color by use (`az.color.bg.*`, `az.color.fg.*`).** Named for where the
+  color is used, with the state joined by a
   hyphen: `az.color.bg.button.red`, `az.color.bg.button.red-hover`. The
-  component or context part (`button`) also covers anything that behaves like
+  value can alias the brand palette or be a documented literal when needed.
+  The component or context part (`button`) also covers anything that behaves like
   one, so a new component reuses it instead of getting its own.
 - **Scales and shared decisions.** `az.spacing.*`, `az.radius.*`,
   `az.border.width.*`, `az.font-size.*`, `az.font-weight.*`, `az.breakpoint.*`,
@@ -35,9 +36,9 @@ needs one.
 
 ## Rules that still apply
 
-- **Say what it's for, not what it looks like.** Outside the brand palette, no
-  color or appearance word belongs in a name: `az.color.bg.button.red-hover`
-  names a use, and its value happens to be Sonoran Red.
+- **Say what it's for.** Use a component or context and, where needed, a
+  variant name: `az.color.bg.button.red-hover` names the red button's hover
+  fill, whose value happens to be Sonoran Red.
 - **No role names yet.** Red and Blue are both primary colors, and which role
   each plays isn't decided. Don't name a design token `primary`, `secondary`,
   `accent` or `destructive`, and don't invent a role from one line of
@@ -57,28 +58,25 @@ needs one.
 
 ## Palette names
 
-The palette's current names replaced older ones. Arizona Bootstrap (5.2.0)
-classes and older Figma frames still use the old names, so translate rather
-than adding the old name: Midnight → Tinta, Oasis → Arroyo Blue, Sky → Rain,
+The palette's current names replaced older ones. Older Arizona Bootstrap
+releases and Figma frames may use old names, so translate rather than adding
+the old name: Midnight → Tinta, Oasis → Arroyo Blue, Sky → Rain,
 Chili → Sonoran Red, Bloom → Bougainvillea, Leaf → Saguaro, River → Shade,
 Mesa → Brick, Cool Gray → Cloud, Warm Gray → Caliche (AZ Blue, AZ Red and
-Azurite are unchanged). A page on a Cloud background still uses Arizona
-Bootstrap's `bg-cool-gray` class.
+Azurite are unchanged). Check the target Bootstrap release's classes rather
+than assuming a legacy alias is necessary.
 
 ## Where values come from
 
-Don't guess a value. Take it from, in order: a reviewed Arizona Bootstrap pull
-request that the design team has signed off on, then the Figma component, then
-Arizona Bootstrap's released styles. A live site is a reference only. Record
-the source in the commit's issue, not in the design token's `$description`
-(no pull request numbers there).
+Don't guess a value. Follow the component contribution guide: agree on the
+source for each design decision, and ask maintainers if sources conflict.
+Record the decision and source in the issue and component contract rather than
+putting pull request numbers in the token's `$description`.
 
 ## Mistakes already made here
 
-- **Naming a color variant in a name that should name a use**
-  (`button.color.redHover`): camelCase, and `red` is a look, not a purpose.
-- **Skipping a layer.** A component token that pointed straight at a brand
-  color lost the explanation of why it used that color.
+- **Using camelCase in a token name** (`button.color.redHover`): use the
+  Naming page's lowercase parts and hyphenated states.
 - **Speculating a role taxonomy** (`destructive`/`primary`) from adjacent
   prose, with no second variant to back it. It asserts a distinction the
   component hasn't earned.
@@ -91,8 +89,8 @@ the source in the commit's issue, not in the design token's `$description`
 - **Bundling DOM focus and keyboard focus into one "focus" state.** Plain
   focus looks like hover; only focus-visible adds the ring. They are
   different states with different tokens.
-- **Taking a structural value from Arizona Bootstrap when the Figma component
-  defines it.** Check the sources above, in order.
+- **Choosing a value without resolving conflicting sources.** Record which
+  source governs the decision before adding it.
 
 ## Before adding a design token
 

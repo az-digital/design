@@ -2,31 +2,19 @@
 
 ## Purpose: this is a brand documentation site
 
-This Storybook documents the *real, approved* design system — it is not a
-sandbox for constructing every prop combination a component happens to be
-capable of rendering. Keep that distinction in front of every decision here:
+Document approved design decisions and distinguish them from implementation
+behavior and work still under review. Follow the shared component workflow in
+`stories/Primary/Components/Contributing.mdx`.
 
-- Only document a combination that mirrors an approved Figma frame (or
-  equivalent design sign-off). Don't build generic pickers/playgrounds that
-  let a viewer freely combine props into something nobody actually approved
-  — see "Only add a story for a prop combination with an approved Figma
-  frame" under Stories. Background-paired colors stay out of the untethered
-  Color control for the same reason: picking one there produces a combination
-  nothing approved.
-- Never invent a prop value, CSS class, or a mapping between them to make a
-  component *look* supported when it isn't. A real incident from this
-  project: `color: 'rain'` was briefly implemented by silently mapping it to
-  the legacy `.btn-sky` class so it would render styled — this made the
-  component lie about what it actually does; a consumer using the real
-  component outside Storybook would never get that hidden mapping. Generate
-  classes naively from the real prop value (`btn-${color}`) even when the
-  CSS for it doesn't exist yet.
-- If something genuinely isn't implemented yet (no CSS, no token), document
-  that plainly — a "not yet implemented" doc comment, or a placeholder in the
-  story — rather than papering over the gap so it looks finished.
-- If there's no design token for a color (or other value), don't mention it
-  in the docs prose at all. Documenting something with no token behind it
-  misrepresents the design system's actual state.
+- Controls may demonstrate supported variants, but must not imply that every
+  possible combination is approved. Pair variants with their intended
+  backgrounds where the design requires it.
+- Show the actual implementation and its real API. Never invent classes or
+  mappings to make an unsupported variant look finished; explain a missing
+  implementation or a difference from the contract.
+- Document component-specific values from the contract as well as shared
+  tokens. Record their sources rather than treating an untokenized value as
+  inherently invalid.
 
 ## Dev server
 
@@ -39,26 +27,12 @@ boot, so the dev server needs an actual kill-and-restart for that specific
 kind of change to take effect. Don't restart reflexively for ordinary story
 edits — only for config-file changes like this.
 
-## Accessibility (`@storybook/addon-a11y`)
+## Accessibility
 
-Installed and registered in `.storybook/main.ts`, pinned to the same
-`^10.6.0` as the rest of the Storybook packages (it's an official
-Storybook-maintained addon, built on axe-core — not a third-party
-alternative). Adds an "Accessibility" tab per story with automated
-axe-core checks (violations/passes/inconclusive). No `preview.ts` wiring is
-required beyond registering it in `main.ts`; that's the whole setup.
-
-Registering a new addon is a `main.ts` change, so it needs the dev-server
-restart described above, not just a file save.
-
-In an automated/sandboxed browser context (not a real user's browser), both
-this panel and the per-story "Code" panel (see below) can hang indefinitely
-on their loading state ("Preparing accessibility scan", or stale/raw
-content) for reasons specific to that environment — confirmed directly:
-a real browser showed correct results (21 passes, 0 violations) for the
-exact same story at the exact same time an automated session was still
-stuck loading. Don't conclude something is broken from an automated
-session alone; verify in an actual browser, or ask the user to.
+The accessibility addon is not registered in this Storybook. Follow the
+accessibility checks in the component contribution guide and verify keyboard
+and assistive-technology behavior; do not assume an Accessibility panel is
+available.
 
 ## Page structure
 
@@ -70,12 +44,9 @@ session alone; verify in an actual browser, or ask the user to.
   `Primary/Components/<Group>`) is not a component placeholder: leave it,
   and give the component its own title inside the group. Don't nest other
   pages under a component's own title: Storybook lists them in among the
-  component's stories, with its Docs page last. Buttons has no landing
-  page or other patterns, so Button is that whole entry,
-  `Primary/Components/Buttons` (`Buttons/Button.mdx` and
-  `Buttons/Button.stories.tsx`): its Docs page, then its stories. A component's
-  docs page follows the layout in the root `AGENTS.md` ("Component docs
-  pages").
+  component's stories, with its Docs page last. Buttons has a group landing
+  page and a separate `Primary/Components/Buttons/Button` entry. A component's
+  docs page follows the layout in the root `AGENTS.md` ("Component docs pages").
 - One combined Docs page per component, not a nested "Guidelines" page.
   Attach the MDX doc to the component's own title with `<Meta of={ButtonStories} />`
   (import `* as ButtonStories from './Button.stories'`) — not `<Meta title="Primary/Components/Buttons/Guidelines" />`.
@@ -103,22 +74,15 @@ session alone; verify in an actual browser, or ask the user to.
 
 ## Stories
 
-- Fixed reference stories (mirroring one approved Figma frame) disable
-  Controls (`parameters.controls.disable: true`). If Controls stay on,
-  editing args can turn "Outline" into a solid blue button while the sidebar
-  still says "Outline" — Storybook has no way to update a story's name as its
-  args change. Keep exactly one story (commonly `Default`, or whatever the
-  approved combination is called) as the interactive playground with
-  Controls enabled; every other named story is a fixed snapshot.
+- Use shared controls to explore supported variants. For fixed reference
+  stories, disable Controls when changing args would make the story's name
+  misleading; keep an interactive story where it is useful.
 - Disable Actions/Interactions tabs on a story that doesn't use them
   (`parameters.actions.disable` / `parameters.interactions.disable`) rather
   than leaving empty panel tabs. Remove the `disable` once a story actually
   adds an `action()` argType or a `play` function.
-- Only add a story for a prop combination with an approved Figma frame (or
-  equivalent design sign-off) to mirror. A component can fully support
-  `outline`/`blue`/`disabled` etc. with zero example stories for them —
-  describe them in prose on the Docs page and point at the props table,
-  rather than inventing a story for an unreviewed combination.
+- Link the design or other agreed source for each component and clearly label
+  examples or variants that are still awaiting design approval.
 - A component that more than one library implements spreads
   `componentStories('<contract id>', { props })` into its meta and lists its
   libraries as tags (`tags: ['lib:html', 'lib:react']`). The toolbar's Library
@@ -190,12 +154,9 @@ These are three separate questions. Keep them separate:
    Arizona Bootstrap stylesheet) can define the same selector block more
    than once with different values; only the last one in the cascade wins,
    and a simple grep can surface the wrong one first.
-3. Which token corresponds to which state, per the design spec? Answer this
-   from the Figma spec plus `tokens.json`, with no reference to the shipped
-   CSS. This is what a component's "Tokens by state" section is for — it
-   documents intent, not implementation status. Don't add commentary about
-   whether the real CSS matches; that's question 2, and it belongs in a
-   different place if it belongs anywhere.
+3. Which token or contract value corresponds to each state? Use the agreed
+   source for that decision and the component contract. Explain any known
+   difference between the contract and the shipped implementation separately.
 
 A CSS custom property is not a design token. `var(--bs-btn-hover-bg)` and
 `az.color.brand.sonoran-red` are different kinds of thing — one is a CSS authoring
