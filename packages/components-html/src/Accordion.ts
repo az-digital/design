@@ -47,18 +47,19 @@ export type AccordionProps = {
 
 /** Renders the Accordion as an HTML string using Arizona Bootstrap's real accordion markup/classes. */
 export function renderAccordion(props: AccordionProps): string {
-  const { id = 'accordion', items, flush = false, alwaysOpen = false, anchors = false } = props;
+  const { id: rawId = 'accordion', items, flush = false, alwaysOpen = false, anchors = false } = props;
+  const safeId = escapeHtml(rawId);
 
   const classes = ['accordion', flush && 'accordion-flush'].filter(Boolean).join(' ');
 
   const itemsHtml = items
     .map((item, index) => {
-      const headingId = `${id}-heading-${index}`;
-      const collapseId = `${id}-collapse-${index}`;
+      const headingId = `${safeId}-heading-${index}`;
+      const collapseId = `${safeId}-collapse-${index}`;
       const isOpen = Boolean(item.defaultOpen);
       const buttonClasses = ['accordion-button', !isOpen && 'collapsed'].filter(Boolean).join(' ');
       const collapseClasses = ['accordion-collapse', 'collapse', isOpen && 'show'].filter(Boolean).join(' ');
-      const parentAttribute = alwaysOpen ? '' : ` data-bs-parent="#${id}"`;
+      const parentAttribute = alwaysOpen ? '' : ` data-bs-parent="#${safeId}"`;
 
       const anchorHtml = anchors
         ? `
@@ -83,7 +84,7 @@ export function renderAccordion(props: AccordionProps): string {
     })
     .join('\n    ');
 
-  return `<div class="${classes}" id="${id}">
+  return `<div class="${classes}" id="${safeId}">
     ${itemsHtml}
   </div>`;
 }
