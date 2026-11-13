@@ -6,6 +6,36 @@ function escapeHtml(value: string) {
     .replace(/"/g, '&quot;');
 }
 
+function escapeHtmlAttribute(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function sanitizeHref(href?: string): string {
+  const value = (href ?? '#').trim();
+
+  // Safe relative/reference targets.
+  if (
+    value.startsWith('#') ||
+    value.startsWith('/') ||
+    value.startsWith('./') ||
+    value.startsWith('../') ||
+    value.startsWith('?')
+  ) {
+    return value;
+  }
+
+  // Allow-list absolute URL schemes commonly used for nav links.
+  if (/^(https?:|mailto:|tel:)/i.test(value)) {
+    return value;
+  }
+
+  return '#';
+}
+
 /**
  * Props otherwise mirror `@az-digital/components-react-bootstrap`'s `Nav` so the two
  * implementations can be shown side by side from the same story args.
@@ -56,7 +86,8 @@ function variantClass(variant: NavProps['variant']): string | false {
 
 function renderItem(item: NavItemProps, navClasses: string): string {
   const linkClasses = ['nav-link', item.active && 'active', item.disabled && 'disabled'].filter(Boolean).join(' ');
-  const hrefAttribute = item.disabled ? '' : ` href="${item.href ?? '#'}"`;
+  const safeHref = escapeHtmlAttribute(sanitizeHref(item.href));
+  const hrefAttribute = item.disabled ? '' : ` href="${safeHref}"`;
   const stateAttribute = item.active ? ' aria-current="page"' : item.disabled ? ' aria-disabled="true"' : '';
   const nestedHtml =
     item.items && item.items.length > 0
