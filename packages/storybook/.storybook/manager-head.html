@@ -1,0 +1,106 @@
+<link href="https://use.typekit.net/sgx0zzg.css" rel="stylesheet" crossorigin="anonymous">
+<link href="./tokens/tokens.css" rel="stylesheet">
+
+<style>
+    :root {
+        --sidebar-bg: var(--az-color-brand-cloud);
+        --sidebar-text: var(--az-color-brand-tinta);
+        --sidebar-hover-bg: var(--az-color-brand-arroyo-blue);
+        --sidebar-hover-text: var(--az-color-fg-white);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --sidebar-bg: var(--az-color-brand-tinta);
+            --sidebar-text: var(--az-color-brand-cloud);
+            --sidebar-hover-bg: var(--az-color-brand-azurite);
+            --sidebar-hover-text: var(--az-color-fg-white);
+        }
+    }
+
+    #storybook-sidebar-region {
+        background-color: var(--sidebar-bg);
+        color: var(--sidebar-text);
+    }
+
+    .sidebar-item:not([data-selected="true"]) > a,
+    .sidebar-item:not([data-selected="true"]) > button {
+        color: var(--sidebar-text);
+    }
+
+    .sidebar-item:not([data-selected="true"]):hover,
+    .sidebar-item:not([data-selected="true"]):focus-within {
+        background-color: var(--sidebar-hover-bg) !important;
+    }
+
+    .sidebar-item:not([data-selected="true"]):hover>a,
+    .sidebar-item:not([data-selected="true"]):hover>button,
+    .sidebar-item:not([data-selected="true"]):focus-within>a,
+    .sidebar-item:not([data-selected="true"]):focus-within>button {
+        color: var(--sidebar-hover-text) !important;
+    }
+
+    .sidebar-item:not([data-selected="true"]):hover svg[type],
+    .sidebar-item:not([data-selected="true"]):focus-within svg[type] {
+        color: var(--sidebar-hover-text) !important;
+    }
+
+    /* Hide the 3-dots context menu button on sidebar links */
+    .sidebar-item [data-testid="context-menu"],
+    .sidebar-item [aria-label*="context menu" i] {
+        display: none !important;
+    }
+    
+    /* Sidebar Search Box Styling */
+    .search-field {
+        border: var(--az-border-width-md) solid currentColor !important;
+        border-radius: var(--az-radius-2) !important;
+    }
+
+    .search-field:focus-within {
+        outline: var(--az-focus-ring-width-md) solid currentColor;
+        outline-offset: var(--az-spacing-025);
+    }
+
+    #storybook-explorer-searchfield {
+        font-weight: var(--az-font-weight-medium) !important;
+    }
+
+    .sidebar-item:not([data-selected="true"]) svg[type] {
+        color: var(--az-color-brand-bougainvillea);
+    }
+
+    /* Brand Logo & Design System Badge */
+    .sidebar-header img {
+        display: block;
+        max-height: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .sidebar-header a[title*="Design System"],
+    .sidebar-header a[href*="arizona.edu"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--az-spacing-100) !important;
+        text-decoration: none !important;
+    }
+
+    .sidebar-header a[title*="Design System"]::after,
+    .sidebar-header a[href*="arizona.edu"]::after {
+        content: "DESIGN SYSTEM";
+        display: inline-block;
+        font-family: var(--az-font-family-sans-serif);
+        font-size: 11px;
+        font-weight: var(--az-font-weight-medium);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--az-color-fg-white);
+        background: var(--az-color-brand-arroyo-blue);
+        padding: 3px var(--az-spacing-100);
+        border-radius: 10px;
+        line-height: var(--az-line-height-medium);
+        margin-top: 5px;
+    }
+
+</style>
