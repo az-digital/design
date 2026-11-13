@@ -56,6 +56,7 @@ export type TabsProps = {
 };
 
 function resolveActiveIndex(items: TabItemProps[], defaultActiveIndex?: number): number {
+  const safeId = escapeHtml(id);
   if (defaultActiveIndex !== undefined) {
     return defaultActiveIndex;
   }
@@ -78,8 +79,8 @@ export function renderTabs(props: TabsProps): string {
     'nav',
     'mb-3',
     variant === 'tabs' ? 'nav-tabs' : variant === 'pills' ? 'nav-pills' : 'nav-underline',
-    vertical && 'flex-column',
-    vertical && 'me-3',
+      const tabId = `${safeId}-tab-${index}`;
+      const paneId = `${safeId}-pane-${index}`;
     fill && 'nav-fill',
     justify && 'nav-justified',
   ]
@@ -89,18 +90,18 @@ export function renderTabs(props: TabsProps): string {
   const navHtml = items
     .map((item, index) => {
       const isActive = index === activeIndex;
-      const tabId = `${id}-tab-${index}`;
-      const paneId = `${id}-pane-${index}`;
+      const tabId = `${safeId}-tab-${index}`;
+      const paneId = `${safeId}-pane-${index}`;
       const classes = ['nav-link', isActive && 'active'].filter(Boolean).join(' ');
 
       return `<button class="${classes}" id="${tabId}" data-bs-toggle="${toggleValue}" data-bs-target="#${paneId}" type="button" role="tab" aria-controls="${paneId}" aria-selected="${isActive}"${item.disabled ? ' disabled' : ''}>${escapeHtml(item.title)}</button>`;
     })
     .join('\n    ');
 
-  const panesHtml = items
+  const tablistHtml = `<div class="${navClasses}" id="${safeId}" role="tablist"${vertical ? ' aria-orientation="vertical"' : ''}>
     .map((item, index) => {
       const isActive = index === activeIndex;
-      const tabId = `${id}-tab-${index}`;
+  const contentHtml = `<div class="tab-content" id="${safeId}-content">
       const paneId = `${id}-pane-${index}`;
       const classes = ['tab-pane', 'fade', isActive && 'show', isActive && 'active'].filter(Boolean).join(' ');
 
