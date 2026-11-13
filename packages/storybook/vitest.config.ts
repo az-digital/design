@@ -21,6 +21,11 @@ export default defineConfig({
       storybookTest({
         configDir: path.join(import.meta.dirname, '.storybook')
       })],
+      // Library adapters import these lazily, so Vite would find them mid-run, re-optimize and
+      // reload the tests. Listing them keeps a cold-cache run (CI) stable.
+      optimizeDeps: {
+        include: ['react-bootstrap', 'react-dom/client', 'lit']
+      },
       test: {
         name: 'storybook',
         browser: {

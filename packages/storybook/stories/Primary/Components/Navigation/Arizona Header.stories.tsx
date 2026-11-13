@@ -16,7 +16,7 @@ type ArizonaHeaderArgs = {
 
 const meta = {
   title: 'Primary/Components/Navigation/Arizona Header',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('brand-header', {
     props: (args: ArizonaHeaderArgs): ArizonaHeaderProps => ({
       variant: colors[args.Color] ?? colors.Blue,

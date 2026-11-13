@@ -11,7 +11,7 @@ type TitleOnImageCardArgs = { Image: string; 'Image description': string; Title:
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Title on Image Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('title-on-image-card', {
     props: (args: TitleOnImageCardArgs): TitleOnImageCardProps => ({
       image: args.Image || squarePhoto,

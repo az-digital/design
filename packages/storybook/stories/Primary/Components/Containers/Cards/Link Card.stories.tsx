@@ -11,7 +11,7 @@ type LinkCardArgs = { Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Link Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('link-card', {
     props: (args: LinkCardArgs): LinkCardProps => ({ title: args.Title, text: args.Text, link: args.Link }),
   }),
