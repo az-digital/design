@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "icon-card",
+  "category": "containers",
   "name": "Icon Card",
   "description": "A Link Card with an icon above the title. The whole card is one link: its title link covers it. On hover, and while keyboard focus is on a link inside it, the card shows its hover colors. Don't put a button in it.",
   "sources": [

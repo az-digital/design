@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "quick-links-card",
+  "category": "containers",
   "name": "Quick Links Card",
   "description": "A title, text and a list of links. The card isn't a link itself, so it has no hover colors: each link is its own.",
   "sources": [

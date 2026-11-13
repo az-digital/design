@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "brand-header",
+  "category": "navigation",
   "name": "Arizona Header",
   "description": "The university's header bar: the wordmark logo on Blue, with header buttons (such as Search and Menu) that open an off-canvas panel on small screens. Its colors are brand colors: a Blue fill, and a White logo, labels, icons and focus ring. The original red header points the fill at Red.",
   "sources": [
