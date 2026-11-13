@@ -28,10 +28,10 @@
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/react-vite": "^10.6.5",
     "eslint": "^10.14.0",
-    "eslint-plugin-storybook": "^10.6.5",
+    "eslint-plugin-storybook": "^10.6.6",
     "globals": "^17.13.0",
     "patch-package": "^8.0.1",
-    "storybook": "^10.6.3",
+    "storybook": "^10.6.6",
     "typescript-eslint": "^8.72.1"
   }
 }
