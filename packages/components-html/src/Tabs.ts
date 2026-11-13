@@ -6,6 +6,16 @@ function escapeHtml(value: string) {
     .replace(/"/g, '&quot;');
 }
 
+function sanitizeHtmlId(value: string): string {
+  const normalized = value
+    .trim()
+    .replace(/[^A-Za-z0-9\-_:.]/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  return normalized || 'tabs';
+}
+
 /**
  * Props otherwise mirror `@az-digital/components-react-bootstrap`'s `Tabs` so the two
  * implementations can be shown side by side from the same story args.
@@ -55,7 +65,8 @@ function resolveActiveIndex(items: TabItemProps[], defaultActiveIndex?: number):
 
 /** Renders the Tabs as an HTML string using Arizona Bootstrap's real nav/tab-content markup/classes. */
 export function renderTabs(props: TabsProps): string {
-  const { id = 'tabs', items, variant = 'tabs', vertical = false, fill = false, justify = false } = props;
+  const { id: rawId = 'tabs', items, variant = 'tabs', vertical = false, fill = false, justify = false } = props;
+  const id = sanitizeHtmlId(rawId);
   const activeIndex = resolveActiveIndex(items, props.defaultActiveIndex);
 
   // The real docs use data-bs-toggle="pill" for the Pills variant and "tab" for
