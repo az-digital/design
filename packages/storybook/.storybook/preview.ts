@@ -22,9 +22,15 @@ const preview: Preview = {
     viewport: {
       options: breakpointViewports,
     },
+    // The Actions and Interactions panels are opt-in, so stories don't show
+    // empty panels. A story that logs actions or has a play function turns its
+    // panel back on with `actions: { disable: false }` or
+    // `interactions: { disable: false }`.
+    actions: { disable: true },
+    interactions: { disable: true },
     options: {
       storySort: {
-        order: ['Primary', ['Overview', 'Brand', ['Overview', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', 'Contributing', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Inputs', '*', 'Indicators', '*', 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], 'Popups', '*', '*'], '*'], 'Bear Down 100'],
+        order: ['Primary', ['Overview', 'Brand', ['Overview', 'Typography', '*'], 'Foundations', ['Overview', 'Terminology', '*', 'Layout', ['Overview', 'Breakpoints', 'Grid', 'Spacing'], 'Tokens', ['How to Use', 'Naming', 'Contributing'], 'Usability'], 'Components', ['Overview', 'Contributing', 'Buttons', ['Docs', 'Button', 'Icon buttons', 'Segmented Control'], 'Containers', ['Docs', 'Accordions', 'Cards', ['Docs', 'Card', 'Link Card', 'Icon Card', 'Image Card', 'Title on Image Card', 'Quick Links Card', 'Call to Action Card'], 'Table', 'Tabs'], 'Inputs', '*', 'Indicators', '*', 'Navigation', ['Docs', 'Arizona Header', 'Breadcrumbs', 'Link', 'Pagination', 'Side Nav', 'Slide Panel', 'Top nav'], 'Popups', '*', '*'], '*'], 'Bear Down 100'],
       },
     },
   },
