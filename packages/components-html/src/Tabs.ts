@@ -56,7 +56,6 @@ export type TabsProps = {
 };
 
 function resolveActiveIndex(items: TabItemProps[], defaultActiveIndex?: number): number {
-  const safeId = escapeHtml(id);
   if (defaultActiveIndex !== undefined) {
     return defaultActiveIndex;
   }
@@ -67,7 +66,7 @@ function resolveActiveIndex(items: TabItemProps[], defaultActiveIndex?: number):
 /** Renders the Tabs as an HTML string using Arizona Bootstrap's real nav/tab-content markup/classes. */
 export function renderTabs(props: TabsProps): string {
   const { id: rawId = 'tabs', items, variant = 'tabs', vertical = false, fill = false, justify = false } = props;
-  const id = sanitizeHtmlId(rawId);
+  const safeId = sanitizeHtmlId(rawId);
   const activeIndex = resolveActiveIndex(items, props.defaultActiveIndex);
 
   // The real docs use data-bs-toggle="pill" for the Pills variant and "tab" for
@@ -79,8 +78,8 @@ export function renderTabs(props: TabsProps): string {
     'nav',
     'mb-3',
     variant === 'tabs' ? 'nav-tabs' : variant === 'pills' ? 'nav-pills' : 'nav-underline',
-      const tabId = `${safeId}-tab-${index}`;
-      const paneId = `${safeId}-pane-${index}`;
+    vertical && 'flex-column',
+    vertical && 'me-3',
     fill && 'nav-fill',
     justify && 'nav-justified',
   ]
@@ -98,21 +97,21 @@ export function renderTabs(props: TabsProps): string {
     })
     .join('\n    ');
 
-  const tablistHtml = `<div class="${navClasses}" id="${safeId}" role="tablist"${vertical ? ' aria-orientation="vertical"' : ''}>
+  const panesHtml = items
     .map((item, index) => {
       const isActive = index === activeIndex;
-  const contentHtml = `<div class="tab-content" id="${safeId}-content">
-      const paneId = `${id}-pane-${index}`;
+      const tabId = `${safeId}-tab-${index}`;
+      const paneId = `${safeId}-pane-${index}`;
       const classes = ['tab-pane', 'fade', isActive && 'show', isActive && 'active'].filter(Boolean).join(' ');
 
       return `<div class="${classes}" id="${paneId}" role="tabpanel" aria-labelledby="${tabId}" tabindex="0">${escapeHtml(item.content)}</div>`;
     })
     .join('\n    ');
 
-  const tablistHtml = `<div class="${navClasses}" id="${id}" role="tablist"${vertical ? ' aria-orientation="vertical"' : ''}>
+  const tablistHtml = `<div class="${navClasses}" id="${safeId}" role="tablist"${vertical ? ' aria-orientation="vertical"' : ''}>
     ${navHtml}
   </div>`;
-  const contentHtml = `<div class="tab-content" id="${id}-content">
+  const contentHtml = `<div class="tab-content" id="${safeId}-content">
     ${panesHtml}
   </div>`;
 
