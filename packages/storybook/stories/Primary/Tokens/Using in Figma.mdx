@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primary/Tokens/Using in Figma" />
+
+# Using in Figma
+
+Use Arizona Digital's UI Kit to build designs with shared components and styles. You don't need repository access, a Tokens Studio connection, or a separate token import to get started.
+
+## Start with the UI Kit
+
+<a href="https://www.figma.com/design/IzegZqsNTeUar61NGRfIjw" target="_blank" rel="noreferrer">Open the Arizona Digital UI Kit in Figma →</a>
+
+1. **Sign in to Figma and open the UI Kit.** If you can't open it, request access through Figma.
+2. **Enable the UI Kit library in your project.** In your project's Figma file, open **Assets → Libraries**, find the Arizona Digital UI Kit, and add it. Library availability depends on your team's access and Figma plan.
+3. **Build with published components.** Insert components from the Assets panel. Keep your project work in your own file rather than editing the shared UI Kit.
+4. **Check Storybook for guidance.** Refer to each component's documentation for its anatomy, supported states, and usage.
+
+If the library isn't available in your project, contact the Arizona Digital team for access or an alternative way to use the kit.
+
+## Keeping up to date
+
+The UI Kit is updated as Arizona Digital's design system evolves. Review and accept library updates in Figma to keep your designs aligned with the latest published components.
+
+## Applying tokens in your designs
+
+Use the kit's available variables and styles to keep your designs consistent with the system.
+
+- **Choose tokens by purpose.** Use semantic color tokens that describe what the color does, such as `az.color.bg.*` for backgrounds and `az.color.fg.*` for foreground content. Choose the appropriate role and state for text, surfaces, borders, and interactive elements.
+- **Use brand tokens as palette references.** The `az.color.brand.*` tokens define the underlying brand palette. Prefer semantic tokens when applying colors to UI elements.
+- **Preserve existing bindings.** Keep component instances and their variable or style bindings where available, rather than detaching instances or replacing bound values with hard-coded colors.
+
+## Reviewing upcoming changes
+
+To review upcoming design-system changes, open the Figma branch with the same name as the corresponding GitHub branch in the design repository. This keeps your review aligned with the changes being developed.
+
+Use the published UI Kit library for project work; branches are for previewing changes before they're released.
+
+## Advanced: working directly with tokens
+
+Importing or syncing tokens is a separate workflow for people maintaining token bindings or contributing design-system changes. It is not a prerequisite for using the UI Kit.
+
+See <a href="./?path=/docs/primary-tokens-contributing--docs" target="_top">Contributing</a> for Tokens Studio setup, pulling repository updates, and exporting tokens to Figma variables.
