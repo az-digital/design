@@ -95,7 +95,8 @@ contracts likewise bind a component's parts to tokens.
     `$description`. A `color` value is only for a color that isn't in the brand palette
     yet, and its description says so.
   - **`states`:** what changes in `hover`, `focus-visible`, `focus-within`, `active`,
-    `open` or `disabled`. Only what changes.
+    `checked`, `indeterminate`, `open` or `disabled`. Only what changes. `checked` and
+    `indeterminate` are a checkbox's, radio's or switch's value.
   - **`breakpoints`:** what changes from the width in the corresponding
     `az.breakpoint.<name>` token up. The key and token use the same name; only what
     changes.
@@ -148,10 +149,12 @@ A contract check keeps them in step once an implementation has been updated.
 renders an implementation in a real browser and compares each property's computed
 style with the contract's token or value, at rest, with keyboard focus and on hover,
 and lists every property that differs. For a component with parts, such as a card,
-the story names each part's element. Hover can't be triggered from a script, so hover
-rows are read from the hover values the stylesheet sets, or with keyboard focus where
-one rule draws both. A component's check is a story with a `play` function that
-renders the implementation's markup and runs it; `npm run test:storybook` runs it in CI.
+the story names each part's element; for a form control, it also reads the checked,
+indeterminate and disabled rows by setting that state. Hover can't be triggered from
+a script, so hover rows are read from the hover values the stylesheet sets, or with
+keyboard focus where one rule draws both. A component's check is a story with a
+`play` function that renders the implementation's markup and runs it;
+`npm run test:storybook` runs it in CI.
 
 ## Adding a contract
 

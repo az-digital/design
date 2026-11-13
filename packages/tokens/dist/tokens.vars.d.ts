@@ -122,6 +122,7 @@ export const az: {
   },
   "fontSize": {
     "root": string,
+    "base": string,
     "sm": string,
     "lg": string,
     "h6": string,
@@ -146,6 +147,7 @@ export const az: {
       "sm": string,
       "md": string,
       "lg": string
-    }
+    },
+    "opacity": string
   }
 };

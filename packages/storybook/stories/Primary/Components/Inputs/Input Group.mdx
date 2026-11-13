@@ -1,0 +1,116 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as InputGroupStories from './Input Group.stories';
+
+<Meta of={InputGroupStories} />
+
+# Input Group
+
+A text field with something attached: a text add-on such as @ or a currency sign, a button
+such as Subscribe, or both, so they read as one control.
+
+<Canvas of={InputGroupStories.Default} sourceState="none" />
+
+<Controls of={InputGroupStories.Default} />
+
+The input group above is the current release. It matches this page except at the small
+and large sizes, where an attached button keeps the default size's padding and corners
+and only its text changes size. A small input group with a button is 38px tall instead
+of about 34.5px.
+
+## Colors
+
+The input group's contract (`input-group.contract.json`) points each color at a brand
+color:
+
+- **Text:** <Token data={getTokenData('az.color.brand.gray.900')} />, and the placeholder
+  is the same color at 75% opacity.
+- **Field:** <Token data={getTokenData('az.color.brand.white')} />, with a
+  <Token data={getTokenData('az.color.brand.gray.600')} /> border.
+- **Add-on:** <Token data={getTokenData('az.color.brand.gray.100')} />, with the same
+  border.
+- **Button:** any of the Button's colors. The input group only sets its size and shape.
+- **Keyboard focus:** the field's border turns
+  <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in
+  the same color at 70% opacity, <Token data={getTokenData('az.focus-ring.width.lg')} />
+  (4px) wide. It fades in over 150ms, ease-in-out, which hasn't been reviewed by design
+  yet and turns off when someone asks for reduced motion.
+- **Disabled:** the field fills <Token data={getTokenData('az.color.brand.gray.200')} />,
+  with a <Token data={getTokenData('az.color.brand.gray.400')} /> border.
+
+## Size
+
+The field, add-ons and button share one height and border. Where two touch, their
+corners are square.
+
+- **Padding:** <Token data={getTokenData('az.spacing.075')} /> (6px) above and below the
+  text, and <Token data={getTokenData('az.spacing.150')} /> (12px) to each side, in the
+  field, add-ons and button alike.
+- **Type:** <Token data={getTokenData('az.font-size.base')} /> (18px) <Token data={getTokenData('az.font-weight.normal')} /> (Regular) on a 28px
+  line, in the field and add-ons. The button keeps its own type.
+- **Border:** <Token data={getTokenData('az.border.width.sm')} /> (1px), with
+  <Token data={getTokenData('az.radius.2')} /> (6px) corners on the outside ends.
+
+### Sizes
+
+Small and large change the field, add-ons and button together, so they stay one height.
+A button in an input group takes the group's size, not one of the Button's own sizes.
+
+<table>
+  <thead>
+    <tr><th></th><th>Small</th><th>Default</th><th>Large</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Height</td>
+      <td>About 34.5px</td>
+      <td>About 42px</td>
+      <td>About 49px to 53px</td>
+    </tr>
+    <tr>
+      <td>Padding</td>
+      <td><Token data={getTokenData('az.spacing.050')} /> (4px) above and below, <Token data={getTokenData('az.spacing.100')} /> (8px) to each side</td>
+      <td><Token data={getTokenData('az.spacing.075')} /> (6px) above and below, <Token data={getTokenData('az.spacing.150')} /> (12px) to each side</td>
+      <td><Token data={getTokenData('az.spacing.100')} /> (8px) above and below, <Token data={getTokenData('az.spacing.200')} /> (16px) to each side</td>
+    </tr>
+    <tr>
+      <td>Text</td>
+      <td>15.75px</td>
+      <td><Token data={getTokenData('az.font-size.base')} /> (18px)</td>
+      <td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td>
+    </tr>
+    <tr>
+      <td>Corners</td>
+      <td><Token data={getTokenData('az.radius.1')} /> (4px)</td>
+      <td><Token data={getTokenData('az.radius.2')} /> (6px)</td>
+      <td><Token data={getTokenData('az.radius.3')} /> (8px)</td>
+    </tr>
+  </tbody>
+</table>
+
+The input group has no design tokens of its own: values without one are in its contract.
+
+## Anatomy
+
+Each part of the input group and each of its design properties, from its contract: the
+design token it uses, or its own value and what it's for.
+
+<ContractAnatomy contract="input-group" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="input-group" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="input-group" variant="size.large" />
+
+## Search
+
+The search form in a site's navigation is built like an input group, but its look is its
+own. See <a href="./?path=/docs/primary-components-navigation-search--docs" target="_top">Search</a>.
