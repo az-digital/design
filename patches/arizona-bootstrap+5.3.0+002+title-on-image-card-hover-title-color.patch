@@ -1,0 +1,24 @@
+diff --git a/node_modules/arizona-bootstrap/scss/custom/_hover.scss b/node_modules/arizona-bootstrap/scss/custom/_hover.scss
+index e314471..9c8df9e 100644
+--- a/node_modules/arizona-bootstrap/scss/custom/_hover.scss
++++ b/node_modules/arizona-bootstrap/scss/custom/_hover.scss
+@@ -141,3 +141,19 @@ img.hover-img-zoom-in {
+     }
+   }
+ }
++
++// >> Title on Image card hover color
++
++// A Title on Image card has no .bg-* class, because its image covers it, so
++// none of the presets above apply. Its title sits on a blue gradient. On hover,
++// and with keyboard focus, the title turns Rain, as in the brand mockup. Set
++// --az-card-hover-title-color on the card to use another color.
++// The .text-bg-gradient-* utility sets the title's White color with
++// `!important`, so this rule needs it too.
++.card.hover {
++  @include az-hover-on() {
++    .card-title.text-bg-gradient-blue {
++      color: var(--az-card-hover-title-color, var(--#{$prefix}rain)) if($enable-important-utilities, !important, null);
++    }
++  }
++}

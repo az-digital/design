@@ -2,8 +2,9 @@
   "$schema": "../contract.schema.json",
   "id": "title-on-image-card",
   "name": "Title on Image Card",
-  "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. Its colors don't change on hover, because the photo covers the card: the photo zooms, and the title is underlined.",
+  "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. On hover, and while keyboard focus is on its title link, the photo zooms, and the title turns Rain and is underlined. The card has no fill to change, because the photo covers it.",
   "sources": [
+    "The brand mockup (Arizona.edu Components > Cards, Adobe XD), linked from az-digital/arizona-bootstrap#2350: the title's Rain color and underline on hover",
     "az-digital/arizona-bootstrap#2365 (design-reviewed): the square image, the title's blue gradient over its bottom half, and the title's 24px padding",
     "az-digital/arizona-bootstrap#2365 (design-reviewed): the image's 8% zoom over 250ms",
     "Arizona Bootstrap 5.2: the title's 30px line height (.h5)"
@@ -73,7 +74,7 @@
           }
         },
         "title": {
-          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo.",
+          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo. With keyboard focus, its ring is drawn in its own color, as on the Icon Card.",
           "tokens": {
             "color": "{az.color.brand.white}",
             "font.size": {
@@ -103,8 +104,12 @@
             "padding.bottom": "{az.spacing.300}"
           },
           "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
+              "color": "{az.color.brand.rain}",
+              "ring.color": "{az.color.brand.rain}",
               "ring.width": "{az.focus-ring.width.md}"
             }
           }

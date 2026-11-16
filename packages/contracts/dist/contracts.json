@@ -3181,9 +3181,27 @@
     "variant": null,
     "part": "title",
     "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
     "condition": "focus-visible",
     "property": "ring.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.brand.rain"
   },
   {
     "contract": "title-on-image-card",
