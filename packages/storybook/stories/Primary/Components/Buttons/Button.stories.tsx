@@ -31,7 +31,7 @@ const color = (args: ButtonArgs) => colors[args.Color] ?? colors.Red;
 
 const meta = {
   title: 'Primary/Components/Buttons/Button',
-  tags: ['lib:html', 'lib:web'],
+  tags: ['lib:html', 'lib:web', 'lib:react'],
   ...componentStories('button', {
     props: (args: ButtonArgs): ButtonProps => ({
       label: args.Label,

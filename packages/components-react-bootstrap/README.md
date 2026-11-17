@@ -20,6 +20,12 @@ export function Example() {
 
 The package declares React and React DOM as peer dependencies. Load the Arizona Bootstrap styles and design-token CSS required by the components. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50) for release planning.
 
+The Button defaults to an anchor; pass `htmlTag="button"` for an action. Its `style` and `color` props select the Arizona Bootstrap classes, and its `size` prop accepts `sm` or `lg`.
+
+The Arizona Header's optional Search and Menu buttons are presentational; applications must provide their own behavior.
+
+The card variants are available from `@az-digital/components-react-bootstrap/Cards` or individual subpaths such as `@az-digital/components-react-bootstrap/Card`. The plain `Card` accepts rich-text HTML through its `body` prop; sanitize that HTML before passing it to the component.
+
 ## How it consumes design tokens
 
 Use the design tokens referenced by a component's contract for shared decisions, and import the generated token CSS in the consuming application. Keep component-specific values, such as sizes and timings, in the contract rather than creating `az.component.*` tokens. Implementations should refer to token variables, not copy resolved values.

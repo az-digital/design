@@ -79,7 +79,7 @@ This package is TypeScript source with no build step; Storybook reads it directl
 
 ### Platform-specific limits
 
-The markup is plain HTML, so a site owns loading Arizona Bootstrap's CSS and JavaScript, including the JavaScript for interactive components. The markup targets Arizona Bootstrap's current release: Rain is still `.btn-sky` until az-digital/arizona-bootstrap#2369 renames it.
+The markup is plain HTML, so a site owns loading Arizona Bootstrap's CSS and JavaScript, including the JavaScript for interactive components. The markup targets Arizona Bootstrap's current release.
 
 ## Verification
 

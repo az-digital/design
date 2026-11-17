@@ -1,0 +1,65 @@
+import { Meta, Canvas, Story, Controls, Source } from '@storybook/addon-docs/blocks';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as NavStories from './Nav.stories';
+
+{/* `of={NavStories}` attaches this page to Nav.stories.tsx's own title
+    ("Primary/Components/Navigation/Nav"), so it replaces the autodocs page for that group instead
+    of adding a separate nested entry. */}
+<Meta of={NavStories} />
+
+# Nav
+
+Nav renders a list of links sharing a single style — a plain static link list, not a
+dynamic tab-panel switcher (see <a href="./?path=/docs/primary-components-containers-tabs--docs" target="_top">Tabs</a> for that).
+Purely presentational: no real interactive behavior, so unlike Accordion/Tabs, this
+component is hand-rolled rather than wrapping `react-bootstrap`.
+
+The initial contract uses <a href="https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/navs-tabs/" target="_top">Arizona Bootstrap 5.3.0</a> as its source. It records link spacing; visual states and other design decisions still need review.
+
+<Canvas>
+  <Story of={NavStories.Default} />
+</Canvas>
+
+<Controls of={NavStories.Default} />
+
+## Variants
+
+- **Base** (default) — the bare, unstyled `.nav`.
+- **Pills** (`variant="pills"`) — rounded, filled selected state.
+- **Underline** (`variant="underline"`) — a minimal underline on the selected item.
+- **Utility Links** (`variant="utility"`) — a muted appearance for secondary links.
+  Confirmed **Arizona-custom** in the real docs ("Custom Arizona Bootstrap Styling").
+- **Vertical** (`vertical`) — stacks items in a column instead of a row.
+- **Vertical Pills** (`variant="pills"` + `vertical`, with nested `items`) — a nested,
+  multi-level pills menu. Also confirmed **Arizona-custom**. Nesting only makes sense
+  with `vertical` + `pills` — that's the one case the real docs demonstrate.
+- **Fill** (`fill`) / **Justified** (`justify`) — proportionately fills or equally
+  divides the available width across items.
+
+<Source of={NavStories.Pills} />
+<Source of={NavStories.Vertical} />
+<Source of={NavStories.VerticalPills} />
+<Source of={NavStories.UtilityLinks} />
+<Source of={NavStories.Fill} />
+<Source of={NavStories.Justified} />
+
+## Relationship to Tabs
+
+Both components share the same underlying `.nav`/`.nav-link` markup and styling, but
+solve different problems: `Nav` is a static list of real links (each `href` navigates
+somewhere, or is just a placeholder `#`), while
+<a href="./?path=/docs/primary-components-containers-tabs--docs" target="_top">Tabs</a> is a dynamic ARIA `tablist`/`tabpanel`
+interface that swaps visible content in place without navigating. If you need
+`data-bs-toggle`, `role="tab"`, or a `tab-content` panel, that's `Tabs`, not `Nav`.
+
+## Anatomy
+
+<ContractAnatomy contract="nav" />
+
+### Underline
+
+<ContractAnatomy contract="nav" variant="style.underline" />
+
+### Utility Links
+
+<ContractAnatomy contract="nav" variant="style.utility" />

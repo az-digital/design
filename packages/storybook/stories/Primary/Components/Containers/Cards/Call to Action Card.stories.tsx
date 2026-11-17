@@ -13,7 +13,7 @@ type CallToActionCardArgs = { Title: string; Text: string; Button: string; 'Butt
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Call to Action Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('call-to-action-card', {
     props: (args: CallToActionCardArgs): CallToActionCardProps => ({
       title: args.Title,

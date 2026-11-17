@@ -1,0 +1,30 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "accordion",
+  "name": "Accordion",
+  "description": "A set of headings that expand or collapse their associated content. This initial contract records the shared spacing in Arizona Bootstrap 5.3.0; additional states and visual decisions still need review.",
+  "sources": [
+    "Arizona Bootstrap 5.3.0 accordion: https://digital.arizona.edu/arizona-bootstrap/v5/docs/5.3/components/accordion/"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The collection of accordion items.",
+      "parts": {
+        "heading": {
+          "description": "The button that opens or closes an item.",
+          "tokens": {
+            "padding.x": "{az.spacing.250}",
+            "padding.y": "{az.spacing.200}"
+          }
+        },
+        "body": {
+          "description": "The content within an expanded item.",
+          "tokens": {
+            "padding.x": "{az.spacing.250}",
+            "padding.y": "{az.spacing.200}"
+          }
+        }
+      }
+    }
+  }
+}

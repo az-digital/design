@@ -22,14 +22,13 @@ export type ButtonProps = {
 };
 
 // Arizona Bootstrap's class for each contract color, in its current release.
-// Rain is still .btn-sky until az-digital/arizona-bootstrap#2369 renames it.
 const colorClasses: Record<ButtonColor, string> = {
   red: 'btn-red',
   'outline-red': 'btn-outline-red',
   blue: 'btn-blue',
   'outline-blue': 'btn-outline-blue',
-  rain: 'btn-sky',
-  'outline-rain': 'btn-outline-sky',
+  rain: 'btn-rain',
+  'outline-rain': 'btn-outline-rain',
   'white-text-red': 'btn-white-text-red',
   'white-text-blue': 'btn-white-text-blue',
   'outline-white': 'btn-outline-white',

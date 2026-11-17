@@ -2,6 +2,7 @@
 // library's components. The markup it shows is exactly what each render function returns.
 import type { LibraryAdapter } from '@az-digital/storybook-addon-libraries';
 import {
+  renderAccordion,
   renderArizonaHeader,
   renderButton,
   renderCallToActionCard,
@@ -9,21 +10,32 @@ import {
   renderIconCard,
   renderImageCard,
   renderLinkCard,
+  renderNav,
   renderQuickLinksCard,
+  renderTabs,
   renderTitleOnImageCard,
-  type ArizonaHeaderProps,
-  type ButtonProps,
-  type CallToActionCardProps,
-  type CardProps,
-  type IconCardProps,
-  type ImageCardProps,
-  type LinkCardProps,
-  type QuickLinksCardProps,
-  type TitleOnImageCardProps,
+} from '../src';
+import type {
+  AccordionProps,
+  ArizonaHeaderProps,
+  ButtonProps,
+  CallToActionCardProps,
+  CardProps,
+  IconCardProps,
+  ImageCardProps,
+  LinkCardProps,
+  NavProps,
+  QuickLinksCardProps,
+  TabsProps,
+  TitleOnImageCardProps,
 } from '../src';
 
 export default {
   components: {
+    accordion: {
+      render: (props: AccordionProps) => renderAccordion(props),
+      source: (props: AccordionProps) => renderAccordion(props),
+    },
     'brand-header': {
       render: (props: ArizonaHeaderProps) => renderArizonaHeader(props),
       source: (props: ArizonaHeaderProps) => renderArizonaHeader(props),
@@ -52,9 +64,17 @@ export default {
       render: (props: LinkCardProps) => renderLinkCard(props),
       source: (props: LinkCardProps) => renderLinkCard(props),
     },
+    nav: {
+      render: (props: NavProps) => renderNav(props),
+      source: (props: NavProps) => renderNav(props),
+    },
     'quick-links-card': {
       render: (props: QuickLinksCardProps) => renderQuickLinksCard(props),
       source: (props: QuickLinksCardProps) => renderQuickLinksCard(props),
+    },
+    tabs: {
+      render: (props: TabsProps) => renderTabs(props),
+      source: (props: TabsProps) => renderTabs(props),
     },
     'title-on-image-card': {
       render: (props: TitleOnImageCardProps) => renderTitleOnImageCard(props),

@@ -13,7 +13,7 @@ type IconCardArgs = { Icon: string; Title: string; Text: string; Link: string };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Icon Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('icon-card', {
     props: (args: IconCardArgs): IconCardProps => ({
       icon: args.Icon,

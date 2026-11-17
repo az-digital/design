@@ -1,5 +1,41 @@
 [
   {
+    "contract": "accordion",
+    "variant": null,
+    "part": "heading",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.250"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "heading",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.250"
+  },
+  {
+    "contract": "accordion",
+    "variant": null,
+    "part": "body",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.200"
+  },
+  {
     "contract": "brand-header",
     "variant": null,
     "part": "root",
@@ -2802,6 +2838,51 @@
     "token": "az.color.brand.white"
   },
   {
+    "contract": "nav",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "nav",
+    "variant": null,
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.underline",
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.0"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.0"
+  },
+  {
+    "contract": "nav",
+    "variant": "style.utility",
+    "part": "link",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.0"
+  },
+  {
     "contract": "quick-links-card",
     "variant": null,
     "part": "root",
@@ -3001,6 +3082,33 @@
     "condition": null,
     "property": "gap",
     "token": "az.spacing.150"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.200"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": "az.spacing.100"
+  },
+  {
+    "contract": "tabs",
+    "variant": "style.underline",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": "az.spacing.0"
   },
   {
     "contract": "title-on-image-card",

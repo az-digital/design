@@ -10,7 +10,7 @@ type ImageCardArgs = { Image: string; 'Image description': string; Title: string
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Image Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('image-card', {
     props: (args: ImageCardArgs): ImageCardProps => ({
       image: args.Image || widePhoto,

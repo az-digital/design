@@ -15,7 +15,7 @@ type QuickLinksCardArgs = { Title: string; Text: string; Links: QuickLink[] };
 
 const meta = {
   title: 'Primary/Components/Containers/Cards/Quick Links Card',
-  tags: ['!dev', 'lib:html'],
+  tags: ['!dev', 'lib:html', 'lib:react'],
   ...componentStories('quick-links-card', {
     props: (args: QuickLinksCardArgs): QuickLinksCardProps => ({
       title: args.Title,
