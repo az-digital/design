@@ -13,6 +13,7 @@ const gitRef =
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
+  staticDirs: [{ from: '../../tokens/dist', to: '/tokens' }],
 
   addons: [
     getAbsolutePath("@storybook/addon-docs"),

@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import type { Preview } from '@storybook/react-vite';
+import { ThemeDocsContainer } from './ThemeDocsContainer';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
 // Arizona Bootstrap compiled from its Sass source, with the patches in patches/.
@@ -107,6 +108,9 @@ const preview: Preview = {
           'Bear Down 100',
         ],
       },
+    },
+    docs: {
+      container: ThemeDocsContainer,
     },
   },
 };

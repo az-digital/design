@@ -3288,10 +3288,52 @@
     "contract": "title-on-image-card",
     "variant": null,
     "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.duration",
+    "token": null,
+    "type": "duration",
+    "value": "300ms",
+    "description": "How long the title's color takes to change on hover and with keyboard focus: the same fade as the Icon Card's colors. Turned off when someone asks for reduced motion; the color still changes."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "default",
+    "condition": null,
+    "property": "transition.easing",
+    "token": null,
+    "type": "cubicBezier",
+    "value": "cubic-bezier(0, 0, 0.58, 1)",
+    "description": "Easing for the title's color change: ease-out, as on the Icon Card. Turned off when someone asks for reduced motion."
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "color",
+    "token": "az.color.brand.rain"
+  },
+  {
+    "contract": "title-on-image-card",
+    "variant": null,
+    "part": "title",
     "kind": "state",
     "condition": "focus-visible",
     "property": "ring.color",
-    "token": "az.color.brand.white"
+    "token": "az.color.brand.rain"
   },
   {
     "contract": "title-on-image-card",
