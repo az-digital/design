@@ -1,0 +1,13 @@
+{
+  "$schema": "https://github.com/IBM/audit-ci/raw/main/docs/schema.json",
+  // Fail on high or critical advisories. Low and moderate ones are triaged
+  // through Dependabot alerts instead.
+  "high": true,
+  "allowlist": [
+    // picomatch ReDoS (CVE-2026-112366). No patched release exists, and the
+    // maintainer disputes it (https://github.com/micromatch/picomatch/issues/247).
+    // It's a dev/test-only dependency (Storybook, Vite, Vitest, ESLint) and
+    // isn't in any published package. Remove this entry once picomatch ships a fix.
+    "GHSA-fc5q-39xc-vjpf"
+  ]
+}

@@ -118,10 +118,11 @@ jobs:
       - name: Run Storybook tests
         run: npm run test:storybook
 
-      # Fails on high or critical advisories. Low and moderate ones still show
-      # in the log and are triaged through Dependabot alerts instead.
+      # Fails on high or critical advisories, except those allowlisted with a
+      # rationale in audit-ci.jsonc. Low and moderate ones are triaged through
+      # Dependabot alerts instead.
       - name: Check dependencies for high severity vulnerabilities
-        run: npm audit --audit-level=high
+        run: npx audit-ci --config audit-ci.jsonc
 
   # Deploys the build only after the build and checks both pass. It doesn't
   # check out or install anything, so the AWS credentials and the token that
