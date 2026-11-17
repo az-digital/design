@@ -2,8 +2,10 @@
   "$schema": "../contract.schema.json",
   "id": "title-on-image-card",
   "name": "Title on Image Card",
-  "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. Its colors don't change on hover, because the photo covers the card: the photo zooms, and the title is underlined.",
+  "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. On hover, and while keyboard focus is on its title link, the photo zooms, and the title fades to Rain and is underlined. The card has no fill to change, because the photo covers it.",
   "sources": [
+    "The brand mockup (Arizona.edu Components > Cards, Adobe XD), linked from az-digital/arizona-bootstrap#2350: the title's Rain color and underline on hover",
+    "az-digital/arizona-bootstrap#2365 (design-reviewed): .card.bg-cloud.hover: the 300ms ease-out color fade, used here for the title so the cards match",
     "az-digital/arizona-bootstrap#2365 (design-reviewed): the square image, the title's blue gradient over its bottom half, and the title's 24px padding",
     "az-digital/arizona-bootstrap#2365 (design-reviewed): the image's 8% zoom over 250ms",
     "Arizona Bootstrap 5.2: the title's 30px line height (.h5)"
@@ -73,7 +75,7 @@
           }
         },
         "title": {
-          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo.",
+          "description": "The title, a link that covers the whole card, at the bottom of the photo. Behind it, a gradient covers the bottom half of the photo, from transparent at the top of that half to gradient.color at the bottom, so its White text stays readable on any photo. With keyboard focus, its ring is drawn in its own color, as on the Icon Card.",
           "tokens": {
             "color": "{az.color.brand.white}",
             "font.size": {
@@ -100,11 +102,33 @@
               "$description": "How much of the photo the title's gradient covers, as a percentage of its height: the bottom half. Implementations use calc(var(--…) * 1%)."
             },
             "padding.x": "{az.spacing.300}",
-            "padding.bottom": "{az.spacing.300}"
+            "padding.bottom": "{az.spacing.300}",
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 300,
+                "unit": "ms"
+              },
+              "$description": "How long the title's color takes to change on hover and with keyboard focus: the same fade as the Icon Card's colors. Turned off when someone asks for reduced motion; the color still changes."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the title's color change: ease-out, as on the Icon Card. Turned off when someone asks for reduced motion."
+            }
           },
           "states": {
+            "hover": {
+              "color": "{az.color.brand.rain}"
+            },
             "focus-visible": {
-              "ring.color": "{az.color.brand.white}",
+              "color": "{az.color.brand.rain}",
+              "ring.color": "{az.color.brand.rain}",
               "ring.width": "{az.focus-ring.width.md}"
             }
           }
