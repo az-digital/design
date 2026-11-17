@@ -25,7 +25,7 @@
   "author": "Arizona Digital",
   "license": "MIT",
   "devDependencies": {
-    "style-dictionary": "^5.7.1"
+    "style-dictionary": "^5.8.0"
   },
   "scripts": {
     "build": "rm -rf dist && style-dictionary build --config ./style-dictionary.config.mjs"
