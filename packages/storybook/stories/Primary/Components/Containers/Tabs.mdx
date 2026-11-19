@@ -1,7 +1,94 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as TabsStories from './Tabs.stories';
 
-<Meta title="Primary/Components/Containers/Tabs" />
+<Meta of={TabsStories} />
 
 # Tabs
 
-This page documents the multi-section navigation pattern that helps users move between grouped content without losing context.
+A row of tabs that switches between panels of content in one place, so someone can move
+between grouped content without losing their place.
+
+<Canvas of={TabsStories.Default} sourceState="none" />
+
+<Controls of={TabsStories.Default} />
+
+This page records the alternate tab style from
+<a href="https://github.com/az-digital/design/issues/170" target="_blank" rel="noreferrer">az-digital/design#170</a>,
+which gives the current tab more emphasis than the existing style does. Whether it
+replaces the existing style or joins it as a second choice is still open, so both are
+documented until that's decided.
+
+## Colors
+
+<table>
+  <thead>
+    <tr>
+      <th>Tab</th>
+      <th>Label</th>
+      <th>Underline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>At rest</strong></td>
+      <td>Azurite</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><strong>Current</strong></td>
+      <td>Blue, bold</td>
+      <td>Blue, 4px</td>
+    </tr>
+    <tr>
+      <td><strong>Disabled</strong></td>
+      <td>Gray 600</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+
+The row sits on a rule the full width of the content: <Token data={getTokenData('az.border.width.md')} /> of
+<Token data={getTokenData('az.color.brand.gray.400')} />. Each tab's own underline is drawn
+on top of that rule, heavier than it, so the current tab reads as joined to the panel
+below it. A label at rest is <Token data={getTokenData('az.color.brand.azurite')} />, the
+current tab's is <Token data={getTokenData('az.color.fg.blue')} />, and a disabled tab's is
+<Token data={getTokenData('az.color.brand.gray.600')} />.
+
+## Size and type
+
+Labels are <Token data={getTokenData('az.font-family.serif')} /> at 28px on a 1.4 line,
+<Token data={getTokenData('az.font-weight.normal')} /> at rest and
+<Token data={getTokenData('az.font-weight.bold')} /> for the current tab. A serif label at
+heading size makes the row read as wayfinding rather than body text.
+
+Each tab has 8px of padding above and below and 12px to each side, with its top corners
+rounded to <Token data={getTokenData('az.radius.3')} /> and its bottom corners square, so
+the shape opens downward into its panel. Tabs sit 44px apart.
+
+## States and behavior
+
+- **The current tab** is the one whose panel is showing. One tab in a row is current.
+- **A disabled tab** can't be chosen. It stays in the row, and a screen reader still
+  reaches it, so the set of sections doesn't change depending on what's available.
+- **Hover and keyboard focus aren't designed yet.** #170 asks for a visible focus
+  indicator, so this needs a design decision before the style is used in production. At
+  the moment a focused tab gets the shared focus ring, not a tab-specific one.
+- **Keyboard operation:** only the current tab is reachable with Tab; the arrow keys move
+  between tabs from there. That keeps a long row from trapping someone in a list of
+  links.
+- **Responsive behavior** isn't settled either. The row currently wraps onto more lines
+  on a narrow screen, which #170 lists as needing guidance.
+
+## Anatomy
+
+A tab at rest, with no option chosen.
+
+<ContractAnatomy contract="tabs" />
+
+### Current
+
+What the current tab changes.
+
+<ContractAnatomy contract="tabs" variant="state.current" />

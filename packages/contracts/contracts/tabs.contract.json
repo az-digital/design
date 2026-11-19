@@ -5,7 +5,9 @@
   "description": "A row of tabs that switch between panels of content in one place: a list of tab labels above a rule, with the current tab marked by a heavier underline and a bolder, darker label. This contract records the alternate tab style designed for az-digital/design#170, which gives the current tab stronger emphasis than Arizona Bootstrap's existing nav-tabs style. A tab is at rest, current, or disabled.",
   "sources": [
     "az-digital/design#170: add an alternate tab style variant",
-    "Figma branch tab-design-issue-170 of the AZ Digital UX Design System, Tabs page, Tabs component (node 6190:73): the alternate style's colors, type, spacing and underline weights"
+    "Figma branch tab-design-issue-170 of the AZ Digital UX Design System, Tabs page, Tabs component (node 6190:73): the alternate style's colors, type, spacing and underline weights",
+    "az-digital/arizona-bootstrap#2240 (approved): Garamond Premier Pro is the serif typeface, which the Figma design uses for the tab labels",
+    "Arizona Bootstrap 5.3.x underline tabs (scss/override/_nav.scss, scss/override/_variables.scss): the resting and disabled label colors, which the Figma design matches"
   ],
   "anatomy": {
     "root": {
@@ -66,16 +68,7 @@
             "label": {
               "description": "The tab's text: a serif face, larger than body text, so the tab row reads as a heading-level wayfinding element.",
               "tokens": {
-                "font.family": {
-                  "$type": "fontFamily",
-                  "$value": [
-                    "Garamond Premier Pro",
-                    "MiloSerifWeb",
-                    "Georgia",
-                    "serif"
-                  ],
-                  "$description": "Tab label typeface, from the Figma design. Garamond Premier Pro is not in the brand font palette: az.font-family.serif is MiloSerifWeb. Design review needs to confirm the face before an implementation ships it; MiloSerifWeb follows as the fallback so the design system's serif is used where Garamond is unavailable."
-                },
+                "font.family": "{az.font-family.serif}",
                 "font.size": {
                   "$type": "dimension",
                   "$value": {
@@ -86,9 +79,12 @@
                 },
                 "font.weight": "{az.font-weight.normal}",
                 "line-height": {
-                  "$type": "number",
-                  "$value": 1.4,
-                  "$description": "Tab label line height, as a ratio of the text size. Not az.line-height.base (1.5) or .sm (1.25): the Figma design sets 140%."
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 39.2,
+                    "unit": "px"
+                  },
+                  "$description": "Tab label line height: 140% of the 28px label. Not az.line-height.base (1.5) or .sm (1.25), which the Figma design doesn't use."
                 },
                 "color": "{az.color.brand.azurite}"
               },

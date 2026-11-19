@@ -3093,10 +3093,7 @@
     "kind": "default",
     "condition": null,
     "property": "font.family",
-    "token": null,
-    "type": "fontFamily",
-    "value": "\"Garamond Premier Pro\", MiloSerifWeb, Georgia, serif",
-    "description": "Tab label typeface, from the Figma design. Garamond Premier Pro is not in the brand font palette: az.font-family.serif is MiloSerifWeb. Design review needs to confirm the face before an implementation ships it; MiloSerifWeb follows as the fallback so the design system's serif is used where Garamond is unavailable."
+    "token": "az.font-family.serif"
   },
   {
     "contract": "tabs",
@@ -3127,9 +3124,9 @@
     "condition": null,
     "property": "line-height",
     "token": null,
-    "type": "number",
-    "value": "1.4",
-    "description": "Tab label line height, as a ratio of the text size. Not az.line-height.base (1.5) or .sm (1.25): the Figma design sets 140%."
+    "type": "dimension",
+    "value": "39.2px",
+    "description": "Tab label line height: 140% of the 28px label. Not az.line-height.base (1.5) or .sm (1.25), which the Figma design doesn't use."
   },
   {
     "contract": "tabs",

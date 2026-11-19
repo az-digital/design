@@ -1,0 +1,74 @@
+diff --git a/node_modules/arizona-bootstrap/scss/override/_nav.scss b/node_modules/arizona-bootstrap/scss/override/_nav.scss
+index b827160..168516e 100644
+--- a/node_modules/arizona-bootstrap/scss/override/_nav.scss
++++ b/node_modules/arizona-bootstrap/scss/override/_nav.scss
+@@ -43,14 +43,46 @@
+   }
+ }
+ 
+-.nav.nav-underline .nav-link {
+-  &.active,
+-  &:active,
+-  &.is-active {
+-    // Underline tabs sit on the page background, not on the grey block the
+-    // generic `.nav-link.active` rule paints, so this has to override it.
+-    background-color: $nav-tabs-link-active-bg;
+-    @include border-radius(revert);
++.nav.nav-underline {
++  // A rule the full width of the row, with each tab's own underline on top of
++  // it, so the current tab reads as joined to its panel.
++  border-bottom: $az-border-width-md solid $az-color-brand-gray-400;
++
++  .nav-link {
++    padding: 8px 12px;
++    font-family: $az-font-family-serif;
++    font-size: 28px;
++    // A tab's label is normal weight at rest and bold when it's the current
++    // one, so the row's own weight replaces the generic nav link's.
++    font-weight: $az-font-weight-normal;
++    line-height: 39.2px;
++
++    // The underline sits on the row's rule, so it's drawn at the tab's own
++    // weight rather than the row's.
++    @include border-top-start-radius($az-radius-3);
++    @include border-top-end-radius($az-radius-3);
++    border-bottom-width: 4px;
++
++    &.active,
++    &:active,
++    &.is-active {
++      // Underline tabs sit on the page background, so the current tab has no
++      // fill of its own: this clears the grey block the generic
++      // `.nav-link.active` rule paints, rather than painting white over it,
++      // which would show as a box on any other surface.
++      font-weight: $az-font-weight-bold;
++      background-color: transparent;
++      @include border-top-start-radius($az-radius-3);
++      @include border-top-end-radius($az-radius-3);
++      @include border-bottom-start-radius(0);
++      @include border-bottom-end-radius(0);
++    }
++
++    &.disabled,
++    &:disabled {
++      color: $az-color-brand-gray-600;
++      border-bottom-width: 0;
++    }
+   }
+ }
+ 
+diff --git a/node_modules/arizona-bootstrap/scss/override/_variables.scss b/node_modules/arizona-bootstrap/scss/override/_variables.scss
+index 7686f19..4216449 100644
+--- a/node_modules/arizona-bootstrap/scss/override/_variables.scss
++++ b/node_modules/arizona-bootstrap/scss/override/_variables.scss
+@@ -187,7 +187,9 @@ $nav-tabs-link-active-border-color: $nav-tabs-border-color $nav-tabs-border-colo
+ $nav-pills-link-active-color: var(--bs-tinta) !default;
+ $nav-pills-link-active-bg: var(--bs-gray-200) !default;
+ 
+-$nav-underline-link-active-color: var(--bs-tinta) !default;
++$nav-underline-link-active-color: $az-color-fg-blue !default;
++// Space between tabs, so their labels read as separate targets.
++$nav-underline-gap: 44px !default;
+ // fusv-enable
+ 
+ // >> Navbar
