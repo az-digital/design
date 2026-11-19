@@ -58,7 +58,7 @@ index b827160..168516e 100644
  }
  
 diff --git a/node_modules/arizona-bootstrap/scss/override/_variables.scss b/node_modules/arizona-bootstrap/scss/override/_variables.scss
-index 7686f19..4216449 100644
+index 7686f19..ed31a28 100644
 --- a/node_modules/arizona-bootstrap/scss/override/_variables.scss
 +++ b/node_modules/arizona-bootstrap/scss/override/_variables.scss
 @@ -187,7 +187,9 @@ $nav-tabs-link-active-border-color: $nav-tabs-border-color $nav-tabs-border-colo
@@ -66,7 +66,7 @@ index 7686f19..4216449 100644
  $nav-pills-link-active-bg: var(--bs-gray-200) !default;
  
 -$nav-underline-link-active-color: var(--bs-tinta) !default;
-+$nav-underline-link-active-color: $az-color-fg-blue !default;
++$nav-underline-link-active-color: $az-color-brand-blue !default;
 +// Space between tabs, so their labels read as separate targets.
 +$nav-underline-gap: 44px !default;
  // fusv-enable

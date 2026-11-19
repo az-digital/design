@@ -38,6 +38,15 @@ const meta = {
       };
     },
   }),
+  decorators: [
+    // Tabs sit on White in the Figma design, and the row's labels are dark,
+    // so a dark Storybook background hides them without this.
+    (Story) => (
+      <div style={{ backgroundColor: 'var(--az-color-brand-white)', padding: '2rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     Labels: 'Active\nLink\nLink\nLink\nDisabled Link',
     Current: 1,

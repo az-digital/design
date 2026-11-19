@@ -118,13 +118,13 @@
                       },
                       "$description": "The current tab's underline weight, heavier than the rule beneath the row so it reads as selected. Not az.border.width.md (2px), which the rule uses; the border scale has no 4px step."
                     },
-                    "border.bottom.color": "{az.color.fg.blue}"
+                    "border.bottom.color": "{az.color.brand.blue}"
                   },
                   "parts": {
                     "label": {
                       "tokens": {
                         "font.weight": "{az.font-weight.bold}",
-                        "color": "{az.color.fg.blue}"
+                        "color": "{az.color.brand.blue}"
                       }
                     }
                   }

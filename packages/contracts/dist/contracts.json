@@ -3165,7 +3165,7 @@
     "kind": "default",
     "condition": null,
     "property": "border.bottom.color",
-    "token": "az.color.fg.blue"
+    "token": "az.color.brand.blue"
   },
   {
     "contract": "tabs",
@@ -3183,7 +3183,7 @@
     "kind": "default",
     "condition": null,
     "property": "color",
-    "token": "az.color.fg.blue"
+    "token": "az.color.brand.blue"
   },
   {
     "contract": "title-on-image-card",
