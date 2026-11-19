@@ -1,0 +1,324 @@
+---
+name: record-design-decisions
+description: Record a component's design decisions in a component contract in the design system, with design tokens named the way the Naming page says, then update Arizona Bootstrap to match with a patch to its Sass. First settle the source of truth for each decision (Arizona Bootstrap PRs, XD mockups, Figma, another Storybook, or a combination), then the contract and tokens, then the values. Use when asked to work on a Design-labeled issue in az-digital/design, record a component's decisions, or figure out where a design's values should come from.
+---
+
+# Record design decisions
+
+Developers can't get Figma access, so the design system is how design decisions reach
+every implementation. Work in this order, and don't skip ahead: values recorded before
+the source and shape are settled get recorded twice.
+
+The contract in the design system comes first; each implementation's changes follow
+from it.
+
+1. **Source of truth:** where each decision comes from
+2. **Contract and design tokens:** which design tokens each part uses, and the component's own values
+3. **Values:** what each one is set to, from its source
+4. **Document it:** the component's docs page in Storybook
+5. **Update Arizona Bootstrap:** a patch to its Sass, so the demo matches the contract
+   and Arizona Bootstrap can take the same change
+
+A contract check holds the demo to the contract.
+
+Before editing, read on the current branch:
+
+- `README.md` and `AGENTS.md`
+- `packages/contracts/README.md`
+- The Naming page, `packages/storybook/stories/Primary/Foundations/Tokens/Naming.mdx`
+  (`npx storybook tools docs show --input '{"id":"primary-foundations-tokens-naming--docs"}'`
+  from `packages/storybook`). It's where design token naming lives; don't restate it elsewhere.
+
+## 1. Settle the source of truth
+
+A design's decisions can live in several places, and different decisions in one design
+can come from different places. Settle it per decision, and write it down before
+recording values.
+
+Places to look:
+
+- **Arizona Bootstrap PRs** (`az-digital/arizona-bootstrap`): body, review comments
+  and diff (`gh pr view N -R az-digital/arizona-bootstrap --json body,comments,reviews,baseRefName,state,reviewDecision`,
+  `gh pr diff N -R az-digital/arizona-bootstrap`). `comments` is only the conversation;
+  `reviews` shows who approved and their text, and inline review comments need
+  `gh api repos/az-digital/arizona-bootstrap/pulls/N/comments`. A PR that went through
+  design or Marketing review is a design decision. Search both issues and PRs (`gh search issues` doesn't return PRs; use
+  `gh search prs` too).
+- **XD mockups**, usually linked from issues and PRs. Often the original design, and
+  sometimes older than what shipped.
+- **Figma**, the design system file.
+- **Other Storybooks**, such as `uaz-web/az-storybook`.
+- **Arizona Bootstrap's Sass**, on the branch the work is landing on (below), and its
+  releases on the CDN.
+- **Live sites** such as arizona.edu: references for comparison, not sources.
+
+Find the branch the work is landing on before comparing anything. Arizona Bootstrap's
+README says version 5 is developed on `main` and version 2 on `2.x` (Bootstrap 4, a
+different codebase), but release branches such as `5.2.x` and `5.3.x` aren't in the
+README. Look at the base branch of the component's recent and open PRs: for example, the 2026 button
+work (#2339, #2378, #2369) targeted `5.3.x`, whose button Sass was already ahead of
+`main` and `5.2.x`. Check the base branches again each time; that was true then, not
+necessarily now. Diff the component's Sass between branches
+(`gh api "repos/az-digital/arizona-bootstrap/contents/<path>?ref=<branch>"`).
+
+How to decide:
+
+- An agreement already recorded for the component comes before the general order below.
+  Read the contract's `sources` and the issue first. Example: the button contract
+  (az-digital/design#89) says where the sources differ Arizona Bootstrap wins, except
+  for colors, which follow Figma, and later corrections (#124) are in the contract.
+  Don't reopen that with the general order.
+- Otherwise, a decision a designer or Marketing reviewed outranks one nobody reviewed.
+  An approved Arizona Bootstrap PR outranks Figma; Figma outranks an unreviewed release
+  value.
+- What shipped outranks an issue's summary of it. Read the merged diff, not just a PR's
+  description: #2111's description said the text backdrop applied to Monsoon Sky, but
+  the merged code only applied it to Trilines.
+- A newer reviewed decision outranks an older one, including approved PRs that haven't
+  merged yet. List commits to the component's Sass on the landing branch
+  (`gh api "repos/az-digital/arizona-bootstrap/commits?sha=<branch>&path=scss/override/_<name>.scss"`,
+  and `scss/custom/`). Two values can both be right for different branches: #2281
+  gave `5.2.x` 10px padding on a 22px line and #2339 gave `5.3.x` 9px on a 24px line,
+  both 46px tall.
+- When sources disagree and neither was reviewed, or the newest source is a mockup
+  that never shipped, that's a question for the user. Ask it with the options side by
+  side; don't pick silently.
+- Old palette names always translate to the current palette, value included: Bloom →
+  Bougainvillea, Chili → Sonoran Red, Sky → Rain, Midnight → Tinta, Oasis → Arroyo
+  Blue, Cool Gray → Cloud, Warm Gray → Caliche. This is settled, not a disagreement.
+- Leave out what isn't approved. Role colors (success, danger, warning, info, light,
+  dark) wait for Marketing to approve status colors; a variant that isn't in the
+  designs yet is recorded only with a note saying so.
+
+Write the result down where reviewers will see it: a decisions table in the PR
+description (decision, what's recorded, why), or the issue's "Where values come from"
+section. If the issue doesn't list a source yet, draft that section as a local file for
+the user to review before posting.
+
+## 2. Write the contract and its design tokens
+
+### Contracts
+
+Each component gets a contract, `packages/contracts/contracts/<name>.contract.json`
+(see `packages/contracts/README.md`): its anatomy, independent of any platform.
+
+- **Parts, states, breakpoints.** `anatomy.root` is the component; `parts` nest inside
+  it. `states` (`hover`, `focus-visible`, `active`, `open`, `disabled`, the schema's
+  list) and `breakpoints` (`sm`…`xxl`) hold only what changes.
+- **Properties** are named the way design tokens are (`color`, `fill`, `padding.x`,
+  `font.size`, `ring.color`), not after a platform (no `padding-inline`).
+- **Each property points at a design token or holds the component's own value.** Colors and
+  shared decisions point at design tokens. What's specific to the component, such as its
+  sizes and timings, is a value written like a DTCG token: a `$type`, a `$value` and a
+  `$description` of what it's for.
+- **Variants** (`size`, `color`) hold only what each option changes, with a `default`
+  when the anatomy alone isn't complete (the button's color default is `red`). Name
+  options after what they are, and merge options that end up identical (the button
+  has one `outline-white` for Red and Arroyo Blue backgrounds, like Arizona
+  Bootstrap's one `.btn-outline-white`). An option's description can name its Arizona
+  Bootstrap classes; leave out class names that are only proposed.
+- **No platform output.** A contract generates nothing for CSS, Sass or any other
+  platform: `npm run build:contracts` writes only `dist/contracts.json`, for docs
+  tables and contract checks. Each implementation writes the component's own values
+  its own way.
+- **`npm run build:contracts` must pass**, and CI fails if the committed
+  `packages/contracts/dist` is out of date. It refuses a contract that doesn't match
+  the schema or references a missing token.
+
+### Design tokens
+
+- **Name them the way the Naming page says.** Don't restate its rules here or in other
+  docs; point to it.
+- **Check what exists first.** Reuse a design token that means the same thing; look at sibling
+  components for the pattern.
+- **One component's own values stay in its contract**, not as `az.component.*` design tokens.
+  Never name a design token after its value (`az.dimension.50`).
+- **Red is primary color 1 and Blue is primary color 2;** never call Blue "secondary".
+- **Tokenize decisions, not drawing details.** Leave how a part is drawn (the length of
+  an icon's lines) in the implementation. A design-reviewed alignment is a decision.
+- **Only what the DTCG spec defines.** Use its types; no custom `$type` or `$extensions`
+  workarounds. `tokens.json` is written the way Tokens Studio reads it (see the
+  README's `dist/` section): references without the `az` set, sizes as strings.
+- **Keep it recreatable in Figma.** Colors and px sizes become variables; an image is
+  an asset (below).
+
+### Assets
+
+Artwork the design system owns (background patterns, not the university wordmark)
+goes in `packages/tokens/assets/<kind>/`. The design tokens package publishes only `dist` and
+`tokens.json` (its `files` and `exports`), so the first asset has to add `assets` to
+`files` and an `./assets/*` export to `packages/tokens/package.json`.
+
+- **Single-color art is a mask:** black shapes with any opacity built in. A color design token
+  paints it, so one file works on every surface.
+- **Assets aren't tokens.** DTCG has no type for files, so there's no asset design token and
+  no workaround. Implementations point at the file directly. Palette renames apply to
+  asset names too (Monsoon Sky → Monsoon Rain).
+
+## 3. Record the values
+
+- Take each value from the source settled in step 1.
+- A value from font metrics rather than CSS (how far an underline sits below the
+  baseline) is still a decision if a source measured it and design approved it.
+- **Descriptions** say what a value is for, in plain language. Keep Bootstrap and
+  Arizona Bootstrap out of token descriptions and design-decision copy; the required
+  release-difference note may name the implementation. Sources go in contract
+  `sources`, commit messages and PR descriptions.
+- Run `npm run build:tokens` and `npm run build:contracts`, and commit the regenerated
+  `dist/` files.
+
+## 4. Document it in Storybook
+
+### Docs page
+
+- Docs pages live in `packages/storybook/stories/Primary/`. Fill in the placeholder
+  page if there is one.
+- Short sections in plain language. Put variant comparisons in an HTML table (MDX
+  doesn't render pipe tables): for the button, one row per color with background,
+  fill, text, hover fill, hover text and focus ring. Then
+  `<ContractAnatomy contract="<name>" />` for the anatomy and
+  `<ContractAnatomy contract="<name>" variant="<axis>.<option>" />` for each option.
+- Keep Bootstrap and Arizona Bootstrap out of design-decision copy. The required
+  release-difference note may name the implementation and describe where it differs
+  from the page.
+- Link every added or filled-in page from each overview above it: the group's overview
+  (create one if missing), its section's overview and the Primary overview. Add it to
+  `storySort.order` in `.storybook/preview.ts`, and check the rendered sidebar.
+
+### A live example of the implementation
+
+The demo components are drawn by Arizona Bootstrap compiled from its Sass source, plus
+the patches in `patches/` (step 5), so the example shows what the contract asks for:
+
+- `.storybook/arizona-bootstrap.scss` imports Arizona Bootstrap from `node_modules` and
+  overrides nothing; the design tokens reach it through the patch (step 5). `.storybook/preview-head.html` loads Proxima Nova.
+- Arizona Bootstrap is a devDependency installed from GitHub by tag; the installed tag
+  is in `packages/storybook/package.json`. It has no npm release. Compare against that
+  tag, not another. When the work lands on a branch that has no tag yet, patch the
+  installed tag to match it.
+- One story (`<Name>.stories.tsx`) with controls copied from the Figma component's
+  properties (the button's: Color, Size, Style, Label). Leave out what's a state
+  (hover and focus come from the pointer and keyboard) or out of scope. Use the
+  classes the release has (`.btn-sky` until it's renamed). Fall back to the default
+  when a control is cleared.
+- Tag it `['!dev']` and show it on the docs page with
+  `<Canvas of={…} sourceState="none" />` and `<Controls of={…} />`, attached with
+  `<Meta of={…} />`.
+- Don't restyle the demo with CSS rules, or override Arizona Bootstrap's Sass variable
+  values, in Storybook. Change it the way step 5 says, so the same change can go to
+  Arizona Bootstrap.
+
+## 5. Update Arizona Bootstrap
+
+With the contract settled, change Arizona Bootstrap's source to match it, Sass variable
+values included, as a patch (see "Patching Arizona Bootstrap" in the README). Nothing in
+Storybook overrides its values.
+
+1. Run `npm run build:tokens`, then refresh the declarations in
+   `node_modules/arizona-bootstrap/scss/_design-tokens.scss` from
+   `packages/tokens/dist/tokens.scss` (Sass can't read `tokens.json`). Preserve the
+   file's header and `// fusv-disable`/`// fusv-enable` guards, and point its `Source:`
+   link at a commit on `main`, since a branch's commits can disappear when the PR is
+   squash-merged. The installed v5.3.0 entrypoint already imports this file before its
+   variables; don't add a component-level import. Use its variables for the design
+   tokens this PR adds or changes (`$az-color-bg-button-white-hover`, not `$gray-200`).
+   Use Arizona Bootstrap's own variable only for a value that has no token, such as a
+   component's own value that stays in the contract. Otherwise write it in its code
+   style.
+2. From the repo root, run `npx patch-package arizona-bootstrap --append <name>`.
+   Patches are sequenced in `patches/` (`arizona-bootstrap+<version>+<number>+<name>.patch`),
+   and the bare command would amend the newest one, folding this component's edits into
+   another's. Use the bare command only to change the newest patch on purpose. The
+   root `postinstall` reapplies them in order on every `npm install`.
+3. Restart Storybook to see it.
+
+Commit the patch with the contract change it supports. Then, in the PR description,
+against the branch the work is landing on (step 1):
+
+- First, list the Arizona Bootstrap PRs that already cover part of it (merged, or
+  approved and open), and what each covers. An approved or merged PR isn't necessarily
+  in the installed tag. Where the installed Sass still differs from the contract
+  (the small button's 19px line height from #2378, say), keep a local patch until a
+  release includes it. Patch only what the installed tag lacks, and don't ask upstream
+  again for what a PR already covers.
+- Then link the patches, and name the design tokens each one now uses. Its maintainers
+  can apply each to their repo with
+  `git apply -p3 arizona-bootstrap+<version>+<number>+<name>.patch`.
+- Note what Arizona Bootstrap doesn't do at all yet (the button's 4px icon gap), and
+  open questions that aren't the contract's (an unapproved variant).
+- Don't open or draft Arizona Bootstrap issues.
+
+When Arizona Bootstrap releases a version with a change, bump the tag and delete that
+change's patch, each one separately. `npm install` fails if a patch no longer applies:
+redo what still matters on the new version and regenerate it.
+
+## A contract check
+
+`checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
+renders an implementation in Chromium and compares each property with the contract:
+
+- At rest and with keyboard focus; hover through the hover colors the stylesheet hands
+  to `:hover`.
+- Every side of padding, borders and corner radii.
+- Values compared as drawn: a repeated transition counts once, easing keywords as their
+  cubic-bezier, a font stack by its first face.
+- An option you leave out takes the contract's default.
+
+It returns an array of mismatches and doesn't throw. It has limits, so a pass doesn't
+verify the whole contract:
+
+- It skips breakpoint rows, and states other than hover and focus-visible.
+- It reads every part's properties from the one element you give it, so nested parts
+  aren't checked on their own.
+- Button hover colors are read from `--bs-btn-hover-*`; other hover properties are read
+  at rest. Properties with no CSS mapping are reported as mismatches, not checked.
+
+Before treating a mismatch as an implementation defect, check whether it reflects one
+of these limits. For a state, breakpoint or part it doesn't cover, extend the helper or
+add a component-specific check, and say in the PR what the check leaves out.
+
+Run it while you work to list what still differs, and fix each with a patch (step 5).
+Once the demo matches, add a story tagged `['!dev', '!autodocs']` that renders every
+size and color and runs it in a `play` function. The `play` function must assert that
+every returned array is empty (`expect(mismatches).toEqual([])`), or throw on any
+mismatch; calling `checkContract` alone passes even when the demo differs.
+`npm run test:storybook` runs it in CI. Don't add one that fails.
+
+## Verify
+
+- `npm run build:tokens`, `npm run build:contracts`, `npm run lint:storybook` and
+  `npm run test:storybook` pass.
+- Storybook runs with `npm run dev:storybook` on port 6006; never another port. Reuse it
+  if it's running, and restart it after changing `main.ts`, `preview-head.html` or the patch.
+- Open the docs page (`/iframe.html?id=<id>--docs&viewMode=docs`) and check what
+  renders: `docs show` returns the source, not the rendered page.
+- `await document.fonts.ready` before measuring type, and wait out transitions before
+  reading colors.
+
+## Branch, commit, PR
+
+- Never create git worktrees. Branch in the main checkout: `issue/<number>-<slug>`,
+  from `main`. Don't stack a component's PR on another component's PR; if it needs
+  shared tooling from one, bring that in without the other component.
+- Keep work local until the user asks to push. Don't keep offering to push.
+- The commit message names the issue and the source of each value.
+- The PR description has the decisions table, the contract, the design tokens, the Arizona
+  Bootstrap upgrade instructions, the Storybook changes and a test plan. Push before
+  editing it, so it describes what's on the branch.
+- `gh pr edit` and `gh issue edit` can fail on this repo; use
+  `gh api -X PATCH repos/az-digital/design/{pulls|issues}/N -F body=@file`.
+- Show diffs as files (`git diff > file`, then send the file), not pasted into chat.
+
+### Review comments
+
+- Read review threads, PR comments and review summaries. Copilot puts some findings
+  only in its summary ("previously missed issue"), with no thread.
+- Draft replies as a file and show the user before posting. Fix what's real; say why
+  when something isn't changing.
+
+## Talking to the user
+
+Report what you recorded and verified in plain language. Raise a question only when it
+needs a person's decision: which source wins when they disagree, a new kind of
+structure, or a value no source sets. Settled things (palette renames, a reviewed
+source outranking an unreviewed one) aren't questions.
