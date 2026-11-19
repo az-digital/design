@@ -3003,6 +3003,192 @@
     "token": "az.spacing.150"
   },
   {
+    "contract": "tabs",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.width",
+    "token": "az.border.width.md"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "list",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": null,
+    "type": "dimension",
+    "value": "44px",
+    "description": "Space between tabs, so labels read as separate targets. Not a step on az.spacing: the scale has no 44px step."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "8px",
+    "description": "Tab top and bottom padding. The same value as az.spacing.2, kept as the component's own value so the tab's height can change without moving the spacing scale."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Tab left and right padding. Not a step on az.spacing: the scale goes 8px then 16px."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius.top",
+    "token": "az.radius.3"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.radius.bottom",
+    "token": "az.radius.0"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "A disabled tab has no underline of its own: it can't become the current tab."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": null,
+    "type": "fontFamily",
+    "value": "\"Garamond Premier Pro\", MiloSerifWeb, Georgia, serif",
+    "description": "Tab label typeface, from the Figma design. Garamond Premier Pro is not in the brand font palette: az.font-family.serif is MiloSerifWeb. Design review needs to confirm the face before an implementation ships it; MiloSerifWeb follows as the fallback so the design system's serif is used where Garamond is unavailable."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Tab label text size. The same value as az.font-size.h3, kept as the component's own value because it is a tab's size, not a heading level."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": null,
+    "type": "number",
+    "value": "1.4",
+    "description": "Tab label line height, as a ratio of the text size. Not az.line-height.base (1.5) or .sm (1.25): the Figma design sets 140%."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "The current tab's underline weight, heavier than the rule beneath the row so it reads as selected. Not az.border.width.md (2px), which the rule uses; the border scale has no 4px step."
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.color",
+    "token": "az.color.fg.blue"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.fg.blue"
+  },
+  {
     "contract": "title-on-image-card",
     "variant": null,
     "part": "root",
