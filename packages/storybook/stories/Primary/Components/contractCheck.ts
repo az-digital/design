@@ -32,6 +32,11 @@ const CSS: Record<string, string> = {
   'border.color': 'border-top-color',
   'border.width': 'border-top-width',
   'border.radius': 'border-top-left-radius',
+  // A border or corner on one edge only, such as a tab's underline and its top corners.
+  'border.bottom.width': 'border-bottom-width',
+  'border.bottom.color': 'border-bottom-color',
+  'border.radius.top': 'border-top-left-radius',
+  'border.radius.bottom': 'border-bottom-left-radius',
   'padding.y': 'padding-top',
   'padding.x': 'padding-left',
   'padding.bottom': 'padding-bottom',
@@ -65,6 +70,8 @@ const SIDES: Record<string, string[]> = {
   'border.color': ['border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color'],
   'border.width': ['border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width'],
   'border.radius': ['border-top-left-radius', 'border-top-right-radius', 'border-bottom-right-radius', 'border-bottom-left-radius'],
+  'border.radius.top': ['border-top-left-radius', 'border-top-right-radius'],
+  'border.radius.bottom': ['border-bottom-left-radius', 'border-bottom-right-radius'],
   'padding.y': ['padding-top', 'padding-bottom'],
   'padding.x': ['padding-left', 'padding-right'],
 };
