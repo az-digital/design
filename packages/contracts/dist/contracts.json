@@ -3060,24 +3060,6 @@
     "contract": "tabs",
     "variant": null,
     "part": "tab",
-    "kind": "default",
-    "condition": null,
-    "property": "border.radius.top",
-    "token": "az.radius.3"
-  },
-  {
-    "contract": "tabs",
-    "variant": null,
-    "part": "tab",
-    "kind": "default",
-    "condition": null,
-    "property": "border.radius.bottom",
-    "token": "az.radius.0"
-  },
-  {
-    "contract": "tabs",
-    "variant": null,
-    "part": "tab",
     "kind": "state",
     "condition": "disabled",
     "property": "border.bottom.width",

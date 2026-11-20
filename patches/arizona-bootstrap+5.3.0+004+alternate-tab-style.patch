@@ -1,8 +1,8 @@
 diff --git a/node_modules/arizona-bootstrap/scss/override/_nav.scss b/node_modules/arizona-bootstrap/scss/override/_nav.scss
-index b827160..168516e 100644
+index b827160..420cdb5 100644
 --- a/node_modules/arizona-bootstrap/scss/override/_nav.scss
 +++ b/node_modules/arizona-bootstrap/scss/override/_nav.scss
-@@ -43,14 +43,46 @@
+@@ -43,14 +43,40 @@
    }
  }
  
@@ -27,11 +27,6 @@ index b827160..168516e 100644
 +    // one, so the row's own weight replaces the generic nav link's.
 +    font-weight: $az-font-weight-normal;
 +    line-height: 39.2px;
-+
-+    // The underline sits on the row's rule, so it's drawn at the tab's own
-+    // weight rather than the row's.
-+    @include border-top-start-radius($az-radius-3);
-+    @include border-top-end-radius($az-radius-3);
 +    border-bottom-width: 4px;
 +
 +    &.active,
@@ -40,13 +35,12 @@ index b827160..168516e 100644
 +      // Underline tabs sit on the page background, so the current tab has no
 +      // fill of its own: this clears the grey block the generic
 +      // `.nav-link.active` rule paints, rather than painting white over it,
-+      // which would show as a box on any other surface.
++      // which would show as a box on any other surface. That rule also
++      // rounds the tab's corners ($nav-pills-border-radius); a tab is
++      // square, so this clears that too.
 +      font-weight: $az-font-weight-bold;
 +      background-color: transparent;
-+      @include border-top-start-radius($az-radius-3);
-+      @include border-top-end-radius($az-radius-3);
-+      @include border-bottom-start-radius(0);
-+      @include border-bottom-end-radius(0);
++      @include border-radius(0);
 +    }
 +
 +    &.disabled,

@@ -48,9 +48,7 @@
                 "unit": "px"
               },
               "$description": "Tab left and right padding. Not a step on az.spacing: the scale goes 8px then 16px."
-            },
-            "border.radius.top": "{az.radius.3}",
-            "border.radius.bottom": "{az.radius.0}"
+            }
           },
           "states": {
             "disabled": {
