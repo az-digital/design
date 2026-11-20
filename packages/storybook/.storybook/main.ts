@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/react-vite';
-import { readBuildInfo } from './buildInfo.ts';
+import { readBuildInfo } from '@az-digital/storybook-addon-build-info/node';
 
 const buildInfo = readBuildInfo(fileURLToPath(new URL('../../../', import.meta.url)));
 
@@ -9,13 +9,10 @@ const config: StorybookConfig = {
   stories: ['../stories/**/*.@(mdx|stories.@(ts|tsx|js|jsx|mjs))'],
   staticDirs: [{ from: '../../tokens/dist', to: '/tokens' }],
 
-  // Gives the toolbar's build info (manager.js) this build's details.
-  managerHead: (head) => `${head}
-<script>globalThis.AZ_DESIGN_BUILD = ${JSON.stringify(buildInfo).replace(/</g, '\\u003c')};</script>`,
-
   addons: [
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-mcp"),
+    getAbsolutePath("@az-digital/storybook-addon-build-info"),
     {
       // Token doc blocks and the Tokens tab, driven by our Style Dictionary config.
       name: getAbsolutePath("@az-digital/storybook-addon-tokens"),

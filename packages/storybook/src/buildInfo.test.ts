@@ -2,7 +2,7 @@ import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { readPublishedPackages, resolveBuildInfo } from '../.storybook/buildInfo';
+import { readPublishedPackages, resolveBuildInfo } from '@az-digital/storybook-addon-build-info/node';
 
 const sha = 'a'.repeat(40);
 const releaseEnv = {

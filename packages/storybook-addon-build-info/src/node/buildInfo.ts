@@ -50,7 +50,7 @@ export function resolveBuildInfo(
 ): BuildInfo {
   const base = { repositoryUrl, packages, libraries };
 
-  // The publishing workflow validates the tag against this SHA before building.
+  // Releases are published from main, and the workflow validates the tag against this SHA.
   if (env.AZ_DESIGN_VERSION || env.AZ_DESIGN_TAG || env.AZ_DESIGN_SHA) {
     const version = env.AZ_DESIGN_VERSION;
     const tag = version && `v${version}`;

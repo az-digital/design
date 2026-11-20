@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { convert, ThemeProvider, themes } from 'storybook/theming';
-import { BuildInfoTool } from '../../.storybook/BuildInfoTool';
-import type { BuildInfo } from '../../.storybook/buildInfo.ts';
+import { BuildInfoTool } from '@az-digital/storybook-addon-build-info';
+import type { BuildInfo } from '@az-digital/storybook-addon-build-info/node';
 
 const repositoryUrl = 'https://github.com/az-digital/design';
 const sha = 'a'.repeat(40);

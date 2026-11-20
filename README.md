@@ -4,7 +4,7 @@ A design token and Storybook workspace for the Arizona Digital design system. Th
 
 ## Repository Structure
 
-This is an npm workspaces monorepo with four packages:
+This is an npm workspaces monorepo:
 
 ```text
 ├── packages/
@@ -32,6 +32,9 @@ This is an npm workspaces monorepo with four packages:
 │   │   ├── src/                #   addon source (preset, toolbar, story helper, doc blocks)
 │   │   ├── library.schema.json #   the azDesign.library manifest
 │   │   └── README.md
+│   ├── storybook-addon-build-info/ # @az-digital/storybook-addon-build-info — release, revision and source links
+│   │   ├── src/                #   build metadata, preset and manager toolbar
+│   │   └── README.md
 │   └── storybook/             # @az-digital/storybook — private Storybook preview
 │       ├── src/               #   token catalog logic and tests
 │       ├── stories/           #   Storybook stories
@@ -51,6 +54,7 @@ This is an npm workspaces monorepo with four packages:
 | `@az-digital/contracts` | `packages/contracts/` | Component contracts: each component's parts, and the token or value that sets each part's design properties ([README](packages/contracts/README.md)) |
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook-addon-libraries` | `packages/storybook-addon-libraries/` | Storybook addon: the Library toolbar, which switches component stories between registered libraries, and the contract a library meets to register ([README](packages/storybook-addon-libraries/README.md)) |
+| `@az-digital/storybook-addon-build-info` | `packages/storybook-addon-build-info/` | Storybook addon: release/build metadata, revision-aware source links, and published package links ([README](packages/storybook-addon-build-info/README.md)) |
 | `@az-digital/components-html` | `packages/components-html/` | Arizona Bootstrap markup for each component, shown in Storybook; never released ([README](packages/components-html/README.md)) |
 | `@az-digital/components-web` | `packages/components-web/` | Custom elements for each component, in preview and not published until a JavaScript release build is available ([README](packages/components-web/README.md)) |
 | `@az-digital/storybook` | `packages/storybook/` | Storybook UI for token review and documentation |

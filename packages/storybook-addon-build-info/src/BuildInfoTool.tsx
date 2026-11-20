@@ -2,7 +2,7 @@
 import React from 'react';
 import { Badge, Button, PopoverProvider } from 'storybook/internal/components';
 import { styled } from 'storybook/theming';
-import type { BuildInfo } from './buildInfo.ts';
+import type { BuildInfo } from './node/buildInfo.ts';
 
 declare global {
   var AZ_DESIGN_BUILD: BuildInfo | undefined;
