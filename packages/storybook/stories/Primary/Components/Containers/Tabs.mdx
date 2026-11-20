@@ -37,6 +37,11 @@ documented until that's decided.
       <td>None</td>
     </tr>
     <tr>
+      <td><strong>Hover</strong></td>
+      <td>Blue</td>
+      <td>Blue, 4px</td>
+    </tr>
+    <tr>
       <td><strong>Current</strong></td>
       <td>Blue, bold</td>
       <td>Blue, 4px</td>
@@ -52,9 +57,11 @@ documented until that's decided.
 The row sits on a rule the full width of the content: <Token data={getTokenData('az.border.width.md')} /> of
 <Token data={getTokenData('az.color.brand.gray.400')} />. Each tab's own underline is drawn
 on top of that rule, heavier than it, so the current tab reads as joined to the panel
-below it. A label at rest is <Token data={getTokenData('az.color.brand.azurite')} />, the
-current tab's is <Token data={getTokenData('az.color.brand.blue')} />, and a disabled tab's is
-<Token data={getTokenData('az.color.brand.gray.600')} />.
+below it. A label at rest is <Token data={getTokenData('az.color.brand.azurite')} />, a
+hovered or current tab's is <Token data={getTokenData('az.color.brand.blue')} />, and a
+disabled tab's is <Token data={getTokenData('az.color.brand.gray.600')} />. Hover and current
+share the same Blue, so hovering the current tab doesn't change its color — only the bold
+label weight sets current apart at rest.
 
 ## Size and type
 
@@ -70,15 +77,20 @@ so the row reads as a flat strip rather than a set of buttons. Tabs sit 44px apa
 ## States and behavior
 
 - **The current tab** is the one whose panel is showing. One tab in a row is current.
+- **Hovering a tab** previews what choosing it will look like: the label and underline
+  turn the same Blue the current tab uses, at the current tab's 4px underline weight.
+  Only the bold label weight stays reserved for the current tab.
+- **Keyboard focus** gets the shared ring Button uses: <Token data={getTokenData('az.focus-ring.width.md')} />
+  of <Token data={getTokenData('az.color.brand.bougainvillea')} />, 2px outside the tab so it
+  doesn't collide with the underline at the bottom edge. The tab itself is square, but the
+  ring keeps a small 2px corner radius, the same way every other focus ring in Arizona
+  Bootstrap softens its own corners.
 - **A disabled tab** can't be chosen. It stays in the row, and a screen reader still
   reaches it, so the set of sections doesn't change depending on what's available.
-- **Hover and keyboard focus aren't designed yet.** #170 asks for a visible focus
-  indicator, so this needs a design decision before the style is used in production. At
-  the moment a focused tab gets the shared focus ring, not a tab-specific one.
 - **Keyboard operation:** only the current tab is reachable with Tab; the arrow keys move
   between tabs from there. That keeps a long row from trapping someone in a list of
   links.
-- **Responsive behavior** isn't settled either. The row currently wraps onto more lines
+- **Responsive behavior** isn't settled yet. The row currently wraps onto more lines
   on a narrow screen, which #170 lists as needing guidance.
 
 ## Anatomy

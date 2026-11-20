@@ -1,3 +1,4 @@
+import { page } from '@vitest/browser/context';
 import rows from '@contracts/dist/contracts.json';
 
 // Each contract's variant defaults, such as the button's color default (red), by contract id.
@@ -192,15 +193,19 @@ function ring(style: CSSStyleDeclaration, cssProperty: string) {
  *   name, with `root` for the component itself. Rows for other parts aren't checked.
  * - `focus`: the element that gets keyboard focus for the focus-visible rows, such
  *   as a card's title link. The root by default.
- * - `hover`: where hover rows are read, since hover can't be triggered from a
- *   script. Either the CSS each `<part> <property>` row's hover value is drawn
- *   from, resolved inside the root (`var(--bs-btn-hover-bg)`), or `'focus-visible'`
- *   for an implementation that draws hover and keyboard focus with one rule.
+ * - `hover`: where hover rows are read. Either the CSS each `<part> <property>`
+ *   row's hover value is drawn from, resolved inside the root
+ *   (`var(--bs-btn-hover-bg)`); `'focus-visible'` for an implementation that draws
+ *   hover and keyboard focus with one rule; or `'real'` to actually hover each part
+ *   that has a hover row with Vitest's browser `page` (for an implementation, such
+ *   as a plain `:hover` rule, with no resting value to read the hover color from).
+ *   Real hover reads and restores one part at a time, so it never corrupts another
+ *   part's resting-row comparison; call sites that need it must `await` the check.
  */
 export type ContractTarget = {
   parts: { root: HTMLElement } & Record<string, HTMLElement>;
   focus?: HTMLElement;
-  hover?: Record<string, string> | 'focus-visible';
+  hover?: Record<string, string> | 'focus-visible' | 'real';
 };
 
 // A button's hover colors: the --bs-btn-hover-* variables its :hover rule draws.
@@ -217,7 +222,7 @@ const BUTTON_HOVER: Record<string, string> = {
  * rest, and the focus-visible rows with keyboard focus; a focus ring is read from the
  * element with focus. Hover rows are read as ContractTarget's `hover` says.
  */
-export function checkContract(target: HTMLElement | ContractTarget, contract: string, options: string[] = []): string[] {
+export async function checkContract(target: HTMLElement | ContractTarget, contract: string, options: string[] = []): Promise<string[]> {
   const { parts, focus = parts.root, hover = BUTTON_HOVER } = target instanceof HTMLElement ? { parts: { root: target } } : target;
   const mismatches: string[] = [];
   const name = [contract, ...options].join(' › ');
@@ -287,7 +292,24 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
     }
   }
 
-  if (hover !== 'focus-visible') {
+  if (hover === 'real') {
+    // No resting value to read a hover color from (a plain `:hover` rule, not
+    // a CSS variable it also sets at rest), so each part with a hover row is
+    // actually hovered, read, then unhovered before the next part, so hovering
+    // one never corrupts another part's resting-row comparison above.
+    const hoverParts = new Set(contractRowsFor.filter((r) => r.condition === 'hover' && CSS[r.property]).map((r) => r.part));
+    for (const partName of hoverParts) {
+      const element = parts[partName];
+      // Without this, the color is read mid-transition.
+      element.style.transition = 'none';
+      await page.elementLocator(element).hover();
+      for (const row of contractRowsFor.filter((r) => r.condition === 'hover' && r.part === partName && CSS[r.property])) {
+        compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty), [CSS[row.property]]);
+      }
+      await page.elementLocator(element).unhover();
+      element.style.transition = '';
+    }
+  } else if (hover !== 'focus-visible') {
     for (const row of contractRowsFor.filter((r) => r.condition === 'hover' && CSS[r.property])) {
       // One hover color covers every side, so it's read once.
       const drawnFrom = hover[`${row.part} ${row.property}`];

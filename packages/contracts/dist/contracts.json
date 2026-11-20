@@ -3061,6 +3061,69 @@
     "variant": null,
     "part": "tab",
     "kind": "state",
+    "condition": "hover",
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "On hover the underline matches the current tab's weight, so hovering previews what choosing the tab will look like."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.bottom.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.offset",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Gap between the tab and its keyboard focus ring, the same offset Button uses."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.radius",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "The focus ring's own corner radius. The tab itself is square, but every box-shadow or outline focus ring already in Arizona Bootstrap (.nav-link:focus-visible, the dropdown's, pagination's) softens its own corners rather than drawing a hard-edged box."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
     "condition": "disabled",
     "property": "border.bottom.width",
     "token": null,
@@ -3115,6 +3178,15 @@
     "condition": null,
     "property": "color",
     "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.blue"
   },
   {
     "contract": "tabs",

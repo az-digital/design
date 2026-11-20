@@ -46,18 +46,22 @@ type Story = StoryObj<typeof meta>;
 
 export const AzButton: Story = {
   play: async ({ canvasElement }) => {
-    const mismatches = [...canvasElement.querySelectorAll('az-button')].flatMap((element) => {
-      const button = element.shadowRoot?.querySelector('button');
-      if (!button) return [`${element.outerHTML}: no button in its shadow root`];
-      const options = ['color', 'size'].flatMap((axis) =>
-        element.hasAttribute(axis) ? [`${axis}.${element.getAttribute(axis)}`] : [],
-      );
-      return checkContract(
-        { parts: { root: button, label: button }, hover: { ...hover, 'label color': 'var(--hover-label)' } },
-        'button',
-        options,
-      );
-    });
+    const mismatches = (
+      await Promise.all(
+        [...canvasElement.querySelectorAll('az-button')].map((element) => {
+          const button = element.shadowRoot?.querySelector('button');
+          if (!button) return [`${element.outerHTML}: no button in its shadow root`];
+          const options = ['color', 'size'].flatMap((axis) =>
+            element.hasAttribute(axis) ? [`${axis}.${element.getAttribute(axis)}`] : [],
+          );
+          return checkContract(
+            { parts: { root: button, label: button }, hover: { ...hover, 'label color': 'var(--hover-label)' } },
+            'button',
+            options,
+          );
+        }),
+      )
+    ).flat();
     await expect(mismatches).toEqual([]);
   },
 };

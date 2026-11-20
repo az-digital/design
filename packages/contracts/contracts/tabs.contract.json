@@ -2,13 +2,15 @@
   "$schema": "../contract.schema.json",
   "id": "tabs",
   "name": "Tabs",
-  "description": "A row of tabs that switch between panels of content in one place: a list of tab labels above a rule, with the current tab marked by a heavier underline and a bolder, darker label. This contract records the alternate tab style designed for az-digital/design#170, which gives the current tab stronger emphasis than Arizona Bootstrap's existing nav-tabs style. A tab is at rest, current, or disabled.",
+  "description": "A row of tabs that switch between panels of content in one place: a list of tab labels above a rule, with the current tab marked by a heavier underline and a bolder, darker label. This contract records the alternate tab style designed for az-digital/design#170, which gives the current tab stronger emphasis than Arizona Bootstrap's existing nav-tabs style. A tab is at rest, hovered, focused, current, or disabled.",
   "sources": [
     "az-digital/design#170: add an alternate tab style variant",
     "Figma branch tab-design-issue-170 of the AZ Digital UX Design System, Tabs page, Tabs component (node 6190:73): the alternate style's colors, type, spacing and underline weights",
     "az-digital/arizona-bootstrap#2240 (approved): Garamond Premier Pro is the serif typeface, which the Figma design uses for the tab labels",
     "Arizona Bootstrap 5.3.x underline tabs (scss/override/_nav.scss, scss/override/_variables.scss): the resting and disabled label colors, which the Figma design matches",
-    "az-digital/design#194 review: the label's line-height is az.line-height.base (42px), for consistency with the design system's shared tokens; the Figma design was updated to match"
+    "az-digital/design#194 review: the label's line-height is az.line-height.base (42px), for consistency with the design system's shared tokens; the Figma design was updated to match",
+    "Figma branch tab-design-issue-170, \"Tab states (Hover, Focus)\" frame (nodes 6200:712, 6200:714), added for #194 review: hover matches the current tab's color and underline weight; focus reuses Button's shared ring (az.focus-ring.width.md, Bougainvillea, 2px offset)",
+    "The button contract's focus-visible state (ring.width, ring.offset): the same shared ring"
   ],
   "anatomy": {
     "root": {
@@ -32,7 +34,7 @@
           }
         },
         "tab": {
-          "description": "One tab: its label, padding and underline. At rest the label is Azurite with no underline of its own. Hover and keyboard focus are not yet designed; see az-digital/design#170.",
+          "description": "One tab: its label, padding and underline. At rest the label is Azurite with no underline of its own.",
           "tokens": {
             "padding.y": {
               "$type": "dimension",
@@ -52,6 +54,37 @@
             }
           },
           "states": {
+            "hover": {
+              "border.bottom.width": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 4,
+                  "unit": "px"
+                },
+                "$description": "On hover the underline matches the current tab's weight, so hovering previews what choosing the tab will look like."
+              },
+              "border.bottom.color": "{az.color.brand.blue}"
+            },
+            "focus-visible": {
+              "ring.width": "{az.focus-ring.width.md}",
+              "ring.color": "{az.color.brand.bougainvillea}",
+              "ring.offset": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "Gap between the tab and its keyboard focus ring, the same offset Button uses."
+              },
+              "border.radius": {
+                "$type": "dimension",
+                "$value": {
+                  "value": 2,
+                  "unit": "px"
+                },
+                "$description": "The focus ring's own corner radius. The tab itself is square, but every box-shadow or outline focus ring already in Arizona Bootstrap (.nav-link:focus-visible, the dropdown's, pagination's) softens its own corners rather than drawing a hard-edged box."
+              }
+            },
             "disabled": {
               "border.bottom.width": {
                 "$type": "dimension",
@@ -81,6 +114,9 @@
                 "color": "{az.color.brand.azurite}"
               },
               "states": {
+                "hover": {
+                  "color": "{az.color.brand.blue}"
+                },
                 "disabled": {
                   "color": "{az.color.brand.gray.600}"
                 }
@@ -96,7 +132,7 @@
       "description": "Which tab this is in the row. With none chosen, a tab is at rest; a tab that can't be chosen uses the disabled state instead of an option here.",
       "options": {
         "current": {
-          "description": "The tab whose panel is showing: a heavier Blue underline and a bold Blue label. Arizona Bootstrap marks it .active with aria-selected=\"true\".",
+          "description": "The tab whose panel is showing: a heavier Blue underline and a bold Blue label. The same Blue as its hover state, so hovering the current tab doesn't change its color; only the bold label weight sets current apart at rest. Arizona Bootstrap marks it .active with aria-selected=\"true\".",
           "anatomy": {
             "root": {
               "parts": {

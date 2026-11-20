@@ -14,8 +14,6 @@ const markup = renderTabs({
   ],
 });
 
-// Hover isn't in the design yet (az-digital/design#170), so there are no hover
-// rows to read; the contract's states are the resting look, current and disabled.
 const meta = {
   title: 'Primary/Components/Containers/Tabs contract check',
   tags: ['!dev', '!autodocs'],
@@ -36,26 +34,34 @@ export const UnderlineTabs: Story = {
     const tabs = [...list.querySelectorAll<HTMLElement>('.nav-link')];
     await expect(tabs).toHaveLength(3);
 
-    // checkContract reads the resting rows and the hover and focus-visible
-    // states, so the contract's disabled state isn't one it can check. The
-    // disabled tab is checked against the contract's disabled rows below
-    // instead of being passed through here, where it would be compared with
-    // the resting look it's meant to differ from.
+    // checkContract reads the resting rows, hover rows (really hovered, since
+    // .nav.nav-underline .nav-link:hover sets color directly rather than a
+    // resting CSS variable), and focus-visible rows, so the contract's
+    // disabled state isn't one it can check. The disabled tab is checked
+    // against the contract's disabled rows below instead of being passed
+    // through here, where it would be compared with the resting look it's
+    // meant to differ from.
     const checkable = tabs.filter((tab) => !tab.classList.contains('disabled'));
     await expect(checkable).toHaveLength(2);
 
     // The root's rule and the list's gap are read from the list itself; each
-    // tab and its label are read from its link, whose text is the label.
-    const mismatches = checkable.flatMap((tab) =>
-      checkContract(
-        {
-          parts: { root: list, list, tab, 'tab.label': tab },
-          hover: {},
-        },
-        'tabs',
-        tab.classList.contains('active') ? ['state.current'] : [],
-      ),
-    );
+    // tab and its label are read from its link, whose text is the label, and
+    // whose focus-visible ring is read from itself, not the shared root.
+    const mismatches = (
+      await Promise.all(
+        checkable.map((tab) =>
+          checkContract(
+            {
+              parts: { root: list, list, tab, 'tab.label': tab },
+              focus: tab,
+              hover: 'real',
+            },
+            'tabs',
+            tab.classList.contains('active') ? ['state.current'] : [],
+          ),
+        ),
+      )
+    ).flat();
 
     await expect(mismatches).toEqual([]);
 
