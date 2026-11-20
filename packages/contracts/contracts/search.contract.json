@@ -1,0 +1,164 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "search",
+  "name": "Search",
+  "description": "The search form in a site's navigation: a text field with an icon button, White on a Blue navbar, turning Rain on hover and focus, and the button that shows it on small screens. It's built like an input group, but its look is its own: a 2px border, a divider between field and button, and an icon-only button.",
+  "sources": [
+    "Arizona Bootstrap 5.2: .az-search, made stable by az-digital/arizona-bootstrap#2277",
+    "Arizona Bootstrap's latest 5.x release: below 992px, .az-search is 35px tall with 4px corners (set with the fullscreen navbar's styles)"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "The search form: a field and an icon button inside one border, on a Blue navbar.",
+      "tokens": {
+        "max-width": {
+          "$type": "dimension",
+          "$value": {
+            "value": 265,
+            "unit": "px"
+          },
+          "$description": "Search form's maximum width."
+        },
+        "padding.x": {
+          "$type": "dimension",
+          "$value": {
+            "value": 15,
+            "unit": "px"
+          },
+          "$description": "Space to the left and right of the search form."
+        },
+        "padding.y": {
+          "$type": "dimension",
+          "$value": {
+            "value": 5,
+            "unit": "px"
+          },
+          "$description": "Space above and below the search form."
+        },
+        "height": {
+          "$type": "dimension",
+          "$value": {
+            "value": 35,
+            "unit": "px"
+          },
+          "$description": "Height of a text field with an attached button below the lg breakpoint (992px)."
+        },
+        "border.width": "{az.border.width.md}",
+        "border.radius": "{az.radius.1}",
+        "border.color": "{az.color.fg.white}"
+      },
+      "states": {
+        "focus-within": {
+          "border.color": "{az.color.fg.rain}"
+        }
+      },
+      "breakpoints": {
+        "lg": {
+          "height": {
+            "$type": "dimension",
+            "$value": {
+              "value": 43,
+              "unit": "px"
+            },
+            "$description": "Height of a text field with an attached button from the lg breakpoint (992px) up."
+          },
+          "border.radius": "{az.radius.3}"
+        }
+      },
+      "parts": {
+        "field": {
+          "description": "The text field.",
+          "tokens": {
+            "padding.x": "{az.spacing.150}",
+            "padding.y": "{az.spacing.075}",
+            "font.size": "{az.font-size.root}",
+            "font.weight": "{az.font-weight.normal}",
+            "line-height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 22,
+                "unit": "px"
+              },
+              "$description": "Field text line height."
+            },
+            "color": "{az.color.fg.white}",
+            "placeholder.color": "{az.color.fg.white}"
+          }
+        },
+        "divider": {
+          "description": "The line between the field and the button.",
+          "tokens": {
+            "width": "{az.border.width.md}",
+            "color": "{az.color.fg.white}",
+            "transition.duration": {
+              "$type": "duration",
+              "$value": {
+                "value": 150,
+                "unit": "ms"
+              },
+              "$description": "How long the divider's color takes to change when the field gains or loses focus. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            },
+            "transition.easing": {
+              "$type": "cubicBezier",
+              "$value": [
+                0.42,
+                0,
+                0.58,
+                1
+              ],
+              "$description": "Easing for the divider's color change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+            }
+          },
+          "states": {
+            "focus-within": {
+              "color": "{az.color.fg.rain}"
+            }
+          }
+        },
+        "button": {
+          "description": "The submit button, an icon only.",
+          "tokens": {
+            "padding": {
+              "$type": "dimension",
+              "$value": {
+                "value": 9,
+                "unit": "px"
+              },
+              "$description": "Space around the attached button's icon."
+            }
+          },
+          "parts": {
+            "icon": {
+              "description": "The button's icon.",
+              "tokens": {
+                "size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 24,
+                    "unit": "px"
+                  },
+                  "$description": "The attached button's icon width and height."
+                },
+                "color": "{az.color.fg.white}"
+              },
+              "states": {
+                "hover": {
+                  "color": "{az.color.fg.rain}"
+                }
+              }
+            }
+          }
+        },
+        "toggle": {
+          "description": "The button that shows the search form on small screens.",
+          "states": {
+            "focus-visible": {
+              "ring.color": "{az.color.fg.rain}",
+              "ring.width": "{az.focus-ring.width.sm}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

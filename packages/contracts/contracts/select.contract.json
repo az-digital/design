@@ -1,0 +1,152 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "select",
+  "name": "Select",
+  "description": "A dropdown to pick one option. It looks like a text input, with a Gray 800 arrow at its right end. Labels and help text work the same as for a text input.",
+  "sources": [
+    "Arizona Bootstrap's latest 5.x release: .form-select"
+  ],
+  "variants": {
+    "size": {
+      "description": "The select's size. With none chosen, it's the default size: 6 / 12px padding, 18px text and 6px corners.",
+      "options": {
+        "small": {
+          "description": "A small select: 4 / 8px padding, 15.75px text and 4px corners.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "padding.y": "{az.spacing.050}",
+                "padding.left": "{az.spacing.100}",
+                "border.radius": "{az.radius.1}",
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 15.75,
+                    "unit": "px"
+                  },
+                  "$description": "Small select text size: 15.75px, seven eighths of the 18px body text."
+                }
+              }
+            }
+          }
+        },
+        "large": {
+          "description": "A large select: 8 / 16px padding, text from 20.25px up to 22.5px, and 8px corners.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "padding.y": "{az.spacing.100}",
+                "padding.left": "{az.spacing.200}",
+                "border.radius": "{az.radius.3}",
+                "font.size": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20.25,
+                    "unit": "px"
+                  },
+                  "$description": "Large select text size below the xl breakpoint (1200px): 20.25px plus 0.1875% of the screen width, so it grows to 22.5px at 1200px."
+                }
+              },
+              "breakpoints": {
+                "xl": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 22.5,
+                      "unit": "px"
+                    },
+                    "$description": "Large select text size from the xl breakpoint (1200px) up: 22.5px."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The select.",
+      "tokens": {
+        "padding.y": "{az.spacing.075}",
+        "padding.left": "{az.spacing.150}",
+        "padding.right": {
+          "$type": "dimension",
+          "$value": {
+            "value": 36,
+            "unit": "px"
+          },
+          "$description": "Space at the select's right end, for its arrow: the arrow's 16px plus 12px on its right and 8px on its left."
+        },
+        "font.size": "{az.font-size.base}",
+        "font.weight": "{az.font-weight.normal}",
+        "line-height": {
+          "$type": "number",
+          "$value": 1.5556,
+          "$description": "Select text line height: 28px on 18px text."
+        },
+        "color": "{az.color.brand.gray.900}",
+        "fill": "{az.color.brand.white}",
+        "border.width": "{az.border.width.sm}",
+        "border.color": "{az.color.brand.gray.600}",
+        "border.radius": "{az.radius.2}",
+        "transition.duration": {
+          "$type": "duration",
+          "$value": {
+            "value": 150,
+            "unit": "ms"
+          },
+          "$description": "How long the select's border and focus ring take to change. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+        },
+        "transition.easing": {
+          "$type": "cubicBezier",
+          "$value": [
+            0.42,
+            0,
+            0.58,
+            1
+          ],
+          "$description": "Easing for the select's border and focus ring changes. Not yet reviewed by design. Turned off when someone asks for reduced motion."
+        }
+      },
+      "states": {
+        "focus-visible": {
+          "border.color": "{az.color.brand.bougainvillea}",
+          "ring.color": "{az.color.brand.bougainvillea}",
+          "ring.width": "{az.focus-ring.width.lg}",
+          "ring.opacity": "{az.focus-ring.opacity}"
+        },
+        "disabled": {
+          "fill": "{az.color.brand.gray.200}",
+          "border.color": "{az.color.brand.gray.400}"
+        }
+      },
+      "parts": {
+        "arrow": {
+          "description": "The arrow that shows it opens a list.",
+          "tokens": {
+            "width": {
+              "$type": "dimension",
+              "$value": {
+                "value": 16,
+                "unit": "px"
+              },
+              "$description": "Arrow width."
+            },
+            "height": {
+              "$type": "dimension",
+              "$value": {
+                "value": 12,
+                "unit": "px"
+              },
+              "$description": "Arrow height."
+            },
+            "color": "{az.color.brand.gray.800}",
+            "inset.right": "{az.spacing.150}"
+          }
+        }
+      }
+    }
+  }
+}

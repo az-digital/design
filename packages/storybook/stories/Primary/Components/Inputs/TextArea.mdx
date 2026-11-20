@@ -1,5 +1,59 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as TextAreaStories from './TextArea.stories';
 
-<Meta title="Primary/Components/Inputs/TextArea" />
+<Meta of={TextAreaStories} />
 
 # TextArea
+
+A text field for more than one line, such as a message. It starts at the number of rows set in its markup, and people can drag it taller. It looks like a <a href="./?path=/docs/primary-components-inputs-text-input--docs" target="_top">text input</a>, and its labels and help text work the same way.
+
+<Canvas of={TextAreaStories.Default} sourceState="none" />
+
+<Controls of={TextAreaStories.Default} />
+
+The text area above is the current release. It matches this page. Valid and invalid states aren't recorded yet: their colors need marketing's approval.
+
+## Colors
+
+- **Text:** <Token data={getTokenData('az.color.brand.gray.900')} />, on <Token data={getTokenData('az.color.brand.white')} />, with a <Token data={getTokenData('az.color.brand.gray.600')} /> border.
+- **Keyboard focus:** the border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at <Token data={getTokenData('az.focus-ring.opacity')} /> (70%) opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. It fades in over 150ms, ease-in-out, which hasn't been reviewed by design yet and turns off when someone asks for reduced motion.
+- **Disabled:** the text area fills <Token data={getTokenData('az.color.brand.gray.200')} />, with a <Token data={getTokenData('az.color.brand.gray.400')} /> border.
+- **Placeholder:** <Token data={getTokenData('az.color.brand.gray.900')} /> at 75% opacity.
+
+## Size
+
+- **Padding:** <Token data={getTokenData('az.spacing.075')} /> (6px) above and below the text, and <Token data={getTokenData('az.spacing.150')} /> (12px) to each side.
+- **Type:** <Token data={getTokenData('az.font-size.base')} /> (18px) <Token data={getTokenData('az.font-weight.normal')} /> (Regular) on a 28px line.
+- **Border:** <Token data={getTokenData('az.border.width.sm')} /> (1px), with <Token data={getTokenData('az.radius.2')} /> (6px) corners.
+
+<table>
+  <thead>
+    <tr><th></th><th>Small</th><th>Default</th><th>Large</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Padding</td><td><Token data={getTokenData('az.spacing.050')} /> (4px) above and below, <Token data={getTokenData('az.spacing.100')} /> (8px) to each side</td><td>6px above and below, 12px to each side</td><td><Token data={getTokenData('az.spacing.100')} /> (8px) above and below, <Token data={getTokenData('az.spacing.200')} /> (16px) to each side</td></tr>
+    <tr><td>Text</td><td>15.75px</td><td><Token data={getTokenData('az.font-size.base')} /> (18px)</td><td>Grows with the screen from 20.25px, reaching 22.5px at 1200px</td></tr>
+    <tr><td>Corners</td><td><Token data={getTokenData('az.radius.1')} /> (4px)</td><td><Token data={getTokenData('az.radius.2')} /> (6px)</td><td><Token data={getTokenData('az.radius.3')} /> (8px)</td></tr>
+  </tbody>
+</table>
+
+## Anatomy
+
+Each part of the textarea and each of its design properties, from its contract
+(`textarea.contract.json`): the design token it uses, or its own value and what it's for.
+
+<ContractAnatomy contract="textarea" />
+
+### Sizes
+
+What each size changes.
+
+#### Small
+
+<ContractAnatomy contract="textarea" variant="size.small" />
+
+#### Large
+
+<ContractAnatomy contract="textarea" variant="size.large" />

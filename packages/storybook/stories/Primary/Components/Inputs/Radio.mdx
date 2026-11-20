@@ -1,7 +1,38 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { Token, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../ContractAnatomy';
+import * as RadioStories from './Radio.stories';
 
-<Meta title="Primary/Components/Inputs/Radio" />
+<Meta of={RadioStories} />
 
 # Radio
 
-Description of the radio page.
+A circle to pick one option from a group, beside its label. Choosing one clears the others in its group.
+
+<Canvas of={RadioStories.Default} sourceState="none" />
+
+<Controls of={RadioStories.Default} />
+
+The group of radios above is the current release. It matches this page. Valid and invalid states aren't recorded yet: their colors need marketing's approval.
+
+## Colors
+
+- **Not chosen:** <Token data={getTokenData('az.color.brand.white')} />, with a <Token data={getTokenData('az.color.brand.gray.600')} /> border.
+- **Chosen:** <Token data={getTokenData('az.color.brand.red')} />, with a <Token data={getTokenData('az.color.fg.white')} /> dot half the circle's size (9px).
+- **Keyboard focus:** the circle's border turns <Token data={getTokenData('az.color.brand.bougainvillea')} />, with a ring around it in the same color at <Token data={getTokenData('az.focus-ring.opacity')} /> (70%) opacity, <Token data={getTokenData('az.focus-ring.width.lg')} /> (4px) wide. A checked circle keeps its Red border with focus; only the ring shows it.
+- **Pressed:** the circle darkens to 90% brightness.
+- **Disabled:** the circle and its label are at 50% opacity.
+
+## Size and spacing
+
+- **Circle:** 18px, fully round (<Token data={getTokenData('az.radius.pill')} />), with a <Token data={getTokenData('az.border.width.sm')} /> (1px) border, 5px down from the top so it lines up with the first line of the label.
+- **Label:** <Token data={getTokenData('az.font-size.base')} /> (18px) on a 28px line, <Token data={getTokenData('az.color.brand.gray.900')} />.
+- **Spacing:** each option is at least 28px tall, with <Token data={getTokenData('az.spacing.025')} /> (2px) below it.
+- **Label offset:** the label starts 27px from the circle's left edge: the 18px circle and 9px after it.
+
+## Anatomy
+
+Each part of the radio and each of its design properties, from its contract
+(`radio.contract.json`): the design token it uses, or its own value and what it's for.
+
+<ContractAnatomy contract="radio" />
