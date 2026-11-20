@@ -25,7 +25,7 @@ const statuses = {
 export function buildLabel(build: BuildInfo) {
   if (build.version) return `v${build.version}`;
   if (build.pullRequest) return `PR #${build.pullRequest}`;
-  if (build.kind === 'preview') return build.branch ?? 'Unknown revision';
+  if (build.kind === 'preview') return build.branch ?? build.commit?.slice(0, 7) ?? 'Unknown revision';
   return 'Development';
 }
 
