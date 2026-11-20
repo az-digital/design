@@ -1,5 +1,5 @@
 diff --git a/node_modules/arizona-bootstrap/scss/override/_nav.scss b/node_modules/arizona-bootstrap/scss/override/_nav.scss
-index b827160..420cdb5 100644
+index b827160..e4ee602 100644
 --- a/node_modules/arizona-bootstrap/scss/override/_nav.scss
 +++ b/node_modules/arizona-bootstrap/scss/override/_nav.scss
 @@ -43,14 +43,40 @@
@@ -26,7 +26,7 @@ index b827160..420cdb5 100644
 +    // A tab's label is normal weight at rest and bold when it's the current
 +    // one, so the row's own weight replaces the generic nav link's.
 +    font-weight: $az-font-weight-normal;
-+    line-height: 39.2px;
++    line-height: $az-line-height-base;
 +    border-bottom-width: 4px;
 +
 +    &.active,

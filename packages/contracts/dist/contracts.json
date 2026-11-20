@@ -3105,10 +3105,7 @@
     "kind": "default",
     "condition": null,
     "property": "line-height",
-    "token": null,
-    "type": "dimension",
-    "value": "39.2px",
-    "description": "Tab label line height: 140% of the 28px label. Not az.line-height.base (1.5) or .sm (1.25), which the Figma design doesn't use."
+    "token": "az.line-height.base"
   },
   {
     "contract": "tabs",

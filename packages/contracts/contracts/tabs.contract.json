@@ -7,7 +7,8 @@
     "az-digital/design#170: add an alternate tab style variant",
     "Figma branch tab-design-issue-170 of the AZ Digital UX Design System, Tabs page, Tabs component (node 6190:73): the alternate style's colors, type, spacing and underline weights",
     "az-digital/arizona-bootstrap#2240 (approved): Garamond Premier Pro is the serif typeface, which the Figma design uses for the tab labels",
-    "Arizona Bootstrap 5.3.x underline tabs (scss/override/_nav.scss, scss/override/_variables.scss): the resting and disabled label colors, which the Figma design matches"
+    "Arizona Bootstrap 5.3.x underline tabs (scss/override/_nav.scss, scss/override/_variables.scss): the resting and disabled label colors, which the Figma design matches",
+    "az-digital/design#194 review: the label's line-height is az.line-height.base (42px), for consistency with the design system's shared tokens; the Figma design was updated to match"
   ],
   "anatomy": {
     "root": {
@@ -76,14 +77,7 @@
                   "$description": "Tab label text size. The same value as az.font-size.h3, kept as the component's own value because it is a tab's size, not a heading level."
                 },
                 "font.weight": "{az.font-weight.normal}",
-                "line-height": {
-                  "$type": "dimension",
-                  "$value": {
-                    "value": 39.2,
-                    "unit": "px"
-                  },
-                  "$description": "Tab label line height: 140% of the 28px label. Not az.line-height.base (1.5) or .sm (1.25), which the Figma design doesn't use."
-                },
+                "line-height": "{az.line-height.base}",
                 "color": "{az.color.brand.azurite}"
               },
               "states": {

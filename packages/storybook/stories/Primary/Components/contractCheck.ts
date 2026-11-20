@@ -223,9 +223,17 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
   const name = [contract, ...options].join(' › ');
 
   // Compares a row with the value read for each CSS property it's drawn with.
-  const compare = (row: Row, read: (cssProperty: string) => string, cssProperties = SIDES[row.property] ?? [CSS[row.property]]) => {
+  // `within` resolves the expected value in the part's own context, so a
+  // unitless line-height (a ratio of its own font-size) compares correctly;
+  // it defaults to document.body, which is what every other property wants.
+  const compare = (
+    row: Row,
+    read: (cssProperty: string) => string,
+    cssProperties = SIDES[row.property] ?? [CSS[row.property]],
+    within?: Element,
+  ) => {
     for (const cssProperty of cssProperties) {
-      const expected = normalize(cssProperty, computed(cssProperty, expression(row)));
+      const expected = normalize(cssProperty, computed(cssProperty, expression(row), within));
       const drawn = normalize(cssProperty, computed(cssProperty, read(cssProperty)));
       if (!same(expected, drawn)) {
         const where = [row.part, row.condition].filter(Boolean).join(' › ');
@@ -274,7 +282,9 @@ export function checkContract(target: HTMLElement | ContractTarget, contract: st
     else if (row.property === 'gap') {
       const space = gapOf(element, parts.root);
       if (space !== null) compare(row, () => space, ['row-gap']);
-    } else if (CSS[row.property]) compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty));
+    } else if (CSS[row.property]) {
+      compare(row, (cssProperty) => getComputedStyle(element).getPropertyValue(cssProperty), undefined, element);
+    }
   }
 
   if (hover !== 'focus-visible') {
