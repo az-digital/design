@@ -20,6 +20,7 @@ describe('Storybook build metadata', () => {
       kind: 'release',
       version: '1.2.3',
       tag: 'v1.2.3',
+      branch: 'main',
       commit: sha,
       sourceRef: 'v1.2.3',
     });

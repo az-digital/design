@@ -10,11 +10,15 @@ const release: BuildInfo = {
   kind: 'release',
   version: '1.2.3',
   tag: 'v1.2.3',
+  branch: 'main',
   commit: sha,
   commitOnGitHub: true,
   sourceRef: 'v1.2.3',
   repositoryUrl,
-  packages: [{ name: '@az-digital/tokens', url: `${repositoryUrl}/pkgs/npm/tokens` }],
+  packages: [
+    { name: '@az-digital/contracts', url: `${repositoryUrl}/pkgs/npm/contracts` },
+    { name: '@az-digital/tokens', url: `${repositoryUrl}/pkgs/npm/tokens` },
+  ],
   libraries: [{ key: 'html', title: 'Arizona Bootstrap', path: 'packages/components-html/storybook/adapter.ts' }],
 };
 
@@ -22,7 +26,12 @@ const meta = {
   title: 'Internal/Build information',
   component: BuildInfoTool,
   tags: ['!dev', '!autodocs'],
-  decorators: [(Story) => <ThemeProvider theme={convert(themes.normal)}><Story /></ThemeProvider>],
+  decorators: [(Story) => (
+    <ThemeProvider theme={convert(themes.normal)}>
+      <p>Example data only; this is not the current build.</p>
+      <Story />
+    </ThemeProvider>
+  )],
   args: {
     build: release,
     importPath: './stories/Primary/Components/Buttons/Button.mdx',
@@ -46,6 +55,9 @@ export const Release: Story = {
     );
     await expect(page.getByRole('link', { name: 'Arizona Bootstrap adapter' })).toHaveAttribute(
       'href', `${repositoryUrl}/blob/v1.2.3/packages/components-html/storybook/adapter.ts`,
+    );
+    await expect(page.getByRole('link', { name: '@az-digital/contracts' })).toHaveAttribute(
+      'href', `${repositoryUrl}/pkgs/npm/contracts`,
     );
     await expect(page.getByRole('link', { name: '@az-digital/tokens' })).toHaveAttribute(
       'href', `${repositoryUrl}/pkgs/npm/tokens`,
@@ -71,6 +83,7 @@ export const PullRequest: Story = {
     await expect(page.getByRole('link', { name: 'Page source' })).toHaveAttribute(
       'href', `${repositoryUrl}/blob/${sha}/packages/storybook/stories/Primary/Components/Buttons/Button.mdx`,
     );
+    await expect(page.queryByRole('link', { name: '@az-digital/contracts' })).not.toBeInTheDocument();
     await expect(page.queryByRole('link', { name: '@az-digital/tokens' })).not.toBeInTheDocument();
   },
 };
@@ -88,7 +101,7 @@ export const Local: Story = {
 };
 
 export const MissingRevision: Story = {
-  args: { build: { ...release, kind: 'preview', version: undefined, tag: undefined, commit: undefined, commitOnGitHub: false, sourceRef: undefined } },
+  args: { build: { ...release, kind: 'preview', version: undefined, tag: undefined, branch: undefined, commit: undefined, commitOnGitHub: false, sourceRef: undefined } },
   play: async ({ canvasElement }) => {
     const page = within(canvasElement.ownerDocument.body);
     await userEvent.click(within(canvasElement).getByRole('button', { name: 'Design system build: Preview Unknown revision' }));

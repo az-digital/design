@@ -67,6 +67,7 @@ export function resolveBuildInfo(
       kind: version.includes('-') ? 'prerelease' : 'release',
       version,
       tag,
+      branch: 'main', // The release workflow only publishes from main.
       commit,
       commitOnGitHub: true,
       sourceRef: tag,
