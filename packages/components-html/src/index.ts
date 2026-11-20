@@ -7,4 +7,5 @@ export * from './IconCard';
 export * from './ImageCard';
 export * from './LinkCard';
 export * from './QuickLinksCard';
+export * from './Tabs';
 export * from './TitleOnImageCard';

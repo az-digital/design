@@ -1,0 +1,94 @@
+diff --git a/node_modules/arizona-bootstrap/scss/override/_nav.scss b/node_modules/arizona-bootstrap/scss/override/_nav.scss
+index b827160..7f0997e 100644
+--- a/node_modules/arizona-bootstrap/scss/override/_nav.scss
++++ b/node_modules/arizona-bootstrap/scss/override/_nav.scss
+@@ -43,14 +43,66 @@
+   }
+ }
+ 
+-.nav.nav-underline .nav-link {
+-  &.active,
+-  &:active,
+-  &.is-active {
+-    // Underline tabs sit on the page background, not on the grey block the
+-    // generic `.nav-link.active` rule paints, so this has to override it.
+-    background-color: $nav-tabs-link-active-bg;
+-    @include border-radius(revert);
++.nav.nav-underline {
++  // A rule the full width of the row, with each tab's own underline on top of
++  // it, so the current tab reads as joined to its panel.
++  border-bottom: $az-border-width-md solid $az-color-brand-gray-400;
++
++  .nav-link {
++    padding: 8px 12px;
++    font-family: $az-font-family-serif;
++    font-size: 28px;
++    // A tab's label is normal weight at rest and bold when it's the current
++    // one, so the row's own weight replaces the generic nav link's.
++    font-weight: $az-font-weight-normal;
++    line-height: $az-line-height-base;
++    border-bottom-width: 4px;
++
++    &.active,
++    &:active,
++    &.is-active {
++      // Underline tabs sit on the page background, so the current tab has no
++      // fill of its own: this clears the grey block the generic
++      // `.nav-link.active` rule paints, rather than painting white over it,
++      // which would show as a box on any other surface. That rule also
++      // rounds the tab's corners ($nav-pills-border-radius); a tab is
++      // square, so this clears that too.
++      font-weight: $az-font-weight-bold;
++      background-color: transparent;
++      @include border-radius(0);
++    }
++
++    &:hover {
++      // Hovering previews what choosing the tab will look like: the same
++      // Blue as the current tab, at the current tab's underline weight. Only
++      // the bold label weight stays reserved for the current tab, so the two
++      // are still distinguishable. The underline color follows `color` via
++      // the base .nav-underline .nav-link:hover rule's currentcolor.
++      color: $az-color-brand-blue;
++      border-bottom-width: 4px;
++    }
++
++    &:focus-visible {
++      // The shared keyboard focus ring (Button's: az.focus-ring.width.md,
++      // Bougainvillea, 2px offset), outside the tab so it doesn't collide
++      // with the 4px underline at the bottom edge. A tab is square, but the
++      // ring keeps a small radius of its own: every focus ring already in
++      // Arizona Bootstrap (.nav-link:focus-visible, the dropdown's,
++      // pagination's) softens its own corners rather than drawing a
++      // hard-edged box.
++      outline: $az-focus-ring-width-md solid $az-color-brand-bougainvillea;
++      outline-offset: 2px;
++      border-radius: 2px;
++      // The generic .nav-link:focus-visible rule also draws a box-shadow
++      // ring; without this it would stack with the outline above.
++      box-shadow: none;
++    }
++
++    &.disabled,
++    &:disabled {
++      color: $az-color-brand-gray-600;
++      border-bottom-width: 0;
++    }
+   }
+ }
+ 
+diff --git a/node_modules/arizona-bootstrap/scss/override/_variables.scss b/node_modules/arizona-bootstrap/scss/override/_variables.scss
+index 7686f19..ed31a28 100644
+--- a/node_modules/arizona-bootstrap/scss/override/_variables.scss
++++ b/node_modules/arizona-bootstrap/scss/override/_variables.scss
+@@ -187,7 +187,9 @@ $nav-tabs-link-active-border-color: $nav-tabs-border-color $nav-tabs-border-colo
+ $nav-pills-link-active-color: var(--bs-tinta) !default;
+ $nav-pills-link-active-bg: var(--bs-gray-200) !default;
+ 
+-$nav-underline-link-active-color: var(--bs-tinta) !default;
++$nav-underline-link-active-color: $az-color-brand-blue !default;
++// Space between tabs, so their labels read as separate targets.
++$nav-underline-gap: 44px !default;
+ // fusv-enable
+ 
+ // >> Navbar
