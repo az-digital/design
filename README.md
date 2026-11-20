@@ -162,6 +162,20 @@ The workflow:
 
 Unreleased work on `main` and pull requests is only on the [review site](https://review.digital.arizona.edu/design/main/).
 
+The **Design system build** toolbar shows which release, prerelease, review build,
+or local build is open. Published builds use the release workflow's validated
+`AZ_DESIGN_VERSION`, `AZ_DESIGN_TAG`, and `AZ_DESIGN_SHA`; therefore `latest`
+and `next` show the version actually built, not the alias. Review builds link
+to the checked-out commit and identify the pull request when available. The
+page, story, and component-adapter links use that release tag or commit.
+Local source links use `STORYBOOK_GIT_REF` when set, or `main` otherwise, and
+may differ from local files. Package links point to the GitHub Packages pages
+for non-private workspaces, not directly to individual package versions.
+
+To check the labels and links, run `npm run test:storybook` and inspect the
+toolbar in the Storybook review site. For a release, also check its versioned
+URL and the `latest` or `next` alias after publication.
+
 ### Patching Arizona Bootstrap
 
 Storybook styles its components with Arizona Bootstrap compiled from its own Sass source, installed from GitHub at a release's tag, now `v5.3.0` (`packages/storybook/.storybook/arizona-bootstrap.scss`). Nothing in this repo overrides Arizona Bootstrap's values or adds CSS rules to it. When a contract needs Arizona Bootstrap to change, the change is a patch to its source that its maintainers can apply as a pull request.

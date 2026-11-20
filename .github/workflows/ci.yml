@@ -55,8 +55,9 @@ jobs:
 
       - name: Build Storybook
         env:
-          # Link "View on GitHub" to the PR's branch (or the pushed branch).
+          # The checked-out commit is used for source links; these label the preview.
           STORYBOOK_GIT_REF: ${{ github.head_ref || github.ref_name }}
+          STORYBOOK_PR_NUMBER: ${{ github.event.pull_request.number || '' }}
         run: npm run build:storybook
 
       - name: Save the Storybook build for deployment
