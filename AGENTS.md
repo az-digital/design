@@ -5,6 +5,12 @@ workspace structure, the token workflow, and contributing guidelines.
 Everything there applies whether you're a person or an agent. This file only
 covers what's specific to working as an agent.
 
+## Issues and pull requests
+
+Before creating an issue or pull request, follow the README's
+[release-impact guidance](./README.md#issues-and-pull-requests), including
+applying a release label when the impact is known.
+
 ## Use the Storybook MCP server
 
 Before changing tokens or stories, start Storybook and query it via MCP

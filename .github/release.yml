@@ -1,0 +1,14 @@
+changelog:
+  categories:
+    - title: Major release changes
+      labels:
+        - major release
+    - title: Minor release changes
+      labels:
+        - minor release
+    - title: Patch release changes
+      labels:
+        - patch release
+    - title: Other changes
+      labels:
+        - "*"

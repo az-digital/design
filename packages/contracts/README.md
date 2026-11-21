@@ -7,6 +7,9 @@ sets each part's design properties: a design token from `@az-digital/tokens`
 nothing for any platform. Each implementation writes the component's own values its
 own way, and a contract check compares the implementation with its contract.
 
+The published contract files, schema, and flattened data have no compatibility
+guarantee; see the [draft release policy](../../RELEASES.md#contract-format-compatibility).
+
 ## Why contracts
 
 Without a contract, `tokens.json` does the wiring too: a component needs its own
