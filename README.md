@@ -47,7 +47,7 @@ This is an npm workspaces monorepo with four packages:
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline ([README](packages/tokens/README.md)) |
 | `@az-digital/contracts` | `packages/contracts/` | Component contracts: each component's parts, and the token or value that sets each part's design properties ([README](packages/contracts/README.md)) |
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook-addon-libraries` | `packages/storybook-addon-libraries/` | Storybook addon: the Library toolbar, which switches component stories between registered libraries, and the contract a library meets to register ([README](packages/storybook-addon-libraries/README.md)) |
