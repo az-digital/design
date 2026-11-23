@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build:tokens": "npm run build -w @az-digital/tokens",
-    "test:tokens": "npm run test -w @az-digital/storybook -- src/backgroundPatternTokens.test.ts",
+    "test:tokens": "npm run test -w @az-digital/storybook",
     "build:storybook": "npm run build -w @az-digital/storybook",
     "dev:storybook": "npm run dev -w @az-digital/storybook",
     "lint": "eslint .",
