@@ -255,7 +255,7 @@ redo what still matters on the new version and regenerate it.
 ## A contract check
 
 `checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
-renders an implementation in Chromium and compares each property with the contract:
+compares a rendered implementation in Chromium with the contract:
 
 - At rest and with keyboard focus; hover through the hover colors the stylesheet hands
   to `:hover`.
@@ -264,17 +264,26 @@ renders an implementation in Chromium and compares each property with the contra
   cubic-bezier, a font stack by its first face.
 - An option you leave out takes the contract's default.
 
+Pass a `ContractTarget` with a `parts` map from contract part names to rendered
+elements. Include `root` and every part the check is intended to cover, even when
+two parts use the same element: for a button whose label is its text, map both
+`root` and `label` to the button. A bare element maps only `root`, and rows for
+unmapped parts are silently skipped. See
+`packages/storybook/stories/Primary/Components/Buttons/WebButtonContract.stories.tsx`
+for a parts map and hover configuration. Set `focus` when keyboard focus belongs
+on an element other than `root`, and configure `hover` for the implementation's
+hover rows.
+
 It returns an array of mismatches and doesn't throw. It has limits, so a pass doesn't
 verify the whole contract:
 
 - It skips breakpoint rows, and states other than hover and focus-visible.
-- It reads every part's properties from the one element you give it, so nested parts
-  aren't checked on their own.
-- Button hover colors are read from `--bs-btn-hover-*`; other hover properties are read
-  at rest. Properties with no CSS mapping are reported as mismatches, not checked.
+- By default, root button hover colors are read from `--bs-btn-hover-*`. Hover rows
+  without a mapping are read at rest, unless `hover: 'focus-visible'` is used.
+- Properties with no CSS mapping are reported as mismatches, not checked.
 
 Before treating a mismatch as an implementation defect, check whether it reflects one
-of these limits. For a state, breakpoint or part it doesn't cover, extend the helper or
+of these limits. For a state, breakpoint or part it can't cover, extend the helper or
 add a component-specific check, and say in the PR what the check leaves out.
 
 Run it while you work to list what still differs, and fix each with a patch (step 5).
