@@ -42,7 +42,9 @@ function renderTab(tab: Tab) {
 
 /** The alternate tab style as Arizona Bootstrap markup (`tabs.contract.json`). */
 export function renderTabs({ tabs, label = 'Sections' }: TabsProps) {
+  const requested = tabs.findIndex((tab) => tab.current && !tab.disabled);
+  const current = requested >= 0 ? requested : tabs.findIndex((tab) => !tab.disabled);
   return `<ul class="nav nav-underline" role="tablist" aria-label="${escapeHtml(label)}">
-${tabs.map(renderTab).join('\n')}
+${tabs.map((tab, index) => renderTab({ ...tab, current: index === current })).join('\n')}
 </ul>`;
 }
