@@ -1,0 +1,220 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "heading",
+  "name": "Heading",
+  "description": "A heading, from h1 to h6. Every level is Semibold with no letter spacing; h1–h3 get larger from the lg breakpoint (992px) up. Its typeface comes from the page's heading mode: sans serif by default, serif, or mixed. h1–h3 use az.heading.font-family.lg and h4–h6 use az.heading.font-family.sm, so a mixed page switches only the first. Headings in a sidebar follow the heading-sidebar contract instead. Text colors come from the background, so they aren't part of it.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2285: heading scale and serif headings",
+    "az-digital/design#88"
+  ],
+  "variants": {
+    "level": {
+      "description": "The heading's level. Every heading has one.",
+      "options": {
+        "h1": {
+          "description": "A level 1 heading. Arizona Bootstrap: h1 and .h1.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h1}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 56,
+                    "unit": "px"
+                  },
+                  "$description": "h1 line height below the lg breakpoint (992px)."
+                },
+                "margin.top": {
+                  "$type": "number",
+                  "$value": 0.667,
+                  "$description": "Space above h1, as a multiple of its text size (0.667em): the same as below it, so its spacing is even."
+                }
+              },
+              "breakpoints": {
+                "lg": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 64,
+                      "unit": "px"
+                    },
+                    "$description": "h1 text size from the lg breakpoint (992px) up."
+                  },
+                  "line-height": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 74,
+                      "unit": "px"
+                    },
+                    "$description": "h1 line height from 992px up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h2": {
+          "description": "A level 2 heading. Arizona Bootstrap: h2 and .h2.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h2}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 46,
+                    "unit": "px"
+                  },
+                  "$description": "h2 line height below the lg breakpoint (992px)."
+                }
+              },
+              "breakpoints": {
+                "lg": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 52,
+                      "unit": "px"
+                    },
+                    "$description": "h2 text size from the lg breakpoint (992px) up."
+                  },
+                  "line-height": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 62,
+                      "unit": "px"
+                    },
+                    "$description": "h2 line height from 992px up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h3": {
+          "description": "A level 3 heading. Arizona Bootstrap: h3 and .h3.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h3}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 38,
+                    "unit": "px"
+                  },
+                  "$description": "h3 line height below the lg breakpoint (992px)."
+                }
+              },
+              "breakpoints": {
+                "lg": {
+                  "font.size": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 40,
+                      "unit": "px"
+                    },
+                    "$description": "h3 text size from the lg breakpoint (992px) up."
+                  },
+                  "line-height": {
+                    "$type": "dimension",
+                    "$value": {
+                      "value": 50,
+                      "unit": "px"
+                    },
+                    "$description": "h3 line height from 992px up."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h4": {
+          "description": "A level 4 heading. Arizona Bootstrap: h4 and .h4. The same size at every screen width.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h4}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 36,
+                    "unit": "px"
+                  },
+                  "$description": "h4 line height."
+                },
+                "font.family": "{az.heading.font-family.sm}"
+              }
+            }
+          }
+        },
+        "h5": {
+          "description": "A level 5 heading. Arizona Bootstrap: h5 and .h5. The same size at every screen width.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h5}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 30,
+                    "unit": "px"
+                  },
+                  "$description": "h5 line height."
+                },
+                "font.family": "{az.heading.font-family.sm}"
+              }
+            }
+          }
+        },
+        "h6": {
+          "description": "A level 6 heading. Arizona Bootstrap: h6 and .h6. The same size at every screen width.",
+          "anatomy": {
+            "root": {
+              "tokens": {
+                "font.size": "{az.font-size.h6}",
+                "line-height": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 26,
+                    "unit": "px"
+                  },
+                  "$description": "h6 line height."
+                },
+                "font.family": "{az.heading.font-family.sm}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anatomy": {
+    "root": {
+      "description": "The heading.",
+      "tokens": {
+        "font.family": "{az.heading.font-family.lg}",
+        "font.weight": "{az.font-weight.semibold}",
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": {
+            "value": 0,
+            "unit": "px"
+          },
+          "$description": "Heading letter spacing: none."
+        },
+        "margin.top": {
+          "$type": "number",
+          "$value": 1.042,
+          "$description": "Space above a heading, as a multiple of its text size (1.042em). h1 sets its own."
+        },
+        "margin.bottom": {
+          "$type": "number",
+          "$value": 0.667,
+          "$description": "Space below a heading, as a multiple of its text size (0.667em)."
+        }
+      }
+    }
+  }
+}
