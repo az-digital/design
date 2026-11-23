@@ -7,16 +7,17 @@ import * as TitleOnImageCardStories from './Title on Image Card.stories';
 
 # Title on Image Card
 
-A square photo with only a title on it. The whole card is the link, and the photo zooms in
-on hover.
+A square photo with only a title on it. The whole card is the link: on hover, the photo
+zooms in and the title turns Rain.
 
 <Canvas of={TitleOnImageCardStories.Default} sourceState="hidden" />
 
 <Controls of={TitleOnImageCardStories.Default} />
 
 The card above is Arizona Bootstrap v5.3.0, with the markup in its Title on Image
-docs. Hover it, or press <kbd>Tab</kbd> to reach its title link, for its zoom and
-underline.
+docs. Hover it, or press <kbd>Tab</kbd> to reach its title link, for its zoom, underline
+and Rain title. v5.3.0 leaves the title White on hover: the Rain title and its fade here
+are a patch to it, waiting to be released.
 
 ## When to use it
 
@@ -39,10 +40,14 @@ underline.
   from its left, right and bottom edges. Behind it, a gradient covers the bottom half of
   the photo, from transparent to <Token data={getTokenData('az.color.brand.blue')} /> at
   the bottom, so the title stays readable on any photo.
-- **Hover and keyboard focus:** the photo zooms and the title is underlined. Its colors
-  don't change: the photo covers the card. The title link's focus ring is White, so it
-  shows on the gradient. Its width is the shared
-  <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **Hover and keyboard focus:** the photo zooms, and the title turns
+  <Token data={getTokenData('az.color.brand.rain')} /> and is underlined, as in the brand
+  mockup. The card has no fill to change: the photo covers it. The title link's focus ring
+  is drawn in its own color, Rain, as on the Icon Card, so it shows on the gradient. Its
+  width is the shared <Token data={getTokenData('az.focus-ring.width.md')} /> (2px).
+- **Motion:** the title's color fades over 300ms, ease-out, like the Icon Card's colors.
+  The underline doesn't fade. The fade turns off when someone asks for reduced motion; the
+  color still changes.
 - **No fill or border:** the photo covers the whole card.
 
 ## Anatomy

@@ -54,6 +54,9 @@ jobs:
           git diff --exit-code -- packages/contracts/dist
 
       - name: Build Storybook
+        env:
+          # Link "View on GitHub" to the PR's branch (or the pushed branch).
+          STORYBOOK_GIT_REF: ${{ github.head_ref || github.ref_name }}
         run: npm run build:storybook
 
       - name: Save the Storybook build for deployment
