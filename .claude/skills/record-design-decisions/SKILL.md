@@ -214,13 +214,19 @@ With the contract settled, change Arizona Bootstrap's source to match it, Sass v
 values included, as a patch (see "Patching Arizona Bootstrap" in the README). Nothing in
 Storybook overrides its values.
 
-1. Run `npm run build:tokens`, then refresh the declarations in
-   `node_modules/arizona-bootstrap/scss/_design-tokens.scss` from
-   `packages/tokens/dist/tokens.scss` (Sass can't read `tokens.json`). Preserve the
-   file's header and `// fusv-disable`/`// fusv-enable` guards, and point its `Source:`
-   link at a commit on `main`, since a branch's commits can disappear when the PR is
-   squash-merged. The installed v5.3.0 entrypoint already imports this file before its
-   variables; don't add a component-level import. Use its variables for the design
+1. Run `npm run build:tokens`. If the Arizona Bootstrap version being patched still
+   uses a copied `node_modules/arizona-bootstrap/scss/_design-tokens.scss` (the
+   package integration is proposed in
+   [az-digital/arizona-bootstrap#2443](https://github.com/az-digital/arizona-bootstrap/pull/2443)),
+   refresh its declarations from `packages/tokens/dist/tokens.scss` (Sass can't read
+   `tokens.json`). Preserve the file's header and `// fusv-disable`/`// fusv-enable`
+   guards. Leave the existing `Source:` link unchanged during development; it will be
+   out of date if the declarations change. Once the tokens are on `main` and before
+   handing the patch to Arizona Bootstrap, update the link to a `main` commit whose
+   `packages/tokens/dist/tokens.scss` matches the copied declarations (check with
+   `git show <sha>:packages/tokens/dist/tokens.scss`). The installed v5.3.0
+   entrypoint already imports this file before its variables; don't add a
+   component-level import. Use its variables for the design
    tokens this PR adds or changes (`$az-color-bg-button-white-hover`, not `$gray-200`).
    Use Arizona Bootstrap's own variable only for a value that has no token, such as a
    component's own value that stays in the contract. Otherwise write it in its code
