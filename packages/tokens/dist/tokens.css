@@ -82,6 +82,12 @@
   --az-font-size-button: 18px;
   --az-border-width-sm: 1px;
   --az-border-width-md: 2px;
+  --az-size-base-pattern-tile: 300px;
+  --az-size-base-pattern-band-min: 75px;
+  --az-size-base-pattern-band-max: 200px;
+  --az-proportion-base-pattern-band: 0.2;
+  --az-opacity-base-pattern: 0.4;
+  --az-opacity-base-text-backdrop: 0.7;
   --az-opacity-button-disabled: 0.65;
   --az-focus-ring-width-sm: 1px;
   --az-focus-ring-width-md: 2px; /** Width of the keyboard focus ring, everywhere one is drawn, such as links and buttons. */
@@ -104,4 +110,10 @@
   --az-color-fg-red: var(--az-color-brand-red);
   --az-color-fg-rain: var(--az-color-brand-rain);
   --az-grid-gutter: var(--az-spacing-300); /** Space between grid columns, 12px on each side of a column. Source: current implementation (5.2.2). */
+  --az-size-pattern-monsoon-rain-tile: var(--az-size-base-pattern-tile); /** Size of the repeating Monsoon Rain tile. Source: az-digital/arizona-bootstrap#2111. */
+  --az-size-pattern-monsoon-rain-band-min: var(--az-size-base-pattern-band-min); /** Minimum width of the Monsoon Rain edge band. Source: az-digital/arizona-bootstrap#2308. */
+  --az-size-pattern-monsoon-rain-band-max: var(--az-size-base-pattern-band-max); /** Maximum width of the Monsoon Rain edge band. Source: az-digital/arizona-bootstrap#2308. */
+  --az-proportion-pattern-monsoon-rain-band: var(--az-proportion-base-pattern-band); /** Fraction of the section width occupied by the Monsoon Rain edge band, before its minimum and maximum are applied. Source: az-digital/arizona-bootstrap#2308. */
+  --az-opacity-pattern-monsoon-rain: var(--az-opacity-base-pattern); /** Opacity of the Monsoon Rain image, without fading section content. Source: az-digital/arizona-bootstrap#2111. */
+  --az-opacity-pattern-text-backdrop: var(--az-opacity-base-text-backdrop); /** Opacity of the section-color backdrop behind text on a patterned section. Source: az-digital/arizona-bootstrap#2111. */
 }

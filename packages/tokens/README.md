@@ -45,6 +45,7 @@ const brandBlue = az.color.brand.blue;
 
 ## Package contents
 
+- `assets/patterns/monsoon-sky.svg` — the original Monsoon Sky (Monsoon Rain) pattern tile.
 - `tokens.json` — source token definitions, also suitable for tools that consume the Tokens Studio-compatible JSON format.
 - `dist/tokens.css` — CSS custom properties, such as `--az-color-brand-blue`.
 - `dist/tokens.scss` — Sass variables for Sass-based projects.
