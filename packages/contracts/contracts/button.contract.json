@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "button",
+  "category": "buttons",
   "name": "Button",
   "description": "An action in a form, a dialog or a page: a label (and an optional icon) in a fully rounded shape. It comes in three sizes, a solid and an outline button in each brand color (Red and Blue on White, Cloud or Caliche; Rain on Blue or Azurite; White on Red or Arroyo Blue). With keyboard focus, a button looks the way it does on hover, with a ring 2px outside it. While pressed, it uses its color's pressed (active) color.",
   "sources": [

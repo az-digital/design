@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "title-on-image-card",
+  "category": "containers",
   "name": "Title on Image Card",
   "description": "A square photo with only a title on it, over a gradient. The whole card is one link: its title link covers it. On hover, and while keyboard focus is on its title link, the photo zooms, and the title fades to Rain and is underlined. The card has no fill to change, because the photo covers it.",
   "sources": [

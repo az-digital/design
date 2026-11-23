@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "call-to-action-card",
+  "category": "containers",
   "name": "Call to Action Card",
   "description": "A title, text and one button, for one action, such as subscribing. The whole card is clickable: the button's link covers it, so pressing anywhere on the card does what the button does. The card has no hover colors of its own; the button shows its hover and focus.",
   "sources": [

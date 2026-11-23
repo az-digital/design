@@ -11,6 +11,7 @@
 //
 // The build refuses, naming the problem, when a contract:
 // - doesn't match contract.schema.json,
+// - doesn't match its id to its file name, or duplicates another id,
 // - references a token that isn't in tokens.json,
 // - leaves one of its component's own tokens (az.component.<id>.*) unused, so
 //   the contract and the tokens can't drift apart,
@@ -49,9 +50,21 @@ const files = readdirSync(new URL('contracts/', root)).filter((file) => file.end
 const problems = [];
 const notes = [];
 const rows = [];
+const ids = new Map();
 
 for (const file of files) {
   const contract = read(new URL(`contracts/${file}`, root));
+
+  if (typeof contract.id === 'string') {
+    if (file !== `${contract.id}.contract.json`) {
+      problems.push(`${file}: file name doesn't match id "${contract.id}"`);
+    }
+    if (ids.has(contract.id)) {
+      problems.push(`${file}: id "${contract.id}" duplicates ${ids.get(contract.id)}`);
+    } else {
+      ids.set(contract.id, file);
+    }
+  }
 
   if (!validate(contract)) {
     for (const error of validate.errors) {

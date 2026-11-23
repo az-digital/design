@@ -42,6 +42,7 @@ contracts likewise bind a component's parts to tokens.
 {
   "$schema": "../contract.schema.json",
   "id": "button",
+  "category": "buttons",
   "name": "Button",
   "description": "An action in a form, a dialog or a page…",
   "sources": ["az-digital/arizona-bootstrap#2281: 2026 brand buttons"],
@@ -85,6 +86,8 @@ contracts likewise bind a component's parts to tokens.
 ```
 
 - **`id`:** the component's name. Its own tokens, if it has any, are `az.component.<id>.*`.
+- **`category`:** the contract's Storybook section: `typography`, `layout`, `buttons`,
+  `containers`, `indicators`, `inputs`, `navigation` or `popups`.
 - **`sources`:** where the decisions come from, such as reviewed pull requests.
 - **`anatomy`:** a tree of parts, starting at `root`, the component itself. Each part
   has a `description` and can have:
@@ -110,6 +113,17 @@ Design properties are named the way tokens are, not after any platform's propert
 `color`, `fill`, `padding.x`, `gap`, `font.size`, `font.weight`, `line-height`,
 `size`, `underline.offset`.
 
+## Contract names
+
+The file name is the contract's `id` followed by `.contract.json`. A part or context
+version of a component starts with the component's name so it sorts beside it:
+`accordion-item`, `breadcrumb-item` or `heading-sidebar`. A different component that's
+a kind of something keeps its natural name, such as `close-button`.
+
+Use a variant option when the change is consistent across the component, such as a
+`serif` option or a `size.small` option. Make a separate `<component>-<context>`
+contract when the design differs by level or part, as sidebar headings do.
+
 ## The check
 
 ```bash
@@ -120,6 +134,8 @@ The check refuses a contract, naming the problem, when it:
 
 - doesn't match `contract.schema.json`, for example a bare value like `"50px"`, or a
   value with no `$description`,
+- has a category outside the supported list, a file name that doesn't match its `id`,
+  or an `id` shared with another contract,
 - references a token that isn't in `tokens.json`,
 - leaves one of its component's own tokens (`az.component.<id>.*`) unused, if it
   has any, so the contract and the tokens can't drift apart,

@@ -1,6 +1,7 @@
 {
   "$schema": "../contract.schema.json",
   "id": "card",
+  "category": "containers",
   "name": "Card",
   "description": "A title and any content in a Cloud box, with no border and rounded corners. It isn't a link. Its body is a slot for rich text, such as paragraphs, a list or a small table. It's the only card with a slot, and with an optional header above the body and footer below it.",
   "sources": [
