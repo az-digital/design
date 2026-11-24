@@ -1,0 +1,33 @@
+{
+  "name": "@az-digital/storybook-addon-build-info",
+  "private": true,
+  "description": "Storybook addon that shows design-system build metadata and revision-aware source links.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./preset": "./src/preset.js",
+    "./manager": "./src/manager.tsx",
+    "./node": {
+      "types": "./src/node/buildInfo.ts",
+      "import": "./src/node/buildInfo.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "keywords": [
+    "storybook-addon",
+    "design-system",
+    "build-info"
+  ],
+  "dependencies": {
+    "@az-digital/storybook-addon-libraries": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "storybook": "^10.0.0"
+  }
+}
