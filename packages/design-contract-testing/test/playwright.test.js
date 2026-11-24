@@ -184,6 +184,19 @@ describe('failures', () => {
     expect(byStatus(result, 'failed')).toMatchObject([{ code: 'AZC008', property: 'ring.color' }]);
   });
 
+  it('reads tokens.css text with the browser’s CSS parser', async () => {
+    const css = `/* --az-demo-fill: #00ff00; */ :root { ${Object.entries(tokens).map(([name, value]) => `${name}: ${value};`).join(' ')} --az-demo-unused: url("data:,a;b"); }`;
+    const result = await withContent(':root { --az-demo-fill: #00ff00; }', { tokens: css });
+    expect(result.ok).toBe(true);
+  });
+
+  it('parses hostile tokens.css text quickly', async () => {
+    const hostile = ['/*' + 'a/*'.repeat(100_000), '--'.repeat(100_000), '---:' + ' '.repeat(100_000)];
+    const start = performance.now();
+    for (const css of hostile) await withContent('', { tokens: css });
+    expect(performance.now() - start).toBeLessThan(10_000);
+  });
+
   it('does not resolve a supplied token alias from the page', async () => {
     const result = await withContent(':root { --page-ring: #378dbd; }', { tokens: { ...tokens, '--az-demo-ring': 'var(--page-ring)' } });
     expect(byStatus(result, 'failed')).toMatchObject([{ code: 'AZC008', property: 'ring.color' }]);

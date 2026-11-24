@@ -97,27 +97,25 @@ export function contractRows({ rows, defaults = {} }, contract, options = []) {
   return [...byKey.values()];
 }
 
-function stripCssComments(css) {
-  const chunks = [];
-  let cursor = 0;
-  while (true) {
-    const start = css.indexOf('/*', cursor);
-    if (start === -1) break;
-    const end = css.indexOf('*/', start + 2);
-    if (end === -1) break;
-    chunks.push(css.slice(cursor, start));
-    cursor = end + 2;
-  }
-  chunks.push(css.slice(cursor));
-  return chunks.join('');
-}
-
-/** The custom properties in a token stylesheet (`@az-digital/tokens/dist/tokens.css`), by name. */
+/**
+ * The custom properties in a token stylesheet (`@az-digital/tokens/dist/tokens.css`),
+ * by name, as the browser's CSS parser reads them.
+ */
 export function parseTokenCss(css) {
+  const sheet = new CSSStyleSheet();
+  sheet.replaceSync(css);
   const properties = {};
-  for (const [, name, value] of stripCssComments(css).matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
-    properties[name] = value.trim();
-  }
+  const collect = (rules) => {
+    for (const rule of rules) {
+      if (rule.style) {
+        for (const name of rule.style) {
+          if (name.startsWith('--')) properties[name] = rule.style.getPropertyValue(name).trim();
+        }
+      }
+      if (rule.cssRules) collect(rule.cssRules);
+    }
+  };
+  collect(sheet.cssRules);
   return properties;
 }
 
