@@ -48,5 +48,5 @@ export const checkCard =
     // .card.bg-cloud.hover:is(:hover, :focus-visible, :has(:focus-visible)), so
     // hover is read with keyboard focus on the title link.
     const target = { parts, focus: part('.stretched-link') ?? root, hover: 'focus-visible' as const };
-    await expect(checkContract(target, contract)).toEqual([]);
+    expect(await checkContract(target, contract)).toEqual([]);
   };

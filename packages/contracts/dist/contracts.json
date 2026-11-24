@@ -3003,6 +3003,240 @@
     "token": "az.spacing.150"
   },
   {
+    "contract": "tabs",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.width",
+    "token": "az.border.width.md"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "root",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.color",
+    "token": "az.color.brand.gray.400"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "list",
+    "kind": "default",
+    "condition": null,
+    "property": "gap",
+    "token": null,
+    "type": "dimension",
+    "value": "44px",
+    "description": "Space between tabs, so labels read as separate targets. Not a step on az.spacing: the scale has no 44px step."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.y",
+    "token": null,
+    "type": "dimension",
+    "value": "8px",
+    "description": "Tab top and bottom padding. The same value as az.spacing.2, kept as the component's own value so the tab's height can change without moving the spacing scale."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "padding.x",
+    "token": null,
+    "type": "dimension",
+    "value": "12px",
+    "description": "Tab left and right padding. Not a step on az.spacing: the scale goes 8px then 16px."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "On hover the underline matches the current tab's weight, so hovering previews what choosing the tab will look like."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "hover",
+    "property": "border.bottom.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.width",
+    "token": "az.focus-ring.width.md"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.color",
+    "token": "az.color.brand.bougainvillea"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "ring.offset",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "Gap between the tab and its keyboard focus ring, the same offset Button uses."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "focus-visible",
+    "property": "border.radius",
+    "token": null,
+    "type": "dimension",
+    "value": "2px",
+    "description": "The focus ring's own corner radius. The tab itself is square, but every box-shadow or outline focus ring already in Arizona Bootstrap (.nav-link:focus-visible, the dropdown's, pagination's) softens its own corners rather than drawing a hard-edged box."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "0px",
+    "description": "A disabled tab has no underline of its own: it can't become the current tab."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.font-family.serif"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.size",
+    "token": null,
+    "type": "dimension",
+    "value": "28px",
+    "description": "Tab label text size. The same value as az.font-size.h3, kept as the component's own value because it is a tab's size, not a heading level."
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.normal"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "line-height",
+    "token": "az.line-height.base"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.azurite"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "hover",
+    "property": "color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "tabs",
+    "variant": null,
+    "part": "tab.label",
+    "kind": "state",
+    "condition": "disabled",
+    "property": "color",
+    "token": "az.color.brand.gray.600"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.width",
+    "token": null,
+    "type": "dimension",
+    "value": "4px",
+    "description": "The current tab's underline weight, heavier than the rule beneath the row so it reads as selected. Not az.border.width.md (2px), which the rule uses; the border scale has no 4px step."
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab",
+    "kind": "default",
+    "condition": null,
+    "property": "border.bottom.color",
+    "token": "az.color.brand.blue"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.weight",
+    "token": "az.font-weight.bold"
+  },
+  {
+    "contract": "tabs",
+    "variant": "state.current",
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "color",
+    "token": "az.color.brand.blue"
+  },
+  {
     "contract": "title-on-image-card",
     "variant": null,
     "part": "root",

@@ -10,6 +10,7 @@ import {
   renderImageCard,
   renderLinkCard,
   renderQuickLinksCard,
+  renderTabs,
   renderTitleOnImageCard,
   type ArizonaHeaderProps,
   type ButtonProps,
@@ -19,6 +20,7 @@ import {
   type ImageCardProps,
   type LinkCardProps,
   type QuickLinksCardProps,
+  type TabsProps,
   type TitleOnImageCardProps,
 } from '../src';
 
@@ -55,6 +57,10 @@ export default {
     'quick-links-card': {
       render: (props: QuickLinksCardProps) => renderQuickLinksCard(props),
       source: (props: QuickLinksCardProps) => renderQuickLinksCard(props),
+    },
+    tabs: {
+      render: (props: TabsProps) => renderTabs(props),
+      source: (props: TabsProps) => renderTabs(props),
     },
     'title-on-image-card': {
       render: (props: TitleOnImageCardProps) => renderTitleOnImageCard(props),
