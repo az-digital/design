@@ -3237,6 +3237,15 @@
     "token": "az.color.brand.blue"
   },
   {
+    "contract": "tabs",
+    "variant": "typeface.sans-serif",
+    "part": "tab.label",
+    "kind": "default",
+    "condition": null,
+    "property": "font.family",
+    "token": "az.font-family.sans-serif"
+  },
+  {
     "contract": "title-on-image-card",
     "variant": null,
     "part": "root",

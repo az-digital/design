@@ -6,13 +6,19 @@ import type { TabsProps } from '@az-digital/components-html';
 // Arizona Bootstrap v5.3.0, compiled from its Sass with the patches in the
 // repo's patches/ folder (see .storybook/arizona-bootstrap.scss). The controls
 // copy the Figma Tabs component's properties: the labels, which tab is current,
-// and whether the last one is disabled. Hover and keyboard focus come from the
-// pointer and keyboard.
+// whether the last one is disabled, and the row's typeface. Hover and keyboard
+// focus come from the pointer and keyboard.
 
 type TabsArgs = {
   Labels: string;
   Current: number;
   'Last tab disabled': boolean;
+  Typeface: 'Serif' | 'Sans Serif';
+};
+
+const typefaceOf: Record<TabsArgs['Typeface'], TabsProps['typeface']> = {
+  Serif: 'serif',
+  'Sans Serif': 'sans-serif',
 };
 
 // The labels, as typed in the control: one per line, blank lines dropped.
@@ -35,6 +41,7 @@ const meta = {
           current: index === (args.Current ?? 1) - 1,
           disabled: args['Last tab disabled'] && index === last,
         })),
+        typeface: typefaceOf[args.Typeface] ?? 'serif',
       };
     },
   }),
@@ -51,11 +58,13 @@ const meta = {
     Labels: 'Active\nLink\nLink\nLink\nDisabled Link',
     Current: 1,
     'Last tab disabled': true,
+    Typeface: 'Serif',
   },
   argTypes: {
     Labels: { control: 'text', description: 'One label per line.' },
     Current: { control: { type: 'number', min: 1 }, description: 'Which tab is the current one, counting from 1.' },
     'Last tab disabled': { control: 'boolean' },
+    Typeface: { control: 'select', options: ['Serif', 'Sans Serif'], description: "The row's label typeface." },
   },
 } satisfies Meta<TabsArgs>;
 

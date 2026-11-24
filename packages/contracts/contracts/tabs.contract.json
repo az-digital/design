@@ -7,6 +7,8 @@
     "az-digital/design#170: add an alternate tab style variant",
     "Figma branch tab-design-issue-170 of the AZ Digital UX Design System, Tabs page, Tabs component (node 6190:73): the alternate style's colors, type, spacing and underline weights",
     "az-digital/arizona-bootstrap#2240 (approved): Garamond Premier Pro is the serif typeface, which the Figma design uses for the tab labels",
+    "uaz-web/az-storybook's Accordion (packages/components-sdc/components/accordion/accordion.component.yml): a typeface prop with the same serif/sans-serif options and serif default, which Tabs' typeface variant follows",
+    "Figma branch tab-design-issue-170, Tabs component set (node 6231:866): the Typeface variant (Garamond, Proxima Nova), added for the profile designs' sans-serif tab rows",
     "Arizona Bootstrap 5.3.x underline tabs (scss/override/_nav.scss, scss/override/_variables.scss): the resting and disabled label colors, which the Figma design matches",
     "az-digital/design#194 review: the label's line-height is az.line-height.base (42px), for consistency with the design system's shared tokens; the Figma design was updated to match",
     "Figma branch tab-design-issue-170, \"Tab states (Hover, Focus)\" frame (nodes 6200:712, 6200:714), added for #194 review: hover matches the current tab's color and underline weight; focus reuses Button's shared ring (az.focus-ring.width.md, Bougainvillea, 2px offset)",
@@ -153,6 +155,29 @@
                       "tokens": {
                         "font.weight": "{az.font-weight.bold}",
                         "color": "{az.color.brand.blue}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "typeface": {
+      "description": "The tab label's typeface. With none chosen, it's serif.",
+      "options": {
+        "sans-serif": {
+          "description": "Proxima Nova, for a tab row that needs to match sans-serif surroundings, such as a profile page. Arizona Bootstrap: .nav-underline--typeface-sans-serif.",
+          "anatomy": {
+            "root": {
+              "parts": {
+                "tab": {
+                  "parts": {
+                    "label": {
+                      "tokens": {
+                        "font.family": "{az.font-family.sans-serif}"
                       }
                     }
                   }

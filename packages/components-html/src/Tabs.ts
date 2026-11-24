@@ -15,6 +15,8 @@ export type TabsProps = {
   tabs: Tab[];
   /** Names the row for a screen reader, since a tab list has no visible label. */
   label?: string;
+  /** The label typeface, for every tab in the row. Defaults to serif. */
+  typeface?: 'serif' | 'sans-serif';
 };
 
 // Arizona Bootstrap's classes for one tab's link, e.g. `nav-link active`.
@@ -41,10 +43,13 @@ function renderTab(tab: Tab) {
 }
 
 /** The alternate tab style as Arizona Bootstrap markup (`tabs.contract.json`). */
-export function renderTabs({ tabs, label = 'Sections' }: TabsProps) {
+export function renderTabs({ tabs, label = 'Sections', typeface = 'serif' }: TabsProps) {
   const requested = tabs.findIndex((tab) => tab.current && !tab.disabled);
   const current = requested >= 0 ? requested : tabs.findIndex((tab) => !tab.disabled);
-  return `<ul class="nav nav-underline" role="tablist" aria-label="${escapeHtml(label)}">
+  // No class for the default serif, so markup for every caller that doesn't
+  // pass typeface is unchanged.
+  const classes = ['nav', 'nav-underline', typeface === 'sans-serif' && 'nav-underline--typeface-sans-serif'].filter(Boolean).join(' ');
+  return `<ul class="${classes}" role="tablist" aria-label="${escapeHtml(label)}">
 ${tabs.map((tab, index) => renderTab({ ...tab, current: index === current })).join('\n')}
 </ul>`;
 }

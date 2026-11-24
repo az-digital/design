@@ -1,8 +1,8 @@
 diff --git a/node_modules/arizona-bootstrap/scss/override/_nav.scss b/node_modules/arizona-bootstrap/scss/override/_nav.scss
-index b827160..7f0997e 100644
+index b827160..eec429c 100644
 --- a/node_modules/arizona-bootstrap/scss/override/_nav.scss
 +++ b/node_modules/arizona-bootstrap/scss/override/_nav.scss
-@@ -43,14 +43,66 @@
+@@ -43,14 +43,74 @@
    }
  }
  
@@ -74,6 +74,14 @@ index b827160..7f0997e 100644
 +      color: $az-color-brand-gray-600;
 +      border-bottom-width: 0;
 +    }
++  }
++
++  // The label typeface for every tab in the row. No modifier for the serif
++  // default, so it's set once above rather than per state; sans-serif only
++  // overrides font-family, leaving every color/weight/underline/ring rule
++  // above untouched in both typefaces.
++  &--typeface-sans-serif .nav-link {
++    font-family: $az-font-family-sans-serif;
    }
  }
  

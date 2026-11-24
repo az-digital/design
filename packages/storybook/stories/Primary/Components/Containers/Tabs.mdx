@@ -74,6 +74,13 @@ heading size makes the row read as wayfinding rather than body text.
 Each tab has 8px of padding above and below and 12px to each side, with square corners,
 so the row reads as a flat strip rather than a set of buttons. Tabs sit 44px apart.
 
+The row's labels are <Token data={getTokenData('az.font-family.serif')} /> unless the row
+sets its typeface to sans serif, which switches every tab's label to
+<Token data={getTokenData('az.font-family.sans-serif')} /> instead. Use sans serif for a tab
+row inside an already sans-serif section, such as a profile page, so the row doesn't
+introduce a second typeface the rest of the page doesn't use. Colors, weights, size, and the
+underline are the same in both; only the face changes.
+
 ## States and behavior
 
 - **The current tab** is the one whose panel is showing. One tab in a row is current.
@@ -104,3 +111,9 @@ A tab at rest, with no option chosen.
 What the current tab changes.
 
 <ContractAnatomy contract="tabs" variant="state.current" />
+
+### Sans Serif
+
+What the sans-serif typeface changes.
+
+<ContractAnatomy contract="tabs" variant="typeface.sans-serif" />
