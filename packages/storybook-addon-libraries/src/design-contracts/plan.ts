@@ -13,6 +13,23 @@ export function variantCases(variants: Record<string, string[]>): Record<string,
 }
 
 /**
+ * A story's own variant: at most one option per axis, checked against the
+ * contract and ordered as its axes are.
+ */
+export function storyVariantCase(
+  component: string,
+  variants: Record<string, string[]>,
+  variant: Record<string, string>,
+): Record<string, string> {
+  for (const [axis, option] of Object.entries(variant)) {
+    if (!Object.hasOwn(variants, axis)) throw new Error(`${component}: the story's variant has an unknown axis "${axis}".`);
+    if (!variants[axis].includes(option)) throw new Error(`${component}: "${option}" is not a ${axis} option.`);
+  }
+  return Object.fromEntries(Object.keys(variants).flatMap((axis) =>
+    Object.hasOwn(variant, axis) ? [[axis, variant[axis]]] : []));
+}
+
+/**
  * Plan one component story's tests from the registered adapters and shared
  * contract data. A story's `lib:*` tags limit the libraries, as they do for the canvas.
  */

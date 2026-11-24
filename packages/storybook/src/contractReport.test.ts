@@ -188,6 +188,22 @@ describe('design contract results', () => {
     }, 'html')).toBe(0);
   });
 
+  it('counts the rows that need attention for a story scoped to one variant', () => {
+    const passedEntry = { ...failedEntry, status: 'passed' as const, code: null, name: null, condition: null };
+    const scoped: ComponentContractReport = {
+      component: 'button',
+      variant: ['color.red'],
+      needsAttention: true,
+      libraries: [{ key: 'html', title: 'Arizona Bootstrap', kind: 'tested', cases: [{
+        fixture: 'button', options: ['color.red'], ok: false, counts: { ...failedCounts, failed: 2 }, coverage: '', findings: ['drift'],
+        entries: [passedEntry, failedEntry, { ...failedEntry, condition: 'active' }],
+      }] }],
+    };
+    expect(getContractAttentionCount({ report: scoped }, 'html')).toBe(2);
+    expect(readPublishedContractResults({ version: 1, stories: { 'button--red': scoped } })['button--red']).toEqual({ report: scoped });
+    expect(() => readPublishedContractResults({ version: 1, stories: { 'button--red': { ...scoped, variant: 'color.red' } } })).toThrow('invalid');
+  });
+
   it('shows a broken test setup, and rejects malformed or falsely passing reports', () => {
     const failed = run('button', [{ type: DESIGN_CONTRACT_REPORT_TYPE, status: 'failed', result: { error: 'No button rendered.' } }]);
     expect(updateContractResults({}, failed)).toEqual({ button: { error: 'No button rendered.' } });

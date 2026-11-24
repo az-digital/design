@@ -50,4 +50,13 @@ describe('design contract lifecycle hooks', () => {
     }));
     expect(reportRun).toHaveBeenCalledWith(run, 'button--default');
   });
+
+  it('passes a story\'s variant to the runner', async () => {
+    const runTests = vi.fn(async () => run);
+    const hooks = createDesignContractHooks(runTests, vi.fn(async () => {}));
+    const story = context(vi.fn());
+    story.parameters.designContracts = { variant: { color: 'outline-white' } };
+    await hooks.beforeEach(story);
+    expect(runTests).toHaveBeenCalledWith(expect.objectContaining({ variant: { color: 'outline-white' } }));
+  });
 });

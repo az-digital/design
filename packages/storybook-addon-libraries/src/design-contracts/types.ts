@@ -34,6 +34,8 @@ export type ComponentContractTestInput = {
   tags: readonly string[];
   container: HTMLElement;
   library: unknown;
+  /** Test only this variant, such as `{ color: 'outline-white' }`, instead of every combination. */
+  variant?: Record<string, string>;
 };
 
 export type PlannedLibraryTest =

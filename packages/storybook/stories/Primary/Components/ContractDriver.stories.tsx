@@ -5,6 +5,7 @@ import { createDriver } from './designContractTest';
 const meta = {
   title: 'Primary/Components/Design contract driver',
   tags: ['!dev', '!autodocs'],
+  parameters: { interactions: { disable: false } },
   render: () => <button type="button">Driver test</button>,
 } satisfies Meta;
 

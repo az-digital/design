@@ -11,10 +11,12 @@ import { Badge, Button, EmptyTabContent, Select, TabsView } from 'storybook/inte
 import { useTheme } from 'storybook/theming';
 import { BeakerIcon } from '@storybook/icons';
 import type { TestRunResult } from '@storybook/addon-vitest/constants';
+import type { Entry } from '@az-digital/design-contract-testing';
 import { GLOBAL } from '../constants';
 import {
   DESIGN_CONTRACT_STATUS_TYPE_ID,
   getContractAttentionCount,
+  getContractIssueEntries,
   getContractStatuses,
   groupContractCases,
   mergePublishedContractResults,
@@ -239,6 +241,113 @@ function CaseList({ cases, empty }: { cases: ContractCaseSummary[]; empty: strin
   );
 }
 
+// The Tokens addon optionally registers its pill renderer here. Keeping this
+// lookup structural avoids making that addon a required dependency.
+declare global {
+  interface Window {
+    __AZ_DIGITAL_DESIGN_TOKEN_REFERENCE__?: React.ComponentType<{ token: string }>;
+  }
+}
+
+const RESULTS: Record<Entry['status'], { label: string; status: 'positive' | 'negative' | 'warning' | 'neutral' }> = {
+  passed: { label: 'Passed', status: 'positive' },
+  failed: { label: 'Failed', status: 'negative' },
+  unsupported: { label: 'Not checked', status: 'warning' },
+  unmapped: { label: 'Not checked', status: 'warning' },
+  blocked: { label: 'Blocked', status: 'warning' },
+  skipped: { label: 'Skipped', status: 'neutral' },
+};
+
+/** The contract rows for a story's one variant, each with its result; issues are annotated. */
+function VariantResults({
+  library,
+  variant,
+  onOpenContract,
+}: {
+  library: Extract<LibraryContractSummary, { kind: 'tested' }>;
+  variant: string[];
+  onOpenContract?: () => void;
+}) {
+  const theme = useTheme();
+  const TokenReference = window.__AZ_DIGITAL_DESIGN_TOKEN_REFERENCE__;
+  const cellStyle = {
+    borderBottom: `1px solid ${theme.appBorderColor}`,
+    padding: '8px 10px',
+    textAlign: 'left' as const,
+    verticalAlign: 'top' as const,
+    overflowWrap: 'anywhere' as const,
+  };
+  return (
+    <div style={{ flex: '1 1 0', minHeight: 0, overflow: 'auto', padding: '0 12px 16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '12px 4px 8px' }}>
+        <span>The contract for <strong>{variant.join(', ') || 'defaults'}</strong>, with {library.title}'s results.</span>
+        {onOpenContract && <Button variant="ghost" size="small" onClick={onOpenContract}>Open the full contract</Button>}
+      </div>
+      {library.cases.map((item) => {
+        const issues = getContractIssueEntries(item).length;
+        return (
+          <section key={item.fixture} aria-label={library.cases.length > 1 ? item.fixture : undefined} style={{ marginBottom: 16 }}>
+            {library.cases.length > 1 && <h3 style={{ fontSize: 13, margin: '8px 4px' }}>{item.fixture}</h3>}
+            <p style={{ margin: '0 4px 8px' }}>
+              {issues ? <Badge compact status="warning">{issues} need attention</Badge> : <Badge compact status="positive">Conforms</Badge>}{' '}
+              {item.coverage}
+            </p>
+            {item.entries ? (
+              <table style={{ borderCollapse: 'collapse', fontSize: 12, minWidth: 680, width: '100%' }}>
+                <thead>
+                  <tr>
+                    {['Part', 'When', 'Property', 'Value', 'Result', 'Actual'].map((heading) => (
+                      <th key={heading} scope="col" style={{ ...cellStyle, position: 'sticky', top: 0, background: theme.background.app }}>{heading}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {item.entries.map((entry, index) => {
+                    const result = RESULTS[entry.status];
+                    const issue = entry.status !== 'passed' && entry.status !== 'skipped';
+                    const background = entry.status === 'failed' ? theme.background.negative : issue ? theme.background.warning : undefined;
+                    const newPart = index === 0 || item.entries?.[index - 1].part !== entry.part;
+                    return (
+                      <React.Fragment key={`${entry.part}:${entry.condition}:${entry.property}:${index}`}>
+                        <tr style={{ background }}>
+                          <th scope="row" style={cellStyle}>{newPart ? entry.part ?? entry.name ?? '—' : ''}</th>
+                          <td style={cellStyle}>{entry.condition ?? 'default'}</td>
+                          <td style={cellStyle}><code>{entry.property ?? '—'}</code></td>
+                          <td style={cellStyle}>
+                            {entry.source && TokenReference ? (
+                              <TokenReference token={entry.source} />
+                            ) : (
+                              entry.source && <code>{entry.source}</code>
+                            )}
+                            {entry.expected && entry.expected !== entry.source && <div>{entry.expected}</div>}
+                            {!entry.source && !entry.expected && '—'}
+                          </td>
+                          <td style={cellStyle}><Badge compact status={result.status}>{result.label}</Badge></td>
+                          <td style={cellStyle}>{entry.drawn ?? '—'}</td>
+                        </tr>
+                        {issue && (
+                          <tr style={{ background }}>
+                            <td colSpan={6} style={{ ...cellStyle, paddingTop: 0 }}>
+                              <div>{entry.message}</div>
+                              {entry.action && <div style={{ marginTop: 4 }}><strong>Suggested fix:</strong> {entry.action}</div>}
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </tbody>
+              </table>
+            ) : (
+              <pre style={{ ...PRE, padding: '0 4px' }}>{item.findings.join('\n')}</pre>
+            )}
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
 function LibraryResults({ library }: { library: Extract<LibraryContractSummary, { kind: 'tested' }> }) {
   const theme = useTheme();
   const groups = groupContractCases(library.cases);
@@ -266,6 +375,7 @@ function LibraryResults({ library }: { library: Extract<LibraryContractSummary, 
 }
 
 function DesignContractPanel() {
+  const api = useStorybookApi();
   const { storyId = '' } = useStorybookState();
   const [globals] = useGlobals();
   const selectedLibrary = globals[GLOBAL] as string | undefined;
@@ -300,6 +410,21 @@ function DesignContractPanel() {
     : null;
   if (library.kind !== 'tested') {
     return <div style={MESSAGE}>{publishedLabel}<p aria-live="polite">{NOT_TESTED[library.kind]}</p></div>;
+  }
+  if (result.report.variant) {
+    const entries = api.getIndex()?.entries;
+    const title = entries?.[storyId]?.title;
+    const docs = entries && Object.values(entries).find((entry) => entry.type === 'docs' && entry.title === title);
+    return (
+      <>
+        {publishedLabel && <div style={{ padding: '12px 16px 0' }}>{publishedLabel}</div>}
+        <VariantResults
+          library={library}
+          variant={result.report.variant}
+          onOpenContract={docs ? () => api.selectStory(docs.id) : undefined}
+        />
+      </>
+    );
   }
   return (
     <>

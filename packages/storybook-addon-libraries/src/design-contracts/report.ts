@@ -22,6 +22,8 @@ export type LibraryContractSummary =
 /** One component story's results, for every library it lists. */
 export type ComponentContractReport = {
   component: string;
+  /** The one variant a story tests, such as `['color.outline-white']`; its cases keep every row. */
+  variant?: string[];
   needsAttention: boolean;
   libraries: LibraryContractSummary[];
 };
@@ -108,6 +110,7 @@ export function isComponentContractReport(value: unknown): value is ComponentCon
   if (!value || typeof value !== 'object') return false;
   const report = value as Record<string, unknown>;
   return isString(report.component) && typeof report.needsAttention === 'boolean'
+    && (report.variant === undefined || (Array.isArray(report.variant) && report.variant.every(isString)))
     && Array.isArray(report.libraries) && report.libraries.every(isLibrary);
 }
 
@@ -148,6 +151,12 @@ export function mergePublishedContractResults(
   };
 }
 
+/** The rows that didn't pass, or weren't checked, in a case. */
+export function getContractIssueEntries(item: ContractCaseSummary) {
+  return (item.entries ?? []).filter(({ status }) => status !== 'passed' && status !== 'skipped');
+}
+
+/** A story scoped to one variant counts its rows that need attention; others count cases. */
 export function getContractAttentionCount(
   result: StoryContractResult | undefined,
   selectedLibrary: string | undefined,
@@ -156,6 +165,9 @@ export function getContractAttentionCount(
   const library = result.report.libraries.find((item) => item.key === selectedLibrary);
   if (!library || library.kind === 'external') return 0;
   if (library.kind !== 'tested') return 1;
+  if (result.report.variant) {
+    return library.cases.reduce((count, item) => count + (item.ok ? 0 : Math.max(1, getContractIssueEntries(item).length)), 0);
+  }
   return library.cases.filter(({ ok }) => !ok).length;
 }
 

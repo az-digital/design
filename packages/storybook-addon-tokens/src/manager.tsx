@@ -6,8 +6,14 @@ import { AddonPanel } from 'storybook/internal/components';
 import { ADDON_ID, DATA_EVENT, PANEL_ID, REQUEST_EVENT, SELECT_EVENT, SELECT_RESULT_EVENT } from './constants';
 import { getTokenData, getTokenDisplayItems } from './resolveToken';
 import { setTokensData, useTokensData, type TokensData } from './store';
-import { ResizeHandle, TokenDetailsContent, useResizableWidth } from './Token';
+import { ResizeHandle, TokenDetailsContent, TokenReference, useResizableWidth } from './Token';
 import { TokenTable } from './TokenTable';
+
+declare global {
+  interface Window {
+    __AZ_DIGITAL_DESIGN_TOKEN_REFERENCE__?: React.ComponentType<{ token: string }>;
+  }
+}
 
 /**
  * `parameters.tokens` — which token groups a story uses, by dot-path prefix
@@ -43,7 +49,7 @@ function TokensPanelContent() {
   }, []);
 
   // The token data lives in the preview; ask for it, and take every update it sends.
-  const emit = useChannel({ [DATA_EVENT]: (next: TokensData) => setTokensData(next) });
+  const emit = useChannel({});
   useEffect(() => {
     emit(REQUEST_EVENT);
   }, [emit]);
@@ -85,6 +91,10 @@ function TokensPanelContent() {
 }
 
 addons.register(ADDON_ID, (api) => {
+  window.__AZ_DIGITAL_DESIGN_TOKEN_REFERENCE__ = TokenReference;
+  api.on(DATA_EVENT, (next: TokensData) => setTokensData(next));
+  api.emit(REQUEST_EVENT);
+
   api.on(SELECT_EVENT, (request: { token: string; requestId: string }) => {
     const parameter = api.getCurrentParameter('tokens');
     const available = Boolean(parameter) && !isDisabled(parameter);

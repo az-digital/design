@@ -188,6 +188,21 @@ when it has no test or contract. Findings and incomplete checks are shown in a
 table by variant, state, property, expected value, and actual value. Expand a
 row's details for the full finding and suggested fix.
 
+A story can test only the variant it shows by setting
+`parameters.designContracts.variant`, with one option per contract axis, for
+example `{ color: 'outline-white' }`. Its panel then shows that variant's
+contract rows by part, state, property and value, each with its result and
+drawn value; rows that fail or can't be checked are annotated with what was
+found and the suggested fix. A link opens the component's docs page for the
+full contract. Its badge counts those rows. Without a `variant`, a story tests
+every combination of the contract's variants. The test command doesn't repeat a
+variant story's cases or summary when a full-matrix story of the same component
+has run.
+
+When `@az-digital/storybook-addon-tokens` is also installed, the variant view
+uses its token pill component for token values, including its details view and
+color swatches. Without that addon, token names show as plain text.
+
 In a static Storybook, the addon loads published results from
 `design-contract-results.json` beside `index.html`. The file contains
 `{ "version": 1, "stories": { "<story-id>": <ComponentContractReport> } }`;

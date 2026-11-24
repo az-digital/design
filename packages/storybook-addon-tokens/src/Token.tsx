@@ -415,6 +415,13 @@ export function Token(props: TokenProps) {
   return <StoryViewToken {...props} />;
 }
 
+/** A manager-friendly token pill that resolves its data from the Tokens addon store. */
+export function TokenReference({ token }: { token: string }) {
+  useTokensData();
+  const data = getTokenData(token);
+  return data ? <Token data={data} /> : <code>{token}</code>;
+}
+
 function TokenPill({
   data,
   swatch = false,

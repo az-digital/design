@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { ComponentAdapter, Library } from '@az-digital/storybook-addon-libraries';
-import { planComponentTests, variantCases } from '@az-digital/storybook-addon-libraries/design-contracts';
+import { planComponentTests, storyVariantCase, variantCases } from '@az-digital/storybook-addon-libraries/design-contracts';
 
 const adapter: ComponentAdapter = {
   render: () => '',
@@ -58,5 +58,19 @@ describe('variant combinations', () => {
       { color: 'blue' }, { color: 'blue', size: 'small' },
     ]);
     expect(variantCases({})).toEqual([{}]);
+  });
+});
+
+describe('a story\'s own variant', () => {
+  const variants = { size: ['small'], color: ['red', 'blue'] };
+
+  it('orders the story\'s options as the contract\'s axes are', () => {
+    expect(storyVariantCase('button', variants, { color: 'blue', size: 'small' })).toEqual({ size: 'small', color: 'blue' });
+    expect(Object.keys(storyVariantCase('button', variants, { color: 'blue', size: 'small' }))).toEqual(['size', 'color']);
+  });
+
+  it('rejects an axis or option the contract doesn\'t have', () => {
+    expect(() => storyVariantCase('button', variants, { style: 'outline' })).toThrow('unknown axis "style"');
+    expect(() => storyVariantCase('button', variants, { color: 'green' })).toThrow('"green" is not a color option');
   });
 });

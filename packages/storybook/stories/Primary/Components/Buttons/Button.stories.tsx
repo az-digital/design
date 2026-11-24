@@ -64,5 +64,33 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Button docs page, not as its own page in the sidebar.
-export const Default: Story = { tags: ['!dev'] };
+// Shown on the Button docs page and in the sidebar. Its design contract tests
+// cover every combination of the contract's variants.
+export const Default: Story = {};
+
+// One story per contract variant the controls can show, so its drawer has the
+// contract for that variant with the selected library's results. The
+// contract's Blue buttons aren't in the Figma component's colors.
+const variantStory = (args: Partial<ButtonArgs>): Story => {
+  const { Color, Size, Style } = { ...meta.args, ...args };
+  const size = sizes[Size];
+  return {
+    args,
+    parameters: {
+      designContracts: {
+        variant: { color: colors[Color][Style], ...(size ? { size } : {}) },
+      },
+    },
+  };
+};
+
+export const Red = variantStory({});
+export const OutlineRed = variantStory({ Style: 'Outline' });
+export const Rain = variantStory({ Color: 'Rain' });
+export const OutlineRain = variantStory({ Color: 'Rain', Style: 'Outline' });
+// Storybook reads a story's name statically, so set it here, not in variantStory.
+export const WhiteRedText: Story = { ...variantStory({ Color: 'White on Red' }), name: 'White, Red text' };
+export const WhiteBlueText: Story = { ...variantStory({ Color: 'White on Arroyo Blue' }), name: 'White, Blue text' };
+export const OutlineWhite = variantStory({ Color: 'White on Red', Style: 'Outline' });
+export const Small = variantStory({ Size: 'Small' });
+export const Large = variantStory({ Size: 'Large' });

@@ -3,8 +3,11 @@ import type { LibrariesParameter } from '../types';
 import { DESIGN_CONTRACT_REPORT_TYPE, type ComponentContractRun } from './report';
 import type { ComponentContractTestInput } from './types';
 
-/** `parameters.designContracts`: `test: 'off'` leaves a story's checks out. */
-export type DesignContractsParameter = { test?: 'todo' | 'off' };
+/**
+ * `parameters.designContracts`: `test: 'off'` leaves a story's checks out;
+ * `variant` tests only the contract variant the story shows.
+ */
+export type DesignContractsParameter = { test?: 'todo' | 'off'; variant?: Record<string, string> };
 
 export type ComponentContractTestRunner = (
   input: ComponentContractTestInput,
@@ -43,6 +46,7 @@ export function createDesignContractHooks(
         tags: context.tags,
         container: context.canvasElement,
         library: context.globals.library,
+        variant: parameter?.variant,
       });
       if (run) pending.set(context.id, { run });
     } catch (error) {

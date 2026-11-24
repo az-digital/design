@@ -1,6 +1,6 @@
 import type { ContractRow } from '@az-digital/design-contract-testing';
 import type { DesignContractFixture } from '../types';
-import { planComponentTests, variantCases } from './plan';
+import { planComponentTests, storyVariantCase, variantCases } from './plan';
 import {
   needsAttention,
   type ComponentContractRun,
@@ -21,8 +21,8 @@ const NOT_TESTED: Record<Exclude<LibraryContractSummary['kind'], 'tested'>, stri
 
 const label = (options: string[]) => options.join(', ') || 'defaults';
 
-function describe(component: string, summaries: LibraryContractSummary[], engine: DesignContractEngine, verbose: boolean) {
-  const lines = [`\n${component}:`];
+function describe(component: string, variant: string[] | undefined, summaries: LibraryContractSummary[], engine: DesignContractEngine, verbose: boolean) {
+  const lines = [variant ? `\n${component} (${label(variant)}):` : `\n${component}:`];
   for (const library of summaries) {
     if (library.kind !== 'tested') {
       lines.push(`  ${library.title}: ${NOT_TESTED[library.kind]}`);
@@ -86,6 +86,7 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
     tags,
     container,
     library: selected,
+    variant,
   }: ComponentContractTestInput): Promise<ComponentContractRun | undefined> {
     const [{ libraries, taggedLibraries }, { renderComponent }, { loadLibraryStylesheets }] = await Promise.all([
       import('../registry'),
@@ -94,6 +95,9 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
     ]);
     const plan = planComponentTests(libraries, data.contracts, component, taggedLibraries(tags));
     if (!plan.length) return undefined;
+    const contract = Object.hasOwn(data.contracts, component) ? data.contracts[component] : undefined;
+    const scoped = variant && contract ? storyVariantCase(component, contract.variants, variant) : undefined;
+    const scopedOptions = scoped && Object.entries(scoped).map(([axis, option]) => `${axis}.${option}`);
     const summaries: LibraryContractSummary[] = [];
     const cases: ContractCase[] = [];
     try {
@@ -114,7 +118,7 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
           validateFixture(component, fixture, data.rows);
           if (names.has(fixture.name)) throw new Error(`${library.key} / ${component}: duplicate fixture "${fixture.name}".`);
           names.add(fixture.name);
-          for (const variants of variantCases(contract.variants)) {
+          for (const variants of scoped ? [scoped] : variantCases(contract.variants)) {
             const options = Object.entries(variants).map(([axis, option]) => `${axis}.${option}`);
             const frame = document.createElement('div');
             container.append(frame);
@@ -138,7 +142,8 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
                 counts: result.counts,
                 coverage: engine.describeCoverage(result),
                 findings: result.ok ? [] : engine.formatResult(result),
-                entries: result.entries.filter((entry) => entry.status !== 'passed' && entry.status !== 'skipped'),
+                // A story scoped to one variant keeps every row, to show the contract with its results.
+                entries: scoped ? result.entries : result.entries.filter((entry) => entry.status !== 'passed' && entry.status !== 'skipped'),
               });
               cases.push({ library: library.key, component, fixture: fixture.name, options, result });
             } catch (error) {
@@ -158,9 +163,14 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
       await waitForStylesheets(loadLibraryStylesheets(selected));
     }
     return {
-      report: { component, needsAttention: needsAttention(summaries), libraries: summaries },
-      summary: describe(component, summaries, engine, false),
-      details: describe(component, summaries, engine, true),
+      report: {
+        component,
+        ...(scopedOptions ? { variant: scopedOptions } : {}),
+        needsAttention: needsAttention(summaries),
+        libraries: summaries,
+      },
+      summary: describe(component, scopedOptions, summaries, engine, false),
+      details: describe(component, scopedOptions, summaries, engine, true),
       cases,
     };
   };

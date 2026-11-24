@@ -4,6 +4,7 @@ export {
   DESIGN_CONTRACT_REPORT_TYPE,
   DESIGN_CONTRACT_STATUS_TYPE_ID,
   getContractAttentionCount,
+  getContractIssueEntries,
   getContractStatus,
   getContractStatuses,
   groupContractCases,
@@ -13,7 +14,7 @@ export {
   readPublishedContractResults,
   updateContractResults,
 } from './report';
-export { planComponentTests, variantCases } from './plan';
+export { planComponentTests, storyVariantCase, variantCases } from './plan';
 export type {
   ComponentContractReport,
   ComponentContractRun,

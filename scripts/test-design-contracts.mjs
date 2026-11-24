@@ -44,7 +44,16 @@ if (unknown.length || reportOptions.length > 1 || reportOptions.some((arg) => ar
         && run.report && typeof run.report.component === 'string' && typeof run.report.needsAttention === 'boolean'
         && Array.isArray(run.report.libraries) && Array.isArray(run.cases);
       if (!runs.every(valid)) throw new Error('A component story produced an invalid design contract report.');
-      const cases = runs.flatMap((run) => run.cases);
+      // A story scoped to one variant repeats cases a full-matrix story of its component has tested.
+      const full = new Set(runs.filter((run) => !run.report.variant).map((run) => run.report.component));
+      const reported = runs.filter((run) => !run.report.variant || !full.has(run.report.component));
+      const keys = new Set();
+      const cases = runs.flatMap((run) => run.cases).filter((item) => {
+        const key = JSON.stringify([item.library, item.component, item.fixture, item.options]);
+        if (keys.has(key)) return false;
+        keys.add(key);
+        return true;
+      });
       if (!cases.length) throw new Error('No component story ran a design contract test.');
       if (reportOptions.length) {
         const stories = Object.fromEntries(runs.map((run) => [run.storyId, run.report]));
@@ -55,10 +64,10 @@ if (unknown.length || reportOptions.length > 1 || reportOptions.some((arg) => ar
       }
       const heading = '\nDesign contract drift and missing coverage are reported without blocking CI.';
       const report = {
-        summary: [heading, ...runs.map((run) => run.summary)].join('\n'),
-        details: [heading, ...runs.map((run) => run.details)].join('\n'),
+        summary: [heading, ...reported.map((run) => run.summary)].join('\n'),
+        details: [heading, ...reported.map((run) => run.details)].join('\n'),
         needsAttention: runs.some((run) => run.report.needsAttention),
-        inventory: runs.flatMap((run) => run.report.libraries
+        inventory: reported.flatMap((run) => run.report.libraries
           .filter((library) => library.kind !== 'tested')
           .map((library) => ({ kind: library.kind, library: library.key, component: run.report.component }))),
         cases,

@@ -23,6 +23,10 @@ const preview: Preview = {
     controls: {
       expanded: true,
     },
+    // No story logs actions, and only stories with a play function have
+    // interactions; those stories turn the Interactions tab back on.
+    actions: { disable: true },
+    interactions: { disable: true },
     viewport: {
       options: breakpointViewports,
     },
