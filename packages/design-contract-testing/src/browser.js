@@ -97,10 +97,25 @@ export function contractRows({ rows, defaults = {} }, contract, options = []) {
   return [...byKey.values()];
 }
 
+function stripCssComments(css) {
+  const chunks = [];
+  let cursor = 0;
+  while (true) {
+    const start = css.indexOf('/*', cursor);
+    if (start === -1) break;
+    const end = css.indexOf('*/', start + 2);
+    if (end === -1) break;
+    chunks.push(css.slice(cursor, start));
+    cursor = end + 2;
+  }
+  chunks.push(css.slice(cursor));
+  return chunks.join('');
+}
+
 /** The custom properties in a token stylesheet (`@az-digital/tokens/dist/tokens.css`), by name. */
 export function parseTokenCss(css) {
   const properties = {};
-  for (const [, name, value] of css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+  for (const [, name, value] of stripCssComments(css).matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
     properties[name] = value.trim();
   }
   return properties;

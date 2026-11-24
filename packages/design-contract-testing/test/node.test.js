@@ -4,10 +4,31 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, expect, it } from 'vitest';
 import { loadContracts } from '../src/node.js';
+import { parseTokenCss } from '../src/browser.js';
 
 let fixture;
 afterEach(() => {
   if (fixture) rmSync(fixture, { recursive: true, force: true });
+});
+
+it('removes closed CSS comments without changing token declaration behavior', () => {
+  expect(parseTokenCss(`
+    /* --hidden: blue;
+       multiline comment */ /**/
+    :root { --color: re/**/d; --duplicate: old; --duplicate: new; }
+    /* outer /* nested */ --after: green;
+  `)).toEqual({ '--color': 'red', '--duplicate': 'new', '--after': 'green' });
+});
+
+it('preserves existing handling of unterminated CSS comments', () => {
+  expect(parseTokenCss('/*/--color: red;')).toEqual({ '--color': 'red' });
+});
+
+it('handles repeated unterminated comment openers without repeated suffix scanning', () => {
+  const css = '/*' + 'a/*'.repeat(200000);
+  const start = performance.now();
+  expect(parseTokenCss(css)).toEqual({});
+  expect(performance.now() - start).toBeLessThan(1000);
 });
 
 it('loads the installed data and rejects a different token source', () => {
