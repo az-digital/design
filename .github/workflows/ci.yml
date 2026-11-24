@@ -14,7 +14,7 @@ env:
 
 jobs:
   build:
-    name: Build tokens, contracts & Storybook
+    name: Build tokens, design contracts & Storybook
     # A newer push cancels this job's older run, so that run's deploy never
     # starts and can't replace the review site with an older build.
     concurrency:
@@ -47,7 +47,7 @@ jobs:
 
       # Fails when a contract references a missing token or breaks the schema, or
       # when its committed dist/contracts.json is out of date.
-      - name: Check the component contracts
+      - name: Validate the design contracts
         run: |
           npm run build:contracts
           git add --intent-to-add -- packages/contracts/dist
@@ -111,9 +111,23 @@ jobs:
             exit 1
           fi
 
-      # The stories run as tests in Chromium, including any contract checks.
+      # The stories run as tests in Chromium, including design contract tests.
       - name: Install Playwright's Chromium
         run: npx playwright install --with-deps chromium
+
+      - name: Test the design contract testing library
+        run: npm run test:design-contract-testing
+
+      - name: Run configured design contract tests
+        run: npm run test:design-contracts -- --storybook-report="$RUNNER_TEMP/design-contract-results.json"
+
+      - name: Save design contract results for deployment
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: design-contract-results
+          path: ${{ runner.temp }}/design-contract-results.json
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Run Storybook tests
         run: npm run test:storybook
@@ -146,6 +160,12 @@ jobs:
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: storybook-static
+          path: storybook-static
+
+      - name: Add design contract results to the build
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: design-contract-results
           path: storybook-static
 
       - name: Configure AWS credentials

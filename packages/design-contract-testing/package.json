@@ -1,0 +1,57 @@
+{
+  "name": "@az-digital/design-contract-testing",
+  "description": "Tests a rendered component's computed styles against its Arizona Digital design contract in a real browser, using Playwright, Vitest or Storybook.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Arizona Digital",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/az-digital/design.git",
+    "directory": "packages/design-contract-testing"
+  },
+  "keywords": [
+    "design-system",
+    "contracts",
+    "testing",
+    "playwright"
+  ],
+  "files": [
+    "src",
+    "examples",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/browser.d.ts",
+      "default": "./src/browser.js"
+    },
+    "./playwright": {
+      "types": "./src/playwright.d.ts",
+      "default": "./src/playwright.js"
+    },
+    "./node": {
+      "types": "./src/node.d.ts",
+      "default": "./src/node.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@az-digital/contracts": "*",
+    "@az-digital/tokens": "*",
+    "playwright": ">=1.40"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@az-digital/contracts": "*",
+    "@az-digital/tokens": "*",
+    "@playwright/test": "^1.65.1",
+    "playwright": "^1.64.1"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}

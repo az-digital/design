@@ -16,7 +16,7 @@ Open an issue in [az-digital/design](https://github.com/az-digital/design/issues
 
 Determine which source settles each design decision; different decisions may have different sources. Link approved Figma frames and other relevant sources from the issue and Storybook docs, and record them in the component contract's `sources`. If sources conflict and no recorded decision resolves it, ask maintainers before choosing. Contributors who need Figma access should follow the guidance tracked in [issue #66](https://github.com/az-digital/design/issues/66); that issue is the source for the access page once it is published.
 
-### 3. Record the contract and tokens
+### 3. Record the design contract and tokens
 
 Record the component's anatomy, variants, design properties, and sources in `packages/contracts/contracts/<name>.contract.json`. Reuse design tokens for colors and shared decisions when they express the same design choice; add or change a token only when the decision belongs in the shared token system. Keep values specific to one component, such as its sizes and timings, in the contract rather than creating `az.component.*` tokens. Follow <a href="./?path=/docs/primary-foundations-tokens-naming--docs" target="_top">Tokens → Naming</a> for token names and <a href="./?path=/docs/primary-foundations-tokens-contributing--docs" target="_top">Tokens → Contributing</a> for token authoring and build steps. See the <a href="https://github.com/az-digital/design/blob/main/packages/contracts/README.md" target="_top">contracts guide</a> for the contract format and validation.
 
@@ -30,7 +30,17 @@ Keep behavior and shared story args aligned across the implementations that are 
 
 Add one story file for the component, spreading `componentStories` into its meta and tagging it with each library in scope (`lib:html`, `lib:web`). Use shared args to compare implementations, and ensure the **Code** panel shows the actual source users need for the selected implementation (HTML, JSX or custom-element markup). Link the story to the relevant design source, such as its Figma frame; use the design integration proposed in [issue #13](https://github.com/az-digital/design/issues/13) when available, or a direct link until then.
 
-### 6. Review and verify
+### 6. Configure design contract tests
+
+Configure fixtures and mappings from contract parts to rendered elements on each implementation's Storybook adapter; contracts stay platform-independent data. Cover in-scope fixtures, parts and variants, and record optional parts and justified skips explicitly. See the <a href="https://github.com/az-digital/design/blob/main/packages/storybook-addon-libraries/README.md#library-registration-and-design-contract-tests" target="_top">library addon guide</a> for the configuration and the <a href="https://github.com/az-digital/design/blob/main/packages/design-contract-testing/README.md" target="_top">testing library guide</a> for coverage.
+
+When a component story runs as a test, it also checks the implementations allowed by its `lib:*` tags in a real browser, including hover, pressed and keyboard-focus states and contract breakpoints. The result is attached to that story; the sidebar status indicator and **Design contracts** panel show its status and findings. Run `npm run test:design-contracts` to test these component stories from the command line, or run the component tests in Storybook's testing widget. Drift and missing coverage do not block CI, but a broken test setup fails. `npm run test:storybook` runs the component stories and their contract checks alongside the other tests.
+
+Select a component story to see the selected library's results in the **Design contracts** panel; use the Library switch to inspect another implementation. For every individual result entry across the tagged implementations, use `npm run --silent test:design-contracts -- --json` from a source checkout.
+
+List the agreed implementations and cases in the component issue and review the untested results. Components a library doesn't implement are not included in the test report.
+
+### 7. Review and verify
 
 Open a pull request with the issue and design-source links. Run the relevant package checks and Storybook tests/build, share the Storybook preview, and ask reviewers to verify the target platform as well as the Storybook rendering. Check semantic HTML, keyboard operation, focus visibility, accessible names, contrast, responsive behavior, and relevant automated accessibility checks.
 
@@ -40,6 +50,7 @@ Open a pull request with the issue and design-source links. Run the relevant pac
 - [ ] The sources for design decisions are recorded in the component contract and linked from the issue and Storybook docs.
 - [ ] The component contract records its design properties, reuses tokens where appropriate, and keeps component-specific values in the contract; any token changes follow the Naming and Contributing guidance.
 - [ ] Every in-scope implementation is complete, with API differences and out-of-scope implementations documented.
+- [ ] Each in-scope implementation has configured design contract tests for its agreed cases; findings, unsupported rows and deliberate skips are reviewed and recorded.
 - [ ] Storybook has useful states and variants using shared args, a working implementation selector where applicable, a truthful **Code** panel, and a design-source link.
 - [ ] Accessibility, responsive behavior, and the target platform have been checked; results and any known limitations are recorded.
 - [ ] Relevant builds, lint, and tests pass, and the pull request has a preview and the required maintainer review.
@@ -56,3 +67,4 @@ Before adding a library, agree on its audience and verification target. A packag
 - [ ] Agree on release and versioning before publishing; track the repository-wide approach in [issue #50](https://github.com/az-digital/design/issues/50).
 - [ ] Update `.claude/skills/design-system-component/SKILL.md` to link to the human docs and package README without duplicating their conventions.
 - [ ] Verify the package on its target platform, not only in Storybook; document any remaining platform checks and limitations.
+- [ ] Configure that implementation's design contract tests on its adapter and review the results using the <a href="https://github.com/az-digital/design/blob/main/packages/design-contract-testing/README.md" target="_top">testing library guide</a>.

@@ -29,7 +29,7 @@ Attributes take the component contract's option names. The element's content is 
 
 ## How it consumes design tokens
 
-Each element's styles follow its contract in `packages/contracts/contracts/`. Where the contract points at a design token, the styles use that design token's CSS variable from `@az-digital/tokens` (imported through `dist/tokens.vars.js`, so a misspelled design token is a type error). Where the contract sets the component's own value, such as the button's 9px padding, the styles write that value. A contract check story compares each element with its contract, so the two can't drift apart.
+Each element's styles follow its [component design contract](https://github.com/az-digital/design/tree/main/packages/contracts/contracts). Where the contract points at a design token, the styles use that design token's CSS variable from `@az-digital/tokens` (imported through `dist/tokens.vars.js`, so a misspelled design token is a type error). Where the contract sets the component's own value, such as the button's 9px padding, the styles write that value. Design contract tests compare the rendered element with its contract.
 
 ## Contribute to it
 
@@ -40,11 +40,14 @@ Each element's styles follow its contract in `packages/contracts/contracts/`. Wh
 - Put its shadow styles in `src/az-<component>.styles.ts`, following its contract: design tokens from `tokens.vars.js`, the contract's own values as written.
 - Name elements with the `az-` prefix and attributes after the contract's variant axes and option names. Put shared prop types in `src/types.ts`.
 - Add a markup function to `src/markup.ts` and the component to `storybook/adapter.ts`, keyed by its contract id, so the **Code** panel shows exactly what renders.
-- Add a contract check story that renders the element in every variant and runs `checkContract` on the element inside its shadow root (see `WebButtonContract.stories.tsx`). Pass `checkContract` the custom properties that hold the element's hover colors, since a script can't hover it.
+- Configure fixtures and map the element's shadow-root parts on its Storybook
+  adapter. The [library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries#library-registration-and-design-contract-tests)
+  describes the configuration. The browser driver uses real pointer and
+  keyboard input; don't substitute custom properties for hovered or pressed styles.
 
 ### Storybook registration
 
-The `azDesign.library` field in `package.json` registers this package with the Library toolbar (key `web`, status `preview`). See the [library addon's README](../storybook-addon-libraries/README.md) for the manifest and adapter contract.
+The `azDesign.library` field in `package.json` registers this package with the Library toolbar (key `web`, status `preview`). See the [library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries) for the manifest and adapter contract.
 
 ### Build and lint
 
@@ -59,7 +62,8 @@ This package is TypeScript source with no build step; Storybook reads it directl
 ## Verification
 
 - [ ] Review each element in Storybook with the Library toolbar set to Web Components, including its **Code** panel.
-- [ ] Its contract check story passes in `npm run test:storybook`.
+- [ ] Review its browser design contract results, including findings and
+  skips. See the [testing library guide](https://github.com/az-digital/design/tree/main/packages/design-contract-testing).
 - [ ] Test the elements on a plain page with only `tokens.css` and Proxima Nova: registration, attribute changes after render, keyboard behavior and accessible names.
 - [ ] Before moving the package from `preview` to `supported`, verify it on a real site and record what was checked.
-- [ ] Follow the shared [component contribution and definition-of-done checklist](../storybook/stories/Primary/Components/Contributing.mdx).
+- [ ] Follow the shared [component contribution and definition-of-done checklist](https://github.com/az-digital/design/blob/main/packages/storybook/stories/Primary/Components/Contributing.mdx).

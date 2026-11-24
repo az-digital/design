@@ -63,7 +63,9 @@ When you add or fill in a docs page, link it from every overview above it, so it
 
 Lay out a component's docs page the way the Button page is (`Primary/Components/Buttons/Button.mdx` and `Button.stories.tsx`):
 
-1. A one-sentence description, then `<Canvas of={…Stories.Default} sourceState="none" />` and `<Controls />` for a story that renders the implementation's markup as its latest release ships it. Tag the story `'!dev'` so it shows on the docs page, not as its own sidebar entry. Its controls follow the Figma component's properties where there is one.
+1. A one-sentence description, then `<Canvas of={…Stories.Default} sourceState="none" />` and `<Controls />` for a story that renders the implementation's markup as its latest release ships it. Its controls follow the Figma component's properties where there is one. Its design contract tests cover every combination of the contract's variants.
+   Add a story for each contract variant the controls can show, with `parameters.designContracts.variant` set to that variant, so its **Design contracts** panel shows the variant's contract and results.
+   The Actions and Interactions tabs are off by default; turn Interactions on (`interactions: { disable: false }`) only for stories with a play function.
 2. A short note on where that release differs from the page, if it does. Check computed styles in the browser rather than guessing.
 3. The design decisions, by topic (colors, size, keyboard focus, motion), with design token pills.
 4. `<ContractAnatomy contract="…" />`, and one per variant option the contract has.
@@ -84,7 +86,7 @@ govern them. Check a page's claims about a mark against those guidelines.
 - A mark keeps its proportions. When a width and a height are given, describe them as the
   box it fits in.
 
-## Component contracts
+## Component design contracts
 
 When you add or change a component's design decisions, update its contract in
 `packages/contracts/contracts/` and run `npm run build:contracts` before
@@ -101,6 +103,12 @@ finishing. Follow its refusals; don't work around them.
   overridden values in Storybook. When Arizona Bootstrap needs to change, make a
   patch to its source that its maintainers can apply as a pull request, as the
   README's "Patching Arizona Bootstrap" describes, and write its update
-  instructions in the pull request description. Once the component matches its
-  contract, add a contract check story that runs `checkContract`;
-  `npm run test:storybook` must pass.
+  instructions in the pull request description.
+- **Tests:** configure fixtures and part mappings in each implementation's
+  Storybook adapter, not in the contract. Follow the
+  [library addon guide](./packages/storybook-addon-libraries/README.md#library-registration-and-design-contract-tests)
+  and [testing library guide](./packages/design-contract-testing/README.md). Run `npm run
+  test:design-contracts`, `npm run test:design-contract-testing` when changing the testing library,
+  and the relevant platform and Storybook tests. Review untested components
+  and the agreed implementation scope; discovery cannot decide which
+  implementations should exist.

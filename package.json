@@ -18,6 +18,8 @@
     "test:storybook": "npm run test -w @az-digital/storybook",
     "build:all": "npm run build:tokens && npm run build:contracts && npm run build:storybook",
     "build:contracts": "npm run build -w @az-digital/contracts",
+    "test:design-contracts": "node scripts/test-design-contracts.mjs",
+    "test:design-contract-testing": "npm run test -w @az-digital/design-contract-testing",
     "check:package-artifacts": "node scripts/check-package-artifacts.mjs",
     "postinstall": "patch-package --error-on-fail"
   },

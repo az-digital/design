@@ -2,6 +2,7 @@
 
 import type { Preview } from '@storybook/react-vite';
 import { ThemeDocsContainer } from './ThemeDocsContainer';
+import { designContractAfterEach, designContractBeforeEach } from '../src/designContractTestSetup';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
 // Arizona Bootstrap compiled from its Sass source, with the patches in patches/.
@@ -16,10 +17,16 @@ const breakpointViewports = Object.fromEntries(
 );
 
 const preview: Preview = {
+  beforeEach: designContractBeforeEach,
+  afterEach: designContractAfterEach,
   parameters: {
     controls: {
       expanded: true,
     },
+    // No story logs actions, and only stories with a play function have
+    // interactions; those stories turn the Interactions tab back on.
+    actions: { disable: true },
+    interactions: { disable: true },
     viewport: {
       options: breakpointViewports,
     },

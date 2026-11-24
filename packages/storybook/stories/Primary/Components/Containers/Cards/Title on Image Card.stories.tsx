@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { TitleOnImageCardProps } from '@az-digital/components-html';
-import { Frame, checkCard, squarePhoto } from './cards';
+import { Frame, squarePhoto } from './cards';
 
 // A square photo with only a title on it, with the markup in Arizona Bootstrap's
 // "Title on Image" docs. The controls are the card's props; hover it, or press
@@ -38,6 +38,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Title on Image Card docs page. Its play function is the card's
-// contract check.
-export const Default: Story = { play: checkCard('title-on-image-card') };
+// Shown on the Title on Image Card docs page.
+export const Default: Story = {};

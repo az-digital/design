@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { ImageCardProps } from '@az-digital/components-html';
-import { Frame, checkCard, widePhoto } from './cards';
+import { Frame, widePhoto } from './cards';
 
 // A Link Card with a photo above the title, which zooms in on hover. The controls
 // are the card's props; hover it, or press Tab, for its hover colors and zoom.
@@ -45,5 +45,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Image Card docs page. Its play function is the card's contract check.
-export const Default: Story = { play: checkCard('image-card') };
+// Shown on the Image Card docs page.
+export const Default: Story = {};

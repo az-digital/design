@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { CallToActionCardProps } from '@az-digital/components-html';
-import { Frame, checkCard } from './cards';
+import { Frame } from './cards';
 
 // A title, text and one button. The whole card is clickable: .stretched-link on
 // the button makes its link cover the card. The controls are the card's props.
@@ -41,6 +41,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Call to Action Card docs page. Its play function is the card's
-// contract check.
-export const Default: Story = { play: checkCard('call-to-action-card') };
+// Shown on the Call to Action Card docs page.
+export const Default: Story = {};

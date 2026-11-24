@@ -79,6 +79,10 @@ const meta = {
 
 Set it on a story file's meta to cover every story in it, or on a single story to override. `tokens: { disable: true }` hides the tab for one story. (Use `{ disable: true }`, not `false`: Storybook drops falsy parameters before an addon sees them.)
 
+The manager also makes its `Token` pill available to the design-contract panel
+when that addon is installed. This reuses the same token value, swatch, and
+details UI without requiring stories to enable the Tokens tab.
+
 ### Doc blocks
 
 ```mdx

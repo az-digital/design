@@ -2,7 +2,7 @@
 
 One set of component stories, rendered by whichever component library a reviewer picks.
 
-The design system ships each component in one or more libraries: Arizona Bootstrap markup, Web Components, and more to come. This addon is the contract for those libraries. A library joins Storybook by describing itself in its own `package.json` and exporting an adapter; stories describe each component once and never branch on the library.
+The design system has component libraries, including Arizona Bootstrap markup and preview Web Components. This addon provides their Storybook registration, rendering interface, and story-associated design contract test UI. A library joins Storybook by describing itself in its own `package.json` and exporting an adapter; stories describe each component once and need not branch on the library.
 
 ## What you get
 
@@ -55,7 +55,7 @@ A library is any package, in this workspace or a dependency of the Storybook pro
   </tbody>
 </table>
 
-[`library.schema.json`](./library.schema.json) is the JSON Schema for the manifest. Storybook refuses to start with an invalid manifest or two libraries sharing a key, including keys changed by `overrides`. A manifest saved with an error while Storybook runs is logged, and the last valid libraries stay until it's fixed. `npm run test:storybook` checks every manifest and adapter.
+[`library.schema.json`](./library.schema.json) is the JSON Schema for the manifest. Storybook refuses to start with an invalid manifest or two libraries sharing a key, including keys changed by `overrides`. A manifest saved with an error while Storybook runs is logged, and the last valid libraries stay until it's fixed. In the Arizona Digital design repository, `npm run test:storybook` checks every manifest and adapter.
 
 The field is `azDesign`, not `storybook`, because Storybook Composition already uses `storybook` in `package.json`. The manifest doesn't list components: the adapter does.
 
@@ -89,7 +89,7 @@ Keep the adapter importable in Node: register custom elements inside `render`, n
 
 ### 3. README
 
-Every library's README has the standard sections: **What it is / Best for**, **Install / use**, **How it consumes design tokens**, **Contribute to it** and **Verification**. The Components Overview renders them.
+Every library's README has the standard sections: **What it is / Best for**, **Install / use**, **How it consumes design tokens**, **Contribute to it** and **Verification**. Write it for someone who has the package, not necessarily this repository: use package-relative paths or stable links, and identify any source-checkout-only commands. The Components Overview renders these READMEs.
 
 ## Write a component's stories
 
@@ -115,6 +115,108 @@ const meta = {
 - Decorators are fine (for example a background the component is designed for): the Code panel's source comes from the adapter, not from rendering the story.
 - `componentStories` turns on the **Code** panel. On an MDX page, `<Canvas sourceState="hidden">` gives reviewers a **Show code** button that follows the toolbar.
 - Pass any other parameters (say a Figma design link) through `componentStories`' `parameters` option — it merges them with its own, including nested `docs`. A meta-level `parameters` after the spread would replace the helper's and hide the Code panel.
+
+## Library registration and design contract tests
+
+The same adapter that draws a component can configure its browser design contract
+test. This keeps the fixture and the mapping from contract parts to rendered
+elements with the library, not in the shared contract or a separate registry.
+For example, an HTML button can add:
+
+```ts
+import type { DesignContractTest } from '@az-digital/storybook-addon-libraries';
+import type { ButtonProps } from '../src';
+
+const buttonTest: DesignContractTest<ButtonProps> = {
+  fixtures: [{
+    name: 'button',
+    props: (variants) => ({ label: 'Label', ...variants }),
+  }],
+  target: (container) => {
+    const button = container.querySelector('button');
+    if (!button) throw new Error('The button fixture did not render a button.');
+    return { parts: { root: button, label: button } };
+  },
+};
+
+// In the adapter's components.button, alongside render and source:
+// designContractTest: buttonTest
+```
+
+- Each fixture names the case and supplies shared props from contract variant
+  options. The runner tries omitted axes as well as every explicit option
+  combination, so the real default is tested too. Translate the options to
+  the library's API in `props` when their names differ.
+- `target` finds the rendered elements. Map `root` and every applicable
+  contract part; use `focus`, `hover` or `press` when the interaction target
+  differs from `root`. It can be async, for example to wait for a custom
+  element and map elements inside its shadow root.
+- Use `prepare(container)` for necessary containing layout, and
+  `implementation: { name, file }` to identify where to fix findings.
+  A fixture may declare `optionalParts` and narrow `skip` rules with reasons.
+  Missing required parts, unsupported properties and unreachable states are
+  reported, not silently counted as passes.
+
+The libraries addon owns the Storybook lifecycle integration, per-story
+statuses, and **Design contracts** panel. A Storybook project supplies its
+contract data and browser-checking engine to `createDesignContractTestRunner`,
+then registers the returned `beforeEach` and `afterEach` hooks in preview
+annotations. The addon measures before Storybook pauses transitions and attaches
+the result in `afterEach`. This keeps contract/token data and browser-checker
+setup with the project, while the addon associates checks and results with
+component stories.
+
+In the Arizona Digital design repository, each story checks the
+implementations named by its `lib:*` tags (or all registered libraries when it
+has no such tags). The panel shows only the selected library's latest results;
+use the Library switch to inspect another implementation. The story's sidebar
+status indicator follows that selection. `npm run test:design-contracts` runs
+the same story checks in Chromium and returns their coverage and findings.
+
+An adapter component with no test is **untested**. Components without
+contracts and libraries with a `ref` are also reported; components absent
+from an adapter are not. The `lib:*` tags define the implementations in scope
+for that story's test. Record the agreed implementation scope in the component
+issue.
+
+The panel groups cases in **Findings**, **Conforming**, and **Incomplete** tabs.
+Counts are cases, not individual checks. A case with both failed and incomplete
+checks appears in both tabs; deliberately skipped checks do not make a case
+incomplete unless every check was skipped or no check was reported. The panel
+tab's badge counts the selected library's nonconforming cases, or shows one
+when it has no test or contract. Findings and incomplete checks are shown in a
+table by variant, state, property, expected value, and actual value. Expand a
+row's details for the full finding and suggested fix.
+
+A story can test only the variant it shows by setting
+`parameters.designContracts.variant`, with one option per contract axis, for
+example `{ color: 'outline-white' }`. Its panel then shows that variant's
+contract rows by part, state, property and value, each with its result and
+drawn value; rows that fail or can't be checked are annotated with what was
+found and the suggested fix. A link opens the component's docs page for the
+full contract. Its badge counts those rows. Without a `variant`, a story tests
+every combination of the contract's variants. The test command doesn't repeat a
+variant story's cases or summary when a full-matrix story of the same component
+has run.
+
+When `@az-digital/storybook-addon-tokens` is also installed, the variant view
+uses its token pill component for token values, including its details view and
+color swatches. Without that addon, token names show as plain text.
+
+In a static Storybook, the addon loads published results from
+`design-contract-results.json` beside `index.html`. The file contains
+`{ "version": 1, "stories": { "<story-id>": <ComponentContractReport> } }`;
+the Arizona Digital repository's test command can write it. The panel labels
+these results as published and reports a missing or invalid file rather than
+treating it as a pass. When results are available, the docs toolbar links to
+the associated story's results, including stories hidden from the sidebar.
+Local test runs continue to show their latest results.
+
+Drift and missing coverage are reported rather than blocking CI; setup errors
+fail the run. The library's
+`preview`/`supported` status describes the library, not the test's status.
+See the [testing library guide](https://github.com/az-digital/design/tree/main/packages/design-contract-testing)
+for the result codes and coverage.
 
 ## Configure
 
@@ -153,5 +255,6 @@ Add the addon to `.storybook/main.ts`. Every option is optional; they're only th
     <tr><td><code>src/preview.ts</code></td><td>Preview</td><td>The <code>library</code> global, the Code panel transform and stylesheet loading.</td></tr>
     <tr><td><code>src/componentStories.tsx</code></td><td>Preview</td><td><code>componentStories</code>, <code>LibraryCanvas</code> and the placeholder.</td></tr>
     <tr><td><code>src/manager.tsx</code></td><td>Manager</td><td>The Library toolbar.</td></tr>
+    <tr><td><code>src/design-contracts/</code></td><td>Preview and manager</td><td>Contract test lifecycle, result reporting, sidebar statuses and the Design contracts panel.</td></tr>
   </tbody>
 </table>

@@ -13,17 +13,20 @@ const STYLESHEET_ATTRIBUTE = 'data-az-library-stylesheet';
  * added for another library. A stylesheet the page already loads some other
  * way (for example in preview-head.html) is left alone.
  */
-function loadLibraryStylesheets(key: unknown) {
+export function loadLibraryStylesheets(key: unknown) {
   const wanted = new Set(getLibrary(key)?.stylesheets ?? []);
   for (const link of document.querySelectorAll<HTMLLinkElement>(`link[${STYLESHEET_ATTRIBUTE}]`)) {
     if (!wanted.has(link.getAttribute('href') ?? '')) link.remove();
   }
-  for (const href of wanted) {
-    if ([...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].some((link) => link.getAttribute('href') === href)) continue;
+  return [...wanted].map((href) => {
+    const existing = [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')]
+      .find((link) => link.getAttribute('href') === href);
+    if (existing) return existing;
     const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
     link.setAttribute(STYLESHEET_ATTRIBUTE, '');
     document.head.append(link);
-  }
+    return link;
+  });
 }
 
 const withLibraryStylesheets: DecoratorFunction = (Story, context) => {

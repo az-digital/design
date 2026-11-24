@@ -8,17 +8,10 @@ React components implementing Arizona Digital patterns, with `react-bootstrap` u
 
 ## Install / use
 
-Until a package release is documented, use the package from a checkout that includes it: run `npm install` from the repository root, then import from the public component subpath. For example:
-
-```tsx
-import { Button } from '@az-digital/components-react-bootstrap/Button';
-
-export function Example() {
-  return <Button href="/apply">Apply to Arizona</Button>;
-}
-```
-
-The package declares React and React DOM as peer dependencies. Load the Arizona Bootstrap styles and design-token CSS required by the components. Do not assume the package has been published to a registry; see [issue #50](https://github.com/az-digital/design/issues/50) for release planning.
+This implementation has not been built or published yet. Its installation,
+public imports, React peer versions and required styles will be documented
+before release; see [issue #50](https://github.com/az-digital/design/issues/50)
+for release planning.
 
 ## How it consumes design tokens
 
@@ -31,11 +24,14 @@ Use the design tokens referenced by a component's contract for shared decisions,
 - Put each component in `src/components/<Component>/`, with its implementation and a barrel `index.ts`; export public components from `src/index.ts`.
 - Use PascalCase component names and keep prop behavior aligned with shared Storybook args and other in-scope implementations.
 - Preserve per-component entry points so components that do not need client-side behavior can remain server-safe.
-- Add or update the corresponding Storybook story and docs under `packages/storybook/stories/Primary/Components/`.
+- Add or update the corresponding Storybook story and docs.
+- When implementing a component, configure its fixtures and part mappings on
+  its Storybook adapter. See
+  the [library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries#library-registration-and-design-contract-tests).
 
 ### Build and lint
 
-Run `npm run build -w @az-digital/components-react-bootstrap`, `npm run lint -w @az-digital/components-react-bootstrap`, and `npm run typecheck -w @az-digital/components-react-bootstrap`. Wire the package build into the root `build:all` command when the package is integrated.
+Build, lint and type-check commands will be documented when the implementation exists.
 
 ### Platform-specific limits
 
@@ -47,4 +43,5 @@ React props should follow React conventions and may not map one-to-one to raw HT
 - [ ] Check server/client boundaries for components with hooks or browser-only behavior.
 - [ ] Exercise keyboard and pointer interactions, including React Bootstrap behavior, in Storybook.
 - [ ] Verify the rendered component with the consuming application's Arizona Bootstrap and token styles.
-- [ ] Follow the shared [component contribution and definition-of-done checklist](../storybook/stories/Primary/Components/Contributing.mdx).
+- [ ] Run its configured design contract tests and test the implementation in its target React environment.
+- [ ] Follow the shared [component contribution and definition-of-done checklist](https://github.com/az-digital/design/blob/main/packages/storybook/stories/Primary/Components/Contributing.mdx).

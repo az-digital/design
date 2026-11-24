@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { componentStories } from '@az-digital/storybook-addon-libraries';
 import type { CardProps } from '@az-digital/components-html';
-import { Frame, checkCard } from './cards';
+import { Frame } from './cards';
 
 // The plain card: a title and rich text in its .card-body, which is its slot, and
 // an optional header and footer. It isn't a link. The controls are the card's
@@ -46,5 +46,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Shown on the Card docs page. Its play function is the card's contract check.
-export const Default: Story = { play: checkCard('card') };
+// Shown on the Card docs page.
+export const Default: Story = {};

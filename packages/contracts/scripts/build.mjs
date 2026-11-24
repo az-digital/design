@@ -1,12 +1,14 @@
-// Checks the component contracts (contracts/*.contract.json) against the
-// tokens, and writes dist/contracts.json for docs tables and contract checks.
+// Validates the component design contracts (contracts/*.contract.json) against the
+// tokens, and writes dist/contracts.json for docs tables and design contract tests,
+// and dist/manifest.json for the tools that run them: each contract's variants
+// and their defaults, and a hash of the tokens the contracts were checked against.
 //
 // A contract records one component's anatomy, independent of any platform: its
 // parts, and what sets each part's design properties in its resting look, its
 // states and its breakpoints. A property either references a token in
 // tokens.json or holds the component's own value, written like a DTCG token.
 // Contracts generate nothing for a platform: each implementation writes the
-// component's own values its own way, and a contract check compares it with the
+// component's own values its own way, and a design contract test compares it with the
 // contract.
 //
 // The build refuses, naming the problem, when a contract:
@@ -19,6 +21,7 @@
 //
 // It also reports component tokens that only point at another token, which the
 // contract could reference directly: wiring belongs in the contract.
+import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import Ajv2020 from 'ajv/dist/2020.js';
 
@@ -35,9 +38,10 @@ const collect = (node, path) => {
   }
   for (const [key, child] of Object.entries(node ?? {})) if (!key.startsWith('$')) collect(child, [...path, key]);
 };
-collect(read(new URL('../tokens/tokens.json', root)), []);
+const tokensFile = new URL('../tokens/tokens.json', root);
+collect(read(tokensFile), []);
 
-// A value written out for docs tables and contract checks.
+// A value written out for docs tables and design contract tests.
 const format = ({ $type: type, $value: value }) => {
   if (type === 'dimension' || type === 'duration') return `${value.value}${value.unit}`;
   if (type === 'cubicBezier') return `cubic-bezier(${value.join(', ')})`;
@@ -49,6 +53,7 @@ const files = readdirSync(new URL('contracts/', root)).filter((file) => file.end
 const problems = [];
 const notes = [];
 const rows = [];
+const manifest = {};
 
 for (const file of files) {
   const contract = read(new URL(`contracts/${file}`, root));
@@ -103,6 +108,12 @@ for (const file of files) {
     for (const [option, { anatomy }] of Object.entries(options)) walk(anatomy.root, [], { axis, option });
   }
 
+  manifest[contract.id] = {
+    name: contract.name,
+    variantDefaults: Object.fromEntries(Object.entries(contract.variants ?? {}).filter(([, { default: preset }]) => preset).map(([axis, { default: preset }]) => [axis, preset])),
+    variants: Object.fromEntries(Object.entries(contract.variants ?? {}).map(([axis, { options }]) => [axis, Object.keys(options)])),
+  };
+
   const prefix = `az.component.${contract.id}.`;
   for (const [path, token] of tokens) {
     if (!path.startsWith(prefix) || used.has(path)) continue;
@@ -117,7 +128,7 @@ for (const file of files) {
 
 for (const note of notes) console.log(`Note: ${note}`);
 if (problems.length) {
-  console.error(`Contracts refused:\n${problems.map((problem) => `  - ${problem}`).join('\n')}`);
+  console.error(`Design contracts refused:\n${problems.map((problem) => `  - ${problem}`).join('\n')}`);
   process.exit(1);
 }
 
@@ -125,4 +136,8 @@ const dist = new URL('dist/', root);
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist);
 writeFileSync(new URL('contracts.json', dist), `${JSON.stringify(rows, null, 2)}\n`);
-console.log(`Checked ${files.length} contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves.`);
+writeFileSync(
+  new URL('manifest.json', dist),
+  `${JSON.stringify({ tokensHash: createHash('sha256').update(readFileSync(tokensFile)).digest('hex'), contracts: manifest }, null, 2)}\n`,
+);
+console.log(`Validated ${files.length} design contract${files.length === 1 ? '' : 's'}: ${rows.length} properties, every reference resolves.`);
