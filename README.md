@@ -47,7 +47,7 @@ This is an npm workspaces monorepo with four packages:
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline |
+| `@az-digital/tokens` | `packages/tokens/` | Source token definitions and Style Dictionary build pipeline ([README](packages/tokens/README.md)) |
 | `@az-digital/contracts` | `packages/contracts/` | Component contracts: each component's parts, and the token or value that sets each part's design properties ([README](packages/contracts/README.md)) |
 | `@az-digital/storybook-addon-tokens` | `packages/storybook-addon-tokens/` | Storybook addon: token doc blocks and the Tokens tab, driven by the Style Dictionary config ([README](packages/storybook-addon-tokens/README.md)) |
 | `@az-digital/storybook-addon-libraries` | `packages/storybook-addon-libraries/` | Storybook addon: the Library toolbar, which switches component stories between registered libraries, and the contract a library meets to register ([README](packages/storybook-addon-libraries/README.md)) |
@@ -141,6 +141,8 @@ The token UI (token tables, the token details drawer with its alias tree, the co
 
 ### Published Storybook
 
+See [RELEASES.md](RELEASES.md) for the draft release and compatibility policy.
+
 Each published release is hosted on digital.arizona.edu by version:
 
 - `https://digital.arizona.edu/design/<version>/` — every release, e.g. `/design/0.0.1/`
@@ -212,6 +214,20 @@ When updating tokens or Storybook behavior:
 This repo is intended to support both token authoring and visual review in one place, with Storybook acting as the primary design review surface.
 
 When adding a component or implementation package, follow [Components → Contributing](packages/storybook/stories/Primary/Components/Contributing.mdx). Libraries register themselves with the [library addon](packages/storybook-addon-libraries/README.md), and the [Components Overview](packages/storybook/stories/Primary/Components/Overview.mdx) renders each registered library's README directly, so keep the relevant [HTML](packages/components-html/README.md), [React Bootstrap](packages/components-react-bootstrap/README.md) or [Web Components](packages/components-web/README.md) guide current. Agent-specific workflow is in [design-system-component/SKILL.md](.claude/skills/design-system-component/SKILL.md).
+
+### Issues and pull requests
+
+When creating an issue or pull request, consult the [draft release and
+compatibility policy](RELEASES.md). Record the expected release impact, whether
+no release is needed, or what remains undecided. Consider compatibility,
+visual changes, and migration needs where relevant.
+
+When the impact is known, apply one of `patch release`, `minor release`, or
+`major release`, choosing the highest applicable impact. An issue's label is
+an initial assessment; reassess and apply the appropriate label to its pull
+request. If no release is needed or the impact is undecided, record that
+instead. Pull request labels group release notes but do not automatically
+choose the version.
 
 ## Token Collaboration Docs
 

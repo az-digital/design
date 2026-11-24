@@ -55,7 +55,7 @@ Import generated files using the explicit `@az-digital/tokens/dist/...` paths sh
 
 ## Versions and maintenance
 
-Package versions are published to GitHub Packages by the repository's [Release workflow](https://github.com/az-digital/design/blob/main/.github/workflows/release.yml), from a `v<version>` Git tag. Prereleases use the npm `next` dist-tag; stable releases use `latest`. See the repository [README](../../README.md#published-storybook) for the release process and versioning details.
+Package versions are published to GitHub Packages by the repository's [Release workflow](https://github.com/az-digital/design/blob/main/.github/workflows/release.yml), from a `v<version>` Git tag. Prereleases use the npm `next` dist-tag; stable releases use `latest`. See the repository [README](../../README.md#published-storybook) for the release process and the [draft release policy](../../RELEASES.md) for compatibility and support.
 
 To update tokens, change the canonical source `tokens.json`, then regenerate the committed outputs from the repository root:
 
