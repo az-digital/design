@@ -7,6 +7,7 @@ import { Badge, Select } from 'storybook/internal/components';
 import { ComponentIcon } from '@storybook/icons';
 import { ADDON_ID, GLOBAL, TAG_PREFIX, TOOL_ID } from './constants';
 import type { LibrarySummary } from './types';
+import { DesignContractStatusSync } from './design-contracts/panel';
 
 /**
  * Storybook's own toolbar menus (`globalTypes[…].toolbar`) offer every item
@@ -40,17 +41,20 @@ function LibraryTool() {
   });
 
   return (
-    <Select
-      ariaLabel="Component library"
-      tooltip="Component library"
-      icon={<ComponentIcon />}
-      defaultOptions={[globals[GLOBAL]]}
-      options={options}
-      disabled={GLOBAL in storyGlobals}
-      onSelect={(selected) => updateGlobals({ [GLOBAL]: selected })}
-    >
-      Library
-    </Select>
+    <>
+      <DesignContractStatusSync selectedLibrary={globals[GLOBAL]} />
+      <Select
+        ariaLabel="Component library"
+        tooltip="Component library"
+        icon={<ComponentIcon />}
+        defaultOptions={[globals[GLOBAL]]}
+        options={options}
+        disabled={GLOBAL in storyGlobals}
+        onSelect={(selected) => updateGlobals({ [GLOBAL]: selected })}
+      >
+        Library
+      </Select>
+    </>
   );
 }
 

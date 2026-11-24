@@ -1,3 +1,29 @@
+/** A rendered implementation's elements for a design contract test. */
+export type DesignContractTarget = {
+  parts: { root: Element } & Record<string, Element>;
+  focus?: Element;
+  hover?: Element;
+  press?: Element;
+};
+
+/** One implementation-owned fixture, tested against every contract variant combination. */
+export type DesignContractFixture<Props> = {
+  name: string;
+  props: (variants: Record<string, string>) => Props;
+  optionalParts?: string[];
+  skip?: { part?: string; condition?: string; property?: string; reason: string }[];
+};
+
+export type DesignContractTest<Props> = {
+  fixtures: [DesignContractFixture<Props>, ...DesignContractFixture<Props>[]];
+  /** Prepare the containing layout, if the component needs one. */
+  prepare?: (container: HTMLElement) => void | Promise<void>;
+  /** Find parts and interaction targets after the adapter has rendered. */
+  target: (container: HTMLElement) => DesignContractTarget | Promise<DesignContractTarget>;
+  /** Where contributors should fix implementation drift. */
+  implementation?: { name?: string; file?: string };
+};
+
 /**
  * How one library draws one component. `props` are the component's shared
  * props, which every library receives the same way; the adapter translates
@@ -13,6 +39,8 @@ export type ComponentAdapter<Props = any> = {
   render: (props: Props, container: HTMLElement) => string | Node | (() => void) | void;
   /** The code a site would write for these props, shown in the Code panel. */
   source: (props: Props) => string;
+  /** Optional implementation-specific fixtures and part mappings for design contract tests. */
+  designContractTest?: DesignContractTest<Props>;
 };
 
 /** A library's `./storybook` export: its components, by contract id (e.g. `button`). */

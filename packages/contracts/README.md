@@ -1,13 +1,13 @@
 # @az-digital/contracts
 
-Component contracts for the Arizona Digital design system. A contract records one
+Component design contracts for the Arizona Digital design system. A contract records one
 component's anatomy, independent of any platform: the parts it's made of, and what
 sets each part's design properties: a design token from `@az-digital/tokens`
 (`tokens.json`), or the component's own value. Contracts are data: they generate
 nothing for any platform. Each implementation writes the component's own values its
-own way, and a contract check compares the implementation with its contract.
+own way, and a design contract test compares the implementation with its contract.
 
-## Why contracts
+## Why design contracts
 
 Without a contract, `tokens.json` does the wiring too: a component needs its own
 token for everything it uses, even a color that only points at another token
@@ -110,13 +110,13 @@ Design properties are named the way tokens are, not after any platform's propert
 `color`, `fill`, `padding.x`, `gap`, `font.size`, `font.weight`, `line-height`,
 `size`, `underline.offset`.
 
-## The check
+## Validation and build
 
 ```bash
 npm run build:contracts
 ```
 
-The check refuses a contract, naming the problem, when it:
+Validation refuses a contract, naming the problem, when it:
 
 - doesn't match `contract.schema.json`, for example a bare value like `"50px"`, or a
   value with no `$description`,
@@ -130,11 +130,13 @@ It also notes component tokens that only point at another token, which the contr
 can reference directly. Those can be removed from `tokens.json`.
 
 When it passes, it writes **`dist/contracts.json`**: every design property as a row
-(part, state or breakpoint, property, and the token or value). Component docs pages
-read it to show an Anatomy table, and contract checks read it to compare an
-implementation with its contract.
+(part, state or breakpoint, property, and the token or value). It also writes
+**`dist/manifest.json`** with contract names, variant defaults and options, and
+a hash of the token source used to build it.
+Component docs and design contract tests consume these data
+files; they contain no implementation registration or platform output.
 
-## Implementations and contract checks
+## Implementations and design contract tests
 
 A contract doesn't generate CSS, Sass or any other platform's code, so the component's
 own values live in one place. An implementation uses token outputs from
@@ -143,15 +145,42 @@ needs them: Arizona Bootstrap's `$btn-padding-y` should be `9px` because the but
 contract says `9px`. A contract's pull request gives each implementation's maintainers
 update instructions: which of their variables and rules change, and to what.
 
-A contract check keeps them in step once an implementation has been updated.
-`checkContract` (`packages/storybook/stories/Primary/Components/contractCheck.ts`)
-renders an implementation in a real browser and compares each property's computed
-style with the contract's token or value, at rest, with keyboard focus and on hover,
-and lists every property that differs. For a component with parts, such as a card,
-the story names each part's element. Hover can't be triggered from a script, so hover
-rows are read from the hover values the stylesheet sets, or with keyboard focus where
-one rule draws both. A component's check is a story with a `play` function that
-renders the implementation's markup and runs it; `npm run test:storybook` runs it in CI.
+Each library configures fixtures and maps its implementation's contract parts
+to rendered elements in its Storybook adapter. The
+[browser testing library](https://github.com/az-digital/design/tree/main/packages/design-contract-testing)
+compares computed styles with token output and contract values, using real
+browser input for hover, pressed and keyboard-focus states and checking
+breakpoint boundaries. It reports unsupported, unmapped, blocked and skipped
+rows rather than treating them as passes.
+
+In the Arizona Digital design repository, component stories run `npm run
+test:design-contracts` checks against the implementations scoped by their
+`lib:*` tags, using the libraries registered with the Storybook addon. Results
+are attached to the story and shown in Storybook's Design contracts panel. The command reports
+untested implementations and components without contracts. Drift and missing
+coverage are reported without blocking CI, while setup errors fail. Agree on
+the implementations and cases in the component issue; discovery cannot decide
+which implementations are in scope. See the
+[library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries#library-registration-and-design-contract-tests).
+
+## Format interoperability
+
+[Design System Contracts](https://github.com/southleft/ds-contracts-poc) also
+describes named anatomy, states, variants and token bindings. Its current
+universal contract uses CSS-property bindings and per-surface bindings, while
+its v1 work is moving toward a recipe IR and primarily targets React and Figma.
+Its v1 is unfinished and does not establish an Arizona Bootstrap integration.
+Our contracts instead use platform-neutral design-property names, typed
+component-owned values, variant defaults and breakpoint overrides, and generate
+no platform output. DTCG-style values help exchange tokens but do not by
+themselves define a component-contract format.
+
+A future adapter would need explicit mappings for design properties and token
+references, inline value types and descriptions, variant defaults, states and
+breakpoints; unsupported or lossy decisions must be reported. Test a
+round-trip with the button variants and a responsive component before claiming
+interoperability. No migration or converter is assumed while the candidate is
+unfinished.
 
 ## Adding a contract
 
@@ -162,7 +191,8 @@ renders the implementation's markup and runs it; `npm run test:storybook` runs i
 2. Run `npm run build:contracts`, and remove any component token it flags.
 3. In the pull request, write update instructions for each implementation: which
    variables and rules change, to which token or value.
-4. Once an implementation has been updated, add a contract check story that renders
-   it and runs `checkContract`, so it fails when the two drift apart.
+4. Configure fixtures and part mappings on each implementation's Storybook
+   adapter. Review variants, parts and reachable states, and record deliberate
+   skips.
 5. Show the anatomy on the component's docs page:
    `<ContractAnatomy contract="<component>" />`.

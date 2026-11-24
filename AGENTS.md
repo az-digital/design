@@ -84,7 +84,7 @@ govern them. Check a page's claims about a mark against those guidelines.
 - A mark keeps its proportions. When a width and a height are given, describe them as the
   box it fits in.
 
-## Component contracts
+## Component design contracts
 
 When you add or change a component's design decisions, update its contract in
 `packages/contracts/contracts/` and run `npm run build:contracts` before
@@ -101,6 +101,12 @@ finishing. Follow its refusals; don't work around them.
   overridden values in Storybook. When Arizona Bootstrap needs to change, make a
   patch to its source that its maintainers can apply as a pull request, as the
   README's "Patching Arizona Bootstrap" describes, and write its update
-  instructions in the pull request description. Once the component matches its
-  contract, add a contract check story that runs `checkContract`;
-  `npm run test:storybook` must pass.
+  instructions in the pull request description.
+- **Tests:** configure fixtures and part mappings in each implementation's
+  Storybook adapter, not in the contract. Follow the
+  [library addon guide](./packages/storybook-addon-libraries/README.md#library-registration-and-design-contract-tests)
+  and [testing library guide](./packages/design-contract-testing/README.md). Run `npm run
+  test:design-contracts`, `npm run test:design-contract-testing` when changing the testing library,
+  and the relevant platform and Storybook tests. Review untested components
+  and the agreed implementation scope; discovery cannot decide which
+  implementations should exist.

@@ -31,5 +31,18 @@ export default defineConfig(
         ...globals.browser,
       },
     },
+  },
+  {
+    // The testing library, its Playwright tests and pilot run code in the page as well as in Node.
+    files: [
+      'packages/design-contract-testing/src/{browser,playwright}.js',
+      'packages/design-contract-testing/test/playwright.test.js',
+      'packages/design-contract-testing/examples/arizona-bootstrap/*.mjs',
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+    },
   }
 );

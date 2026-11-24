@@ -4,7 +4,7 @@
 
 Arizona Bootstrap's CSS and JavaScript, with the markup for each component shown here. Use it for any site that writes its own HTML: a Drupal theme, a static site, or server-rendered pages. Its markup is also the reference the other libraries are compared against.
 
-This Storybook demonstrates the markup with the `@az-digital/components-html` workspace package. That package isn't released: sites load Arizona Bootstrap and copy the markup from here.
+Storybook demonstrates the markup with `@az-digital/components-html`. That package is currently private and unpublished: sites load Arizona Bootstrap and copy the markup from the component documentation.
 
 ## Install / use
 
@@ -56,11 +56,11 @@ Arizona Bootstrap's [getting started guide](https://digital.arizona.edu/arizona-
 
 ## How it consumes design tokens
 
-It doesn't, directly: the markup uses Arizona Bootstrap's classes, and Arizona Bootstrap's stylesheet draws them. Each component's design decisions are in its contract in `packages/contracts/contracts/`, which points at design tokens; where Arizona Bootstrap's styles differ from a contract, the fix belongs in Arizona Bootstrap, not in this package.
+It doesn't, directly: the markup uses Arizona Bootstrap's classes, and Arizona Bootstrap's stylesheet draws them. The [component contracts](https://github.com/az-digital/design/tree/main/packages/contracts/contracts) point at design tokens; where Arizona Bootstrap's styles differ from a contract, the fix belongs in Arizona Bootstrap, not in this package.
 
 ## Contribute to it
 
-This package only feeds Storybook: each component's render function draws it on the canvas and supplies the markup in the **Code** panel. It's private and is never released, so nothing outside this repository imports it.
+Currently, each component's render function feeds the Storybook canvas and supplies the markup in the **Code** panel. The package is private and is not published.
 
 ### File layout and naming
 
@@ -68,10 +68,13 @@ This package only feeds Storybook: each component's render function draws it on 
 - Name props after the component's contract: its variant axes and option names, for example `color: 'white-text-red'`.
 - Escape caller-supplied text and attribute values with `escapeHtml`. The Card's documented rich-text `body` slot is HTML; sites must provide sanitized content for it.
 - Add the component to `storybook/adapter.ts`, keyed by its contract id, with the same function as `render` and `source`, so the **Code** panel shows exactly what renders.
+- Configure contract fixtures and part mappings on that adapter component. The
+  [library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries#library-registration-and-design-contract-tests)
+  explains the configuration.
 
 ### Storybook registration
 
-The `azDesign.library` field in `package.json` registers this package with the Library toolbar (key `html`). See the [library addon's README](../storybook-addon-libraries/README.md) for the manifest and adapter contract.
+The `azDesign.library` field in `package.json` registers this package with the Library toolbar (key `html`). See the [library addon guide](https://github.com/az-digital/design/tree/main/packages/storybook-addon-libraries) for the manifest and adapter contract.
 
 ### Build and lint
 
@@ -86,4 +89,7 @@ The markup is plain HTML, so a site owns loading Arizona Bootstrap's CSS and Jav
 - [ ] Check renderer output and HTML escaping for text and attributes.
 - [ ] Review each in-scope component in Storybook with the Library toolbar set to Arizona Bootstrap, including its **Code** panel.
 - [ ] Verify the copied markup on a page that loads Arizona Bootstrap's CSS and JavaScript, including keyboard behavior for interactive patterns.
-- [ ] Follow the shared [component contribution and definition-of-done checklist](../storybook/stories/Primary/Components/Contributing.mdx).
+- [ ] Review the Storybook design contract results, including missing
+  parts and skips. Storybook uses a patched dependency; separately verify the
+  markup against the Arizona Bootstrap version the site uses.
+- [ ] Follow the shared [component contribution and definition-of-done checklist](https://github.com/az-digital/design/blob/main/packages/storybook/stories/Primary/Components/Contributing.mdx).

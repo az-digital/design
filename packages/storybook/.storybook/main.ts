@@ -47,6 +47,10 @@ const config: StorybookConfig = {
 
   viteFinal: async (viteConfig) => ({
     ...viteConfig,
+    optimizeDeps: {
+      ...viteConfig.optimizeDeps,
+      include: [...(viteConfig.optimizeDeps?.include ?? []), 'lit'],
+    },
     resolve: {
       ...viteConfig.resolve,
       alias: {

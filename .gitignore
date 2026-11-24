@@ -1,4 +1,5 @@
 node_modules/
 packages/*/node_modules/
 packages/storybook/storybook-static/
+packages/design-contract-testing/test-results/
 debug-storybook.log

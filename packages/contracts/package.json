@@ -1,6 +1,6 @@
 {
   "name": "@az-digital/contracts",
-  "description": "Component contracts for the Arizona Digital design system: each component's parts and the token or value of each property, as data for docs and contract checks.",
+  "description": "Component design contracts for the Arizona Digital design system: each component's parts and the token or value of each property, as data for docs and design contract tests.",
   "type": "module",
   "files": [
     "contracts",

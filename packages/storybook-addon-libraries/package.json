@@ -1,7 +1,7 @@
 {
   "name": "@az-digital/storybook-addon-libraries",
   "private": true,
-  "description": "Storybook addon that registers component libraries from their package.json manifests and switches which one the stories render with.",
+  "description": "Storybook addon that registers component libraries, switches story rendering, and reports story-associated design contract tests.",
   "type": "module",
   "license": "MIT",
   "exports": {
@@ -9,6 +9,7 @@
     "./preset": "./src/preset.js",
     "./manager": "./src/manager.tsx",
     "./preview": "./src/preview.ts",
+    "./design-contracts": "./src/design-contracts/index.ts",
     "./node": {
       "types": "./src/node/discover.d.ts",
       "import": "./src/node/discover.js"
@@ -30,8 +31,14 @@
     "ajv": "^8.20.0"
   },
   "peerDependencies": {
+    "@az-digital/design-contract-testing": "*",
     "@storybook/addon-docs": "^10.0.0",
     "react": ">=18",
     "storybook": "^10.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@az-digital/design-contract-testing": {
+      "optional": true
+    }
   }
 }

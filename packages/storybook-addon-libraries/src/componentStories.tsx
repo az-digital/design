@@ -1,9 +1,24 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { GLOBAL, PARAMETER } from './constants';
 import { getLibrary, taggedLibraries } from './registry';
-import type { LibrariesParameter } from './types';
+import type { ComponentAdapter, LibrariesParameter } from './types';
 
 const placeholderStyle = { padding: '1rem', border: '1px dashed #999', borderRadius: '0.5rem', color: '#555', maxWidth: '32rem', background: '#fff' };
+
+/** Use the same rendering and cleanup protocol for a story and its design contract tests. */
+export function renderComponent<Props>(adapter: ComponentAdapter<Props>, props: Props, container: HTMLElement) {
+  container.replaceChildren();
+  const output = adapter.render(props, container);
+  if (typeof output === 'string') container.innerHTML = output;
+  else if (output instanceof Node) container.append(output);
+  return () => {
+    try {
+      if (typeof output === 'function') output();
+    } finally {
+      container.replaceChildren();
+    }
+  };
+}
 
 export function LibraryPlaceholder({ children }: { children: React.ReactNode }) {
   return <div style={placeholderStyle}>{children}</div>;
@@ -33,14 +48,7 @@ export function LibraryCanvas({ component, props, library: key, tags }: LibraryC
   useLayoutEffect(() => {
     const element = container.current;
     if (!element || !adapter) return undefined;
-    element.replaceChildren();
-    const output = adapter.render(props, element);
-    if (typeof output === 'string') element.innerHTML = output;
-    else if (output instanceof Node) element.append(output);
-    return () => {
-      if (typeof output === 'function') output();
-      element.replaceChildren();
-    };
+    return renderComponent(adapter, props, element);
   }, [adapter, props, drawable]);
 
   if (!library) {

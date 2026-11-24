@@ -2,6 +2,7 @@
 
 import type { Preview } from '@storybook/react-vite';
 import { ThemeDocsContainer } from './ThemeDocsContainer';
+import { designContractAfterEach, designContractBeforeEach } from '../src/designContractTestSetup';
 import tokensDocument from '@tokens/tokens.json';
 import '@tokens/dist/tokens.css';
 // Arizona Bootstrap compiled from its Sass source, with the patches in patches/.
@@ -16,6 +17,8 @@ const breakpointViewports = Object.fromEntries(
 );
 
 const preview: Preview = {
+  beforeEach: designContractBeforeEach,
+  afterEach: designContractAfterEach,
   parameters: {
     controls: {
       expanded: true,
