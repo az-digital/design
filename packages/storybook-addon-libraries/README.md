@@ -184,7 +184,9 @@ Counts are cases, not individual checks. A case with both failed and incomplete
 checks appears in both tabs; deliberately skipped checks do not make a case
 incomplete unless every check was skipped or no check was reported. The panel
 tab's badge counts the selected library's nonconforming cases, or shows one
-when it has no test or contract.
+when it has no test or contract. Findings and incomplete checks are shown in a
+table by variant, state, property, expected value, and actual value. Expand a
+row's details for the full finding and suggested fix.
 
 In a static Storybook, the addon loads published results from
 `design-contract-results.json` beside `index.html`. The file contains

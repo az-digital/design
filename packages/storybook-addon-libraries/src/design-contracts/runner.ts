@@ -138,6 +138,7 @@ export function createDesignContractTestRunner(data: DesignContractData, engine:
                 counts: result.counts,
                 coverage: engine.describeCoverage(result),
                 findings: result.ok ? [] : engine.formatResult(result),
+                entries: result.entries.filter((entry) => entry.status !== 'passed' && entry.status !== 'skipped'),
               });
               cases.push({ library: library.key, component, fixture: fixture.name, options, result });
             } catch (error) {

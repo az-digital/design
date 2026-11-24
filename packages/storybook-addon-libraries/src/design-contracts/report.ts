@@ -1,4 +1,4 @@
-import type { DesignContractTestResult } from '@az-digital/design-contract-testing';
+import type { DesignContractTestResult, Entry } from '@az-digital/design-contract-testing';
 
 /** The `reporting.addReport` type for a component story's design contract tests. */
 export const DESIGN_CONTRACT_REPORT_TYPE = 'az-digital/design-contracts';
@@ -12,6 +12,7 @@ export type ContractCaseSummary = {
   counts: DesignContractTestResult['counts'];
   coverage: string;
   findings: string[];
+  entries?: Entry[];
 };
 
 export type LibraryContractSummary =
@@ -59,6 +60,8 @@ type CompletedRun = {
 
 const isString = (value: unknown): value is string => typeof value === 'string';
 const COUNT_STATUSES = ['passed', 'failed', 'unsupported', 'unmapped', 'blocked', 'skipped'] as const;
+const ENTRY_STATUSES = ['passed', 'failed', 'unsupported', 'unmapped', 'blocked', 'skipped'] as const;
+const isStringOrNull = (value: unknown): value is string | null => value === null || isString(value);
 
 function isCounts(value: unknown): value is DesignContractTestResult['counts'] {
   if (!value || typeof value !== 'object') return false;
@@ -69,12 +72,26 @@ function isCounts(value: unknown): value is DesignContractTestResult['counts'] {
   });
 }
 
+function isEntry(value: unknown): value is Entry {
+  if (!value || typeof value !== 'object') return false;
+  const item = value as Record<string, unknown>;
+  return ENTRY_STATUSES.includes(item.status as (typeof ENTRY_STATUSES)[number])
+    && isStringOrNull(item.code) && isStringOrNull(item.name) && isString(item.contract)
+    && Array.isArray(item.options) && item.options.every(isString)
+    && isStringOrNull(item.part) && isStringOrNull(item.condition) && isStringOrNull(item.property)
+    && ['source', 'expected', 'drawn', 'reason', 'blockedBy', 'action'].every(
+      (key) => item[key] === undefined || isString(item[key]),
+    )
+    && isString(item.message);
+}
+
 function isCase(value: unknown): value is ContractCaseSummary {
   if (!value || typeof value !== 'object') return false;
   const item = value as Record<string, unknown>;
   if (!isString(item.fixture) || !Array.isArray(item.options) || !item.options.every(isString)
     || typeof item.ok !== 'boolean' || !isCounts(item.counts) || !isString(item.coverage)
-    || !Array.isArray(item.findings) || !item.findings.every(isString)) return false;
+    || !Array.isArray(item.findings) || !item.findings.every(isString)
+    || (item.entries !== undefined && (!Array.isArray(item.entries) || !item.entries.every(isEntry)))) return false;
   const { passed, failed, unsupported, unmapped, blocked } = item.counts;
   return item.ok === (passed > 0 && failed + unsupported + unmapped + blocked === 0);
 }

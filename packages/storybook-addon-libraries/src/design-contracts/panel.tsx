@@ -176,22 +176,66 @@ function DesignContractDocsTool() {
 function CaseList({ cases, empty }: { cases: ContractCaseSummary[]; empty: string }) {
   const theme = useTheme();
   if (!cases.length) return <EmptyTabContent title={empty} />;
+  const findings = cases.flatMap((item) => (item.entries ?? []).map((entry, index) => ({ item, entry, index })));
+  const legacy = cases.filter((item) => item.entries === undefined && item.findings.length > 0);
+  const coverage = cases.filter((item) => (item.entries?.length ?? 0) === 0 && item.findings.length === 0);
+  const cellStyle = {
+    borderBottom: `1px solid ${theme.appBorderColor}`,
+    padding: '8px 10px',
+    textAlign: 'left' as const,
+    verticalAlign: 'top' as const,
+    overflowWrap: 'anywhere' as const,
+  };
   return (
-    <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-      {cases.map((item) => (
-        <li key={CASE_LABEL(item.fixture, item.options)} style={{ borderBottom: `1px solid ${theme.appBorderColor}` }}>
-          <details>
-            <summary style={{ cursor: 'pointer', padding: '12px 16px' }}>
+    <div style={{ overflow: 'auto', height: '100%', padding: '0 12px 12px' }}>
+      {findings.length > 0 && (
+        <table style={{ borderCollapse: 'collapse', fontSize: 12, minWidth: 680, width: '100%' }}>
+          <thead>
+            <tr>
+              {['Variant', 'State', 'Property', 'Expected', 'Actual'].map((heading) => (
+                <th key={heading} scope="col" style={{ ...cellStyle, position: 'sticky', top: 0, background: theme.background.app }}>{heading}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {findings.map(({ item, entry, index }) => (
+              <tr key={`${CASE_LABEL(item.fixture, item.options)}:${entry.message}:${index}`}>
+                <td style={cellStyle}>
+                  <strong>{CASE_LABEL(item.fixture, item.options)}</strong>
+                </td>
+                <td style={cellStyle}>{entry.condition ?? 'default'}</td>
+                <td style={cellStyle}>{[entry.part, entry.property].filter(Boolean).join(' · ') || entry.name || '—'}</td>
+                <td style={cellStyle}>{entry.expected ?? entry.source ?? '—'}</td>
+                <td style={cellStyle}>
+                  <div>{entry.drawn ?? '—'}</div>
+                  <details>
+                    <summary style={{ cursor: 'pointer', marginTop: 6 }}>Details and suggested fix</summary>
+                    <p>{entry.message}</p>
+                    {entry.action && <p><strong>Suggested fix:</strong> {entry.action}</p>}
+                  </details>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      {coverage.length > 0 && (
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          {coverage.map((item) => (
+            <li key={CASE_LABEL(item.fixture, item.options)} style={{ borderBottom: `1px solid ${theme.appBorderColor}`, padding: 12 }}>
               <strong>{CASE_LABEL(item.fixture, item.options)}</strong>
-            </summary>
-            <div style={{ padding: '0 16px 16px 32px' }}>
               <p>{item.coverage}</p>
-              {item.findings.length > 0 && <pre style={PRE}>{item.findings.join('\n')}</pre>}
-            </div>
-          </details>
-        </li>
+            </li>
+          ))}
+        </ul>
+      )}
+      {legacy.map((item) => (
+        <details key={CASE_LABEL(item.fixture, item.options)} style={{ borderBottom: `1px solid ${theme.appBorderColor}` }}>
+          <summary style={{ cursor: 'pointer', padding: 12 }}><strong>{CASE_LABEL(item.fixture, item.options)}</strong></summary>
+          <pre style={{ ...PRE, padding: '0 12px 12px' }}>{item.findings.join('\n')}</pre>
+        </details>
       ))}
-    </ul>
+    </div>
   );
 }
 

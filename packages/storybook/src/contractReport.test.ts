@@ -17,11 +17,25 @@ import {
 const noCounts = { passed: 0, failed: 0, unsupported: 0, unmapped: 0, blocked: 0, skipped: 0 };
 const passedCounts = { ...noCounts, passed: 1 };
 const failedCounts = { ...passedCounts, failed: 1 };
+const failedEntry = {
+  status: 'failed' as const,
+  code: 'AZC001',
+  name: 'value-mismatch',
+  contract: 'button',
+  options: ['color.red'],
+  part: 'root',
+  condition: 'hover',
+  property: 'background.color',
+  expected: 'rgb(12, 35, 75)',
+  drawn: 'rgb(171, 5, 32)',
+  message: 'button › color.red › root › hover › background.color',
+  action: 'Update the implementation.',
+};
 const report: ComponentContractReport = {
   component: 'button',
   needsAttention: true,
   libraries: [
-    { key: 'html', title: 'Arizona Bootstrap', kind: 'tested', cases: [{ fixture: 'button', options: [], ok: false, counts: failedCounts, coverage: '', findings: ['drift'] }] },
+    { key: 'html', title: 'Arizona Bootstrap', kind: 'tested', cases: [{ fixture: 'button', options: [], ok: false, counts: failedCounts, coverage: '', findings: ['drift'], entries: [failedEntry] }] },
     { key: 'web', title: 'Web Components', kind: 'tested', cases: [{ fixture: 'button', options: [], ok: true, counts: passedCounts, coverage: '', findings: [] }] },
   ],
 };
@@ -68,6 +82,28 @@ describe('design contract results', () => {
   it('loads published results by story and rejects invalid or inconsistent reports', () => {
     const published = { version: 1, stories: { 'button--default': report } };
     expect(readPublishedContractResults(published)).toEqual({ 'button--default': { report } });
+    const invalidEntries = {
+      version: 1,
+      stories: {
+        button: {
+          ...report,
+          libraries: [{
+            key: 'html',
+            title: 'Arizona Bootstrap',
+            kind: 'tested',
+            cases: [{
+              fixture: 'button',
+              options: [],
+              ok: false,
+              counts: failedCounts,
+              coverage: '',
+              findings: ['drift'],
+              entries: ['not a finding'],
+            }],
+          }],
+        },
+      },
+    };
     for (const invalid of [
       null,
       { ...published, version: 2 },
@@ -76,6 +112,7 @@ describe('design contract results', () => {
       { version: 1, stories: { '': report } },
       { version: 1, stories: { button: { ...report, needsAttention: false } } },
       { version: 1, stories: { button: { ...report, libraries: null } } },
+      invalidEntries,
     ]) {
       expect(() => readPublishedContractResults(invalid)).toThrow();
     }
