@@ -1,5 +1,59 @@
 [
   {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "band",
+    "kind": "default",
+    "condition": null,
+    "property": "opacity",
+    "token": "az.opacity.pattern-monsoon-rain"
+  },
+  {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "band",
+    "kind": "default",
+    "condition": null,
+    "property": "tile.size",
+    "token": "az.size.pattern.monsoon-rain-tile"
+  },
+  {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "band",
+    "kind": "default",
+    "condition": null,
+    "property": "width.proportion",
+    "token": "az.proportion.pattern.monsoon-rain-band"
+  },
+  {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "band",
+    "kind": "default",
+    "condition": null,
+    "property": "width.min",
+    "token": "az.size.pattern.monsoon-rain-band-min"
+  },
+  {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "band",
+    "kind": "default",
+    "condition": null,
+    "property": "width.max",
+    "token": "az.size.pattern.monsoon-rain-band-max"
+  },
+  {
+    "contract": "background-pattern",
+    "variant": null,
+    "part": "text-backdrop",
+    "kind": "default",
+    "condition": null,
+    "property": "opacity",
+    "token": "az.opacity.pattern-text-backdrop"
+  },
+  {
     "contract": "brand-header",
     "variant": null,
     "part": "root",

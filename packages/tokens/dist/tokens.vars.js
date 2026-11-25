@@ -138,7 +138,33 @@ export const az = {
       "md": "var(--az-border-width-md)"
     }
   },
+  "size": {
+    "base": {
+      "patternTile": "var(--az-size-base-pattern-tile)",
+      "patternBandMin": "var(--az-size-base-pattern-band-min)",
+      "patternBandMax": "var(--az-size-base-pattern-band-max)"
+    },
+    "pattern": {
+      "monsoonRainTile": "var(--az-size-pattern-monsoon-rain-tile)",
+      "monsoonRainBandMin": "var(--az-size-pattern-monsoon-rain-band-min)",
+      "monsoonRainBandMax": "var(--az-size-pattern-monsoon-rain-band-max)"
+    }
+  },
+  "proportion": {
+    "base": {
+      "patternBand": "var(--az-proportion-base-pattern-band)"
+    },
+    "pattern": {
+      "monsoonRainBand": "var(--az-proportion-pattern-monsoon-rain-band)"
+    }
+  },
   "opacity": {
+    "base": {
+      "pattern": "var(--az-opacity-base-pattern)",
+      "textBackdrop": "var(--az-opacity-base-text-backdrop)"
+    },
+    "patternMonsoonRain": "var(--az-opacity-pattern-monsoon-rain)",
+    "patternTextBackdrop": "var(--az-opacity-pattern-text-backdrop)",
     "buttonDisabled": "var(--az-opacity-button-disabled)"
   },
   "focusRing": {

@@ -183,7 +183,7 @@ git apply -p3 arizona-bootstrap+5.3.0+001+white-buttons-hover-and-active.patch
 
 Once an Arizona Bootstrap release includes a change, point `packages/storybook/package.json` at that release's tag, run `npm install`, and delete the patch. `npm install` fails if a patch no longer applies to the new release: redo the change on the new source and make the patch again, with the new version in its name.
 
-The background images that Arizona Bootstrap's Sass refers to (`url("img/...")`) don't load in Storybook: the package ships them only beside its released CSS, not its Sass.
+Storybook serves the background images that Arizona Bootstrap's Sass refers to (`url("img/...")`) from the package's released CSS assets.
 
 ### Storybook MCP for AI Agents
 

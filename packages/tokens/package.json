@@ -4,10 +4,12 @@
   "type": "module",
   "files": [
     "README.md",
+    "assets",
     "dist",
     "tokens.json"
   ],
   "exports": {
+    "./assets/*": "./assets/*",
     "./tokens.json": "./tokens.json",
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"

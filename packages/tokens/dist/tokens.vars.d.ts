@@ -138,7 +138,33 @@ export const az: {
       "md": string
     }
   },
+  "size": {
+    "base": {
+      "patternTile": string,
+      "patternBandMin": string,
+      "patternBandMax": string
+    },
+    "pattern": {
+      "monsoonRainTile": string,
+      "monsoonRainBandMin": string,
+      "monsoonRainBandMax": string
+    }
+  },
+  "proportion": {
+    "base": {
+      "patternBand": string
+    },
+    "pattern": {
+      "monsoonRainBand": string
+    }
+  },
   "opacity": {
+    "base": {
+      "pattern": string,
+      "textBackdrop": string
+    },
+    "patternMonsoonRain": string,
+    "patternTextBackdrop": string,
     "buttonDisabled": string
   },
   "focusRing": {

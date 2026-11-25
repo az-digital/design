@@ -64,13 +64,25 @@ const config: StorybookConfig = {
     // Arizona Bootstrap compiled from its Sass source (arizona-bootstrap.scss).
     css: {
       ...viteConfig.css,
+      postcss: {
+        plugins: [{
+          postcssPlugin: 'arizona-bootstrap-images',
+          Declaration(declaration) {
+            // Sass URL rebasing points to source paths, but the npm package
+            // ships these images next to its compiled CSS instead.
+            declaration.value = declaration.value.replace(
+              /(?:\.\.\/)*node_modules\/arizona-bootstrap\/scss\/custom\/img\//g,
+              fileURLToPath(new URL('../../../node_modules/arizona-bootstrap/dist/css/img/', import.meta.url)),
+            );
+          },
+        }],
+      },
       preprocessorOptions: {
         scss: {
           // Resolve Arizona Bootstrap's bare `bootstrap/scss/...` imports.
           loadPaths: [fileURLToPath(new URL('../../../node_modules', import.meta.url))],
           // Arizona Bootstrap's own deprecation warnings, such as @import.
-          // Its background images (url("img/...")) stay unresolved: the
-          // package ships them only beside its released CSS, not its Sass.
+          // Images referenced by its Sass are served from its released CSS.
           quietDeps: true,
           silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
         },

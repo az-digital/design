@@ -1,0 +1,33 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "background-pattern",
+  "name": "Background pattern",
+  "description": "A Monsoon Rain image repeats down the start or end edge of a section. Patterned text may use a translucent backdrop in the section's color.",
+  "sources": [
+    "az-digital/arizona-bootstrap#2111: Monsoon Sky image, tile size and opacity; section-color text legibility backdrop",
+    "az-digital/arizona-bootstrap#2308: proportional edge band and its minimum and maximum"
+  ],
+  "anatomy": {
+    "root": {
+      "description": "A section with a pattern on either edge.",
+      "parts": {
+        "band": {
+          "description": "The Monsoon Rain tile repeats vertically at the chosen edge. The band's proportional width is clamped between its minimum and maximum.",
+          "tokens": {
+            "opacity": "{az.opacity.pattern-monsoon-rain}",
+            "tile.size": "{az.size.pattern.monsoon-rain-tile}",
+            "width.proportion": "{az.proportion.pattern.monsoon-rain-band}",
+            "width.min": "{az.size.pattern.monsoon-rain-band-min}",
+            "width.max": "{az.size.pattern.monsoon-rain-band-max}"
+          }
+        },
+        "text-backdrop": {
+          "description": "Paragraphs, list items and rules use the section's color, or White when none is set, behind the text.",
+          "tokens": {
+            "opacity": "{az.opacity.pattern-text-backdrop}"
+          }
+        }
+      }
+    }
+  }
+}

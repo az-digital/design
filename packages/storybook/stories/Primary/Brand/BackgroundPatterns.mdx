@@ -1,0 +1,54 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import { TokenDisplay, getTokenData } from '@az-digital/storybook-addon-tokens';
+import { ContractAnatomy } from '../Components/ContractAnatomy';
+import monsoonSky from '@tokens/assets/patterns/monsoon-sky.svg';
+import * as PatternStories from './BackgroundPatterns.stories';
+
+<Meta of={PatternStories} />
+
+# Background patterns
+
+Monsoon Rain places a repeating image along one edge of a section. It was originally called Monsoon Sky.
+
+<Canvas of={PatternStories.Examples} sourceState="hidden" />
+
+<Controls of={PatternStories.Examples} />
+
+These examples use Arizona Bootstrap v5.3.0's background wrapper on colors offered in its
+[background wrappers demo](https://review.digital.arizona.edu/arizona-bootstrap/main/docs/5.2/components/background-wrappers/).
+They do not establish which surfaces are approved. Check text contrast for each use.
+The release does **not** apply the text-legibility backdrop to Monsoon Rain: its mixin
+is used on Trilines only. The backdrop below records the requested design decision, not
+behavior demonstrated by this release.
+
+## Image and placement
+
+Use the same <a href={monsoonSky} download>Monsoon Sky SVG</a> for either
+the start or end edge. The original image is also available to implementations at
+`@az-digital/tokens/assets/patterns/monsoon-sky.svg`.
+The band repeats vertically at 300px and is 20% of the section width, clamped to
+75–200px. The image is 40% opaque; section content is not faded.
+
+<TokenDisplay items={[
+  getTokenData('az.opacity.pattern-monsoon-rain'),
+  getTokenData('az.size.pattern.monsoon-rain-tile'),
+  getTokenData('az.proportion.pattern.monsoon-rain-band'),
+  getTokenData('az.size.pattern.monsoon-rain-band-min'),
+  getTokenData('az.size.pattern.monsoon-rain-band-max'),
+]} layout="table" />
+
+## Text legibility
+
+Paragraphs, list items and rules on a patterned section have a backdrop of the section's
+color at 70% opacity; use White when no section color is set.
+
+<TokenDisplay items={[getTokenData('az.opacity.pattern-text-backdrop')]} layout="table" />
+
+## Sources and anatomy
+
+The image, tile, opacity and backdrop come from
+[Arizona Bootstrap #2111](https://github.com/az-digital/arizona-bootstrap/pull/2111);
+the responsive band comes from
+[Arizona Bootstrap #2308](https://github.com/az-digital/arizona-bootstrap/pull/2308).
+
+<ContractAnatomy contract="background-pattern" />
